@@ -1,0 +1,15 @@
+{
+    "name": "authing-js-sdk",
+    "version": "0.0.0",
+    "description": "",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "types": "dist/index.d.ts",
+    "scripts": {},
+    "keywords": [],
+    "author": "Willin Wang <willin@willin.org> (https://willin.wang/)",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.26.1"
+    }
+}
