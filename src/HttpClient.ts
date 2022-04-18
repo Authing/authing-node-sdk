@@ -3,6 +3,7 @@ import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ManagementClientOptions } from './ManagementClientOptions';
 import { ManagementTokenProvider } from './ManagementTokenProvider';
 import { pickBy } from './utils';
+import { SDK_VERSION } from './version';
 
 export interface AuthingRequestConfig extends AxiosRequestConfig {
     body: any;
@@ -29,18 +30,12 @@ export class HttpClient {
             config.data = config.body;
         }
 
-        const headers: any = {};
-        // @ts-ignore
-        headers[this.options.headers['app-id']] = this.options.appId || '';
-        // @ts-ignore
-        headers[this.options.headers['tenant-id']] = this.options.tenantId;
-        // @ts-ignore
-        headers[this.options.headers['userpool-id']] = this.options.userPoolId || '';
-        // @ts-ignore
-        headers[this.options.headers['request-from']] = this.options.requestFrom || 'sdk';
-        // headers[this.options.headers['sdk-version']] = `js:${SDK_VERSION}`;
-        // @ts-ignore
-        headers[this.options.headers.lang] = this.options.lang || '';
+        const headers: Record<string, any> = {};
+        headers[this.options.headers!['tenant-id']!] = this.options.tenantId;
+        headers[this.options.headers!['userpool-id']] = this.options.userPoolId || '';
+        headers[this.options.headers!['request-from']] = this.options.requestFrom || 'sdk';
+        headers[this.options.headers!['sdk-version']] = `js:${SDK_VERSION}`;
+        headers[this.options.headers!.lang] = this.options.lang || '';
 
         const token = await this.tokenProvider.getToken();
         token && (headers.Authorization = `Bearer ${token}`);
