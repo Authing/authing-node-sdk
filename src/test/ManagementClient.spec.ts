@@ -159,7 +159,13 @@ describe("ManagementClient", () => {
 
       it("phoneCountryCode is invalid", async () => {});
 
-      it("customData type is invalid", async () => {});
+      it("customData type is invalid", async () => {
+        const { data, code, errorCode } = await managementClient.createRole({
+          code: 'admin',
+          description: '管理员',
+          namespace: 'default'
+        });
+      });
     });
   });
 });
