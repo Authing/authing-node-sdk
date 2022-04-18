@@ -1,0 +1,26 @@
+name: CI
+
+on:
+    workflow_dispatch:
+
+jobs:
+
+  readyGo:
+
+    runs-on: ubuntu-latest
+
+    env: 
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      PUBLISH_OPTS: ${{ github.ref_name == 'main' && '--verbose' || '--verbose --tag=alpha' }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.13.1
+          registry-url: https://registry.npmjs.org/
+
+      - name: publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+          npm publish $PUBLISH_OPTS --access public
