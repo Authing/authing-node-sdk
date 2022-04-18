@@ -40,7 +40,7 @@ const managementClient = new ManagementClient({
 - `accessKeyId`: Authing 用户池 ID;
 - `accessKeySecret`: Authing 用户池密钥;
 - `timeout`: 超时时间，单位为 ms，默认为 10000 ms;
-- `host`: Authing 服务器地址，默认为 `https://api.authing.cn`。如果你使用的是 Authing 公有云版本，请忽略此参数。如果你使用的是私有化部署的版本，此参数必填，格式如下: https://authing-api.mydomain.com（最后不带斜杠 /）。
+- `host`: Authing 服务器地址，默认为 `https://api.authing.cn`。如果你使用的是 Authing 公有云版本，请忽略此参数。如果你使用的是私有化部署的版本，此参数必填，格式如下: https://authing-api.my-authing-service.com（最后不带斜杠 /）。
 - `lang`: 接口 Message 返回语言格式（可选），可选值为 zh-CN 和 en-US，默认为 zh-CN。
 
 ## 快速开始
@@ -99,6 +99,23 @@ if (code !== 200) {
 
 // 继续你的业务逻辑 ...
 ```
+
+## 私有化部署
+
+
+如果你使用的是私有化部署的 Authing IDaaS 服务，需要指定此 Authing 私有化实例的 `host`，如：
+
+```typescript
+import { ManagementClient } from 'authing-js-sdk'
+
+const managementClient = new ManagementClient({
+  accessKeyId: 'YOUR_ACCESS_KEY_ID',
+  accessKeySecret: 'YOUR_ACCESS_KEY_SECRET',
+  host: 'https://authing-api.my-authing-service.com'
+})
+```
+
+如果你不清楚如何获取，可以联系 Authing IDaaS 服务管理员。
 
 
 ## 获取帮助
