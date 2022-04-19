@@ -36,3 +36,9 @@ jobs:
         run: |
           npm config set //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
           npm publish $PUBLISH_OPTS --access public
+
+      - name: test
+        run: |
+          git add -A .
+          git commit -a -m 'Auto Update'
+          git push origin main
