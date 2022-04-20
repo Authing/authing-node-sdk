@@ -4,11 +4,11 @@
 
 export type GetManagementAccessTokenDto = {
     /**
-     * 用户池 ID
+     * AccessKey Secret: 如果是以用户池全局 AK/SK 初始化，为用户池密钥；如果是以协作管理员的 AK/SK 初始化，为协作管理员的 SK。
      */
-    userPoolId: string;
+    accessKeySecret: string;
     /**
-     * 用户池密钥
+     * AccessKey ID: 如果是以用户池全局 AK/SK 初始化，为用户池 ID；如果是以协作管理员的 AK/SK 初始化，为协作管理员的 AccessKey ID。
      */
-    secret: string;
+    accessKeyId: string;
 };

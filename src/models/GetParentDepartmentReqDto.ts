@@ -4,11 +4,11 @@
 
 export type GetParentDepartmentReqDto = {
     /**
-     * 组织 code
-     */
-    organizationCode: string;
-    /**
      * 部门 id
      */
     departmentId: string;
+    /**
+     * 组织 code
+     */
+    organizationCode: string;
 };

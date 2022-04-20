@@ -4,15 +4,15 @@
 
 export type CreateGroupReqDto = {
     /**
-     * 分组 code
+     * 分组描述
      */
-    code: string;
+    description: string;
     /**
      * 分组名称
      */
     name: string;
     /**
-     * 分组描述
+     * 分组 code
      */
-    description: string;
+    code: string;
 };

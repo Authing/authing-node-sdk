@@ -8,7 +8,7 @@ export type GetRoleDto = {
      */
     code: string;
     /**
-     * 权限分组的 code
+     * 所属权限分组的 code
      */
     namespace?: string;
 };

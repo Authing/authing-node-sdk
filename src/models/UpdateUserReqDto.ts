@@ -24,25 +24,25 @@ export type UpdateUserReqDto = {
      */
     photo?: string;
     /**
-     * 性别
-     */
-    gender: UpdateUserReqDto.gender;
-    /**
-     * 邮箱是否验证
-     */
-    emailVerified: boolean;
-    /**
-     * 手机号是否验证
-     */
-    phoneVerified: boolean;
-    /**
      * 第三方外部 ID
      */
     externalId?: string;
     /**
-     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     * 账户当前状态
      */
-    customData?: any;
+    status?: UpdateUserReqDto.status;
+    /**
+     * 邮箱是否验证
+     */
+    emailVerified?: boolean;
+    /**
+     * 手机号是否验证
+     */
+    phoneVerified?: boolean;
+    /**
+     * 性别
+     */
+    gender?: UpdateUserReqDto.gender;
     /**
      * 用户名，用户池内唯一
      */
@@ -59,9 +59,24 @@ export type UpdateUserReqDto = {
      * 密码。必须通过加密方式进行加密。
      */
     password?: string;
+    /**
+     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     */
+    customData?: any;
 };
 
 export namespace UpdateUserReqDto {
+
+    /**
+     * 账户当前状态
+     */
+    export enum status {
+        DELETED = 'Deleted',
+        SUSPENDED = 'Suspended',
+        RESIGNED = 'Resigned',
+        ACTIVATED = 'Activated',
+        ARCHIVED = 'Archived',
+    }
 
     /**
      * 性别

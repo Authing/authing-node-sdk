@@ -7,11 +7,11 @@ import type { TargetDto } from './TargetDto';
 
 export type RevokeRoleBatchDto = {
     /**
-     * 角色信息
-     */
-    roles: Array<RoleCodeDto>;
-    /**
      * 目标信息
      */
     targets: Array<TargetDto>;
+    /**
+     * 角色信息
+     */
+    roles: Array<RoleCodeDto>;
 };

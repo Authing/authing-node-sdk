@@ -4,19 +4,19 @@
 
 export type UpdateGroupReqDto = {
     /**
-     * 分组 code
+     * 分组新的 code
      */
-    code: string;
-    /**
-     * 分组名称
-     */
-    name: string;
+    newCode: string;
     /**
      * 分组描述
      */
     description: string;
     /**
-     * 分组新的 code
+     * 分组名称
      */
-    newCode: string;
+    name: string;
+    /**
+     * 分组 code
+     */
+    code: string;
 };

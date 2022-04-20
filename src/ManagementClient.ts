@@ -11,7 +11,6 @@ import type { DeleteUsersBatchDto } from './models/DeleteUsersBatchDto';
 import type { GetUserAccessibleAppsReqDto } from './models/GetUserAccessibleAppsReqDto';
 import type { GetUserAuthorizedResourcesDto } from './models/GetUserAuthorizedResourcesDto';
 import type { GetUserBatchDto } from './models/GetUserBatchDto';
-import type { GetUserCustomDataDto } from './models/GetUserCustomDataDto';
 import type { GetUserDepartmentsDto } from './models/GetUserDepartmentsDto';
 import type { GetUserDto } from './models/GetUserDto';
 import type { GetUserGroupsDto } from './models/GetUserGroupsDto';
@@ -35,8 +34,6 @@ import type { ListUsersDto } from './models/ListUsersDto';
 import type { PrincipalAuthenticationInfoPaginatedRespDto } from './models/PrincipalAuthenticationInfoPaginatedRespDto';
 import type { ResetUserPrincipalAuthenticationInfoDto } from './models/ResetUserPrincipalAuthenticationInfoDto';
 import type { RolePaginatedRespDto } from './models/RolePaginatedRespDto';
-import type { SetUserCustomDataDto } from './models/SetUserCustomDataDto';
-import type { SetUserCustomDataRespDto } from './models/SetUserCustomDataRespDto';
 import type { SetUserDepartmentsDto } from './models/SetUserDepartmentsDto';
 import type { UpdateUserReqDto } from './models/UpdateUserReqDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
@@ -44,6 +41,7 @@ import type { UserListRespDto } from './models/UserListRespDto';
 import type { UserLoggedInAppsListRespDto } from './models/UserLoggedInAppsListRespDto';
 import type { UserLoginHistoryPaginatedRespDto } from './models/UserLoginHistoryPaginatedRespDto';
 import type { UserMfaSingleRespDto } from './models/UserMfaSingleRespDto';
+import type { UserPaginatedRespDto } from './models/UserPaginatedRespDto';
 import type { UserSingleRespDto } from './models/UserSingleRespDto';
 import type { AddGroupMembersReqDto } from './models/AddGroupMembersReqDto';
 import type { AuthorizedResourceListRespDto } from './models/AuthorizedResourceListRespDto';
@@ -90,9 +88,44 @@ import type { OrganizationSingleRespDto } from './models/OrganizationSingleRespD
 import type { SearchDepartmentsReqDto } from './models/SearchDepartmentsReqDto';
 import type { UpdateDepartmentReqDto } from './models/UpdateDepartmentReqDto';
 import type { UpdateOrganizationReqDto } from './models/UpdateOrganizationReqDto';
+import type { CreateExtIdpConnDto } from './models/CreateExtIdpConnDto';
+import type { CreateExtIdpDto } from './models/CreateExtIdpDto';
+import type { DeleteExtIdpConnDto } from './models/DeleteExtIdpConnDto';
+import type { DeleteExtIdpDto } from './models/DeleteExtIdpDto';
+import type { EnableExtIdpConnDto } from './models/EnableExtIdpConnDto';
+import type { ExtIdpConnDetail } from './models/ExtIdpConnDetail';
+import type { ExtIdpDto } from './models/ExtIdpDto';
+import type { GetExtIdpDto } from './models/GetExtIdpDto';
+import type { TenantIdDto } from './models/TenantIdDto';
+import type { UpdateExtIdpConnDto } from './models/UpdateExtIdpConnDto';
+import type { UpdateExtIdpDto } from './models/UpdateExtIdpDto';
 import type { CustomFieldListRespDto } from './models/CustomFieldListRespDto';
 import type { GetUserDefinedFieldsDto } from './models/GetUserDefinedFieldsDto';
 import type { SetCustomFieldsReqDto } from './models/SetCustomFieldsReqDto';
+import type { AuthorizeResourcesDto } from './models/AuthorizeResourcesDto';
+import type { CreateNamespaceDto } from './models/CreateNamespaceDto';
+import type { CreateNamespacesBatchDto } from './models/CreateNamespacesBatchDto';
+import type { CreateResourceDto } from './models/CreateResourceDto';
+import type { CreateResourcesBatchDto } from './models/CreateResourcesBatchDto';
+import type { DeleteNamespaceDto } from './models/DeleteNamespaceDto';
+import type { DeleteNamespacesBatchDto } from './models/DeleteNamespacesBatchDto';
+import type { DeleteResourceDto } from './models/DeleteResourceDto';
+import type { DeleteResourcesBatchDto } from './models/DeleteResourcesBatchDto';
+import type { GetAuthorizedResourcesDto } from './models/GetAuthorizedResourcesDto';
+import type { GetNamespaceDto } from './models/GetNamespaceDto';
+import type { GetNamespacesBatchDto } from './models/GetNamespacesBatchDto';
+import type { GetResourceDto } from './models/GetResourceDto';
+import type { GetResourcesBatchDto } from './models/GetResourcesBatchDto';
+import type { ListResourcesDto } from './models/ListResourcesDto';
+import type { NamespaceDto } from './models/NamespaceDto';
+import type { NamespaceListRespDto } from './models/NamespaceListRespDto';
+import type { NamespaceRespDto } from './models/NamespaceRespDto';
+import type { ResourceDto } from './models/ResourceDto';
+import type { ResourceListRespDto } from './models/ResourceListRespDto';
+import type { ResourcePaginatedRespDto } from './models/ResourcePaginatedRespDto';
+import type { ResourceRespDto } from './models/ResourceRespDto';
+import type { UpdateNamespaceDto } from './models/UpdateNamespaceDto';
+import type { UpdateResourceDto } from './models/UpdateResourceDto';
 
 import { DEFAULT_OPTIONS, ManagementClientOptions } from './ManagementClientOptions';
 import { HttpClient } from './HttpClient';
@@ -109,13 +142,13 @@ export class ManagementClient {
         Axios.defaults.baseURL = this.options.host;
         this.httpClient = new HttpClient(this.options);
 
-        if (!this.options.userPoolId) {
-            throw new Error('userPoolId not provided');
+        if (!this.options.accessKeyId) {
+            throw new Error('accessKeyId is required');
         }
 
-        if (!this.options.secret && !this.options.accessToken) {
+        if (!this.options.accessKeySecret) {
             throw new Error(
-                'secret or accessToken not provided'
+                'accessKeySecret is required'
             );
         }
     }
@@ -175,11 +208,11 @@ export class ManagementClient {
      * @summary 获取用户列表
      * @description 获取用户列表接口，支持分页
      * @param requestBody
-     * @returns UserListRespDto
+     * @returns UserPaginatedRespDto
      */
     public async listUsers(
         requestBody: ListUsersDto,
-    ): Promise<UserListRespDto> {
+    ): Promise<UserPaginatedRespDto> {
         return await this.httpClient.request({
             method: 'POST',
             url: '/api/v3/list-users',
@@ -200,40 +233,6 @@ export class ManagementClient {
         return await this.httpClient.request({
             method: 'POST',
             url: '/api/v3/get-user-identities',
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-
-    /**
-     * @summary 获取用户自定义数据
-     * @description 获取用户自定义数据
-     * @param requestBody
-     * @returns any
-     */
-    public async getUserCustomData(
-        requestBody: GetUserCustomDataDto,
-    ): Promise<any> {
-        return await this.httpClient.request({
-            method: 'POST',
-            url: '/api/v3/get-user-custom-data',
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-
-    /**
-     * @summary 设置用户自定义数据
-     * @description 设置用户自定义数据
-     * @param requestBody
-     * @returns SetUserCustomDataRespDto
-     */
-    public async setUserCustomData(
-        requestBody: SetUserCustomDataDto,
-    ): Promise<SetUserCustomDataRespDto> {
-        return await this.httpClient.request({
-            method: 'POST',
-            url: '/api/v3/set-user-custom-data',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -563,8 +562,8 @@ export class ManagementClient {
     }
 
     /**
-     * @summary 获取用户被授权的所有资源，用户被授权的资源是用户自身被授予、通过分组继承、通过角色继承、通过组织机构继承的集合
-     * @description 获取用户被授权的所有资源
+     * @summary 获取用户被授权的所有资源
+     * @description 获取用户被授权的所有资源，用户被授权的资源是用户自身被授予、通过分组继承、通过角色继承、通过组织机构继承的集合
      * @param requestBody
      * @returns AuthorizedResourcePaginatedRespDto
      */
@@ -1218,6 +1217,159 @@ export class ManagementClient {
     }
 
     /**
+     * @summary 获取身份源列表
+     * @description 获取身份源列表
+     * @param requestBody
+     * @returns ExtIdpDto
+     */
+    public async listExtIdp(
+        requestBody: TenantIdDto,
+    ): Promise<ExtIdpDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/list-ext-idp',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 获取身份源详情
+     * @description 获取身份源详情
+     * @param requestBody
+     * @returns ExtIdpDto
+     */
+    public async getExtIdp(
+        requestBody: GetExtIdpDto,
+    ): Promise<ExtIdpDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-ext-idp',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 创建身份源
+     * @description 创建身份源
+     * @param requestBody
+     * @returns ExtIdpDto
+     */
+    public async createExtIdp(
+        requestBody: CreateExtIdpDto,
+    ): Promise<ExtIdpDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-ext-idp',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 更新身份源配置
+     * @description 更新身份源配置
+     * @param requestBody
+     * @returns ExtIdpDto
+     */
+    public async updateExtIdp(
+        requestBody: UpdateExtIdpDto,
+    ): Promise<ExtIdpDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-ext-idp',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 删除身份源配置
+     * @description 删除身份源配置
+     * @param requestBody
+     * @returns ExtIdpDto
+     */
+    public async deleteExtIdp(
+        requestBody: DeleteExtIdpDto,
+    ): Promise<ExtIdpDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-ext-idp',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 在某个已有身份源下创建新连接
+     * @description 在某个已有身份源下创建新连接
+     * @param requestBody
+     * @returns ExtIdpConnDetail
+     */
+    public async createExtIdpConn(
+        requestBody: CreateExtIdpConnDto,
+    ): Promise<ExtIdpConnDetail> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-ext-idp-conn',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 更新身份源连接
+     * @description 更新身份源连接
+     * @param requestBody
+     * @returns ExtIdpConnDetail
+     */
+    public async updateExtIdpConn(
+        requestBody: UpdateExtIdpConnDto,
+    ): Promise<ExtIdpConnDetail> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-ext-idp-conn',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 删除身份源配置
+     * @description 删除身份源配置
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async deleteExtIdpConn(
+        requestBody: DeleteExtIdpConnDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-ext-idp-conn',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 身份源连接开关
+     * @description 身份源连接开关
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async changeConnState(
+        requestBody: EnableExtIdpConnDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/enable-ext-idp-conn',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
      * @summary 获取用户池配置的扩展字段列表
      * @description 获取用户池配置的扩展字段列表
      * @param requestBody
@@ -1246,6 +1398,295 @@ export class ManagementClient {
         return await this.httpClient.request({
             method: 'POST',
             url: '/api/v3/set-custom-fields',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 创建资源
+     * @description 创建资源
+     * @param requestBody
+     * @returns ResourceRespDto
+     */
+    public async createResource(
+        requestBody: CreateResourceDto,
+    ): Promise<ResourceRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-resource',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 批量创建资源
+     * @description 批量创建资源
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async createResourcesBatch(
+        requestBody: CreateResourcesBatchDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-resources-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 获取资源详情
+     * @description 获取资源详情
+     * @param requestBody
+     * @returns ResourceRespDto
+     */
+    public async getResource(
+        requestBody: GetResourceDto,
+    ): Promise<ResourceRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-resource',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 批量获取资源详情
+     * @description 批量获取资源详情
+     * @param requestBody
+     * @returns ResourceListRespDto
+     */
+    public async getResourcesBatch(
+        requestBody: GetResourcesBatchDto,
+    ): Promise<ResourceListRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-resources-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 分页获取资源列表
+     * @description 分页获取资源列表
+     * @param requestBody
+     * @returns ResourcePaginatedRespDto
+     */
+    public async listResources(
+        requestBody: ListResourcesDto,
+    ): Promise<ResourcePaginatedRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/list-resources',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 修改资源
+     * @description 修改资源（Pratial Update）
+     * @param requestBody
+     * @returns ResourceRespDto
+     */
+    public async updateResource(
+        requestBody: UpdateResourceDto,
+    ): Promise<ResourceRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-resource',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 删除资源
+     * @description 删除资源
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async deleteResource(
+        requestBody: DeleteResourceDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-resource',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 批量删除资源
+     * @description 批量删除资源
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async deleteResourcesBatch(
+        requestBody: DeleteResourcesBatchDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-resources-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 创建权限分组
+     * @description 创建权限分组
+     * @param requestBody
+     * @returns ResourceDto
+     */
+    public async createNamespace(
+        requestBody: CreateNamespaceDto,
+    ): Promise<ResourceDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-namespace',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 创建权限分组
+     * @description 创建权限分组
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async createNamespacesBatch(
+        requestBody: CreateNamespacesBatchDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/create-namespaces-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 获取权限分组详情
+     * @description 获取权限分组详情
+     * @param requestBody
+     * @returns NamespaceRespDto
+     */
+    public async getNamespace(
+        requestBody: GetNamespaceDto,
+    ): Promise<NamespaceRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-namespace',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 批量获取权限分组详情
+     * @description 批量获取权限分组详情
+     * @param requestBody
+     * @returns NamespaceListRespDto
+     */
+    public async getNamespacesBatch(
+        requestBody: GetNamespacesBatchDto,
+    ): Promise<NamespaceListRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-namespaces-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 修改权限分组信息
+     * @description 修改权限分组信息
+     * @param requestBody
+     * @returns NamespaceDto
+     */
+    public async updateNamespace(
+        requestBody: UpdateNamespaceDto,
+    ): Promise<NamespaceDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-namespace',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 删除权限分组信息
+     * @description 删除权限分组信息
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async deketeNamespace(
+        requestBody: DeleteNamespaceDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-namespace',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 批量删除权限分组信息
+     * @description 批量删除权限分组信息
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async deketeNamespacesBatch(
+        requestBody: DeleteNamespacesBatchDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/delete-namespaces-batch',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 授权资源
+     * @description 给多个主体同时授权多个资源
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async authorizeResources(
+        requestBody: AuthorizeResourcesDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/authorize-resources',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+
+    /**
+     * @summary 获取某个主体被授权的资源列表
+     * @description 获取某个主体被授权的资源列表
+     * @param requestBody
+     * @returns IsSuccessRespDto
+     */
+    public async getTargetAuthorizedResources(
+        requestBody: GetAuthorizedResourcesDto,
+    ): Promise<IsSuccessRespDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/get-authorized-resources',
             body: requestBody,
             mediaType: 'application/json',
         });

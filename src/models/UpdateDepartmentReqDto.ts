@@ -4,17 +4,21 @@
 
 export type UpdateDepartmentReqDto = {
     /**
-     * 部门 ID
+     * 组织 code
      */
-    departmentId: string;
+    organizationCode: string;
+    /**
+     * 部门名称
+     */
+    name: string;
     /**
      * 父部门 id
      */
     parentDepartmentId: string;
     /**
-     * 部门名称
+     * 部门 ID
      */
-    name: string;
+    departmentId: string;
     /**
      * 部门识别码
      */
@@ -23,8 +27,4 @@ export type UpdateDepartmentReqDto = {
      * 部门负责人 ID
      */
     leaderUserId?: string;
-    /**
-     * 组织 code
-     */
-    organizationCode: string;
 };

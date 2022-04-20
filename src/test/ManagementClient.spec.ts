@@ -9,8 +9,8 @@ import {
 
 describe("ManagementClient", () => {
   const managementClient = new ManagementClient({
-    userPoolId: "62591915d4fb988d2dcdd101",
-    secret: "7c4d37f2764c2495fd42c8d4164a69fe",
+    accessKeyId: "62591915d4fb988d2dcdd101",
+    accessKeySecret: "7c4d37f2764c2495fd42c8d4164a69fe",
     host: "http://localhost:3000",
   });
 

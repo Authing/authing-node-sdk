@@ -4,7 +4,7 @@
 
 export type GetUserAuthorizedResourcesOptionsDto = {
     /**
-     * 权限分组的 code
+     * 所属权限分组的 code
      */
     namespace?: string;
     /**

@@ -7,11 +7,11 @@ import type { TargetDto } from './TargetDto';
 
 export type AssignRoleBatchDto = {
     /**
-     * 角色信息
-     */
-    roles: Array<RoleCodeDto>;
-    /**
      * 部门信息
      */
     targets: Array<TargetDto>;
+    /**
+     * 角色信息
+     */
+    roles: Array<RoleCodeDto>;
 };

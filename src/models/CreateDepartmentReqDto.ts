@@ -4,13 +4,17 @@
 
 export type CreateDepartmentReqDto = {
     /**
-     * 父部门 id
+     * 组织 code
      */
-    parentDepartmentId: string;
+    organizationCode: string;
     /**
      * 部门名称
      */
     name: string;
+    /**
+     * 父部门 id
+     */
+    parentDepartmentId: string;
     /**
      * 部门识别码
      */
@@ -19,8 +23,4 @@ export type CreateDepartmentReqDto = {
      * 部门负责人 ID
      */
     leaderUserId?: string;
-    /**
-     * 组织 code
-     */
-    organizationCode: string;
 };
