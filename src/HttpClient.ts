@@ -4,12 +4,6 @@ import { ManagementClientOptions } from "./ManagementClientOptions";
 import { ManagementTokenProvider } from "./ManagementTokenProvider";
 import { pickBy } from "./utils";
 
-export interface AuthingRequestConfig extends AxiosRequestConfig {
-  body: any;
-  mediaType: any;
-  unSetToken?: boolean;
-}
-
 export class HttpClient {
   options: ManagementClientOptions;
   axios: AxiosInstance;
@@ -23,11 +17,7 @@ export class HttpClient {
     });
   }
 
-  async request(config: AuthingRequestConfig) {
-    // 将传入的 body 当作 data
-    if (config.method === "POST" && config.body) {
-      config.data = config.body;
-    }
+  async request(config: AxiosRequestConfig) {
     const { accessToken, userPoolId } = await this.tokenProvider.getToken();
     const headers: any = {};
     headers[this.options.headers!["tenant-id"]!] = this.options.tenantId;

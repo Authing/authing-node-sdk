@@ -4,13 +4,13 @@
 
 export type UpdateDepartmentReqDto = {
     /**
-     * 组织 code
-     */
-    organizationCode: string;
-    /**
      * 部门名称
      */
     name: string;
+    /**
+     * 组织 code
+     */
+    organizationCode: string;
     /**
      * 父部门 id
      */

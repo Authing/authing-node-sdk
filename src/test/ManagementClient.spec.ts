@@ -5,12 +5,12 @@ import {
   generateRandomEmail,
   generateRandomPhone,
   generateRandomString,
-} from "./utils/index";
+} from "../utils/index";
 
 describe("ManagementClient", () => {
   const managementClient = new ManagementClient({
-    accessKeyId: "62591915d4fb988d2dcdd101",
-    accessKeySecret: "7c4d37f2764c2495fd42c8d4164a69fe",
+    accessKeyId: "6250f12d5db4269bcfcf784b",
+    accessKeySecret: "4ae78d3e579a6d73f01aeca7b1e29ec2",
     host: "http://localhost:3000",
   });
 
@@ -75,7 +75,6 @@ describe("ManagementClient", () => {
         },
       ],
     });
-    console.log(data);
   });
 
   describe("createUser", () => {
@@ -161,11 +160,13 @@ describe("ManagementClient", () => {
 
       it("customData type is invalid", async () => {
         const { data, code, errorCode } = await managementClient.createRole({
-          code: 'admin',
-          description: '管理员',
-          namespace: 'default'
+          code: "admin",
+          description: "管理员",
+          namespace: "default",
         });
       });
     });
   });
+
+  describe("getUser", () => {});
 });

@@ -20,7 +20,7 @@ export type CreateResourceBatchItemDto = {
     /**
      * 资源定义的操作类型
      */
-    actions: Array<ResourceAction>;
+    actions?: Array<ResourceAction>;
     /**
      * API 资源的 URL 标识
      */

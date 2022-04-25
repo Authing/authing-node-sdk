@@ -14,6 +14,10 @@ export type CreateUserInfoDto = {
      */
     email?: string;
     /**
+     * 加密类型
+     */
+    passWordEncryptType?: CreateUserInfoDto.passWordEncryptType;
+    /**
      * 手机号
      */
     phone?: string;
@@ -86,6 +90,15 @@ export namespace CreateUserInfoDto {
         RESIGNED = 'Resigned',
         ACTIVATED = 'Activated',
         ARCHIVED = 'Archived',
+    }
+
+    /**
+     * 加密类型
+     */
+    export enum passWordEncryptType {
+        SM2 = 'sm2',
+        RSA = 'rsa',
+        NONE = 'none',
     }
 
     /**

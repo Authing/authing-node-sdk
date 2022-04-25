@@ -6,7 +6,7 @@ export type AddGroupMembersReqDto = {
     /**
      * 用户 ID 数组
      */
-    userIds: Array<string>;
+    userIds: string;
     /**
      * 分组 code
      */
