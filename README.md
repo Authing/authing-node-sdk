@@ -84,7 +84,7 @@ const { data } = await managementClient.createRole({
 ```typescript
 const {
     code,
-    apiCode,
+    errorCode,
     message,
     data,
 } = await managementClient.getUser({
