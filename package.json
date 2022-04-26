@@ -10,7 +10,8 @@
     "author": "Willin Wang <willin@willin.org> (https://willin.wang/)",
     "license": "MIT",
     "dependencies": {
-        "axios": "^0.26.1"
+        "axios": "^0.26.1",
+        "buffer": "^6.0.3"
     },
     "devDependencies": {
         "@types/jest": "^27.4.1",
