@@ -10,10 +10,10 @@ module.exports = {
   // coverageReporters: ['json'],
   coverageDirectory: "coverage",
   collectCoverageFrom: [
-    // 'src/**/*.ts',
-    "src/modules/api/v3/**/*.ts",
-    // ignore Pattern
-    "!src/common/errors/**/*",
+    "src/**/*.ts",
+    // "src/modules/api/v3/**/*.ts",
+    // // ignore Pattern
+    // "!src/common/errors/**/*",
   ],
   coveragePathIgnorePatterns: [".module.ts$", ".spec.ts$", "__tests__/"],
 };

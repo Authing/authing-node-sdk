@@ -1,11 +1,11 @@
-import { ManagementClient } from "../ManagementClient";
-import { SetCustomFieldDto } from "../models/SetCustomFieldDto";
-import { UserDto } from "../models/UserDto";
+import { ManagementClient } from "../src/ManagementClient";
+import { SetCustomFieldDto } from "../src/models/SetCustomFieldDto";
+import { UserDto } from "../src/models/UserDto";
 import {
   generateRandomEmail,
   generateRandomPhone,
   generateRandomString,
-} from "../utils/index";
+} from "../src/utils/index";
 
 describe("ManagementClient", () => {
   const managementClient = new ManagementClient({
