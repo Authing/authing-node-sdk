@@ -74,8 +74,8 @@ const { data } = await managementClient.createRole({
 
 `ManagementClient` 中的每个方法，遵循统一的返回结构：
 
-- `code`: 请求是否成功状态码，当 `code` 为 200 时，表示操作成功，非 200 全部为失败。
-- `errorCode`: 细分错误码，当 `code` 非 200 时，可通过此错误码得到具体的错误类型。完整的错误码列表，请见：[TODO](TODO)。
+- `statusCode`: 请求是否成功状态码，当 `statusCode` 为 200 时，表示操作成功，非 200 全部为失败。
+- `apiCode`: 细分错误码，当 `apiCode` 非 200 时，可通过此错误码得到具体的错误类型。完整的错误码列表，请见：[TODO](TODO)。
 - `message`: 具体的错误信息。
 - `data`: 具体返回的接口数据。
 
@@ -83,15 +83,15 @@ const { data } = await managementClient.createRole({
 
 ```typescript
 const {
-    code,
-    errorCode,
+    statusCode,
+    apiCode,
     message,
     data,
 } = await managementClient.getUser({
   userId: "62559df6b2xxxx259877b5f4"
 })
 
-if (code !== 200) {
+if (statusCode !== 200) {
   throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
 }
 
