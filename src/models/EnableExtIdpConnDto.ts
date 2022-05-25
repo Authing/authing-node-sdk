@@ -4,10 +4,6 @@
 
 export type EnableExtIdpConnDto = {
     /**
-     * 租户 ID
-     */
-    tenantId: string;
-    /**
      * 应用 ID
      */
     appId: string;
@@ -16,7 +12,11 @@ export type EnableExtIdpConnDto = {
      */
     enabled: boolean;
     /**
-     * 连接 ID
+     * 身份源连接 ID
      */
     id: string;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

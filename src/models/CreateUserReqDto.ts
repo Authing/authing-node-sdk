@@ -17,7 +17,7 @@ export type CreateUserReqDto = {
     /**
      * 加密类型
      */
-    passWordEncryptType?: CreateUserReqDto.passWordEncryptType;
+    passwordEncryptType?: CreateUserReqDto.passwordEncryptType;
     /**
      * 手机号
      */
@@ -55,6 +55,34 @@ export type CreateUserReqDto = {
      */
     phoneVerified?: boolean;
     /**
+     * 出生日期
+     */
+    birthdate?: string;
+    /**
+     * 所在国家
+     */
+    country?: string;
+    /**
+     * 所在省份
+     */
+    province?: string;
+    /**
+     * 所在城市
+     */
+    city?: string;
+    /**
+     * 所处地址
+     */
+    address?: string;
+    /**
+     * 所处街道地址
+     */
+    streetAddress?: string;
+    /**
+     * 邮政编码号
+     */
+    postalCode?: string;
+    /**
      * 第三方外部 ID
      */
     externalId?: string;
@@ -67,7 +95,7 @@ export type CreateUserReqDto = {
      */
     customData?: any;
     /**
-     * 密码。必须通过加密方式进行加密。
+     * 密码。可选加密方式进行加密，默认为未加密
      */
     password?: string;
     /**
@@ -100,7 +128,7 @@ export namespace CreateUserReqDto {
     /**
      * 加密类型
      */
-    export enum passWordEncryptType {
+    export enum passwordEncryptType {
         SM2 = 'sm2',
         RSA = 'rsa',
         NONE = 'none',

@@ -10,7 +10,7 @@ export type PrincipalAuthenticationInfoPagingDto = {
      */
     totalCount: number;
     /**
-     * 数据
+     * 响应数据
      */
     list: Array<PrincipalAuthenticationInfoDto>;
 };

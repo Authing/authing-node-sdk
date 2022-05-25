@@ -6,7 +6,7 @@ import type { CustomFieldSelectOption } from './CustomFieldSelectOption';
 
 export type SetCustomFieldDto = {
     /**
-     * 主体类型，目前支持用户和角色
+     * 主体类型，目前支持用户、角色、分组和部门
      */
     targetType: SetCustomFieldDto.targetType;
     /**
@@ -14,7 +14,7 @@ export type SetCustomFieldDto = {
      */
     dataType: SetCustomFieldDto.dataType;
     /**
-     * 字段 key，不能和用户内置字段的 key 冲突
+     * 字段 key，不能和内置字段的 key 冲突
      */
     key: string;
     /**
@@ -38,11 +38,13 @@ export type SetCustomFieldDto = {
 export namespace SetCustomFieldDto {
 
     /**
-     * 主体类型，目前支持用户和角色
+     * 主体类型，目前支持用户、角色、分组和部门
      */
     export enum targetType {
         USER = 'USER',
         ROLE = 'ROLE',
+        GROUP = 'GROUP',
+        DEPARTMENT = 'DEPARTMENT',
     }
 
     /**

@@ -12,10 +12,6 @@ export type ExtIdpDto = {
      */
     name: string;
     /**
-     * 租户场景下自动加入
-     */
-    autoJoin: boolean;
-    /**
      * 租户 ID
      */
     tenantId?: string;

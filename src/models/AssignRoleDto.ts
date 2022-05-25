@@ -10,11 +10,11 @@ export type AssignRoleDto = {
      */
     targets: Array<TargetDto>;
     /**
-     * 分组 code，识别码
+     * 权限分组内角色的唯一标识符
      */
     code: string;
     /**
-     * 权限分组
+     * 所属权限分组的 code
      */
     namespace?: string;
 };

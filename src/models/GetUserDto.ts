@@ -2,31 +2,40 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { GetUserOptionsDto } from './GetUserOptionsDto';
-
+/**
+ * 通过 id、username、email、phone、email、externalId 获取用户详情
+ */
 export type GetUserDto = {
     /**
      * 用户 ID
      */
-    userId?: string;
+    userId?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
+    /**
+     * 是否获取 identities
+     */
+    withIdentities?: any;
+    /**
+     * 是否获取部门 ID 列表
+     */
+    withDepartmentIds?: any;
     /**
      * 手机号
      */
-    phone?: string;
+    phone?: any;
     /**
      * 邮箱
      */
-    email?: string;
+    email?: any;
     /**
      * 用户名
      */
-    username?: string;
+    username?: any;
     /**
      * 原系统 ID
      */
-    externalId?: string;
-    /**
-     * 可选参数
-     */
-    options?: GetUserOptionsDto;
+    externalId?: any;
 };

@@ -42,7 +42,7 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
   onError: (code: number, message: string) => {
     throw { code, message };
   },
-  host: "https://core.authing.cn",
+  host: "https://api.authing.cn",
   requestFrom: "sdk",
   headers: {
     "userpool-id": "x-authing-userpool-id",

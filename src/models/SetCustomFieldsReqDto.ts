@@ -6,7 +6,7 @@ import type { SetCustomFieldDto } from './SetCustomFieldDto';
 
 export type SetCustomFieldsReqDto = {
     /**
-     * 扩展字段列表
+     * 自定义字段列表
      */
     list: Array<SetCustomFieldDto>;
 };

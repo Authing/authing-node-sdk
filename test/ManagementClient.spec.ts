@@ -1,4 +1,5 @@
 import { ManagementClient } from "../src/ManagementClient";
+import { SetCustomDataReqDto } from "../src/models/SetCustomDataReqDto";
 import { SetCustomFieldDto } from "../src/models/SetCustomFieldDto";
 import { UserDto } from "../src/models/UserDto";
 import {
@@ -9,8 +10,8 @@ import {
 
 describe("ManagementClient", () => {
   const managementClient = new ManagementClient({
-    accessKeyId: "6250f12d5db4269bcfcf784b",
-    accessKeySecret: "4ae78d3e579a6d73f01aeca7b1e29ec2",
+    accessKeyId: "6285f079b98ae6afb53784bd",
+    accessKeySecret: "4e5eab877ebd78175314fd2d73e61285",
     host: "http://localhost:3000",
   });
 
@@ -90,7 +91,11 @@ describe("ManagementClient", () => {
         const gender = UserDto.gender.M;
         const emailVerified = true;
         const phoneVerified = true;
-        const { code, data: user } = await managementClient.createUser({
+        const {
+          statusCode,
+          data: user,
+          message,
+        } = await managementClient.createUser({
           username,
           email,
           phone,
@@ -102,7 +107,7 @@ describe("ManagementClient", () => {
           emailVerified,
           phoneVerified,
         });
-        expect(code).toEqual(200);
+        expect(statusCode).toEqual(200);
         expect(user.userId).toBeDefined();
         expect(user.status).toEqual(UserDto.status.ACTIVATED);
         expect(user.email).toBe(email);
@@ -131,11 +136,11 @@ describe("ManagementClient", () => {
           graduted_at: new Date(),
           id_card: "431225xxxxxxxx3414",
         };
-        const { code, data: user } = await managementClient.createUser({
+        const { statusCode, data: user } = await managementClient.createUser({
           username,
           customData,
         });
-        expect(code).toEqual(200);
+        expect(statusCode).toEqual(200);
         expect(user.customData).toEqual(customData);
         console.log(user);
       });
@@ -149,8 +154,8 @@ describe("ManagementClient", () => {
 
     describe("Fail", () => {
       it("Not contains one of username, email and phone", async () => {
-        const { code, message } = await managementClient.createUser({});
-        expect(code).toEqual(400);
+        const { statusCode, message } = await managementClient.createUser({});
+        expect(statusCode).toEqual(400);
         expect(message).toEqual(
           "Must contain one of the following fields: username, phone, email"
         );
@@ -159,14 +164,48 @@ describe("ManagementClient", () => {
       it("phoneCountryCode is invalid", async () => {});
 
       it("customData type is invalid", async () => {
-        const { data, code, errorCode } = await managementClient.createRole({
-          code: "admin",
-          description: "管理员",
-          namespace: "default",
-        });
+        const { data, statusCode, apiCode } = await managementClient.createRole(
+          {
+            code: "admin",
+            description: "管理员",
+            namespace: "default",
+          }
+        );
       });
     });
   });
 
   describe("getUser", () => {});
+
+  describe("部门扩展字段相关", () => {
+    it("Success", async () => {
+      await managementClient.setCustomFields({
+        list: [
+          {
+            targetType: SetCustomFieldDto.targetType.DEPARTMENT,
+            dataType: SetCustomFieldDto.dataType.STRING,
+            key: "test",
+            label: "Test",
+          },
+        ],
+      });
+
+      await managementClient.setCustomData({
+        targetType: SetCustomDataReqDto.targetType.DEPARTMENT,
+        targetIdentifier: "6285f0a71439558ae7878be6",
+        list: [
+          {
+            key: "test",
+            value: "AAA",
+          },
+        ],
+      });
+
+      const data = await managementClient.getCustomData({
+        targetType: "DEPARTMENT",
+        targetIdentifier: "6285f0a71439558ae7878be6",
+      });
+      console.log(data);
+    });
+  });
 });

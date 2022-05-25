@@ -4,7 +4,7 @@
 
 export type RoleDto = {
     /**
-     * 角色 code
+     * 权限分组内角色的唯一标识符
      */
     code: string;
     /**
@@ -12,7 +12,7 @@ export type RoleDto = {
      */
     description: string;
     /**
-     * namespace
+     * 所属权限分组的 code
      */
     namespace: string;
 };

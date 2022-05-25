@@ -2,11 +2,16 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ListOptionsDto } from './ListOptionsDto';
-
+/**
+ * 获取分组列表接口，支持分页
+ */
 export type ListGroupsDto = {
     /**
-     * 可选参数
+     * 当前页数，从 1 开始
      */
-    options?: ListOptionsDto;
+    page?: any;
+    /**
+     * 每页数目，最大不能超过 50，默认为 10
+     */
+    limit?: any;
 };

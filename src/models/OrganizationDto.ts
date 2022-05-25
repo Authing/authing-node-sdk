@@ -12,6 +12,18 @@ export type OrganizationDto = {
      */
     organizationName: string;
     /**
+     * 根节点 ID
+     */
+    departmentId: string;
+    /**
+     * 根节点自定义 ID
+     */
+    openDepartmentId?: string;
+    /**
+     * 是否包含子节点
+     */
+    hasChildren: boolean;
+    /**
      * 部门负责人 ID
      */
     leaderUserId: string;

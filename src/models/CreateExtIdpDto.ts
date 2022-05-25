@@ -8,7 +8,7 @@ export type CreateExtIdpDto = {
      */
     type: CreateExtIdpDto.type;
     /**
-     * 名称
+     * 身份源名称
      */
     name: string;
     /**
@@ -49,6 +49,7 @@ export namespace CreateExtIdpDto {
         YIDUN = 'yidun',
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
+        INSTAGRAM = 'instagram',
     }
 
 

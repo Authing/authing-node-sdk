@@ -42,7 +42,7 @@ export function generateRandomString(length: number = 30) {
 }
 
 export function generateRandomEmail(length: number = 30) {
-  return `${generateRandomString(length)}` + '@example.com';
+  return `${generateRandomString(length).toLowerCase()}` + '@example.com';
 }
 
 /**

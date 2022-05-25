@@ -2,11 +2,16 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ListArchivedUsersOptionsDto } from './ListArchivedUsersOptionsDto';
-
+/**
+ * 获取已归档的用户列表
+ */
 export type ListArchivedUsersDto = {
     /**
-     * 可选参数
+     * 当前页数，从 1 开始
      */
-    options?: ListArchivedUsersOptionsDto;
+    page?: any;
+    /**
+     * 每页数目，最大不能超过 50，默认为 10
+     */
+    limit?: any;
 };

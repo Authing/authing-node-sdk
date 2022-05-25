@@ -26,8 +26,8 @@ export class ManagementTokenProvider {
       accessKeyId: this.options.accessKeyId,
       accessKeySecret: this.options.accessKeySecret,
     });
-    const { code, message } = data;
-    if (code !== 200) {
+    const { statusCode, message } = data;
+    if (statusCode !== 200) {
       throw Error(message);
     }
     const { access_token, expires_in } = data.data;

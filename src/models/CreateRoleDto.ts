@@ -4,11 +4,11 @@
 
 export type CreateRoleDto = {
     /**
-     * 角色 code
+     * 权限分组内角色的唯一标识符
      */
     code: string;
     /**
-     * 角色 namespace
+     * 所属权限分组的 code
      */
     namespace?: string;
     /**

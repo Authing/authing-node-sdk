@@ -8,6 +8,10 @@ export type UpdateOrganizationReqDto = {
      */
     organizationCode: string;
     /**
+     * 根节点自定义 ID
+     */
+    openDepartmentId?: string;
+    /**
      * 新组织 code
      */
     organizationNewCode?: string;

@@ -10,7 +10,7 @@ export type OrganizationPagingDto = {
      */
     totalCount: number;
     /**
-     * 数据
+     * 响应数据
      */
     list: Array<OrganizationDto>;
 };

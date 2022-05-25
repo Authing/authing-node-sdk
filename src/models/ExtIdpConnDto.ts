@@ -16,11 +16,11 @@ export type ExtIdpConnDto = {
      */
     logo: string;
     /**
-     * 连接标识
+     * 身份源连接标识
      */
     identifier?: string;
     /**
-     * 连接在登录页的显示名称
+     * 身份源连接在登录页的显示名称
      */
     displayName?: string;
 };
@@ -69,6 +69,7 @@ export namespace ExtIdpConnDto {
         YIDUN = 'yidun',
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
+        INSTAGRAM = 'instagram',
     }
 
 

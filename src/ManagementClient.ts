@@ -45,6 +45,8 @@ import type { CreateRolesBatch } from "./models/CreateRolesBatch";
 import type { DeleteRoleDto } from "./models/DeleteRoleDto";
 import type { RevokeRoleBatchDto } from "./models/RevokeRoleBatchDto";
 import type { RevokeRoleDto } from "./models/RevokeRoleDto";
+import type { RoleAuthorizedResourcePaginatedRespDto } from "./models/RoleAuthorizedResourcePaginatedRespDto";
+import type { RoleDepartmentListPaginatedRespDto } from "./models/RoleDepartmentListPaginatedRespDto";
 import type { RoleSingleRespDto } from "./models/RoleSingleRespDto";
 import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { AddDepartmentMembersReqDto } from "./models/AddDepartmentMembersReqDto";
@@ -57,9 +59,11 @@ import type { DepartmentPaginatedRespDto } from "./models/DepartmentPaginatedRes
 import type { DepartmentSingleRespDto } from "./models/DepartmentSingleRespDto";
 import type { OrganizationPaginatedRespDto } from "./models/OrganizationPaginatedRespDto";
 import type { OrganizationSingleRespDto } from "./models/OrganizationSingleRespDto";
+import type { RemoveDepartmentMembersReqDto } from "./models/RemoveDepartmentMembersReqDto";
 import type { SearchDepartmentsReqDto } from "./models/SearchDepartmentsReqDto";
 import type { UpdateDepartmentReqDto } from "./models/UpdateDepartmentReqDto";
 import type { UpdateOrganizationReqDto } from "./models/UpdateOrganizationReqDto";
+import type { UserIdListRespDto } from "./models/UserIdListRespDto";
 import type { CreateExtIdpConnDto } from "./models/CreateExtIdpConnDto";
 import type { CreateExtIdpDto } from "./models/CreateExtIdpDto";
 import type { DeleteExtIdpConnDto } from "./models/DeleteExtIdpConnDto";
@@ -67,11 +71,13 @@ import type { DeleteExtIdpDto } from "./models/DeleteExtIdpDto";
 import type { EnableExtIdpConnDto } from "./models/EnableExtIdpConnDto";
 import type { ExtIdpConnDetailSingleRespDto } from "./models/ExtIdpConnDetailSingleRespDto";
 import type { ExtIdpDetailSingleRespDto } from "./models/ExtIdpDetailSingleRespDto";
-import type { ExtIdpListRespDto } from "./models/ExtIdpListRespDto";
+import type { ExtIdpListPaginatedRespDto } from "./models/ExtIdpListPaginatedRespDto";
 import type { ExtIdpSingleRespDto } from "./models/ExtIdpSingleRespDto";
 import type { UpdateExtIdpConnDto } from "./models/UpdateExtIdpConnDto";
 import type { UpdateExtIdpDto } from "./models/UpdateExtIdpDto";
 import type { CustomFieldListRespDto } from "./models/CustomFieldListRespDto";
+import type { GetCustomDataRespDto } from "./models/GetCustomDataRespDto";
+import type { SetCustomDataReqDto } from "./models/SetCustomDataReqDto";
 import type { SetCustomFieldsReqDto } from "./models/SetCustomFieldsReqDto";
 import type { AuthorizeResourcesDto } from "./models/AuthorizeResourcesDto";
 import type { CreateNamespaceDto } from "./models/CreateNamespaceDto";
@@ -82,7 +88,6 @@ import type { DeleteNamespaceDto } from "./models/DeleteNamespaceDto";
 import type { DeleteNamespacesBatchDto } from "./models/DeleteNamespacesBatchDto";
 import type { DeleteResourceDto } from "./models/DeleteResourceDto";
 import type { DeleteResourcesBatchDto } from "./models/DeleteResourcesBatchDto";
-import type { NamespaceDto } from "./models/NamespaceDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
 import type { NamespaceRespDto } from "./models/NamespaceRespDto";
 import type { ResourceDto } from "./models/ResourceDto";
@@ -90,6 +95,7 @@ import type { ResourceListRespDto } from "./models/ResourceListRespDto";
 import type { ResourcePaginatedRespDto } from "./models/ResourcePaginatedRespDto";
 import type { ResourceRespDto } from "./models/ResourceRespDto";
 import type { UpdateNamespaceDto } from "./models/UpdateNamespaceDto";
+import type { UpdateNamespaceRespDto } from "./models/UpdateNamespaceRespDto";
 import type { UpdateResourceDto } from "./models/UpdateResourceDto";
 
 import {
@@ -139,23 +145,23 @@ export class ManagementClient {
    * @returns UserSingleRespDto
    */
   public async getUser({
+    userId,
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
-    userId,
     phone,
     email,
     username,
     externalId,
   }: {
+    /** 用户 ID **/
+    userId: string;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 是否获取 identities **/
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
-    /** 用户 ID **/
-    userId?: string;
     /** 手机号 **/
     phone?: string;
     /** 邮箱 **/
@@ -227,7 +233,7 @@ export class ManagementClient {
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
@@ -429,7 +435,7 @@ export class ManagementClient {
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<ListArchivedUsersSingleRespDto> {
     return await this.httpClient.request({
@@ -445,11 +451,9 @@ export class ManagementClient {
   /**
    * @summary 强制下线用户
    * @description 强制下线用户
-   * @returns IsUserExistsRespDto
+   * @returns IsSuccessRespDto
    */
-  public async kickUsers(
-    requestBody: KickUsersDto
-  ): Promise<IsUserExistsRespDto> {
+  public async kickUsers(requestBody: KickUsersDto): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/kick-users",
@@ -598,16 +602,16 @@ export class ManagementClient {
     end?: number;
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<UserLoginHistoryPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-user-login-history",
       params: {
-        userId: userId,
-        appId: appId,
-        clientIp: clientIp,
+        user_id: userId,
+        app_id: appId,
+        client_ip: clientIp,
         start: start,
         end: end,
         page: page,
@@ -657,7 +661,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-authorized-resources",
       params: {
-        userId: userId,
+        user_id: userId,
         namespace: namespace,
         resource_type: resourceType,
       },
@@ -695,7 +699,7 @@ export class ManagementClient {
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<GroupPaginatedRespDto> {
     return await this.httpClient.request({
@@ -801,7 +805,7 @@ export class ManagementClient {
   /**
    * @summary 获取分组成员列表
    * @description 获取分组成员列表
-   * @returns UserListRespDto
+   * @returns UserPaginatedRespDto
    */
   public async listGroupMembers({
     code,
@@ -815,7 +819,7 @@ export class ManagementClient {
     code: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
@@ -823,17 +827,17 @@ export class ManagementClient {
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
-  }): Promise<UserListRespDto> {
+  }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-group-members",
       params: {
+        code: code,
         page: page,
         limit: limit,
         with_custom_data: withCustomData,
         with_identities: withIdentities,
         with_department_ids: withDepartmentIds,
-        code: code,
       },
     });
   }
@@ -875,7 +879,7 @@ export class ManagementClient {
     code,
     namespace,
   }: {
-    /** 角色唯一标识符 **/
+    /** 权限分组内角色的唯一标识符 **/
     code: string;
     /** 所属权限分组的 code **/
     namespace?: string;
@@ -906,8 +910,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 分配角色
-   * @description 分配角色，被分配者可以是用户，可以是部门
+   * @summary 批量分配角色
+   * @description 批量分配角色，被分配者可以是用户，可以是部门
    * @returns IsSuccessRespDto
    */
   public async assignRoleBatch(
@@ -921,8 +925,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 分配角色
-   * @description 分配角色，被分配者可以是用户，可以是部门
+   * @summary 移除分配的角色
+   * @description 移除分配的角色，被分配者可以是用户，可以是部门
    * @returns IsSuccessRespDto
    */
   public async revokeRole(
@@ -936,8 +940,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 分配角色
-   * @description 分配角色，被分配者可以是用户，可以是部门
+   * @summary 移除分配的角色
+   * @description 移除分配的角色，被分配者可以是用户，可以是部门
    * @returns IsSuccessRespDto
    */
   public async revokeRoleBatch(
@@ -953,20 +957,20 @@ export class ManagementClient {
   /**
    * @summary 角色被授权的资源列表
    * @description 角色被授权的资源列表
-   * @returns IsSuccessRespDto
+   * @returns RoleAuthorizedResourcePaginatedRespDto
    */
   public async getRoleAuthorizedResources({
     code,
     namespace,
     resourceType,
   }: {
-    /** 分组 code，识别码 **/
+    /** 权限分组内角色的唯一标识符 **/
     code: string;
-    /** 权限分组 **/
+    /** 所属权限分组的 code **/
     namespace?: string;
     /** 资源类型 **/
     resourceType?: "DATA" | "API" | "MENU" | "BUTTON";
-  }): Promise<IsSuccessRespDto> {
+  }): Promise<RoleAuthorizedResourcePaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-role-authorized-resources",
@@ -981,7 +985,7 @@ export class ManagementClient {
   /**
    * @summary 获取角色成员列表
    * @description 获取角色成员列表
-   * @returns UserListRespDto
+   * @returns UserPaginatedRespDto
    */
   public async listRoleMembers({
     code,
@@ -992,11 +996,11 @@ export class ManagementClient {
     withDepartmentIds = false,
     namespace,
   }: {
-    /** 角色唯一标识符 **/
+    /** 权限分组内角色的唯一标识符 **/
     code: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
@@ -1004,9 +1008,9 @@ export class ManagementClient {
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
-    /** 权限分组的 code **/
+    /** 所属权限分组的 code **/
     namespace?: string;
-  }): Promise<UserListRespDto> {
+  }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-role-members",
@@ -1025,23 +1029,23 @@ export class ManagementClient {
   /**
    * @summary 获取角色的部门列表
    * @description 获取角色的部门列表
-   * @returns UserListRespDto
+   * @returns RoleDepartmentListPaginatedRespDto
    */
-  public async listDepartments({
+  public async listRoleDepartments({
     code,
     namespace,
     page = 1,
     limit = 10,
   }: {
-    /** 部门唯一标识符 **/
+    /** 权限分组内角色的唯一标识符 **/
     code: string;
-    /** 权限分组的 code **/
+    /** 所属权限分组的 code **/
     namespace?: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
-  }): Promise<UserListRespDto> {
+  }): Promise<RoleDepartmentListPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-role-departments",
@@ -1075,15 +1079,15 @@ export class ManagementClient {
    * @returns RolePaginatedRespDto
    */
   public async listRoles({
-    namespace,
+    namespace = "default",
     page = 1,
     limit = 10,
   }: {
-    /** 角色 namespace **/
-    namespace: string;
+    /** 所属权限分组的 code **/
+    namespace?: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<RolePaginatedRespDto> {
     return await this.httpClient.request({
@@ -1098,11 +1102,11 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 删除角色
+   * @summary （批量）删除角色
    * @description 删除角色
    * @returns IsSuccessRespDto
    */
-  public async deleteRoles(
+  public async deleteRolesBatch(
     requestBody: DeleteRoleDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -1153,7 +1157,7 @@ export class ManagementClient {
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<OrganizationPaginatedRespDto> {
     return await this.httpClient.request({
@@ -1219,11 +1223,14 @@ export class ManagementClient {
   public async getDepartment({
     organizationCode,
     departmentId,
+    departmentIdType = "department_id",
   }: {
     /** 组织 code **/
     organizationCode: string;
     /** 部门 id，根部门传 `root` **/
     departmentId: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1231,6 +1238,7 @@ export class ManagementClient {
       params: {
         organization_code: organizationCode,
         department_id: departmentId,
+        department_id_type: departmentIdType,
       },
     });
   }
@@ -1303,17 +1311,21 @@ export class ManagementClient {
   public async listChildrenDepartments({
     departmentId,
     organizationCode,
+    departmentIdType = "department_id",
   }: {
-    /** 部门 ID **/
+    /** 需要获取的部门 ID **/
     departmentId: string;
     /** 组织 code **/
     organizationCode: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
   }): Promise<DepartmentPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-children-departments",
       params: {
         department_id: departmentId,
+        department_id_type: departmentIdType,
         organization_code: organizationCode,
       },
     });
@@ -1327,6 +1339,7 @@ export class ManagementClient {
   public async listDepartmentMembers({
     organizationCode,
     departmentId,
+    departmentIdType = "department_id",
     page = 1,
     limit = 10,
     withCustomData = false,
@@ -1337,9 +1350,11 @@ export class ManagementClient {
     organizationCode: string;
     /** 部门 id，根部门传 `root` **/
     departmentId: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
@@ -1354,6 +1369,7 @@ export class ManagementClient {
       params: {
         organization_code: organizationCode,
         department_id: departmentId,
+        department_id_type: departmentIdType,
         page: page,
         limit: limit,
         with_custom_data: withCustomData,
@@ -1366,23 +1382,27 @@ export class ManagementClient {
   /**
    * @summary 获取部门直属成员 ID 列表
    * @description 获取部门直属成员 ID 列表
-   * @returns any
+   * @returns UserIdListRespDto
    */
   public async listDepartmentMemberIds({
-    departmentId,
     organizationCode,
+    departmentId,
+    departmentIdType = "department_id",
   }: {
-    /** 部门 ID **/
-    departmentId: string;
     /** 组织 code **/
     organizationCode: string;
-  }): Promise<any> {
+    /** 部门 id，根部门传 `root` **/
+    departmentId: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
+  }): Promise<UserIdListRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-department-member-ids",
       params: {
-        department_id: departmentId,
         organization_code: organizationCode,
+        department_id: departmentId,
+        department_id_type: departmentIdType,
       },
     });
   }
@@ -1408,7 +1428,7 @@ export class ManagementClient {
    * @returns IsSuccessRespDto
    */
   public async removeDepartmentMembers(
-    requestBody: AddDepartmentMembersReqDto
+    requestBody: RemoveDepartmentMembersReqDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
@@ -1425,11 +1445,14 @@ export class ManagementClient {
   public async getParentDepartment({
     organizationCode,
     departmentId,
+    departmentIdType = "department_id",
   }: {
     /** 组织 code **/
     organizationCode: string;
     /** 部门 id **/
     departmentId: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1437,6 +1460,7 @@ export class ManagementClient {
       params: {
         organization_code: organizationCode,
         department_id: departmentId,
+        department_id_type: departmentIdType,
       },
     });
   }
@@ -1444,14 +1468,14 @@ export class ManagementClient {
   /**
    * @summary 获取身份源列表
    * @description 获取身份源列表
-   * @returns ExtIdpListRespDto
+   * @returns ExtIdpListPaginatedRespDto
    */
   public async listExtIdp({
     tenantId,
   }: {
     /** 租户 ID **/
     tenantId?: string;
-  }): Promise<ExtIdpListRespDto> {
+  }): Promise<ExtIdpListPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-ext-idp",
@@ -1516,8 +1540,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 删除身份源配置
-   * @description 删除身份源配置
+   * @summary 删除身份源
+   * @description 删除身份源
    * @returns IsSuccessRespDto
    */
   public async deleteExtIdp(
@@ -1561,8 +1585,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 删除身份源配置
-   * @description 删除身份源配置
+   * @summary 删除身份源连接
+   * @description 删除身份源连接
    * @returns IsSuccessRespDto
    */
   public async deleteExtIdpConn(
@@ -1591,15 +1615,15 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 获取用户池配置的扩展字段列表
-   * @description 获取用户池配置的扩展字段列表
+   * @summary 获取用户池配置的自定义字段列表
+   * @description 获取用户池配置的自定义字段列表
    * @returns CustomFieldListRespDto
    */
   public async getCustomFields({
     targetType,
   }: {
-    /** 主体类型，目前支持用户和角色 **/
-    targetType: "USER" | "ROLE";
+    /** 主体类型，目前支持用户、角色、分组和部门 **/
+    targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
   }): Promise<CustomFieldListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1611,8 +1635,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 创建扩展字段
-   * @description 创建扩展字段
+   * @summary 创建/修改自定义字段定义
+   * @description 创建/修改自定义字段定义，如果传入的 key 不存在则创建，存在则更新。
    * @returns CustomFieldListRespDto
    */
   public async setCustomFields(
@@ -1622,6 +1646,49 @@ export class ManagementClient {
       method: "POST",
       url: "/api/v3/set-custom-fields",
       data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 设置自定义字段的值
+   * @description 给用户、角色、部门设置自定义字段的值，如果存在则更新，不存在则创建。
+   * @returns IsSuccessRespDto
+   */
+  public async setCustomData(
+    requestBody: SetCustomDataReqDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/set-custom-data",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户、分组、角色、组织机构的自定义字段值
+   * @description 获取用户、分组、角色、组织机构的自定义字段值
+   * @returns GetCustomDataRespDto
+   */
+  public async getCustomData({
+    targetType,
+    targetIdentifier,
+    namespace,
+  }: {
+    /** 主体类型，目前支持用户、角色、分组和部门 **/
+    targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
+    /** 目标对象唯一标志符 **/
+    targetIdentifier: string;
+    /** 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略。 **/
+    namespace?: string;
+  }): Promise<GetCustomDataRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-custom-data",
+      params: {
+        target_type: targetType,
+        target_identifier: targetIdentifier,
+        namespace: namespace,
+      },
     });
   }
 
@@ -1720,7 +1787,7 @@ export class ManagementClient {
     type?: "DATA" | "API" | "MENU" | "BUTTON";
     /** 当前页数，从 1 开始 **/
     page?: number;
-    /** 每页数目，最大不能超过 100，默认为 10 **/
+    /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
   }): Promise<ResourcePaginatedRespDto> {
     return await this.httpClient.request({
@@ -1796,8 +1863,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 创建权限分组
-   * @description 创建权限分组
+   * @summary 批量创建权限分组
+   * @description 批量创建权限分组
    * @returns IsSuccessRespDto
    */
   public async createNamespacesBatch(
@@ -1853,11 +1920,11 @@ export class ManagementClient {
   /**
    * @summary 修改权限分组信息
    * @description 修改权限分组信息
-   * @returns NamespaceDto
+   * @returns UpdateNamespaceRespDto
    */
   public async updateNamespace(
     requestBody: UpdateNamespaceDto
-  ): Promise<NamespaceDto> {
+  ): Promise<UpdateNamespaceRespDto> {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/update-namespace",
@@ -1881,11 +1948,11 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 批量删除权限分组信息
-   * @description 批量删除权限分组信息
+   * @summary 批量删除权限分组
+   * @description 批量删除权限分组
    * @returns IsSuccessRespDto
    */
-  public async deketeNamespacesBatch(
+  public async deleteNamespacesBatch(
     requestBody: DeleteNamespacesBatchDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({

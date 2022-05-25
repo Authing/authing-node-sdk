@@ -4,7 +4,7 @@
 
 export type UpdateExtIdpDto = {
     /**
-     * 连接 ID
+     * 身份源 ID
      */
     id: string;
     /**

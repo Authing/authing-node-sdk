@@ -11,4 +11,21 @@ export type CreateUserOptionsDto = {
      * 是否强制要求用户在第一次的时候重置密码
      */
     resetPasswordOnFirstLogin?: boolean;
+    /**
+     * 此次调用中使用的父部门 ID 的类型
+     */
+    departmentIdType?: CreateUserOptionsDto.departmentIdType;
 };
+
+export namespace CreateUserOptionsDto {
+
+    /**
+     * 此次调用中使用的父部门 ID 的类型
+     */
+    export enum departmentIdType {
+        DEPARTMENT_ID = 'department_id',
+        OPEN_DEPARTMENT_ID = 'open_department_id',
+    }
+
+
+}

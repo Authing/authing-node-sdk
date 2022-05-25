@@ -12,10 +12,6 @@ export type ExtIdpDetail = {
      */
     name: string;
     /**
-     * 租户场景下自动加入
-     */
-    autoJoin: boolean;
-    /**
      * 租户 ID
      */
     tenantId?: string;
@@ -24,7 +20,11 @@ export type ExtIdpDetail = {
      */
     type: string;
     /**
-     * 连接信息
+     * 身份源的连接列表
      */
     connections: any;
+    /**
+     * 租户场景下自动加入
+     */
+    autoJoin: boolean;
 };

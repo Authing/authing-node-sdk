@@ -4,7 +4,7 @@
 
 export type DeleteExtIdpConnDto = {
     /**
-     * 连接 ID
+     * 身份源连接 ID
      */
     id: string;
 };

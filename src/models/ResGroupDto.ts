@@ -15,12 +15,4 @@ export type ResGroupDto = {
      * 分组描述
      */
     description: string;
-    /**
-     * 创建时间
-     */
-    createdAt: string;
-    /**
-     * 更新时间
-     */
-    updatedAt: string;
 };

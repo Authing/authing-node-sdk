@@ -2,32 +2,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
+/**
+ * 获取分组被授权的资源列表
+ */
 export type GetGroupAuthorizedResourcesDto = {
     /**
      * 分组 code
      */
-    code: string;
+    code?: any;
     /**
      * 所属权限分组的 code
      */
-    namespace?: string;
+    namespace?: any;
     /**
      * 资源类型
      */
-    resourceType?: GetGroupAuthorizedResourcesDto.resourceType;
+    resourceType?: any;
 };
-
-export namespace GetGroupAuthorizedResourcesDto {
-
-    /**
-     * 资源类型
-     */
-    export enum resourceType {
-        DATA = 'DATA',
-        API = 'API',
-        MENU = 'MENU',
-        BUTTON = 'BUTTON',
-    }
-
-
-}

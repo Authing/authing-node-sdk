@@ -2,46 +2,24 @@
 /* tslint:disable */
 /* eslint-disable */
 
+/**
+ * 获取某个主体被授权的资源列表
+ */
 export type GetAuthorizedResourcesDto = {
+    /**
+     * 目标对象类型
+     */
+    targetType?: any;
     /**
      * 目标对象唯一标志符
      */
-    targetIdentifier: string;
-    /**
-     * 目标对象类型
-     */
-    targetType: GetAuthorizedResourcesDto.targetType;
+    targetIdentifier?: any;
     /**
      * 所属权限分组的 code
      */
-    namespace?: string;
+    namespace?: any;
     /**
      * 资源类型，如数据、API、按钮、菜单
      */
-    resourceType?: GetAuthorizedResourcesDto.resourceType;
+    resourceType?: any;
 };
-
-export namespace GetAuthorizedResourcesDto {
-
-    /**
-     * 目标对象类型
-     */
-    export enum targetType {
-        USER = 'USER',
-        ROLE = 'ROLE',
-        GROUP = 'GROUP',
-        DEPARTMENT = 'DEPARTMENT',
-    }
-
-    /**
-     * 资源类型，如数据、API、按钮、菜单
-     */
-    export enum resourceType {
-        DATA = 'DATA',
-        API = 'API',
-        MENU = 'MENU',
-        BUTTON = 'BUTTON',
-    }
-
-
-}

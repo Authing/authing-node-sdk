@@ -8,9 +8,9 @@ export type CreateExtIdpConnDto = {
      */
     fields: any;
     /**
-     * 身份源图标
+     * 连接在登录页的显示名称
      */
-    logo: string;
+    displayName: string;
     /**
      * 身份源连接标识
      */
@@ -24,9 +24,13 @@ export type CreateExtIdpConnDto = {
      */
     extIdpId: string;
     /**
-     * 连接在登录页的显示名称
+     * 是否只支持登录
      */
-    displayName?: string;
+    loginOnly?: boolean;
+    /**
+     * 身份源图标
+     */
+    logo?: string;
 };
 
 export namespace CreateExtIdpConnDto {
@@ -73,6 +77,7 @@ export namespace CreateExtIdpConnDto {
         YIDUN = 'yidun',
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
+        INSTAGRAM = 'instagram',
     }
 
 

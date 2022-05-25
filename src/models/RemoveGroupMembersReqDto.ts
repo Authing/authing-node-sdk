@@ -6,7 +6,7 @@ export type RemoveGroupMembersReqDto = {
     /**
      * 用户 ID 数组
      */
-    userIds: string;
+    userIds: Array<string>;
     /**
      * 分组 code
      */

@@ -11,4 +11,8 @@ export type CreateOrganizationReqDto = {
      * 组织 code
      */
     organizationCode: string;
+    /**
+     * 根节点自定义 ID
+     */
+    openDepartmentId?: string;
 };

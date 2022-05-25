@@ -4,19 +4,7 @@
 
 export type UpdateExtIdpConnDto = {
     /**
-     * 是否只支持登录
-     */
-    loginOnly: boolean;
-    /**
-     * 关联模式
-     */
-    associationMode: string;
-    /**
-     * 图标
-     */
-    logo: string;
-    /**
-     * 身份源连接自定义参数
+     * 身份源连接自定义参数（增量修改）
      */
     fields: any;
     /**
@@ -24,11 +12,15 @@ export type UpdateExtIdpConnDto = {
      */
     displayName: string;
     /**
-     * 连接 ID
+     * 身份源连接 ID
      */
     id: string;
     /**
-     * 绑定方式
+     * 身份源连接的图标
      */
-    challengeBindingMethods?: Array<'email-password' | 'username-password' | 'phone-password' | 'phone-code' | 'email-code'>;
+    logo?: string;
+    /**
+     * 是否只支持登录
+     */
+    loginOnly?: boolean;
 };

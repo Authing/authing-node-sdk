@@ -40,6 +40,34 @@ export type UpdateUserReqDto = {
      */
     phoneVerified?: boolean;
     /**
+     * 出生日期
+     */
+    birthdate?: string;
+    /**
+     * 所在国家
+     */
+    country?: string;
+    /**
+     * 所在省份
+     */
+    province?: string;
+    /**
+     * 所在城市
+     */
+    city?: string;
+    /**
+     * 所处地址
+     */
+    address?: string;
+    /**
+     * 所处街道地址
+     */
+    streetAddress?: string;
+    /**
+     * 邮政编码号
+     */
+    postalCode?: string;
+    /**
      * 性别
      */
     gender?: UpdateUserReqDto.gender;
@@ -47,6 +75,10 @@ export type UpdateUserReqDto = {
      * 用户名，用户池内唯一
      */
     username?: string;
+    /**
+     * 加密类型
+     */
+    passwordEncryptType?: UpdateUserReqDto.passwordEncryptType;
     /**
      * 邮箱
      */
@@ -56,7 +88,7 @@ export type UpdateUserReqDto = {
      */
     phone?: string;
     /**
-     * 密码。必须通过加密方式进行加密。
+     * 密码。可选加密方式进行加密，默认为未加密
      */
     password?: string;
     /**
@@ -85,6 +117,15 @@ export namespace UpdateUserReqDto {
         M = 'M',
         W = 'W',
         U = 'U',
+    }
+
+    /**
+     * 加密类型
+     */
+    export enum passwordEncryptType {
+        SM2 = 'sm2',
+        RSA = 'rsa',
+        NONE = 'none',
     }
 
 

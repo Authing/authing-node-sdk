@@ -66,6 +66,34 @@ export type UserDto = {
      */
     phoneVerified: boolean;
     /**
+     * 出生日期
+     */
+    birthdate?: string;
+    /**
+     * 所在国家
+     */
+    country?: string;
+    /**
+     * 所在省份
+     */
+    province?: string;
+    /**
+     * 所在城市
+     */
+    city?: string;
+    /**
+     * 所处地址
+     */
+    address?: string;
+    /**
+     * 所处街道地址
+     */
+    streetAddress?: string;
+    /**
+     * 邮政编码号
+     */
+    postalCode?: string;
+    /**
      * 第三方外部 ID
      */
     externalId?: string;

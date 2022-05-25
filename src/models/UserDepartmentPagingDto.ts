@@ -10,7 +10,7 @@ export type UserDepartmentPagingDto = {
      */
     totalCount: number;
     /**
-     * 数据
+     * 响应数据
      */
     list: Array<UserDepartmentRespDto>;
 };

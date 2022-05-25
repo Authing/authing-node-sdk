@@ -2,13 +2,16 @@
 /* tslint:disable */
 /* eslint-disable */
 
+/**
+ * 批量获取资源详情
+ */
 export type GetResourcesBatchDto = {
     /**
-     * 资源 code 列表
+     * 资源 code 列表,批量可以使用逗号分隔
      */
-    codeList: Array<string>;
+    codeList?: any;
     /**
      * 所属权限分组的 code
      */
-    namespace?: string;
+    namespace?: any;
 };
