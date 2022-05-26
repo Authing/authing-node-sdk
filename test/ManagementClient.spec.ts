@@ -1,7 +1,4 @@
-import { ManagementClient } from "../src/ManagementClient";
-import { SetCustomDataReqDto } from "../src/models/SetCustomDataReqDto";
-import { SetCustomFieldDto } from "../src/models/SetCustomFieldDto";
-import { UserDto } from "../src/models/UserDto";
+import { ManagementClient, Models } from "../src";
 import {
   generateRandomEmail,
   generateRandomPhone,
@@ -20,14 +17,14 @@ describe("ManagementClient", () => {
     const data = await managementClient.setCustomFields({
       list: [
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.STRING,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.STRING,
           key: "intro",
           label: "自我介绍",
         },
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.SELECT,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.SELECT,
           key: "school",
           label: "学校",
           options: [
@@ -50,26 +47,26 @@ describe("ManagementClient", () => {
           ],
         },
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.NUMBER,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.NUMBER,
           key: "age",
           label: "年龄",
         },
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.BOOLEAN,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.BOOLEAN,
           key: "graduted",
           label: "是否已经毕业",
         },
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.DATETIME,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.DATETIME,
           key: "graduted_at",
           label: "毕业时间",
         },
         {
-          targetType: SetCustomFieldDto.targetType.USER,
-          dataType: SetCustomFieldDto.dataType.STRING,
+          targetType: Models.SetCustomFieldDto.targetType.USER,
+          dataType: Models.SetCustomFieldDto.dataType.STRING,
           key: "id_card",
           label: "身份证",
           encrypted: true,
@@ -88,7 +85,7 @@ describe("ManagementClient", () => {
         const externalId = generateRandomString();
         const name = generateRandomString();
         const nickname = generateRandomString();
-        const gender = UserDto.gender.M;
+        const gender = Models.UserDto.gender.M;
         const emailVerified = true;
         const phoneVerified = true;
         const {
@@ -109,7 +106,7 @@ describe("ManagementClient", () => {
         });
         expect(statusCode).toEqual(200);
         expect(user.userId).toBeDefined();
-        expect(user.status).toEqual(UserDto.status.ACTIVATED);
+        expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
         expect(user.email).toBe(email);
         expect(user.phone).toBe(phone);
         expect(user.phoneCountryCode).toBe(phoneCountryCode);
@@ -182,8 +179,8 @@ describe("ManagementClient", () => {
       await managementClient.setCustomFields({
         list: [
           {
-            targetType: SetCustomFieldDto.targetType.DEPARTMENT,
-            dataType: SetCustomFieldDto.dataType.STRING,
+            targetType: Models.SetCustomFieldDto.targetType.DEPARTMENT,
+            dataType: Models.SetCustomFieldDto.dataType.STRING,
             key: "test",
             label: "Test",
           },
@@ -191,7 +188,7 @@ describe("ManagementClient", () => {
       });
 
       await managementClient.setCustomData({
-        targetType: SetCustomDataReqDto.targetType.DEPARTMENT,
+        targetType: Models.SetCustomDataReqDto.targetType.DEPARTMENT,
         targetIdentifier: "6285f0a71439558ae7878be6",
         list: [
           {
