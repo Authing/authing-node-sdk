@@ -1,6 +1,6 @@
 # authing-node-sdk
 
-[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端，包含 [Authing Open API](https://core.authing.cn/openapi/) 所有 Management API 的请求方法。
+[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
 
 此模块一般用于后端服务器环境，以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
 
@@ -66,7 +66,7 @@ const { data } = await managementClient.createRole({
 });
 ```
 
-完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 中获取。
+完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://authing-open-api.readme.io/reference/nodejs) 中获取。
 
 ## 错误处理
 
