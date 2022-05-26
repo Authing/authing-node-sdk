@@ -55,7 +55,7 @@ const managementClient = new ManagementClient({
     page: 1,
     limit: 10,
   });
-})()
+})();
 ```
 
 - 创建角色
@@ -67,7 +67,7 @@ const managementClient = new ManagementClient({
     description: "管理员",
     namespace: "default",
   });
-})()
+})();
 ```
 
 完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://authing-open-api.readme.io/reference/nodejs) 中获取。
@@ -85,16 +85,18 @@ const managementClient = new ManagementClient({
 
 ```typescript
 (async () => {
-  const { statusCode, apiCode, message, data } = await managementClient.getUser({
-    userId: "62559df6b2xxxx259877b5f4",
-  });
+  const { statusCode, apiCode, message, data } = await managementClient.getUser(
+    {
+      userId: "62559df6b2xxxx259877b5f4",
+    }
+  );
 
   if (statusCode !== 200) {
     throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
   }
 
   // 继续你的业务逻辑 ...
-})()
+})();
 ```
 
 ## 私有化部署
@@ -112,6 +114,14 @@ const managementClient = new ManagementClient({
 ```
 
 如果你不清楚如何获取，可以联系 Authing IDaaS 服务管理员。
+
+## 资源
+
+- [官网](https://authing.cn)
+- [开发者文档](https://docs.authing.cn/)
+- [Authing Open API](https://api.authing.cn/openapi/)
+- [SDK 文档](https://authing-open-api.readme.io/reference/nodejs)
+- [论坛社区](https://forum.authing.cn/)
 
 ## 获取帮助
 
