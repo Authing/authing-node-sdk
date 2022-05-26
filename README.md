@@ -50,20 +50,24 @@ const managementClient = new ManagementClient({
 - 获取用户列表
 
 ```typescript
-const { data } = await managementClient.listUsers({
-  page: 1,
-  limit: 10,
-});
+(async () => {
+  const { data } = await managementClient.listUsers({
+    page: 1,
+    limit: 10,
+  });
+})()
 ```
 
 - 创建角色
 
 ```typescript
-const { data } = await managementClient.createRole({
-  code: "admin",
-  description: "管理员",
-  namespace: "default",
-});
+(async () => {
+  const { data } = await managementClient.createRole({
+    code: "admin",
+    description: "管理员",
+    namespace: "default",
+  });
+})()
 ```
 
 完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://authing-open-api.readme.io/reference/nodejs) 中获取。
@@ -80,15 +84,17 @@ const { data } = await managementClient.createRole({
 一般情况下，如果你只需要判断操作是否成功，只需要对比一下 `code` 是否为 200。如果非 200，可以在代码中通抛出异常或者任何你项目中使用的异常处理方式。
 
 ```typescript
-const { statusCode, apiCode, message, data } = await managementClient.getUser({
-  userId: "62559df6b2xxxx259877b5f4",
-});
+(async () => {
+  const { statusCode, apiCode, message, data } = await managementClient.getUser({
+    userId: "62559df6b2xxxx259877b5f4",
+  });
 
-if (statusCode !== 200) {
-  throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
-}
+  if (statusCode !== 200) {
+    throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
+  }
 
-// 继续你的业务逻辑 ...
+  // 继续你的业务逻辑 ...
+})()
 ```
 
 ## 私有化部署
