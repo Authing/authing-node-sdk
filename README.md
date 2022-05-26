@@ -1,10 +1,10 @@
 # authing-node-sdk
 
-[Authing](https://authing.co) 身份云 `Node.js` 语言客户端，包含 [Authing Open API](https://core.authing.cn/openapi/) 所有 Management API 的请求方法。
+[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端，包含 [Authing Open API](https://core.authing.cn/openapi/) 所有 Management API 的请求方法。
 
 此模块一般用于后端服务器环境，以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
 
-如果你需要以终端用户（End User）的身份进行登录、注册、登出等操作，请使用 [TODO](TODO) .
+如果你需要以终端用户（End User）的身份进行登录、注册、登出等操作，请使用 [Guard](https://www.authing.cn/learn/guard) .
 
 ## 安装
 
@@ -25,15 +25,15 @@ yarn add authing-node-sdk
 初始化 `ManagementClient` 需要使用 `accessKeyId` 和 `accessKeySecret` 参数:
 
 ```typescript
-import { ManagementClient } from 'authing-node-sdk'
+import { ManagementClient } from "authing-node-sdk";
 
 const managementClient = new ManagementClient({
-  accessKeyId: 'YOUR_ACCESS_KEY_ID',
-  accessKeySecret: 'YOUR_ACCESS_KEY_SECRET',
-})
+  accessKeyId: "YOUR_ACCESS_KEY_ID",
+  accessKeySecret: "YOUR_ACCESS_KEY_SECRET",
+});
 ```
 
-`ManagementClient` 会自动从 Authing 服务器获取  Management API Token，并通过返回的 Token 过期时间自动对 Token 进行缓存。
+`ManagementClient` 会自动从 Authing 服务器获取 Management API Token，并通过返回的 Token 过期时间自动对 Token 进行缓存。
 
 完整的参数和释义如下：
 
@@ -45,32 +45,30 @@ const managementClient = new ManagementClient({
 
 ## 快速开始
 
-初始化完成 `ManagementClient`  之后，你可以获取 `ManagementClient` 的实例，然后调用此实例上的方法。例如：
+初始化完成 `ManagementClient` 之后，你可以获取 `ManagementClient` 的实例，然后调用此实例上的方法。例如：
 
 - 获取用户列表
 
 ```typescript
 const { data } = await managementClient.listUsers({
   page: 1,
-  limit: 10
-})
+  limit: 10,
+});
 ```
 
 - 创建角色
 
 ```typescript
 const { data } = await managementClient.createRole({
-  code: 'admin',
-  description: '管理员',
-  namespace: 'default'
+  code: "admin",
+  description: "管理员",
+  namespace: "default",
 });
 ```
 
 完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 中获取。
 
-
 ## 错误处理
-
 
 `ManagementClient` 中的每个方法，遵循统一的返回结构：
 
@@ -82,14 +80,9 @@ const { data } = await managementClient.createRole({
 一般情况下，如果你只需要判断操作是否成功，只需要对比一下 `code` 是否为 200。如果非 200，可以在代码中通抛出异常或者任何你项目中使用的异常处理方式。
 
 ```typescript
-const {
-    statusCode,
-    apiCode,
-    message,
-    data,
-} = await managementClient.getUser({
-  userId: "62559df6b2xxxx259877b5f4"
-})
+const { statusCode, apiCode, message, data } = await managementClient.getUser({
+  userId: "62559df6b2xxxx259877b5f4",
+});
 
 if (statusCode !== 200) {
   throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
@@ -100,21 +93,19 @@ if (statusCode !== 200) {
 
 ## 私有化部署
 
-
 如果你使用的是私有化部署的 Authing IDaaS 服务，需要指定此 Authing 私有化实例的 `host`，如：
 
 ```typescript
-import { ManagementClient } from 'authing-node-sdk'
+import { ManagementClient } from "authing-node-sdk";
 
 const managementClient = new ManagementClient({
-  accessKeyId: 'YOUR_ACCESS_KEY_ID',
-  accessKeySecret: 'YOUR_ACCESS_KEY_SECRET',
-  host: 'https://authing-api.my-authing-service.com'
-})
+  accessKeyId: "YOUR_ACCESS_KEY_ID",
+  accessKeySecret: "YOUR_ACCESS_KEY_SECRET",
+  host: "https://authing-api.my-authing-service.com",
+});
 ```
 
 如果你不清楚如何获取，可以联系 Authing IDaaS 服务管理员。
-
 
 ## 获取帮助
 
