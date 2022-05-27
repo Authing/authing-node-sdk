@@ -11,3 +11,4 @@ junit.xml
 dist
 coverage
 temp
+.npmrc
