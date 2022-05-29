@@ -12,6 +12,10 @@ export type UpdateDepartmentReqDto = {
      */
     departmentId: string;
     /**
+     * 部门描述
+     */
+    description?: string;
+    /**
      * 部门识别码
      */
     code?: string;

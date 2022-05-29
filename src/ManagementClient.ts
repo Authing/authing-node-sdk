@@ -38,12 +38,10 @@ import type { GroupListRespDto } from "./models/GroupListRespDto";
 import type { GroupSingleRespDto } from "./models/GroupSingleRespDto";
 import type { RemoveGroupMembersReqDto } from "./models/RemoveGroupMembersReqDto";
 import type { UpdateGroupReqDto } from "./models/UpdateGroupReqDto";
-import type { AssignRoleBatchDto } from "./models/AssignRoleBatchDto";
 import type { AssignRoleDto } from "./models/AssignRoleDto";
 import type { CreateRoleDto } from "./models/CreateRoleDto";
 import type { CreateRolesBatch } from "./models/CreateRolesBatch";
 import type { DeleteRoleDto } from "./models/DeleteRoleDto";
-import type { RevokeRoleBatchDto } from "./models/RevokeRoleBatchDto";
 import type { RevokeRoleDto } from "./models/RevokeRoleDto";
 import type { RoleAuthorizedResourcePaginatedRespDto } from "./models/RoleAuthorizedResourcePaginatedRespDto";
 import type { RoleDepartmentListPaginatedRespDto } from "./models/RoleDepartmentListPaginatedRespDto";
@@ -909,21 +907,6 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 批量分配角色
-   * @description 批量分配角色，被分配者可以是用户，可以是部门
-   * @returns IsSuccessRespDto
-   */
-  public async assignRoleBatch(
-    requestBody: AssignRoleBatchDto
-  ): Promise<IsSuccessRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/assign-role-batch",
-      data: requestBody,
-    });
-  }
-
-  /**
    * @summary 移除分配的角色
    * @description 移除分配的角色，被分配者可以是用户，可以是部门
    * @returns IsSuccessRespDto
@@ -934,21 +917,6 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/revoke-role",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 批量移除分配的角色
-   * @description 批量移除分配的角色，被分配者可以是用户，可以是部门
-   * @returns IsSuccessRespDto
-   */
-  public async revokeRoleBatch(
-    requestBody: RevokeRoleBatchDto
-  ): Promise<IsSuccessRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/revoke-role-batch",
       data: requestBody,
     });
   }
@@ -1331,14 +1299,15 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 获取部门直属成员列表
-   * @description 获取部门直属成员列表
+   * @summary 获取部门成员列表
+   * @description 获取部门成员列表
    * @returns UserListRespDto
    */
   public async listDepartmentMembers({
     organizationCode,
     departmentId,
     departmentIdType = "department_id",
+    includeChildrenDepartments = false,
     page = 1,
     limit = 10,
     withCustomData = false,
@@ -1351,6 +1320,8 @@ export class ManagementClient {
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: "department_id" | "open_department_id";
+    /** 是否包含子部门的成员 **/
+    includeChildrenDepartments?: boolean;
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -1369,6 +1340,7 @@ export class ManagementClient {
         organizationCode: organizationCode,
         departmentId: departmentId,
         departmentIdType: departmentIdType,
+        includeChildrenDepartments: includeChildrenDepartments,
         page: page,
         limit: limit,
         withCustomData: withCustomData,
@@ -1764,7 +1736,7 @@ export class ManagementClient {
       url: "/api/v3/get-resources-batch",
       params: {
         namespace: namespace,
-        code_list: codeList,
+        codeList: codeList,
       },
     });
   }
@@ -1905,13 +1877,13 @@ export class ManagementClient {
     codeList,
   }: {
     /** 资源 code 列表,批量可以使用逗号分隔 **/
-    codeList: string;
+    codeList: Array<string>;
   }): Promise<NamespaceListRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-namespaces-batch",
       params: {
-        code_list: codeList,
+        codeList: codeList,
       },
     });
   }

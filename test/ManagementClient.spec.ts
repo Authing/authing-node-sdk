@@ -7,8 +7,8 @@ import {
 
 describe("ManagementClient", () => {
   const managementClient = new ManagementClient({
-    accessKeyId: "6285f079b98ae6afb53784bd",
-    accessKeySecret: "4e5eab877ebd78175314fd2d73e61285",
+    accessKeyId: "6291bd996fc98b263b2e00b9",
+    accessKeySecret: "1f3694d41f7cdb803ee041f7cc8d55b6",
     host: "http://localhost:3000",
   });
 
@@ -201,6 +201,27 @@ describe("ManagementClient", () => {
       const data = await managementClient.getCustomData({
         targetType: "DEPARTMENT",
         targetIdentifier: "6285f0a71439558ae7878be6",
+      });
+      console.log(data);
+    });
+  });
+
+  describe("getUserBatch", () => {
+    it("Success", async () => {
+      const { data: listUserResp } = await managementClient.listUsers({});
+
+      const userIds = listUserResp.list.map((x) => x.userId);
+      const { data: getUserBatchResp } = await managementClient.getUserBatch({
+        userIds,
+      });
+      console.log(getUserBatchResp);
+    });
+  });
+
+  describe("getNamespacesBatch", () => {
+    it("Success", async () => {
+      const data = await managementClient.getNamespacesBatch({
+        codeList: ["default", "sss"],
       });
       console.log(data);
     });

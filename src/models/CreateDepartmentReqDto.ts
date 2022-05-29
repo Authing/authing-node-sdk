@@ -8,17 +8,21 @@ export type CreateDepartmentReqDto = {
      */
     organizationCode: string;
     /**
-     * 部门名称
-     */
-    name: string;
-    /**
      * 父部门 id
      */
     parentDepartmentId: string;
     /**
+     * 部门名称
+     */
+    name: string;
+    /**
      * 自定义部门 ID，用于存储自定义的 ID
      */
     openDepartmentId?: string;
+    /**
+     * 部门描述
+     */
+    description?: string;
     /**
      * 部门识别码
      */

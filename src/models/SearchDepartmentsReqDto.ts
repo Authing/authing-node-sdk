@@ -6,7 +6,7 @@ export type SearchDepartmentsReqDto = {
     /**
      * 搜索关键词
      */
-    search: string;
+    keywords: string;
     /**
      * 组织 code
      */

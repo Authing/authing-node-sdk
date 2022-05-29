@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取部门直属成员列表
+ * 获取部门成员列表
  */
 export type ListDepartmentMembersDto = {
     /**
@@ -18,6 +18,10 @@ export type ListDepartmentMembersDto = {
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: any;
+    /**
+     * 是否包含子部门的成员
+     */
+    includeChildrenDepartments?: any;
     /**
      * 当前页数，从 1 开始
      */

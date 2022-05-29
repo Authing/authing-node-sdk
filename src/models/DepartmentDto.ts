@@ -12,21 +12,17 @@ export type DepartmentDto = {
      */
     openDepartmentId?: string;
     /**
-     * 父部门 id
-     */
-    parentDepartmentId: string;
-    /**
-     * 父部门自定义的 ID
-     */
-    parentOpenDepartmentId?: string;
-    /**
      * 部门名称
      */
     name: string;
     /**
      * 部门描述
      */
-    description: string;
+    description?: string;
+    /**
+     * 父部门 id
+     */
+    parentDepartmentId: string;
     /**
      * 部门识别码
      */

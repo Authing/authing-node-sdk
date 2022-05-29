@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { UsersListPagingDto } from './UsersListPagingDto';
+import type { UserDto } from './UserDto';
 
 export type UserListRespDto = {
     /**
@@ -18,7 +18,7 @@ export type UserListRespDto = {
      */
     apiCode?: number;
     /**
-     * 数据
+     * 用户列表
      */
-    data: UsersListPagingDto;
+    data: Array<UserDto>;
 };

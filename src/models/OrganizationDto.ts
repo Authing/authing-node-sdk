@@ -12,6 +12,10 @@ export type OrganizationDto = {
      */
     organizationName: string;
     /**
+     * 组织描述信息
+     */
+    description?: string;
+    /**
      * 根节点 ID
      */
     departmentId: string;
