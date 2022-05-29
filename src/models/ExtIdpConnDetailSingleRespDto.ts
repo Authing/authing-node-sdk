@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ExtIdpConnDto } from './ExtIdpConnDto';
+import type { ExtIdpConnDetail } from './ExtIdpConnDetail';
 
 export type ExtIdpConnDetailSingleRespDto = {
     /**
@@ -20,5 +20,5 @@ export type ExtIdpConnDetailSingleRespDto = {
     /**
      * 响应数据
      */
-    data: ExtIdpConnDto;
+    data: ExtIdpConnDetail;
 };

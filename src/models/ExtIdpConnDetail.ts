@@ -16,23 +16,23 @@ export type ExtIdpConnDetail = {
      */
     logo: string;
     /**
-     * 连接标识
+     * 身份源连接标识
      */
     identifier?: string;
     /**
-     * 连接在登录页的显示名称
+     * 身份源连接在登录页的显示名称
      */
     displayName?: string;
     /**
-     * 只支持登录
+     * 是否只支持登录
      */
     loginOnly: boolean;
     /**
-     * 关联模式
+     * 账号关联模式
      */
     associationMode: ExtIdpConnDetail.associationMode;
     /**
-     * 绑定方式
+     * 账号绑定方式
      */
     challengeBindingMethods: Array<'email-password' | 'username-password' | 'phone-password' | 'phone-code' | 'email-code'>;
     /**
@@ -85,10 +85,11 @@ export namespace ExtIdpConnDetail {
         YIDUN = 'yidun',
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
+        INSTAGRAM = 'instagram',
     }
 
     /**
-     * 关联模式
+     * 账号关联模式
      */
     export enum associationMode {
         NONE = 'none',

@@ -8,10 +8,6 @@ export type UpdateDepartmentReqDto = {
      */
     organizationCode: string;
     /**
-     * 父部门 id
-     */
-    parentDepartmentId: string;
-    /**
      * 部门系统 ID（为 Authing 系统自动生成，不可修改）
      */
     departmentId: string;
@@ -31,6 +27,10 @@ export type UpdateDepartmentReqDto = {
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: UpdateDepartmentReqDto.departmentIdType;
+    /**
+     * 父部门 id
+     */
+    parentDepartmentId?: string;
 };
 
 export namespace UpdateDepartmentReqDto {

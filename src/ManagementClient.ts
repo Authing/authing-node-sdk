@@ -90,7 +90,6 @@ import type { DeleteResourceDto } from "./models/DeleteResourceDto";
 import type { DeleteResourcesBatchDto } from "./models/DeleteResourcesBatchDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
 import type { NamespaceRespDto } from "./models/NamespaceRespDto";
-import type { ResourceDto } from "./models/ResourceDto";
 import type { ResourceListRespDto } from "./models/ResourceListRespDto";
 import type { ResourcePaginatedRespDto } from "./models/ResourcePaginatedRespDto";
 import type { ResourceRespDto } from "./models/ResourceRespDto";
@@ -175,10 +174,10 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user",
       params: {
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
-        user_id: userId,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
+        userId: userId,
         phone: phone,
         email: email,
         username: username,
@@ -199,7 +198,7 @@ export class ManagementClient {
     withDepartmentIds = false,
   }: {
     /** 用户 ID 数组 **/
-    userIds: string;
+    userIds: Array<string>;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 是否获取 identities **/
@@ -211,10 +210,10 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-batch",
       params: {
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
-        user_ids: userIds,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
+        userIds: userIds,
       },
     });
   }
@@ -248,9 +247,9 @@ export class ManagementClient {
       params: {
         page: page,
         limit: limit,
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
       },
     });
   }
@@ -270,7 +269,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-identities",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -293,7 +292,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-roles",
       params: {
-        user_id: userId,
+        userId: userId,
         namespace: namespace,
       },
     });
@@ -304,7 +303,7 @@ export class ManagementClient {
    * @description 获取用户实名认证信息
    * @returns PrincipalAuthenticationInfoPaginatedRespDto
    */
-  public async getPrincipalAuthenticationInfo({
+  public async getUserPrincipalAuthenticationInfo({
     userId,
   }: {
     /** 用户 ID **/
@@ -314,7 +313,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-principal-authentication-info",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -324,7 +323,7 @@ export class ManagementClient {
    * @description 删除用户实名认证信息
    * @returns IsSuccessRespDto
    */
-  public async resetPrincipalAuthenticationInfo(
+  public async resetUserPrincipalAuthenticationInfo(
     requestBody: ResetUserPrincipalAuthenticationInfoDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -349,7 +348,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-departments",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -384,7 +383,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-groups",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -394,7 +393,7 @@ export class ManagementClient {
    * @description 删除用户（支持批量删除）
    * @returns IsSuccessRespDto
    */
-  public async deleteUserBatch(
+  public async deleteUsersBatch(
     requestBody: DeleteUsersBatchDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -419,7 +418,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-mfa-info",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -536,7 +535,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-accessible-apps",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -556,7 +555,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-authorized-apps",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -609,9 +608,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-login-history",
       params: {
-        user_id: userId,
-        app_id: appId,
-        client_ip: clientIp,
+        userId: userId,
+        appId: appId,
+        clientIp: clientIp,
         start: start,
         end: end,
         page: page,
@@ -635,7 +634,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-loggedin-apps",
       params: {
-        user_id: userId,
+        userId: userId,
       },
     });
   }
@@ -661,9 +660,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-user-authorized-resources",
       params: {
-        user_id: userId,
+        userId: userId,
         namespace: namespace,
-        resource_type: resourceType,
+        resourceType: resourceType,
       },
     });
   }
@@ -693,7 +692,7 @@ export class ManagementClient {
    * @description 获取分组列表接口，支持分页
    * @returns GroupPaginatedRespDto
    */
-  public async getGroupList({
+  public async listGroups({
     page = 1,
     limit = 10,
   }: {
@@ -732,7 +731,7 @@ export class ManagementClient {
    * @description 批量创建分组
    * @returns GroupListRespDto
    */
-  public async createGroupBatch(
+  public async createGroupsBatch(
     requestBody: CreateGroupBatchReqDto
   ): Promise<GroupListRespDto> {
     return await this.httpClient.request({
@@ -762,7 +761,7 @@ export class ManagementClient {
    * @description 批量删除分组
    * @returns IsSuccessRespDto
    */
-  public async deleteGroups(
+  public async deleteGroupsBatch(
     requestBody: DeleteGroupsReqDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -835,9 +834,9 @@ export class ManagementClient {
         code: code,
         page: page,
         limit: limit,
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
       },
     });
   }
@@ -865,7 +864,7 @@ export class ManagementClient {
       params: {
         code: code,
         namespace: namespace,
-        resource_type: resourceType,
+        resourceType: resourceType,
       },
     });
   }
@@ -940,8 +939,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 移除分配的角色
-   * @description 移除分配的角色，被分配者可以是用户，可以是部门
+   * @summary 批量移除分配的角色
+   * @description 批量移除分配的角色，被分配者可以是用户，可以是部门
    * @returns IsSuccessRespDto
    */
   public async revokeRoleBatch(
@@ -977,7 +976,7 @@ export class ManagementClient {
       params: {
         code: code,
         namespace: namespace,
-        resource_type: resourceType,
+        resourceType: resourceType,
       },
     });
   }
@@ -1017,9 +1016,9 @@ export class ManagementClient {
       params: {
         page: page,
         limit: limit,
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
         code: code,
         namespace: namespace,
       },
@@ -1236,9 +1235,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-department",
       params: {
-        organization_code: organizationCode,
-        department_id: departmentId,
-        department_id_type: departmentIdType,
+        organizationCode: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
       },
     });
   }
@@ -1324,9 +1323,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/list-children-departments",
       params: {
-        department_id: departmentId,
-        department_id_type: departmentIdType,
-        organization_code: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
+        organizationCode: organizationCode,
       },
     });
   }
@@ -1367,14 +1366,14 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/list-department-members",
       params: {
-        organization_code: organizationCode,
-        department_id: departmentId,
-        department_id_type: departmentIdType,
+        organizationCode: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
         page: page,
         limit: limit,
-        with_custom_data: withCustomData,
-        with_identities: withIdentities,
-        with_department_ids: withDepartmentIds,
+        withCustomData: withCustomData,
+        withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
       },
     });
   }
@@ -1400,9 +1399,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/list-department-member-ids",
       params: {
-        organization_code: organizationCode,
-        department_id: departmentId,
-        department_id_type: departmentIdType,
+        organizationCode: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
       },
     });
   }
@@ -1458,9 +1457,9 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-parent-department",
       params: {
-        organization_code: organizationCode,
-        department_id: departmentId,
-        department_id_type: departmentIdType,
+        organizationCode: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
       },
     });
   }
@@ -1480,7 +1479,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/list-ext-idp",
       params: {
-        tenant_id: tenantId,
+        tenantId: tenantId,
       },
     });
   }
@@ -1503,7 +1502,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-ext-idp",
       params: {
-        tenant_id: tenantId,
+        tenantId: tenantId,
         id: id,
       },
     });
@@ -1629,7 +1628,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-custom-fields",
       params: {
-        target_type: targetType,
+        targetType: targetType,
       },
     });
   }
@@ -1678,15 +1677,15 @@ export class ManagementClient {
     targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
     /** 目标对象唯一标志符 **/
     targetIdentifier: string;
-    /** 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略。 **/
+    /** 所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略。 **/
     namespace?: string;
   }): Promise<GetCustomDataRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-custom-data",
       params: {
-        target_type: targetType,
-        target_identifier: targetIdentifier,
+        targetType: targetType,
+        targetIdentifier: targetIdentifier,
         namespace: namespace,
       },
     });
@@ -1850,11 +1849,11 @@ export class ManagementClient {
   /**
    * @summary 创建权限分组
    * @description 创建权限分组
-   * @returns ResourceDto
+   * @returns NamespaceRespDto
    */
   public async createNamespace(
     requestBody: CreateNamespaceDto
-  ): Promise<ResourceDto> {
+  ): Promise<NamespaceRespDto> {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/create-namespace",
@@ -2002,9 +2001,9 @@ export class ManagementClient {
       url: "/api/v3/get-authorized-resources",
       params: {
         namespace: namespace,
-        target_type: targetType,
-        target_identifier: targetIdentifier,
-        resource_type: resourceType,
+        targetType: targetType,
+        targetIdentifier: targetIdentifier,
+        resourceType: resourceType,
       },
     });
   }

@@ -15,7 +15,7 @@ export type GetCustomDataDto = {
      */
     targetIdentifier?: any;
     /**
-     * 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略。
+     * 所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略。
      */
     namespace?: any;
 };
