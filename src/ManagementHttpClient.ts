@@ -4,7 +4,7 @@ import { ManagementClientOptions } from "./ManagementClientOptions";
 import { ManagementTokenProvider } from "./ManagementTokenProvider";
 import { pickBy } from "./utils";
 
-export class HttpClient {
+export class ManagementHttpClient {
   options: ManagementClientOptions;
   axios: AxiosInstance;
   tokenProvider: ManagementTokenProvider;

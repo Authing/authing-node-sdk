@@ -1,3 +1,6 @@
+import { importJWK } from "jose";
+import { JoseKey, JWKSObject } from "../AuthClientInterface";
+
 export const pickBy = (
   obj: any,
   predicate: (value: any, key: string) => boolean
@@ -88,3 +91,44 @@ export const generateRandomPhone = () => {
   const bodyNum = Math.random().toString().replace('0.', '').slice(0, 8);
   return headerNum + bodyNum;
 };
+
+/**
+ * @description 域名标准化 domain canonicalization
+ * @param domain 域名
+ * @returns 标准化后的域名
+ */
+export function domainC14n(domain: string) {
+  const domainExp =
+    /^((?:http)|(?:https):\/\/)?((?:[\w-_]+)(?:\.[\w-_]+)+)(?:\/.*)?$/;
+  const matchRes = domainExp.exec(domain);
+  if (matchRes && matchRes[2]) {
+    return `${matchRes[1] ?? 'https://'}${matchRes[2]}`;
+  }
+  throw Error(`无效的域名配置: ${domain}`);
+}
+
+export function parseJWKS(jwks: JWKSObject): Promise<JoseKey[]> {
+  return Promise.all(
+    jwks.keys.map((k) =>
+      importJWK(k).then((key) => ({
+        id: k.kid,
+        key,
+      })),
+    ),
+  );
+}
+
+/**
+ * 拼接处理 query 参数
+ * @param params query 参数
+ * @returns 拼接完成的 query 参数
+ */
+export function createQueryParams(params: any) {
+  return Object.keys(params)
+    .filter((k) => params[k] !== null && params[k] !== undefined)
+    .map(
+      (k) =>
+        encodeURIComponent(k) + '=' + encodeURIComponent(params[k] as string),
+    )
+    .join('&');
+}
