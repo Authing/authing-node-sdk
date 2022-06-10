@@ -1,5 +1,15 @@
 import { importJWK } from "jose";
-import { JoseKey, JWKSObject } from "../AuthClientInterface";
+import { JWK, KeyLike } from 'jose';
+
+export interface JWKSObject {
+  keys: JWK[];
+}
+
+export interface JoseKey {
+  id?: string;
+  // key: Promise<KeyLike | Uint8Array>;
+  key: KeyLike | Uint8Array;
+}
 
 export const pickBy = (
   obj: any,

@@ -1,4 +1,4 @@
-import { JWKSObject } from "./AuthClientInterface";
+import { JWKSObject } from "./utils";
 
 export const DEFAULT_COOKIE_KEY = 'X-Authing-Node-OIDC-State';
 
@@ -7,7 +7,7 @@ export const DEFAULT_SCOPE = 'openid profile';
 /**
  * NodeJS 认证 SDK 初始化参数
  */
-export interface AuthingAuthInitOptions {
+export interface AuthenticationClientInitOptions {
   /** 应用 ID */
   appId: string;
 

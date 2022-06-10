@@ -10,28 +10,28 @@ import {
   AuthURLParams,
   CodeToTokenParams,
   IDToken,
-  JoseKey,
   LoginState,
   LoginTransaction,
   LogoutURLParams,
   OIDCTokenResponse,
   RefreshTokenParams,
   UserInfo,
-} from './AuthClientInterface';
-import { AuthingAuthInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE } from './AuthClientOptions';
+} from './AuthenticationClientInterface';
+import { AuthenticationClientInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE } from './AuthenticationClientOptions';
 import {
   createQueryParams,
   domainC14n,
   generateRandomString,
+  JoseKey,
   parseJWKS,
 } from './utils';
 
-export class AuthClient {
-  private readonly options: Required<AuthingAuthInitOptions>;
+export class AuthenticationClient {
+  private readonly options: Required<AuthenticationClientInitOptions>;
   private readonly domain: string;
   private readonly jwks: Promise<JoseKey[]>;
 
-  constructor(options: AuthingAuthInitOptions) {
+  constructor(options: AuthenticationClientInitOptions) {
     options.cookieKey = options.cookieKey ?? DEFAULT_COOKIE_KEY;
     options.scope = options.scope ?? DEFAULT_SCOPE;
 

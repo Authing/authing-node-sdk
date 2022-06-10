@@ -1,15 +1,3 @@
-import { JWK, KeyLike } from 'jose';
-
-export interface JWKSObject {
-  keys: JWK[];
-}
-
-export interface JoseKey {
-  id?: string;
-  // key: Promise<KeyLike | Uint8Array>;
-  key: KeyLike | Uint8Array;
-}
-
 export interface AuthUrlResult {
   url: string;
   state: string;
