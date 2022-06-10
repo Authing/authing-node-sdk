@@ -50,6 +50,7 @@ export namespace CreateExtIdpDto {
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
+        WELINK = 'welink',
     }
 
 

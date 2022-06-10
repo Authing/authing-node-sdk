@@ -34,7 +34,7 @@ export type ExtIdpConnDetail = {
     /**
      * 账号绑定方式
      */
-    challengeBindingMethods: Array<'email-password' | 'username-password' | 'phone-password' | 'phone-code' | 'email-code'>;
+    challengeBindingMethods: Array<string>;
     /**
      * 自定义参数
      */
@@ -86,6 +86,7 @@ export namespace ExtIdpConnDetail {
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
+        WELINK = 'welink',
     }
 
     /**

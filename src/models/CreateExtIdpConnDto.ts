@@ -78,6 +78,7 @@ export namespace CreateExtIdpConnDto {
         QINGCLOUD = 'qingcloud',
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
+        WELINK = 'welink',
     }
 
 
