@@ -4,21 +4,25 @@
 
 export type AuthorizedResourceDto = {
     /**
-     * 资源标识符
+     * 资源描述符
      */
     resourceCode: string;
     /**
      * 资源类型
      */
-    resourceType?: AuthorizedResourceDto.resourceType;
+    resourceType: AuthorizedResourceDto.resourceType;
     /**
-     * 被授权的资源的操作列表
+     * API URL
      */
-    actions?: Array<string>;
+    apiIdentifier: string;
     /**
-     * 资源对应的 API Identifier
+     * 授权的操作列表
      */
-    apiIdentifier?: string;
+    actions: Array<string>;
+    /**
+     * 允许还是拒绝
+     */
+    effect: AuthorizedResourceDto.effect;
 };
 
 export namespace AuthorizedResourceDto {
@@ -31,6 +35,14 @@ export namespace AuthorizedResourceDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+    }
+
+    /**
+     * 允许还是拒绝
+     */
+    export enum effect {
+        ALLOW = 'ALLOW',
+        DENY = 'DENY',
     }
 
 

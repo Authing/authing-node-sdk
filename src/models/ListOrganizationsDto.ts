@@ -14,4 +14,8 @@ export type ListOrganizationsDto = {
      * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
+    /**
+     * 拉取所有
+     */
+    fetchAll?: any;
 };

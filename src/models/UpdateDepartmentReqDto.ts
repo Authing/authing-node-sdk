@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { I18nDto } from './I18nDto';
+
 export type UpdateDepartmentReqDto = {
     /**
      * 组织 code
@@ -12,6 +14,10 @@ export type UpdateDepartmentReqDto = {
      */
     departmentId: string;
     /**
+     * 部门负责人 ID
+     */
+    leaderUserIds?: Array<string>;
+    /**
      * 部门描述
      */
     description?: string;
@@ -20,9 +26,9 @@ export type UpdateDepartmentReqDto = {
      */
     code?: string;
     /**
-     * 部门负责人 ID
+     * 多语言设置
      */
-    leaderUserId?: string;
+    i18n?: I18nDto;
     /**
      * 部门名称
      */

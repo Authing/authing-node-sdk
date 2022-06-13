@@ -22,4 +22,8 @@ export type GetAuthorizedResourcesDto = {
      * 资源类型，如数据、API、按钮、菜单
      */
     resourceType?: any;
+    /**
+     * 是否获取被拒绝的资源
+     */
+    withDenied?: any;
 };

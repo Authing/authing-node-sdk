@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { OrganizationNameI18nDto } from './OrganizationNameI18nDto';
+
 export type OrganizationDto = {
     /**
      * 组织 code
@@ -30,9 +32,13 @@ export type OrganizationDto = {
     /**
      * 部门负责人 ID
      */
-    leaderUserId: string;
+    leaderUserIds?: Array<string>;
     /**
      * 部门人数
      */
     membersCount: number;
+    /**
+     * 多语言设置
+     */
+    i18n?: OrganizationNameI18nDto;
 };
