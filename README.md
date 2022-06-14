@@ -103,7 +103,7 @@ const authenticationClient = new AuthenticationClient({
 - `serverJWKS`: 服务端的 JWKS 公钥，用于验证 Token 签名，默认会通过网络请求从服务端的 JWKS 端点自动获取。
 - `cookieKey`: 存储认证上下文的 Cookie 名称。
 
-认证侧相关的使用和方法说明，你可以在 [Authing Nodejs SDK](https://github.com/Authing/docs/blob/feat%2Fstage3/docs/reference-new/sdk/v5/node/authentication.md) 中查看。
+认证侧相关的使用和方法说明，你可以在 [Authing Nodejs SDK](https://docs.authing.cn/v2/reference-new/sdk/v5/node/authentication.html) 中查看。
 
 
 ## 私有化部署
