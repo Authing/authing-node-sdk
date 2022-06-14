@@ -1,10 +1,10 @@
 # authing-node-sdk
 
-[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端只适用于后端服务器环境，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法以及通过 OIDC 实现的认证侧的登录方法。
+[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端只适用于后端服务器环境，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法以及通过 OIDC 协议实现的认证侧的认证相关方法。
 
 Management 模块以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
 
-AuthenticationClient 模块只适用于纯后端交互的服务器环境，支持认证、获取令牌、检查令牌、登出等认证相关方法
+AuthenticationClient 模块提供认证相关的调用方法，支持包括获取认证地址、认证、获取令牌、检查令牌、登出等认证相关方法。
 
 如果你需要以终端用户（End User）的身份进行登录、注册、登出等操作，请使用 [Guard](https://www.authing.cn/learn/guard) .
 
