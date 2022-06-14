@@ -2,11 +2,21 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { PolicyCondition } from './PolicyCondition';
+
 export type AuthorizedResourceDto = {
     /**
      * 资源描述符
      */
     resourceCode: string;
+    /**
+     * 资源描述信息
+     */
+    description?: string;
+    /**
+     * 策略 Condition
+     */
+    condition?: Array<PolicyCondition>;
     /**
      * 资源类型
      */
