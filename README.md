@@ -1,8 +1,10 @@
 # authing-node-sdk
 
-[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法。
+[Authing](https://authing.cn) 身份云 `Node.js` 语言客户端只适用于后端服务器环境，包含 [Authing Open API](https://api.authing.cn/openapi/) 所有 Management API 的请求方法以及通过 OIDC 协议实现的认证侧的认证相关方法。
 
-此模块一般用于后端服务器环境，以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
+Management 模块以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
+
+AuthenticationClient 模块提供认证相关的调用方法，支持包括获取认证地址、认证、获取令牌、检查令牌、登出等认证相关方法。
 
 如果你需要以终端用户（End User）的身份进行登录、注册、登出等操作，请使用 [Guard](https://www.authing.cn/learn/guard) .
 
@@ -20,7 +22,9 @@ npm install authing-node-sdk
 yarn add authing-node-sdk
 ```
 
-## 初始化
+## 使用 管理模块
+
+### 初始化
 
 初始化 `ManagementClient` 需要使用 `accessKeyId` 和 `accessKeySecret` 参数:
 
@@ -43,7 +47,7 @@ const managementClient = new ManagementClient({
 - `host`: Authing 服务器地址，默认为 `https://api.authing.cn`。如果你使用的是 Authing 公有云版本，请忽略此参数。如果你使用的是私有化部署的版本，此参数必填，格式如下: https://authing-api.my-authing-service.com（最后不带斜杠 /）。
 - `lang`: 接口 Message 返回语言格式（可选），可选值为 zh-CN 和 en-US，默认为 zh-CN。
 
-## 快速开始
+### 快速开始
 
 初始化完成 `ManagementClient` 之后，你可以获取 `ManagementClient` 的实例，然后调用此实例上的方法。例如：
 
@@ -72,32 +76,35 @@ const managementClient = new ManagementClient({
 
 完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://authing-open-api.readme.io/reference/nodejs) 中获取。
 
-## 错误处理
+## 使用 认证模块
 
-`ManagementClient` 中的每个方法，遵循统一的返回结构：
+### 初始化
 
-- `statusCode`: 请求是否成功状态码，当 `statusCode` 为 200 时，表示操作成功，非 200 全部为失败。
-- `apiCode`: 细分错误码，当 `apiCode` 非 200 时，可通过此错误码得到具体的错误类型。
-- `message`: 具体的错误信息。
-- `data`: 具体返回的接口数据。
-
-一般情况下，如果你只需要判断操作是否成功，只需要对比一下 `code` 是否为 200。如果非 200，可以在代码中通抛出异常或者任何你项目中使用的异常处理方式。
+初始化 `AuthenticationClient` 需要使用 `appId` 、 `appSecret` 和 `host` 参数:
 
 ```typescript
-(async () => {
-  const { statusCode, apiCode, message, data } = await managementClient.getUser(
-    {
-      userId: "62559df6b2xxxx259877b5f4",
-    }
-  );
+import { AuthenticationClient } from "authing-node-sdk";
 
-  if (statusCode !== 200) {
-    throw Error(message); // 抛出异常，由全局异常捕捉中间件进行异常捕捉
-  }
-
-  // 继续你的业务逻辑 ...
-})();
+const authenticationClient = new AuthenticationClient({
+  appId: "YOUR_APP_ID",
+  appSecret: "YOUR_APP_SECRET",
+  host: "YOUR_USERPOOL_HOST",
+});
 ```
+
+完整的参数和释义如下：
+
+- `appId`: Authing 应用 ID ;
+- `appSecret`: Authing 应用 Secret;
+- `host`: 应用对应的用户池域名，例如 pool.authing.cn;
+- `redirectUri`: 认证完成后的重定向目标 URL, 会进行校验，需要和控制台的设置保持一致。
+- `logoutRedirectUri`: 登出完成后的重定向目标 URL。
+- `scope`: 应用侧向 Authing 请求的权限，以空格分隔，默认为 'openid profile'，成功获取的权限会出现在 Access Token 的 scope 字段中。
+- `serverJWKS`: 服务端的 JWKS 公钥，用于验证 Token 签名，默认会通过网络请求从服务端的 JWKS 端点自动获取。
+- `cookieKey`: 存储认证上下文的 Cookie 名称。
+
+认证侧相关的使用和方法说明，你可以在 [Authing Nodejs SDK](https://github.com/Authing/docs/blob/feat%2Fstage3/docs/reference-new/sdk/v5/node/authentication.md) 中查看。
+
 
 ## 私有化部署
 

@@ -28,7 +28,7 @@ import {
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
-  private readonly domain: string;
+  private readonly host: string;
   private readonly jwks: Promise<JoseKey[]>;
 
   constructor(options: AuthenticationClientInitOptions) {
@@ -40,13 +40,13 @@ export class AuthenticationClient {
     }
 
     this.options = options as any;
-    this.domain = domainC14n(options.domain);
+    this.host = domainC14n(options.host);
 
     if (options.serverJWKS) {
       this.jwks = parseJWKS(options.serverJWKS);
     } else {
       this.jwks = axios
-        .get(`${this.domain}/oidc/.well-known/jwks.json`)
+        .get(`${this.host}/oidc/.well-known/jwks.json`)
         .then((res) => parseJWKS(res.data))
         .catch((e) => {
           throw new Error(
@@ -104,7 +104,7 @@ export class AuthenticationClient {
    * @param options.state 中间状态标识符，默认自动生成
    * @param options.nonce 出现在 ID Token 中的随机字符串，默认自动生成
    * @param options.redirectUri 回调地址，覆盖初始化参数中的对应设置
-   * @param options.forced 即便用户已经登录也强制显示登录页
+   * @param options.forced 即便用pread户已经登录也强制显示登录页
    */
   buildAuthUrl(
     options: {
@@ -136,7 +136,7 @@ export class AuthenticationClient {
     }
 
     return {
-      url: `${this.domain}/oidc/auth?${createQueryParams(params)}`,
+      url: `${this.host}/oidc/auth?${createQueryParams(params)}`,
       state,
       nonce,
     };
@@ -222,7 +222,7 @@ export class AuthenticationClient {
     };
 
     const { data } = await axios.post(
-      `${this.domain}/oidc/token`,
+      `${this.host}/oidc/token`,
       createQueryParams(tokenParam),
       {
         headers: {
@@ -270,7 +270,7 @@ export class AuthenticationClient {
    * @param accessToken Access Token
    */
   async getUserInfo(accessToken: string): Promise<UserInfo> {
-    const { data } = await axios.get(`${this.domain}/oidc/me`, {
+    const { data } = await axios.get(`${this.host}/oidc/me`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -301,7 +301,7 @@ export class AuthenticationClient {
     };
 
     const { data } = await axios.post(
-      `${this.domain}/oidc/token`,
+      `${this.host}/oidc/token`,
       createQueryParams(tokenParam),
       {
         headers: {
@@ -355,7 +355,7 @@ export class AuthenticationClient {
       }),
       id_token_hint: options.idToken,
     };
-    return `${this.domain}/oidc/session/end?${createQueryParams(params)}`;
+    return `${this.host}/oidc/session/end?${createQueryParams(params)}`;
   }
 
   private async buildLoginState(

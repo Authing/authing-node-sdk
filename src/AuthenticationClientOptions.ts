@@ -15,7 +15,7 @@ export interface AuthenticationClientInitOptions {
   appSecret: string;
 
   /** 应用对应的用户池域名，例如 pool.authing.cn */
-  domain: string;
+  host: string;
 
   /** 认证完成后的重定向目标 URL */
   redirectUri: string;
