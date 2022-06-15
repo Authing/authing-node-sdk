@@ -1930,7 +1930,7 @@ public async authorizeResources(requestBody: AuthorizeResourcesDto,
  * @description 获取某个主体被授权的资源列表
  * @returns AuthorizedResourcePaginatedRespDto
  */
-public async getTargetAuthorizedResources({
+public async getAuthorizedResources({
     targetType,
     targetIdentifier,
     namespace,
