@@ -104,17 +104,19 @@ export const generateRandomPhone = () => {
 
 /**
  * @description 域名标准化 host canonicalization
- * @param host 域名
+ * @param domain 域名
  * @returns 标准化后的域名
  */
-export function domainC14n(host: string) {
-  const domainExp =
-    /^((?:http)|(?:https):\/\/)?((?:[\w-_]+)(?:\.[\w-_]+)+)(?:\/.*)?$/;
-  const matchRes = domainExp.exec(host);
-  if (matchRes && matchRes[2]) {
-    return `${matchRes[1] ?? 'https://'}${matchRes[2]}`;
+export function domainC14n(domain: string) {
+  if (domain.startsWith("http://localhost:") || domain.startsWith("localhost:")) {
+    return domain;
   }
-  throw Error(`无效的域名配置: ${host}`);
+  const domainExp = /^(((?:http)|(?:https)):\/\/)?((?:[\w-_]+)(?:\.[\w-_]+)+)(:\d{1,6})?(?:\/.*)?$/;
+  const matchRes = domainExp.exec(domain);
+  if (matchRes && matchRes[3]) {
+    return `${matchRes[1] ?? 'https://'}${matchRes[3]}${matchRes[4] || ""}`;
+  }
+  throw Error(`无效的域名配置: ${domain}`);
 }
 
 export function parseJWKS(jwks: JWKSObject): Promise<JoseKey[]> {
