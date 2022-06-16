@@ -4,7 +4,7 @@
 
 Management 模块以管理员（Administrator）的身份进行请求，用于管理 Authing 用户、角色、分组、组织机构等资源；一般来说，你在 Authing 控制台中能做的所有操作，都能用此模块完成。
 
-AuthenticationClient 模块提供认证相关的调用方法，支持包括获取认证地址、认证、获取令牌、检查令牌、登出等认证相关方法。
+AuthenticationClient 模块提供认证相关的调用方法，支持包括获取认证地址、获取登录态（用户信息，令牌）、检查令牌、登出等认证相关方法。
 
 如果你需要以终端用户（End User）的身份进行登录、注册、登出等操作，请使用 [Guard](https://www.authing.cn/learn/guard) .
 
@@ -80,7 +80,7 @@ const managementClient = new ManagementClient({
 
 ### 初始化
 
-初始化 `AuthenticationClient` 需要使用 `appId` 、 `appSecret` 和 `host` 参数:
+初始化 `AuthenticationClient` 需要使用 `appId` 、 `appSecret` 、 `host` 、 `redirectUri` 参数:
 
 ```typescript
 import { AuthenticationClient } from "authing-node-sdk";
@@ -89,6 +89,7 @@ const authenticationClient = new AuthenticationClient({
   appId: "YOUR_APP_ID",
   appSecret: "YOUR_APP_SECRET",
   host: "YOUR_USERPOOL_HOST",
+  redirectUri: "REDIRECT_URI",
 });
 ```
 
