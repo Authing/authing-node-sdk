@@ -118,7 +118,6 @@ export namespace CreateUserReqDto {
      * 账户当前状态
      */
     export enum status {
-        DELETED = 'Deleted',
         SUSPENDED = 'Suspended',
         RESIGNED = 'Resigned',
         ACTIVATED = 'Activated',

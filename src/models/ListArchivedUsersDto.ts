@@ -14,4 +14,8 @@ export type ListArchivedUsersDto = {
      * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
+    /**
+     * 开始时间，为精确到秒的 UNIX 时间戳，默认不指定。
+     */
+    startAt?: any;
 };

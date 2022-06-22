@@ -30,6 +30,10 @@ export type CreateDepartmentReqDto = {
      */
     code?: string;
     /**
+     * 是否是虚拟部门
+     */
+    isVirtualNode?: boolean;
+    /**
      * 多语言设置
      */
     i18n?: I18nDto;

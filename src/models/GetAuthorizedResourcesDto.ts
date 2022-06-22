@@ -19,9 +19,13 @@ export type GetAuthorizedResourcesDto = {
      */
     namespace?: any;
     /**
-     * 资源类型，如数据、API、按钮、菜单
+     * 限定资源类型，如数据、API、按钮、菜单
      */
     resourceType?: any;
+    /**
+     * 限定查询的资源列表，如果指定，只会返回所指定的资源列表。
+     */
+    resourceList?: any;
     /**
      * 是否获取被拒绝的资源
      */

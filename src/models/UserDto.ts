@@ -110,7 +110,7 @@ export type UserDto = {
      */
     identities?: Array<IdentityDto>;
     /**
-     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     * 用户的扩展字段数据
      */
     customData?: any;
 };
@@ -121,7 +121,6 @@ export namespace UserDto {
      * 账户当前状态
      */
     export enum status {
-        DELETED = 'Deleted',
         SUSPENDED = 'Suspended',
         RESIGNED = 'Resigned',
         ACTIVATED = 'Activated',

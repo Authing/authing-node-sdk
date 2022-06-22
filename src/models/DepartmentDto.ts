@@ -18,10 +18,6 @@ export type DepartmentDto = {
      */
     name: string;
     /**
-     * 部门负责人 ID
-     */
-    leaderUserIds?: Array<string>;
-    /**
      * 部门描述
      */
     description?: string;
@@ -34,13 +30,9 @@ export type DepartmentDto = {
      */
     code?: string;
     /**
-     * 部门人数
+     * 是否是虚拟部门
      */
-    membersCount: number;
-    /**
-     * 是否包含子部门
-     */
-    hasChildren: boolean;
+    isVirtualNode?: boolean;
     /**
      * 多语言设置
      */

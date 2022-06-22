@@ -163,6 +163,7 @@ export * from './RolePaginatedRespDto';
 export * from './RolePagingDto';
 export * from './RoleSingleRespDto';
 export * from './RolesDto';
+export * from './SearchDepartmentMembersDto';
 export * from './SearchDepartmentsReqDto';
 export * from './SetCustomDataDto';
 export * from './SetCustomDataReqDto';
