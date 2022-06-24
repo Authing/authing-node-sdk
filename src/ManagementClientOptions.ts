@@ -1,4 +1,4 @@
-export type Lang = "zh-CN" | "en-US";
+import { Lang } from "./utils";
 
 /**
  * 初始化 Authing SDK 的参数，secret 和 accessToken 必须传其中一个。
