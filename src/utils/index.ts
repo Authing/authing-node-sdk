@@ -1,6 +1,11 @@
 import { importJWK } from "jose";
 import { JWK, KeyLike } from 'jose';
 
+/**
+ * 语言
+ */
+export type Lang = "zh-CN" | "en-US";
+
 export interface JWKSObject {
   keys: JWK[];
 }

@@ -1,4 +1,4 @@
-import { JWKSObject } from "./utils";
+import { JWKSObject, Lang } from "./utils";
 
 export const DEFAULT_COOKIE_KEY = 'X-Authing-Node-OIDC-State';
 
@@ -44,4 +44,12 @@ export interface AuthenticationClientInitOptions {
    * 存储认证上下文的 Cookie 名称
    */
   cookieKey?: string;
+
+    /** 请求来源 */
+  requestFrom?: string;
+
+  /**
+   * 语言
+   */
+  lang?: Lang;
 }

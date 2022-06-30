@@ -25,11 +25,13 @@ import {
   JoseKey,
   parseJWKS,
 } from './utils';
+import { AuthenticationHttpClient } from './AutherticationHttpClient';
+
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
-  private readonly host: string;
   private readonly jwks: Promise<JoseKey[]>;
+  private httpClient: AuthenticationHttpClient;
 
   constructor(options: AuthenticationClientInitOptions) {
     options.cookieKey = options.cookieKey ?? DEFAULT_COOKIE_KEY;
@@ -40,13 +42,17 @@ export class AuthenticationClient {
     }
 
     this.options = options as any;
-    this.host = domainC14n(options.host);
+    this.options.host = domainC14n(options.host);
+
+    this.httpClient = new AuthenticationHttpClient(this.options);
 
     if (options.serverJWKS) {
       this.jwks = parseJWKS(options.serverJWKS);
     } else {
-      this.jwks = axios
-        .get(`${this.host}/oidc/.well-known/jwks.json`)
+      this.jwks = this.httpClient.request({
+          method: "GET",
+          url: '/oidc/.well-known/jwks.json',
+        })
         .then((res) => parseJWKS(res.data))
         .catch((e) => {
           throw new Error(
@@ -136,7 +142,7 @@ export class AuthenticationClient {
     }
 
     return {
-      url: `${this.host}/oidc/auth?${createQueryParams(params)}`,
+      url: `${this.options.host}/oidc/auth?${createQueryParams(params)}`,
       state,
       nonce,
     };
@@ -221,15 +227,14 @@ export class AuthenticationClient {
       grant_type: 'authorization_code',
     };
 
-    const { data } = await axios.post(
-      `${this.host}/oidc/token`,
-      createQueryParams(tokenParam),
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+    const { data } = await this.httpClient.request({
+      method: "POST",
+      url: '/oidc/token',
+      data: createQueryParams(tokenParam),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-    );
+    })
 
     return this.buildLoginState(data);
   }
@@ -270,11 +275,13 @@ export class AuthenticationClient {
    * @param accessToken Access Token
    */
   async getUserInfo(accessToken: string): Promise<UserInfo> {
-    const { data } = await axios.get(`${this.host}/oidc/me`, {
+     const { data } = await this.httpClient.request({
+      method: "GET",
+      url: '/oidc/me',
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization : `Bearer ${accessToken}`,
       },
-    });
+    })
 
     // TODO: 存在 200 的错误场景吗？
     // if (data.error) {
@@ -300,15 +307,14 @@ export class AuthenticationClient {
       grant_type: 'refresh_token',
     };
 
-    const { data } = await axios.post(
-      `${this.host}/oidc/token`,
-      createQueryParams(tokenParam),
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+     const { data } = await this.httpClient.request({
+      method: "POST",
+      url: '/oidc/token',
+      data: createQueryParams(tokenParam),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-    );
+    })
 
     return this.buildLoginState(data);
   }
@@ -355,7 +361,7 @@ export class AuthenticationClient {
       }),
       id_token_hint: options.idToken,
     };
-    return `${this.host}/oidc/session/end?${createQueryParams(params)}`;
+    return `${this.options.host}/oidc/session/end?${createQueryParams(params)}`;
   }
 
   private async buildLoginState(
