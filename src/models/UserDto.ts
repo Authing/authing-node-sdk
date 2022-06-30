@@ -70,6 +70,10 @@ export type UserDto = {
      */
     phoneVerified: boolean;
     /**
+     * 用户上次密码修改时间
+     */
+    passwordLastSetAt?: string;
+    /**
      * 出生日期
      */
     birthdate?: string;
@@ -101,6 +105,10 @@ export type UserDto = {
      * 第三方外部 ID
      */
     externalId?: string;
+    /**
+     * 下次登录要求重置密码
+     */
+    resetPasswordOnNextLogin?: boolean;
     /**
      * 用户所属部门 ID 列表
      */

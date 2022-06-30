@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { UpdateUserOptionsDto } from './UpdateUserOptionsDto';
+
 export type UpdateUserReqDto = {
     /**
      * 用户 ID
@@ -95,6 +97,10 @@ export type UpdateUserReqDto = {
      * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
      */
     customData?: any;
+    /**
+     * 附加选项
+     */
+    options?: UpdateUserOptionsDto;
 };
 
 export namespace UpdateUserReqDto {

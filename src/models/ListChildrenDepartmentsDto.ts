@@ -7,13 +7,13 @@
  */
 export type ListChildrenDepartmentsDto = {
     /**
-     * 需要获取的部门 ID
-     */
-    departmentId?: any;
-    /**
      * 组织 code
      */
     organizationCode?: any;
+    /**
+     * 需要获取的部门 ID
+     */
+    departmentId?: any;
     /**
      * 此次调用中使用的部门 ID 的类型
      */
@@ -22,4 +22,8 @@ export type ListChildrenDepartmentsDto = {
      * 是否要排除虚拟组织
      */
     excludeVirtualNode?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

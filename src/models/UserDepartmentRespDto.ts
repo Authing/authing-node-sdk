@@ -6,6 +6,10 @@ import type { I18nDto } from './I18nDto';
 
 export type UserDepartmentRespDto = {
     /**
+     * 组织 Code（organizationCode）
+     */
+    organizationCode: string;
+    /**
      * 部门 ID
      */
     departmentId: string;

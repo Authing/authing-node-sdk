@@ -11,4 +11,8 @@ export type SearchDepartmentsReqDto = {
      * 组织 code
      */
     organizationCode: string;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: boolean;
 };

@@ -7,10 +7,6 @@
  */
 export type GetUserDto = {
     /**
-     * 用户 ID
-     */
-    userId?: any;
-    /**
      * 是否获取自定义数据
      */
     withCustomData?: any;
@@ -22,6 +18,10 @@ export type GetUserDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: any;
+    /**
+     * 用户 ID
+     */
+    userId?: any;
     /**
      * 手机号
      */

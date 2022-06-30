@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AccessTokenResDto } from './AccessTokenResDto';
+import type { IsUserInDepartmentDataDto } from './IsUserInDepartmentDataDto';
 
-export type GetManagementTokenRespDto = {
+export type IsUserInDepartmentRespDto = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -18,7 +18,7 @@ export type GetManagementTokenRespDto = {
      */
     apiCode?: number;
     /**
-     * 响应数据
+     * 数据
      */
-    data: AccessTokenResDto;
+    data: IsUserInDepartmentDataDto;
 };

@@ -51,9 +51,12 @@ import type { GroupSingleRespDto } from "./models/GroupSingleRespDto";
 import type { HasAnyRoleReqDto } from "./models/HasAnyRoleReqDto";
 import type { HasAnyRoleRespDto } from "./models/HasAnyRoleRespDto";
 import type { IdentityListRespDto } from "./models/IdentityListRespDto";
+import type { IsActionAllowedDto } from "./models/IsActionAllowedDto";
+import type { IsActionAllowedRespDtp } from "./models/IsActionAllowedRespDtp";
 import type { IsSuccessRespDto } from "./models/IsSuccessRespDto";
 import type { IsUserExistsReqDto } from "./models/IsUserExistsReqDto";
 import type { IsUserExistsRespDto } from "./models/IsUserExistsRespDto";
+import type { IsUserInDepartmentRespDto } from "./models/IsUserInDepartmentRespDto";
 import type { KickUsersDto } from "./models/KickUsersDto";
 import type { ListArchivedUsersSingleRespDto } from "./models/ListArchivedUsersSingleRespDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
@@ -102,7 +105,7 @@ import {
 } from "./ManagementClientOptions";
 import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
-import Axios from "axios";
+import Axios, { AxiosRequestConfig } from "axios";
 
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
@@ -121,6 +124,10 @@ export class ManagementClient {
     if (!this.options.accessKeySecret) {
       throw new Error("accessKeySecret is required");
     }
+  }
+
+  public async makeRequest(params: AxiosRequestConfig) {
+    return await this.httpClient.request(params);
   }
 
   /**
@@ -144,23 +151,23 @@ export class ManagementClient {
    * @returns UserSingleRespDto
    */
   public async getUser({
-    userId,
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
+    userId,
     phone,
     email,
     username,
     externalId,
   }: {
-    /** 用户 ID **/
-    userId: string;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 是否获取 identities **/
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
+    /** 用户 ID **/
+    userId?: string;
     /** 手机号 **/
     phone?: string;
     /** 邮箱 **/
@@ -1249,6 +1256,34 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 搜索顶层组织机构列表
+   * @description 搜索顶层组织机构列表
+   * @returns OrganizationPaginatedRespDto
+   */
+  public async searchOrganizations({
+    keywords,
+    page = 1,
+    limit = 10,
+  }: {
+    /** 搜索关键词 **/
+    keywords: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+  }): Promise<OrganizationPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/search-organizations",
+      params: {
+        keywords: keywords,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
    * @summary 获取部门信息
    * @description 获取部门信息
    * @returns DepartmentSingleRespDto
@@ -1350,28 +1385,32 @@ export class ManagementClient {
    * @returns DepartmentPaginatedRespDto
    */
   public async listChildrenDepartments({
-    departmentId,
     organizationCode,
+    departmentId,
     departmentIdType = "department_id",
     excludeVirtualNode = false,
+    withCustomData = false,
   }: {
-    /** 需要获取的部门 ID **/
-    departmentId: string;
     /** 组织 code **/
     organizationCode: string;
+    /** 需要获取的部门 ID **/
+    departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: "department_id" | "open_department_id";
     /** 是否要排除虚拟组织 **/
     excludeVirtualNode?: boolean;
+    /** 是否获取自定义数据 **/
+    withCustomData?: boolean;
   }): Promise<DepartmentPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-children-departments",
       params: {
+        organizationCode: organizationCode,
         departmentId: departmentId,
         departmentIdType: departmentIdType,
-        organizationCode: organizationCode,
         excludeVirtualNode: excludeVirtualNode,
+        withCustomData: withCustomData,
       },
     });
   }
@@ -1470,22 +1509,23 @@ export class ManagementClient {
    * @returns UserPaginatedRespDto
    */
   public async searchDepartmentMembers({
-    keywords,
     organizationCode,
     departmentId,
+    keywords,
     page = 1,
     limit = 10,
     departmentIdType = "department_id",
     includeChildrenDepartments = false,
     withCustomData = false,
     withIdentities = false,
+    withDepartmentIds = false,
   }: {
-    /** 搜索关键词 **/
-    keywords: string;
     /** 组织 code **/
     organizationCode: string;
     /** 部门 id，根部门传 `root` **/
     departmentId: string;
+    /** 搜索关键词 **/
+    keywords: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -1498,20 +1538,23 @@ export class ManagementClient {
     withCustomData?: boolean;
     /** 是否获取 identities **/
     withIdentities?: boolean;
+    /** 是否获取部门 ID 列表 **/
+    withDepartmentIds?: boolean;
   }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/search-department-members",
       params: {
-        page: page,
-        limit: limit,
-        keywords: keywords,
         organizationCode: organizationCode,
         departmentId: departmentId,
+        keywords: keywords,
+        page: page,
+        limit: limit,
         departmentIdType: departmentIdType,
         includeChildrenDepartments: includeChildrenDepartments,
         withCustomData: withCustomData,
         withIdentities: withIdentities,
+        withDepartmentIds: withDepartmentIds,
       },
     });
   }
@@ -1555,6 +1598,7 @@ export class ManagementClient {
     organizationCode,
     departmentId,
     departmentIdType = "department_id",
+    withCustomData = false,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1562,6 +1606,8 @@ export class ManagementClient {
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: "department_id" | "open_department_id";
+    /** 是否获取自定义数据 **/
+    withCustomData?: boolean;
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1570,6 +1616,43 @@ export class ManagementClient {
         organizationCode: organizationCode,
         departmentId: departmentId,
         departmentIdType: departmentIdType,
+        withCustomData: withCustomData,
+      },
+    });
+  }
+
+  /**
+   * @summary 判断用户是否在某个部门下
+   * @description 判断用户是否在某个部门下
+   * @returns IsUserInDepartmentRespDto
+   */
+  public async isUserInDepartment({
+    userId,
+    organizationCode,
+    departmentId,
+    departmentIdType = "department_id",
+    includeChildrenDepartments = false,
+  }: {
+    /** 用户 ID **/
+    userId: string;
+    /** 组织 code **/
+    organizationCode: string;
+    /** 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
+    departmentId: string;
+    /** 此次调用中使用的部门 ID 的类型 **/
+    departmentIdType?: "department_id" | "open_department_id";
+    /** 是否包含子部门 **/
+    includeChildrenDepartments?: boolean;
+  }): Promise<IsUserInDepartmentRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/is-user-in-department",
+      params: {
+        userId: userId,
+        organizationCode: organizationCode,
+        departmentId: departmentId,
+        departmentIdType: departmentIdType,
+        includeChildrenDepartments: includeChildrenDepartments,
       },
     });
   }
@@ -2123,6 +2206,21 @@ export class ManagementClient {
         resourceList: resourceList,
         withDenied: withDenied,
       },
+    });
+  }
+
+  /**
+   * @summary 判断用户是否对某个资源的某个操作有权限
+   * @description 判断用户是否对某个资源的某个操作有权限
+   * @returns IsActionAllowedRespDtp
+   */
+  public async isActionAllowed(
+    requestBody: IsActionAllowedDto
+  ): Promise<IsActionAllowedRespDtp> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/is-action-allowed",
+      data: requestBody,
     });
   }
 }

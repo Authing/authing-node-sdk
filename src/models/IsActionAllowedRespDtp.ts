@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AccessTokenResDto } from './AccessTokenResDto';
+import type { IsActionAllowedDataDto } from './IsActionAllowedDataDto';
 
-export type GetManagementTokenRespDto = {
+export type IsActionAllowedRespDtp = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -18,7 +18,7 @@ export type GetManagementTokenRespDto = {
      */
     apiCode?: number;
     /**
-     * 响应数据
+     * 返回数据
      */
-    data: AccessTokenResDto;
+    data: IsActionAllowedDataDto;
 };

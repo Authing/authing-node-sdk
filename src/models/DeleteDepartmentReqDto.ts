@@ -4,13 +4,13 @@
 
 export type DeleteDepartmentReqDto = {
     /**
-     * 组织 code
-     */
-    organizationCode: string;
-    /**
      * 部门系统 ID（为 Authing 系统自动生成，不可修改）
      */
     departmentId: string;
+    /**
+     * 组织 Code（organizationCode）
+     */
+    organizationCode: string;
     /**
      * 此次调用中使用的部门 ID 的类型
      */

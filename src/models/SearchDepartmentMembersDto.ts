@@ -7,10 +7,6 @@
  */
 export type SearchDepartmentMembersDto = {
     /**
-     * 搜索关键词
-     */
-    keywords?: any;
-    /**
      * 组织 code
      */
     organizationCode?: any;
@@ -18,6 +14,10 @@ export type SearchDepartmentMembersDto = {
      * 部门 id，根部门传 `root`
      */
     departmentId?: any;
+    /**
+     * 搜索关键词
+     */
+    keywords?: any;
     /**
      * 当前页数，从 1 开始
      */
@@ -42,4 +42,8 @@ export type SearchDepartmentMembersDto = {
      * 是否获取 identities
      */
     withIdentities?: any;
+    /**
+     * 是否获取部门 ID 列表
+     */
+    withDepartmentIds?: any;
 };

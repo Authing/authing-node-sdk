@@ -3,15 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取父部门信息
+ * 判断用户是否在某个部门下
  */
-export type GetParentDepartmentDto = {
+export type IsUserInDepartmentDto = {
+    /**
+     * 用户 ID
+     */
+    userId?: any;
     /**
      * 组织 code
      */
     organizationCode?: any;
     /**
-     * 部门 id
+     * 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。
      */
     departmentId?: any;
     /**
@@ -19,7 +23,7 @@ export type GetParentDepartmentDto = {
      */
     departmentIdType?: any;
     /**
-     * 是否获取自定义数据
+     * 是否包含子部门
      */
-    withCustomData?: any;
+    includeChildrenDepartments?: any;
 };
