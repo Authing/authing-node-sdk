@@ -394,7 +394,7 @@ export class ManagementClient {
    * @description 设置用户所在部门
    * @returns IsSuccessRespDto
    */
-  public async setUserDepartment(
+  public async setUserDepartments(
     requestBody: SetUserDepartmentsDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -535,7 +535,7 @@ export class ManagementClient {
    * @description 此接口将以管理员身份批量创建用户，不需要进行手机号验证码检验等安全检测。用户的手机号、邮箱、用户名、externalId 用户池内唯一。
    * @returns UserListRespDto
    */
-  public async createUserBatch(
+  public async createUsersBatch(
     requestBody: CreateUserBatchReqDto
   ): Promise<UserListRespDto> {
     return await this.httpClient.request({
