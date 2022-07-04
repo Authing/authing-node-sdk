@@ -74,7 +74,7 @@ const managementClient = new ManagementClient({
 })();
 ```
 
-完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://authing-open-api.readme.io/reference/nodejs) 中获取。
+完整的接口列表，你可以在 [Authing Open API](https://api.authing.cn/openapi/) 和 [SDK 文档](https://docs.authing.cn/v2/reference-new/sdk-v5/node/install.html) 中获取。
 
 ## 使用 认证模块
 
@@ -104,7 +104,7 @@ const authenticationClient = new AuthenticationClient({
 - `serverJWKS`: 服务端的 JWKS 公钥，用于验证 Token 签名，默认会通过网络请求从服务端的 JWKS 端点自动获取。
 - `cookieKey`: 存储认证上下文的 Cookie 名称。
 
-认证侧相关的使用和方法说明，你可以在 [Authing Nodejs SDK](https://docs.authing.cn/v2/reference-new/sdk/v5/node/authentication.html) 中查看。
+认证侧相关的使用和方法说明，你可以在 [Authing Nodejs SDK](https://docs.authing.cn/v2/reference-new/sdk-v5/node/authentication.html) 中查看。
 
 
 ## 私有化部署
@@ -128,7 +128,7 @@ const managementClient = new ManagementClient({
 - [官网](https://authing.cn)
 - [开发者文档](https://docs.authing.cn/)
 - [Authing Open API](https://api.authing.cn/openapi/)
-- [SDK 文档](https://authing-open-api.readme.io/reference/nodejs)
+- [SDK 文档](https://docs.authing.cn/v2/reference-new/sdk-v5/node/install.html)
 - [论坛社区](https://forum.authing.cn/)
 
 ## 获取帮助
