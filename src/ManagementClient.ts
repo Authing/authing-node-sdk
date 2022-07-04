@@ -655,7 +655,7 @@ public async getUserLoginHistory({
  * @description 获取用户曾经登录过的应用
  * @returns UserLoggedInAppsListRespDto
  */
-public async getUserLoggedInApps({
+public async getUserLoggedinApps({
     userId,
 }: {
     /** 用户 ID **/
@@ -675,7 +675,7 @@ public async getUserLoggedInApps({
  * @description 获取用户曾经登录过的身份源
  * @returns UserLoggedInIdentitiesRespDto
  */
-public async getUserLoggedInIdentities({
+public async getUserLoggedinIdentities({
     userId,
 }: {
     /** 用户 ID **/
