@@ -5,7 +5,7 @@ import {
   generateRandomString,
 } from "../../src/utils/index";
 
-describe("ManagementClient", () => {
+describe("createUser", () => {
   const managementClient = new ManagementClient({
     accessKeyId: "62cb97e059b3168bd8896628",
     accessKeySecret: "07cc378f134cc5827a4e4d9883b543fe",
@@ -130,8 +130,8 @@ describe("ManagementClient", () => {
           school: "pku",
           age: 30,
           graduted: true,
-          graduted_at: new Date(),
-          id_card: "431225xxxxxxxx3414",
+          // graduted_at: new Date(),
+          // id_card: "431225xxxxxxxx3414",
         };
         const { statusCode, data: user } = await managementClient.createUser({
           username,
