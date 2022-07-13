@@ -9,47 +9,35 @@ import { managementClient } from "../client";
 //getUser
 describe("getUser", () => {
   //定义
-  var userId = "";
-  var username = "";
-  var phone = "";
-  var email = ["", ""];
-  var externalId = "";
+  let userId = "";
+  const username = generateRandomString();
+  const phone = generateRandomPhone();
+  let email = ["", ""];
+  var externalId = generateRandomString();
 
   //构造
   beforeAll(async () => {
     //创建用户
-    const _username = generateRandomString();
     const _email = generateRandomEmail();
-    const _phone = generateRandomPhone();
-    const _externalId = generateRandomString();
-    const _phoneCountryCode = "+86";
-    const _name = generateRandomString();
-    const _nickname = generateRandomString();
-    const _gender = Models.UserDto.gender.M;
-    const _emailVerified = true;
-    const _phoneVerified = true;
     const {
       statusCode,
       data: user,
       message,
     } = await managementClient.createUser({
-      username: _username,
+      username,
       email: _email,
-      phone: _phone,
-      externalId: _externalId,
-      phoneCountryCode: _phoneCountryCode,
-      name: _name,
-      nickname: _nickname,
-      gender: _gender,
-      emailVerified: _emailVerified,
-      phoneVerified: _phoneVerified,
+      phone,
+      externalId,
+      phoneCountryCode: "+86",
+      name: generateRandomString(),
+      nickname: generateRandomString(),
+      gender: Models.UserDto.gender.M,
+      emailVerified: true,
+      phoneVerified: true,
     });
     //赋值
-    userId = user["userId"] ?? "";
-    username = user["username"] ?? "";
-    phone = user["phone"] ?? "";
-    email = [user["email"] ?? "", (user["email"] ?? "").toUpperCase()];
-    externalId = user["externalId"] ?? "";
+    userId = user.userId;
+    email = [user.email ?? "", (user.email ?? "").toUpperCase()];
   });
 
   //析构
