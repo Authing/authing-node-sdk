@@ -11,7 +11,7 @@ describe("getUser", () => {
   const managementClient = new ManagementClient({
     accessKeyId: "62cd3d3312e82775eee32e9c",
     accessKeySecret: "63e42270bdd4acaba32be62c209069c9",
-    host: "http://console.authing.localhost",//http://localhost:3000
+    host: "http://localhost:3000",
   });
 
   //定义
@@ -90,6 +90,28 @@ describe("getUser", () => {
       expect(user.externalId).toBeTruthy();
     });
 
+    //通过 userId 优先级
+    it("by userId and first", async () => {
+      //定义
+      const externalId = "test";
+      //请求
+      const {
+        statusCode,
+        data: user,
+        message,
+      } = await managementClient.getUser({
+        userId,
+        externalId,
+      });
+      //处理
+      expect(statusCode).toEqual(200);
+      expect(user.userId).toMatch(userId);
+      expect(user.externalId).not.toMatch(externalId);
+      expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
+      expect(user.photo).toBeTruthy();
+      expect(user.externalId).toBeTruthy();
+    });
+
     //通过 username
     it("by username", async () => {
       //请求
@@ -127,7 +149,7 @@ describe("getUser", () => {
     });
 
     //通过 email 大写
-    it("upper by email", async () => {
+    it("by email and upper", async () => {
       //请求
       const {
         statusCode,
@@ -175,28 +197,6 @@ describe("getUser", () => {
       //处理
       expect(statusCode).toEqual(200);
       expect(user.externalId).toMatch(externalId);
-      expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
-      expect(user.photo).toBeTruthy();
-      expect(user.externalId).toBeTruthy();
-    });
-
-    //通过 userId 优先级
-    it("first by userId", async () => {
-      //定义
-      const externalId = "test";
-      //请求
-      const {
-        statusCode,
-        data: user,
-        message,
-      } = await managementClient.getUser({
-        userId,
-        externalId,
-      });
-      //处理
-      expect(statusCode).toEqual(200);
-      expect(user.userId).toMatch(userId);
-      expect(user.externalId).not.toMatch(externalId);
       expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
       expect(user.photo).toBeTruthy();
       expect(user.externalId).toBeTruthy();
@@ -265,7 +265,7 @@ describe("getUser", () => {
       expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
       expect(user.photo).toBeTruthy();
       expect(user.externalId).toBeTruthy();
-      //expect(user.identities).toBeTruthy();
+      //TODO: expect(user.identities).toBeTruthy();
     });
 
     //withIdentities 为 false
@@ -339,19 +339,23 @@ describe("getUser", () => {
   describe("Fail", () => {
     //通过 null
     it("by null", async () => {
+      //定义
+      const userId = undefined;
       //请求
       const {
         statusCode,
         data: user,
         message,
-      } = await managementClient.getUser({});
+      } = await managementClient.getUser({
+        userId,
+      });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toEqual("must provide userId or username or email or phone or externalId");
+      expect(message).toMatch("must provide userId or username or email or phone or externalId");
     });
 
     //通过 userId 错误
-    it("error by userId", async () => {
+    it("by userId and error", async () => {
       //定义
       const userId = "test";
       //请求
@@ -364,45 +368,11 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toEqual("用户不存在");
-    });
-
-    //通过 phone 国内格式
-    it("internal format by phone", async () => {
-      //定义
-      const phone = "phone";
-      //请求
-      const {
-        statusCode,
-        data: user,
-        message,
-      } = await managementClient.getUser({
-        phone,
-      });
-      //处理
-      expect(statusCode).not.toEqual(200);
-      expect(message).toEqual("参数 phone 格式错误");
-    });
-
-    //通过 phone 国际格式
-    it("international format by phone", async () => {
-      //定义
-      const phone = "phone";
-      //请求
-      const {
-        statusCode,
-        data: user,
-        message,
-      } = await managementClient.getUser({
-        phone,
-      });
-      //处理
-      expect(statusCode).not.toEqual(200);
-      expect(message).toEqual("参数 phone 格式错误");
+      expect(message).toMatch("用户不存在");
     });
 
     //通过 email 非法格式
-    it("illegal format by email", async () => {
+    it("by email and illegal format", async () => {
       //定义
       const email = "test#x.com";
       //请求
@@ -415,7 +385,41 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toEqual("参数 email 格式错误");
+      expect(message).toMatch("参数 email 格式错误");
+    });
+
+    //通过 phone 国际
+    it("by phone and international", async () => {
+      //定义
+      const phone = "212-456-1111";
+      //请求
+      const {
+        statusCode,
+        data: user,
+        message,
+      } = await managementClient.getUser({
+        phone,
+      });
+      //处理
+      expect(statusCode).not.toEqual(200);
+      expect(message).toMatch("user not exists");
+    });
+
+    //通过 phone 非法格式
+    it("by phone and illegal format", async () => {
+      //定义
+      const phone = "1234567890#";
+      //请求
+      const {
+        statusCode,
+        data: user,
+        message,
+      } = await managementClient.getUser({
+        phone,
+      });
+      //处理
+      expect(statusCode).not.toEqual(200);
+      expect(message).toMatch("参数 phone 格式错误");
     });
   });
 });
