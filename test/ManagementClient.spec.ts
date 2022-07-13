@@ -1,17 +1,12 @@
-import { ManagementClient, Models } from "../src";
+import { Models } from "../src";
 import {
   generateRandomEmail,
   generateRandomPhone,
   generateRandomString,
 } from "../src/utils/index";
+import { managementClient } from "./client";
 
 describe("ManagementClient", () => {
-  const managementClient = new ManagementClient({
-    accessKeyId: "6291bd996fc98b263b2e00b9",
-    accessKeySecret: "1f3694d41f7cdb803ee041f7cc8d55b6",
-    host: "http://localhost:3000",
-  });
-
   beforeAll(async () => {
     // 初始化扩展字段配置
     const data = await managementClient.setCustomFields({

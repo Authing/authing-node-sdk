@@ -6,6 +6,7 @@ module.exports = {
   transform: {
     "^.+\\.ts$": "ts-jest",
   },
+  setupFiles: ["dotenv/config"],
   moduleDirectories: [".", "src", "../src", "../node_modules"],
   // coverageReporters: ['json'],
   coverageDirectory: "coverage",

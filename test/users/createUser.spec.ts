@@ -1,17 +1,12 @@
-import { ManagementClient, Models } from "../../src";
+import { Models } from "../../src";
 import {
   generateRandomEmail,
   generateRandomPhone,
   generateRandomString,
 } from "../../src/utils/index";
+import { managementClient } from "../client";
 
 describe("createUser", () => {
-  const managementClient = new ManagementClient({
-    accessKeyId: "62cb97e059b3168bd8896628",
-    accessKeySecret: "07cc378f134cc5827a4e4d9883b543fe",
-    host: "http://localhost:3000",
-  });
-
   beforeAll(async () => {
     // 初始化扩展字段配置
     const data = await managementClient.setCustomFields({
@@ -139,7 +134,6 @@ describe("createUser", () => {
         });
         expect(statusCode).toEqual(200);
         expect(user.customData).toEqual(customData);
-        console.log(user);
       });
 
       it("with identities", async () => {});
@@ -176,15 +170,15 @@ describe("createUser", () => {
         expect(statusCode).toEqual(400);
         expect(message).toEqual("customData must be less than 1024 characters");
       });
-    });
 
-    it("phone is invalid", async () => {
-      const { statusCode, message } = await managementClient.createUser({
-        phoneCountryCode: "+86",
-        email: "test@qq.com",
+      it("phone is invalid", async () => {
+        const { statusCode, message } = await managementClient.createUser({
+          phoneCountryCode: "+86",
+          email: "test@qq.com",
+        });
+        expect(statusCode).toEqual(400);
+        expect(message).toEqual("phone cannot be empty");
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual("phone cannot be empty");
     });
   });
 });

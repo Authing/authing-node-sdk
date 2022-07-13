@@ -1,19 +1,13 @@
-import { ManagementClient, Models } from "../../src";
+import { Models } from "../../src";
 import {
   generateRandomEmail,
   generateRandomPhone,
   generateRandomString,
 } from "../../src/utils/index";
+import { managementClient } from "../client";
 
 //getUser
 describe("getUser", () => {
-  //初始化
-  const managementClient = new ManagementClient({
-    accessKeyId: "62cd3d3312e82775eee32e9c",
-    accessKeySecret: "63e42270bdd4acaba32be62c209069c9",
-    host: "http://localhost:3000",
-  });
-
   //定义
   var userId = "";
   var username = "";
@@ -61,13 +55,10 @@ describe("getUser", () => {
   //析构
   afterAll(async () => {
     //删除用户
-    const {
-      statusCode,
-      data,
-      message,
-    } = await managementClient.deleteUsersBatch({
-      userIds: [userId],
-    });
+    const { statusCode, data, message } =
+      await managementClient.deleteUsersBatch({
+        userIds: [userId],
+      });
   });
 
   //成功
@@ -160,7 +151,7 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).toEqual(200);
-      expect(user.email).toMatch((email[1]).toLowerCase());
+      expect(user.email).toMatch(email[1].toLowerCase());
       expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
       expect(user.photo).toBeTruthy();
       expect(user.externalId).toBeTruthy();
@@ -351,7 +342,9 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toMatch("must provide userId or username or email or phone or externalId");
+      expect(message).toMatch(
+        "must provide userId or username or email or phone or externalId"
+      );
     });
 
     //通过 userId 错误
