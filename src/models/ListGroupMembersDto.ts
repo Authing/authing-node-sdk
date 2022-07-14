@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取分组成员列表
+ * 通过分组 code，获取分组成员列表，支持分页，可以获取自定义数据、identities、部门 ID 列表。
  */
 export type ListGroupMembersDto = {
     /**

@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 判断用户是否在某个部门下
+ * 通过组织 code、部门 ID，判断用户是否在某个部门下，可以选择包含子部门。
  */
 export type IsUserInDepartmentDto = {
     /**
@@ -15,7 +15,7 @@ export type IsUserInDepartmentDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。
+     * 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
      */
     departmentId?: any;
     /**

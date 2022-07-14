@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取角色的部门列表
+ * 通过权限分组内角色 code，获取角色的部门列表，支持分页。
  */
 export type ListRoleDepartmentsDto = {
     /**

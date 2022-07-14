@@ -102,7 +102,7 @@ import type { UserSingleRespDto } from './models/UserSingleRespDto';
 import { DEFAULT_OPTIONS, ManagementClientOptions } from './ManagementClientOptions';
 import { ManagementHttpClient } from './ManagementHttpClient';
 import { domainC14n } from './utils';
-import Axios from 'axios';
+import Axios, { AxiosRequestConfig } from "axios";
 
 
 export class ManagementClient {
@@ -126,9 +126,14 @@ export class ManagementClient {
         }
     }
 
+    public async makeRequest(params: AxiosRequestConfig) {
+        return await this.httpClient.request(params);
+    }
+
+
     /**
      * @summary 获取 Management API Token
-     * @description 获取 Management API Token
+     * @description 通过 AccessKey ID 与 AccessKey Secret 获取 Management API Token，此 Token 可以用来操作 Management API。
      * @returns GetManagementTokenRespDto
      */
     public async getManagementToken(requestBody: GetManagementAccessTokenDto,
@@ -142,65 +147,56 @@ export class ManagementClient {
 
 /**
  * @summary 获取用户信息
- * @description 通过 id、username、email、phone、email、externalId 获取用户详情
+ * @description 通过用户 ID，获取用户详情，可以选择获取自定义数据、identities、选择指定用户 ID 类型等。
  * @returns UserSingleRespDto
  */
 public async getUser({
+    userId,
+    userIdType = 'user_id',
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
-    userId,
-    phone,
-    email,
-    username,
-    externalId,
 }: {
+    /** 用户 ID **/
+    userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean,
     /** 是否获取 identities **/
     withIdentities?: boolean,
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean,
-    /** 用户 ID **/
-    userId?: string,
-    /** 手机号 **/
-    phone?: string,
-    /** 邮箱 **/
-    email?: string,
-    /** 用户名 **/
-    username?: string,
-    /** 原系统 ID **/
-    externalId?: string,
 }): Promise<UserSingleRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user',
         params: {
+            userId: userId,
+            userIdType: userIdType,
             withCustomData: withCustomData,
             withIdentities: withIdentities,
             withDepartmentIds: withDepartmentIds,
-            userId: userId,
-            phone: phone,
-            email: email,
-            username: username,
-            externalId: externalId,
         },
     });
 }
 
 /**
  * @summary 批量获取用户信息
- * @description 根据用户 id 批量获取用户信息
+ * @description 通过用户 ID 列表，批量获取用户信息，可以选择获取自定义数据、identities、选择指定用户 ID 类型等。
  * @returns UserListRespDto
  */
 public async getUserBatch({
     userIds,
+    userIdType = 'user_id',
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
 }: {
     /** 用户 ID 数组 **/
     userIds: Array<string>,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean,
     /** 是否获取 identities **/
@@ -212,17 +208,18 @@ public async getUserBatch({
         method: 'GET',
         url: '/api/v3/get-user-batch',
         params: {
+            userIds: userIds,
+            userIdType: userIdType,
             withCustomData: withCustomData,
             withIdentities: withIdentities,
             withDepartmentIds: withDepartmentIds,
-            userIds: userIds,
         },
     });
 }
 
 /**
  * @summary 获取用户列表
- * @description 获取用户列表接口，支持分页
+ * @description 获取用户列表接口，支持分页，可以选择获取自定义数据、identities 等。
  * @returns UserPaginatedRespDto
  */
 public async listUsers({
@@ -239,11 +236,11 @@ public async listUsers({
     page?: number,
     /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number,
-    /** 账户当前状态 **/
+    /** 账户当前状态，如 已停用、已离职、正常状态、已归档 **/
     status?: 'Suspended' | 'Resigned' | 'Activated' | 'Archived',
-    /** 用户创建、修改开始时间，为精确到秒的 UNIX 时间戳；支持获取从某一段时间之后的增量数据。 **/
+    /** 用户创建、修改开始时间，为精确到秒的 UNIX 时间戳；支持获取从某一段时间之后的增量数据 **/
     updatedAtStart?: number,
-    /** 用户创建、修改终止时间，为精确到秒的 UNIX 时间戳；支持获取某一段时间内的增量数据。默认为当前时间。 **/
+    /** 用户创建、修改终止时间，为精确到秒的 UNIX 时间戳；支持获取某一段时间内的增量数据。默认为当前时间 **/
     updatedAtEnd?: number,
     /** 是否获取自定义数据 **/
     withCustomData?: boolean,
@@ -270,35 +267,42 @@ public async listUsers({
 
 /**
  * @summary 获取用户的外部身份源
- * @description 获取用户的外部身份源
+ * @description 通过用户 ID，获取用户的外部身份源、选择指定用户 ID 类型。
  * @returns IdentityListRespDto
  */
 public async getUserIdentities({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<IdentityListRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-identities',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 获取用户角色列表
- * @description 获取用户角色列表
+ * @description 通过用户 ID，获取用户角色列表，可以选择所属权限分组 code、选择指定用户 ID 类型等。
  * @returns RolePaginatedRespDto
  */
 public async getUserRoles({
     userId,
+    userIdType = 'user_id',
     namespace,
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 所属权限分组的 code **/
     namespace?: string,
 }): Promise<RolePaginatedRespDto> {
@@ -307,6 +311,7 @@ public async getUserRoles({
         url: '/api/v3/get-user-roles',
         params: {
             userId: userId,
+            userIdType: userIdType,
             namespace: namespace,
         },
     });
@@ -314,27 +319,31 @@ public async getUserRoles({
 
 /**
  * @summary 获取用户实名认证信息
- * @description 获取用户实名认证信息
+ * @description 通过用户 ID，获取用户实名认证信息，可以选择指定用户 ID 类型。
  * @returns PrincipalAuthenticationInfoPaginatedRespDto
  */
 public async getUserPrincipalAuthenticationInfo({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<PrincipalAuthenticationInfoPaginatedRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-principal-authentication-info',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 删除用户实名认证信息
- * @description 删除用户实名认证信息
+ * @description 通过用户 ID，删除用户实名认证信息，可以选择指定用户 ID 类型等。
  * @returns IsSuccessRespDto
  */
 public async resetUserPrincipalAuthenticationInfo(requestBody: ResetUserPrincipalAuthenticationInfoDto,
@@ -348,11 +357,12 @@ public async resetUserPrincipalAuthenticationInfo(requestBody: ResetUserPrincipa
 
 /**
  * @summary 获取用户部门列表
- * @description 获取用户部门列表
+ * @description 通过用户 ID，获取用户部门列表，支持分页，可以选择获取自定义数据、选择指定用户 ID 类型、增序或降序等。
  * @returns UserDepartmentPaginatedRespDto
  */
 public async getUserDepartments({
     userId,
+    userIdType = 'user_id',
     page = 1,
     limit = 10,
     withCustomData = false,
@@ -361,15 +371,17 @@ public async getUserDepartments({
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 当前页数，从 1 开始 **/
     page?: number,
     /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number,
     /** 是否获取自定义数据 **/
     withCustomData?: boolean,
-    /** 排序依据 **/
+    /** 排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符 **/
     sortBy?: 'DepartmentCreatedAt' | 'JoinDepartmentAt' | 'DepartmentName' | 'DepartmemtCode',
-    /** 增序还是倒序 **/
+    /** 增序或降序 **/
     orderBy?: 'Asc' | 'Desc',
 }): Promise<UserDepartmentPaginatedRespDto> {
     return await this.httpClient.request({
@@ -377,6 +389,7 @@ public async getUserDepartments({
         url: '/api/v3/get-user-departments',
         params: {
             userId: userId,
+            userIdType: userIdType,
             page: page,
             limit: limit,
             withCustomData: withCustomData,
@@ -388,7 +401,7 @@ public async getUserDepartments({
 
 /**
  * @summary 设置用户所在部门
- * @description 设置用户所在部门
+ * @description 通过用户 ID，设置用户所在部门，可以选择指定用户 ID 类型等。
  * @returns IsSuccessRespDto
  */
 public async setUserDepartments(requestBody: SetUserDepartmentsDto,
@@ -402,27 +415,31 @@ public async setUserDepartments(requestBody: SetUserDepartmentsDto,
 
 /**
  * @summary 获取用户分组列表
- * @description 获取用户分组列表
+ * @description 通过用户 ID，获取用户分组列表，可以选择指定用户 ID 类型等。
  * @returns GroupPaginatedRespDto
  */
 public async getUserGroups({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<GroupPaginatedRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-groups',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 删除用户
- * @description 删除用户（支持批量删除）
+ * @description 通过用户 ID 列表，删除用户，支持批量删除，可以选择指定用户 ID 类型等。
  * @returns IsSuccessRespDto
  */
 public async deleteUsersBatch(requestBody: DeleteUsersBatchDto,
@@ -436,27 +453,31 @@ public async deleteUsersBatch(requestBody: DeleteUsersBatchDto,
 
 /**
  * @summary 获取用户 MFA 绑定信息
- * @description 获取用户 MFA 绑定信息
+ * @description 通过用户 ID，获取用户 MFA 绑定信息，可以选择指定用户 ID 类型等。
  * @returns UserMfaSingleRespDto
  */
 public async getUserMfaInfo({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<UserMfaSingleRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-mfa-info',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 获取已归档的用户列表
- * @description 获取已归档的用户列表
+ * @description 获取已归档的用户列表，支持分页，可以筛选开始时间等。
  * @returns ListArchivedUsersSingleRespDto
  */
 public async listArchivedUsers({
@@ -468,7 +489,7 @@ public async listArchivedUsers({
     page?: number,
     /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number,
-    /** 开始时间，为精确到秒的 UNIX 时间戳，默认不指定。 **/
+    /** 开始时间，为精确到秒的 UNIX 时间戳，默认不指定 **/
     startAt?: number,
 }): Promise<ListArchivedUsersSingleRespDto> {
     return await this.httpClient.request({
@@ -484,7 +505,7 @@ public async listArchivedUsers({
 
 /**
  * @summary 强制下线用户
- * @description 强制下线用户
+ * @description 通过用户 ID、App ID 列表，强制让用户下线，可以选择指定用户 ID 类型等。
  * @returns IsSuccessRespDto
  */
 public async kickUsers(requestBody: KickUsersDto,
@@ -498,7 +519,7 @@ public async kickUsers(requestBody: KickUsersDto,
 
 /**
  * @summary 判断用户是否存在
- * @description 根据条件判断用户是否存在
+ * @description 根据条件判断用户是否存在，可以筛选用户名、邮箱、手机号、第三方外部 ID 等。
  * @returns IsUserExistsRespDto
  */
 public async isUserExists(requestBody: IsUserExistsReqDto,
@@ -512,7 +533,7 @@ public async isUserExists(requestBody: IsUserExistsReqDto,
 
 /**
  * @summary 创建用户
- * @description 创建用户，邮箱、手机号、用户名必须包含其中一个
+ * @description 创建用户，邮箱、手机号、用户名必须包含其中一个，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份创建用户因此不需要进行手机号验证码检验等安全检测。
  * @returns UserSingleRespDto
  */
 public async createUser(requestBody: CreateUserReqDto,
@@ -526,7 +547,7 @@ public async createUser(requestBody: CreateUserReqDto,
 
 /**
  * @summary 批量创建用户
- * @description 此接口将以管理员身份批量创建用户，不需要进行手机号验证码检验等安全检测。用户的手机号、邮箱、用户名、externalId 用户池内唯一。
+ * @description 批量创建用户，邮箱、手机号、用户名必须包含其中一个，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份批量创建用户因此不需要进行手机号验证码检验等安全检测。
  * @returns UserListRespDto
  */
 public async createUsersBatch(requestBody: CreateUserBatchReqDto,
@@ -540,7 +561,7 @@ public async createUsersBatch(requestBody: CreateUserBatchReqDto,
 
 /**
  * @summary 修改用户资料
- * @description 修改用户资料
+ * @description 通过用户 ID，修改用户资料，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份修改用户资料因此不需要进行手机号验证码检验等安全检测。
  * @returns UserSingleRespDto
  */
 public async updateUser(requestBody: UpdateUserReqDto,
@@ -553,48 +574,56 @@ public async updateUser(requestBody: UpdateUserReqDto,
 }
 
 /**
- * @summary 获取用户可访问应用
- * @description 获取用户可访问应用
+ * @summary 获取用户可访问的应用
+ * @description 通过用户 ID，获取用户可访问的应用，可以选择指定用户 ID 类型等。
  * @returns AppListRespDto
  */
 public async getUserAccessibleApps({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<AppListRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-accessible-apps',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 获取用户授权的应用
- * @description 获取用户授权的应用
+ * @description 通过用户 ID，获取用户授权的应用，可以选择指定用户 ID 类型等。
  * @returns AppListRespDto
  */
 public async getUserAuthorizedApps({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<AppListRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-authorized-apps',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 判断用户是否有某个角色
- * @description 判断用户是否有某个角色，支持同时传入多个角色进行判断
+ * @description 通过用户 ID，判断用户是否有某个角色，支持传入多个角色，可以选择指定用户 ID 类型等。
  * @returns HasAnyRoleRespDto
  */
 public async hasAnyRole(requestBody: HasAnyRoleReqDto,
@@ -608,11 +637,12 @@ public async hasAnyRole(requestBody: HasAnyRoleReqDto,
 
 /**
  * @summary 获取用户的登录历史记录
- * @description 获取用户登录历史记录
+ * @description 通过用户 ID，获取用户登录历史记录，支持分页，可以选择指定用户 ID 类型、应用 ID、开始与结束时间戳等。
  * @returns UserLoginHistoryPaginatedRespDto
  */
 public async getUserLoginHistory({
     userId,
+    userIdType = 'user_id',
     appId,
     clientIp,
     start,
@@ -622,6 +652,8 @@ public async getUserLoginHistory({
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 应用 ID **/
     appId?: string,
     /** 客户端 IP **/
@@ -640,6 +672,7 @@ public async getUserLoginHistory({
         url: '/api/v3/get-user-login-history',
         params: {
             userId: userId,
+            userIdType: userIdType,
             appId: appId,
             clientIp: clientIp,
             start: start,
@@ -651,60 +684,71 @@ public async getUserLoginHistory({
 }
 
 /**
- * @summary 获取用户曾经登录过的应用
+ * @summary 通过用户 ID，获取用户曾经登录过的应用，可以选择指定用户 ID 类型等。
  * @description 获取用户曾经登录过的应用
  * @returns UserLoggedInAppsListRespDto
  */
 public async getUserLoggedinApps({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<UserLoggedInAppsListRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-loggedin-apps',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
- * @summary 获取用户曾经登录过的身份源
+ * @summary 通过用户 ID，获取用户曾经登录过的身份源，可以选择指定用户 ID 类型等。
  * @description 获取用户曾经登录过的身份源
  * @returns UserLoggedInIdentitiesRespDto
  */
 public async getUserLoggedinIdentities({
     userId,
+    userIdType = 'user_id',
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
 }): Promise<UserLoggedInIdentitiesRespDto> {
     return await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-logged-in-identities',
         params: {
             userId: userId,
+            userIdType: userIdType,
         },
     });
 }
 
 /**
  * @summary 获取用户被授权的所有资源
- * @description 获取用户被授权的所有资源，用户被授权的资源是用户自身被授予、通过分组继承、通过角色继承、通过组织机构继承的集合
+ * @description 通过用户 ID，获取用户被授权的所有资源，可以选择指定用户 ID 类型等，用户被授权的资源是用户自身被授予、通过分组继承、通过角色继承、通过组织机构继承的集合。
  * @returns AuthorizedResourcePaginatedRespDto
  */
 public async getUserAuthorizedResources({
     userId,
+    userIdType = 'user_id',
     namespace,
     resourceType,
 }: {
     /** 用户 ID **/
     userId: string,
+    /** 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。 **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username',
     /** 所属权限分组的 code **/
     namespace?: string,
-    /** 资源类型 **/
+    /** 资源类型，如 数据、API、菜单、按钮 **/
     resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON',
 }): Promise<AuthorizedResourcePaginatedRespDto> {
     return await this.httpClient.request({
@@ -712,6 +756,7 @@ public async getUserAuthorizedResources({
         url: '/api/v3/get-user-authorized-resources',
         params: {
             userId: userId,
+            userIdType: userIdType,
             namespace: namespace,
             resourceType: resourceType,
         },
@@ -720,7 +765,7 @@ public async getUserAuthorizedResources({
 
 /**
  * @summary 获取分组详情
- * @description 获取分组详情，通过 code 唯一标志用户池中的一个分组
+ * @description 通过分组 code，获取分组详情。
  * @returns GroupSingleRespDto
  */
 public async getGroup({
@@ -740,7 +785,7 @@ public async getGroup({
 
 /**
  * @summary 获取分组列表
- * @description 获取分组列表接口，支持分页
+ * @description 获取分组列表，支持分页。
  * @returns GroupPaginatedRespDto
  */
 public async listGroups({
@@ -764,7 +809,7 @@ public async listGroups({
 
 /**
  * @summary 创建分组
- * @description 创建分组，一个分组必须包含一个用户池全局唯一的标志符（code），此标志符必须为一个合法的英文标志符，如 developers；以及分组名称
+ * @description 创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
  * @returns GroupSingleRespDto
  */
 public async createGroup(requestBody: CreateGroupReqDto,
@@ -778,7 +823,7 @@ public async createGroup(requestBody: CreateGroupReqDto,
 
 /**
  * @summary 批量创建分组
- * @description 批量创建分组
+ * @description 批量创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
  * @returns GroupListRespDto
  */
 public async createGroupsBatch(requestBody: CreateGroupBatchReqDto,
@@ -792,7 +837,7 @@ public async createGroupsBatch(requestBody: CreateGroupBatchReqDto,
 
 /**
  * @summary 修改分组
- * @description 修改分组，通过 code 唯一标志用户池中的一个分组。你可以修改此分组的 code
+ * @description 通过分组 code，修改分组，可以修改此分组的 code。
  * @returns GroupSingleRespDto
  */
 public async updateGroup(requestBody: UpdateGroupReqDto,
@@ -806,7 +851,7 @@ public async updateGroup(requestBody: UpdateGroupReqDto,
 
 /**
  * @summary 批量删除分组
- * @description 批量删除分组
+ * @description 通过分组 code，批量删除分组。
  * @returns IsSuccessRespDto
  */
 public async deleteGroupsBatch(requestBody: DeleteGroupsReqDto,
@@ -820,7 +865,7 @@ public async deleteGroupsBatch(requestBody: DeleteGroupsReqDto,
 
 /**
  * @summary 添加分组成员
- * @description 添加分组成员
+ * @description 添加分组成员，成员以用户 ID 数组形式传递。
  * @returns IsSuccessRespDto
  */
 public async addGroupMembers(requestBody: AddGroupMembersReqDto,
@@ -834,7 +879,7 @@ public async addGroupMembers(requestBody: AddGroupMembersReqDto,
 
 /**
  * @summary 批量移除分组成员
- * @description 批量移除分组成员
+ * @description 批量移除分组成员，成员以用户 ID 数组形式传递。
  * @returns IsSuccessRespDto
  */
 public async removeGroupMembers(requestBody: RemoveGroupMembersReqDto,
@@ -848,7 +893,7 @@ public async removeGroupMembers(requestBody: RemoveGroupMembersReqDto,
 
 /**
  * @summary 获取分组成员列表
- * @description 获取分组成员列表
+ * @description 通过分组 code，获取分组成员列表，支持分页，可以获取自定义数据、identities、部门 ID 列表。
  * @returns UserPaginatedRespDto
  */
 public async listGroupMembers({
@@ -888,7 +933,7 @@ public async listGroupMembers({
 
 /**
  * @summary 获取分组被授权的资源列表
- * @description 获取分组被授权的资源列表
+ * @description 通过分组 code，获取分组被授权的资源列表，可以通过资源类型、权限分组 code 筛选。
  * @returns AuthorizedResourceListRespDto
  */
 public async getGroupAuthorizedResources({
@@ -916,7 +961,7 @@ public async getGroupAuthorizedResources({
 
 /**
  * @summary 获取角色详情
- * @description 获取角色详情
+ * @description 通过权限分组内角色 code，获取角色详情。
  * @returns RoleSingleRespDto
  */
 public async getRole({
@@ -940,7 +985,7 @@ public async getRole({
 
 /**
  * @summary 分配角色
- * @description 分配角色，被分配者可以是用户，可以是部门
+ * @description 通过权限分组内角色 code，分配角色，被分配者可以是用户或部门。
  * @returns IsSuccessRespDto
  */
 public async assignRole(requestBody: AssignRoleDto,
@@ -954,7 +999,7 @@ public async assignRole(requestBody: AssignRoleDto,
 
 /**
  * @summary 移除分配的角色
- * @description 移除分配的角色，被分配者可以是用户，可以是部门
+ * @description 通过权限分组内角色 code，移除分配的角色，被分配者可以是用户或部门。
  * @returns IsSuccessRespDto
  */
 public async revokeRole(requestBody: RevokeRoleDto,
@@ -967,8 +1012,8 @@ public async revokeRole(requestBody: RevokeRoleDto,
 }
 
 /**
- * @summary 角色被授权的资源列表
- * @description 角色被授权的资源列表
+ * @summary 获取角色被授权的资源列表
+ * @description 通过权限分组内角色 code，获取角色被授权的资源列表。
  * @returns RoleAuthorizedResourcePaginatedRespDto
  */
 public async getRoleAuthorizedResources({
@@ -980,7 +1025,7 @@ public async getRoleAuthorizedResources({
     code: string,
     /** 所属权限分组的 code **/
     namespace?: string,
-    /** 资源类型 **/
+    /** 资源类型，如 数据、API、按钮、菜单 **/
     resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON',
 }): Promise<RoleAuthorizedResourcePaginatedRespDto> {
     return await this.httpClient.request({
@@ -996,7 +1041,7 @@ public async getRoleAuthorizedResources({
 
 /**
  * @summary 获取角色成员列表
- * @description 获取角色成员列表
+ * @description 通过权限分组内内角色 code，获取角色成员列表，支持分页，可以选择或获取自定义数据、identities 等。
  * @returns UserPaginatedRespDto
  */
 public async listRoleMembers({
@@ -1040,7 +1085,7 @@ public async listRoleMembers({
 
 /**
  * @summary 获取角色的部门列表
- * @description 获取角色的部门列表
+ * @description 通过权限分组内角色 code，获取角色的部门列表，支持分页。
  * @returns RoleDepartmentListPaginatedRespDto
  */
 public async listRoleDepartments({
@@ -1072,7 +1117,7 @@ public async listRoleDepartments({
 
 /**
  * @summary 创建角色
- * @description 创建角色，可以指定不同的权限分组
+ * @description 通过权限分组内角色 code，创建角色，可以选择权限分组、角色描述等。
  * @returns RoleSingleRespDto
  */
 public async createRole(requestBody: CreateRoleDto,
@@ -1086,7 +1131,7 @@ public async createRole(requestBody: CreateRoleDto,
 
 /**
  * @summary 获取角色列表
- * @description 获取角色列表
+ * @description 获取角色列表，支持分页。
  * @returns RolePaginatedRespDto
  */
 public async listRoles({
@@ -1113,8 +1158,8 @@ public async listRoles({
 }
 
 /**
- * @summary （批量）删除角色
- * @description 删除角色
+ * @summary 删除角色
+ * @description 删除角色，可以批量删除。
  * @returns IsSuccessRespDto
  */
 public async deleteRolesBatch(requestBody: DeleteRoleDto,
@@ -1128,7 +1173,7 @@ public async deleteRolesBatch(requestBody: DeleteRoleDto,
 
 /**
  * @summary 批量创建角色
- * @description 批量创建角色
+ * @description 批量创建角色，可以选择权限分组、角色描述等。
  * @returns IsSuccessRespDto
  */
 public async createRolesBatch(requestBody: CreateRolesBatch,
@@ -1142,7 +1187,7 @@ public async createRolesBatch(requestBody: CreateRolesBatch,
 
 /**
  * @summary 修改角色
- * @description 修改角色
+ * @description 通过权限分组内角色新旧 code，修改角色，可以选择角色描述等。
  * @returns IsSuccessRespDto
  */
 public async updateRole(requestBody: UpdateRoleDto,
@@ -1156,7 +1201,7 @@ public async updateRole(requestBody: UpdateRoleDto,
 
 /**
  * @summary 获取顶层组织机构列表
- * @description 获取顶层组织机构列表
+ * @description 获取顶层组织机构列表，支持分页。
  * @returns OrganizationPaginatedRespDto
  */
 public async listOrganizations({
@@ -1184,7 +1229,7 @@ public async listOrganizations({
 
 /**
  * @summary 创建顶层组织机构
- * @description 创建组织机构，会创建一个只有一个节点的组织机构
+ * @description 创建组织机构，会创建一个只有一个节点的组织机构，可以选择组织描述信息、根节点自定义 ID、多语言等。
  * @returns OrganizationSingleRespDto
  */
 public async createOrganization(requestBody: CreateOrganizationReqDto,
@@ -1198,7 +1243,7 @@ public async createOrganization(requestBody: CreateOrganizationReqDto,
 
 /**
  * @summary 修改顶层组织机构
- * @description 修改顶层组织机构
+ * @description 通过组织 code，修改顶层组织机构，可以选择部门描述、新组织 code、组织名称等。
  * @returns OrganizationSingleRespDto
  */
 public async updateOrganization(requestBody: UpdateOrganizationReqDto,
@@ -1212,7 +1257,7 @@ public async updateOrganization(requestBody: UpdateOrganizationReqDto,
 
 /**
  * @summary 删除组织机构
- * @description 删除组织机构树
+ * @description 通过组织 code，删除组织机构树。
  * @returns IsSuccessRespDto
  */
 public async deleteOrganization(requestBody: DeleteOrganizationReqDto,
@@ -1226,7 +1271,7 @@ public async deleteOrganization(requestBody: DeleteOrganizationReqDto,
 
 /**
  * @summary 搜索顶层组织机构列表
- * @description 搜索顶层组织机构列表
+ * @description 通过搜索关键词，搜索顶层组织机构列表，支持分页。
  * @returns OrganizationPaginatedRespDto
  */
 public async searchOrganizations({
@@ -1234,7 +1279,7 @@ public async searchOrganizations({
     page = 1,
     limit = 10,
 }: {
-    /** 搜索关键词 **/
+    /** 搜索关键词，如组织机构名称 **/
     keywords: string,
     /** 当前页数，从 1 开始 **/
     page?: number,
@@ -1254,7 +1299,7 @@ public async searchOrganizations({
 
 /**
  * @summary 获取部门信息
- * @description 获取部门信息
+ * @description 通过组织 code 以及 部门 ID 或 部门 code，获取部门信息，可以获取自定义数据。
  * @returns DepartmentSingleRespDto
  */
 public async getDepartment({
@@ -1266,7 +1311,7 @@ public async getDepartment({
 }: {
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
+    /** 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
     departmentId?: string,
     /** 部门 code。departmentId 和 departmentCode 必传其一。 **/
     departmentCode?: string,
@@ -1290,7 +1335,7 @@ public async getDepartment({
 
 /**
  * @summary 创建部门
- * @description 创建部门
+ * @description 通过组织 code、部门名称、父部门 ID，创建部门，可以设置多种参数。
  * @returns DepartmentSingleRespDto
  */
 public async createDepartment(requestBody: CreateDepartmentReqDto,
@@ -1304,7 +1349,7 @@ public async createDepartment(requestBody: CreateDepartmentReqDto,
 
 /**
  * @summary 修改部门
- * @description 修改部门
+ * @description 通过组织 code、部门 ID，修改部门，可以设置多种参数。
  * @returns DepartmentSingleRespDto
  */
 public async updateDepartment(requestBody: UpdateDepartmentReqDto,
@@ -1318,7 +1363,7 @@ public async updateDepartment(requestBody: UpdateDepartmentReqDto,
 
 /**
  * @summary 删除部门
- * @description 删除部门
+ * @description 通过组织 code、部门 ID，删除部门。
  * @returns IsSuccessRespDto
  */
 public async deleteDepartment(requestBody: DeleteDepartmentReqDto,
@@ -1332,7 +1377,7 @@ public async deleteDepartment(requestBody: DeleteDepartmentReqDto,
 
 /**
  * @summary 搜索部门
- * @description 搜索部门
+ * @description 通过组织 code、搜索关键词，搜索部门，可以搜索组织名称等。
  * @returns DepartmentListRespDto
  */
 public async searchDepartments(requestBody: SearchDepartmentsReqDto,
@@ -1346,7 +1391,7 @@ public async searchDepartments(requestBody: SearchDepartmentsReqDto,
 
 /**
  * @summary 获取子部门列表
- * @description 获取子部门列表
+ * @description 通过组织 code、部门 ID，获取子部门列表，可以选择获取自定义数据、虚拟组织等。
  * @returns DepartmentPaginatedRespDto
  */
 public async listChildrenDepartments({
@@ -1354,6 +1399,7 @@ public async listChildrenDepartments({
     departmentId,
     departmentIdType = 'department_id',
     excludeVirtualNode = false,
+    onlyVirtualNode = false,
     withCustomData = false,
 }: {
     /** 组织 code **/
@@ -1364,6 +1410,8 @@ public async listChildrenDepartments({
     departmentIdType?: 'department_id' | 'open_department_id',
     /** 是否要排除虚拟组织 **/
     excludeVirtualNode?: boolean,
+    /** 是否只包含虚拟组织 **/
+    onlyVirtualNode?: boolean,
     /** 是否获取自定义数据 **/
     withCustomData?: boolean,
 }): Promise<DepartmentPaginatedRespDto> {
@@ -1375,6 +1423,7 @@ public async listChildrenDepartments({
             departmentId: departmentId,
             departmentIdType: departmentIdType,
             excludeVirtualNode: excludeVirtualNode,
+            onlyVirtualNode: onlyVirtualNode,
             withCustomData: withCustomData,
         },
     });
@@ -1382,7 +1431,7 @@ public async listChildrenDepartments({
 
 /**
  * @summary 获取部门成员列表
- * @description 获取部门成员列表
+ * @description 通过组织 code、部门 ID、排序，获取部门成员列表，支持分页，可以选择获取自定义数据、identities 等。
  * @returns UserPaginatedRespDto
  */
 public async listDepartmentMembers({
@@ -1400,7 +1449,7 @@ public async listDepartmentMembers({
 }: {
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id，根部门传 `root` **/
+    /** 部门 ID，根部门传 `root` **/
     departmentId: string,
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: 'department_id' | 'open_department_id',
@@ -1442,7 +1491,7 @@ public async listDepartmentMembers({
 
 /**
  * @summary 获取部门直属成员 ID 列表
- * @description 获取部门直属成员 ID 列表
+ * @description 通过组织 code、部门 ID，获取部门直属成员 ID 列表。
  * @returns UserIdListRespDto
  */
 public async listDepartmentMemberIds({
@@ -1452,7 +1501,7 @@ public async listDepartmentMemberIds({
 }: {
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id，根部门传 `root` **/
+    /** 部门 ID，根部门传 `root` **/
     departmentId: string,
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: 'department_id' | 'open_department_id',
@@ -1470,7 +1519,7 @@ public async listDepartmentMemberIds({
 
 /**
  * @summary 搜索部门下的成员
- * @description 搜索部门下的成员
+ * @description 通过组织 code、部门 ID、搜索关键词，搜索部门下的成员，支持分页，可以选择获取自定义数据、identities 等。
  * @returns UserPaginatedRespDto
  */
 public async searchDepartmentMembers({
@@ -1487,9 +1536,9 @@ public async searchDepartmentMembers({
 }: {
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id，根部门传 `root` **/
+    /** 部门 ID，根部门传 `root` **/
     departmentId: string,
-    /** 搜索关键词 **/
+    /** 搜索关键词，如成员名称 **/
     keywords: string,
     /** 当前页数，从 1 开始 **/
     page?: number,
@@ -1526,7 +1575,7 @@ public async searchDepartmentMembers({
 
 /**
  * @summary 部门下添加成员
- * @description 部门下添加成员
+ * @description 通过部门 ID、组织 code，添加部门下成员。
  * @returns IsSuccessRespDto
  */
 public async addDepartmentMembers(requestBody: AddDepartmentMembersReqDto,
@@ -1540,7 +1589,7 @@ public async addDepartmentMembers(requestBody: AddDepartmentMembersReqDto,
 
 /**
  * @summary 部门下删除成员
- * @description 部门下删除成员
+ * @description 通过部门 ID、组织 code，删除部门下成员。
  * @returns IsSuccessRespDto
  */
 public async removeDepartmentMembers(requestBody: RemoveDepartmentMembersReqDto,
@@ -1554,7 +1603,7 @@ public async removeDepartmentMembers(requestBody: RemoveDepartmentMembersReqDto,
 
 /**
  * @summary 获取父部门信息
- * @description 获取父部门信息
+ * @description 通过组织 code、部门 ID，获取父部门信息，可以选择获取自定义数据等。
  * @returns DepartmentSingleRespDto
  */
 public async getParentDepartment({
@@ -1565,7 +1614,7 @@ public async getParentDepartment({
 }: {
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id **/
+    /** 部门 ID **/
     departmentId: string,
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: 'department_id' | 'open_department_id',
@@ -1586,7 +1635,7 @@ public async getParentDepartment({
 
 /**
  * @summary 判断用户是否在某个部门下
- * @description 判断用户是否在某个部门下
+ * @description 通过组织 code、部门 ID，判断用户是否在某个部门下，可以选择包含子部门。
  * @returns IsUserInDepartmentRespDto
  */
 public async isUserInDepartment({
@@ -1600,7 +1649,7 @@ public async isUserInDepartment({
     userId: string,
     /** 组织 code **/
     organizationCode: string,
-    /** 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
+    /** 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
     departmentId: string,
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: 'department_id' | 'open_department_id',
@@ -1622,7 +1671,7 @@ public async isUserInDepartment({
 
 /**
  * @summary 获取身份源列表
- * @description 获取身份源列表
+ * @description 获取身份源列表，可以指定 租户 ID 筛选。
  * @returns ExtIdpListPaginatedRespDto
  */
 public async listExtIdp({
@@ -1642,14 +1691,14 @@ public async listExtIdp({
 
 /**
  * @summary 获取身份源详情
- * @description 获取身份源详情
+ * @description 通过 身份源 ID，获取身份源详情，可以指定 租户 ID 筛选。
  * @returns ExtIdpDetailSingleRespDto
  */
 public async getExtIdp({
     id,
     tenantId,
 }: {
-    /** 身份源 id **/
+    /** 身份源 ID **/
     id: string,
     /** 租户 ID **/
     tenantId?: string,
@@ -1666,7 +1715,7 @@ public async getExtIdp({
 
 /**
  * @summary 创建身份源
- * @description 创建身份源
+ * @description 创建身份源，可以设置身份源名称、连接类型、租户 ID 等。
  * @returns ExtIdpSingleRespDto
  */
 public async createExtIdp(requestBody: CreateExtIdpDto,
@@ -1680,7 +1729,7 @@ public async createExtIdp(requestBody: CreateExtIdpDto,
 
 /**
  * @summary 更新身份源配置
- * @description 更新身份源配置
+ * @description 更新身份源配置，可以设置身份源 ID 与 名称。
  * @returns ExtIdpSingleRespDto
  */
 public async updateExtIdp(requestBody: UpdateExtIdpDto,
@@ -1694,7 +1743,7 @@ public async updateExtIdp(requestBody: UpdateExtIdpDto,
 
 /**
  * @summary 删除身份源
- * @description 删除身份源
+ * @description 通过身份源 ID，删除身份源。
  * @returns IsSuccessRespDto
  */
 public async deleteExtIdp(requestBody: DeleteExtIdpDto,
@@ -1708,7 +1757,7 @@ public async deleteExtIdp(requestBody: DeleteExtIdpDto,
 
 /**
  * @summary 在某个已有身份源下创建新连接
- * @description 在某个已有身份源下创建新连接
+ * @description 在某个已有身份源下创建新连接，可以设置身份源图标、是否只支持登录等。
  * @returns ExtIdpConnDetailSingleRespDto
  */
 public async createExtIdpConn(requestBody: CreateExtIdpConnDto,
@@ -1722,7 +1771,7 @@ public async createExtIdpConn(requestBody: CreateExtIdpConnDto,
 
 /**
  * @summary 更新身份源连接
- * @description 更新身份源连接
+ * @description 更新身份源连接，可以设置身份源图标、是否只支持登录等。
  * @returns ExtIdpConnDetailSingleRespDto
  */
 public async updateExtIdpConn(requestBody: UpdateExtIdpConnDto,
@@ -1736,7 +1785,7 @@ public async updateExtIdpConn(requestBody: UpdateExtIdpConnDto,
 
 /**
  * @summary 删除身份源连接
- * @description 删除身份源连接
+ * @description 通过身份源连接 ID，删除身份源连接。
  * @returns IsSuccessRespDto
  */
 public async deleteExtIdpConn(requestBody: DeleteExtIdpConnDto,
@@ -1750,7 +1799,7 @@ public async deleteExtIdpConn(requestBody: DeleteExtIdpConnDto,
 
 /**
  * @summary 身份源连接开关
- * @description 身份源连接开关
+ * @description 身份源连接开关，可以打开或关闭身份源连接。
  * @returns IsSuccessRespDto
  */
 public async changeConnState(requestBody: EnableExtIdpConnDto,
@@ -1764,13 +1813,13 @@ public async changeConnState(requestBody: EnableExtIdpConnDto,
 
 /**
  * @summary 获取用户池配置的自定义字段列表
- * @description 获取用户池配置的自定义字段列表
+ * @description 通过主体类型，获取用户池配置的自定义字段列表。
  * @returns CustomFieldListRespDto
  */
 public async getCustomFields({
     targetType,
 }: {
-    /** 主体类型，目前支持用户、角色、分组和部门 **/
+    /** 主体类型，目前支持用户、角色、分组、部门 **/
     targetType: 'USER' | 'ROLE' | 'GROUP' | 'DEPARTMENT',
 }): Promise<CustomFieldListRespDto> {
     return await this.httpClient.request({
@@ -1812,7 +1861,7 @@ public async setCustomData(requestBody: SetCustomDataReqDto,
 
 /**
  * @summary 获取用户、分组、角色、组织机构的自定义字段值
- * @description 获取用户、分组、角色、组织机构的自定义字段值
+ * @description 通过筛选条件，获取用户、分组、角色、组织机构的自定义字段值。
  * @returns GetCustomDataRespDto
  */
 public async getCustomData({
@@ -1820,11 +1869,11 @@ public async getCustomData({
     targetIdentifier,
     namespace,
 }: {
-    /** 主体类型，目前支持用户、角色、分组和部门 **/
+    /** 主体类型，目前支持用户、角色、分组、部门 **/
     targetType: 'USER' | 'ROLE' | 'GROUP' | 'DEPARTMENT',
     /** 目标对象唯一标志符 **/
     targetIdentifier: string,
-    /** 所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略。 **/
+    /** 所属权限分组的 code，当 targetType 为角色的时候需要填写，否则可以忽略 **/
     namespace?: string,
 }): Promise<GetCustomDataRespDto> {
     return await this.httpClient.request({
@@ -1840,7 +1889,7 @@ public async getCustomData({
 
 /**
  * @summary 创建资源
- * @description 创建资源
+ * @description 创建资源，可以设置资源的描述、定义的操作类型、URL 标识等。
  * @returns ResourceRespDto
  */
 public async createResource(requestBody: CreateResourceDto,
@@ -1854,7 +1903,7 @@ public async createResource(requestBody: CreateResourceDto,
 
 /**
  * @summary 批量创建资源
- * @description 批量创建资源
+ * @description 批量创建资源，可以设置资源的描述、定义的操作类型、URL 标识等。
  * @returns IsSuccessRespDto
  */
 public async createResourcesBatch(requestBody: CreateResourcesBatchDto,
@@ -1868,7 +1917,7 @@ public async createResourcesBatch(requestBody: CreateResourcesBatchDto,
 
 /**
  * @summary 获取资源详情
- * @description 获取资源详情
+ * @description 根据筛选条件，获取资源详情。
  * @returns ResourceRespDto
  */
 public async getResource({
@@ -1892,14 +1941,14 @@ public async getResource({
 
 /**
  * @summary 批量获取资源详情
- * @description 批量获取资源详情
+ * @description 根据筛选条件，批量获取资源详情。
  * @returns ResourceListRespDto
  */
 public async getResourcesBatch({
     codeList,
     namespace,
 }: {
-    /** 资源 code 列表,批量可以使用逗号分隔 **/
+    /** 资源 code 列表，批量可以使用逗号分隔 **/
     codeList: Array<string>,
     /** 所属权限分组的 code **/
     namespace?: string,
@@ -1916,7 +1965,7 @@ public async getResourcesBatch({
 
 /**
  * @summary 分页获取资源列表
- * @description 分页获取资源列表
+ * @description 根据筛选条件，分页获取资源详情列表。
  * @returns ResourcePaginatedRespDto
  */
 public async listResources({
@@ -1948,7 +1997,7 @@ public async listResources({
 
 /**
  * @summary 修改资源
- * @description 修改资源（Pratial Update）
+ * @description 修改资源，可以设置资源的描述、定义的操作类型、URL 标识等。
  * @returns ResourceRespDto
  */
 public async updateResource(requestBody: UpdateResourceDto,
@@ -1962,7 +2011,7 @@ public async updateResource(requestBody: UpdateResourceDto,
 
 /**
  * @summary 删除资源
- * @description 删除资源
+ * @description 通过资源唯一标志符以及所属权限分组，删除资源。
  * @returns IsSuccessRespDto
  */
 public async deleteResource(requestBody: DeleteResourceDto,
@@ -1976,7 +2025,7 @@ public async deleteResource(requestBody: DeleteResourceDto,
 
 /**
  * @summary 批量删除资源
- * @description 批量删除资源
+ * @description 通过资源唯一标志符以及所属权限分组，批量删除资源
  * @returns IsSuccessRespDto
  */
 public async deleteResourcesBatch(requestBody: DeleteResourcesBatchDto,
@@ -1990,7 +2039,7 @@ public async deleteResourcesBatch(requestBody: DeleteResourcesBatchDto,
 
 /**
  * @summary 创建权限分组
- * @description 创建权限分组
+ * @description 创建权限分组，可以设置分组名称与描述信息。
  * @returns NamespaceRespDto
  */
 public async createNamespace(requestBody: CreateNamespaceDto,
@@ -2004,7 +2053,7 @@ public async createNamespace(requestBody: CreateNamespaceDto,
 
 /**
  * @summary 批量创建权限分组
- * @description 批量创建权限分组
+ * @description 批量创建权限分组，可以分别设置分组名称与描述信息。
  * @returns IsSuccessRespDto
  */
 public async createNamespacesBatch(requestBody: CreateNamespacesBatchDto,
@@ -2018,7 +2067,7 @@ public async createNamespacesBatch(requestBody: CreateNamespacesBatchDto,
 
 /**
  * @summary 获取权限分组详情
- * @description 获取权限分组详情
+ * @description 通过权限分组唯一标志符，获取权限分组详情。
  * @returns NamespaceRespDto
  */
 public async getNamespace({
@@ -2038,13 +2087,13 @@ public async getNamespace({
 
 /**
  * @summary 批量获取权限分组详情
- * @description 批量获取权限分组详情
+ * @description 分别通过权限分组唯一标志符，批量获取权限分组详情。
  * @returns NamespaceListRespDto
  */
 public async getNamespacesBatch({
     codeList,
 }: {
-    /** 资源 code 列表,批量可以使用逗号分隔 **/
+    /** 资源 code 列表，批量可以使用逗号分隔 **/
     codeList: Array<string>,
 }): Promise<NamespaceListRespDto> {
     return await this.httpClient.request({
@@ -2058,7 +2107,7 @@ public async getNamespacesBatch({
 
 /**
  * @summary 修改权限分组信息
- * @description 修改权限分组信息
+ * @description 修改权限分组信息，可以修改名称、描述信息以及新的唯一标志符。
  * @returns UpdateNamespaceRespDto
  */
 public async updateNamespace(requestBody: UpdateNamespaceDto,
@@ -2072,7 +2121,7 @@ public async updateNamespace(requestBody: UpdateNamespaceDto,
 
 /**
  * @summary 删除权限分组信息
- * @description 删除权限分组信息
+ * @description 通过权限分组唯一标志符，删除权限分组信息。
  * @returns IsSuccessRespDto
  */
 public async deleteNamespace(requestBody: DeleteNamespaceDto,
@@ -2086,7 +2135,7 @@ public async deleteNamespace(requestBody: DeleteNamespaceDto,
 
 /**
  * @summary 批量删除权限分组
- * @description 批量删除权限分组
+ * @description 分别通过权限分组唯一标志符，批量删除权限分组。
  * @returns IsSuccessRespDto
  */
 public async deleteNamespacesBatch(requestBody: DeleteNamespacesBatchDto,
@@ -2100,7 +2149,7 @@ public async deleteNamespacesBatch(requestBody: DeleteNamespacesBatchDto,
 
 /**
  * @summary 授权资源
- * @description 给多个主体同时授权多个资源
+ * @description 将一个/多个资源授权给用户、角色、分组、组织机构等主体，且可以分别指定不同的操作权限。
  * @returns IsSuccessRespDto
  */
 public async authorizeResources(requestBody: AuthorizeResourcesDto,
@@ -2114,7 +2163,7 @@ public async authorizeResources(requestBody: AuthorizeResourcesDto,
 
 /**
  * @summary 获取某个主体被授权的资源列表
- * @description 获取某个主体被授权的资源列表
+ * @description 根据筛选条件，获取某个主体被授权的资源列表。
  * @returns AuthorizedResourcePaginatedRespDto
  */
 public async getAuthorizedResources({
@@ -2154,7 +2203,7 @@ public async getAuthorizedResources({
 
 /**
  * @summary 判断用户是否对某个资源的某个操作有权限
- * @description 判断用户是否对某个资源的某个操作有权限
+ * @description 判断用户是否对某个资源的某个操作有权限。
  * @returns IsActionAllowedRespDtp
  */
 public async isActionAllowed(requestBody: IsActionAllowedDto,

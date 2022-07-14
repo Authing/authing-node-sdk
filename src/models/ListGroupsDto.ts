@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取分组列表接口，支持分页
+ * 获取分组列表，支持分页。
  */
 export type ListGroupsDto = {
     /**

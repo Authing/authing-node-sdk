@@ -20,7 +20,7 @@ export type CreateExtIdpConnDto = {
      */
     type: CreateExtIdpConnDto.type;
     /**
-     * 身份源连接 id
+     * 身份源连接 ID
      */
     extIdpId: string;
     /**

@@ -121,6 +121,10 @@ export type UserDto = {
      * 用户的扩展字段数据
      */
     customData?: any;
+    /**
+     * 用户状态上次修改时间
+     */
+    statusChangedAt?: string;
 };
 
 export namespace UserDto {

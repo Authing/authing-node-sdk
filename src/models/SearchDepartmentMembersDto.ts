@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 搜索部门下的成员
+ * 通过组织 code、部门 ID、搜索关键词，搜索部门下的成员，支持分页，可以选择获取自定义数据、identities 等。
  */
 export type SearchDepartmentMembersDto = {
     /**
@@ -11,11 +11,11 @@ export type SearchDepartmentMembersDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id，根部门传 `root`
+     * 部门 ID，根部门传 `root`
      */
     departmentId?: any;
     /**
-     * 搜索关键词
+     * 搜索关键词，如成员名称
      */
     keywords?: any;
     /**

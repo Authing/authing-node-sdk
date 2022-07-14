@@ -3,13 +3,17 @@
 /* eslint-disable */
 
 /**
- * 根据用户 id 批量获取用户信息
+ * 通过用户 ID 列表，批量获取用户信息，可以选择获取自定义数据、identities、选择指定用户 ID 类型等。
  */
 export type GetUserBatchDto = {
     /**
      * 用户 ID 数组
      */
     userIds?: any;
+    /**
+     * 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
+     */
+    userIdType?: any;
     /**
      * 是否获取自定义数据
      */

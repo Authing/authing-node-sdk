@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取部门信息
+ * 通过组织 code 以及 部门 ID 或 部门 code，获取部门信息，可以获取自定义数据。
  */
 export type GetDepartmentDto = {
     /**
@@ -11,7 +11,7 @@ export type GetDepartmentDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id，根部门传 `root`。departmentId 和 departmentCode 必传其一。
+     * 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
      */
     departmentId?: any;
     /**

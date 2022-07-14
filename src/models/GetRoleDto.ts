@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取角色详情
+ * 通过权限分组内角色 code，获取角色详情。
  */
 export type GetRoleDto = {
     /**

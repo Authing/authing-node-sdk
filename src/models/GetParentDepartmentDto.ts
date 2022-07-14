@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取父部门信息
+ * 通过组织 code、部门 ID，获取父部门信息，可以选择获取自定义数据等。
  */
 export type GetParentDepartmentDto = {
     /**
@@ -11,7 +11,7 @@ export type GetParentDepartmentDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id
+     * 部门 ID
      */
     departmentId?: any;
     /**

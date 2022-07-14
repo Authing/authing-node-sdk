@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 搜索顶层组织机构列表
+ * 通过搜索关键词，搜索顶层组织机构列表，支持分页。
  */
 export type SearchOrganizationsDto = {
     /**
-     * 搜索关键词
+     * 搜索关键词，如组织机构名称
      */
     keywords?: any;
     /**

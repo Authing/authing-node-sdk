@@ -3,13 +3,17 @@
 /* eslint-disable */
 
 /**
- * 获取用户登录历史记录
+ * 通过用户 ID，获取用户登录历史记录，支持分页，可以选择指定用户 ID 类型、应用 ID、开始与结束时间戳等。
  */
 export type GetUserLoginHistoryDto = {
     /**
      * 用户 ID
      */
     userId?: any;
+    /**
+     * 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
+     */
+    userIdType?: any;
     /**
      * 应用 ID
      */

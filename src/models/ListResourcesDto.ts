@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 分页获取资源列表
+ * 根据筛选条件，分页获取资源详情列表。
  */
 export type ListResourcesDto = {
     /**

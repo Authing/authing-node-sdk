@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { SetUserDepartmentDto } from './SetUserDepartmentDto';
+import type { SetUserDepartmentsOptionsDto } from './SetUserDepartmentsOptionsDto';
 
 export type SetUserDepartmentsDto = {
     /**
@@ -13,4 +14,8 @@ export type SetUserDepartmentsDto = {
      * 用户 ID
      */
     userId: string;
+    /**
+     * 可选参数
+     */
+    options?: SetUserDepartmentsOptionsDto;
 };

@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 角色被授权的资源列表
+ * 通过权限分组内角色 code，获取角色被授权的资源列表。
  */
 export type GetRoleAuthorizedResourcesDto = {
     /**
@@ -15,7 +15,7 @@ export type GetRoleAuthorizedResourcesDto = {
      */
     namespace?: any;
     /**
-     * 资源类型
+     * 资源类型，如 数据、API、按钮、菜单
      */
     resourceType?: any;
 };

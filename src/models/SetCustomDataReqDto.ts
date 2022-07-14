@@ -14,11 +14,11 @@ export type SetCustomDataReqDto = {
      */
     targetIdentifier: string;
     /**
-     * 主体类型，目前支持用户、角色、分组和部门
+     * 主体类型，目前支持用户、角色、分组、部门
      */
     targetType: SetCustomDataReqDto.targetType;
     /**
-     * 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略。
+     * 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略
      */
     namespace?: string;
 };
@@ -26,7 +26,7 @@ export type SetCustomDataReqDto = {
 export namespace SetCustomDataReqDto {
 
     /**
-     * 主体类型，目前支持用户、角色、分组和部门
+     * 主体类型，目前支持用户、角色、分组、部门
      */
     export enum targetType {
         USER = 'USER',

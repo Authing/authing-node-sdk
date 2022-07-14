@@ -78,7 +78,7 @@ export type UpdateUserReqDto = {
      */
     username?: string;
     /**
-     * 加密类型
+     * 密码加密类型，支持 sm2 和 rsa
      */
     passwordEncryptType?: UpdateUserReqDto.passwordEncryptType;
     /**
@@ -90,7 +90,7 @@ export type UpdateUserReqDto = {
      */
     phone?: string;
     /**
-     * 密码。可选加密方式进行加密，默认为未加密
+     * 密码。可选加密方式进行加密，通过 passwordEncryptType 参数进行加密方法选择，默认为未加密
      */
     password?: string;
     /**
@@ -98,7 +98,7 @@ export type UpdateUserReqDto = {
      */
     customData?: any;
     /**
-     * 附加选项
+     * 可选参数
      */
     options?: UpdateUserOptionsDto;
 };
@@ -125,7 +125,7 @@ export namespace UpdateUserReqDto {
     }
 
     /**
-     * 加密类型
+     * 密码加密类型，支持 sm2 和 rsa
      */
     export enum passwordEncryptType {
         SM2 = 'sm2',

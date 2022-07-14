@@ -3,9 +3,17 @@
 /* eslint-disable */
 
 /**
- * 通过 id、username、email、phone、email、externalId 获取用户详情
+ * 通过用户 ID，获取用户详情，可以选择获取自定义数据、identities、选择指定用户 ID 类型等。
  */
 export type GetUserDto = {
+    /**
+     * 用户 ID
+     */
+    userId?: any;
+    /**
+     * 用户 ID 类型，可以指定为用户 ID、手机号、邮箱、用户名和 externalId。
+     */
+    userIdType?: any;
     /**
      * 是否获取自定义数据
      */
@@ -18,24 +26,4 @@ export type GetUserDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: any;
-    /**
-     * 用户 ID
-     */
-    userId?: any;
-    /**
-     * 手机号
-     */
-    phone?: any;
-    /**
-     * 邮箱
-     */
-    email?: any;
-    /**
-     * 用户名
-     */
-    username?: any;
-    /**
-     * 原系统 ID
-     */
-    externalId?: any;
 };

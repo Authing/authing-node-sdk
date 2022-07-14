@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取部门成员列表
+ * 通过组织 code、部门 ID、排序，获取部门成员列表，支持分页，可以选择获取自定义数据、identities 等。
  */
 export type ListDepartmentMembersDto = {
     /**
@@ -11,7 +11,7 @@ export type ListDepartmentMembersDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id，根部门传 `root`
+     * 部门 ID，根部门传 `root`
      */
     departmentId?: any;
     /**

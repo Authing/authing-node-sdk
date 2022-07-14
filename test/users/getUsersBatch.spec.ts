@@ -14,7 +14,7 @@ describe("getUsersBatch", () => {
 
   describe("Success", () => {
     it("default", async () => {
-      const { statusCode, data } = await managementClient.getUsersBatch({
+      const { statusCode, data } = await managementClient.getUserBatch({
         userIds,
         withCustomData: true,
         withIdentities: true,
@@ -31,7 +31,7 @@ describe("getUsersBatch", () => {
 
   describe("Fail", () => {
     it("userIds is invalid", async () => {
-      const { statusCode, message } = await managementClient.getUsersBatch({
+      const { statusCode, message } = await managementClient.getUserBatch({
         userIds: [],
       });
       expect(statusCode).toEqual(400);

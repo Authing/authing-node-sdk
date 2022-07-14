@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { HasAnyRoleOptionsDto } from './HasAnyRoleOptionsDto';
 import type { HasRoleRolesDto } from './HasRoleRolesDto';
 
 export type HasAnyRoleReqDto = {
@@ -13,4 +14,8 @@ export type HasAnyRoleReqDto = {
      * 用户 ID
      */
     userId: string;
+    /**
+     * 可选参数
+     */
+    options?: HasAnyRoleOptionsDto;
 };

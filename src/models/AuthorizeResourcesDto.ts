@@ -6,7 +6,7 @@ import type { AuthorizeResourceItem } from './AuthorizeResourceItem';
 
 export type AuthorizeResourcesDto = {
     /**
-     * 授权列表
+     * 授权资源列表
      */
     list: Array<AuthorizeResourceItem>;
     /**

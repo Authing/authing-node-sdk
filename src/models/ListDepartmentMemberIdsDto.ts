@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取部门直属成员 ID 列表
+ * 通过组织 code、部门 ID，获取部门直属成员 ID 列表。
  */
 export type ListDepartmentMemberIdsDto = {
     /**
@@ -11,7 +11,7 @@ export type ListDepartmentMemberIdsDto = {
      */
     organizationCode?: any;
     /**
-     * 部门 id，根部门传 `root`
+     * 部门 ID，根部门传 `root`
      */
     departmentId?: any;
     /**

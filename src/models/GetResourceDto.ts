@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取资源详情
+ * 根据筛选条件，获取资源详情。
  */
 export type GetResourceDto = {
     /**

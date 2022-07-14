@@ -4,7 +4,7 @@
 
 export type SearchDepartmentsReqDto = {
     /**
-     * 搜索关键词
+     * 搜索关键词，如组织名称等
      */
     keywords: string;
     /**

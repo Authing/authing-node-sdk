@@ -14,7 +14,7 @@ export type CreateUserInfoDto = {
      */
     email?: string;
     /**
-     * 加密类型
+     * 密码加密类型，支持 sm2 和 rsa
      */
     passwordEncryptType?: CreateUserInfoDto.passwordEncryptType;
     /**
@@ -94,9 +94,13 @@ export type CreateUserInfoDto = {
      */
     customData?: any;
     /**
-     * 密码。可选加密方式进行加密，默认为未加密
+     * 密码。可选加密方式进行加密，通过 passwordEncryptType 参数进行加密方法选择，默认为未加密
      */
     password?: string;
+    /**
+     * 是否首次登录时重新设置密码
+     */
+    resetPasswordOnFisrtLogin?: boolean;
     /**
      * 租户 ID
      */
@@ -120,7 +124,7 @@ export namespace CreateUserInfoDto {
     }
 
     /**
-     * 加密类型
+     * 密码加密类型，支持 sm2 和 rsa
      */
     export enum passwordEncryptType {
         SM2 = 'sm2',

@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取某个主体被授权的资源列表
+ * 根据筛选条件，获取某个主体被授权的资源列表。
  */
 export type GetAuthorizedResourcesDto = {
     /**

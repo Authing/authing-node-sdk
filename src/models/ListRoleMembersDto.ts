@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取角色成员列表
+ * 通过权限分组内内角色 code，获取角色成员列表，支持分页，可以选择或获取自定义数据、identities 等。
  */
 export type ListRoleMembersDto = {
     /**

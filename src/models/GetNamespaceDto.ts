@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取权限分组详情
+ * 通过权限分组唯一标志符，获取权限分组详情。
  */
 export type GetNamespaceDto = {
     /**

@@ -38,7 +38,7 @@ export type UpdateDepartmentReqDto = {
      */
     departmentIdType?: UpdateDepartmentReqDto.departmentIdType;
     /**
-     * 父部门 id
+     * 父部门 ID
      */
     parentDepartmentId?: string;
     /**

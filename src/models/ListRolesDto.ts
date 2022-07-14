@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取角色列表
+ * 获取角色列表，支持分页。
  */
 export type ListRolesDto = {
     /**
