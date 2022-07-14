@@ -9,26 +9,25 @@ import { managementClient } from "../client";
 //getUser
 describe("getUser", () => {
   //定义
-  let userId = "";
-  const username = generateRandomString();
-  const phone = generateRandomPhone();
-  let email = ["", ""];
+  var userId = "";
+  var username = generateRandomString();
+  var phone = generateRandomPhone();
+  var email = ["", ""];
   var externalId = generateRandomString();
 
   //构造
   beforeAll(async () => {
     //创建用户
-    const _email = generateRandomEmail();
     const {
       statusCode,
       data: user,
       message,
     } = await managementClient.createUser({
       username,
-      email: _email,
+      phoneCountryCode: "+86",
       phone,
       externalId,
-      phoneCountryCode: "+86",
+      email: generateRandomEmail(),
       name: generateRandomString(),
       nickname: generateRandomString(),
       gender: Models.UserDto.gender.M,
@@ -59,33 +58,12 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
       });
       //处理
       expect(statusCode).toEqual(200);
       expect(user.userId).toMatch(userId);
-      expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
-      expect(user.photo).toBeTruthy();
-      expect(user.externalId).toBeTruthy();
-    });
-
-    //通过 userId 优先级
-    it("by userId and first", async () => {
-      //定义
-      const externalId = "test";
-      //请求
-      const {
-        statusCode,
-        data: user,
-        message,
-      } = await managementClient.getUser({
-        userId,
-        externalId,
-      });
-      //处理
-      expect(statusCode).toEqual(200);
-      expect(user.userId).toMatch(userId);
-      expect(user.externalId).not.toMatch(externalId);
       expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
       expect(user.photo).toBeTruthy();
       expect(user.externalId).toBeTruthy();
@@ -99,7 +77,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        username,
+        userIdType: "username",
+        userId: username,
       });
       //处理
       expect(statusCode).toEqual(200);
@@ -117,7 +96,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        email: email[0],
+        userIdType: "email",
+        userId: email[0],
       });
       //处理
       expect(statusCode).toEqual(200);
@@ -135,11 +115,12 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        email: email[1],
+        userIdType: "email",
+        userId: email[1],
       });
       //处理
       expect(statusCode).toEqual(200);
-      expect(user.email).toMatch(email[1].toLowerCase());
+      expect(user.email).toMatch((email[1]).toLowerCase());
       expect(user.status).toEqual(Models.UserDto.status.ACTIVATED);
       expect(user.photo).toBeTruthy();
       expect(user.externalId).toBeTruthy();
@@ -153,7 +134,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        phone,
+        userIdType: "phone",
+        userId: phone,
       });
       //处理
       expect(statusCode).toEqual(200);
@@ -171,7 +153,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        externalId,
+        userIdType: "external_id",
+        userId: externalId,
       });
       //处理
       expect(statusCode).toEqual(200);
@@ -191,6 +174,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withCustomData,
       });
@@ -213,6 +197,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withCustomData,
       });
@@ -235,6 +220,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withIdentities,
       });
@@ -257,6 +243,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withIdentities,
       });
@@ -279,6 +266,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withDepartmentIds,
       });
@@ -301,6 +289,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
         withDepartmentIds,
       });
@@ -319,20 +308,19 @@ describe("getUser", () => {
     //通过 null
     it("by null", async () => {
       //定义
-      const userId = undefined;
+      const userId = "";
       //请求
       const {
         statusCode,
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toMatch(
-        "must provide userId or username or email or phone or externalId"
-      );
+      expect(message).toMatch("参数 userId 格式错误");
     });
 
     //通过 userId 错误
@@ -345,6 +333,7 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
+        userIdType: "user_id",
         userId,
       });
       //处理
@@ -362,7 +351,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        email,
+        userIdType: "email",
+        userId: email,
       });
       //处理
       expect(statusCode).not.toEqual(200);
@@ -379,11 +369,12 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        phone,
+        userIdType: "phone",
+        userId: phone,
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toMatch("user not exists");
+      expect(message).toMatch("用户不存在");
     });
 
     //通过 phone 非法格式
@@ -396,7 +387,8 @@ describe("getUser", () => {
         data: user,
         message,
       } = await managementClient.getUser({
-        phone,
+        userIdType: "phone",
+        userId: phone,
       });
       //处理
       expect(statusCode).not.toEqual(200);
