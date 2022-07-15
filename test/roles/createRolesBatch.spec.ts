@@ -2,7 +2,7 @@ import exp from "constants";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createRole", () => {
+describe("createRolesBatch", () => {
   beforeAll(async () => {});
 
   describe("Success", () => {
