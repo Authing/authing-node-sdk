@@ -1,3 +1,5 @@
+import exp from "constants";
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createRole", () => {
@@ -12,25 +14,29 @@ describe("createRole", () => {
         statusCode,
         data: role,
         message,
-      } = await managementClient.createRole({
-        code,
-        namespace,
-        description,
+      } = await managementClient.createRolesBatch({
+        list: [
+          {
+            code,
+            namespace,
+            description,
+          },
+        ],
       });
       expect(statusCode).toEqual(200);
-      expect(role.code).toEqual(code);
-      expect(role.namespace).toEqual(namespace);
-      expect(role.description).toEqual(description);
+      expect(role.success).toEqual(true);
     });
   });
 
   //析构
   afterAll(async () => {
     //删除用户
-    const { statusCode, data, message } =
-      await managementClient.deleteRolesBatch({
-        codeList: ["1229505432"],
-      });
+    await managementClient.deleteRolesBatch({
+      codeList: ["1229505432"],
+    });
+    await managementClient.deleteRolesBatch({
+      codeList: [""],
+    });
   });
 
   describe("Fail", () => {
@@ -44,10 +50,14 @@ describe("createRole", () => {
         apiCode,
         data: role,
         message,
-      } = await managementClient.createRole({
-        code,
-        namespace,
-        description,
+      } = await managementClient.createRolesBatch({
+        list: [
+          {
+            code,
+            namespace,
+            description,
+          },
+        ],
       });
       expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
@@ -65,12 +75,16 @@ describe("createRole", () => {
         apiCode,
         data: role,
         message,
-      } = await managementClient.createRole({
-        code,
-        namespace,
-        description,
+      } = await managementClient.createRolesBatch({
+        list: [
+          {
+            code,
+            namespace,
+            description,
+          },
+        ],
       });
-      expect(statusCode).toEqual(400);
+      expect(apiCode).toEqual(400);
       expect(message).toEqual("参数 code 格式错误");
     });
   });
@@ -86,10 +100,14 @@ describe("createRole", () => {
         apiCode,
         data: role,
         message,
-      } = await managementClient.createRole({
-        code,
-        namespace,
-        description,
+      } = await managementClient.createRolesBatch({
+        list: [
+          {
+            code,
+            namespace,
+            description,
+          },
+        ],
       });
       expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
@@ -97,24 +115,16 @@ describe("createRole", () => {
   });
 
   describe("Fail", () => {
-    it("role code must be less than 64 characters", async () => {
-      const code =
-        "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
-      const namespace = "default";
-      const description = "这是描述";
-
+    it("code list must be not empty", async () => {
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
-      } = await managementClient.createRole({
-        code,
-        namespace,
-        description,
+      } = await managementClient.createRolesBatch({
+        list: [],
       });
       expect(statusCode).toEqual(400);
-      expect(message).toEqual("参数 code 格式错误");
+      expect(message).toEqual("参数 list 格式错误");
     });
   });
 });
