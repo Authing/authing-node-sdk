@@ -41,6 +41,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -48,7 +49,7 @@ describe("createRole", () => {
         namespace,
         description,
       });
-      expect(statusCode).toEqual(499);
+      expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
     });
   });
@@ -61,6 +62,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -81,6 +83,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -88,19 +91,21 @@ describe("createRole", () => {
         namespace,
         description,
       });
-      expect(statusCode).toEqual(499);
+      expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
     });
   });
 
   describe("Fail", () => {
     it("role code must be less than 64 characters", async () => {
-      const code = " ";
+      const code =
+        "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
       const namespace = "default";
       const description = "这是描述";
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -108,8 +113,8 @@ describe("createRole", () => {
         namespace,
         description,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual("参数 code 格式错误");
     });
   });
 });

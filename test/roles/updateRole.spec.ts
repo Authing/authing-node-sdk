@@ -83,8 +83,8 @@ describe("updateRole", () => {
         namespace,
         description,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 
@@ -108,6 +108,30 @@ describe("updateRole", () => {
       });
       expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
+    });
+  });
+
+  describe("Fail", () => {
+    it("role newCode must be less than 64 characters", async () => {
+      const newCode =
+        "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
+      const code = "www";
+      const namespace = "default";
+      const description = "这是描述";
+
+      const {
+        statusCode,
+        apiCode,
+        data: role,
+        message,
+      } = await managementClient.updateRole({
+        newCode,
+        code,
+        namespace,
+        description,
+      });
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual("参数 newCode 格式错误");
     });
   });
 });

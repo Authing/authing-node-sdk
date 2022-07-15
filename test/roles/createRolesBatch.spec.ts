@@ -47,6 +47,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRolesBatch({
@@ -58,8 +59,8 @@ describe("createRole", () => {
           },
         ],
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("code is invalid");
+      expect(apiCode).toEqual(500);
+      expect(message).toEqual("角色 Code 格式不正确！");
     });
   });
 
@@ -71,6 +72,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRolesBatch({
@@ -82,7 +84,7 @@ describe("createRole", () => {
           },
         ],
       });
-      expect(statusCode).toEqual(499);
+      expect(apiCode).toEqual(400);
       expect(message).toEqual("参数 code 格式错误");
     });
   });
@@ -95,6 +97,7 @@ describe("createRole", () => {
 
       const {
         statusCode,
+        apiCode,
         data: role,
         message,
       } = await managementClient.createRolesBatch({
@@ -106,7 +109,7 @@ describe("createRole", () => {
           },
         ],
       });
-      expect(statusCode).toEqual(499);
+      expect(apiCode).toEqual(500);
       expect(message).toEqual("角色 Code 格式不正确！");
     });
   });
