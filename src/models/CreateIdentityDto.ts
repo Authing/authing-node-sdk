@@ -19,8 +19,4 @@ export type CreateIdentityDto = {
      * 在外部身份源的 id
      */
     userIdInIdp: string;
-    /**
-     * 身份来自的身份源连接 ID 列表
-     */
-    originConnIds: Array<string>;
 };

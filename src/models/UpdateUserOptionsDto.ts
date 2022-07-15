@@ -14,6 +14,10 @@ export type UpdateUserOptionsDto = {
      */
     resetPasswordOnNextLogin?: boolean;
     /**
+     * 是否自动生成密码
+     */
+    autoGeneratePassword?: boolean;
+    /**
      * 重置密码发送邮件和手机号选项
      */
     sendPasswordResetedNotification?: SendResetPasswordNotificationDto;
