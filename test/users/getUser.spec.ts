@@ -305,24 +305,6 @@ describe("getUser", () => {
 
   //失败
   describe("Fail", () => {
-    //通过 null
-    it("by null", async () => {
-      //定义
-      const userId = "";
-      //请求
-      const {
-        statusCode,
-        data: user,
-        message,
-      } = await managementClient.getUser({
-        userIdType: "user_id",
-        userId,
-      });
-      //处理
-      expect(statusCode).not.toEqual(200);
-      expect(message).toMatch("参数 userId 格式错误");
-    });
-
     //通过 userId 错误
     it("by userId and error", async () => {
       //定义
@@ -356,7 +338,7 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toMatch("参数 email 格式错误");
+      expect(message).toMatch("参数 userId 格式错误");
     });
 
     //通过 phone 国际
@@ -392,7 +374,7 @@ describe("getUser", () => {
       });
       //处理
       expect(statusCode).not.toEqual(200);
-      expect(message).toMatch("参数 phone 格式错误");
+      expect(message).toMatch("参数 userId 格式错误");
     });
   });
 });
