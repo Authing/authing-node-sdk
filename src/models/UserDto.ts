@@ -14,6 +14,10 @@ export type UserDto = {
      */
     createdAt: string;
     /**
+     * 账号更新时间
+     */
+    updatedAt: string;
+    /**
      * 账户当前状态
      */
     status: UserDto.status;
