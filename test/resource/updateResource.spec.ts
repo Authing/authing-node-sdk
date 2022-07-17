@@ -1,12 +1,33 @@
-import { ResourceAction, UpdateResourceDto } from "../../src/models";
+import {
+  CreateResourceDto,
+  ResourceAction,
+  UpdateResourceDto,
+} from "../../src/models";
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateResource", () => {
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    const code = generateRandomString();
+    const description = "这是描述";
+    const type = CreateResourceDto.type.API;
+    const {
+      statusCode,
+      data: resource,
+      message,
+    } = await managementClient.createResource({
+      type,
+      code,
+      description,
+    });
+    expect(statusCode).toEqual(200);
+    expect(resource.code).toEqual(code);
+    expect(resource.description).toEqual(description);
+  });
 
   describe("Success", () => {
     it("with full basic resource", async () => {
-      const code = "1229505432";
+      const code = generateRandomString();
       const description = "这是描述";
       const type = UpdateResourceDto.type.API;
 
@@ -34,7 +55,7 @@ describe("updateResource", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteResourcesBatch({
-        codeList: ["1229505432"],
+        codeList: ["resourceCode"],
       });
   });
 

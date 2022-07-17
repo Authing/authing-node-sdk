@@ -1,3 +1,4 @@
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createRole", () => {
@@ -5,7 +6,7 @@ describe("createRole", () => {
 
   describe("Success", () => {
     it("with full basic role", async () => {
-      const code = "1229505432";
+      const code = generateRandomString();
       const namespace = "default";
       const description = "这是描述";
       const {
@@ -29,7 +30,7 @@ describe("createRole", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteRolesBatch({
-        codeList: ["1229505432"],
+        codeList: ["roleCode"],
       });
   });
 

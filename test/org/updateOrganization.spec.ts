@@ -2,7 +2,21 @@ import { CreateResourceDto } from "../../src/models";
 import { managementClient } from "../client";
 
 describe("updateOrganization", () => {
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    const organizationCode = "oc";
+    const organizationName = "组织节点名称";
+    const {
+      statusCode,
+      data: organization,
+      message,
+    } = await managementClient.createOrganization({
+      organizationCode,
+      organizationName,
+    });
+
+    expect(statusCode).toEqual(200);
+    expect(organization.organizationCode).toEqual(organizationCode);
+  });
 
   describe("Success", () => {
     it("with full basic organization", async () => {

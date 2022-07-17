@@ -3,7 +3,24 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateRole", () => {
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    const code = generateRandomString();
+    const namespace = "default";
+    const description = "这是描述";
+    const {
+      statusCode,
+      data: role,
+      message,
+    } = await managementClient.createRole({
+      code,
+      namespace,
+      description,
+    });
+    expect(statusCode).toEqual(200);
+    expect(role.code).toEqual(code);
+    expect(role.namespace).toEqual(namespace);
+    expect(role.description).toEqual(description);
+  });
 
   describe("Success", () => {
     it("with full basic role", async () => {

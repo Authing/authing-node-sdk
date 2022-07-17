@@ -7,7 +7,7 @@ describe("createRolesBatch", () => {
 
   describe("Success", () => {
     it("with full basic role", async () => {
-      const code = "1229505432";
+      const code = generateRandomString();
       const namespace = "default";
       const description = "这是描述";
       const {
@@ -32,7 +32,7 @@ describe("createRolesBatch", () => {
   afterAll(async () => {
     //删除用户
     await managementClient.deleteRolesBatch({
-      codeList: ["1229505432"],
+      codeList: ["roleCode"],
     });
     await managementClient.deleteRolesBatch({
       codeList: [""],
