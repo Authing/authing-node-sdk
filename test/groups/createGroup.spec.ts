@@ -21,8 +21,8 @@ describe("createGroup", () => {
 
   //成功
   describe("Success", () => {
-    //全部
-    it("all", async () => {
+    //默认
+    it("default", async () => {
       //请求
       const {
         statusCode,

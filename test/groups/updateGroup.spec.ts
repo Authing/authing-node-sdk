@@ -32,8 +32,8 @@ describe("updateGroup", () => {
 
   //成功
   describe("Success", () => {
-    //全部
-    it("all", async () => {
+    //默认
+    it("default", async () => {
       //定义
       const newCode = generateRandomString(5);
       //请求
