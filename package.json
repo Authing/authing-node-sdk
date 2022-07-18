@@ -1,6 +1,6 @@
 {
   "name": "authing-node-sdk",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "",
   "main": "dist/index.js",
   "source": "src/index.ts",
