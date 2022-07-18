@@ -2,10 +2,19 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createRole", () => {
-  beforeAll(async () => {});
   const code = generateRandomString();
   const namespace = "default";
   const description = "这是描述";
+
+  beforeAll(async () => {});
+
+  //析构
+  afterAll(async () => {
+    //删除用户
+    await managementClient.deleteRolesBatch({
+      codeList: [code],
+    });
+  });
 
   describe("Success", () => {
     it("with full basic role", async () => {
@@ -20,18 +29,7 @@ describe("createRole", () => {
       });
       expect(statusCode).toEqual(200);
       expect(role.code).toEqual(code);
-      expect(role.namespace).toEqual(namespace);
-      expect(role.description).toEqual(description);
     });
-  });
-
-  //析构
-  afterAll(async () => {
-    //删除用户
-    const { statusCode, data, message } =
-      await managementClient.deleteRolesBatch({
-        codeList: [code],
-      });
   });
 
   describe("Fail", () => {
@@ -40,7 +38,6 @@ describe("createRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -48,8 +45,8 @@ describe("createRole", () => {
         namespace,
         description,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid role code: ${code}`);
     });
   });
 
@@ -59,7 +56,6 @@ describe("createRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -78,7 +74,6 @@ describe("createRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({
@@ -86,8 +81,8 @@ describe("createRole", () => {
         namespace,
         description,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid role code: ${code}`);
     });
   });
 
@@ -98,7 +93,6 @@ describe("createRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.createRole({

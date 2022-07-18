@@ -3,54 +3,48 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateRole", () => {
-  const code = generateRandomString();
   const namespace = "default";
   const description = "这是描述";
+  const list = [
+    { code: generateRandomString(), namespace, description },
+    { code: generateRandomString(), namespace, description },
+    { code: generateRandomString(), namespace, description },
+    { code: generateRandomString(), namespace, description },
+    { code: generateRandomString(), namespace, description },
+  ];
 
   beforeAll(async () => {
-    const {
-      statusCode,
-      data: role,
-      message,
-    } = await managementClient.createRole({
-      code,
-      namespace,
-      description,
-    });
-    expect(statusCode).toEqual(200);
-    expect(role.code).toEqual(code);
-    expect(role.namespace).toEqual(namespace);
-    expect(role.description).toEqual(description);
-  });
-
-  describe("Success", () => {
-    it("with full basic role", async () => {
-      const newCode = "ThisIsNewCode";
-
-      const {
-        statusCode,
-        data: role,
-        message,
-      } = await managementClient.updateRole({
-        newCode,
-        code,
-        namespace,
-        description,
-      });
-      expect(statusCode).toEqual(200);
-      expect(role.success).toEqual(true);
+    await managementClient.createRolesBatch({
+      list,
     });
   });
 
   //析构
   afterAll(async () => {
+    const codeList = list.map((item) => {
+      return item.code;
+    });
     //将用户改回来manager
-    const newCode = "www";
-    await managementClient.updateRole({
-      newCode,
-      code,
-      namespace,
-      description,
+    await managementClient.deleteRolesBatch({
+      codeList,
+    });
+  });
+
+  describe("Success", () => {
+    it("with full basic role", async () => {
+      const newCode = generateRandomString();
+      const {
+        statusCode,
+        data: role,
+        message,
+      } = await managementClient.updateRole({
+        code: list[0].code,
+        newCode,
+        namespace,
+        description,
+      });
+      expect(statusCode).toEqual(200);
+      expect(role.success).toEqual(true);
     });
   });
 
@@ -60,17 +54,16 @@ describe("updateRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.updateRole({
+        code: list[1].code,
         newCode,
-        code,
         namespace,
         description,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid role code: ${newCode}`);
     });
   });
 
@@ -80,12 +73,11 @@ describe("updateRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.updateRole({
+        code: list[2].code,
         newCode,
-        code,
         namespace,
         description,
       });
@@ -99,17 +91,16 @@ describe("updateRole", () => {
       const newCode = " ";
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.updateRole({
+        code: list[3].code,
         newCode,
-        code,
         namespace,
         description,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("角色 Code 格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid role code: ${newCode}`);
     });
   });
 
@@ -120,12 +111,11 @@ describe("updateRole", () => {
 
       const {
         statusCode,
-        apiCode,
         data: role,
         message,
       } = await managementClient.updateRole({
+        code: list[4].code,
         newCode,
-        code,
         namespace,
         description,
       });

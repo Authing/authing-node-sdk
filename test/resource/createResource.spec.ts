@@ -3,13 +3,22 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createResource", () => {
-  beforeAll(async () => {});
+  const code = generateRandomString(10);
   const description = "这是描述";
-  const type = CreateResourceDto.type.API;
+  const type = CreateResourceDto.type.DATA;
+
+  beforeAll(async () => {});
+
+  //析构
+  afterAll(async () => {
+    //删除用户
+    await managementClient.deleteResourcesBatch({
+      codeList: [code, ""],
+    });
+  });
 
   describe("Success", () => {
     it("with full basic resource", async () => {
-      const code = generateRandomString();
       const {
         statusCode,
         data: resource,
@@ -25,15 +34,6 @@ describe("createResource", () => {
     });
   });
 
-  //析构
-  afterAll(async () => {
-    //删除用户
-    const { statusCode, data, message } =
-      await managementClient.deleteResourcesBatch({
-        codeList: ["resourceCode"],
-      });
-  });
-
   describe("Fail", () => {
     it("resource code is invalid", async () => {
       const code = "额！";
@@ -47,8 +47,8 @@ describe("createResource", () => {
         code,
         description,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("资源名称格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid resource code: ${code}`);
     });
   });
 
@@ -65,8 +65,8 @@ describe("createResource", () => {
         code,
         description,
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual("apiIdentifier is required when type is API");
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 
@@ -83,8 +83,8 @@ describe("createResource", () => {
         code,
         description,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("资源名称格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid resource code: ${code}`);
     });
   });
 

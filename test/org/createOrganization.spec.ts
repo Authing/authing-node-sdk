@@ -1,13 +1,14 @@
 import { CreateResourceDto } from "../../src/models";
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createOrganization", () => {
   beforeAll(async () => {});
   const organizationName = "组织节点名称";
+  const organizationCode = generateRandomString();
 
   describe("Success", () => {
     it("with full basic organization", async () => {
-      const organizationCode = "oc";
       const {
         statusCode,
         data: organization,
@@ -27,7 +28,7 @@ describe("createOrganization", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteOrganization({
-        organizationCode: "oc",
+        organizationCode,
       });
   });
 
@@ -44,8 +45,8 @@ describe("createOrganization", () => {
         organizationName,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("部门标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid organization code: ${organizationCode}`);
     });
   });
 
@@ -79,8 +80,8 @@ describe("createOrganization", () => {
         organizationCode,
         organizationName,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("部门标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid organization code: ${organizationCode}`);
     });
   });
 

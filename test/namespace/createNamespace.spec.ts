@@ -3,8 +3,9 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createNamespace", () => {
-  beforeAll(async () => {});
   const name = "权限分组名字";
+
+  beforeAll(async () => {});
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
@@ -45,8 +46,8 @@ describe("createNamespace", () => {
         code,
         name,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${code}`);
     });
   });
 
@@ -78,8 +79,8 @@ describe("createNamespace", () => {
         name,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${code}`);
     });
   });
 

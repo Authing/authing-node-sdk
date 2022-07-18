@@ -3,49 +3,51 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateNamespace", () => {
-  const code = generateRandomString();
   const name = "权限分组名字";
+  const list = [
+    { code: generateRandomString(), name },
+    { code: generateRandomString(), name },
+    { code: generateRandomString(), name },
+    { code: generateRandomString(), name },
+    { code: generateRandomString(), name },
+  ] as Array<CreateNamespaceDto>;
+  const newCode = generateRandomString();
+
   beforeAll(async () => {
     const {
       statusCode,
       data: namespace,
       message,
-    } = await managementClient.createNamespace({
-      code,
-      name,
+    } = await managementClient.createNamespacesBatch({
+      list,
     });
 
     expect(statusCode).toEqual(200);
-    expect(namespace.code).toEqual(code);
-    expect(namespace.name).toEqual(name);
+  });
+
+  // 析构;
+  afterAll(async () => {
+    list.map(async (item) => {
+      await managementClient.deleteNamespace({
+        code: item.code,
+      });
+    });
   });
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
-      const newCode = "1229505432";
       const {
         statusCode,
         data: namespace,
         message,
       } = await managementClient.updateNamespace({
-        code,
+        code: list[0].code,
         name,
         newCode,
       });
-
       expect(statusCode).toEqual(200);
       expect(namespace.code).toEqual(newCode);
     });
-  });
-
-  // 析构;
-  afterAll(async () => {
-    //删除用户
-    const { statusCode, data, message } =
-      await managementClient.updateNamespace({
-        code: "1229505432",
-        newCode: "my-new-namespace",
-      });
   });
 
   describe("Fail", () => {
@@ -53,15 +55,17 @@ describe("updateNamespace", () => {
       const newCode = "额！";
       const {
         statusCode,
+        apiCode,
         data: namespace,
         message,
       } = await managementClient.updateNamespace({
-        code,
+        code: list[1].code,
         name,
         newCode,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${newCode}`);
     });
   });
 
@@ -72,16 +76,11 @@ describe("updateNamespace", () => {
         data: namespace,
         message,
       } = await managementClient.updateNamespace({
-        code,
+        code: list[2].code,
         name,
       });
 
-      console.log(statusCode);
-      console.log(namespace);
-      console.log(message);
-
       expect(statusCode).toEqual(200);
-      expect(namespace.code).toEqual(code);
     });
   });
 
@@ -93,13 +92,13 @@ describe("updateNamespace", () => {
         data: namespace,
         message,
       } = await managementClient.updateNamespace({
-        code,
+        code: list[3].code,
         name,
         newCode,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${newCode}`);
     });
   });
 
@@ -112,13 +111,13 @@ describe("updateNamespace", () => {
         data: namespace,
         message,
       } = await managementClient.updateNamespace({
-        code,
+        code: list[4].code,
         name,
         newCode,
       });
 
       expect(statusCode).toEqual(400);
-      expect(message).toEqual("参数 code 格式错误");
+      expect(message).toEqual("参数 newCode 格式错误");
     });
   });
 });

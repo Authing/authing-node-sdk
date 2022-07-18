@@ -1,13 +1,36 @@
 import { UpdateDepartmentReqDto } from "../../src/models";
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateDepartment", () => {
-  beforeAll(async () => {});
-  const departmentId = "62cd22b1fd693b83d2e08970"; // 默认为 nodes 表中 id
+  const departmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 id
   const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 中 跟节点的 code
-  const name = "组织机构节点啊";
+  const name = generateRandomString(10);
   const departmentIdType =
     UpdateDepartmentReqDto.departmentIdType.DEPARTMENT_ID;
+
+  beforeAll(async () => {
+    const parentDepartmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 root用户池 id
+    const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 中 跟节点的 code
+    const openDepartmentId = generateRandomString();
+    const code = generateRandomString();
+    const isVirtualNode = false;
+    const {
+      statusCode,
+      data: department,
+      message,
+    } = await managementClient.createDepartment({
+      parentDepartmentId,
+      organizationCode,
+      name,
+      code,
+      isVirtualNode,
+      openDepartmentId,
+    });
+    expect(statusCode).toEqual(200);
+    expect(department.organizationCode).toEqual(organizationCode);
+    expect(department.name).toEqual(name);
+  });
 
   describe("Success", () => {
     const code = "anyway"; // 可更改的 code

@@ -2,34 +2,16 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createDepartment", () => {
-  const parentDepartmentId = "62a752595f269c24fbbf07fd";
-  const name = "组织机构节点啊";
+  const parentDepartmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 root用户池 id
+  const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 表中 root用户池 code
+  const name = generateRandomString(10);
   const isVirtualNode = false;
-  const openDepartmentId = "ou_7dab8a3d3cdccxxxxxx777c7ad535d62";
-  const code = "6229c4deb3e4d8a20b6021ff";
-  beforeAll(async () => {
-    const organizationCode = "steamory";
-    const {
-      statusCode,
-      data: department,
-      message,
-    } = await managementClient.createDepartment({
-      parentDepartmentId,
-      organizationCode,
-      name,
-      code,
-      isVirtualNode,
-      openDepartmentId,
-    });
-
-    expect(statusCode).toEqual(200);
-    expect(department.organizationCode).toEqual(organizationCode);
-    expect(department.name).toEqual(name);
-  });
+  const openDepartmentId = generateRandomString();
+  const code = generateRandomString();
+  beforeAll(async () => {});
 
   describe("Success", () => {
     it("with full basic department", async () => {
-      const organizationCode = "steamory";
       const isVirtualNode = false;
       const {
         statusCode,
@@ -42,11 +24,13 @@ describe("createDepartment", () => {
         code,
         isVirtualNode,
       });
+
       expect(statusCode).toEqual(200);
       expect(department.organizationCode).toEqual(organizationCode);
       expect(department.name).toEqual(name);
     });
   });
+
   // 析构;
   afterAll(async () => {
     //删除用户
@@ -111,8 +95,8 @@ describe("createDepartment", () => {
         code,
         isVirtualNode,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("部门标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid organization code ${organizationCode}`);
     });
   });
 

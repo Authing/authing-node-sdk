@@ -46,8 +46,8 @@ describe("createNamespacesBatch", () => {
       } = await managementClient.createNamespacesBatch({
         list,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${code}`);
     });
   });
 
@@ -64,8 +64,8 @@ describe("createNamespacesBatch", () => {
         list,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组名称不能为空！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`namespace name must not be empty`);
     });
   });
 
@@ -82,8 +82,8 @@ describe("createNamespacesBatch", () => {
         list,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${code}`);
     });
   });
 
@@ -101,8 +101,8 @@ describe("createNamespacesBatch", () => {
         list,
       });
 
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("分组唯一标识符格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid namespace code: ${code}`);
     });
   });
 });

@@ -2,17 +2,27 @@ import {
   CreateResourceBatchItemDto,
   CreateResourceDto,
 } from "../../src/models";
+import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("createResource", () => {
-  beforeAll(async () => {});
+  const code = generateRandomString();
   const description = "这是描述";
   const type = CreateResourceBatchItemDto.type.DATA;
   const namespace = "default";
 
+  beforeAll(async () => {});
+
+  //析构
+  afterAll(async () => {
+    //删除用户
+    await managementClient.deleteResourcesBatch({
+      codeList: [code],
+    });
+  });
+
   describe("Success", () => {
     it("with full basic resource", async () => {
-      const code = "createBatch";
       const list = [
         { code, description, type },
       ] as Array<CreateResourceBatchItemDto>;
@@ -30,15 +40,6 @@ describe("createResource", () => {
     });
   });
 
-  //析构
-  afterAll(async () => {
-    //删除用户
-    const { statusCode, data, message } =
-      await managementClient.deleteResourcesBatch({
-        codeList: ["createBatch"],
-      });
-  });
-
   describe("Fail", () => {
     it("resource code is invalid", async () => {
       const code = "额！";
@@ -54,8 +55,8 @@ describe("createResource", () => {
         list,
         namespace,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("资源名称格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid resource code: ${code}`);
     });
   });
 
@@ -91,8 +92,8 @@ describe("createResource", () => {
         list,
         namespace,
       });
-      expect(statusCode).toEqual(499);
-      expect(message).toEqual("资源名称格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid resource code: ${code}`);
     });
   });
 
@@ -113,8 +114,8 @@ describe("createResource", () => {
         list,
         namespace,
       });
-      expect(apiCode).toEqual(500);
-      expect(message).toEqual("资源名称格式不正确！");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(`invalid resource code: ${code}`);
     });
   });
 });

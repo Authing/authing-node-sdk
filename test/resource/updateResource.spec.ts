@@ -1,4 +1,5 @@
 import {
+  CreateResourceBatchItemDto,
   CreateResourceDto,
   ResourceAction,
   UpdateResourceDto,
@@ -7,22 +8,29 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateResource", () => {
-  const code = generateRandomString();
-  const description = "这是描述";
   const type = CreateResourceDto.type.API;
+  const list = [
+    { code: generateRandomString(), type },
+    { code: generateRandomString(), type },
+  ] as Array<CreateResourceBatchItemDto>;
+
+  const description = "这是描述";
+
   beforeAll(async () => {
-    const {
-      statusCode,
-      data: resource,
-      message,
-    } = await managementClient.createResource({
-      type,
-      code,
-      description,
+    await managementClient.createResourcesBatch({
+      list,
     });
-    expect(statusCode).toEqual(200);
-    expect(resource.code).toEqual(code);
-    expect(resource.description).toEqual(description);
+  });
+
+  //析构
+  afterAll(async () => {
+    const codeList = list.map((item) => {
+      return item.code;
+    });
+    //删除用户
+    await managementClient.deleteResourcesBatch({
+      codeList,
+    });
   });
 
   describe("Success", () => {
@@ -35,29 +43,19 @@ describe("updateResource", () => {
         data: resource,
         message,
       } = await managementClient.updateResource({
+        code: list[0].code,
         type,
-        code,
         description,
         actions,
       });
-      expect(statusCode).toEqual(200);
-      expect(resource.code).toEqual(code);
-      expect(resource.description).toEqual(description);
-    });
-  });
 
-  //析构
-  afterAll(async () => {
-    //删除用户
-    const { statusCode, data, message } =
-      await managementClient.deleteResourcesBatch({
-        codeList: [code],
-      });
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual("资源不存在"); // 需要用户池定位
+    });
   });
 
   describe("Fail", () => {
     it("resource doesn't not exist", async () => {
-      const code = "额！";
       const actions = [
         { name: "资源操作名称", description: "资源操作描述" },
       ] as ResourceAction[];
@@ -66,8 +64,8 @@ describe("updateResource", () => {
         data: resource,
         message,
       } = await managementClient.updateResource({
+        code: list[1].code,
         type,
-        code,
         description,
         actions,
       });
