@@ -2,19 +2,19 @@ import {
   CreateResourceBatchItemDto,
   CreateResourceDto,
   ResourceAction,
-  UpdateResourceDto,
 } from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("updateResource", () => {
+describe("getResourcesBatch", () => {
   const type = CreateResourceDto.type.DATA;
   const list = [
     { code: generateRandomString(), type },
     { code: generateRandomString(), type },
   ] as Array<CreateResourceBatchItemDto>;
-
-  const description = "这是描述";
+  const codeList = list.map((item) => {
+    return item.code;
+  });
 
   beforeAll(async () => {
     await managementClient.createResourcesBatch({
@@ -35,18 +35,12 @@ describe("updateResource", () => {
 
   describe("Success", () => {
     it("with full basic resource", async () => {
-      const actions = [
-        { name: "资源操作名称", description: "资源操作描述" },
-      ] as ResourceAction[];
       const {
         statusCode,
         data: resource,
         message,
-      } = await managementClient.updateResource({
-        code: list[0].code,
-        type,
-        description,
-        actions,
+      } = await managementClient.getResourcesBatch({
+        codeList,
       });
 
       expect(statusCode).toEqual(200);
@@ -56,41 +50,32 @@ describe("updateResource", () => {
 
   describe("Fail", () => {
     it("resource doesn't not exist", async () => {
-      const actions = [
-        { name: "资源操作名称", description: "资源操作描述" },
-      ] as ResourceAction[];
+      const codeList = [] as Array<string>;
       const {
         statusCode,
         data: resource,
         message,
-      } = await managementClient.updateResource({
-        code: "",
-        type,
-        description,
-        actions,
+      } = await managementClient.getResourcesBatch({
+        codeList,
       });
-      expect(statusCode).toEqual(404);
-      expect(message).toEqual("资源不存在");
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual("参数 codeList 格式错误");
     });
   });
 
   describe("Fail", () => {
-    it("resource doesn't not exist", async () => {
-      const actions = [
-        { name: "资源操作名称", description: "资源操作描述" },
-      ] as ResourceAction[];
+    it("resource code is invalid", async () => {
+      const codeList = [generateRandomString(), "额！ "];
       const {
         statusCode,
         data: resource,
         message,
-      } = await managementClient.updateResource({
-        code: "额！",
-        type,
-        description,
-        actions,
+      } = await managementClient.getResourcesBatch({
+        codeList,
       });
-      expect(statusCode).toEqual(404);
-      expect(message).toEqual("资源不存在");
+
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 });
