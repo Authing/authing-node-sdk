@@ -2,9 +2,10 @@ import { CreateResourceDto } from "../../src/models";
 import { managementClient } from "../client";
 
 describe("updateOrganization", () => {
+  const organizationCode = "oc";
+  const organizationName = "组织节点名称";
+
   beforeAll(async () => {
-    const organizationCode = "oc";
-    const organizationName = "组织节点名称";
     const {
       statusCode,
       data: organization,
@@ -20,8 +21,6 @@ describe("updateOrganization", () => {
 
   describe("Success", () => {
     it("with full basic organization", async () => {
-      const organizationCode = "oc";
-      const organizationName = "组织节点名称";
       const organizationNewCode = "newoc";
       const {
         statusCode,
@@ -50,9 +49,7 @@ describe("updateOrganization", () => {
 
   describe("Fail", () => {
     it("organization code is invalid", async () => {
-      const organizationCode = "oc";
       const organizationNewCode = "额！ ";
-      const organizationName = "组织节点名称";
       const {
         statusCode,
         data: organization,
@@ -70,8 +67,6 @@ describe("updateOrganization", () => {
 
   describe("Fail", () => {
     it("organization code must be not empty", async () => {
-      const organizationCode = "oc";
-      const organizationName = "组织节点名称";
       const {
         statusCode,
         data: organization,
@@ -88,9 +83,7 @@ describe("updateOrganization", () => {
 
   describe("Fail", () => {
     it("organization code must be not blank", async () => {
-      const organizationCode = "oc";
       const organizationNewCode = " ";
-      const organizationName = "组织节点名称";
       const {
         statusCode,
         data: organization,
@@ -107,10 +100,8 @@ describe("updateOrganization", () => {
 
   describe("Fail", () => {
     it("organization code must be less than 64 characters", async () => {
-      const organizationCode = "oc";
       const organizationNewCode =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
-      const organizationName = "组织节点名称";
       const {
         statusCode,
         data: organization,

@@ -4,12 +4,12 @@ import { managementClient } from "../client";
 
 describe("createResource", () => {
   beforeAll(async () => {});
+  const description = "这是描述";
+  const type = CreateResourceDto.type.API;
 
   describe("Success", () => {
     it("with full basic resource", async () => {
       const code = generateRandomString();
-      const description = "这是描述";
-      const type = CreateResourceDto.type.API;
       const {
         statusCode,
         data: resource,
@@ -37,8 +37,7 @@ describe("createResource", () => {
   describe("Fail", () => {
     it("resource code is invalid", async () => {
       const code = "额！";
-      const description = "这是描述";
-      const type = CreateResourceDto.type.API;
+
       const {
         statusCode,
         data: resource,
@@ -56,8 +55,7 @@ describe("createResource", () => {
   describe("Fail", () => {
     it("resource code must be not empty", async () => {
       const code = "";
-      const description = "这是描述";
-      const type = CreateResourceDto.type.API;
+
       const {
         statusCode,
         data: resource,
@@ -75,8 +73,7 @@ describe("createResource", () => {
   describe("Fail", () => {
     it("resource code must be not blank", async () => {
       const code = " ";
-      const description = "这是描述";
-      const type = CreateResourceDto.type.API;
+
       const {
         statusCode,
         data: resource,
@@ -95,8 +92,7 @@ describe("createResource", () => {
     it("resource code must be less than 64 characters", async () => {
       const code =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
-      const description = "这是描述";
-      const type = CreateResourceDto.type.API;
+
       const {
         statusCode,
         data: resource,

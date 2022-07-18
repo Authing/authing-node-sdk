@@ -4,12 +4,12 @@ import { managementClient } from "../client";
 
 describe("createRolesBatch", () => {
   beforeAll(async () => {});
+  const code = generateRandomString();
+  const namespace = "default";
+  const description = "这是描述";
 
   describe("Success", () => {
     it("with full basic role", async () => {
-      const code = generateRandomString();
-      const namespace = "default";
-      const description = "这是描述";
       const {
         statusCode,
         data: role,
@@ -32,18 +32,13 @@ describe("createRolesBatch", () => {
   afterAll(async () => {
     //删除用户
     await managementClient.deleteRolesBatch({
-      codeList: ["roleCode"],
-    });
-    await managementClient.deleteRolesBatch({
-      codeList: [""],
+      codeList: [code],
     });
   });
 
   describe("Fail", () => {
     it("role code is invalid", async () => {
-      const code = "额!";
-      const namespace = "default";
-      const description = "这是描述";
+      const code = "额! ";
 
       const {
         statusCode,
@@ -67,8 +62,6 @@ describe("createRolesBatch", () => {
   describe("Fail", () => {
     it("role code must be not empty", async () => {
       const code = "";
-      const namespace = "default";
-      const description = "这是描述";
 
       const {
         statusCode,
@@ -92,8 +85,6 @@ describe("createRolesBatch", () => {
   describe("Fail", () => {
     it("role code must be not blank", async () => {
       const code = " ";
-      const namespace = "default";
-      const description = "这是描述";
 
       const {
         statusCode,

@@ -3,10 +3,11 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateRole", () => {
+  const code = generateRandomString();
+  const namespace = "default";
+  const description = "这是描述";
+
   beforeAll(async () => {
-    const code = generateRandomString();
-    const namespace = "default";
-    const description = "这是描述";
     const {
       statusCode,
       data: role,
@@ -25,9 +26,6 @@ describe("updateRole", () => {
   describe("Success", () => {
     it("with full basic role", async () => {
       const newCode = "ThisIsNewCode";
-      const code = "www";
-      const namespace = "default";
-      const description = "这是描述";
 
       const {
         statusCode,
@@ -48,9 +46,6 @@ describe("updateRole", () => {
   afterAll(async () => {
     //将用户改回来manager
     const newCode = "www";
-    const code = "ThisIsNewCode";
-    const namespace = "default";
-    const description = "这是描述";
     await managementClient.updateRole({
       newCode,
       code,
@@ -61,10 +56,7 @@ describe("updateRole", () => {
 
   describe("Fail", () => {
     it("role newCode is invalid", async () => {
-      const newCode = "额!";
-      const code = "www";
-      const namespace = "default";
-      const description = "这是描述";
+      const newCode = "额! ";
 
       const {
         statusCode,
@@ -85,9 +77,6 @@ describe("updateRole", () => {
   describe("Fail", () => {
     it("role newCode must be not empty", async () => {
       const newCode = "";
-      const code = "www";
-      const namespace = "default";
-      const description = "这是描述";
 
       const {
         statusCode,
@@ -108,10 +97,6 @@ describe("updateRole", () => {
   describe("Fail", () => {
     it("role newCode must be not blank", async () => {
       const newCode = " ";
-      const code = "www";
-      const namespace = "default";
-      const description = "这是描述";
-
       const {
         statusCode,
         apiCode,
@@ -132,9 +117,6 @@ describe("updateRole", () => {
     it("role newCode must be less than 64 characters", async () => {
       const newCode =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
-      const code = "www";
-      const namespace = "default";
-      const description = "这是描述";
 
       const {
         statusCode,

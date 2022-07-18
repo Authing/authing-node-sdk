@@ -3,11 +3,11 @@ import { managementClient } from "../client";
 
 describe("createOrganization", () => {
   beforeAll(async () => {});
+  const organizationName = "组织节点名称";
 
   describe("Success", () => {
     it("with full basic organization", async () => {
       const organizationCode = "oc";
-      const organizationName = "组织节点名称";
       const {
         statusCode,
         data: organization,
@@ -34,7 +34,7 @@ describe("createOrganization", () => {
   describe("Fail", () => {
     it("organization code is invalid", async () => {
       const organizationCode = "额！ ";
-      const organizationName = "组织节点名称";
+
       const {
         statusCode,
         data: organization,
@@ -52,7 +52,7 @@ describe("createOrganization", () => {
   describe("Fail", () => {
     it("organization code must be not empty", async () => {
       const organizationCode = "";
-      const organizationName = "组织节点名称";
+
       const {
         statusCode,
         data: organization,
@@ -70,7 +70,7 @@ describe("createOrganization", () => {
   describe("Fail", () => {
     it("organization code must be not blank", async () => {
       const organizationCode = " ";
-      const organizationName = "组织节点名称";
+
       const {
         statusCode,
         data: organization,
@@ -88,7 +88,7 @@ describe("createOrganization", () => {
     it("organization code must be less than 64 characters", async () => {
       const organizationCode =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
-      const organizationName = "组织节点名称";
+
       const {
         statusCode,
         data: organization,

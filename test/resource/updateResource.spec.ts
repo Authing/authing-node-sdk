@@ -7,10 +7,10 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("updateResource", () => {
+  const code = generateRandomString();
+  const description = "这是描述";
+  const type = CreateResourceDto.type.API;
   beforeAll(async () => {
-    const code = generateRandomString();
-    const description = "这是描述";
-    const type = CreateResourceDto.type.API;
     const {
       statusCode,
       data: resource,
@@ -27,10 +27,6 @@ describe("updateResource", () => {
 
   describe("Success", () => {
     it("with full basic resource", async () => {
-      const code = generateRandomString();
-      const description = "这是描述";
-      const type = UpdateResourceDto.type.API;
-
       const actions = [
         { name: "资源操作名称", description: "资源操作描述" },
       ] as ResourceAction[];
@@ -55,15 +51,13 @@ describe("updateResource", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteResourcesBatch({
-        codeList: ["resourceCode"],
+        codeList: [code],
       });
   });
 
   describe("Fail", () => {
     it("resource doesn't not exist", async () => {
       const code = "额！";
-      const description = "这是描述";
-      const type = UpdateResourceDto.type.API;
       const actions = [
         { name: "资源操作名称", description: "资源操作描述" },
       ] as ResourceAction[];
