@@ -6,8 +6,7 @@
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx tsc",
-    "test": "jest test/department/updateDepartment.spec.ts"
+    "build": "npx tsc"
   },
   "keywords": [],
   "author": "Willin Wang <willin@willin.org> (https://willin.wang/)",
