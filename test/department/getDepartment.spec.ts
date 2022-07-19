@@ -1,32 +1,43 @@
+import { CreateDepartmentReqDto } from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createDepartment", () => {
+describe("getDepartment", () => {
   const parentDepartmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 root用户池 id
-  const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 表中 root用户池 code
+  const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 表中 我的用户 code
   const name = generateRandomString(10);
   const isVirtualNode = false;
   const code = generateRandomString();
-  beforeAll(async () => {});
+  let departmentId: string;
+  beforeAll(async () => {
+    const {
+      statusCode,
+      data: department,
+      message,
+    } = await managementClient.createDepartment({
+      parentDepartmentId,
+      organizationCode,
+      name,
+      code,
+      isVirtualNode,
+      departmentIdType: CreateDepartmentReqDto.departmentIdType.DEPARTMENT_ID,
+    });
+
+    departmentId = department.departmentId;
+  });
 
   describe("Success", () => {
     it("with full basic department", async () => {
-      const isVirtualNode = false;
       const {
         statusCode,
         data: department,
         message,
-      } = await managementClient.createDepartment({
-        parentDepartmentId,
+      } = await managementClient.getDepartment({
+        departmentId,
         organizationCode,
-        name,
-        code,
-        isVirtualNode,
       });
-
       expect(statusCode).toEqual(200);
-      expect(department.organizationCode).toEqual(organizationCode);
-      expect(department.name).toEqual(name);
+      expect(department.departmentId).toEqual(departmentId);
     });
   });
 
@@ -40,17 +51,14 @@ describe("createDepartment", () => {
 
   describe("Fail", () => {
     it("department organizationCode is invalid", async () => {
-      const organizationCode = generateRandomString();
+      const organizationCode = "额！ ";
       const {
         statusCode,
         data: department,
         message,
-      } = await managementClient.createDepartment({
-        parentDepartmentId,
+      } = await managementClient.getDepartment({
+        departmentId,
         organizationCode,
-        name,
-        code,
-        isVirtualNode,
       });
       expect(statusCode).toEqual(404);
       expect(message).toEqual(
@@ -66,12 +74,9 @@ describe("createDepartment", () => {
         statusCode,
         data: department,
         message,
-      } = await managementClient.createDepartment({
-        parentDepartmentId,
+      } = await managementClient.getDepartment({
+        departmentId,
         organizationCode,
-        name,
-        code,
-        isVirtualNode,
       });
       expect(statusCode).toEqual(404);
       expect(message).toEqual(
@@ -87,15 +92,14 @@ describe("createDepartment", () => {
         statusCode,
         data: department,
         message,
-      } = await managementClient.createDepartment({
-        parentDepartmentId,
+      } = await managementClient.getDepartment({
+        departmentId,
         organizationCode,
-        name,
-        code,
-        isVirtualNode,
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid organization code ${organizationCode}`);
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual(
+        `organization not found for code: ${organizationCode}`
+      );
     });
   });
 
@@ -107,12 +111,9 @@ describe("createDepartment", () => {
         statusCode,
         data: department,
         message,
-      } = await managementClient.createDepartment({
-        parentDepartmentId,
+      } = await managementClient.getDepartment({
+        departmentId,
         organizationCode,
-        name,
-        code,
-        isVirtualNode,
       });
       expect(statusCode).toEqual(400);
       expect(message).toEqual("参数 organizationCode 格式错误");
