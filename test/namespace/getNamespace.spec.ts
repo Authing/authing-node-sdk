@@ -1,27 +1,30 @@
-import {
-  CreateNamespaceDto,
-  CreateNamespacesBatchItemDto,
-} from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createNamespacesBatch", () => {
+describe("getNamespace", () => {
   const name = "权限分组名字";
   const code = generateRandomString();
 
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    await managementClient.createNamespace({
+      code,
+      name,
+    });
+  });
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
-        data: IsSuccessDto,
+        data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({ list });
+      } = await managementClient.getNamespace({
+        code,
+      });
 
       expect(statusCode).toEqual(200);
-      expect(IsSuccessDto.success).toEqual(true);
+      expect(namespace.code).toEqual(code);
+      expect(namespace.name).toEqual(name);
     });
   });
 
@@ -38,16 +41,15 @@ describe("createNamespacesBatch", () => {
     it("namespace code is invalid", async () => {
       const code = "额！";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespace({
+        code,
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual(`namespace not exists`);
     });
   });
 
@@ -55,17 +57,14 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not empty", async () => {
       const code = "";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
-      });
+      } = await managementClient.getNamespace({ code });
 
       expect(statusCode).toEqual(400);
-      expect(message).toEqual(`namespace name must not be empty`);
+      expect(message).toEqual("参数 code 格式错误");
     });
   });
 
@@ -73,17 +72,16 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not blank", async () => {
       const code = " ";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespace({
+        code,
       });
 
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual(`namespace not exists`);
     });
   });
 
@@ -92,17 +90,16 @@ describe("createNamespacesBatch", () => {
       const code =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespace({
+        code,
       });
 
       expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(message).toEqual("参数 code 格式错误");
     });
   });
 });

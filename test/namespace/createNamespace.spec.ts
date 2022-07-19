@@ -4,12 +4,12 @@ import { managementClient } from "../client";
 
 describe("createNamespace", () => {
   const name = "权限分组名字";
+  const code = generateRandomString();
 
   beforeAll(async () => {});
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
-      const code = generateRandomString();
       const {
         statusCode,
         data: namespace,
@@ -30,7 +30,7 @@ describe("createNamespace", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteNamespacesBatch({
-        codeList: ["1229505432"],
+        codeList: [code],
       });
   });
 

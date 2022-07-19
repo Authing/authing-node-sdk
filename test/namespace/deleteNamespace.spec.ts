@@ -5,20 +5,31 @@ import {
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createNamespacesBatch", () => {
-  const name = "权限分组名字";
-  const code = generateRandomString();
+describe("deleteNamespace", () => {
+  const list = [
+    { code: generateRandomString(), name: generateRandomString() },
+    { code: generateRandomString(), name: generateRandomString() },
+    { code: generateRandomString(), name: generateRandomString() },
+    { code: generateRandomString(), name: generateRandomString() },
+    { code: generateRandomString(), name: generateRandomString() },
+  ] as Array<CreateNamespacesBatchItemDto>;
 
-  beforeAll(async () => {});
+  const codeList = list.map((item) => {
+    return item.code;
+  });
+  beforeAll(async () => {
+    const code = generateRandomString();
+
+    await managementClient.createNamespacesBatch({ list });
+  });
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: IsSuccessDto,
         message,
-      } = await managementClient.createNamespacesBatch({ list });
+      } = await managementClient.deleteNamespace({ code: list[0].code });
 
       expect(statusCode).toEqual(200);
       expect(IsSuccessDto.success).toEqual(true);
@@ -30,7 +41,7 @@ describe("createNamespacesBatch", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteNamespacesBatch({
-        codeList: [code],
+        codeList,
       });
   });
 
@@ -38,16 +49,15 @@ describe("createNamespacesBatch", () => {
     it("namespace code is invalid", async () => {
       const code = "额！";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.deleteNamespace({
+        code,
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual("权限组不存在");
     });
   });
 
@@ -55,17 +65,16 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not empty", async () => {
       const code = "";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.deleteNamespace({
+        code,
       });
 
       expect(statusCode).toEqual(400);
-      expect(message).toEqual(`namespace name must not be empty`);
+      expect(message).toEqual("参数 code 格式错误");
     });
   });
 
@@ -73,17 +82,16 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not blank", async () => {
       const code = " ";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.deleteNamespace({
+        code,
       });
 
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(404);
+      expect(message).toEqual("权限组不存在");
     });
   });
 
@@ -92,17 +100,16 @@ describe("createNamespacesBatch", () => {
       const code =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.deleteNamespace({
+        code,
       });
 
       expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(message).toEqual("参数 code 格式错误");
     });
   });
 });

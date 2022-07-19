@@ -1,27 +1,29 @@
-import {
-  CreateNamespaceDto,
-  CreateNamespacesBatchItemDto,
-} from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createNamespacesBatch", () => {
+describe("getNamespacesBatch", () => {
   const name = "权限分组名字";
   const code = generateRandomString();
-
-  beforeAll(async () => {});
+  const codeList = [code];
+  beforeAll(async () => {
+    await managementClient.createNamespace({
+      code,
+      name,
+    });
+  });
 
   describe("Success", () => {
     it("with full basic namespace", async () => {
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
-        data: IsSuccessDto,
+        data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({ list });
+      } = await managementClient.getNamespacesBatch({
+        codeList,
+      });
 
       expect(statusCode).toEqual(200);
-      expect(IsSuccessDto.success).toEqual(true);
+      expect(message).toEqual("");
     });
   });
 
@@ -30,7 +32,7 @@ describe("createNamespacesBatch", () => {
     //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteNamespacesBatch({
-        codeList: [code],
+        codeList,
       });
   });
 
@@ -38,16 +40,16 @@ describe("createNamespacesBatch", () => {
     it("namespace code is invalid", async () => {
       const code = "额！";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespacesBatch({
+        codeList: [code],
       });
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 
@@ -55,17 +57,14 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not empty", async () => {
       const code = "";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
-      });
+      } = await managementClient.getNamespacesBatch({ codeList: [code] });
 
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`namespace name must not be empty`);
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 
@@ -73,17 +72,16 @@ describe("createNamespacesBatch", () => {
     it("namespace code must be not blank", async () => {
       const code = " ";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespacesBatch({
+        codeList: [code],
       });
 
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 
@@ -92,17 +90,16 @@ describe("createNamespacesBatch", () => {
       const code =
         "1234567891123456789112345678911234567891123456789112345678911234567891123456789112345678911234567891";
 
-      const list = [{ code, name }] as Array<CreateNamespacesBatchItemDto>;
       const {
         statusCode,
         data: namespace,
         message,
-      } = await managementClient.createNamespacesBatch({
-        list,
+      } = await managementClient.getNamespacesBatch({
+        codeList: [code],
       });
 
-      expect(statusCode).toEqual(400);
-      expect(message).toEqual(`invalid namespace code: ${code}`);
+      expect(statusCode).toEqual(200);
+      expect(message).toEqual("");
     });
   });
 });
