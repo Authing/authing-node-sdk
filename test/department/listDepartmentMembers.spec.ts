@@ -5,8 +5,15 @@ describe("listDepartmentMemberIds", () => {
   let organizationCode: string;
   let departmentId: string;
   beforeAll(async () => {
-    const parentDepartmentId = "62d63a952a220b5349960b5d"; // 默认为 nodes 表中 root用户池 id
-    const organizationCode1 = "iv2qZBWrMO3F5SNj4VTchbP0t66KO0"; // 默认为 nodes 表中 root用户池 code
+    const { data: organizationPagingDto } =
+      await managementClient.searchOrganizations({
+        keywords: "root 用户池",
+      });
+
+    const organizationDto = organizationPagingDto.list[0];
+    const parentDepartmentId = organizationDto.departmentId;
+    const organizationCode1 = organizationDto.organizationCode;
+
     const name = generateRandomString(10);
     const code = generateRandomString();
     const { data: department } = await managementClient.createDepartment({

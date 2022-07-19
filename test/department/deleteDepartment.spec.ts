@@ -3,13 +3,22 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("deleteDepartment", () => {
-  const parentDepartmentId = "62d63a952a220b5349960b5d"; // 默认为 nodes 表中 root用户池 id
-  const organizationCode = "iv2qZBWrMO3F5SNj4VTchbP0t66KO0"; // 默认为 nodes 表中 root用户池 code
+  let parentDepartmentId: string; // 默认为 nodes 表中 root用户池 id
+  let organizationCode: string; // 默认为 nodes 表中 我的用户 code
   const name = generateRandomString(10);
   const isVirtualNode = false;
   const code = generateRandomString();
   let departmentId: string;
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    const { data: organizationPagingDto } =
+      await managementClient.searchOrganizations({
+        keywords: "root 用户池",
+      });
+
+    const organizationDto = organizationPagingDto.list[0];
+    parentDepartmentId = organizationDto.departmentId;
+    organizationCode = organizationDto.organizationCode;
+  });
 
   describe("Success", () => {
     it("with full basic department", async () => {
@@ -27,8 +36,6 @@ describe("deleteDepartment", () => {
         departmentId,
         organizationCode,
       });
-      console.log(department);
-      console.log(message);
       expect(statusCode).toEqual(200);
       expect(message).toEqual("");
     });

@@ -6,14 +6,23 @@ describe("listRoleDepartments", () => {
   const namespace = "default";
   const description = "这是描述";
 
-  const parentDepartmentId = "62d63a952a220b5349960b5d"; // 默认为 nodes 表中 root角色池 id
-  const organizationCode = "iv2qZBWrMO3F5SNj4VTchbP0t66KO0"; // 默认为 nodes 表中 root角色池 code
+  let parentDepartmentId: string; // 默认为 nodes 表中 root用户池 id
+  let organizationCode: string; // 默认为 nodes 表中 我的用户 code
   const name = generateRandomString(10);
   const isVirtualNode = false;
   const departmentCode = generateRandomString();
   let departmentId: string;
 
   beforeAll(async () => {
+    const { data: organizationPagingDto } =
+      await managementClient.searchOrganizations({
+        keywords: "root 用户池",
+      });
+
+    const organizationDto = organizationPagingDto.list[0];
+    parentDepartmentId = organizationDto.departmentId;
+    organizationCode = organizationDto.organizationCode;
+
     await managementClient.createRole({
       code,
       namespace,

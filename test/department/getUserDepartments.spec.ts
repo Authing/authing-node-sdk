@@ -3,12 +3,21 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("getUserDepartments", () => {
-  const departmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 root用户池 id
-  const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 表中 root用户池 code
+  let departmentId: string; // 默认为 nodes 表中 root用户池 id
+  let organizationCode: string; // 默认为 nodes 表中 我的用户 code
   const username = generateRandomString(10);
   let userId: string;
 
   beforeAll(async () => {
+    const { data: organizationPagingDto } =
+      await managementClient.searchOrganizations({
+        keywords: "root 用户池",
+      });
+
+    const organizationDto = organizationPagingDto.list[0];
+    departmentId = organizationDto.departmentId;
+    organizationCode = organizationDto.organizationCode;
+
     const data = await managementClient.createUser({ username });
     userId = data.data.userId;
     const departments = [{ departmentId }] as Array<SetUserDepartmentDto>;

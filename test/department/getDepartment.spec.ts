@@ -3,13 +3,22 @@ import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
 describe("getDepartment", () => {
-  const parentDepartmentId = "62a752595f269c24fbbf07fd"; // 默认为 nodes 表中 root用户池 id
-  const organizationCode = "ZZYRFAtkDnZv0NWjVD1dVhjCHDHfVc"; // 默认为 nodes 表中 我的用户 code
+  let parentDepartmentId: string; // 默认为 nodes 表中 root用户池 id
+  let organizationCode: string; // 默认为 nodes 表中 我的用户 code
   const name = generateRandomString(10);
   const isVirtualNode = false;
   const code = generateRandomString();
   let departmentId: string;
   beforeAll(async () => {
+    const { data: organizationPagingDto } =
+      await managementClient.searchOrganizations({
+        keywords: "root 用户池",
+      });
+
+    const organizationDto = organizationPagingDto.list[0];
+    parentDepartmentId = organizationDto.departmentId;
+    organizationCode = organizationDto.organizationCode;
+
     const {
       statusCode,
       data: department,
