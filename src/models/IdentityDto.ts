@@ -4,23 +4,51 @@
 
 export type IdentityDto = {
     /**
-     * Identity ID
+     * 身份源 ID
      */
     identityId: string;
     /**
-     * 外部身份源的 ID
+     * 身份源连接 ID
      */
     extIdpId: string;
     /**
-     * 外部身份源类型，如 lark, wechat
+     * 外部身份源类型：
+     * - `wechat`: 微信
+     * - `qq`: QQ
+     * - `wechatwork`: 企业微信
+     * - `dingtalk`: 钉钉
+     * - `weibo`: 微博
+     * - `github`: GitHub
+     * - `alipay`: 支付宝
+     * - `baidu`: 百度
+     * - `lark`: 飞书
+     * - `welink`: Welink
+     * - `yidun`: 网易易盾
+     * - `qingcloud`: 青云
+     * - `google`: Google
+     * - `gitlab`: GitLab
+     * - `gitee`: Gitee
+     * - `twitter`: Twitter
+     * - `facebook`: Facebook
+     * - `slack`: Slack
+     * - `linkedin`: Linkedin
+     * - `instagram`: Instagram
+     * - `oidc`: OIDC 型企业身份源
+     * - `oauth2`: OAuth2 型企业身份源
+     * - `saml`: SAML 型企业身份源
+     * - `ldap`: LDAP 型企业身份源
+     * - `ad`: AD 型企业身份源
+     * - `cas`: CAS 型企业身份源
+     * - `azure-ad`: Azure AD 型企业身份源
+     *
      */
-    provider: string;
+    provider: IdentityDto.provider;
     /**
      * Identity 类型，如 unionid, openid, primary
      */
     type: string;
     /**
-     * 在外部身份源的 id
+     * 在外部身份源中的 ID
      */
     userIdInIdp: string;
     /**
@@ -28,3 +56,70 @@ export type IdentityDto = {
      */
     originConnIds: Array<string>;
 };
+
+export namespace IdentityDto {
+
+    /**
+     * 外部身份源类型：
+     * - `wechat`: 微信
+     * - `qq`: QQ
+     * - `wechatwork`: 企业微信
+     * - `dingtalk`: 钉钉
+     * - `weibo`: 微博
+     * - `github`: GitHub
+     * - `alipay`: 支付宝
+     * - `baidu`: 百度
+     * - `lark`: 飞书
+     * - `welink`: Welink
+     * - `yidun`: 网易易盾
+     * - `qingcloud`: 青云
+     * - `google`: Google
+     * - `gitlab`: GitLab
+     * - `gitee`: Gitee
+     * - `twitter`: Twitter
+     * - `facebook`: Facebook
+     * - `slack`: Slack
+     * - `linkedin`: Linkedin
+     * - `instagram`: Instagram
+     * - `oidc`: OIDC 型企业身份源
+     * - `oauth2`: OAuth2 型企业身份源
+     * - `saml`: SAML 型企业身份源
+     * - `ldap`: LDAP 型企业身份源
+     * - `ad`: AD 型企业身份源
+     * - `cas`: CAS 型企业身份源
+     * - `azure-ad`: Azure AD 型企业身份源
+     *
+     */
+    export enum provider {
+        OIDC = 'oidc',
+        OAUTH2 = 'oauth2',
+        SAML = 'saml',
+        LDAP = 'ldap',
+        AD = 'ad',
+        CAS = 'cas',
+        AZURE_AD = 'azure-ad',
+        WECHAT = 'wechat',
+        GOOGLE = 'google',
+        QQ = 'qq',
+        WECHATWORK = 'wechatwork',
+        DINGTALK = 'dingtalk',
+        WEIBO = 'weibo',
+        GITHUB = 'github',
+        ALIPAY = 'alipay',
+        APPLE = 'apple',
+        BAIDU = 'baidu',
+        LARK = 'lark',
+        GITLAB = 'gitlab',
+        TWITTER = 'twitter',
+        FACEBOOK = 'facebook',
+        SLACK = 'slack',
+        LINKEDIN = 'linkedin',
+        YIDUN = 'yidun',
+        QINGCLOUD = 'qingcloud',
+        GITEE = 'gitee',
+        INSTAGRAM = 'instagram',
+        WELINK = 'welink',
+    }
+
+
+}

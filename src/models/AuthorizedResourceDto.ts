@@ -45,6 +45,7 @@ export namespace AuthorizedResourceDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
     /**

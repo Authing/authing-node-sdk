@@ -49,6 +49,7 @@ export namespace CreateExtIdpConnDto {
         ALIPAY = 'alipay',
         FACEBOOK = 'facebook',
         TWITTER = 'twitter',
+        GOOGLE_MOBILE = 'google:mobile',
         GOOGLE = 'google',
         WECHAT_PC = 'wechat:pc',
         WECHAT_MOBILE = 'wechat:mobile',
@@ -63,6 +64,7 @@ export namespace CreateExtIdpConnDto {
         WECHATWORK_AGENCY_QRCONNECT = 'wechatwork:agency:qrconnect',
         WECHATWORK_SERVICE_PROVIDER_QRCONNECT = 'wechatwork:service-provider:qrconnect',
         WECHATWORK_MOBILE = 'wechatwork:mobile',
+        WECHATWORK_AGENCY_MOBILE = 'wechatwork:agency:mobile',
         DINGTALK = 'dingtalk',
         DINGTALK_PROVIDER = 'dingtalk:provider',
         WEIBO = 'weibo',
@@ -79,6 +81,7 @@ export namespace CreateExtIdpConnDto {
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
         WELINK = 'welink',
+        AD_KERBEROS = 'ad-kerberos',
     }
 
 

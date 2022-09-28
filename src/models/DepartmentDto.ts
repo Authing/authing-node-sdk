@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { I18nDto } from './I18nDto';
+import type { DepartmentI18nDto } from './DepartmentI18nDto';
 
 export type DepartmentDto = {
     /**
@@ -17,6 +17,10 @@ export type DepartmentDto = {
      * 部门创建时间
      */
     createdAt: string;
+    /**
+     * 修改时间
+     */
+    updatedAt?: string;
     /**
      * 自定义部门 ID，用于存储自定义的 ID
      */
@@ -56,7 +60,7 @@ export type DepartmentDto = {
     /**
      * 多语言设置
      */
-    i18n?: I18nDto;
+    i18n?: DepartmentI18nDto;
     /**
      * 部门的扩展字段数据
      */

@@ -18,4 +18,8 @@ export type ListOrganizationsDto = {
      * 拉取所有
      */
     fetchAll?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

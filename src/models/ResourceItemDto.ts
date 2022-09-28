@@ -27,6 +27,7 @@ export namespace ResourceItemDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

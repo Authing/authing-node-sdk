@@ -14,6 +14,10 @@ export type CreateResourceBatchItemDto = {
      */
     description?: string;
     /**
+     * 资源名称
+     */
+    name?: string;
+    /**
      * 资源类型，如数据、API、按钮、菜单
      */
     type: CreateResourceBatchItemDto.type;
@@ -37,6 +41,7 @@ export namespace CreateResourceBatchItemDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

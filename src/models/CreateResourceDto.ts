@@ -41,6 +41,7 @@ export namespace CreateResourceDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

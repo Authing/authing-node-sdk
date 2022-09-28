@@ -7,6 +7,10 @@
  */
 export type ListRolesDto = {
     /**
+     * 搜索角色 code
+     */
+    keywords?: any;
+    /**
      * 所属权限分组的 code
      */
     namespace?: any;

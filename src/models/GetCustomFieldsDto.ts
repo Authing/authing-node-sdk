@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 通过主体类型，获取用户池配置的自定义字段列表。
+ * 通过主体类型，获取用户、部门或角色的自定义字段列表。
  */
 export type GetCustomFieldsDto = {
     /**

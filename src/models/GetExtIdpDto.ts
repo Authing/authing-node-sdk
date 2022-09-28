@@ -14,4 +14,12 @@ export type GetExtIdpDto = {
      * 租户 ID
      */
     tenantId?: any;
+    /**
+     * 应用 ID
+     */
+    appId?: any;
+    /**
+     * 身份源类型
+     */
+    type?: any;
 };

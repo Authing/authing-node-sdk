@@ -12,7 +12,11 @@ export type ExtIdpConnDetail = {
      */
     type: ExtIdpConnDetail.type;
     /**
-     * 身份源图标
+     * 身份源 ID
+     */
+    extIdpId: string;
+    /**
+     * 身份源连接图标
      */
     logo: string;
     /**
@@ -35,10 +39,6 @@ export type ExtIdpConnDetail = {
      * 账号绑定方式
      */
     challengeBindingMethods: Array<string>;
-    /**
-     * 自定义参数
-     */
-    fields: any;
 };
 
 export namespace ExtIdpConnDetail {
@@ -57,6 +57,7 @@ export namespace ExtIdpConnDetail {
         ALIPAY = 'alipay',
         FACEBOOK = 'facebook',
         TWITTER = 'twitter',
+        GOOGLE_MOBILE = 'google:mobile',
         GOOGLE = 'google',
         WECHAT_PC = 'wechat:pc',
         WECHAT_MOBILE = 'wechat:mobile',
@@ -71,6 +72,7 @@ export namespace ExtIdpConnDetail {
         WECHATWORK_AGENCY_QRCONNECT = 'wechatwork:agency:qrconnect',
         WECHATWORK_SERVICE_PROVIDER_QRCONNECT = 'wechatwork:service-provider:qrconnect',
         WECHATWORK_MOBILE = 'wechatwork:mobile',
+        WECHATWORK_AGENCY_MOBILE = 'wechatwork:agency:mobile',
         DINGTALK = 'dingtalk',
         DINGTALK_PROVIDER = 'dingtalk:provider',
         WEIBO = 'weibo',
@@ -87,6 +89,7 @@ export namespace ExtIdpConnDetail {
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
         WELINK = 'welink',
+        AD_KERBEROS = 'ad-kerberos',
     }
 
     /**

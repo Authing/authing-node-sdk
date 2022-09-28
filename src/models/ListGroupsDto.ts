@@ -7,6 +7,10 @@
  */
 export type ListGroupsDto = {
     /**
+     * 搜索分组 code 或分组名称
+     */
+    keywords?: any;
+    /**
      * 当前页数，从 1 开始
      */
     page?: any;

@@ -8,11 +8,11 @@ export type IsUserExistsReqDto = {
      */
     username?: string;
     /**
-     * 邮箱
+     * 邮箱，不区分大小写
      */
     email?: string;
     /**
-     * 手机号
+     * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
      */
     phone?: string;
     /**

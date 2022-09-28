@@ -18,4 +18,8 @@ export type SearchOrganizationsDto = {
      * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };
