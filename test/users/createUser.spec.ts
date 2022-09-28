@@ -19,7 +19,7 @@ describe("createUser", () => {
         },
         {
           targetType: Models.SetCustomFieldDto.targetType.USER,
-          dataType: Models.SetCustomFieldDto.dataType.SELECT,
+          dataType: Models.SetCustomFieldDto.dataType.ENUM,
           key: "school",
           label: "学校",
           options: [

@@ -15,7 +15,8 @@
     "axios": "^0.26.1",
     "base64url": "^3.0.1",
     "buffer": "^6.0.3",
-    "jose": "4"
+    "jose": "4",
+    "kitx": "^2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",

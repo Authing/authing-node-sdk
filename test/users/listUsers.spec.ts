@@ -3,7 +3,7 @@ import { managementClient } from "../client";
 describe("listUsers", () => {
   describe("Success", () => {
     it("default", async () => {
-      const { statusCode, data } = await managementClient.listUsers({
+      const { statusCode, data, message } = await managementClient.listUsers({
         withCustomData: true,
         withIdentities: true,
         withDepartmentIds: true,

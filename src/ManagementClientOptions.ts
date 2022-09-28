@@ -5,9 +5,9 @@ import { Lang } from "./utils";
  */
 export interface ManagementClientOptions {
   /** 用户池 ID **/
-  accessKeyId?: string;
+  accessKeyId: string;
   /** 用户池密钥 **/
-  accessKeySecret?: string;
+  accessKeySecret: string;
   /** 租户 ID */
   tenantId?: string;
   /** 请求超时时间 **/
@@ -24,17 +24,16 @@ export interface ManagementClientOptions {
    */
   lang?: Lang;
 
-  /**
-   * 请求头 key，适用于去 Authing 品牌化场景
-   */
-  headers?: {
-    "userpool-id": string;
-    "app-id": string;
-    "tenant-id"?: string;
-    "sdk-version": string;
-    "request-from": string;
-    lang: string;
-  };
+  // /**
+  //  * 请求头 key，适用于去 Authing 品牌化场景
+  //  */
+  // headers?: {
+  //   "app-id": string;
+  //   "tenant-id"?: string;
+  //   "sdk-version": string;
+  //   "request-from": string;
+  //   lang: string;
+  // };
 }
 
 export const DEFAULT_OPTIONS: ManagementClientOptions = {
@@ -43,14 +42,14 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
     throw { code, message };
   },
   host: "https://api.authing.cn",
-  requestFrom: "sdk",
-  headers: {
-    "userpool-id": "x-authing-userpool-id",
-    "app-id": "x-authing-app-id",
-    "tenant-id": "x-authing-app-tenant-id",
-    "request-from": "x-authing-request-from",
-    "sdk-version": "x-authing-sdk-version",
-    lang: "x-authing-lang",
-  },
+  // headers: {
+  //   "app-id": "x-authing-app-id",
+  //   "tenant-id": "x-authing-app-tenant-id",
+  //   "request-from": "x-authing-request-from",
+  //   "sdk-version": "x-authing-sdk-version",
+  //   lang: "x-authing-lang",
+  // },
   lang: "zh-CN",
+  accessKeyId: "",
+  accessKeySecret: ""
 };
