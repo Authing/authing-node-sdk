@@ -14,15 +14,16 @@ export class AuthenticationHttpClient {
   }
 
   async request(config: AxiosRequestConfig) {
-    return this.axios.request({
+    const { data } = await this.axios.request({
       ...config,
       baseURL: this.options.host,
       timeout: 10000,
       headers: {
         ...config.headers,
-        'request-from': this.options.requestFrom || "sdk",
+        "request-from": this.options.requestFrom || "sdk",
         // 'sdk-version': `js:${SDK_VERSION}`
       },
     });
+    return data;
   }
 }
