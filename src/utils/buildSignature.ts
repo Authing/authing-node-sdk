@@ -1,25 +1,38 @@
 const kitx = require("kitx");
 const os = require("os");
 
-function filter(value: string) {
-  return value.replace(/[\t\n\r\f]/g, " ");
+function filter(value: any) {
+  return typeof value === "string"
+    ? value.replace(/[\t\n\r\f]/g, " ")
+    : value.toString();
 }
 
 function getCanonicalizedHeaders(headers: { [x: string]: any }) {
-  const prefix = "x-authing-";
   const keys = Object.keys(headers);
+
+  const validHeaders: string[] = [
+    'content-type',
+    'x-authing-lang',
+    'x-authing-request-from',
+    'x-authing-sdk-client',
+    'x-authing-signature-method',
+    'x-authing-signature-nonce',
+    'x-authing-signature-version',
+    'x-authing-tenant-id',
+    'date'
+  ]
 
   const canonicalizedKeys = [];
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
-    if (key.startsWith(prefix)) {
+    if (validHeaders.includes(key)) {
       canonicalizedKeys.push(key);
     }
   }
 
   canonicalizedKeys.sort();
 
-  var result = "";
+  let result = "";
   for (let i = 0; i < canonicalizedKeys.length; i++) {
     const key = canonicalizedKeys[i];
     result += `${key}:${filter(headers[key]).trim()}\n`;
@@ -38,16 +51,21 @@ function getCanonicalizedResource(
     return uriPattern;
   }
 
-  var result = [];
-  for (var i = 0; i < keys.length; i++) {
+  const result = [];
+  for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
-    result.push(`${key}=${query[key]}`);
+    let value = query[key];
+    value =
+      typeof value === "object" && value !== null
+        ? encodeURI(JSON.stringify(value))
+        : value;
+    result.push(`${key}=${value}`);
   }
 
   return `${uriPattern}?${result.join("&")}`;
 }
 
-function signature(accessKeySecret: string, stringToSign: string) {
+export function buildSignature(accessKeySecret: string, stringToSign: string) {
   const utf8Buff = Buffer.from(stringToSign, "utf8");
   return kitx.sha1(utf8Buff, accessKeySecret, "base64");
 }
@@ -71,7 +89,10 @@ export function buildAuthorization(
   accessKeySecret: string,
   stringToSign: string
 ) {
-  return `authing ${accessKeyId}:${signature(accessKeySecret, stringToSign)}`;
+  return `authing ${accessKeyId}:${buildSignature(
+    accessKeySecret,
+    stringToSign
+  )}`;
 }
 
 const pkg = require("../../package.json");

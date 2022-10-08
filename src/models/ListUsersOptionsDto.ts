@@ -13,7 +13,7 @@ export type ListUsersOptionsDto = {
     /**
      * 排序设置，可以设置多项按照多个字段进行排序
      */
-    sort: Array<SortingDto>;
+    sort?: Array<SortingDto>;
     /**
      * 模糊搜索匹配的用户字段，可选值为：
      * - `phone`: 用户手机号，不能包含手机号区号，默认包含

@@ -1,12 +1,15 @@
+import { ListUsersAdvancedFilterItemDto } from "../../src/models";
 import { managementClient } from "../client";
 
 describe("listUsers", () => {
   describe("Success", () => {
     it("default", async () => {
       const { statusCode, data, message } = await managementClient.listUsers({
-        withCustomData: true,
-        withIdentities: true,
-        withDepartmentIds: true,
+        options: {
+          withCustomData: true,
+          withIdentities: true,
+          withDepartmentIds: true,
+        },
       });
       expect(statusCode).toEqual(200);
       expect(data.totalCount).toBeGreaterThan(0);
@@ -20,7 +23,11 @@ describe("listUsers", () => {
   describe("Fail", () => {
     it("page is invalid", async () => {
       const { statusCode, message } = await managementClient.listUsers({
-        page: 0,
+       options: {
+        pagination: {
+          page: 0,
+        }
+       }
       });
       expect(statusCode).toEqual(400);
       expect(message).toEqual("参数 page 格式错误");
@@ -28,7 +35,11 @@ describe("listUsers", () => {
 
     it("limit is invalid", async () => {
       const { statusCode, message } = await managementClient.listUsers({
-        limit: 0,
+        options: {
+          pagination: {
+            limit: 0,
+          }
+         }
       });
       expect(statusCode).toEqual(400);
       expect(message).toEqual("参数 limit 格式错误");
@@ -36,7 +47,11 @@ describe("listUsers", () => {
 
     it("limit is invalid", async () => {
       const { statusCode, message } = await managementClient.listUsers({
-        limit: 220,
+        options: {
+          pagination: {
+            limit: 220,
+          }
+         }
       });
       expect(statusCode).toEqual(400);
       expect(message).toEqual("limit must less than 50");
@@ -44,7 +59,13 @@ describe("listUsers", () => {
 
     it("status is invalid", async () => {
       const { statusCode, message } = await managementClient.listUsers({
-        status: "invalid" as any,
+        advancedFilter: [
+          {
+            field: 'status',
+            operator: ListUsersAdvancedFilterItemDto.operator.EQUAL,
+            value: 'invalid'
+          }
+        ]
       });
       expect(statusCode).toEqual(400);
       expect(message).toEqual("参数 status 格式错误");

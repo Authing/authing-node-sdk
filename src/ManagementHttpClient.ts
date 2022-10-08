@@ -30,7 +30,7 @@ export class ManagementHttpClient {
       headers["x-authing-tenant-id"] = this.options.tenantId;
     }
     headers["x-authing-lang"] = this.options.lang || "zh-CN";
-    headers["date"] = new Date().toISOString();
+    headers["date"] = +new Date();
     headers = Object.assign(DEFAULT_HEADERS, headers);
 
     const requestData = config?.data || config?.params || {};
@@ -42,8 +42,9 @@ export class ManagementHttpClient {
       config.method!,
       config.url!,
       headers,
-      Object.assign(config.data || {}, config.params || {})
+      config.method === 'GET' ? config.params || {} : config.data || {},
     );
+    console.log(stringToSign)
     headers["authorization"] = buildAuthorization(
       this.options.accessKeyId,
       this.options.accessKeySecret,

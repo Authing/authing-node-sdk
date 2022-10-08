@@ -15,6 +15,14 @@ export type ListDepartmentMembersDto = {
      */
     departmentId?: any;
     /**
+     * 排序依据
+     */
+    sortBy?: any;
+    /**
+     * 增序还是倒序
+     */
+    orderBy?: any;
+    /**
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: any;
@@ -42,12 +50,4 @@ export type ListDepartmentMembersDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: any;
-    /**
-     * 排序依据
-     */
-    sortBy?: any;
-    /**
-     * 增序还是倒序
-     */
-    orderBy?: any;
 };

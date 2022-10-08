@@ -16,6 +16,8 @@ import type { AssociationExtIdpDto } from "./models/AssociationExtIdpDto";
 import type { AuthorizedResourceListRespDto } from "./models/AuthorizedResourceListRespDto";
 import type { AuthorizedResourcePaginatedRespDto } from "./models/AuthorizedResourcePaginatedRespDto";
 import type { AuthorizeResourcesDto } from "./models/AuthorizeResourcesDto";
+import type { CancelSyncRiskOperationDto } from "./models/CancelSyncRiskOperationDto";
+import type { CancelSyncRiskOperationsRespDto } from "./models/CancelSyncRiskOperationsRespDto";
 import type { CheckDomainAvailable } from "./models/CheckDomainAvailable";
 import type { CheckDomainAvailableSecretRespDto } from "./models/CheckDomainAvailableSecretRespDto";
 import type { CheckSessionStatusDto } from "./models/CheckSessionStatusDto";
@@ -82,7 +84,7 @@ import type { IsUserInDepartmentRespDto } from "./models/IsUserInDepartmentRespD
 import type { KickUsersDto } from "./models/KickUsersDto";
 import type { ListApplicationActiveUsersDto } from "./models/ListApplicationActiveUsersDto";
 import type { ListArchivedUsersSingleRespDto } from "./models/ListArchivedUsersSingleRespDto";
-import type { ListUsersDto } from "./models/ListUsersDto";
+import type { ListUsersRequestDto } from "./models/ListUsersRequestDto";
 import type { MFASettingsDto } from "./models/MFASettingsDto";
 import type { MFASettingsRespDto } from "./models/MFASettingsRespDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
@@ -112,8 +114,15 @@ import type { SetCustomDataReqDto } from "./models/SetCustomDataReqDto";
 import type { SetCustomFieldsReqDto } from "./models/SetCustomFieldsReqDto";
 import type { SetUserBaseFieldsReqDto } from "./models/SetUserBaseFieldsReqDto";
 import type { SetUserDepartmentsDto } from "./models/SetUserDepartmentsDto";
+import type { SyncJobPaginatedRespDto } from "./models/SyncJobPaginatedRespDto";
+import type { SyncJobSingleRespDto } from "./models/SyncJobSingleRespDto";
+import type { SyncRiskOperationPaginatedRespDto } from "./models/SyncRiskOperationPaginatedRespDto";
 import type { SyncTaskPaginatedRespDto } from "./models/SyncTaskPaginatedRespDto";
 import type { SyncTaskSingleRespDto } from "./models/SyncTaskSingleRespDto";
+import type { TriggerSyncRiskOperationDto } from "./models/TriggerSyncRiskOperationDto";
+import type { TriggerSyncRiskOperationsRespDto } from "./models/TriggerSyncRiskOperationsRespDto";
+import type { TriggerSyncTaskDto } from "./models/TriggerSyncTaskDto";
+import type { TriggerSyncTaskRespDto } from "./models/TriggerSyncTaskRespDto";
 import type { UpdateApplicationPermissionStrategyDataDto } from "./models/UpdateApplicationPermissionStrategyDataDto";
 import type { UpdateDepartmentReqDto } from "./models/UpdateDepartmentReqDto";
 import type { UpdateEmailTemplateDto } from "./models/UpdateEmailTemplateDto";
@@ -125,6 +134,7 @@ import type { UpdateNamespaceRespDto } from "./models/UpdateNamespaceRespDto";
 import type { UpdateOrganizationReqDto } from "./models/UpdateOrganizationReqDto";
 import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { UpdateSecuritySettingsDto } from "./models/UpdateSecuritySettingsDto";
+import type { UpdateSyncTaskDto } from "./models/UpdateSyncTaskDto";
 import type { UpdateUserBatchReqDto } from "./models/UpdateUserBatchReqDto";
 import type { UpdateUserReqDto } from "./models/UpdateUserReqDto";
 import type { UserActionLogRespDto } from "./models/UserActionLogRespDto";
@@ -378,7 +388,7 @@ export class ManagementClient {
    * @returns UserPaginatedRespDto
    */
   public async listUsers(
-    requestBody: ListUsersDto
+    requestBody: ListUsersRequestDto
   ): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "POST",
@@ -1594,6 +1604,8 @@ export class ManagementClient {
   public async listDepartmentMembers({
     organizationCode,
     departmentId,
+    sortBy = "JoinDepartmentAt",
+    orderBy = "Desc",
     departmentIdType = "department_id",
     includeChildrenDepartments = false,
     page = 1,
@@ -1601,13 +1613,15 @@ export class ManagementClient {
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
-    sortBy = "JoinDepartmentAt",
-    orderBy = "Desc",
   }: {
     /** 组织 code **/
     organizationCode: string;
     /** 部门 ID，根部门传 `root` **/
     departmentId: string;
+    /** 排序依据 **/
+    sortBy?: "Default" | "JoinDepartmentAt";
+    /** 增序还是倒序 **/
+    orderBy?: "Asc" | "Desc";
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: "department_id" | "open_department_id";
     /** 是否包含子部门的成员 **/
@@ -1622,10 +1636,6 @@ export class ManagementClient {
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
-    /** 排序依据 **/
-    sortBy?: "Default" | "JoinDepartmentAt";
-    /** 增序还是倒序 **/
-    orderBy?: "Asc" | "Desc";
   }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1633,6 +1643,8 @@ export class ManagementClient {
       params: {
         organizationCode: organizationCode,
         departmentId: departmentId,
+        sortBy: sortBy,
+        orderBy: orderBy,
         departmentIdType: departmentIdType,
         includeChildrenDepartments: includeChildrenDepartments,
         page: page,
@@ -1640,8 +1652,6 @@ export class ManagementClient {
         withCustomData: withCustomData,
         withIdentities: withIdentities,
         withDepartmentIds: withDepartmentIds,
-        sortBy: sortBy,
-        orderBy: orderBy,
       },
     });
   }
@@ -2888,6 +2898,233 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/create-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 修改同步任务
+   * @description 修改同步任务
+   * @returns SyncTaskPaginatedRespDto
+   */
+  public async updateSyncTask(
+    requestBody: UpdateSyncTaskDto
+  ): Promise<SyncTaskPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 执行同步任务
+   * @description 执行同步任务
+   * @returns TriggerSyncTaskRespDto
+   */
+  public async triggerSyncTask(
+    requestBody: TriggerSyncTaskDto
+  ): Promise<TriggerSyncTaskRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/trigger-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns SyncJobSingleRespDto
+   */
+  public async getSyncJob({
+    syncJobId,
+  }: {
+    /** 同步作业 ID **/
+    syncJobId: number;
+  }): Promise<SyncJobSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-sync-job",
+      params: {
+        syncJobId: syncJobId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns SyncJobPaginatedRespDto
+   */
+  public async listSyncJobs({
+    syncTaskId,
+    page = 1,
+    limit = 10,
+    syncTrigger,
+  }: {
+    /** 同步任务 ID **/
+    syncTaskId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 同步任务触发类型：
+     * - `manually`: 手动触发执行
+     * - `timed`: 定时触发
+     * - `automatic`: 根据事件自动触发
+     *  **/
+    syncTrigger?: "manually" | "timed" | "automatic";
+  }): Promise<SyncJobPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-jobs",
+      params: {
+        syncTaskId: syncTaskId,
+        page: page,
+        limit: limit,
+        syncTrigger: syncTrigger,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns TriggerSyncTaskRespDto
+   */
+  public async listSyncJobLogs({
+    syncJobId,
+    page = 1,
+    limit = 10,
+    success,
+    action,
+    objectType,
+  }: {
+    /** 同步作业 ID **/
+    syncJobId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 根据是否操作成功进行筛选 **/
+    success?: boolean;
+    /** 根据操作类型进行筛选：
+     * - `CreateUser`: 创建用户
+     * - `UpdateUser`: 修改用户信息
+     * - `DeleteUser`: 删除用户
+     * - `UpdateUserIdentifier`: 修改用户唯一标志符
+     * - `ChangeUserDepartment`: 修改用户部门
+     * - `CreateDepartment`: 创建部门
+     * - `UpdateDepartment`: 修改部门信息
+     * - `DeleteDepartment`: 删除部门
+     * - `MoveDepartment`: 移动部门
+     * - `UpdateDepartmentLeader`: 同步部门负责人
+     * - `CreateGroup`: 创建分组
+     * - `UpdateGroup`: 修改分组
+     * - `DeleteGroup`: 删除分组
+     * - `Updateless`: 无更新
+     *  **/
+    action?:
+      | "CreateUser"
+      | "UpdateUser"
+      | "DeleteUser"
+      | "UpdateUserIdentifier"
+      | "ChangeUserDepartment"
+      | "CreateDepartment"
+      | "UpdateDepartment"
+      | "DeleteDepartment"
+      | "MoveDepartment"
+      | "UpdateDepartmentLeader"
+      | "CreateGroup"
+      | "UpdateGroup"
+      | "DeleteGroup"
+      | "Updateless";
+    /** 操作对象类型:
+     * - `department`: 部门
+     * - `user`: 用户
+     *  **/
+    objectType?: "DEPARTMENT" | "USER";
+  }): Promise<TriggerSyncTaskRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-job-logs",
+      params: {
+        syncJobId: syncJobId,
+        page: page,
+        limit: limit,
+        success: success,
+        action: action,
+        objectType: objectType,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步风险操作列表
+   * @description 获取同步风险操作列表
+   * @returns SyncRiskOperationPaginatedRespDto
+   */
+  public async listSyncRiskOperations({
+    syncTaskId,
+    page = 1,
+    limit = 10,
+    status,
+    objectType,
+  }: {
+    /** 同步任务 ID **/
+    syncTaskId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 根据执行状态筛选 **/
+    status?: Array<"PENDING" | "SUCCESS" | "FAILED" | "CANCELED" | "EXECUTING">;
+    /** 根据操作对象类型，默认获取所有类型的记录：
+     * - `department`: 部门
+     * - `user`: 用户
+     *  **/
+    objectType?: Array<"DEPARTMENT" | "USER">;
+  }): Promise<SyncRiskOperationPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-risk-operations",
+      params: {
+        syncTaskId: syncTaskId,
+        page: page,
+        limit: limit,
+        status: status,
+        objectType: objectType,
+      },
+    });
+  }
+
+  /**
+   * @summary 执行同步风险操作
+   * @description 执行同步风险操作
+   * @returns TriggerSyncRiskOperationsRespDto
+   */
+  public async triggerSyncRiskOperations(
+    requestBody: TriggerSyncRiskOperationDto
+  ): Promise<TriggerSyncRiskOperationsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/trigger-sync-risk-operations",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 取消同步风险操作
+   * @description 取消同步风险操作
+   * @returns CancelSyncRiskOperationsRespDto
+   */
+  public async cancelSyncRiskOperation(
+    requestBody: CancelSyncRiskOperationDto
+  ): Promise<CancelSyncRiskOperationsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/cancel-sync-risk-operation",
       data: requestBody,
     });
   }

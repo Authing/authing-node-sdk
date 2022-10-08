@@ -2,27 +2,20 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { SyncTaskClientConfig } from './SyncTaskClientConfig';
 import type { SyncTaskFieldMapping } from './SyncTaskFieldMapping';
 import type { SyncTaskProvisioningScope } from './SyncTaskProvisioningScope';
 import type { SyncTaskTimedScheduler } from './SyncTaskTimedScheduler';
 
-export type SyncTaskDto = {
+export type UpdateSyncTaskDto = {
     /**
      * 同步任务 ID
      */
     syncTaskId: number;
     /**
-     * 创建时间
-     */
-    createdAt: string;
-    /**
-     * 更新时间
-     */
-    updatedAt: string;
-    /**
      * 同步任务名称
      */
-    syncTaskName: string;
+    syncTaskName?: string;
     /**
      * 同步任务类型:
      * - `lark`: 飞书
@@ -40,14 +33,18 @@ export type SyncTaskDto = {
      * - `scim`: 自定义同步源
      *
      */
-    syncTaskType: SyncTaskDto.syncTaskType;
+    syncTaskType?: UpdateSyncTaskDto.syncTaskType;
+    /**
+     * 同步任务配置信息
+     */
+    clientConfig?: SyncTaskClientConfig;
     /**
      * 同步任务数据流向：
      * - `upstream`: 作为上游，将数据同步到 Authing
      * - `downstream`: 作为下游，将 Authing 数据同步到此系统
      *
      */
-    syncFlow: SyncTaskDto.syncFlow;
+    syncTaskFlow?: UpdateSyncTaskDto.syncTaskFlow;
     /**
      * 同步任务触发类型：
      * - `manually`: 手动触发执行
@@ -55,29 +52,7 @@ export type SyncTaskDto = {
      * - `automatic`: 根据事件自动触发
      *
      */
-    syncTrigger: SyncTaskDto.syncTrigger;
-    /**
-     * 最近一次同步错误信息
-     */
-    lastSyncMessage?: boolean;
-    /**
-     * 最近一次同步进度
-     */
-    lastSyncRate?: number;
-    /**
-     * 最近一次同步状态:
-     * - `free`: 空闲状态，从未执行
-     * - `pending`: 等待系统执行
-     * - `onProgress`: 正在执行
-     * - `success`: 成功
-     * - `failed`: 失败
-     *
-     */
-    lastSyncStatus?: SyncTaskDto.lastSyncStatus;
-    /**
-     * 最近一次同步时间
-     */
-    lastSyncTime?: string;
+    syncTaskTrigger?: UpdateSyncTaskDto.syncTaskTrigger;
     /**
      * 此同步任务绑定的组织机构。针对上游同步，需执行一次同步任务之后才会绑定组织机构；针对下游同步，创建同步任务的时候就需要设置。
      */
@@ -89,14 +64,14 @@ export type SyncTaskDto = {
     /**
      * 字段映射配置
      */
-    fieldMapping: Array<SyncTaskFieldMapping>;
+    fieldMapping?: Array<SyncTaskFieldMapping>;
     /**
      * 定时同步时间设置
      */
     timedScheduler?: SyncTaskTimedScheduler;
 };
 
-export namespace SyncTaskDto {
+export namespace UpdateSyncTaskDto {
 
     /**
      * 同步任务类型:
@@ -138,7 +113,7 @@ export namespace SyncTaskDto {
      * - `downstream`: 作为下游，将 Authing 数据同步到此系统
      *
      */
-    export enum syncFlow {
+    export enum syncTaskFlow {
         UPSTREAM = 'upstream',
         DOWNSTREAM = 'downstream',
     }
@@ -150,27 +125,10 @@ export namespace SyncTaskDto {
      * - `automatic`: 根据事件自动触发
      *
      */
-    export enum syncTrigger {
+    export enum syncTaskTrigger {
         MANUALLY = 'manually',
         TIMED = 'timed',
         AUTOMATIC = 'automatic',
-    }
-
-    /**
-     * 最近一次同步状态:
-     * - `free`: 空闲状态，从未执行
-     * - `pending`: 等待系统执行
-     * - `onProgress`: 正在执行
-     * - `success`: 成功
-     * - `failed`: 失败
-     *
-     */
-    export enum lastSyncStatus {
-        FREE = 'free',
-        PENDING = 'pending',
-        ON_PROGRESS = 'onProgress',
-        SUCCESS = 'success',
-        FAILED = 'failed',
     }
 
 

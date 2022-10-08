@@ -97,6 +97,9 @@ describe("createUser", () => {
         nickname,
         emailVerified,
         phoneVerified,
+        customData: {
+          school: 'mit'
+        }
       });
       expect(statusCode).toEqual(200);
       expect(user.userId).toBeDefined();
