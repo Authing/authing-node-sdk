@@ -1,4 +1,3 @@
-import axios from "axios";
 import base64url from "base64url";
 import { createSecretKey } from "crypto";
 import { IncomingMessage, ServerResponse } from "http";
@@ -8,14 +7,10 @@ import {
   AccessToken,
   AuthUrlResult,
   AuthURLParams,
-  CodeToTokenParams,
   IDToken,
-  LoginState,
   LoginTransaction,
   LogoutURLParams,
   OIDCTokenResponse,
-  RefreshTokenParams,
-  UserInfo,
 } from "./AuthenticationClientInterface";
 import {
   AuthenticationClientInitOptions,
@@ -28,8 +23,19 @@ import {
   generateRandomString,
   JoseKey,
   parseJWKS,
+  serialize,
 } from "./utils";
+import sha256 from "crypto-js/sha256";
+import CryptoJS from "crypto-js";
 import { AuthenticationHttpClient } from "./AutherticationHttpClient";
+import {
+  OidcParams,
+  OauthParams,
+  CasParams,
+  LogoutParams,
+  Cas20ValidationFailureResult,
+  Cas20ValidationSuccessResult,
+} from "./utils/types";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { EnrollFactorDto } from "./models/EnrollFactorDto";
 import type { EnrollFactorRespDto } from "./models/EnrollFactorRespDto";
@@ -102,13 +108,18 @@ export class AuthenticationClient {
   constructor(options: AuthenticationClientInitOptions) {
     options.cookieKey = options.cookieKey ?? DEFAULT_COOKIE_KEY;
     options.scope = options.scope ?? DEFAULT_SCOPE;
+    options.protocol = options.protocol ?? 'oidc';
+    options.tokenEndPointAuthMethod = options.tokenEndPointAuthMethod ?? 'client_secret_post';
+    options.introspectionEndPointAuthMethod = options.introspectionEndPointAuthMethod ?? 'client_secret_post';
+    options.revocationEndPointAuthMethod = options.revocationEndPointAuthMethod ?? 'client_secret_post';
+    options.timeout = options.timeout || 10000;
 
     if (!options.scope?.includes("openid")) {
       throw new Error("scope 中必须包含 openid");
     }
 
     this.options = options as any;
-    this.options.host = domainC14n(options.host);
+    this.options.appHost = domainC14n(options.appHost);
 
     this.httpClient = new AuthenticationHttpClient(this.options);
 
@@ -120,7 +131,9 @@ export class AuthenticationClient {
           method: "GET",
           url: "/oidc/.well-known/jwks.json",
         })
-        .then((res) => parseJWKS(res.data))
+        .then((data) => {
+          return parseJWKS(data)
+        })
         .catch((e) => {
           throw new Error(
             `自动获取认证服务器 JWKS 公钥失败, 请检查域名是否正确, 或手动指定 serverJWKS 参数: ${e.message}`
@@ -150,7 +163,7 @@ export class AuthenticationClient {
       forced?: boolean;
     } = {}
   ): Promise<void> {
-    const { url, state, nonce } = this.buildAuthUrl(options);
+    const { url, state, nonce } = this.buildAuthorizeUrl(options);
     res.setHeader("Location", url);
 
     const tx: LoginTransaction = {
@@ -171,51 +184,6 @@ export class AuthenticationClient {
   }
 
   /**
-   * 生成认证发起 URL
-   *
-   * @param options.scope 本次认证中请求获得的权限，覆盖初始化参数中的对应设置
-   * @param options.state 中间状态标识符，默认自动生成
-   * @param options.nonce 出现在 ID Token 中的随机字符串，默认自动生成
-   * @param options.redirectUri 回调地址，覆盖初始化参数中的对应设置
-   * @param options.forced 即便用pread户已经登录也强制显示登录页
-   */
-  buildAuthUrl(
-    options: {
-      scope?: string;
-      state?: string;
-      nonce?: string;
-      redirectUri?: string;
-      forced?: boolean;
-    } = {}
-  ): AuthUrlResult {
-    const state = options.state ?? generateRandomString(16);
-    const nonce = options.nonce ?? generateRandomString(16);
-    const scope = options.scope ?? this.options.scope;
-
-    const params: AuthURLParams = {
-      redirect_uri: options.redirectUri ?? this.options.redirectUri,
-      response_mode: "query",
-      response_type: "code",
-      client_id: this.options.appId,
-      scope,
-      state,
-      nonce,
-    };
-
-    if (options.forced) {
-      params.prompt = "login";
-    } else if (scope.split(" ").includes("offline_access")) {
-      params.prompt = "consent";
-    }
-
-    return {
-      url: `${this.options.host}/oidc/auth?${createQueryParams(params)}`,
-      state,
-      nonce,
-    };
-  }
-
-  /**
    * 在应用回调端点处理认证返回结果，利用 Cookie 中传递的上下文信息进行安全验证，并获取用户登录态
    *
    * @param req http 请求对象，用于获取认证结果和上下文 Cookie
@@ -224,7 +192,7 @@ export class AuthenticationClient {
   async handleRedirectCallback(
     req: IncomingMessage,
     res: ServerResponse
-  ): Promise<LoginState> {
+  ): Promise<OIDCTokenResponse> {
     if (!req.url) {
       throw new Error("req 对象没有 url");
     }
@@ -267,43 +235,863 @@ export class AuthenticationClient {
       throw new Error("state 验证失败");
     }
 
-    const loginState = await this.getLoginStateByAuthCode(code, tx.redirectUri);
-
-    if (loginState.parsedIDToken.nonce !== tx.nonce) {
-      throw new Error("nonce 校验失败");
-    }
-
+    const loginState = await this.getAccessTokenByCode(code);
     return loginState;
   }
 
+  private _generateTokenRequest(params: { [x: string]: string }) {
+    let ret: any = {};
+    // 删掉所有 undefined 的 kv
+    Object.keys(params).map((key) => {
+      if (typeof params[key] !== "undefined") {
+        ret[key] = params[key];
+      }
+    });
+    let p = new URLSearchParams(ret);
+    return p.toString();
+  }
+
   /**
-   * 用授权码获取用户登录态
-   *
-   * @param code Authing 返回的授权码
-   * @param redirectUri 发起认证时传入的回调地址
+   * @param {string} code 授权码 code
+   * @param {string} codeVerifier 校验码 codeVerifier
    */
-  async getLoginStateByAuthCode(
+  private async _getAccessTokenByCodeWithClientSecretPost(
     code: string,
-    redirectUri: string
-  ): Promise<LoginState> {
-    const tokenParam: CodeToTokenParams = {
-      code,
+    codeVerifier?: string
+  ) {
+    const qstr = this._generateTokenRequest({
       client_id: this.options.appId,
       client_secret: this.options.appSecret,
-      redirect_uri: redirectUri,
       grant_type: "authorization_code",
-    };
-
-    const data = await this.httpClient.request({
+      code,
+      redirect_uri: this.options.redirectUri,
+      code_verifier: codeVerifier!,
+    });
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    let tokenSet = await this.httpClient.request({
       method: "POST",
-      url: "/oidc/token",
-      data: createQueryParams(tokenParam),
+      url: api,
+      data: qstr,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
+    return tokenSet;
+  }
 
-    return this.buildLoginState(data);
+  private _generateBasicAuthToken(appId?: string, secret?: string) {
+    let id = appId || this.options.appId;
+    let s = secret || this.options.appSecret;
+    let token = "Basic " + Buffer.from(id + ":" + s).toString("base64");
+    return token;
+  }
+  /**
+   * @param {string} code 授权码 code
+   * @param {string} codeVerifier 校验码 codeVerifier
+   */
+  private async _getAccessTokenByCodeWithClientSecretBasic(
+    code: string,
+    codeVerifier?: string
+  ) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    const qstr = this._generateTokenRequest({
+      grant_type: "authorization_code",
+      code,
+      redirect_uri: this.options.redirectUri,
+      code_verifier: codeVerifier!,
+    });
+    let tokenSet = await this.httpClient.request({
+      data: qstr,
+      method: "POST",
+      url: api,
+      headers: {
+        Authorization: this._generateBasicAuthToken(),
+      },
+    });
+    return tokenSet;
+  }
+  /**
+   * @param {string} code 授权码 code
+   * @param {string} codeVerifier 校验码 codeVerifier
+   */
+  private async _getAccessTokenByCodeWithNone(
+    code: string,
+    codeVerifier?: string
+  ) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      grant_type: "authorization_code",
+      code,
+      redirect_uri: this.options.redirectUri,
+      code_verifier: codeVerifier!,
+    });
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+    });
+    return tokenSet;
+  }
+
+  /**
+   * 使用授权码 Code 获取用户的 Token 信息。
+   *
+   * @param code 授权码 Code，用户在认证成功后，Authing 会将授权码 Code 发送到回调地址，详情请见使用 OIDC 授权码模式，每个 Code 只能使用一次。
+   * @param options.codeVerifier 校验码原始值，不是摘要值。
+   * @returns
+   */
+  public async getAccessTokenByCode(
+    code: string,
+    options?: { codeVerifier?: string }
+  ): Promise<OIDCTokenResponse> {
+    if (!["oauth", "oidc"].includes(this.options.protocol)) {
+      throw new Error(
+        "初始化 AuthenticationClient 时传入的 protocol 参数必须为 oauth 或 oidc，请检查参数"
+      );
+    }
+    if (
+      !this.options.appSecret &&
+      this.options.tokenEndPointAuthMethod !== "none"
+    ) {
+      throw new Error(
+        "请在初始化 AuthenticationClient 时传入 appId 和 secret 参数"
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "client_secret_post") {
+      return await this._getAccessTokenByCodeWithClientSecretPost(
+        code,
+        options?.codeVerifier
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "client_secret_basic") {
+      return await this._getAccessTokenByCodeWithClientSecretBasic(
+        code,
+        options?.codeVerifier
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "none") {
+      return await this._getAccessTokenByCodeWithNone(
+        code,
+        options?.codeVerifier
+      );
+    } else {
+      throw new Error(
+        "不支持的 tokenEndPointAuthMethod: " + this.options.tokenEndPointAuthMethod
+      );
+    }
+  }
+
+  /**
+   * 使用编程访问账号获取具备权限的 Access Token。
+   *
+   * @param scope 权限项目，空格分隔的字符串，每一项代表一个权限。详情请见机器间（M2M）授权。
+   * @param options.accessKey 编程访问账号 AccessKey，如果不传默认使用初始化 SDK 时传入的 appId。
+   * @param options.secretKey 编程访问账号 SecretKey，如果不传默认使用初始化 SDK 时传入的 appSecret。
+   * @returns
+   */
+  public async getAccessTokenByClientCredentials(
+    scope: string,
+    options?: {
+      accessKey: string;
+      accessSecret: string;
+    }
+  ) {
+    if (!scope) {
+      throw new Error(
+        "请传入 scope 参数，请看文档：https://docs.authing.cn/v2/guides/authorization/m2m-authz.html"
+      );
+    }
+    if (!options) {
+      throw new Error(
+        "请在调用本方法时传入 { accessKey: string, accessSecret: string }，请看文档：https://docs.authing.cn/v2/guides/authorization/m2m-authz.html"
+        // '请在初始化 AuthenticationClient 时传入 appId 和 secret 参数或者在调用本方法时传入 { accessKey: string, accessSecret: string }，请看文档：https://docs.authing.cn/v2/guides/authorization/m2m-authz.html'
+      );
+    }
+    let i = options?.accessKey || this.options.appId;
+    let s = options?.accessSecret || this.options.appSecret;
+    const qstr = this._generateTokenRequest({
+      client_id: i,
+      client_secret: s,
+      grant_type: "client_credentials",
+      scope: scope,
+    });
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return tokenSet;
+  }
+
+  /**
+   * 使用 Access token 获取用户信息。
+   *
+   * @param accessToken Access token，使用授权码 Code 换取的 Access token 的内容。
+   * @param options
+   * @returns
+   */
+  public async getUserInfoByAccessToken(
+    accessToken: string,
+    options?: {
+      method?: "POST" | "GET";
+      tokenPlace?: "query" | "header" | "body";
+    }
+  ) {
+    if (options) {
+      if (options.method && !["POST", "GET"].includes(options.method)) {
+        throw new Error("options.method 参数的可选值为 POST、GET，请检查输入");
+      }
+      if (
+        options.tokenPlace &&
+        !["query", "header", "body"].includes(options.tokenPlace)
+      ) {
+        throw new Error(
+          "options.tokenPlace 参数的可选值为 query、header、body，请检查输入"
+        );
+      }
+      if (options.method === "GET" && options.tokenPlace === "body") {
+        throw new Error(
+          "options.method 参数为 GET 时，options.tokenPlace 参数不能为 body"
+        );
+      }
+      options.method = options.method || "GET";
+      options.tokenPlace = options.tokenPlace || "query";
+    }
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/me`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/me`;
+    }
+    if (options?.method === "POST") {
+      if (options?.tokenPlace === "header") {
+        let userInfo = await this.httpClient.request({
+          method: "POST",
+          url: api,
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        });
+        return userInfo;
+      } else if (options?.tokenPlace === "query") {
+        let userInfo = await this.httpClient.request({
+          method: "POST",
+          url: api,
+          params: {
+            access_token: accessToken,
+          },
+        });
+        return userInfo;
+      } else if (options?.tokenPlace === "body") {
+        let userInfo = await this.httpClient.request({
+          method: "POST",
+          url: api,
+          data: serialize({
+            access_token: accessToken,
+          }),
+        });
+        return userInfo;
+      }
+    } else if (options?.method === "GET") {
+      if (options?.tokenPlace === "header") {
+        let userInfo = await this.httpClient.request({
+          method: "GET",
+          url: api,
+          headers: {
+            Authorization: "Bearer " + accessToken,
+          },
+        });
+        return userInfo;
+      } else if (options?.tokenPlace === "query") {
+        let userInfo = await this.httpClient.request({
+          method: "GET",
+          url: api,
+          params: {
+            access_token: accessToken,
+          },
+        });
+        return userInfo;
+      }
+    } else {
+      // 默认使用 GET + query 获取用户信息
+      let userInfo = await this.httpClient.request({
+        method: "GET",
+        url: api,
+        params: {
+          access_token: accessToken,
+        },
+      });
+      return userInfo;
+    }
+  }
+
+  /**
+   * 生成 OIDC/OAuth/CAS/SAML 协议的用户登录链接，用户可以通过此链接访问 Authing 的在线登录页面。
+   *
+   */
+  public buildAuthorizeUrl(options?: OidcParams | OauthParams | CasParams): AuthUrlResult {
+    if (!this.options.appHost) {
+      throw new Error(
+        "请在初始化 AuthenticationClient 时传入应用域名 appHost 参数，形如：https://app1.authing.cn"
+      );
+    }
+    if (this.options.protocol === "oidc") {
+      return this._buildOidcAuthorizeUrl(options as OidcParams);
+    }
+    if (this.options.protocol === "oauth") {
+      const url = this._buildOauthAuthorizeUrl(options as OauthParams);
+      return {
+        url,
+        state: (options as OauthParams)?.state
+      }
+    }
+    if (this.options.protocol === "saml") {
+      const url = this._buildSamlAuthorizeUrl();
+      return {
+        url,
+        state: (options as OauthParams)?.state
+      }
+    }
+    if (this.options.protocol === "cas") {
+      const url = this._buildCasAuthorizeUrl(options as CasParams);
+      return {
+        url
+      }
+    }
+    throw new Error(
+      "不支持的协议类型，请在初始化 AuthenticationClient 时传入 protocol 参数，可选值为 oidc、oauth、saml、cas"
+    );
+  }
+
+  private _buildOidcAuthorizeUrl(options?: OidcParams) {
+    const state = options?.state ?? generateRandomString(16);
+    const nonce = options?.nonce ?? generateRandomString(16);
+    const scope = options?.scope ?? this.options.scope;
+
+    const params: AuthURLParams = {
+      redirect_uri: options?.redirectUri ?? this.options.redirectUri,
+      response_mode: "query",
+      response_type: "code",
+      client_id: this.options.appId,
+      scope,
+      state,
+      nonce,
+    };
+    if (options?.forced) {
+      params.prompt = "login";
+    } else if (scope.split(" ").includes("offline_access")) {
+      params.prompt = "consent";
+    }
+
+    return {
+      url: `${this.options.appHost}/oidc/auth?${createQueryParams(params)}`,
+      state,
+      nonce,
+    };
+  }
+
+  private _buildOauthAuthorizeUrl(options: OauthParams) {
+    let map: any = {
+      appId: "client_id",
+      scope: "scope",
+      state: "state",
+      responseType: "response_type",
+      redirectUri: "redirect_uri",
+    };
+    let res: any = {
+      state: Math.random().toString().slice(2),
+      scope: "user",
+      client_id: this.options.appId,
+      redirect_uri: this.options.redirectUri,
+      response_type: "code",
+    };
+    Object.keys(map).forEach((k) => {
+      if (options && (options as any)[k]) {
+        res[map[k]] = (options as any)[k];
+      }
+    });
+    let params = new URLSearchParams(res);
+    let authorizeUrl =
+      this.options.appHost + "/oauth/auth?" + params.toString();
+    return authorizeUrl;
+  }
+
+  private _buildSamlAuthorizeUrl() {
+    return this.options.appHost + "/api/v2/saml-idp/" + this.options.appId;
+  }
+  private _buildCasAuthorizeUrl(options: CasParams) {
+    if (options?.service) {
+      return `${this.options.appHost}/cas-idp/${this.options.appId}?service=${options?.service}`;
+    }
+    return `${this.options.appHost}/cas-idp/${this.options.appId}`;
+  }
+  private _buildCasLogoutUrl(options: LogoutParams) {
+    if (options?.redirectUri) {
+      return (
+        this.options.appHost + "/cas-idp/logout?url=" + options.redirectUri
+      );
+    }
+    return `${this.options.appHost}/cas-idp/logout`;
+  }
+
+  private _buildOidcLogoutUrl(options: LogoutParams): string {
+    const redirectUri = options.redirectUri ?? this.options.logoutRedirectUri;
+    const params: LogoutURLParams = {
+      ...(redirectUri && {
+        post_logout_redirect_uri: redirectUri,
+        state: options.state,
+      }),
+      id_token_hint: options.idToken,
+    };
+    return `${this.options.appHost}/oidc/session/end?${createQueryParams(
+      params
+    )}`;
+  }
+
+  private _buildEasyLogoutUrl(options?: LogoutParams) {
+    if (options?.redirectUri) {
+      return `${this.options.appHost}/login/profile/logout?redirect_uri=${options.redirectUri}`;
+    }
+    return `${this.options.appHost}/login/profile/logout`;
+  }
+
+  /**
+   * 拼接 CAS/OIDC 协议的登出 URL
+   *
+   */
+  public buildLogoutUrl(options?: LogoutParams) {
+    if (this.options.protocol === "cas") {
+      return this._buildCasLogoutUrl(options!);
+    }
+    if (this.options.protocol === "oidc") {
+      return this._buildOidcLogoutUrl(options!);
+    } else {
+      throw this._buildEasyLogoutUrl(options!);
+    }
+  }
+
+  private async _getNewAccessTokenByRefreshTokenWithClientSecretPost(
+    refreshToken: string
+  ) {
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      client_secret: this.options.appSecret,
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+    });
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return tokenSet;
+  }
+
+  private async _getNewAccessTokenByRefreshTokenWithClientSecretBasic(
+    refreshToken: string
+  ) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token`;
+    }
+    const qstr = this._generateTokenRequest({
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+    });
+    let tokenSet = await this.httpClient.request({
+      data: qstr,
+      method: "POST",
+      url: api,
+      headers: {
+        Authorization: this._generateBasicAuthToken(),
+      },
+    });
+    return tokenSet;
+  }
+
+  private async _getNewAccessTokenByRefreshTokenWithNone(refreshToken: string) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `${this.options.appHost}/oidc/token`;
+    } else if (this.options.protocol === "oauth") {
+      api = `${this.options.appHost}/oauth/token`;
+    }
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      grant_type: "refresh_token",
+      refresh_token: refreshToken,
+    });
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+    });
+    return tokenSet;
+  }
+
+  /**
+   * 使用 Refresh token 获取新的 Access token。
+   * @param refreshToken Refresh token，可以从 AuthenticationClient.getAccessTokenByCode 方法的返回值中的 refresh_token 获得。
+   * @returns
+   */
+  public async getNewAccessTokenByRefreshToken(refreshToken: string) {
+    if (!["oauth", "oidc"].includes(this.options.protocol)) {
+      throw new Error(
+        "初始化 AuthenticationClient 时传入的 protocol 参数必须为 oauth 或 oidc，请检查参数"
+      );
+    }
+    if (
+      !this.options.appSecret &&
+      this.options.tokenEndPointAuthMethod !== "none"
+    ) {
+      throw new Error(
+        "请在初始化 AuthenticationClient 时传入 appId 和 secret 参数"
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "client_secret_post") {
+      return await this._getNewAccessTokenByRefreshTokenWithClientSecretPost(
+        refreshToken
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "client_secret_basic") {
+      return await this._getNewAccessTokenByRefreshTokenWithClientSecretBasic(
+        refreshToken
+      );
+    }
+    if (this.options.tokenEndPointAuthMethod === "none") {
+      return await this._getNewAccessTokenByRefreshTokenWithNone(refreshToken);
+    }
+  }
+
+  private async _revokeTokenWithClientSecretPost(token: string) {
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      client_secret: this.options.appSecret,
+      token,
+    });
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/revocation`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token/revocation`;
+    }
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return tokenSet;
+  }
+
+  private async _revokeTokenWithClientSecretBasic(token: string) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/revocation`;
+    } else if (this.options.protocol === "oauth") {
+      throw new Error(
+        "OAuth 2.0 暂不支持用 client_secret_basic 模式身份验证撤回 Token"
+      );
+    }
+    const qstr = this._generateTokenRequest({
+      token: token,
+    });
+    let result = await this.httpClient.request({
+      data: qstr,
+      method: "POST",
+      url: api,
+      headers: {
+        Authorization: this._generateBasicAuthToken(),
+      },
+    });
+    return result;
+  }
+  private async _revokeTokenWithNone(token: string) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/revocation`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token/revocation`;
+    }
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      token: token,
+    });
+    let result = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+    });
+    return result;
+  }
+
+  /**
+   * 撤回 Access token 或 Refresh token。Access token 或 Refresh token 的持有者可以通知 Authing 已经不再需要令牌，希望 Authing 将其吊销。
+   * @param token Access token 或 Refresh token，可以从 AuthenticationClient.getAccessTokenByCode 方法的返回值中的 access_token、refresh_token 获得。
+   * @returns
+   */
+  public async revokeToken(token: string) {
+    if (!["oauth", "oidc"].includes(this.options.protocol)) {
+      throw new Error(
+        "初始化 AuthenticationClient 时传入的 protocol 参数必须为 oauth 或 oidc，请检查参数"
+      );
+    }
+    if (
+      !this.options.appSecret &&
+      this.options.revocationEndPointAuthMethod !== "none"
+    ) {
+      throw new Error(
+        "请在初始化 AuthenticationClient 时传入 appId 和 secret 参数"
+      );
+    }
+    if (this.options.revocationEndPointAuthMethod === "client_secret_post") {
+      await this._revokeTokenWithClientSecretPost(token);
+      return true;
+    }
+    if (this.options.revocationEndPointAuthMethod === "client_secret_basic") {
+      await this._revokeTokenWithClientSecretBasic(token);
+      return true;
+    }
+    if (this.options.revocationEndPointAuthMethod === "none") {
+      await this._revokeTokenWithNone(token);
+      return true;
+    }
+    throw new Error(
+      "初始化 AuthenticationClient 时传入的 revocationEndPointAuthMethod 参数可选值为 client_secret_base、client_secret_post、none，请检查参数"
+    );
+  }
+
+  private async _introspectTokenWithClientSecretPost(token: string) {
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      client_secret: this.options.appSecret,
+      token,
+    });
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/introspection`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token/introspection`;
+    }
+    let tokenSet = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    return tokenSet;
+  }
+
+  private async _introspectTokenWithClientSecretBasic(token: string) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/introspection`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token/introspection`;
+    }
+    const qstr = this._generateTokenRequest({
+      token: token,
+    });
+    let result = await this.httpClient.request({
+      data: qstr,
+      method: "POST",
+      url: api,
+      headers: {
+        Authorization: this._generateBasicAuthToken(),
+      },
+    });
+    return result;
+  }
+  private async _introspectTokenWithNone(token: string) {
+    let api = "";
+    if (this.options.protocol === "oidc") {
+      api = `/oidc/token/introspection`;
+    } else if (this.options.protocol === "oauth") {
+      api = `/oauth/token/introspection`;
+    }
+    const qstr = this._generateTokenRequest({
+      client_id: this.options.appId,
+      token: token,
+    });
+    let result = await this.httpClient.request({
+      method: "POST",
+      url: api,
+      data: qstr,
+    });
+    return result;
+  }
+
+  /**
+   * @param token: Access token 或 Refresh token，可以从 AuthenticationClient.getAccessTokenByCode 方法的返回值中的 access_token、refresh_token 获得。
+   *
+   */
+  public async introspectToken(token: string) {
+    if (!["oauth", "oidc"].includes(this.options.protocol)) {
+      throw new Error(
+        "初始化 AuthenticationClient 时传入的 protocol 参数必须为 oauth 或 oidc，请检查参数"
+      );
+    }
+    if (
+      !this.options.appSecret &&
+      this.options.introspectionEndPointAuthMethod !== "none"
+    ) {
+      throw new Error(
+        "请在初始化 AuthenticationClient 时传入 appId 和 secret 参数"
+      );
+    }
+    if (this.options.introspectionEndPointAuthMethod === "client_secret_post") {
+      return await this._introspectTokenWithClientSecretPost(token);
+    }
+    if (
+      this.options.introspectionEndPointAuthMethod === "client_secret_basic"
+    ) {
+      return await this._introspectTokenWithClientSecretBasic(token);
+    }
+    if (this.options.introspectionEndPointAuthMethod === "none") {
+      return await this._introspectTokenWithNone(token);
+    }
+    throw new Error(
+      "初始化 AuthenticationClient 时传入的 introspectionEndPointAuthMethod 参数可选值为 client_secret_base、client_secret_post、none，请检查参数"
+    );
+  }
+
+  /**
+   * 检验 CAS 1.0 Ticket 合法性。
+   * @param ticket CAS 认证成功后，Authing 颁发的 ticket。
+   * @param service CAS 回调地址。
+   * @returns
+   */
+  public async validateTicketV1(ticket: string, service: string) {
+    const api = `/cas-idp/${this.options.appId}/validate`;
+    let result = await this.httpClient.request({
+      method: "GET",
+      url: api,
+      params: {
+        service,
+        ticket,
+      },
+    });
+    const [valid] = result.split("\n");
+    return {
+      valid: valid === "yes",
+      ...(valid !== "yes" && { message: "ticket 不合法" }),
+    };
+  }
+
+  /**
+   * 检验 CAS 2.0 Ticket 合法性，同时返回用户属性，数据格式默认为 JSON，可以选择 XML。
+   *
+   * @param ticket CAS 认证成功后，Authing 颁发的 ticket。
+   * @param service CAS 回调地址。
+   * @param format 返回数据格式，可选值为 XML、JSON，默认为 JSON。
+   * @returns
+   */
+  public async validateTicketV2(
+    ticket: string,
+    service: string,
+    format: "XML" | "JSON" = "JSON"
+  ): Promise<
+    Cas20ValidationSuccessResult | Cas20ValidationFailureResult | string
+  > {
+    if (!ticket) {
+      throw new Error("请传入 ticket 一次性票据");
+    }
+    if (!service) {
+      throw new Error("请传入 service 服务地址");
+    }
+    if (format !== "XML" && format !== "JSON") {
+      throw new Error("format 参数可选值为 XML、JSON，请检查输入");
+    }
+    const api = `/cas-idp/${this.options.appId}/serviceValidate`;
+    let result = await this.httpClient.request({
+      method: "GET",
+      url: api,
+      params: {
+        service,
+        ticket,
+        format,
+      },
+    });
+    return result;
+  }
+
+  /**
+   * 生成 PKCE 校验码
+   */
+  public generateCodeChallenge() {
+    return generateRandomString(43);
+  }
+
+  /**
+   * 生成 PKCE 校验码摘要值
+   */
+  public getCodeChallengeDigest(options: {
+    codeChallenge: string;
+    method: "S256" | "plain";
+  }) {
+    if (!options) {
+      throw new Error(
+        "请提供 options 参数，options.codeChallenge 为一个长度大于等于 43 的字符串，options.method 可选值为 S256、plain"
+      );
+    }
+    if (!options.codeChallenge) {
+      throw new Error(
+        "请提供 options.codeChallenge，值为一个长度大于等于 43 的字符串"
+      );
+    }
+    const { method = "S256" } = options;
+    if (method === "S256") {
+      // url safe base64
+      return sha256(options.codeChallenge)
+        .toString(CryptoJS.enc.Base64)
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=/g, "");
+    }
+    if (method === "plain") {
+      return options.codeChallenge;
+    }
+    throw new Error("不支持的 options.method，可选值为 S256、plain");
   }
 
   /**
@@ -337,56 +1125,6 @@ export class AuthenticationClient {
   }
 
   /**
-   * 用 Access Token 获取用户身份信息
-   *
-   * @param accessToken Access Token
-   */
-  async getUserInfo(accessToken: string): Promise<UserInfo> {
-    const data = await this.httpClient.request({
-      method: "GET",
-      url: "/oidc/me",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    // TODO: 存在 200 的错误场景吗？
-    // if (data.error) {
-    //   throw new Error(
-    //     `认证服务器返回错误 ${data.error}: ${data.error_description}`,
-    //   );
-    // }
-    return data as UserInfo;
-  }
-
-  /**
-   * 用 Refresh Token 刷新用户的登录态，延长过期时间
-   *
-   * 为了获取 Refresh Token，需要在 scope 参数中加入 offline_access
-   *
-   * @param refreshToken Refresh Token
-   */
-  async refreshLoginState(refreshToken: string): Promise<LoginState> {
-    const tokenParam: RefreshTokenParams = {
-      client_id: this.options.appId,
-      client_secret: this.options.appSecret,
-      refresh_token: refreshToken,
-      grant_type: "refresh_token",
-    };
-
-    const data = await this.httpClient.request({
-      method: "POST",
-      url: "/oidc/token",
-      data: createQueryParams(tokenParam),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    return this.buildLoginState(data);
-  }
-
-  /**
    * 将浏览器重定向到 Authing 的登出发起 URL 进行登出
    *
    * @param res http 响应对象，用于进行重定向
@@ -397,51 +1135,9 @@ export class AuthenticationClient {
    */
   async logoutWithRedirect(
     res: ServerResponse,
-    options: {
-      idToken?: string;
-      redirectUri?: string;
-      state?: string;
-    } = {}
+    options?: LogoutParams
   ): Promise<void> {
-    res.setHeader("Location", this.buildLogoutUrl(options)).writeHead(302);
-  }
-
-  /**
-   * 生成登出 URL
-   *
-   * @param options.idToken 用户登录时获取的 ID Token，用于无效化用户 Token，建议传入
-   * @param options.redirectUri 登出完成后的重定向目标 URL，覆盖初始化参数中的对应设置
-   * @param options.state 传递到目标 URL 的中间状态标识符
-   */
-  buildLogoutUrl(
-    options: {
-      idToken?: string;
-      redirectUri?: string;
-      state?: string;
-    } = {}
-  ): string {
-    const redirectUri = options.redirectUri ?? this.options.logoutRedirectUri;
-    const params: LogoutURLParams = {
-      ...(redirectUri && {
-        post_logout_redirect_uri: redirectUri,
-        state: options.state,
-      }),
-      id_token_hint: options.idToken,
-    };
-    return `${this.options.host}/oidc/session/end?${createQueryParams(params)}`;
-  }
-
-  private async buildLoginState(
-    tokenRes: OIDCTokenResponse
-  ): Promise<LoginState> {
-    return {
-      accessToken: tokenRes.access_token,
-      idToken: tokenRes.id_token,
-      refreshToken: tokenRes.refresh_token,
-      expireAt: tokenRes.expires_in,
-      parsedIDToken: await this.parseIDToken(tokenRes.id_token),
-      parsedAccessToken: await this.parseAccessToken(tokenRes.access_token),
-    };
+    res.setHeader("Location", this.buildLogoutUrl(options)!).writeHead(302);
   }
 
   // ==== AUTO GENERATED AUTHENTICATION METHODS BEGIN ====

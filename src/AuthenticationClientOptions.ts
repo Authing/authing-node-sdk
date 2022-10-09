@@ -1,8 +1,8 @@
 import { JWKSObject, Lang } from "./utils";
 
-export const DEFAULT_COOKIE_KEY = 'X-Authing-Node-OIDC-State';
+export const DEFAULT_COOKIE_KEY = "X-Authing-Node-OIDC-State";
 
-export const DEFAULT_SCOPE = 'openid profile';
+export const DEFAULT_SCOPE = "openid profile";
 
 /**
  * NodeJS 认证 SDK 初始化参数
@@ -12,10 +12,10 @@ export interface AuthenticationClientInitOptions {
   appId: string;
 
   /** 应用 Secret */
-  appSecret: string;
+  appSecret?: string;
 
   /** 应用对应的用户池域名，例如 pool.authing.cn */
-  host: string;
+  appHost: string;
 
   /** 认证完成后的重定向目标 URL */
   redirectUri: string;
@@ -45,11 +45,33 @@ export interface AuthenticationClientInitOptions {
    */
   cookieKey?: string;
 
-    /** 请求来源 */
+  /** 请求来源 */
   requestFrom?: string;
 
   /**
    * 语言
    */
   lang?: Lang;
+  /**
+   * 协议类型，默认为 oidc
+   */
+  protocol?: "oauth" | "oidc" | "saml" | "cas";
+  /** 获取 token 端点认证方式 */
+  tokenEndPointAuthMethod?:
+    | "client_secret_post"
+    | "client_secret_basic"
+    | "none";
+  /** 检查 token 端点认证方式 */
+  introspectionEndPointAuthMethod?:
+    | "client_secret_post"
+    | "client_secret_basic"
+    | "none";
+  /** 撤回 token 端点认证方式 */
+  revocationEndPointAuthMethod?:
+    | "client_secret_post"
+    | "client_secret_basic"
+    | "none";
+
+  /** 请求超时时间，单位为毫秒，默认为 10000，10秒。**/
+  timeout?: number;
 }

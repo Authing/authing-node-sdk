@@ -149,3 +149,15 @@ export function createQueryParams(params: any) {
     )
     .join('&');
 }
+
+
+export const serialize = function(obj: any) {
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      if (obj[p] !== undefined) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+      }
+    }
+  return str.join('&');
+};

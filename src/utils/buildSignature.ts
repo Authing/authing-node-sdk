@@ -1,5 +1,5 @@
-const kitx = require("kitx");
 const os = require("os");
+import crypto from "crypto";
 
 function filter(value: any) {
   return typeof value === "string"
@@ -9,23 +9,10 @@ function filter(value: any) {
 
 function getCanonicalizedHeaders(headers: { [x: string]: any }) {
   const keys = Object.keys(headers);
-
-  const validHeaders: string[] = [
-    'content-type',
-    'x-authing-lang',
-    'x-authing-request-from',
-    'x-authing-sdk-client',
-    'x-authing-signature-method',
-    'x-authing-signature-nonce',
-    'x-authing-signature-version',
-    'x-authing-tenant-id',
-    'date'
-  ]
-
   const canonicalizedKeys = [];
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
-    if (validHeaders.includes(key)) {
+    if (key.startsWith("x-authing-") || key === "date") {
       canonicalizedKeys.push(key);
     }
   }
@@ -65,9 +52,27 @@ function getCanonicalizedResource(
   return `${uriPattern}?${result.join("&")}`;
 }
 
+export function makeNonce() {
+  var counter = 0;
+  let last: number = 0;
+  const machine = os.hostname();
+  const pid = process.pid;
+  var val = Math.floor(Math.random() * 1000000000000);
+  if (val === last) {
+    counter++;
+  } else {
+    counter = 0;
+  }
+  last = val;
+  var uid = `${machine}${pid}${val}${counter}`;
+  return crypto.createHash('md5').update(uid).digest('hex')
+};
+
 export function buildSignature(accessKeySecret: string, stringToSign: string) {
-  const utf8Buff = Buffer.from(stringToSign, "utf8");
-  return kitx.sha1(utf8Buff, accessKeySecret, "base64");
+  return crypto
+    .createHmac("sha1", accessKeySecret)
+    .update(Buffer.from(stringToSign, "utf8"))
+    .digest('base64');
 }
 
 export function buildStringToSign(
@@ -76,8 +81,7 @@ export function buildStringToSign(
   headers: { [x: string]: any },
   query: { [x: string]: any }
 ) {
-  const contentType = headers["content-type"] || "";
-  const header = `${method}\n${contentType}\n`;
+  const header = `${method}\n`;
   const canonicalizedHeaders = getCanonicalizedHeaders(headers);
   const canonicalizedResource = getCanonicalizedResource(uriPattern, query);
 
@@ -103,10 +107,37 @@ const DEFAULT_CLIENT = `Node.js(${process.version}), ${pkg.name}: ${pkg.version}
 export const DEFAULT_HEADERS: { [x: string]: any } = {
   accept: "application/json",
   "content-type": "application/json",
-  "x-authing-signature-nonce": kitx.makeNonce(),
+  "x-authing-signature-nonce": makeNonce(),
   "x-authing-signature-method": "HMAC-SHA1",
   "x-authing-signature-version": "1.0",
   "user-agent": DEFAULT_UA,
   "x-authing-client": DEFAULT_CLIENT,
   "x-authing-request-from": `authing-node-sdk:${pkg.version}`,
 };
+
+console.log(makeNonce())
+const stringToSign = buildStringToSign(
+  "POST",
+  "/api/v3/list-users",
+  {
+    "x-authing-signature-nonce": "11223344",
+    "x-authing-signature-method": "HMAC-SHA1",
+    "x-authing-signature-version": "1.0",
+    date: new Date().toUTCString(),
+  },
+  {
+    options: {
+      pagination: {
+        page: 1,
+        limit: 10,
+      },
+    },
+  }
+);
+console.log(stringToSign);
+const auth = buildAuthorization(
+  "62eaa95ff6517ee52ae6b90c",
+  "57da72f9eb9c620844ef2188ab932f56",
+  stringToSign
+);
+console.log(auth);

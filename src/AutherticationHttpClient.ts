@@ -16,8 +16,8 @@ export class AuthenticationHttpClient {
   async request(config: AxiosRequestConfig) {
     const { data } = await this.axios.request({
       ...config,
-      baseURL: this.options.host,
-      timeout: 10000,
+      baseURL: this.options.appHost,
+      timeout: this.options.timeout,
       headers: {
         ...config.headers,
         "request-from": this.options.requestFrom || "sdk",
