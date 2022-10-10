@@ -18,6 +18,10 @@ export type GetIdentitiesRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 用户的身份源列表
      */
     data: Array<IdentityDto>;

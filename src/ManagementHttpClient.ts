@@ -30,12 +30,8 @@ export class ManagementHttpClient {
       headers["x-authing-tenant-id"] = this.options.tenantId;
     }
     headers["x-authing-lang"] = this.options.lang || "zh-CN";
-    headers["date"] = +new Date();
+    headers["date"] = new Date().toUTCString();
     headers = Object.assign(DEFAULT_HEADERS, headers);
-
-    const requestData = config?.data || config?.params || {};
-    const requestDataBuffer = Buffer.from(JSON.stringify(requestData), 'utf8');
-    headers['content-md5'] = kitx.md5(requestDataBuffer, 'base64');
 
     // 计算签名
     const stringToSign = buildStringToSign(

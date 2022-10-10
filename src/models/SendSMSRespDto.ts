@@ -15,4 +15,8 @@ export type SendSMSRespDto = {
      * 细分错误码，可通过此错误码得到具体的错误类型。
      */
     apiCode?: number;
+    /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
 };

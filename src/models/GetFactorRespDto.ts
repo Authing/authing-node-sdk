@@ -18,6 +18,10 @@ export type GetFactorRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * MFA Factor 详情
      */
     data: FactorDto;

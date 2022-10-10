@@ -121,7 +121,7 @@ export function domainC14n(domain: string) {
   if (matchRes && matchRes[3]) {
     return `${matchRes[1] ?? 'https://'}${matchRes[3]}${matchRes[4] || ""}`;
   }
-  throw Error(`无效的域名配置: ${domain}`);
+  throw Error(`Invalid appHost received: ${domain}`);
 }
 
 export function parseJWKS(jwks: JWKSObject): Promise<JoseKey[]> {
@@ -149,3 +149,15 @@ export function createQueryParams(params: any) {
     )
     .join('&');
 }
+
+
+export const serialize = function(obj: any) {
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      if (obj[p] !== undefined) {
+        str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
+      }
+    }
+  return str.join('&');
+};

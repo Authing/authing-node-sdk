@@ -18,6 +18,10 @@ export type IsSuccessRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 操作是否成功
      */
     data: IsSuccessDto;

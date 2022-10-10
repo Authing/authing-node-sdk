@@ -18,6 +18,10 @@ export type IsActionAllowedRespDtp = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 返回数据
      */
     data: IsActionAllowedDataDto;

@@ -18,6 +18,10 @@ export type GenerateBindExtIdpLinkRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 响应数据
      */
     data: GenerateBindExtIdpLinkDataDto;

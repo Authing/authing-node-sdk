@@ -1,7 +1,7 @@
 export interface AuthUrlResult {
   url: string;
-  state: string;
-  nonce: string;
+  state?: string;
+  nonce?: string;
 }
 
 export interface AuthURLParams {
@@ -55,8 +55,8 @@ export interface LoginState {
 }
 
 export interface LoginTransaction {
-  state: string;
-  nonce: string;
+  state?: string;
+  nonce?: string;
   redirectUri: string;
 }
 
