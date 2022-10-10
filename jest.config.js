@@ -3,6 +3,7 @@ module.exports = {
   preset: "ts-jest",
   rootDir: "./",
   testEnvironment: "node",
+  testTimeout: 1e9,
   transform: {
     "^.+\\.ts$": "ts-jest",
   },
