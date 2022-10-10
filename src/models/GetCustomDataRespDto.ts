@@ -16,6 +16,10 @@ export type GetCustomDataRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 具体的自定义数据值
      */
     data: any;

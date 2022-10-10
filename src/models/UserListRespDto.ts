@@ -18,6 +18,10 @@ export type UserListRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 用户列表
      */
     data: Array<UserDto>;

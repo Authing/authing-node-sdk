@@ -18,6 +18,10 @@ export type AppListRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 响应数据
      */
     data: Array<AppDto>;

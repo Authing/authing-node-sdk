@@ -18,6 +18,10 @@ export type NamespaceListRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 权限分组列表
      */
     data: Array<NamespaceDto>;

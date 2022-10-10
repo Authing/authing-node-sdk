@@ -1,6 +1,10 @@
-import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-
+import Axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosRequestHeaders,
+} from "axios";
 import { AuthenticationClientInitOptions } from "./AuthenticationClientOptions";
+import https from "https";
 
 export class AuthenticationHttpClient {
   options: AuthenticationClientInitOptions;
@@ -14,15 +18,31 @@ export class AuthenticationHttpClient {
   }
 
   async request(config: AxiosRequestConfig) {
+    const headers: AxiosRequestHeaders = {
+      ...config.headers,
+      "x-authing-app-id": this.options.appId,
+    };
+    if (this.options.accessToken) {
+      headers["authorization"] = this.options.accessToken;
+    }
+    if (this.options.tokenEndPointAuthMethod === "client_secret_basic") {
+      headers["authorization"] =
+        "Basic " +
+        Buffer.from(this.options.appId + ":" + this.options.appSecret).toString(
+          "base64"
+        );
+    }
     const { data } = await this.axios.request({
       ...config,
       baseURL: this.options.appHost,
       timeout: this.options.timeout,
-      headers: {
-        ...config.headers,
-        "request-from": this.options.requestFrom || "sdk",
-        // 'sdk-version': `js:${SDK_VERSION}`
-      },
+      headers,
+      httpsAgent:
+        this.options.rejectUnauthorized === false
+          ? new https.Agent({
+              rejectUnauthorized: false,
+            })
+          : undefined,
     });
     return data;
   }

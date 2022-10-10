@@ -18,6 +18,10 @@ export type GetExtIdpsRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 外部身份源列表
      */
     data: Array<ExtIdpInfoDto>;
