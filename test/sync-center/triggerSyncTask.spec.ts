@@ -26,5 +26,15 @@ describe("triggerSyncTask", () => {
     });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("no identity provider config found", async () => {
+      const { statusCode, data, message } =
+        await managementClient.triggerSyncTask({
+          syncTaskId: 0,
+        });
+
+      expect(statusCode).toEqual(602);
+      expect(message).toEqual("no identity provider config found");
+    });
+  });
 });
