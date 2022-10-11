@@ -98,5 +98,43 @@ describe("createSyncTask", () => {
     });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("clientConfig is invalid", async () => {
+      const { statusCode, data, message } =
+        await managementClient.createSyncTask({
+          fieldMapping,
+          syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
+          syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
+          syncTaskType: Models.CreateSyncTaskDto.syncTaskType.WECHATWORK,
+          syncTaskName: "飞书上游",
+        });
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        "Must contain one of the following fields: clientConfig"
+      );
+    });
+
+    it("fieldMapping is invalid", async () => {
+      const { statusCode, data, message } =
+        await managementClient.createSyncTask({
+          clientConfig: {
+            wechatworkConfig: {
+              corpID: "1",
+              secret: "2",
+              token: "3",
+              encodingAESKey: "4",
+            },
+          },
+          syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
+          syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
+          syncTaskType: Models.CreateSyncTaskDto.syncTaskType.WECHATWORK,
+          syncTaskName: "飞书上游",
+        });
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        "Must contain one of the following fields: fieldMapping"
+      );
+    });
+  });
 });

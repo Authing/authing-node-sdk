@@ -30,5 +30,16 @@ describe("getSyncTask", () => {
     });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("syncTaskId invalid", async () => {
+      const { statusCode, data, message } = await managementClient.getSyncJob({
+        syncJobId: -1,
+      });
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        'syncTaskId must not be less than 1,syncTaskId must be a number conforming to the specified constraints"'
+      );
+    });
+  });
 });
