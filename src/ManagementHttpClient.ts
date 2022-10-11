@@ -1,7 +1,6 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { ManagementClientOptions } from "./ManagementClientOptions";
-import { ManagementTokenProvider } from "./ManagementTokenProvider";
 import { pickBy } from "./utils";
 import {
   buildAuthorization,
@@ -13,11 +12,9 @@ const kitx = require("kitx");
 export class ManagementHttpClient {
   options: ManagementClientOptions;
   axios: AxiosInstance;
-  tokenProvider: ManagementTokenProvider;
 
   constructor(options: ManagementClientOptions) {
     this.options = options;
-    this.tokenProvider = new ManagementTokenProvider(this.options);
     this.axios = Axios.create({
       withCredentials: true,
     });

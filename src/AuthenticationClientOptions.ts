@@ -56,11 +56,6 @@ export interface AuthenticationClientInitOptions {
   cookieKey?: string;
 
   /**
-   * 请求来源
-   */
-  requestFrom?: string;
-
-  /**
    * 语言
    */
   lang?: Lang;
