@@ -24,5 +24,18 @@ describe("listSyncJobs", () => {
     });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("syncJobId invalid", async () => {
+      const { statusCode, data, message } = await managementClient.listSyncJobs(
+        {
+          syncJobId: -1,
+        }
+      );
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        'syncJobId must not be less than 1,syncJobId must be a number conforming to the specified constraints"'
+      );
+    });
+  });
 });

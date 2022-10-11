@@ -11,6 +11,7 @@ describe("cancelSyncRiskOperation", () => {
   let syncTaskId: string;
 
   beforeAll(async () => {
+    // TODO: add risk operations first
     const { data } = await managementClient.listSyncTasks();
     syncTaskId = data.list?.[0].syncTaskId;
     const { data2 } = await managementClient.listSyncRiskOperations({

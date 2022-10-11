@@ -10,6 +10,7 @@ describe("triggerSyncTask", () => {
   let syncTaskId: number;
 
   beforeAll(async () => {
+    // TODO: get a task which must have been well configured
     const { data } = await managementClient.listSyncTasks();
     syncTaskId = data.list?.[0].syncTaskId;
   });

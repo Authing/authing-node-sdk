@@ -7,7 +7,9 @@ import {
 import { managementClient } from "../client";
 
 describe("listSyncRiskOperations", () => {
-  beforeAll(async () => {});
+  beforeAll(async () => {
+    // TODO: add risk operations first
+  });
 
   describe("Success", () => {
     it("success", async () => {
