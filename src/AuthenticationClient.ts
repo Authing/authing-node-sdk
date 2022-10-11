@@ -37,7 +37,7 @@ import {
   Cas20ValidationFailureResult,
   Cas20ValidationSuccessResult,
 } from "./utils/types";
-import { SignInOptionsDto } from "./models";
+import { SignInOptionsDto, SignupOptionsDto } from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { EnrollFactorDto } from "./models/EnrollFactorDto";
 import type { EnrollFactorRespDto } from "./models/EnrollFactorRespDto";
@@ -60,7 +60,7 @@ import type { GetLoginHistoryRespDto } from "./models/GetLoginHistoryRespDto";
 import type { GetWechatAccessTokenDto } from "./models/GetWechatAccessTokenDto";
 import type { GetWechatAccessTokenRespDto } from "./models/GetWechatAccessTokenRespDto";
 import type { GetWechatMiniProgramPhoneDto } from "./models/GetWechatMiniProgramPhoneDto";
-import type { SignupDto } from "./models/SignupDto";
+import { SignupDto } from "./models/SignupDto";
 import type { UnbindExtIdpDto } from "./models/UnbindExtIdpDto";
 import type { UploadDto } from "./models/UploadDto";
 import type { UploadRespDto } from "./models/UploadRespDto";
@@ -1428,6 +1428,75 @@ export class AuthenticationClient {
   }
 
   // ==== 基于 signInByCredentials 封装的登录方式 END
+
+  // ==== 基于 signup 封装的注册方式 BEGIN
+
+  /**
+   * 使用邮箱 + 密码注册
+   *
+   */
+   public async signUpByEmailPassword(requestBody: {
+    email: string;
+    password: string;
+    options?: SignupOptionsDto;
+  }) {
+    const { email, password, options } = requestBody;
+    let dto: SignupDto = {
+      connection: SignupDto.connection.PASSWORD,
+      passwordPayload: {
+        password,
+        email,
+      },
+      options,
+    };
+    return await this.signUp(dto);
+  }
+
+  /**
+   * 使用邮箱 + 验证码注册
+   *
+   */
+  public async signUpByEmailCode(requestBody: {
+    email: string;
+    passCode: string;
+    options?: SignupOptionsDto;
+  }) {
+    const { email, passCode, options } = requestBody;
+    let dto: SignupDto = {
+      connection: SignupDto.connection.PASSCODE,
+      passCodePayload: {
+        passCode,
+        email,
+      },
+      options,
+    };
+    return await this.signInByCredentials(dto);
+  }
+
+  /**
+   * 使用手机号 + 验证码注册
+   *
+   */
+  public async signUpByPhoneCode(requestBody: {
+    phone: string;
+    phoneCountryCode?: string;
+    passCode: string;
+    options?: SignupOptionsDto;
+  }) {
+    const { phone, phoneCountryCode, passCode, options } = requestBody;
+    let dto: SignupDto = {
+      connection: SignupDto.connection.PASSCODE,
+      passCodePayload: {
+        phone,
+        phoneCountryCode,
+        passCode
+      },
+      options,
+    };
+    return await this.signInByCredentials(dto);
+  }
+
+  // ==== 基于 signUp 封装的注册方式 END
 
   // ==== AUTO GENERATED AUTHENTICATION METHODS BEGIN ====
   /**
