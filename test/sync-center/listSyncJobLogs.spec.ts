@@ -6,6 +6,7 @@ import {
 } from "../../src/utils/index";
 import { managementClient } from "../client";
 
+// TODO: add tests
 describe("listSyncJobLogs", () => {
   let syncJobId: number;
   let syncTaskId: string;

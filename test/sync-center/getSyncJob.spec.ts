@@ -11,6 +11,7 @@ describe("getSyncTask", () => {
   let syncTaskId: string;
 
   beforeAll(async () => {
+    // TODO: get a task which must have jobs
     const { data } = await managementClient.listSyncTasks();
     syncTaskId = data.list?.[0].syncTaskId;
     const { data: data2 } = await managementClient.listSyncJobs({
@@ -30,5 +31,16 @@ describe("getSyncTask", () => {
     });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("syncJobId invalid", async () => {
+      const { statusCode, data, message } = await managementClient.getSyncJob({
+        syncJobId: -1,
+      });
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        'syncJobId must not be less than 1,syncJobId must be a number conforming to the specified constraints"'
+      );
+    });
+  });
 });

@@ -6,11 +6,50 @@ import {
 } from "../../src/utils/index";
 import { managementClient } from "../client";
 
+const fieldMapping = [
+  {
+    targetKey: "name",
+    expression: "name",
+  },
+  {
+    targetKey: "nickname",
+    expression: "name",
+  },
+  {
+    targetKey: "phone",
+    expression: "mobile",
+  },
+  {
+    targetKey: "email",
+    expression: "enterprise_email",
+  },
+  {
+    targetKey: "country",
+    expression: "country",
+  },
+  {
+    targetKey: "city",
+    expression: "city",
+  },
+  {
+    targetKey: "gender",
+    expression: "gender",
+  },
+  {
+    targetKey: "photo",
+    expression: "avatar_formatted",
+  },
+  {
+    targetKey: "externalId",
+    expression: "user_id",
+  },
+];
+
 describe("createSyncTask", () => {
   beforeAll(async () => {});
 
   describe("Success", () => {
-    it("lark", async () => {
+    it("Lark", async () => {
       const { statusCode, data, message } =
         await managementClient.createSyncTask({
           clientConfig: {
@@ -21,44 +60,7 @@ describe("createSyncTask", () => {
               verification_token: "4",
             },
           },
-          fieldMapping: [
-            {
-              targetKey: "name",
-              expression: "name",
-            },
-            {
-              targetKey: "nickname",
-              expression: "name",
-            },
-            {
-              targetKey: "phone",
-              expression: "mobile",
-            },
-            {
-              targetKey: "email",
-              expression: "enterprise_email",
-            },
-            {
-              targetKey: "country",
-              expression: "country",
-            },
-            {
-              targetKey: "city",
-              expression: "city",
-            },
-            {
-              targetKey: "gender",
-              expression: "gender",
-            },
-            {
-              targetKey: "photo",
-              expression: "avatar_formatted",
-            },
-            {
-              targetKey: "externalId",
-              expression: "user_id",
-            },
-          ],
+          fieldMapping,
           syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
           syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
           syncTaskType: Models.CreateSyncTaskDto.syncTaskType.LARK,
@@ -70,7 +72,69 @@ describe("createSyncTask", () => {
         Models.CreateSyncTaskDto.syncTaskType.LARK
       );
     });
+
+    it("Wechatwork", async () => {
+      const { statusCode, data, message } =
+        await managementClient.createSyncTask({
+          clientConfig: {
+            wechatworkConfig: {
+              corpID: "1",
+              secret: "2",
+              token: "3",
+              encodingAESKey: "4",
+            },
+          },
+          fieldMapping,
+          syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
+          syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
+          syncTaskType: Models.CreateSyncTaskDto.syncTaskType.WECHATWORK,
+          syncTaskName: "飞书上游",
+        });
+
+      expect(statusCode).toEqual(200);
+      expect(data.syncTaskType).toEqual(
+        Models.CreateSyncTaskDto.syncTaskType.WECHATWORK
+      );
+    });
   });
 
-  describe("Fail", () => {});
+  describe("Fail", () => {
+    it("clientConfig is invalid", async () => {
+      const { statusCode, data, message } =
+        await managementClient.createSyncTask({
+          fieldMapping,
+          syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
+          syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
+          syncTaskType: Models.CreateSyncTaskDto.syncTaskType.WECHATWORK,
+          syncTaskName: "飞书上游",
+        });
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        "Must contain one of the following fields: clientConfig"
+      );
+    });
+
+    it("fieldMapping is invalid", async () => {
+      const { statusCode, data, message } =
+        await managementClient.createSyncTask({
+          clientConfig: {
+            wechatworkConfig: {
+              corpID: "1",
+              secret: "2",
+              token: "3",
+              encodingAESKey: "4",
+            },
+          },
+          syncTaskTrigger: Models.CreateSyncTaskDto.syncTaskTrigger.MANUALLY,
+          syncTaskFlow: Models.CreateSyncTaskDto.syncTaskFlow.UPSTREAM,
+          syncTaskType: Models.CreateSyncTaskDto.syncTaskType.WECHATWORK,
+          syncTaskName: "飞书上游",
+        });
+
+      expect(statusCode).toEqual(400);
+      expect(message).toEqual(
+        "Must contain one of the following fields: fieldMapping"
+      );
+    });
+  });
 });
