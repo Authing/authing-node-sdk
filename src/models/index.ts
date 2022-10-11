@@ -2,6 +2,7 @@ export * from './AccessibleAppsDto';
 export * from './AlipayAuthInfoDataDto';
 export * from './AuthenticateByADDto';
 export * from './AuthenticateByAlipayDto';
+export * from './AuthenticateByGoogleDto';
 export * from './AuthenticateByLDAPDto';
 export * from './AuthenticateByLarkInternalDto';
 export * from './AuthenticateByLarkPublicDto';

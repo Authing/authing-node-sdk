@@ -4,7 +4,19 @@
 
 export type SendSMSDto = {
     /**
-     * 短信通道，指定发送此短信的目的，如 CHANNEL_LOGIN 用于登录、CHANNEL_REGISTER 用于注册。
+     * 短信通道，指定发送此短信的目的：
+     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_REGISTER`: 用于用户注册
+     * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
+     * - `CHANNEL_BIND_PHONE`: 用于绑定手机号
+     * - `CHANNEL_UNBIND_PHONE`: 用于解绑手机号
+     * - `CHANNEL_BIND_MFA`: 用于绑定 MFA
+     * - `CHANNEL_VERIFY_MFA`: 用于验证 MFA
+     * - `CHANNEL_UNBIND_MFA`: 用于解绑 MFA
+     * - `CHANNEL_COMPLETE_PHONE`: 用于在注册/登录时补全手机号信息
+     * - `CHANNEL_IDENTITY_VERIFICATION`: 用于进行用户实名认证
+     * - `CHANNEL_DELETE_ACCOUNT`: 用于注销账号
+     *
      */
     channel: SendSMSDto.channel;
     /**
@@ -20,7 +32,19 @@ export type SendSMSDto = {
 export namespace SendSMSDto {
 
     /**
-     * 短信通道，指定发送此短信的目的，如 CHANNEL_LOGIN 用于登录、CHANNEL_REGISTER 用于注册。
+     * 短信通道，指定发送此短信的目的：
+     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_REGISTER`: 用于用户注册
+     * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
+     * - `CHANNEL_BIND_PHONE`: 用于绑定手机号
+     * - `CHANNEL_UNBIND_PHONE`: 用于解绑手机号
+     * - `CHANNEL_BIND_MFA`: 用于绑定 MFA
+     * - `CHANNEL_VERIFY_MFA`: 用于验证 MFA
+     * - `CHANNEL_UNBIND_MFA`: 用于解绑 MFA
+     * - `CHANNEL_COMPLETE_PHONE`: 用于在注册/登录时补全手机号信息
+     * - `CHANNEL_IDENTITY_VERIFICATION`: 用于进行用户实名认证
+     * - `CHANNEL_DELETE_ACCOUNT`: 用于注销账号
+     *
      */
     export enum channel {
         CHANNEL_LOGIN = 'CHANNEL_LOGIN',

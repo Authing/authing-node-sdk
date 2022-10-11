@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { AuthenticateByAlipayDto } from './AuthenticateByAlipayDto';
+import type { AuthenticateByGoogleDto } from './AuthenticateByGoogleDto';
 import type { AuthenticateByLarkInternalDto } from './AuthenticateByLarkInternalDto';
 import type { AuthenticateByLarkPublicDto } from './AuthenticateByLarkPublicDto';
 import type { AuthenticateByWechatDto } from './AuthenticateByWechatDto';
@@ -29,6 +30,7 @@ export type SigninByMobileDto = {
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
+     * - `google`: Google 移动端社会化登录
      *
      */
     connection: SigninByMobileDto.connection;
@@ -53,7 +55,7 @@ export type SigninByMobileDto = {
      */
     larkPublicPayload?: AuthenticateByLarkPublicDto;
     /**
-     * 飞书应用商店应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填
+     * 飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填
      */
     larkInternalPayload?: AuthenticateByLarkInternalDto;
     /**
@@ -68,6 +70,10 @@ export type SigninByMobileDto = {
      * 网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填
      */
     wechatMiniProgramPhonePayload?: AuthenticateByWechatMiniProgramPhoneDto;
+    /**
+     * Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填
+     */
+    googlePayload?: AuthenticateByGoogleDto;
     /**
      * 可选参数
      */
@@ -95,6 +101,7 @@ export namespace SigninByMobileDto {
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
+     * - `google`: Google 移动端社会化登录
      *
      */
     export enum connection {
@@ -107,6 +114,7 @@ export namespace SigninByMobileDto {
         YIDUN = 'yidun',
         WECHAT_MINI_PROGRAM_CODE = 'wechat_mini_program_code',
         WECHAT_MINI_PROGRAM_PHONE = 'wechat_mini_program_phone',
+        GOOGLE = 'google',
     }
 
 

@@ -12,13 +12,8 @@ export interface ManagementClientOptions {
   tenantId?: string;
   /** 请求超时时间 **/
   timeout?: number;
-  /** 错误回调函数, 默认为 (err: Error) => { throw err } 直接抛出报错 **/
-  onError?: (code: number, message: string, data?: any) => void;
   /** Authing 服务器地址 */
   host?: string;
-  /** 请求来源 */
-  requestFrom?: string;
-
   /**
    * 语言
    */
@@ -38,9 +33,6 @@ export interface ManagementClientOptions {
 
 export const DEFAULT_OPTIONS: ManagementClientOptions = {
   timeout: 10000,
-  onError: (code: number, message: string) => {
-    throw { code, message };
-  },
   host: "https://api.authing.cn",
   // headers: {
   //   "app-id": "x-authing-app-id",
