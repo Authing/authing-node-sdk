@@ -584,11 +584,6 @@
   resolved "https://registry.npmmirror.com/@types/node/-/node-17.0.26.tgz#1bbff9b23ee5a64f87b4f30c0c854b112ee2e635"
   integrity sha512-z/FG/6DUO7pnze3AE3TBGIjGGKkvCcGcWINe1C7cADY8hKLJPDYpzsNE37uExQ4md5RFtTCvg+M8Mu1Enyeg2A==
 
-"@types/node@^12.0.2":
-  version "12.20.55"
-  resolved "https://registry.npmmirror.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
-  integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
-
 "@types/prettier@^2.1.5":
   version "2.6.0"
   resolved "https://registry.npmmirror.com/@types/prettier/-/prettier-2.6.0.tgz#efcbd41937f9ae7434c714ab698604822d890759"
@@ -1891,13 +1886,6 @@ json5@2.x, json5@^2.2.1:
   version "2.2.1"
   resolved "https://registry.npmmirror.com/json5/-/json5-2.2.1.tgz#655d50ed1e6f95ad1a3caababd2b0efda10b395c"
   integrity sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==
-
-kitx@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.npmmirror.com/kitx/-/kitx-2.1.0.tgz#fc7fbf78eb6ed7a5a3fd2d7afb3011e29d0e44c8"
-  integrity sha512-C/5v9MtIX7aHGOjwn5BmrrbNkJSf7i0R5mRzmh13GSAdRqQ7bYQo/Su2pTYNylFicqKNTVX3HML9k1u8k51+pQ==
-  dependencies:
-    "@types/node" "^12.0.2"
 
 kleur@^3.0.3:
   version "3.0.3"

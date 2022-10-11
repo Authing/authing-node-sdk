@@ -7,7 +7,6 @@ import {
   buildStringToSign,
   DEFAULT_HEADERS,
 } from "./utils/buildSignature";
-const kitx = require("kitx");
 
 export class ManagementHttpClient {
   options: ManagementClientOptions;
