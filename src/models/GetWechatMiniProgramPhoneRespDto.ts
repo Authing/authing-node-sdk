@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { UserTenantListDto } from './UserTenantListDto';
+import type { GetWechatMiniProgramPhoneDataDto } from './GetWechatMiniProgramPhoneDataDto';
 
-export type GetTenantListRespDto = {
+export type GetWechatMiniProgramPhoneRespDto = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -24,5 +24,5 @@ export type GetTenantListRespDto = {
     /**
      * 响应数据
      */
-    data: Array<UserTenantListDto>;
+    data: GetWechatMiniProgramPhoneDataDto;
 };

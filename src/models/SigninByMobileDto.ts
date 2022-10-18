@@ -2,17 +2,17 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AuthenticateByAlipayDto } from './AuthenticateByAlipayDto';
-import type { AuthenticateByGoogleDto } from './AuthenticateByGoogleDto';
-import type { AuthenticateByLarkInternalDto } from './AuthenticateByLarkInternalDto';
-import type { AuthenticateByLarkPublicDto } from './AuthenticateByLarkPublicDto';
-import type { AuthenticateByWechatDto } from './AuthenticateByWechatDto';
-import type { AuthenticateByWechatMiniProgramCodeDto } from './AuthenticateByWechatMiniProgramCodeDto';
-import type { AuthenticateByWechatMiniProgramPhoneDto } from './AuthenticateByWechatMiniProgramPhoneDto';
-import type { AuthenticateByWechatworkAgencyDto } from './AuthenticateByWechatworkAgencyDto';
 import type { AuthenticateByWechatworkDto } from './AuthenticateByWechatworkDto';
-import type { AuthenticateByYidunDto } from './AuthenticateByYidunDto';
+import type { SignInByAlipayPayloadDto } from './SignInByAlipayPayloadDto';
+import type { SignInByGooglePayloadDto } from './SignInByGooglePayloadDto';
+import type { SignInByLarkInternalPayloadDto } from './SignInByLarkInternalPayloadDto';
+import type { SignInByLarkPublicPayloadDto } from './SignInByLarkPublicPayloadDto';
 import type { SignInByMobileOptionsDto } from './SignInByMobileOptionsDto';
+import type { SignInByWechatMiniProgramCodePayloadDto } from './SignInByWechatMiniProgramCodePayloadDto';
+import type { SignInByWechatMiniProgramPhonePayloadDto } from './SignInByWechatMiniProgramPhonePayloadDto';
+import type { SignInByWechatPayloadDto } from './SignInByWechatPayloadDto';
+import type { SignInByWechatworkAgencyPayloadDto } from './SignInByWechatworkAgencyPayloadDto';
+import type { SignInByYidunPayloadDto } from './SignInByYidunPayloadDto';
 
 export type SigninByMobileDto = {
     /**
@@ -37,11 +37,11 @@ export type SigninByMobileDto = {
     /**
      * 微信移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填
      */
-    wechatPayload?: AuthenticateByWechatDto;
+    wechatPayload?: SignInByWechatPayloadDto;
     /**
      * 支付宝移动端社会化登录数据，当 `connection` 为 `alipay` 的时候必填
      */
-    alipayPayload?: AuthenticateByAlipayDto;
+    alipayPayload?: SignInByAlipayPayloadDto;
     /**
      * 企业微信移动端社会化登录数据，当 `connection` 为 `wechatwork` 的时候必填
      */
@@ -49,31 +49,31 @@ export type SigninByMobileDto = {
     /**
      * 企业微信（代开发模式）移动端社会化登录数据，当 `connection` 为 `wechatwork_agency` 的时候必填
      */
-    wechatworkAgencyPayload?: AuthenticateByWechatworkAgencyDto;
+    wechatworkAgencyPayload?: SignInByWechatworkAgencyPayloadDto;
     /**
      * 飞书应用商店应用移动端社会化登录数据，当 `connection` 为 `lark_public` 的时候必填
      */
-    larkPublicPayload?: AuthenticateByLarkPublicDto;
+    larkPublicPayload?: SignInByLarkPublicPayloadDto;
     /**
      * 飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填
      */
-    larkInternalPayload?: AuthenticateByLarkInternalDto;
+    larkInternalPayload?: SignInByLarkInternalPayloadDto;
     /**
      * 网易易盾移动端社会化登录数据，当 `connection` 为 `yidun` 的时候必填
      */
-    yidunPayload?: AuthenticateByYidunDto;
+    yidunPayload?: SignInByYidunPayloadDto;
     /**
      * 网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填
      */
-    wechatMiniProgramCodePayload?: AuthenticateByWechatMiniProgramCodeDto;
+    wechatMiniProgramCodePayload?: SignInByWechatMiniProgramCodePayloadDto;
     /**
      * 网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填
      */
-    wechatMiniProgramPhonePayload?: AuthenticateByWechatMiniProgramPhoneDto;
+    wechatMiniProgramPhonePayload?: SignInByWechatMiniProgramPhonePayloadDto;
     /**
      * Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填
      */
-    googlePayload?: AuthenticateByGoogleDto;
+    googlePayload?: SignInByGooglePayloadDto;
     /**
      * 可选参数
      */

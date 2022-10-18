@@ -36,6 +36,7 @@ export class ManagementHttpClient {
       headers,
       config.method === 'GET' ? config.params || {} : config.data || {},
     );
+    console.log(stringToSign)
     headers["authorization"] = buildAuthorization(
       this.options.accessKeyId,
       this.options.accessKeySecret,

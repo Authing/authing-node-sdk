@@ -44,7 +44,7 @@ function getCanonicalizedResource(
     let value = query[key];
     value =
       typeof value === "object" && value !== null
-        ? encodeURI(JSON.stringify(value))
+        ? JSON.stringify(value)
         : value;
     result.push(`${key}=${value}`);
   }

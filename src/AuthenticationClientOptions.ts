@@ -19,7 +19,7 @@ export interface AuthenticationClientInitOptions {
   appSecret?: string;
 
   /**
-   * 应用域名，例如 example.authing.cn
+   * 应用域名，例如 https://example.authing.cn
    */
   appHost: string;
 

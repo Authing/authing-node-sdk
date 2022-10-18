@@ -2,10 +2,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { AuthenticateByADDto } from './AuthenticateByADDto';
-import type { AuthenticateByLDAPDto } from './AuthenticateByLDAPDto';
-import type { AuthenticateByPassCodeDto } from './AuthenticateByPassCodeDto';
-import type { AuthenticateByPasswordDto } from './AuthenticateByPasswordDto';
+import type { SignInByAdPayloadDto } from './SignInByAdPayloadDto';
+import type { SignInByLdapPayloadDto } from './SignInByLdapPayloadDto';
+import type { SignInByPassCodePayloadDto } from './SignInByPassCodePayloadDto';
+import type { SignInByPasswordPayloadDto } from './SignInByPasswordPayloadDto';
 import type { SignInOptionsDto } from './SignInOptionsDto';
 
 export type SigninByCredentialsDto = {
@@ -21,19 +21,19 @@ export type SigninByCredentialsDto = {
     /**
      * 当认证方式为 `PASSWORD` 时此参数必填。
      */
-    passwordPayload?: AuthenticateByPasswordDto;
+    passwordPayload?: SignInByPasswordPayloadDto;
     /**
      * 当认证方式为 `PASSCODE` 时此参数必填
      */
-    passCodePayload?: AuthenticateByPassCodeDto;
+    passCodePayload?: SignInByPassCodePayloadDto;
     /**
      * 当认证方式为 `AD` 时此参数必填
      */
-    adPayload?: AuthenticateByADDto;
+    adPayload?: SignInByAdPayloadDto;
     /**
      * 当认证方式为 `LDAP` 时此参数必填
      */
-    ldapPayload?: AuthenticateByLDAPDto;
+    ldapPayload?: SignInByLdapPayloadDto;
     /**
      * 可选参数
      */
