@@ -42,6 +42,9 @@ function getCanonicalizedResource(
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
     let value = query[key];
+    if (value === undefined) {
+      continue;
+    }
     value =
       typeof value === "object" && value !== null
         ? JSON.stringify(value)
