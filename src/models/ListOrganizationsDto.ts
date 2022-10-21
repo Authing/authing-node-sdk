@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取顶层组织机构列表，支持分页。
+ * 获取组织机构列表，支持分页。
  */
 export type ListOrganizationsDto = {
     /**

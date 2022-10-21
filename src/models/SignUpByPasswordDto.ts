@@ -10,7 +10,11 @@ export type SignUpByPasswordDto = {
      */
     password: string;
     /**
+     * 用户名
+     */
+    username?: string;
+    /**
      * 邮箱，不区分大小写。
      */
-    email: string;
+    email?: string;
 };

@@ -7,7 +7,12 @@ import type { CustomFieldSelectOption } from './CustomFieldSelectOption';
 
 export type CustomFieldDto = {
     /**
-     * 主体类型，目前支持用户、角色、分组和部门
+     * 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     *
      */
     targetType: CustomFieldDto.targetType;
     /**
@@ -73,7 +78,12 @@ export type CustomFieldDto = {
 export namespace CustomFieldDto {
 
     /**
-     * 主体类型，目前支持用户、角色、分组和部门
+     * 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     *
      */
     export enum targetType {
         USER = 'USER',

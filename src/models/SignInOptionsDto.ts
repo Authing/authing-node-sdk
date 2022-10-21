@@ -41,9 +41,9 @@ export type SignInOptionsDto = {
     /**
      * Captcha 图形验证码，不区分大小写。当**安全策略**设置为**验证码**且触发**登录失败次数限制**时，下次登录需要填写图形验证码。
      */
-    captchaCode?: boolean;
+    captchaCode?: string;
     /**
-     * 密码加密类型，支持 sm2 和 rsa。默认可以不加密。
+     * 密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
      * - `none`: 不对密码进行加密，使用明文进行传输。
      * - `rsa`: 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 RSA256 公钥。
      * - `sm2`: 使用 [国密 SM2 算法](https://baike.baidu.com/item/SM2/15081831) 对密码进行加密，需要使用 Authing 服务的 SM2 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 SM2 公钥。
@@ -55,7 +55,7 @@ export type SignInOptionsDto = {
 export namespace SignInOptionsDto {
 
     /**
-     * 密码加密类型，支持 sm2 和 rsa。默认可以不加密。
+     * 密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
      * - `none`: 不对密码进行加密，使用明文进行传输。
      * - `rsa`: 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 RSA256 公钥。
      * - `sm2`: 使用 [国密 SM2 算法](https://baike.baidu.com/item/SM2/15081831) 对密码进行加密，需要使用 Authing 服务的 SM2 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 SM2 公钥。

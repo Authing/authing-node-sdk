@@ -19,11 +19,11 @@ export type ListTenantExtIdpDto = {
      */
     type?: any;
     /**
-     * 页码
+     * 当前页数，从 1 开始
      */
     page?: any;
     /**
-     * 每页获取的数据量
+     * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
 };

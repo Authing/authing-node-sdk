@@ -59,7 +59,7 @@ export type SyncTaskDto = {
     /**
      * 最近一次同步错误信息
      */
-    lastSyncMessage?: boolean;
+    lastSyncMessage?: string;
     /**
      * 最近一次同步进度
      */

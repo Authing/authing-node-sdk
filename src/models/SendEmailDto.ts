@@ -5,7 +5,7 @@
 export type SendEmailDto = {
     /**
      * 短信通道，指定发送此短信的目的：
-     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_LOGIN`: 用于用户登录
      * - `CHANNEL_REGISTER`: 用于用户注册
      * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
      * - `CHANNEL_VERIFY_EMAIL_LINK`: 用于验证邮箱地址
@@ -15,6 +15,7 @@ export type SendEmailDto = {
      * - `CHANNEL_VERIFY_MFA`: 用于验证 MFA
      * - `CHANNEL_UNLOCK_ACCOUNT`: 用于自助解锁
      * - `CHANNEL_COMPLETE_EMAIL`: 用于注册/登录时补全邮箱信息
+     * - `CHANNEL_DELETE_ACCOUNT`: 用于注销账号
      *
      */
     channel: SendEmailDto.channel;
@@ -28,7 +29,7 @@ export namespace SendEmailDto {
 
     /**
      * 短信通道，指定发送此短信的目的：
-     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_LOGIN`: 用于用户登录
      * - `CHANNEL_REGISTER`: 用于用户注册
      * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
      * - `CHANNEL_VERIFY_EMAIL_LINK`: 用于验证邮箱地址
@@ -38,6 +39,7 @@ export namespace SendEmailDto {
      * - `CHANNEL_VERIFY_MFA`: 用于验证 MFA
      * - `CHANNEL_UNLOCK_ACCOUNT`: 用于自助解锁
      * - `CHANNEL_COMPLETE_EMAIL`: 用于注册/登录时补全邮箱信息
+     * - `CHANNEL_DELETE_ACCOUNT`: 用于注销账号
      *
      */
     export enum channel {
@@ -51,6 +53,7 @@ export namespace SendEmailDto {
         CHANNEL_VERIFY_MFA = 'CHANNEL_VERIFY_MFA',
         CHANNEL_UNLOCK_ACCOUNT = 'CHANNEL_UNLOCK_ACCOUNT',
         CHANNEL_COMPLETE_EMAIL = 'CHANNEL_COMPLETE_EMAIL',
+        CHANNEL_DELETE_ACCOUNT = 'CHANNEL_DELETE_ACCOUNT',
     }
 
 

@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type SignupProfileDto = {
+export type SignUpProfileDto = {
     /**
      * 昵称
      */
@@ -54,7 +54,7 @@ export type SignupProfileDto = {
     /**
      * 性别 W : 女性; M : 男性
      */
-    gender?: SignupProfileDto.gender;
+    gender?: SignUpProfileDto.gender;
     /**
      * 生日
      */
@@ -109,7 +109,7 @@ export type SignupProfileDto = {
     customData?: any;
 };
 
-export namespace SignupProfileDto {
+export namespace SignUpProfileDto {
 
     /**
      * 性别 W : 女性; M : 男性

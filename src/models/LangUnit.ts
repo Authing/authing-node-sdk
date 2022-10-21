@@ -10,5 +10,5 @@ export type LangUnit = {
     /**
      * 多语言内容
      */
-    value: boolean;
+    value: string;
 };

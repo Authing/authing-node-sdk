@@ -1,16 +1,17 @@
-import { ListUsersAdvancedFilterItemDto } from "../../src/models";
+import { ListUsersAdvancedFilterItemDto } from "../../src/models/ListUsersAdvancedFilterItemDto";
 import { managementClient } from "../client";
 
 describe("listUsers", () => {
   describe("Success", () => {
     it("default", async () => {
-      const { statusCode, data, message } = await managementClient.listUsers({
+      const { statusCode, data, message, requestId, apiCode } = await managementClient.listUsers({
         options: {
           withCustomData: true,
           withIdentities: true,
           withDepartmentIds: true,
         },
       });
+      console.log(statusCode, data, message)
       expect(statusCode).toEqual(200);
       expect(data.totalCount).toBeGreaterThan(0);
       const user = data.list?.[0];

@@ -4,19 +4,19 @@
 
 import type { SignUpByPassCodeDto } from './SignUpByPassCodeDto';
 import type { SignUpByPasswordDto } from './SignUpByPasswordDto';
-import type { SignupOptionsDto } from './SignupOptionsDto';
-import type { SignupProfileDto } from './SignupProfileDto';
+import type { SignUpOptionsDto } from './SignUpOptionsDto';
+import type { SignUpProfileDto } from './SignUpProfileDto';
 
-export type SignupDto = {
+export type SignUpDto = {
     /**
      * 注册方式：
      * - `PASSWORD`: 邮箱密码方式
      * - `PASSCODE`: 邮箱/手机号验证码方式
      *
      */
-    connection: SignupDto.connection;
+    connection: SignUpDto.connection;
     /**
-     * 当主持方式为 `PASSWORD` 时此参数必填。
+     * 当注册方式为 `PASSWORD` 时此参数必填。
      */
     passwordPayload?: SignUpByPasswordDto;
     /**
@@ -26,14 +26,14 @@ export type SignupDto = {
     /**
      * 用户资料
      */
-    profile?: SignupProfileDto;
+    profile?: SignUpProfileDto;
     /**
      * 可选参数
      */
-    options?: SignupOptionsDto;
+    options?: SignUpOptionsDto;
 };
 
-export namespace SignupDto {
+export namespace SignUpDto {
 
     /**
      * 注册方式：
