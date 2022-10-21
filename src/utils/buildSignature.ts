@@ -113,33 +113,3 @@ export const DEFAULT_HEADERS: { [x: string]: any } = {
   "user-agent": DEFAULT_UA,
   "x-authing-sdk-version": `authing-node-sdk:${pkg.version}`,
 };
-
-console.log(makeNonce())
-console.log(DEFAULT_UA)
-console.log(DEFAULT_CLIENT)
-
-const stringToSign = buildStringToSign(
-  "POST",
-  "/api/v3/list-users",
-  {
-    "x-authing-signature-nonce": "11223344",
-    "x-authing-signature-method": "HMAC-SHA1",
-    "x-authing-signature-version": "1.0",
-    date: new Date().toUTCString(),
-  },
-  {
-    options: {
-      pagination: {
-        page: 1,
-        limit: 10,
-      },
-    },
-  }
-);
-console.log(stringToSign);
-const auth = buildAuthorization(
-  "62eaa95ff6517ee52ae6b90c",
-  "57da72f9eb9c620844ef2188ab932f56",
-  stringToSign
-);
-console.log(auth);

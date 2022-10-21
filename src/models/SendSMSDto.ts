@@ -5,7 +5,7 @@
 export type SendSMSDto = {
     /**
      * 短信通道，指定发送此短信的目的：
-     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_LOGIN`: 用于用户登录
      * - `CHANNEL_REGISTER`: 用于用户注册
      * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
      * - `CHANNEL_BIND_PHONE`: 用于绑定手机号
@@ -33,7 +33,7 @@ export namespace SendSMSDto {
 
     /**
      * 短信通道，指定发送此短信的目的：
-     * - `CHANNEL_LOGIN`: 用户用户登录
+     * - `CHANNEL_LOGIN`: 用于用户登录
      * - `CHANNEL_REGISTER`: 用于用户注册
      * - `CHANNEL_RESET_PASSWORD`: 用于重置密码
      * - `CHANNEL_BIND_PHONE`: 用于绑定手机号

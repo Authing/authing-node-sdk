@@ -32,7 +32,7 @@ export type CreatePipelineFunctionDto = {
      */
     isAsynchronous?: boolean;
     /**
-     * 函数运行超时时间，最短为 1 秒，最长为 60 秒，默认为 3 秒。
+     * 函数运行超时时间，要求必须为整数，最短为 1 秒，最长为 60 秒，默认为 3 秒。
      */
     timeout?: number;
     /**

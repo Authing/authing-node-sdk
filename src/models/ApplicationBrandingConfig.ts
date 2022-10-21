@@ -63,7 +63,7 @@ export type ApplicationBrandingConfig = {
     /**
      * 展示的登录注册协议列表
      */
-    agreements: ApplicationAgreementDto;
+    agreements: Array<ApplicationAgreementDto>;
 };
 
 export namespace ApplicationBrandingConfig {

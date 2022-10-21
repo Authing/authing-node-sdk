@@ -9,16 +9,16 @@
  * 终端用户在第三方系统认证完成之后，浏览器再会跳转到 Authing 服务器，Authing 服务器会将此外部身份源绑定到该用户身上。最终的结果会通过浏览器 Window Post Message 的方式传递给开发者。
  * 你可以在你的应用系统中放置一个按钮，引导用户点击之后，弹出一个 Window Popup，地址为此端点，当用户在第三方身份源认证完成之后，此 Popup 会通过 Window Post Message 的方式传递给父窗口。
  *
- * 为此我们在 `@authing/browser` SDK 中封装了相关方法，为开发者省去了其中大量的细节：
+ * 为此我们在 `@authing/web` SDK 中封装了相关方法，为开发者省去了其中大量的细节：
  *
  * ```typescript
- * import { Authing } from "@authing/browser"
+ * import { Authing } from "@authing/web"
  * const sdk = new Authing({
      * // 应用的认证地址，例如：https://domain.authing.cn
      * domain: "",
      *
      * // Authing 应用 ID
-     * appId: "you_authing_app_id",
+     * appId: "AUTHING_APP_ID",
      *
      * // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
      * redirectUri: "your_redirect_uri"

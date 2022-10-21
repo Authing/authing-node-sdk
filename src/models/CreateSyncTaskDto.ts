@@ -28,6 +28,10 @@ export type CreateSyncTaskDto = {
      */
     syncTaskFlow: CreateSyncTaskDto.syncTaskFlow;
     /**
+     * 同步任务配置信息
+     */
+    clientConfig: SyncTaskClientConfig;
+    /**
      * 同步任务类型:
      * - `lark`: 飞书
      * - `lark-international`: 飞书国际版
@@ -49,10 +53,6 @@ export type CreateSyncTaskDto = {
      * 同步任务名称
      */
     syncTaskName: string;
-    /**
-     * 同步任务配置信息
-     */
-    clientConfig?: SyncTaskClientConfig;
     /**
      * 此同步任务绑定的组织机构。针对上游同步，需执行一次同步任务之后才会绑定组织机构；针对下游同步，创建同步任务的时候就需要设置。
      */

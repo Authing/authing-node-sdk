@@ -16,10 +16,6 @@ export type CreateUserReqDto = {
      */
     email?: string;
     /**
-     * 密码加密类型，支持 sm2 和 rsa
-     */
-    passwordEncryptType?: CreateUserReqDto.passwordEncryptType;
-    /**
      * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
      */
     phone?: string;
@@ -140,15 +136,7 @@ export type CreateUserReqDto = {
      */
     region?: string;
     /**
-     * 用户所属部门 ID 列表
-     */
-    departmentIds?: Array<string>;
-    /**
-     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
-     */
-    customData?: any;
-    /**
-     * 密码。可选加密方式进行加密，通过 passwordEncryptType 参数进行加密方法选择，默认为未加密
+     * 用户密码。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
      */
     password?: string;
     /**
@@ -163,6 +151,14 @@ export type CreateUserReqDto = {
      * 用户的 OTP 验证器
      */
     otp?: CreateUserOtpDto;
+    /**
+     * 用户所属部门 ID 列表
+     */
+    departmentIds?: Array<string>;
+    /**
+     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     */
+    customData?: any;
     /**
      * 第三方身份源（建议调用绑定接口进行绑定）
      */
@@ -184,15 +180,6 @@ export namespace CreateUserReqDto {
         ACTIVATED = 'Activated',
         ARCHIVED = 'Archived',
         DEACTIVATED = 'Deactivated',
-    }
-
-    /**
-     * 密码加密类型，支持 sm2 和 rsa
-     */
-    export enum passwordEncryptType {
-        SM2 = 'sm2',
-        RSA = 'rsa',
-        NONE = 'none',
     }
 
     /**

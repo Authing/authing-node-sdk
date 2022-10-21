@@ -4,9 +4,13 @@
 
 export type TokenEndPointParams = {
     /**
-     * 发起 OIDC 授权登录时的 redirect_uri 值，必须与发起登录请求时的参数一致
+     * Authing 应用 ID，当换取 token 身份验证方式为 `client_secret_post` 或 `none` 时必填。
      */
-    redirect_uri: string;
+    client_id?: string;
+    /**
+     * Authing 应用密钥，当换取 token 身份验证方式为 `client_secret_post` 时必填。
+     */
+    client_secret?: string;
     /**
      * 授权模式：
      * - `authorization_code`: 使用一次性授权码 `code` 换取。
@@ -18,13 +22,9 @@ export type TokenEndPointParams = {
      */
     grant_type: TokenEndPointParams.grant_type;
     /**
-     * Authing 应用 ID，当换取 token 身份验证方式为 `client_secret_post` 或 `none` 时必填。
+     * 发起 OIDC 授权登录时的 redirect_uri 值，必须与发起登录请求时的参数一致
      */
-    client_id?: string;
-    /**
-     * Authing 应用密钥，当换取 token 身份验证方式为 `client_secret_post` 时必填。
-     */
-    client_secret?: string;
+    redirect_uri: string;
     /**
      * 获取到的一次性授权码，**一个 code 仅限一次性使用**，用后作废。有效期为 10 分钟。当 `grant_type` 为 `authorization_code` 时必填。
      */
