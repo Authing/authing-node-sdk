@@ -15,6 +15,8 @@
 
 你可以使用 Authing Node.js SDK 快速为新开发的或已有的后端应用集成认证能力。
 
+此版本基于 Authing V3 版本的[用户认证 API](https://api.authing.cn/openapi/v3/authentication/) 和[管理 API](https://api.authing.cn/openapi/v3/management/)，如果你需要使用历史版本的 SDK，请查看 [https://docs.authing.cn/v2/reference/sdk-for-node/](https://docs.authing.cn/v2/reference/sdk-for-node/)。
+
 ## 参考文档
 
 - [Authing - Node.js SDK](https://docs.authing.cn/v3/reference/sdk/node/install.html)

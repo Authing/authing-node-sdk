@@ -15,6 +15,8 @@
 
 You can use the Authing Node.js SDK to quickly integrate authentication capabilities for new or existing Back End applications.
 
+This SDK is built upon [Authing Management API(v3)](https://api.authing.cn/openapi/v3/management/) and [Authing Authentication API(v3)](https://api.authing.cn/openapi/v3/authentication/), for older version, please refer to [https://docs.authing.cn/v2/reference/sdk-for-node/](https://docs.authing.cn/v2/reference/sdk-for-node/).
+
 ## Documentation
 
 - [Authing - Node.js SDK](https://docs.authing.cn/v3/reference/sdk/node/install.html)
