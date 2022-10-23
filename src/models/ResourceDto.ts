@@ -14,6 +14,10 @@ export type ResourceDto = {
      */
     description?: string;
     /**
+     * 资源名称
+     */
+    name?: string;
+    /**
      * 资源类型，如数据、API、按钮、菜单
      */
     type: ResourceDto.type;
@@ -29,6 +33,10 @@ export type ResourceDto = {
      * 所属权限分组的 code
      */
     namespace?: string;
+    /**
+     * 租户应用是否关联自建应用资源
+     */
+    linkedToTenant?: boolean;
 };
 
 export namespace ResourceDto {
@@ -41,6 +49,7 @@ export namespace ResourceDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

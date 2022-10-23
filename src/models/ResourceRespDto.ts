@@ -18,6 +18,10 @@ export type ResourceRespDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 资源详情
      */
     data: ResourceDto;

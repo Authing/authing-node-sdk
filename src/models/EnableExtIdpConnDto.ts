@@ -6,6 +6,10 @@ export type EnableExtIdpConnDto = {
     /**
      * 应用 ID
      */
+    appIds: string;
+    /**
+     * 应用 ID
+     */
     appId: string;
     /**
      * 是否开启身份源连接

@@ -5,9 +5,11 @@ describe("getUsersBatch", () => {
 
   beforeAll(async () => {
     const { data } = await managementClient.listUsers({
-      withCustomData: true,
-      withIdentities: true,
-      withDepartmentIds: true,
+      options: {
+        withCustomData: true,
+        withIdentities: true,
+        withDepartmentIds: true,
+      },
     });
     userIds = data.list.map((x) => x.userId);
   });

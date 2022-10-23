@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 通过搜索关键词，搜索顶层组织机构列表，支持分页。
+ * 通过搜索关键词，搜索组织机构列表，支持分页。
  */
 export type SearchOrganizationsDto = {
     /**
@@ -18,4 +18,8 @@ export type SearchOrganizationsDto = {
      * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

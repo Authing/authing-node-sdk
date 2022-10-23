@@ -18,6 +18,14 @@ export type OrganizationDto = {
      */
     description?: string;
     /**
+     * 创建时间
+     */
+    createdAt?: string;
+    /**
+     * 修改时间
+     */
+    updatedAt?: string;
+    /**
      * 根节点 ID
      */
     departmentId: string;
@@ -45,4 +53,8 @@ export type OrganizationDto = {
      * 多语言设置
      */
     i18n?: OrganizationNameI18nDto;
+    /**
+     * 部门的扩展字段数据
+     */
+    customData?: any;
 };

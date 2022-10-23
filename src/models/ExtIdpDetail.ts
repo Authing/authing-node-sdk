@@ -12,6 +12,10 @@ export type ExtIdpDetail = {
      */
     name: string;
     /**
+     * 身份源的 Logo
+     */
+    logo: string;
+    /**
      * 租户 ID
      */
     tenantId?: string;

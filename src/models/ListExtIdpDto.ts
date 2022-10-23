@@ -10,4 +10,8 @@ export type ListExtIdpDto = {
      * 租户 ID
      */
     tenantId?: any;
+    /**
+     * 应用 ID
+     */
+    appId?: any;
 };

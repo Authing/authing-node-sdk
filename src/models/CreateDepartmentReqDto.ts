@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { I18nDto } from './I18nDto';
+import type { DepartmentI18nDto } from './DepartmentI18nDto';
 
 export type CreateDepartmentReqDto = {
     /**
@@ -36,7 +36,7 @@ export type CreateDepartmentReqDto = {
     /**
      * 多语言设置
      */
-    i18n?: I18nDto;
+    i18n?: DepartmentI18nDto;
     /**
      * 部门的扩展字段数据
      */

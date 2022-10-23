@@ -19,7 +19,7 @@ describe("createUser", () => {
         },
         {
           targetType: Models.SetCustomFieldDto.targetType.USER,
-          dataType: Models.SetCustomFieldDto.dataType.SELECT,
+          dataType: Models.SetCustomFieldDto.dataType.ENUM,
           key: "school",
           label: "学校",
           options: [
@@ -97,6 +97,9 @@ describe("createUser", () => {
         nickname,
         emailVerified,
         phoneVerified,
+        customData: {
+          school: 'mit'
+        }
       });
       expect(statusCode).toEqual(200);
       expect(user.userId).toBeDefined();

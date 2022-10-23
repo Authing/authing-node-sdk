@@ -8,13 +8,13 @@ export type UpdateGroupReqDto = {
      */
     description: string;
     /**
-     * 分组名称
-     */
-    name: string;
-    /**
      * 分组 code
      */
     code: string;
+    /**
+     * 分组名称
+     */
+    name?: string;
     /**
      * 分组新的 code
      */

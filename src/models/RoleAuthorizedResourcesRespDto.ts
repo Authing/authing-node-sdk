@@ -31,6 +31,7 @@ export namespace RoleAuthorizedResourcesRespDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

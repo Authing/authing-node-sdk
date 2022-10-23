@@ -41,6 +41,7 @@ export namespace UpdateResourceDto {
         API = 'API',
         MENU = 'MENU',
         BUTTON = 'BUTTON',
+        UI = 'UI',
     }
 
 

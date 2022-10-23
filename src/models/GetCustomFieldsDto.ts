@@ -3,11 +3,16 @@
 /* eslint-disable */
 
 /**
- * 通过主体类型，获取用户池配置的自定义字段列表。
+ * 通过主体类型，获取用户、部门或角色的自定义字段列表。
  */
 export type GetCustomFieldsDto = {
     /**
-     * 主体类型，目前支持用户、角色、分组、部门
+     * 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     * ;该接口暂不支持分组(GROUP)
      */
     targetType?: any;
 };

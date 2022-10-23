@@ -18,6 +18,10 @@ export type ResourcePagingDto = {
      */
     apiCode?: number;
     /**
+     * 请求 ID。当请求失败时会返回。
+     */
+    requestId?: string;
+    /**
      * 记录总数
      */
     totalCount: number;
