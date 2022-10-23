@@ -10,9 +10,9 @@ import type { TencentExmailEmailProviderConfigInput } from './TencentExmailEmail
 export type ConfigEmailProviderDto = {
     /**
      * 第三方邮件服务商类型:
-     * - `smtp`: 标准 SMTP 邮件服务
+     * - `custom`: 自定义 SMTP 邮件服务
      * - `ali`: [阿里企业邮箱](https://www.ali-exmail.cn/Land/)
-     * - `tencent`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
+     * - `qq`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
      * - `sendgrid`: [SendGrid 邮件服务](https://sendgrid.com/)
      *
      */
@@ -43,17 +43,17 @@ export namespace ConfigEmailProviderDto {
 
     /**
      * 第三方邮件服务商类型:
-     * - `smtp`: 标准 SMTP 邮件服务
+     * - `custom`: 自定义 SMTP 邮件服务
      * - `ali`: [阿里企业邮箱](https://www.ali-exmail.cn/Land/)
-     * - `tencent`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
+     * - `qq`: [腾讯企业邮箱](https://work.weixin.qq.com/mail/)
      * - `sendgrid`: [SendGrid 邮件服务](https://sendgrid.com/)
      *
      */
     export enum type {
-        SMTP = 'smtp',
         ALI = 'ali',
-        TENCENT = 'tencent',
+        QQ = 'qq',
         SENDGRID = 'sendgrid',
+        CUSTOM = 'custom',
     }
 
 

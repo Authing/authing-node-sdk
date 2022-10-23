@@ -9,7 +9,7 @@ export type ListUsersRequestDto = {
     /**
      * 模糊搜索关键字
      */
-    query?: string;
+    keywords?: string;
     /**
      * 高级搜索
      */

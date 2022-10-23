@@ -22,6 +22,10 @@ export type UserDto = {
      */
     status: UserDto.status;
     /**
+     * 账户当前工作状态
+     */
+    workStatus: UserDto.workStatus;
+    /**
      * 第三方外部 ID
      */
     externalId?: string;
@@ -227,6 +231,14 @@ export namespace UserDto {
         ACTIVATED = 'Activated',
         ARCHIVED = 'Archived',
         DEACTIVATED = 'Deactivated',
+    }
+
+    /**
+     * 账户当前工作状态
+     */
+    export enum workStatus {
+        CLOSED = 'Closed',
+        ACTIVE = 'Active',
     }
 
     /**

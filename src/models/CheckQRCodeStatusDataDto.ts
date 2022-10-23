@@ -7,7 +7,7 @@ import type { QRCodeStatusBriefUserInfoDto } from './QRCodeStatusBriefUserInfoDt
 
 export type CheckQRCodeStatusDataDto = {
     /**
-     * 二维码状态。按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态。
+     * 二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
      */
     status: CheckQRCodeStatusDataDto.status;
     /**
@@ -24,14 +24,14 @@ export type CheckQRCodeStatusDataDto = {
 export namespace CheckQRCodeStatusDataDto {
 
     /**
-     * 二维码状态。按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态。
+     * 二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
      */
     export enum status {
-        EXPIRED = 'EXPIRED',
         PENDING = 'PENDING',
         SCANNED = 'SCANNED',
         AUTHORIZED = 'AUTHORIZED',
         CANCELLED = 'CANCELLED',
+        EXPIRED = 'EXPIRED',
         ERROR = 'ERROR',
     }
 

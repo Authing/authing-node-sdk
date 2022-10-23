@@ -6,15 +6,15 @@ export type SMTPEmailProviderConfigInput = {
     /**
      * SMTP 地址
      */
-    smtpHost: string;
+    smtp_host: string;
     /**
      * SMTP 端口
      */
-    smtpPort: number;
+    smtp_port: number;
     /**
      * 用户名
      */
-    sender: string;
+    sender?: string;
     /**
      * 密码
      */
@@ -22,5 +22,5 @@ export type SMTPEmailProviderConfigInput = {
     /**
      * 是否启用 SSL
      */
-    enableSSL: boolean;
+    secure?: boolean;
 };

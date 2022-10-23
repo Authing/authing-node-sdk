@@ -7,7 +7,7 @@ export type GenerateQrcodeDto = {
      * 二维码类型。当前支持三种类型：
      * - `MOBILE_APP`: 自建移动端 APP 扫码
      * - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-     * - `WECHAT_OFFICIAL_ACCOUN` 关注微信公众号扫码
+     * - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
      */
     type: GenerateQrcodeDto.type;
     /**
@@ -34,7 +34,7 @@ export namespace GenerateQrcodeDto {
      * 二维码类型。当前支持三种类型：
      * - `MOBILE_APP`: 自建移动端 APP 扫码
      * - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-     * - `WECHAT_OFFICIAL_ACCOUN` 关注微信公众号扫码
+     * - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
      */
     export enum type {
         MOBILE_APP = 'MOBILE_APP',

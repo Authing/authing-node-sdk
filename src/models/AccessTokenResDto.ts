@@ -8,7 +8,7 @@ export type AccessTokenResDto = {
      */
     access_token: string;
     /**
-     * token 有效时间
+     * access_token 有效时间，默认为 7200 秒（两小时），过期之后应该重新获取新的 access_token。
      */
     expires_in: number;
 };

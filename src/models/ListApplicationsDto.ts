@@ -29,5 +29,5 @@ export type ListApplicationsDto = {
     /**
      * 模糊搜索字符串
      */
-    keyword?: any;
+    keywords?: any;
 };

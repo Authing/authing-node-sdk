@@ -37,11 +37,11 @@ export type SigninByMobileDto = {
      */
     connection: SigninByMobileDto.connection;
     /**
-     * 苹果移动端社会化登录数据，当 `connection` 为 `apple` 的时候必填。
+     * 苹果移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填。
      */
     wechatPayload?: SignInByWechatPayloadDto;
     /**
-     * 微信移动端社会化登录数据，当 `connection` 为 `wechat` 的时候必填。
+     * 微信移动端社会化登录数据，当 `connection` 为 `apple` 的时候必填。
      */
     applePayload?: SignInByApplePayloadDto;
     /**
@@ -112,7 +112,7 @@ export namespace SigninByMobileDto {
      *
      */
     export enum connection {
-        APPLE = 'Apple',
+        APPLE = 'apple',
         WECHAT = 'wechat',
         ALIPAY = 'alipay',
         WECHATWORK = 'wechatwork',

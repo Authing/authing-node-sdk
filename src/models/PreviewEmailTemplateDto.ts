@@ -4,10 +4,6 @@
 
 export type PreviewEmailTemplateDto = {
     /**
-     * 邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
-     */
-    sender: string;
-    /**
      * 模版类型:
      * - `WELCOME_EMAIL`: 欢迎邮件
      * - `FIRST_CREATED_USER`: 首次创建用户通知
@@ -35,6 +31,10 @@ export type PreviewEmailTemplateDto = {
      * 邮件主题，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
      */
     subject?: string;
+    /**
+     * 邮件发件人名称，可选，如果不传默认使用用户池配置的邮件模版进行渲染。
+     */
+    sender?: string;
     /**
      * 验证码/邮件有效时间，只有验证类邮件才有有效时间。可选，如果不传默认使用用户池配置的邮件模版进行渲染。
      */

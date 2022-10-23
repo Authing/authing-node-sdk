@@ -12,7 +12,7 @@ export type GetCustomFieldsDto = {
      * - `ROLE`: 角色
      * - `GROUP`: 分组
      * - `DEPARTMENT`: 部门
-     *
+     * ;该接口暂不支持分组(GROUP)
      */
     targetType?: any;
 };

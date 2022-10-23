@@ -1,7 +1,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AddApplicationPermissionRecord } from "./models/AddApplicationPermissionRecord";
 import type { AddDepartmentMembersReqDto } from "./models/AddDepartmentMembersReqDto";
 import type { AddGroupMembersReqDto } from "./models/AddGroupMembersReqDto";
 import type { AdminAuditLogRespDto } from "./models/AdminAuditLogRespDto";
@@ -11,13 +10,15 @@ import type { ApplicationSimpleInfoSingleRespDto } from "./models/ApplicationSim
 import type { ApplicationSingleRespDto } from "./models/ApplicationSingleRespDto";
 import type { AppListRespDto } from "./models/AppListRespDto";
 import type { AssignRoleDto } from "./models/AssignRoleDto";
-import type { AssociationExtIdpDto } from "./models/AssociationExtIdpDto";
-import type { AssociationResourceDto } from "./models/AssociationResourceDto";
+import type { AssociateTenantResourceDto } from "./models/AssociateTenantResourceDto";
+import type { AuthorizeApplicationAccessDto } from "./models/AuthorizeApplicationAccessDto";
 import type { AuthorizedResourceListRespDto } from "./models/AuthorizedResourceListRespDto";
 import type { AuthorizedResourcePaginatedRespDto } from "./models/AuthorizedResourcePaginatedRespDto";
 import type { AuthorizeResourcesDto } from "./models/AuthorizeResourcesDto";
 import type { CancelSyncRiskOperationDto } from "./models/CancelSyncRiskOperationDto";
 import type { CancelSyncRiskOperationsRespDto } from "./models/CancelSyncRiskOperationsRespDto";
+import type { ChangeExtIdpAssociationStateDto } from "./models/ChangeExtIdpAssociationStateDto";
+import type { ChangeExtIdpConnStateDto } from "./models/ChangeExtIdpConnStateDto";
 import type { CheckDomainAvailable } from "./models/CheckDomainAvailable";
 import type { CheckDomainAvailableSecretRespDto } from "./models/CheckDomainAvailableSecretRespDto";
 import type { CheckSessionStatusDto } from "./models/CheckSessionStatusDto";
@@ -49,7 +50,6 @@ import type { CreateUserBatchReqDto } from "./models/CreateUserBatchReqDto";
 import type { CreateUserReqDto } from "./models/CreateUserReqDto";
 import type { CustomFieldListRespDto } from "./models/CustomFieldListRespDto";
 import type { DeleteApplicationDto } from "./models/DeleteApplicationDto";
-import type { DeleteApplicationPermissionRecord } from "./models/DeleteApplicationPermissionRecord";
 import type { DeleteDepartmentReqDto } from "./models/DeleteDepartmentReqDto";
 import type { DeleteExtIdpConnDto } from "./models/DeleteExtIdpConnDto";
 import type { DeleteExtIdpDto } from "./models/DeleteExtIdpDto";
@@ -64,9 +64,8 @@ import type { DeleteUsersBatchDto } from "./models/DeleteUsersBatchDto";
 import type { DepartmentListRespDto } from "./models/DepartmentListRespDto";
 import type { DepartmentPaginatedRespDto } from "./models/DepartmentPaginatedRespDto";
 import type { DepartmentSingleRespDto } from "./models/DepartmentSingleRespDto";
-import type { EmailProviderDto } from "./models/EmailProviderDto";
+import type { EmailProviderRespDto } from "./models/EmailProviderRespDto";
 import type { EmailTemplateSingleItemRespDto } from "./models/EmailTemplateSingleItemRespDto";
-import type { EnableExtIdpConnDto } from "./models/EnableExtIdpConnDto";
 import type { ExtIdpConnDetailSingleRespDto } from "./models/ExtIdpConnDetailSingleRespDto";
 import type { ExtIdpDetailSingleRespDto } from "./models/ExtIdpDetailSingleRespDto";
 import type { ExtIdpListPaginatedRespDto } from "./models/ExtIdpListPaginatedRespDto";
@@ -117,6 +116,7 @@ import type { ResignUserRespDto } from "./models/ResignUserRespDto";
 import type { ResourceListRespDto } from "./models/ResourceListRespDto";
 import type { ResourcePaginatedRespDto } from "./models/ResourcePaginatedRespDto";
 import type { ResourceRespDto } from "./models/ResourceRespDto";
+import type { RevokeApplicationAccessDto } from "./models/RevokeApplicationAccessDto";
 import type { RevokeRoleDto } from "./models/RevokeRoleDto";
 import type { RoleAuthorizedResourcePaginatedRespDto } from "./models/RoleAuthorizedResourcePaginatedRespDto";
 import type { RoleDepartmentListPaginatedRespDto } from "./models/RoleDepartmentListPaginatedRespDto";
@@ -226,7 +226,7 @@ export class ManagementClient {
    *
    * ```json
    * {
-   * "query": "北京",
+   * "keywords": "北京",
    * "options": {
    * "fuzzySearchOn": [
    * "address"
@@ -602,8 +602,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 修改用户资料
-   * @description 通过用户 ID，修改用户资料，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份修改用户资料因此不需要进行手机号验证码检验等安全检测。
+   * @summary 批量修改用户资料
+   * @description 批量修改用户资料，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份修改用户资料因此不需要进行手机号验证码检验等安全检测。
    * @returns UserListRespDto
    */
   public async updateUserBatch(
@@ -2450,12 +2450,12 @@ export class ManagementClient {
    * @description 身份源连接开关，可以打开或关闭身份源连接。
    * @returns IsSuccessRespDto
    */
-  public async changeConnState(
-    requestBody: EnableExtIdpConnDto
+  public async changeExtIdpConnState(
+    requestBody: ChangeExtIdpConnStateDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/enable-ext-idp-conn",
+      url: "/api/v3/change-ext-idp-conn-state",
       data: requestBody,
     });
   }
@@ -2465,12 +2465,12 @@ export class ManagementClient {
    * @description 租户可以关联或取消关联身份源连接。
    * @returns IsSuccessRespDto
    */
-  public async changeAssociationState(
-    requestBody: AssociationExtIdpDto
+  public async changeExtIdpConnAssociationState(
+    requestBody: ChangeExtIdpAssociationStateDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/association-ext-idp",
+      url: "/api/v3/change-ext-idp-conn-association-state",
       data: requestBody,
     });
   }
@@ -2583,7 +2583,7 @@ export class ManagementClient {
      * - `ROLE`: 角色
      * - `GROUP`: 分组
      * - `DEPARTMENT`: 部门
-     *  **/
+     * ;该接口暂不支持分组(GROUP) **/
     targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
   }): Promise<CustomFieldListRespDto> {
     return await this.httpClient.request({
@@ -2823,8 +2823,8 @@ export class ManagementClient {
    * @description 通过资源唯一标识以及权限分组，关联或取消关联资源到租户
    * @returns IsSuccessRespDto
    */
-  public async associationResources(
-    requestBody: AssociationResourceDto
+  public async associateTenantResource(
+    requestBody: AssociateTenantResourceDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
@@ -3404,26 +3404,26 @@ export class ManagementClient {
   /**
    * @summary 获取第三方邮件服务配置
    * @description 获取第三方邮件服务配置
-   * @returns EmailProviderDto
+   * @returns EmailProviderRespDto
    */
-  public async getEmailProvider(): Promise<EmailProviderDto> {
+  public async getEmailProvider(): Promise<EmailProviderRespDto> {
     return await this.httpClient.request({
       method: "GET",
-      url: "/api/v3/get-email-provier",
+      url: "/api/v3/get-email-provider",
     });
   }
 
   /**
    * @summary 配置第三方邮件服务
    * @description 配置第三方邮件服务
-   * @returns EmailProviderDto
+   * @returns EmailProviderRespDto
    */
   public async configEmailProvider(
     requestBody: ConfigEmailProviderDto
-  ): Promise<EmailProviderDto> {
+  ): Promise<EmailProviderRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/config-email-provier",
+      url: "/api/v3/config-email-provider",
       data: requestBody,
     });
   }
@@ -3459,7 +3459,7 @@ export class ManagementClient {
     isIntegrateApp = false,
     isSelfBuiltApp = false,
     ssoEnabled = false,
-    keyword,
+    keywords,
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
@@ -3472,7 +3472,7 @@ export class ManagementClient {
     /** 是否开启单点登录 **/
     ssoEnabled?: boolean;
     /** 模糊搜索字符串 **/
-    keyword?: string;
+    keywords?: string;
   }): Promise<ApplicationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -3483,7 +3483,7 @@ export class ManagementClient {
         isIntegrateApp: isIntegrateApp,
         isSelfBuiltApp: isSelfBuiltApp,
         ssoEnabled: ssoEnabled,
-        keyword: keyword,
+        keywords: keywords,
       },
     });
   }
@@ -3519,7 +3519,7 @@ export class ManagementClient {
     isIntegrateApp = false,
     isSelfBuiltApp = false,
     ssoEnabled = false,
-    keyword,
+    keywords,
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
@@ -3532,7 +3532,7 @@ export class ManagementClient {
     /** 是否开启单点登录 **/
     ssoEnabled?: boolean;
     /** 模糊搜索字符串 **/
-    keyword?: string;
+    keywords?: string;
   }): Promise<ApplicationSimpleInfoPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -3543,7 +3543,7 @@ export class ManagementClient {
         isIntegrateApp: isIntegrateApp,
         isSelfBuiltApp: isSelfBuiltApp,
         ssoEnabled: ssoEnabled,
-        keyword: keyword,
+        keywords: keywords,
       },
     });
   }
@@ -3665,30 +3665,30 @@ export class ManagementClient {
 
   /**
    * @summary 授权应用访问权限
-   * @description 给用户、分组、组织或角色授权应用访问权限
+   * @description 给用户、分组、组织或角色授权应用访问权限，如果用户、分组、组织或角色不存在，则跳过，进行下一步授权，不返回报错
    * @returns IsSuccessRespDto
    */
   public async authorizeApplicationAccess(
-    requestBody: AddApplicationPermissionRecord
+    requestBody: AuthorizeApplicationAccessDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/add-application-permission-record",
+      url: "/api/v3/authorize-application-access",
       data: requestBody,
     });
   }
 
   /**
    * @summary 删除应用访问授权记录
-   * @description 取消给用户、分组、组织或角色的应用访问权限授权
+   * @description 取消给用户、分组、组织或角色的应用访问权限授权,如果传入数据不存在，则返回数据不报错处理。
    * @returns IsSuccessRespDto
    */
   public async revokeApplicationAccess(
-    requestBody: DeleteApplicationPermissionRecord
+    requestBody: RevokeApplicationAccessDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/delete-application-permission-record",
+      url: "/api/v3/revoke-application-access",
       data: requestBody,
     });
   }
@@ -3716,7 +3716,7 @@ export class ManagementClient {
   public async getSecuritySettings(): Promise<SecuritySettingsRespDto> {
     return await this.httpClient.request({
       method: "GET",
-      url: "/api/v3/update-security-settings",
+      url: "/api/v3/get-security-settings",
     });
   }
 
@@ -3749,7 +3749,7 @@ export class ManagementClient {
 
   /**
    * @summary 修改全局多因素认证配置
-   * @description 传入 MFA 认证因素列表进行修改
+   * @description 传入 MFA 认证因素列表进行开启,
    * @returns MFASettingsRespDto
    */
   public async updateGlobalMfaSettings(
@@ -4009,7 +4009,7 @@ export class ManagementClient {
   }): Promise<PipelineFunctionPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
-      url: "/api/v3/list-pipeline-function",
+      url: "/api/v3/list-pipeline-functions",
       params: {
         scene: scene,
       },
@@ -4100,7 +4100,7 @@ export class ManagementClient {
 
   /**
    * @summary 删除 Webhook
-   * @description 通过指定多个 webhookId，以数组的形式进行 webhook 的删除
+   * @description 通过指定多个 webhookId,以数组的形式进行 webhook 的删除,如果 webhookId 不存在,不提示报错
    * @returns DeleteWebhookRespDto
    */
   public async deleteWebhook(
@@ -4115,7 +4115,7 @@ export class ManagementClient {
 
   /**
    * @summary 获取 Webhook 日志
-   * @description 通过指定 webhookId，可选 page 和 limit 来获取 webhook 日志
+   * @description 通过指定 webhookId，可选 page 和 limit 来获取 webhook 日志,如果 webhookId 不存在,不返回报错信息
    * @returns ListWebhookLogsRespDto
    */
   public async getWebhookLogs(

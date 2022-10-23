@@ -8,7 +8,8 @@ import type { ResetPasswordByPhonePassCodeDto } from './ResetPasswordByPhonePass
 export type VerifyResetPasswordRequestDto = {
     /**
      * 忘记密码请求使用的验证手段：
-     * - `EMAIL_PASSCODE`: 通过邮箱验证码进行验证，当前只支持这种验证方式。
+     * - `EMAIL_PASSCODE`: 通过邮箱验证码进行验证
+     * - `PHONE_PASSCODE`: 通过手机号验证码进行验证
      *
      */
     verifyMethod: VerifyResetPasswordRequestDto.verifyMethod;
@@ -26,7 +27,8 @@ export namespace VerifyResetPasswordRequestDto {
 
     /**
      * 忘记密码请求使用的验证手段：
-     * - `EMAIL_PASSCODE`: 通过邮箱验证码进行验证，当前只支持这种验证方式。
+     * - `EMAIL_PASSCODE`: 通过邮箱验证码进行验证
+     * - `PHONE_PASSCODE`: 通过手机号验证码进行验证
      *
      */
     export enum verifyMethod {

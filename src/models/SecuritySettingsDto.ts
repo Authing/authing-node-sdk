@@ -14,7 +14,7 @@ export type SecuritySettingsDto = {
     /**
      * 安全域（CORS）
      */
-    allowedOrigins?: Array<string>;
+    allowedOrigins?: string;
     /**
      * Authing Token 有效时间（秒）
      */

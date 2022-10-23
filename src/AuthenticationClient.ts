@@ -83,8 +83,8 @@ import type { EnrollFactorRespDto } from "./models/EnrollFactorRespDto";
 import type { GetFactorRespDto } from "./models/GetFactorRespDto";
 import type { ListEnrolledFactorsRespDto } from "./models/ListEnrolledFactorsRespDto";
 import type { ListFactorsToEnrollRespDto } from "./models/ListFactorsToEnrollRespDto";
+import type { ResetFactorDto } from "./models/ResetFactorDto";
 import type { ResetFactorRespDto } from "./models/ResetFactorRespDto";
-import type { RestFactorDto } from "./models/RestFactorDto";
 import type { SendEnrollFactorRequestDto } from "./models/SendEnrollFactorRequestDto";
 import type { SendEnrollFactorRequestRespDto } from "./models/SendEnrollFactorRequestRespDto";
 import type { AuthorizedResourcePaginatedRespDto } from "./models/AuthorizedResourcePaginatedRespDto";
@@ -104,7 +104,7 @@ import type { GetWechatMiniProgramPhoneRespDto } from "./models/GetWechatMiniPro
 import type { GroupListRespDto } from "./models/GroupListRespDto";
 import type { RoleListRespDto } from "./models/RoleListRespDto";
 import { SignUpDto } from "./models/SignUpDto";
-import type { UnbindExtIdpDto } from "./models/UnbindExtIdpDto";
+import type { UnlinkExtIdpDto } from "./models/UnlinkExtIdpDto";
 import type { UserDepartmentPaginatedRespDto } from "./models/UserDepartmentPaginatedRespDto";
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
@@ -1443,7 +1443,7 @@ export class AuthenticationClient {
   public async signUpByEmailPassword(requestBody: {
     email: string;
     password: string;
-    profile?: SignUpProfileDto,
+    profile?: SignUpProfileDto;
     options?: SignUpOptionsDto;
   }) {
     const { email, password, options, profile } = requestBody;
@@ -1466,7 +1466,7 @@ export class AuthenticationClient {
   public async signUpByUsernamePassword(requestBody: {
     username: string;
     password: string;
-    profile?: SignUpProfileDto,
+    profile?: SignUpProfileDto;
     options?: SignUpOptionsDto;
   }) {
     const { username, password, options, profile } = requestBody;
@@ -2045,7 +2045,7 @@ export class AuthenticationClient {
    * @description 当用户希望注销账号时，需提供相应凭证，当前支持**使用邮箱验证码**、使用**手机验证码**、**使用密码**三种验证方式。
    * @returns VerifyDeleteAccountRequestRespDto
    */
-  public async veirfyDeleteAccountRequest(
+  public async verifyDeleteAccountRequest(
     requestBody: VerifyDeleteAccountRequestDto
   ): Promise<VerifyDeleteAccountRequestRespDto> {
     const result = await this.httpClient.request({
@@ -2145,7 +2145,7 @@ export class AuthenticationClient {
    * @returns ResetFactorRespDto
    */
   public async resetFactor(
-    requestBody: RestFactorDto
+    requestBody: ResetFactorDto
   ): Promise<ResetFactorRespDto> {
     const result = await this.httpClient.request({
       method: "POST",
@@ -2199,175 +2199,9 @@ export class AuthenticationClient {
     return result;
   }
   /**
-   * @summary 绑定外部身份源
-   * @description
-   *
-   * 由于绝大多数的外部身份源登录不允许在第三方系统直接输入账号密码进行登录，所以外部身份源的绑定总是需要先跳转到对方的登录页面进行认证。此端点会通过浏览器 `302` 跳转的方式先跳转到第三方的登录页面，
-   * 终端用户在第三方系统认证完成之后，浏览器再会跳转到 Authing 服务器，Authing 服务器会将此外部身份源绑定到该用户身上。最终的结果会通过浏览器 Window Post Message 的方式传递给开发者。
-   * 你可以在你的应用系统中放置一个按钮，引导用户点击之后，弹出一个 Window Popup，地址为此端点，当用户在第三方身份源认证完成之后，此 Popup 会通过 Window Post Message 的方式传递给父窗口。
-   *
-   * 为此我们在 `@authing/web` SDK 中封装了相关方法，为开发者省去了其中大量的细节：
-   *
-   * ```typescript
-   * import { Authing } from "@authing/web"
-   * const sdk = new Authing({
-   * // 应用的认证地址，例如：https://domain.authing.cn
-   * domain: "",
-   *
-   * // Authing 应用 ID
-   * appId: "AUTHING_APP_ID",
-   *
-   * // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
-   * redirectUri: "your_redirect_uri"
-   * });
-   *
-   *
-   * // success 表示此次绑定操作是否成功；
-   * // errMsg 为如果绑定失败，具体的失败原因，如此身份源已被其他账号绑定等。
-   * // identities 为此次绑定操作具体绑定的第三方身份信息
-   * const { success, errMsg, identities } = await sdk.bindExtIdpWithPopup({
-   * "extIdpConnIdentifier": "my-wechat"
-   * })
-   *
-   * ```
-   *
-   * 绑定外部身份源成功之后，你可以得到用户在此第三方身份源的信息，以绑定飞书账号为例：
-   *
-   * ```json
-   * [
-   * {
-   * "identityId": "62f20932xxxxbcc10d966ee5",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "open_id",
-   * "userIdInIdp": "ou_8bae746eac07cd2564654140d2a9ac61",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * },
-   * {
-   * "identityId": "62f726239xxxxe3285d21c93",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "union_id",
-   * "userIdInIdp": "on_093ce5023288856aa0abe4099123b18b",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * },
-   * {
-   * "identityId": "62f72623e011cf10c8851e4c",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "user_id",
-   * "userIdInIdp": "23ded785",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * }
-   * ]
-   * ```
-   *
-   * 可以看到，我们获取到了用户在飞书中的身份信息：
-   *
-   * - `open_id`: ou_8bae746eac07cd2564654140d2a9ac61
-   * - `union_id`: on_093ce5023288856aa0abe4099123b18b
-   * - `user_id`: 23ded785
-   *
-   * 绑定此外部身份源之后，后续用户就可以使用此身份源进行登录了，见**登录**接口。
-   *
-   *
-   * @returns GenerateBindExtIdpLinkRespDto
-   */
-  public async linkExtIdp({
-    extIdpConnIdentifier,
-    appId,
-    idToken,
-  }: {
-    /** 外部身份源连接唯一标志 **/
-    extIdpConnIdentifier: string;
-    /** Authing 应用 ID **/
-    appId: string;
-    /** 用户的 id_token **/
-    idToken: string;
-  }): Promise<GenerateBindExtIdpLinkRespDto> {
-    const result = await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/link-extidp",
-      params: {
-        ext_idp_conn_identifier: extIdpConnIdentifier,
-        app_id: appId,
-        id_token: idToken,
-      },
-    });
-    return result;
-  }
-  /**
    * @summary 生成绑定外部身份源的链接
    * @description
-   *
-   * 由于绝大多数的外部身份源登录不允许在第三方系统直接输入账号密码进行登录，所以外部身份源的绑定总是需要先跳转到对方的登录页面进行认证。此端点会通过浏览器 `302` 跳转的方式先跳转到第三方的登录页面，
-   * 终端用户在第三方系统认证完成之后，浏览器再会跳转到 Authing 服务器，Authing 服务器会将此外部身份源绑定到该用户身上。最终的结果会通过浏览器 Window Post Message 的方式传递给开发者。
-   * 你可以在你的应用系统中放置一个按钮，引导用户点击之后，弹出一个 Window Popup，地址为此端点，当用户在第三方身份源认证完成之后，此 Popup 会通过 Window Post Message 的方式传递给父窗口。
-   *
-   * 为此我们在 `@authing/web` SDK 中封装了相关方法，为开发者省去了其中大量的细节：
-   *
-   * ```typescript
-   * import { Authing } from "@authing/web"
-   * const sdk = new Authing({
-   * // 应用的认证地址，例如：https://domain.authing.cn
-   * domain: "",
-   *
-   * // Authing 应用 ID
-   * appId: "AUTHING_APP_ID",
-   *
-   * // 登录回调地址，需要在控制台『应用配置 - 登录回调 URL』中指定
-   * redirectUri: "your_redirect_uri"
-   * });
-   *
-   *
-   * // success 表示此次绑定操作是否成功；
-   * // errMsg 为如果绑定失败，具体的失败原因，如此身份源已被其他账号绑定等。
-   * // identities 为此次绑定操作具体绑定的第三方身份信息
-   * const { success, errMsg, identities } = await sdk.bindExtIdpWithPopup({
-   * "extIdpConnIdentifier": "my-wechat"
-   * })
-   *
-   * ```
-   *
-   * 绑定外部身份源成功之后，你可以得到用户在此第三方身份源的信息，以绑定飞书账号为例：
-   *
-   * ```json
-   * [
-   * {
-   * "identityId": "62f20932xxxxbcc10d966ee5",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "open_id",
-   * "userIdInIdp": "ou_8bae746eac07cd2564654140d2a9ac61",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * },
-   * {
-   * "identityId": "62f726239xxxxe3285d21c93",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "union_id",
-   * "userIdInIdp": "on_093ce5023288856aa0abe4099123b18b",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * },
-   * {
-   * "identityId": "62f72623e011cf10c8851e4c",
-   * "extIdpId": "62f209327xxxxcc10d966ee5",
-   * "provider": "lark",
-   * "type": "user_id",
-   * "userIdInIdp": "23ded785",
-   * "originConnIds": ["62f2093244fa5cb19ff21ed3"]
-   * }
-   * ]
-   * ```
-   *
-   * 可以看到，我们获取到了用户在飞书中的身份信息：
-   *
-   * - `open_id`: ou_8bae746eac07cd2564654140d2a9ac61
-   * - `union_id`: on_093ce5023288856aa0abe4099123b18b
-   * - `user_id`: 23ded785
-   *
-   * 绑定此外部身份源之后，后续用户就可以使用此身份源进行登录了，见**登录**接口。
-   *
+   * 此接口用于生成绑定外部身份源的链接，生成之后可以引导用户进行跳转。
    *
    * @returns GenerateBindExtIdpLinkRespDto
    */
@@ -2399,8 +2233,8 @@ export class AuthenticationClient {
    * @description 解绑外部身份源，此接口需要传递用户绑定的外部身份源 ID，**注意不是身份源连接 ID**。
    * @returns CommonResponseDto
    */
-  public async unbindExtIdp(
-    requestBody: UnbindExtIdpDto
+  public async unlinkExtIdp(
+    requestBody: UnlinkExtIdpDto
   ): Promise<CommonResponseDto> {
     const result = await this.httpClient.request({
       method: "POST",
@@ -2461,10 +2295,10 @@ export class AuthenticationClient {
    * @description 获取应用开启的外部身份源列表，前端可以基于此渲染外部身份源按钮。
    * @returns GetExtIdpsRespDto
    */
-  public async getExtIdps(): Promise<GetExtIdpsRespDto> {
+  public async getApplicationEnabledExtIdps(): Promise<GetExtIdpsRespDto> {
     const result = await this.httpClient.request({
       method: "GET",
-      url: "/api/v3/get-extidps",
+      url: "/api/v3/get-application-enabled-extidps",
     });
     return result;
   }
