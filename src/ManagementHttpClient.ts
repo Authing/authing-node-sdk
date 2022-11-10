@@ -27,7 +27,7 @@ export class ManagementHttpClient {
     }
     headers["x-authing-lang"] = this.options.lang || "zh-CN";
     headers["date"] = new Date().toUTCString();
-    headers = Object.assign(DEFAULT_HEADERS, headers);
+    headers = Object.assign(DEFAULT_HEADERS(), headers);
 
     // 计算签名
     const stringToSign = buildStringToSign(

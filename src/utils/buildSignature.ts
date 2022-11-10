@@ -68,14 +68,14 @@ export function makeNonce() {
   }
   last = val;
   var uid = `${machine}${pid}${val}${counter}`;
-  return crypto.createHash('md5').update(uid).digest('hex')
-};
+  return crypto.createHash("md5").update(uid).digest("hex");
+}
 
 export function buildSignature(accessKeySecret: string, stringToSign: string) {
   return crypto
     .createHmac("sha1", accessKeySecret)
     .update(Buffer.from(stringToSign, "utf8"))
-    .digest('base64');
+    .digest("base64");
 }
 
 export function buildStringToSign(
@@ -107,12 +107,14 @@ const DEFAULT_UA =
   `AuthingIdentityCloud (${os.platform()}; ${os.arch()}) ` +
   `Node.js/${process.version} Core/${pkg.version}`;
 const DEFAULT_CLIENT = `Node.js(${process.version}), ${pkg.name}: ${pkg.version}`;
-export const DEFAULT_HEADERS: { [x: string]: any } = {
-  accept: "application/json",
-  "content-type": "application/json",
-  "x-authing-signature-nonce": makeNonce(),
-  "x-authing-signature-method": "HMAC-SHA1",
-  "x-authing-signature-version": "1.0",
-  "user-agent": DEFAULT_UA,
-  "x-authing-sdk-version": `authing-node-sdk:${pkg.version}`,
+export const DEFAULT_HEADERS = () => {
+  return {
+    accept: "application/json",
+    "content-type": "application/json",
+    "x-authing-signature-nonce": makeNonce(),
+    "x-authing-signature-method": "HMAC-SHA1",
+    "x-authing-signature-version": "1.0",
+    "user-agent": DEFAULT_UA,
+    "x-authing-sdk-version": `authing-node-sdk:${pkg.version}`,
+  };
 };
