@@ -15,7 +15,7 @@ export type ListPermissionNamespacesDto = {
      */
     limit?: any;
     /**
-     * 搜索权限空间Code
+     * 权限空间 Code
      */
     query?: any;
 };
