@@ -44,7 +44,7 @@ export type PreviewEmailTemplateDto = {
      * - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
      * - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
      *
-     * 默认将使用 `handlerbar` 作为膜拜渲染引擎。
+     * 默认将使用 `handlerbar` 作为模版渲染引擎。
      *
      */
     tplEngine?: PreviewEmailTemplateDto.tplEngine;
@@ -94,7 +94,7 @@ export namespace PreviewEmailTemplateDto {
      * - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
      * - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
      *
-     * 默认将使用 `handlerbar` 作为膜拜渲染引擎。
+     * 默认将使用 `handlerbar` 作为模版渲染引擎。
      *
      */
     export enum tplEngine {

@@ -14,6 +14,10 @@ export type AssignRoleDto = {
      */
     code: string;
     /**
+     * 主体过期时间毫秒值
+     */
+    endTime?: number;
+    /**
      * 所属权限分组的 code
      */
     namespace?: string;

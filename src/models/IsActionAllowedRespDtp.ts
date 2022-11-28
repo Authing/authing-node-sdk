@@ -22,7 +22,7 @@ export type IsActionAllowedRespDtp = {
      */
     requestId?: string;
     /**
-     * 返回数据
+     * 响应数据
      */
     data: IsActionAllowedDataDto;
 };

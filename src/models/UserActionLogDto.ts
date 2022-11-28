@@ -133,6 +133,7 @@ export namespace UserActionLogDto {
         REFRESH_USER_TOKEN_BY_SELF = 'refreshUserTokenBySelf',
         DELETE_ACCOUNT = 'deleteAccount',
         VERIFY_FIRST_LOGIN = 'verifyFirstLogin',
+        SECURITY_RESOURCE_ACCESS = 'securityResourceAccess',
     }
 
 

@@ -8,11 +8,15 @@ export type RoleListItem = {
      */
     code: string;
     /**
+     * 权限分组内角色名称
+     */
+    name?: string;
+    /**
      * 角色描述
      */
     description?: string;
     /**
-     * 所属权限分组的 code
+     * 所属权限分组(权限空间)的 code
      */
     namespace?: string;
 };

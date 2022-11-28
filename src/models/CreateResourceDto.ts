@@ -18,6 +18,10 @@ export type CreateResourceDto = {
      */
     description?: string;
     /**
+     * 资源名称
+     */
+    name?: string;
+    /**
      * 资源定义的操作类型
      */
     actions?: Array<ResourceAction>;
@@ -26,7 +30,7 @@ export type CreateResourceDto = {
      */
     apiIdentifier?: string;
     /**
-     * 所属权限分组的 code
+     * 所属权限分组(权限空间)的 Code
      */
     namespace?: string;
 };

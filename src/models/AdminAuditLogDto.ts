@@ -139,6 +139,9 @@ export namespace AdminAuditLogDto {
         USER_ENABLE = 'userEnable',
         ACTIVATE = 'activate',
         DEACTIVATE = 'deactivate',
+        ADD = 'add',
+        REMOVE = 'remove',
+        QUERY = 'query',
     }
 
     /**
@@ -185,6 +188,16 @@ export namespace AdminAuditLogDto {
         ROLE = 'role',
         ROLE_ASSIGN = 'roleAssign',
         POLICY = 'policy',
+        CUSTOM_DOMAIN = 'customDomain',
+        PERMIT_SPACE = 'permitSpace',
+        GENERAL_RESOURCE = 'generalResource',
+        GENERAL_RESOURCE_AUTHORIZATION = 'generalResourceAuthorization',
+        ROLE_SUBJECT = 'roleSubject',
+        SUBJECT_OF_ROLE = 'subjectOfRole',
+        DATA_RESOURCE = 'dataResource',
+        DATA_POLICY = 'dataPolicy',
+        AUTHORIZATION = 'authorization',
+        USER_AUTHORIZATION = 'userAuthorization',
     }
 
 

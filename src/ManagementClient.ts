@@ -21,8 +21,16 @@ import type { ChangeExtIdpAssociationStateDto } from "./models/ChangeExtIdpAssoc
 import type { ChangeExtIdpConnStateDto } from "./models/ChangeExtIdpConnStateDto";
 import type { CheckDomainAvailable } from "./models/CheckDomainAvailable";
 import type { CheckDomainAvailableSecretRespDto } from "./models/CheckDomainAvailableSecretRespDto";
+import type { CheckParamsDataResourceResponseDto } from "./models/CheckParamsDataResourceResponseDto";
+import type { CheckPermissionDto } from "./models/CheckPermissionDto";
+import type { CheckPermissionNamespaceExistsDto } from "./models/CheckPermissionNamespaceExistsDto";
+import type { CheckPermissionRespDto } from "./models/CheckPermissionRespDto";
+import type { CheckRoleParamsDto } from "./models/CheckRoleParamsDto";
 import type { CheckSessionStatusDto } from "./models/CheckSessionStatusDto";
 import type { CheckSessionStatusRespDto } from "./models/CheckSessionStatusRespDto";
+import type { CheckUserSameLevelPermissionDto } from "./models/CheckUserSameLevelPermissionDto";
+import type { CheckUserSameLevelPermissionResponseDto } from "./models/CheckUserSameLevelPermissionResponseDto";
+import type { CommonResourcePaginatedRespDto } from "./models/CommonResourcePaginatedRespDto";
 import type { CommonResponseDto } from "./models/CommonResponseDto";
 import type { ConfigEmailProviderDto } from "./models/ConfigEmailProviderDto";
 import type { CostGetAllRightItemRespDto } from "./models/CostGetAllRightItemRespDto";
@@ -33,6 +41,8 @@ import type { CostGetOrderDetailRespDto } from "./models/CostGetOrderDetailRespD
 import type { CostGetOrderPayDetailRespDto } from "./models/CostGetOrderPayDetailRespDto";
 import type { CostGetOrdersRespDto } from "./models/CostGetOrdersRespDto";
 import type { CreateApplicationDto } from "./models/CreateApplicationDto";
+import type { CreateDataResourceDto } from "./models/CreateDataResourceDto";
+import type { CreateDataResourceResponseDto } from "./models/CreateDataResourceResponseDto";
 import type { CreateDepartmentReqDto } from "./models/CreateDepartmentReqDto";
 import type { CreateExtIdpConnDto } from "./models/CreateExtIdpConnDto";
 import type { CreateExtIdpDto } from "./models/CreateExtIdpDto";
@@ -41,6 +51,9 @@ import type { CreateGroupReqDto } from "./models/CreateGroupReqDto";
 import type { CreateNamespaceDto } from "./models/CreateNamespaceDto";
 import type { CreateNamespacesBatchDto } from "./models/CreateNamespacesBatchDto";
 import type { CreateOrganizationReqDto } from "./models/CreateOrganizationReqDto";
+import type { CreatePermissionNamespaceDto } from "./models/CreatePermissionNamespaceDto";
+import type { CreatePermissionNamespaceResponseDto } from "./models/CreatePermissionNamespaceResponseDto";
+import type { CreatePermissionNamespacesBatchDto } from "./models/CreatePermissionNamespacesBatchDto";
 import type { CreateResourceDto } from "./models/CreateResourceDto";
 import type { CreateResourcesBatchDto } from "./models/CreateResourcesBatchDto";
 import type { CreateRoleDto } from "./models/CreateRoleDto";
@@ -50,6 +63,8 @@ import type { CreateUserBatchReqDto } from "./models/CreateUserBatchReqDto";
 import type { CreateUserReqDto } from "./models/CreateUserReqDto";
 import type { CustomFieldListRespDto } from "./models/CustomFieldListRespDto";
 import type { DeleteApplicationDto } from "./models/DeleteApplicationDto";
+import type { DeleteCommonResourcesBatchDto } from "./models/DeleteCommonResourcesBatchDto";
+import type { DeleteDataResourceDto } from "./models/DeleteDataResourceDto";
 import type { DeleteDepartmentReqDto } from "./models/DeleteDepartmentReqDto";
 import type { DeleteExtIdpConnDto } from "./models/DeleteExtIdpConnDto";
 import type { DeleteExtIdpDto } from "./models/DeleteExtIdpDto";
@@ -57,8 +72,11 @@ import type { DeleteGroupsReqDto } from "./models/DeleteGroupsReqDto";
 import type { DeleteNamespaceDto } from "./models/DeleteNamespaceDto";
 import type { DeleteNamespacesBatchDto } from "./models/DeleteNamespacesBatchDto";
 import type { DeleteOrganizationReqDto } from "./models/DeleteOrganizationReqDto";
+import type { DeletePermissionNamespaceDto } from "./models/DeletePermissionNamespaceDto";
+import type { DeletePermissionNamespacesBatchDto } from "./models/DeletePermissionNamespacesBatchDto";
 import type { DeleteResourceDto } from "./models/DeleteResourceDto";
 import type { DeleteResourcesBatchDto } from "./models/DeleteResourcesBatchDto";
+import type { DeleteRoleBatchDto } from "./models/DeleteRoleBatchDto";
 import type { DeleteRoleDto } from "./models/DeleteRoleDto";
 import type { DeleteUsersBatchDto } from "./models/DeleteUsersBatchDto";
 import type { DepartmentListRespDto } from "./models/DepartmentListRespDto";
@@ -74,10 +92,17 @@ import type { GetAdminAuditLogsDto } from "./models/GetAdminAuditLogsDto";
 import type { GetApplicationPermissionStrategyRespDto } from "./models/GetApplicationPermissionStrategyRespDto";
 import type { GetApplicationSecretRespDto } from "./models/GetApplicationSecretRespDto";
 import type { GetCustomDataRespDto } from "./models/GetCustomDataRespDto";
+import type { GetDataResourceResponseDto } from "./models/GetDataResourceResponseDto";
 import type { GetEmailTemplatesRespDto } from "./models/GetEmailTemplatesRespDto";
+import type { GetPermissionNamespaceListResponseDto } from "./models/GetPermissionNamespaceListResponseDto";
+import type { GetPermissionNamespaceResponseDto } from "./models/GetPermissionNamespaceResponseDto";
 import type { GetResourceAuthorizedTargetRespDto } from "./models/GetResourceAuthorizedTargetRespDto";
 import type { GetResourceAuthorizedTargetsDto } from "./models/GetResourceAuthorizedTargetsDto";
 import type { GetUserActionLogsDto } from "./models/GetUserActionLogsDto";
+import type { GetUserPermissionListDto } from "./models/GetUserPermissionListDto";
+import type { GetUserPermissionListRespDto } from "./models/GetUserPermissionListRespDto";
+import type { GetUserResourcePermissionListDto } from "./models/GetUserResourcePermissionListDto";
+import type { GetUserResourcePermissionListRespDto } from "./models/GetUserResourcePermissionListRespDto";
 import type { GroupListRespDto } from "./models/GroupListRespDto";
 import type { GroupPaginatedRespDto } from "./models/GroupPaginatedRespDto";
 import type { GroupSingleRespDto } from "./models/GroupSingleRespDto";
@@ -94,14 +119,23 @@ import type { IsUserInDepartmentRespDto } from "./models/IsUserInDepartmentRespD
 import type { KickUsersDto } from "./models/KickUsersDto";
 import type { ListApplicationActiveUsersDto } from "./models/ListApplicationActiveUsersDto";
 import type { ListArchivedUsersSingleRespDto } from "./models/ListArchivedUsersSingleRespDto";
+import type { ListDataResourcesPaginatedRespDto } from "./models/ListDataResourcesPaginatedRespDto";
+import type { ListResourceTargets } from "./models/ListResourceTargets";
+import type { ListResourceTargetsRespDto } from "./models/ListResourceTargetsRespDto";
+import type { ListRoleAssignmentsDto } from "./models/ListRoleAssignmentsDto";
 import type { ListUsersRequestDto } from "./models/ListUsersRequestDto";
 import type { MFASettingsDto } from "./models/MFASettingsDto";
 import type { MFASettingsRespDto } from "./models/MFASettingsRespDto";
+import type { NamespaceListPaginatedRespDto } from "./models/NamespaceListPaginatedRespDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
 import type { NamespaceRespDto } from "./models/NamespaceRespDto";
+import type { NamespaceRolesListPaginatedRespDto } from "./models/NamespaceRolesListPaginatedRespDto";
 import type { OrganizationListRespDto } from "./models/OrganizationListRespDto";
 import type { OrganizationPaginatedRespDto } from "./models/OrganizationPaginatedRespDto";
 import type { OrganizationSingleRespDto } from "./models/OrganizationSingleRespDto";
+import type { PermissionNamespaceCheckExistsRespDto } from "./models/PermissionNamespaceCheckExistsRespDto";
+import type { PermissionNamespaceListPaginatedRespDto } from "./models/PermissionNamespaceListPaginatedRespDto";
+import type { PermissionNamespaceRolesListPaginatedRespDto } from "./models/PermissionNamespaceRolesListPaginatedRespDto";
 import type { PreviewEmailTemplateDto } from "./models/PreviewEmailTemplateDto";
 import type { PreviewEmailTemplateRespDto } from "./models/PreviewEmailTemplateRespDto";
 import type { PrincipalAuthenticationInfoPaginatedRespDto } from "./models/PrincipalAuthenticationInfoPaginatedRespDto";
@@ -119,7 +153,9 @@ import type { ResourceRespDto } from "./models/ResourceRespDto";
 import type { RevokeApplicationAccessDto } from "./models/RevokeApplicationAccessDto";
 import type { RevokeRoleDto } from "./models/RevokeRoleDto";
 import type { RoleAuthorizedResourcePaginatedRespDto } from "./models/RoleAuthorizedResourcePaginatedRespDto";
+import type { RoleCheckParamsRespDto } from "./models/RoleCheckParamsRespDto";
 import type { RoleDepartmentListPaginatedRespDto } from "./models/RoleDepartmentListPaginatedRespDto";
+import type { RoleListPageRespDto } from "./models/RoleListPageRespDto";
 import type { RolePaginatedRespDto } from "./models/RolePaginatedRespDto";
 import type { RoleSingleRespDto } from "./models/RoleSingleRespDto";
 import type { SearchDepartmentsReqDto } from "./models/SearchDepartmentsReqDto";
@@ -138,6 +174,8 @@ import type { TriggerSyncRiskOperationsRespDto } from "./models/TriggerSyncRiskO
 import type { TriggerSyncTaskDto } from "./models/TriggerSyncTaskDto";
 import type { TriggerSyncTaskRespDto } from "./models/TriggerSyncTaskRespDto";
 import type { UpdateApplicationPermissionStrategyDataDto } from "./models/UpdateApplicationPermissionStrategyDataDto";
+import type { UpdateDataResourceDto } from "./models/UpdateDataResourceDto";
+import type { UpdateDataResourceResponseDto } from "./models/UpdateDataResourceResponseDto";
 import type { UpdateDepartmentReqDto } from "./models/UpdateDepartmentReqDto";
 import type { UpdateEmailTemplateDto } from "./models/UpdateEmailTemplateDto";
 import type { UpdateExtIdpConnDto } from "./models/UpdateExtIdpConnDto";
@@ -146,6 +184,8 @@ import type { UpdateGroupReqDto } from "./models/UpdateGroupReqDto";
 import type { UpdateNamespaceDto } from "./models/UpdateNamespaceDto";
 import type { UpdateNamespaceRespDto } from "./models/UpdateNamespaceRespDto";
 import type { UpdateOrganizationReqDto } from "./models/UpdateOrganizationReqDto";
+import type { UpdatePermissionNamespaceDto } from "./models/UpdatePermissionNamespaceDto";
+import type { UpdatePermissionNamespaceResponseDto } from "./models/UpdatePermissionNamespaceResponseDto";
 import type { UpdateResourceDto } from "./models/UpdateResourceDto";
 import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { UpdateSecuritySettingsDto } from "./models/UpdateSecuritySettingsDto";
@@ -697,7 +737,7 @@ export class ManagementClient {
       | "email"
       | "username"
       | "identity";
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
   }): Promise<RolePaginatedRespDto> {
     return await this.httpClient.request({
@@ -1261,7 +1301,7 @@ export class ManagementClient {
       | "email"
       | "username"
       | "identity";
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
     /** 资源类型，如 数据、API、菜单、按钮 **/
     resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
@@ -2033,7 +2073,7 @@ export class ManagementClient {
   }: {
     /** 分组 code **/
     code: string;
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
     /** 资源类型 **/
     resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
@@ -2058,9 +2098,9 @@ export class ManagementClient {
     code,
     namespace,
   }: {
-    /** 权限分组内角色的唯一标识符 **/
+    /** 权限分组(权限空间)内角色的唯一标识符 **/
     code: string;
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
   }): Promise<RoleSingleRespDto> {
     return await this.httpClient.request({
@@ -2209,7 +2249,7 @@ export class ManagementClient {
 
   /**
    * @summary 创建角色
-   * @description 通过权限分组内角色 code，创建角色，可以选择权限分组、角色描述等。
+   * @description 通过权限分组（权限空间）内角色 code，创建角色，可以选择权限分组、角色描述、角色名称等。
    * @returns RoleSingleRespDto
    */
   public async createRole(
@@ -2224,39 +2264,39 @@ export class ManagementClient {
 
   /**
    * @summary 获取角色列表
-   * @description 获取角色列表，支持分页。
+   * @description 获取角色列表，支持分页、支持根据权限分组（权限空间）筛选
    * @returns RolePaginatedRespDto
    */
   public async listRoles({
-    keywords,
-    namespace = "default",
     page = 1,
     limit = 10,
+    keywords,
+    namespace = "default",
   }: {
-    /** 用于根据角色的 code 进行模糊搜索，可选。 **/
-    keywords?: string;
-    /** 所属权限分组的 code **/
-    namespace?: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
+    /** 用于根据角色的 code 或者名称进行模糊搜索，可选。 **/
+    keywords?: string;
+    /** 所属权限分组(权限空间)的 code **/
+    namespace?: string;
   }): Promise<RolePaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-roles",
       params: {
-        keywords: keywords,
-        namespace: namespace,
         page: page,
         limit: limit,
+        keywords: keywords,
+        namespace: namespace,
       },
     });
   }
 
   /**
-   * @summary 删除角色
-   * @description 删除角色，可以批量删除。
+   * @summary 单个权限分组（权限空间）内删除角色
+   * @description 单个权限分组（权限空间）内删除角色，可以批量删除。
    * @returns IsSuccessRespDto
    */
   public async deleteRolesBatch(
@@ -2286,7 +2326,7 @@ export class ManagementClient {
 
   /**
    * @summary 修改角色
-   * @description 通过权限分组内角色新旧 code，修改角色，可以选择角色描述等。
+   * @description 通过权限分组(权限空间）内角色新旧 Code，修改角色，可以选择角色名称、角色描述等。
    * @returns IsSuccessRespDto
    */
   public async updateRole(
@@ -2295,6 +2335,53 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/update-role",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 跨权限分组（空间）删除角色
+   * @description 跨权限分组（空间）删除角色，可以批量删除。
+   * @returns IsSuccessRespDto
+   */
+  public async deleteRoles(
+    requestBody: DeleteRoleBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/multiple-namespace-delete-roles-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 校验角色 Code 或者名称是否可用
+   * @description 通过用户池 ID、权限空间 Code和角色 Code,或者用户池 ID、权限空间名称和角色名称查询是否可用。
+   * @returns RoleCheckParamsRespDto
+   */
+  public async checkParamsNamespace(
+    requestBody: CheckRoleParamsDto
+  ): Promise<RoleCheckParamsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/check-role-params",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 角色 list 分页查询
+   * @description 搜索角色列表，可以通过角色 name 和 code 以及所属应用进行筛选
+   * @returns RoleListPageRespDto
+   */
+  public async listRoleAssignments({
+    requestBody,
+  }: {
+    requestBody: ListRoleAssignmentsDto;
+  }): Promise<RoleListPageRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-role-assignments",
       data: requestBody,
     });
   }
@@ -2704,7 +2791,7 @@ export class ManagementClient {
   }: {
     /** 资源唯一标志符 **/
     code: string;
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
   }): Promise<ResourceRespDto> {
     return await this.httpClient.request({
@@ -2728,7 +2815,7 @@ export class ManagementClient {
   }: {
     /** 资源 code 列表，批量可以使用逗号分隔 **/
     codeList: Array<string>;
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
   }): Promise<ResourceListRespDto> {
     return await this.httpClient.request({
@@ -2737,6 +2824,38 @@ export class ManagementClient {
       params: {
         namespace: namespace,
         codeList: codeList,
+      },
+    });
+  }
+
+  /**
+   * @summary 分页获取常规资源列表
+   * @description 根据筛选条件，分页获取常规资源详情列表。
+   * @returns CommonResourcePaginatedRespDto
+   */
+  public async listCommonResource({
+    page = 1,
+    limit = 10,
+    keyword,
+    namespaceCodeList,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 查询条件 **/
+    keyword?: string;
+    /** 权限空间列表 **/
+    namespaceCodeList?: string;
+  }): Promise<CommonResourcePaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-common-resource",
+      params: {
+        page: page,
+        limit: limit,
+        keyword: keyword,
+        namespaceCodeList: namespaceCodeList,
       },
     });
   }
@@ -2752,7 +2871,7 @@ export class ManagementClient {
     page = 1,
     limit = 10,
   }: {
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
     /** 资源类型 **/
     type?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
@@ -2819,6 +2938,21 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 批量删除资源
+   * @description 通过资源id批量删除资源
+   * @returns IsSuccessRespDto
+   */
+  public async batchDeleteCommonResource(
+    requestBody: DeleteCommonResourcesBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-common-resources-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 关联/取消关联应用资源到租户
    * @description 通过资源唯一标识以及权限分组，关联或取消关联资源到租户
    * @returns IsSuccessRespDto
@@ -2835,7 +2969,7 @@ export class ManagementClient {
 
   /**
    * @summary 创建权限分组
-   * @description 创建权限分组，可以设置分组名称与描述信息。
+   * @description 创建权限分组，可以设置权限分组（名称、Code 和描述信息。
    * @returns NamespaceRespDto
    */
   public async createNamespace(
@@ -2850,7 +2984,7 @@ export class ManagementClient {
 
   /**
    * @summary 批量创建权限分组
-   * @description 批量创建权限分组，可以分别设置分组名称与描述信息。
+   * @description 批量创建权限分组，可以分别设置权限分组名称、Code 和描述信息。
    * @returns IsSuccessRespDto
    */
   public async createNamespacesBatch(
@@ -2865,7 +2999,7 @@ export class ManagementClient {
 
   /**
    * @summary 获取权限分组详情
-   * @description 通过权限分组唯一标志符，获取权限分组详情。
+   * @description 通过权限分组唯一标志符（Code），获取权限分组详情。
    * @returns NamespaceRespDto
    */
   public async getNamespace({
@@ -2885,13 +3019,13 @@ export class ManagementClient {
 
   /**
    * @summary 批量获取权限分组详情
-   * @description 分别通过权限分组唯一标志符，批量获取权限分组详情。
+   * @description 分别通过权限分组唯一标志符(Code)，批量获取权限分组详情。
    * @returns NamespaceListRespDto
    */
   public async getNamespacesBatch({
     codeList,
   }: {
-    /** 资源 code 列表，批量可以使用逗号分隔 **/
+    /** 权限分组 code 列表，批量可以使用逗号分隔 **/
     codeList: Array<string>;
   }): Promise<NamespaceListRespDto> {
     return await this.httpClient.request({
@@ -2949,6 +3083,66 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 分页获取权限分组（列表
+   * @description 根据筛选条件，分页获取资源详情列表。
+   * @returns NamespaceListPaginatedRespDto
+   */
+  public async listNamespaces({
+    page = 1,
+    limit = 10,
+    keywords,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 搜索权限分组 Code **/
+    keywords?: string;
+  }): Promise<NamespaceListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-namespaces",
+      params: {
+        page: page,
+        limit: limit,
+        keywords: keywords,
+      },
+    });
+  }
+
+  /**
+   * @summary 分页权限分组下所有的角色列表
+   * @description 根据筛选条件，分页获取权限分组下所有的角色列表。
+   * @returns NamespaceRolesListPaginatedRespDto
+   */
+  public async listNamespaceRoles({
+    code,
+    page = 1,
+    limit = 10,
+    keywords,
+  }: {
+    /** 权限分组唯一标志符 **/
+    code: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 角色 Code 或者名称 **/
+    keywords?: string;
+  }): Promise<NamespaceRolesListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-namespace-roles",
+      params: {
+        page: page,
+        limit: limit,
+        code: code,
+        keywords: keywords,
+      },
+    });
+  }
+
+  /**
    * @summary 授权资源
    * @description 将一个/多个资源授权给用户、角色、分组、组织机构等主体，且可以分别指定不同的操作权限。
    * @returns IsSuccessRespDto
@@ -2990,7 +3184,7 @@ export class ManagementClient {
      * - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
      *  **/
     targetIdentifier: string;
-    /** 所属权限分组的 code **/
+    /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
     /** 限定资源类型，如数据、API、按钮、菜单 **/
     resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
@@ -3331,7 +3525,7 @@ export class ManagementClient {
 
   /**
    * @summary 获取用户行为日志
-   * @description 可以选择请求 ID、客户端 IP、用户 ID、应用 ID、开始时间戳、请求是否成功、分页参数去获取用户行为日志
+   * @description 可以选择请求 ID、客户端 IP、用户 ID、应用 ID、开始时间戳、请求是否成功、分页参数来获取用户行为日志
    * @returns UserActionLogRespDto
    */
   public async getUserActionLogs(
@@ -3763,6 +3957,952 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 创建权限空间
+   * @description 创建权限空间,可以设置权限空间名称、Code 和描述信息。
+   * @returns CreatePermissionNamespaceResponseDto
+   */
+  public async createPermissionNamespace(
+    requestBody: CreatePermissionNamespaceDto
+  ): Promise<CreatePermissionNamespaceResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-permission-namespace",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量创建权限空间
+   * @description 批量创建权限空间，可以分别设置权限空间名称、Code 和描述信息。
+   * @returns IsSuccessRespDto
+   */
+  public async createPermissionNamespacesBatch(
+    requestBody: CreatePermissionNamespacesBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-permission-namespaces-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取权限空间详情
+   * @description 通过权限空间唯一标志符 Code，获取权限空间详情。
+   * @returns GetPermissionNamespaceResponseDto
+   */
+  public async getPermissionNamespace({
+    code,
+  }: {
+    /** 权限空间 Code **/
+    code: string;
+  }): Promise<GetPermissionNamespaceResponseDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-permission-namespace",
+      params: {
+        code: code,
+      },
+    });
+  }
+
+  /**
+   * @summary 批量获取权限空间详情列表
+   * @description 分别通过权限空间唯一标志符 Code，批量获取权限空间详情。
+   * @returns GetPermissionNamespaceListResponseDto
+   */
+  public async getPermissionNamespacesBatch({
+    codes,
+  }: {
+    /** 权限空间 code 列表，批量可以使用逗号分隔 **/
+    codes: Array<string>;
+  }): Promise<GetPermissionNamespaceListResponseDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-permission-namespaces-batch",
+      params: {
+        codes: codes,
+      },
+    });
+  }
+
+  /**
+   * @summary 分页获取权限空间列表
+   * @description 分页获取权限空间列表。
+   * @returns PermissionNamespaceListPaginatedRespDto
+   */
+  public async listPermissionNamespaces({
+    page = 1,
+    limit = 10,
+    query,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 搜索权限空间Code **/
+    query?: string;
+  }): Promise<PermissionNamespaceListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-permission-namespaces",
+      params: {
+        page: page,
+        limit: limit,
+        query: query,
+      },
+    });
+  }
+
+  /**
+   * @summary 修改权限空间
+   * @description 修改权限空间，可以修改权限空间名称、权限空间描述信息以及权限空间新的唯一标志符 Code。
+   * @returns UpdatePermissionNamespaceResponseDto
+   */
+  public async updatePermissionNamespace(
+    requestBody: UpdatePermissionNamespaceDto
+  ): Promise<UpdatePermissionNamespaceResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-permission-namespace",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除权限空间
+   * @description 通过权限空间唯一标志符 Code，删除权限空间信息。
+   * @returns IsSuccessRespDto
+   */
+  public async deletePermissionNamespace(
+    requestBody: DeletePermissionNamespaceDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-permission-namespace",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量删除权限空间
+   * @description 分别通过权限空间唯一标志符 Code，批量删除权限空间信息。
+   * @returns IsSuccessRespDto
+   */
+  public async deletePermissionNamespacesBatch(
+    requestBody: DeletePermissionNamespacesBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-permission-namespaces-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 校验权限空间 Code 或者名称是否有效
+   * @description 通过用户池 ID 和权限空间 Code,或者用户池 ID 和权限空间名称查询是否有效。
+   * @returns PermissionNamespaceCheckExistsRespDto
+   */
+  public async checkPermissionNamespaceExists(
+    requestBody: CheckPermissionNamespaceExistsDto
+  ): Promise<PermissionNamespaceCheckExistsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/check-permission-namespace-exists",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 分页查询权限空间下所有的角色列表
+   * @description 分页查询权限空间下所有的角色列表，分页获取权限空间下所有的角色列表。
+   * @returns PermissionNamespaceRolesListPaginatedRespDto
+   */
+  public async listPermissionNamespaceRoles({
+    code,
+    page = 1,
+    limit = 10,
+    query,
+  }: {
+    /** 权限分组唯一标志符 Code **/
+    code: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 角色 Code 或者名称 **/
+    query?: string;
+  }): Promise<PermissionNamespaceRolesListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-permission-namespace-roles",
+      params: {
+        page: page,
+        limit: limit,
+        code: code,
+        query: query,
+      },
+    });
+  }
+
+  /**
+   * @summary 创建数据资源
+   * @description 该接口用于创建数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源类型（STRING、ARRAY、TREE）以及数据操作列表进行创建,
+   * 通过不同的数据资源类型适配不同的场景。
+   *
+   * ### 创建数据资源字符串类型示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceName": "字符串资源1",
+   * "resourceCode": "str1",
+   * "type": "STRING",
+   * "description": "这是一个数据资源字符串类型创建",
+   * "struct":"str1",
+   * "actions": ["get","read","update"]
+   * }
+   * ```
+   *
+   * ### 创建数据资源数组类型示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceName": "数组资源1",
+   * "resourceCode": "array1",
+   * "description": "这是一个数据资源数组类型创建",
+   * "type": "ARRAY",
+   * "struct":["array1", "array2", "array3"],
+   * "actions": ["get","read","update"]
+   * }
+   * ```
+   *
+   * ### 创建数据资源树类型示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceName": "树资源1",
+   * "resourceCode": "tree1",
+   * "description": "这是一个数据资源树类型创建",
+   * "type": "TREE",
+   * "struct":[{
+   * "code": "tree1",
+   * "name": "tree1",
+   * "value": "tree1",
+   * "children": [{
+   * "code": "tree2",
+   * "name": "tree2",
+   * "value": "tree2",
+   * "children": [{
+   * "code": "tree3",
+   * "name": "tree3",
+   * "value": "tree3"
+   * }]
+   * }]
+   * }],
+   * "actions": ["get","read","update"]
+   * }
+   * ```
+   *
+   * @returns CreateDataResourceResponseDto
+   */
+  public async createDataResource(
+    requestBody: CreateDataResourceDto
+  ): Promise<CreateDataResourceResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-data-resource",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取数据资源列表
+   * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
+   * @returns ListDataResourcesPaginatedRespDto
+   */
+  public async listDataResources({
+    page = 1,
+    limit = 10,
+    query,
+    namespaceCodes,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
+    query?: string;
+    /** 权限数据所属权限空间 Code 列表 **/
+    namespaceCodes?: Array<string>;
+  }): Promise<ListDataResourcesPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-data-resources",
+      params: {
+        page: page,
+        limit: limit,
+        query: query,
+        namespaceCodes: namespaceCodes,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取数据资源信息
+   * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
+   * @returns GetDataResourceResponseDto
+   */
+  public async getDataResource({
+    namespaceCode,
+    resourceCode,
+  }: {
+    /** 数据资源所属的权限空间 Code **/
+    namespaceCode: string;
+    /** 数据资源 Code,权限空间内唯一 **/
+    resourceCode: string;
+  }): Promise<GetDataResourceResponseDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-data-resource",
+      params: {
+        namespaceCode: namespaceCode,
+        resourceCode: resourceCode,
+      },
+    });
+  }
+
+  /**
+   * @summary 修改数据资源
+   * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
+   * @returns UpdateDataResourceResponseDto
+   */
+  public async updateDataResource(
+    requestBody: UpdateDataResourceDto
+  ): Promise<UpdateDataResourceResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-data-resource",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除数据资源
+   * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
+   * @returns CommonResponseDto
+   */
+  public async deleteDataResource(
+    requestBody: DeleteDataResourceDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-data-resource",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 检查数据资源名称或者 Code 是否有效
+   * @description 检查数据资源名称或者 Code 在权限空间内是否有效,通过数据资源名称或者数据资源 Code 以及所属权限空间 Code,判断在指定的权限空间内是否有效。
+   *
+   * ### 数据资源 Code 有效示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceCode": "test"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 0,
+   * "data": {
+   * "isValid": "true"
+   * }
+   * }
+   * ```
+   *
+   * ### 数据资源名称有效示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceName": "test"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 0,
+   * "data": {
+   * "isValid": "true"
+   * }
+   * }
+   * ```
+   *
+   * ### 数据资源 Code 无效示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "resourceCode": "test"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 0,
+   * "requestId": "934108e5-9fbf-4d24-8da1-c330328abd6c",
+   * "data": {
+   * "isValid": "false",
+   * "message": "data resource code already exist"
+   * }
+   * }
+   * ```
+   *
+   * @returns CheckParamsDataResourceResponseDto
+   */
+  public async checkDataResourceExists({
+    namespaceCode,
+    resourceName,
+    resourceCode,
+  }: {
+    /** 数据资源所属的权限空间 Code **/
+    namespaceCode: string;
+    /** 数据资源名称,权限空间内唯一 **/
+    resourceName?: string;
+    /** 数据资源 Code,权限空间内唯一 **/
+    resourceCode?: string;
+  }): Promise<CheckParamsDataResourceResponseDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/check-data-resource-exists",
+      params: {
+        namespaceCode: namespaceCode,
+        resourceName: resourceName,
+        resourceCode: resourceCode,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取用户权限列表
+   * @description 该接口用于用户列表权限查询，可以通过用户 ID 列表进行批量查询权限，也可以通过查询多个用户在同一个权限空间的权限。
+   *
+   * ### 查询一个用户拥有的数组资源、字符串资源和树资源权限列表示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "userIds": [
+   * "6301ceaxxxxxxxxxxx27478"
+   * ]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "userPermissionList": [{
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "namespaceCode": "权限空间1",
+   * "resourceList":[{
+   * "resourceCode": "str1",
+   * "actionList":["get"]
+   * },{
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "namespaceCode": "权限空间1",
+   * "resourceList":[{
+   * "resourceCode": "str1",
+   * "actionList":["get","read","update"]
+   * }]
+   * },{
+   * "namespaceCode": "权限空间1",
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "resourceList":[{
+   * "resourceCode": "tree1",
+   * "actionList":[{
+   * "nodePath": "/node",
+   * "nodeActions": ["get","read","update"]
+   * }]
+   * }]
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * ### 查询多个用户权限列表示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "userIds": [
+   * "6301ceaxxxxxxxxxxx27478",
+   * "6121ceaxxxxxxxxxxx27312"
+   * ]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data": {
+   * "userPermissionList": [
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "resourceList": {
+   * "resourceCode": "tree1",
+   * "actionList": [{
+   * "nodePath": "/node",
+   * "nodeActions": ["read","write" ]
+   * }]
+   * }
+   * }, {
+   * "namespaceCode": "权限空间1",
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "resourceList": {
+   * "resourceCode": "array1",
+   * "actionList": ["read","write"]
+   * }
+   * },{
+   * "namespaceCode": "权限空间1",
+   * "userId": "6121ceaxxxxxxxxxxx27312",
+   * "resourceList": {
+   * "resourceCode": "tree1",
+   * "actionList": [{
+   * "nodePath": "/node",
+   * "nodeActions": ["read","write" ]
+   * }]
+   * }
+   * }, {
+   * "namespaceCode": "权限空间1",
+   * "userId": "6121ceaxxxxxxxxxxx27312",
+   * "resourceList": {
+   * "resourceCode": "array1",
+   * "actionList": ["read","write"]
+   * }
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * ### 查询多个用户在多个权限空间下权限列表示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "userIds": [
+   * "6301ceaxxxxxxxxxxx27478",
+   * "6121ceaxxxxxxxxxxx27312"
+   * ],
+   * "namespaceCodes": [
+   * "权限空间1",
+   * "权限空间2"
+   * ]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data": {
+   * "userPermissionList": [
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "6301ceaxxxxxxxxxxx27478",
+   * "resourceList": {
+   * "resourceCode": "tree1",
+   * "actionList": [{
+   * "nodePath": "/node",
+   * "nodeActions": ["read","write" ]
+   * }]
+   * }
+   * },{
+   * "namespaceCode": "权限空间2",
+   * "userId": "6121ceaxxxxxxxxxxx27312",
+   * "resourceList": {
+   * "resourceCode": "tree1",
+   * "actionList": [{
+   * "nodePath": "/node",
+   * "nodeActions": ["read","write" ]
+   * }]
+   * }
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * @returns GetUserPermissionListRespDto
+   */
+  public async getUserPermissionList(
+    requestBody: GetUserPermissionListDto
+  ): Promise<GetUserPermissionListRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/get-user-permission-list",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 判断用户权限
+   * @description 该接口用于判断用户权限，通过权限空间 Code、用户 ID、资源操作以及资源列表来判断用户是否对资源拥有操作权限。
+   *
+   * ### 判断用户对字符串和数组资源权限示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "action": "get"
+   * "resources":["strResourceCode1", "arrayResourceCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   *
+   * ```
+   *
+   * ### 判断用户对树资源权限示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "action": "get"
+   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "checkResultList": [{
+   * "namespaceCode": "权限空间1",
+   * "action": "get",
+   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+   * "enabled": true
+   * },{
+   * "namespaceCode": "权限空间1",
+   * "action": "get",
+   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+   * "enabled": true
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * @returns CheckPermissionRespDto
+   */
+  public async checkPermission(
+    requestBody: CheckPermissionDto
+  ): Promise<CheckPermissionRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/check-permission",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户指定资源权限列表
+   * @description 该接口主要用于获取用户指定资源的权限列表,通过权限空间 Code、用户 ID 以及资源列表查询所有权限。
+   *
+   * ### 获取用户字符串和数组资源权限示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "resources":["strResourceCode1", "arrayResourceCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   *
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "permissionList": [{
+   * "namespaceCode": "权限空间1",
+   * "actionList": ["read","get"],
+   * "resource": "strResourceCode1"
+   * },{
+   * "namespaceCode": "权限空间1",
+   * "actionList": ["read","update","delete"],
+   * "resource": "arrayResourceCode1"
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * ### 获取用户树资源权限示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "permissionList": [{
+   * "namespaceCode": "权限空间1",
+   * "actionList": ["read", "update", "delete"],
+   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1"
+   * },{
+   * "namespaceCode": "权限空间1",
+   * "actionList": ["read", "get", "delete"],
+   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * @returns GetUserResourcePermissionListRespDto
+   */
+  public async getUserResourcePermissionList(
+    requestBody: GetUserResourcePermissionListDto
+  ): Promise<GetUserResourcePermissionListRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/get-user-resource-permission-list",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取资源被授权的用户列表
+   * @description 该接口主要用于获取资源被授权的用户列表，通过权限空间 Code 、资源操作列表以及资源列表查询有权限的用户列表。
+   *
+   * ### 获取字符串和数组资源被授权的用户列表示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "actions": ["get", "update", "read"]
+   * "resources":["strResourceCode1", "arrayResourceCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "authUserList": [{
+   * "resource": "strResourceCode1",
+   * "actionAuthList": [{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "get"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "update"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "read"
+   * }]
+   * },{
+   * "resource": "arrayResourceCode1",
+   * "actionAuthList": [{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "get"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "update"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "read"
+   * }]
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * ### 获取树资源被授权的用户列表示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "actions": ["get", "update", "delete"]
+   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "authUserList": [{
+   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+   * "actionAuthList": [{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "get"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "update"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "delete"
+   * }]
+   * },{
+   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+   * "actionAuthList": [{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "get"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "update"
+   * },{
+   * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+   * "action": "delete"
+   * }]
+   * }]
+   * }
+   * }
+   * ```
+   *
+   * @returns ListResourceTargetsRespDto
+   */
+  public async listResourceTargets(
+    requestBody: ListResourceTargets
+  ): Promise<ListResourceTargetsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/list-resource-targets",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 判断用户在同层级资源下的权限
+   * @description 该接口主要用于判断用户在同层级资源下的权限，通过权限空间 Code 、用户 ID、资源操作、资源或资源子节点查询用户是否有该同级资源的权限。
+   *
+   * ### 判断用户在同层级字符串资源权限示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "action": "read"
+   * "resource":"strResourceCode1"
+   * }
+   * ```
+   *
+   * ### 判断用户在同层级数组资源权限示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "action": "read",
+   * "resource":"arrayResourceCode1"
+   * }
+   * ```
+   *
+   * ### 判断用户在同层级树资源权限示例
+   *
+   * ```json
+   * {
+   * "namespaceCode": "权限空间1",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "action": "read",
+   * "resource":"/treeResourceCode1/structCode1",
+   * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
+   * }
+   * ```
+   *
+   * @returns CheckUserSameLevelPermissionResponseDto
+   */
+  public async checkUserSameLevelPermission(
+    requestBody: CheckUserSameLevelPermissionDto
+  ): Promise<CheckUserSameLevelPermissionResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/check-user-same-level-permission",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 获取套餐详情
    * @description 获取当前用户池套餐详情。
    * @returns CostGetCurrentPackageRespDto
@@ -4046,7 +5186,7 @@ export class ManagementClient {
 
   /**
    * @summary 创建 Webhook
-   * @description 你需要指定 Webhoook 名称、Webhook 回调地址、请求数据格式、用户真实名称来创建 Webhook。还可选是否启用、请求密钥进行创建
+   * @description 你需要指定 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称来创建 Webhook。还可选是否启用、请求密钥进行创建
    * @returns CreateWebhookRespDto
    */
   public async createWebhook(
@@ -4085,7 +5225,7 @@ export class ManagementClient {
 
   /**
    * @summary 修改 Webhook 配置
-   * @description 需要指定 webhookId，可选 Webhoook 名称、Webhook 回调地址、请求数据格式、用户真实名称、是否启用、请求密钥参数进行修改 webhook
+   * @description 需要指定 webhookId，可选 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称、是否启用、请求密钥参数进行修改 webhook
    * @returns UpdateWebhooksRespDto
    */
   public async updateWebhook(
