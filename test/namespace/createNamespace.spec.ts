@@ -1,4 +1,3 @@
-import { CreateNamespaceDto } from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
