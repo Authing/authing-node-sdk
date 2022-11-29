@@ -1,8 +1,6 @@
 import { Lang } from "./utils";
 
-/**
- * 初始化 Authing SDK 的参数，secret 和 accessToken 必须传其中一个。
- */
+
 export interface ManagementClientOptions {
   /** 用户池 ID **/
   accessKeyId: string;
@@ -18,6 +16,11 @@ export interface ManagementClientOptions {
    * 语言
    */
   lang?: Lang;
+
+  /**
+   * 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
+   */
+  rejectUnauthorized?: boolean;
 
   // /**
   //  * 请求头 key，适用于去 Authing 品牌化场景
@@ -43,5 +46,6 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
   // },
   lang: "zh-CN",
   accessKeyId: "",
-  accessKeySecret: ""
+  accessKeySecret: "",
+  rejectUnauthorized: true
 };

@@ -7,6 +7,7 @@ import {
   buildStringToSign,
   DEFAULT_HEADERS,
 } from "./utils/buildSignature";
+import https from "https";
 
 export class ManagementHttpClient {
   options: ManagementClientOptions;
@@ -49,6 +50,12 @@ export class ManagementHttpClient {
       headers: {
         ...pickBy(config.headers, (i) => !!i),
       },
+      httpsAgent:
+      this.options.rejectUnauthorized === false
+        ? new https.Agent({
+            rejectUnauthorized: false,
+          })
+        : undefined,
     });
     return data;
   }
