@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { PermissionNamespaceListPagingDto } from './PermissionNamespaceListPagingDto';
+import type { PermissionNamespaceRolesListPagingDto } from './PermissionNamespaceRolesListPagingDto';
 
 export type PermissionNamespaceRolesListPaginatedRespDto = {
     /**
@@ -24,5 +24,5 @@ export type PermissionNamespaceRolesListPaginatedRespDto = {
     /**
      * 响应数据
      */
-    data: PermissionNamespaceListPagingDto;
+    data: PermissionNamespaceRolesListPagingDto;
 };

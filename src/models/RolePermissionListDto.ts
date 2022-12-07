@@ -24,14 +24,6 @@ export type RolePermissionListDto = {
      */
     description?: string;
     /**
-     * 应用 id
-     */
-    appId: string;
-    /**
-     * 角色所属应用名称
-     */
-    appName: string;
-    /**
      * 创建时间
      */
     createdAt: string;

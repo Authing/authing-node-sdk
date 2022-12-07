@@ -9,6 +9,11 @@ import type { ApplicationSimpleInfoPaginatedRespDto } from './models/Application
 import type { ApplicationSimpleInfoSingleRespDto } from './models/ApplicationSimpleInfoSingleRespDto';
 import type { ApplicationSingleRespDto } from './models/ApplicationSingleRespDto';
 import type { AppListRespDto } from './models/AppListRespDto';
+import type { AsaAccountListRespDto } from './models/AsaAccountListRespDto';
+import type { AsaAccountPaginatedRespDto } from './models/AsaAccountPaginatedRespDto';
+import type { AsaAccountSingleNullableRespDto } from './models/AsaAccountSingleNullableRespDto';
+import type { AsaAccountSingleRespDto } from './models/AsaAccountSingleRespDto';
+import type { AssignAsaAccountsDto } from './models/AssignAsaAccountsDto';
 import type { AssignRoleDto } from './models/AssignRoleDto';
 import type { AssociateTenantResourceDto } from './models/AssociateTenantResourceDto';
 import type { AuthorizeApplicationAccessDto } from './models/AuthorizeApplicationAccessDto';
@@ -21,6 +26,7 @@ import type { ChangeExtIdpAssociationStateDto } from './models/ChangeExtIdpAssoc
 import type { ChangeExtIdpConnStateDto } from './models/ChangeExtIdpConnStateDto';
 import type { CheckDomainAvailable } from './models/CheckDomainAvailable';
 import type { CheckDomainAvailableSecretRespDto } from './models/CheckDomainAvailableSecretRespDto';
+import type { CheckParamsDataPolicyResponseDto } from './models/CheckParamsDataPolicyResponseDto';
 import type { CheckParamsDataResourceResponseDto } from './models/CheckParamsDataResourceResponseDto';
 import type { CheckPermissionDto } from './models/CheckPermissionDto';
 import type { CheckPermissionNamespaceExistsDto } from './models/CheckPermissionNamespaceExistsDto';
@@ -41,6 +47,13 @@ import type { CostGetOrderDetailRespDto } from './models/CostGetOrderDetailRespD
 import type { CostGetOrderPayDetailRespDto } from './models/CostGetOrderPayDetailRespDto';
 import type { CostGetOrdersRespDto } from './models/CostGetOrdersRespDto';
 import type { CreateApplicationDto } from './models/CreateApplicationDto';
+import type { CreateArrayDataResourceDto } from './models/CreateArrayDataResourceDto';
+import type { CreateArrayDataResourceResponseDto } from './models/CreateArrayDataResourceResponseDto';
+import type { CreateAsaAccountDto } from './models/CreateAsaAccountDto';
+import type { CreateAsaAccountsBatchDto } from './models/CreateAsaAccountsBatchDto';
+import type { CreateAuthorizeDataPolicyDto } from './models/CreateAuthorizeDataPolicyDto';
+import type { CreateDataPolicyDto } from './models/CreateDataPolicyDto';
+import type { CreateDataPolicyResponseDto } from './models/CreateDataPolicyResponseDto';
 import type { CreateDataResourceDto } from './models/CreateDataResourceDto';
 import type { CreateDataResourceResponseDto } from './models/CreateDataResourceResponseDto';
 import type { CreateDepartmentReqDto } from './models/CreateDepartmentReqDto';
@@ -58,12 +71,20 @@ import type { CreateResourceDto } from './models/CreateResourceDto';
 import type { CreateResourcesBatchDto } from './models/CreateResourcesBatchDto';
 import type { CreateRoleDto } from './models/CreateRoleDto';
 import type { CreateRolesBatch } from './models/CreateRolesBatch';
+import type { CreateStringDataResourceDto } from './models/CreateStringDataResourceDto';
+import type { CreateStringDataResourceResponseDto } from './models/CreateStringDataResourceResponseDto';
 import type { CreateSyncTaskDto } from './models/CreateSyncTaskDto';
+import type { CreateTreeDataResourceDto } from './models/CreateTreeDataResourceDto';
+import type { CreateTreeDataResourceResponseDto } from './models/CreateTreeDataResourceResponseDto';
 import type { CreateUserBatchReqDto } from './models/CreateUserBatchReqDto';
 import type { CreateUserReqDto } from './models/CreateUserReqDto';
 import type { CustomFieldListRespDto } from './models/CustomFieldListRespDto';
 import type { DeleteApplicationDto } from './models/DeleteApplicationDto';
+import type { DeleteAsaAccountBatchDto } from './models/DeleteAsaAccountBatchDto';
+import type { DeleteAsaAccountDto } from './models/DeleteAsaAccountDto';
+import type { DeleteAuthorizeDataPolicyDto } from './models/DeleteAuthorizeDataPolicyDto';
 import type { DeleteCommonResourcesBatchDto } from './models/DeleteCommonResourcesBatchDto';
+import type { DeleteDataPolicyDto } from './models/DeleteDataPolicyDto';
 import type { DeleteDataResourceDto } from './models/DeleteDataResourceDto';
 import type { DeleteDepartmentReqDto } from './models/DeleteDepartmentReqDto';
 import type { DeleteExtIdpConnDto } from './models/DeleteExtIdpConnDto';
@@ -91,7 +112,10 @@ import type { ExtIdpSingleRespDto } from './models/ExtIdpSingleRespDto';
 import type { GetAdminAuditLogsDto } from './models/GetAdminAuditLogsDto';
 import type { GetApplicationPermissionStrategyRespDto } from './models/GetApplicationPermissionStrategyRespDto';
 import type { GetApplicationSecretRespDto } from './models/GetApplicationSecretRespDto';
+import type { GetAsaAccountAssignedTargetRespDto } from './models/GetAsaAccountAssignedTargetRespDto';
+import type { GetAsaAccountBatchDto } from './models/GetAsaAccountBatchDto';
 import type { GetCustomDataRespDto } from './models/GetCustomDataRespDto';
+import type { GetDataPolicyResponseDto } from './models/GetDataPolicyResponseDto';
 import type { GetDataResourceResponseDto } from './models/GetDataResourceResponseDto';
 import type { GetEmailTemplatesRespDto } from './models/GetEmailTemplatesRespDto';
 import type { GetPermissionNamespaceListResponseDto } from './models/GetPermissionNamespaceListResponseDto';
@@ -119,10 +143,13 @@ import type { IsUserInDepartmentRespDto } from './models/IsUserInDepartmentRespD
 import type { KickUsersDto } from './models/KickUsersDto';
 import type { ListApplicationActiveUsersDto } from './models/ListApplicationActiveUsersDto';
 import type { ListArchivedUsersSingleRespDto } from './models/ListArchivedUsersSingleRespDto';
+import type { ListDataPoliciesPaginatedRespDto } from './models/ListDataPoliciesPaginatedRespDto';
+import type { ListDataPolicySubjectPaginatedRespDto } from './models/ListDataPolicySubjectPaginatedRespDto';
 import type { ListDataResourcesPaginatedRespDto } from './models/ListDataResourcesPaginatedRespDto';
 import type { ListResourceTargets } from './models/ListResourceTargets';
 import type { ListResourceTargetsRespDto } from './models/ListResourceTargetsRespDto';
 import type { ListRoleAssignmentsDto } from './models/ListRoleAssignmentsDto';
+import type { ListSimpleDataPoliciesPaginatedRespDto } from './models/ListSimpleDataPoliciesPaginatedRespDto';
 import type { ListUsersRequestDto } from './models/ListUsersRequestDto';
 import type { MFASettingsDto } from './models/MFASettingsDto';
 import type { MFASettingsRespDto } from './models/MFASettingsRespDto';
@@ -174,6 +201,9 @@ import type { TriggerSyncRiskOperationsRespDto } from './models/TriggerSyncRiskO
 import type { TriggerSyncTaskDto } from './models/TriggerSyncTaskDto';
 import type { TriggerSyncTaskRespDto } from './models/TriggerSyncTaskRespDto';
 import type { UpdateApplicationPermissionStrategyDataDto } from './models/UpdateApplicationPermissionStrategyDataDto';
+import type { UpdateAsaAccountDto } from './models/UpdateAsaAccountDto';
+import type { UpdateDataPolicyDto } from './models/UpdateDataPolicyDto';
+import type { UpdateDataPolicyResponseDto } from './models/UpdateDataPolicyResponseDto';
 import type { UpdateDataResourceDto } from './models/UpdateDataResourceDto';
 import type { UpdateDataResourceResponseDto } from './models/UpdateDataResourceResponseDto';
 import type { UpdateDepartmentReqDto } from './models/UpdateDepartmentReqDto';
@@ -774,6 +804,7 @@ export class ManagementClient {
                                                                                                                     page = 1,
                                                                                                                     limit = 10,
                                                                                                                     withCustomData = false,
+                                                                                                                    withDepartmentPaths = false,
                                                                                                                     sortBy = 'JoinDepartmentAt',
                                                                                                                     orderBy = 'Desc',
                                                                                                                 }: {
@@ -795,6 +826,8 @@ export class ManagementClient {
                                                                                                                     limit?: number,
                                                                                                                     /** 是否获取自定义数据 **/
                                                                                                                     withCustomData?: boolean,
+                                                                                                                    /** 是否获取部门路径 **/
+                                                                                                                    withDepartmentPaths?: boolean,
                                                                                                                     /** 排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符 **/
                                                                                                                     sortBy?: 'DepartmentCreatedAt' | 'JoinDepartmentAt' | 'DepartmentName' | 'DepartmemtCode',
                                                                                                                     /** 增序或降序 **/
@@ -809,6 +842,7 @@ export class ManagementClient {
                                                                                                                             page: page,
                                                                                                                             limit: limit,
                                                                                                                             withCustomData: withCustomData,
+                                                                                                                            withDepartmentPaths: withDepartmentPaths,
                                                                                                                             sortBy: sortBy,
                                                                                                                             orderBy: orderBy,
                                                                                                                         },
@@ -1476,6 +1510,7 @@ export class ManagementClient {
                                                         }
 
                                                         /**
+                                                         * @deprecated
                                                          * @summary 搜索部门
                                                          * @description 通过组织 code、搜索关键词，搜索部门，可以搜索组织名称等。
                                                          * @returns DepartmentListRespDto
@@ -1490,707 +1525,741 @@ export class ManagementClient {
                                                     }
 
                                                     /**
-                                                     * @summary 获取子部门列表
-                                                     * @description 通过组织 code、部门 ID，获取子部门列表，可以选择获取自定义数据、虚拟组织等。
-                                                     * @returns DepartmentPaginatedRespDto
+                                                     * @summary 搜索部门
+                                                     * @description 通过组织 code、搜索关键词，搜索部门，可以搜索组织名称等。
+                                                     * @returns DepartmentListRespDto
                                                      */
-                                                    public async listChildrenDepartments({
-                                                        organizationCode,
-                                                        departmentId,
-                                                        departmentIdType = 'department_id',
-                                                        excludeVirtualNode = false,
-                                                        onlyVirtualNode = false,
-                                                        withCustomData = false,
-                                                    }: {
-                                                        /** 组织 code **/
-                                                        organizationCode: string,
-                                                        /** 需要获取的部门 ID **/
-                                                        departmentId: string,
-                                                        /** 此次调用中使用的部门 ID 的类型 **/
-                                                        departmentIdType?: 'department_id' | 'open_department_id',
-                                                        /** 是否要排除虚拟组织 **/
-                                                        excludeVirtualNode?: boolean,
-                                                        /** 是否只包含虚拟组织 **/
-                                                        onlyVirtualNode?: boolean,
-                                                        /** 是否获取自定义数据 **/
-                                                        withCustomData?: boolean,
-                                                    }): Promise<DepartmentPaginatedRespDto> {
-                                                        return await this.httpClient.request({
-                                                            method: 'GET',
-                                                            url: '/api/v3/list-children-departments',
-                                                            params: {
-                                                                organizationCode: organizationCode,
-                                                                departmentId: departmentId,
-                                                                departmentIdType: departmentIdType,
-                                                                excludeVirtualNode: excludeVirtualNode,
-                                                                onlyVirtualNode: onlyVirtualNode,
-                                                                withCustomData: withCustomData,
-                                                            },
-                                                        });
-                                                    }
-
-                                                    /**
-                                                     * @summary 获取部门成员列表
-                                                     * @description 通过组织 code、部门 ID、排序，获取部门成员列表，支持分页，可以选择获取自定义数据、identities 等。
-                                                     * @returns UserPaginatedRespDto
-                                                     */
-                                                    public async listDepartmentMembers({
-                                                        organizationCode,
-                                                        departmentId,
-                                                        sortBy = 'JoinDepartmentAt',
-                                                        orderBy = 'Desc',
-                                                        departmentIdType = 'department_id',
-                                                        includeChildrenDepartments = false,
-                                                        page = 1,
-                                                        limit = 10,
-                                                        withCustomData = false,
-                                                        withIdentities = false,
-                                                        withDepartmentIds = false,
-                                                    }: {
-                                                        /** 组织 code **/
-                                                        organizationCode: string,
-                                                        /** 部门 ID，根部门传 `root` **/
-                                                        departmentId: string,
-                                                        /** 排序依据 **/
-                                                        sortBy?: 'Default' | 'JoinDepartmentAt',
-                                                        /** 增序还是倒序 **/
-                                                        orderBy?: 'Asc' | 'Desc',
-                                                        /** 此次调用中使用的部门 ID 的类型 **/
-                                                        departmentIdType?: 'department_id' | 'open_department_id',
-                                                        /** 是否包含子部门的成员 **/
-                                                        includeChildrenDepartments?: boolean,
-                                                        /** 当前页数，从 1 开始 **/
-                                                        page?: number,
-                                                        /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                        limit?: number,
-                                                        /** 是否获取自定义数据 **/
-                                                        withCustomData?: boolean,
-                                                        /** 是否获取 identities **/
-                                                        withIdentities?: boolean,
-                                                        /** 是否获取部门 ID 列表 **/
-                                                        withDepartmentIds?: boolean,
-                                                    }): Promise<UserPaginatedRespDto> {
-                                                        return await this.httpClient.request({
-                                                            method: 'GET',
-                                                            url: '/api/v3/list-department-members',
-                                                            params: {
-                                                                organizationCode: organizationCode,
-                                                                departmentId: departmentId,
-                                                                sortBy: sortBy,
-                                                                orderBy: orderBy,
-                                                                departmentIdType: departmentIdType,
-                                                                includeChildrenDepartments: includeChildrenDepartments,
-                                                                page: page,
-                                                                limit: limit,
-                                                                withCustomData: withCustomData,
-                                                                withIdentities: withIdentities,
-                                                                withDepartmentIds: withDepartmentIds,
-                                                            },
-                                                        });
-                                                    }
-
-                                                    /**
-                                                     * @summary 获取部门直属成员 ID 列表
-                                                     * @description 通过组织 code、部门 ID，获取部门直属成员 ID 列表。
-                                                     * @returns UserIdListRespDto
-                                                     */
-                                                    public async listDepartmentMemberIds({
-                                                        organizationCode,
-                                                        departmentId,
-                                                        departmentIdType = 'department_id',
-                                                    }: {
-                                                        /** 组织 code **/
-                                                        organizationCode: string,
-                                                        /** 部门 ID，根部门传 `root` **/
-                                                        departmentId: string,
-                                                        /** 此次调用中使用的部门 ID 的类型 **/
-                                                        departmentIdType?: 'department_id' | 'open_department_id',
-                                                    }): Promise<UserIdListRespDto> {
-                                                        return await this.httpClient.request({
-                                                            method: 'GET',
-                                                            url: '/api/v3/list-department-member-ids',
-                                                            params: {
-                                                                organizationCode: organizationCode,
-                                                                departmentId: departmentId,
-                                                                departmentIdType: departmentIdType,
-                                                            },
-                                                        });
-                                                    }
-
-                                                    /**
-                                                     * @summary 搜索部门下的成员
-                                                     * @description 通过组织 code、部门 ID、搜索关键词，搜索部门下的成员，支持分页，可以选择获取自定义数据、identities 等。
-                                                     * @returns UserPaginatedRespDto
-                                                     */
-                                                    public async searchDepartmentMembers({
-                                                        organizationCode,
-                                                        departmentId,
-                                                        keywords,
-                                                        page = 1,
-                                                        limit = 10,
-                                                        departmentIdType = 'department_id',
-                                                        includeChildrenDepartments = false,
-                                                        withCustomData = false,
-                                                        withIdentities = false,
-                                                        withDepartmentIds = false,
-                                                    }: {
-                                                        /** 组织 code **/
-                                                        organizationCode: string,
-                                                        /** 部门 ID，根部门传 `root` **/
-                                                        departmentId: string,
-                                                        /** 搜索关键词，如成员名称 **/
-                                                        keywords: string,
-                                                        /** 当前页数，从 1 开始 **/
-                                                        page?: number,
-                                                        /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                        limit?: number,
-                                                        /** 此次调用中使用的部门 ID 的类型 **/
-                                                        departmentIdType?: 'department_id' | 'open_department_id',
-                                                        /** 是否包含子部门的成员 **/
-                                                        includeChildrenDepartments?: boolean,
-                                                        /** 是否获取自定义数据 **/
-                                                        withCustomData?: boolean,
-                                                        /** 是否获取 identities **/
-                                                        withIdentities?: boolean,
-                                                        /** 是否获取部门 ID 列表 **/
-                                                        withDepartmentIds?: boolean,
-                                                    }): Promise<UserPaginatedRespDto> {
-                                                        return await this.httpClient.request({
-                                                            method: 'GET',
-                                                            url: '/api/v3/search-department-members',
-                                                            params: {
-                                                                organizationCode: organizationCode,
-                                                                departmentId: departmentId,
-                                                                keywords: keywords,
-                                                                page: page,
-                                                                limit: limit,
-                                                                departmentIdType: departmentIdType,
-                                                                includeChildrenDepartments: includeChildrenDepartments,
-                                                                withCustomData: withCustomData,
-                                                                withIdentities: withIdentities,
-                                                                withDepartmentIds: withDepartmentIds,
-                                                            },
-                                                        });
-                                                    }
-
-                                                    /**
-                                                     * @summary 部门下添加成员
-                                                     * @description 通过部门 ID、组织 code，添加部门下成员。
-                                                     * @returns IsSuccessRespDto
-                                                     */
-                                                    public async addDepartmentMembers(requestBody: AddDepartmentMembersReqDto,
-                                                ): Promise<IsSuccessRespDto> {
+                                                    public async searchDepartmentsList(requestBody: SearchDepartmentsReqDto,
+                                                ): Promise<DepartmentListRespDto> {
                                                     return await this.httpClient.request({
                                                         method: 'POST',
-                                                        url: '/api/v3/add-department-members',
+                                                        url: '/api/v3/search-departments-list',
                                                         data: requestBody,
                                                     });
                                                 }
 
                                                 /**
-                                                 * @summary 部门下删除成员
-                                                 * @description 通过部门 ID、组织 code，删除部门下成员。
+                                                 * @summary 获取子部门列表
+                                                 * @description 通过组织 code、部门 ID，获取子部门列表，可以选择获取自定义数据、虚拟组织等。
+                                                 * @returns DepartmentPaginatedRespDto
+                                                 */
+                                                public async listChildrenDepartments({
+                                                    organizationCode,
+                                                    departmentId,
+                                                    departmentIdType = 'department_id',
+                                                    excludeVirtualNode = false,
+                                                    onlyVirtualNode = false,
+                                                    withCustomData = false,
+                                                }: {
+                                                    /** 组织 code **/
+                                                    organizationCode: string,
+                                                    /** 需要获取的部门 ID **/
+                                                    departmentId: string,
+                                                    /** 此次调用中使用的部门 ID 的类型 **/
+                                                    departmentIdType?: 'department_id' | 'open_department_id',
+                                                    /** 是否要排除虚拟组织 **/
+                                                    excludeVirtualNode?: boolean,
+                                                    /** 是否只包含虚拟组织 **/
+                                                    onlyVirtualNode?: boolean,
+                                                    /** 是否获取自定义数据 **/
+                                                    withCustomData?: boolean,
+                                                }): Promise<DepartmentPaginatedRespDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'GET',
+                                                        url: '/api/v3/list-children-departments',
+                                                        params: {
+                                                            organizationCode: organizationCode,
+                                                            departmentId: departmentId,
+                                                            departmentIdType: departmentIdType,
+                                                            excludeVirtualNode: excludeVirtualNode,
+                                                            onlyVirtualNode: onlyVirtualNode,
+                                                            withCustomData: withCustomData,
+                                                        },
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 获取部门成员列表
+                                                 * @description 通过组织 code、部门 ID、排序，获取部门成员列表，支持分页，可以选择获取自定义数据、identities 等。
+                                                 * @returns UserPaginatedRespDto
+                                                 */
+                                                public async listDepartmentMembers({
+                                                    organizationCode,
+                                                    departmentId,
+                                                    sortBy = 'JoinDepartmentAt',
+                                                    orderBy = 'Desc',
+                                                    departmentIdType = 'department_id',
+                                                    includeChildrenDepartments = false,
+                                                    page = 1,
+                                                    limit = 10,
+                                                    withCustomData = false,
+                                                    withIdentities = false,
+                                                    withDepartmentIds = false,
+                                                }: {
+                                                    /** 组织 code **/
+                                                    organizationCode: string,
+                                                    /** 部门 ID，根部门传 `root` **/
+                                                    departmentId: string,
+                                                    /** 排序依据 **/
+                                                    sortBy?: 'Default' | 'JoinDepartmentAt',
+                                                    /** 增序还是倒序 **/
+                                                    orderBy?: 'Asc' | 'Desc',
+                                                    /** 此次调用中使用的部门 ID 的类型 **/
+                                                    departmentIdType?: 'department_id' | 'open_department_id',
+                                                    /** 是否包含子部门的成员 **/
+                                                    includeChildrenDepartments?: boolean,
+                                                    /** 当前页数，从 1 开始 **/
+                                                    page?: number,
+                                                    /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                    limit?: number,
+                                                    /** 是否获取自定义数据 **/
+                                                    withCustomData?: boolean,
+                                                    /** 是否获取 identities **/
+                                                    withIdentities?: boolean,
+                                                    /** 是否获取部门 ID 列表 **/
+                                                    withDepartmentIds?: boolean,
+                                                }): Promise<UserPaginatedRespDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'GET',
+                                                        url: '/api/v3/list-department-members',
+                                                        params: {
+                                                            organizationCode: organizationCode,
+                                                            departmentId: departmentId,
+                                                            sortBy: sortBy,
+                                                            orderBy: orderBy,
+                                                            departmentIdType: departmentIdType,
+                                                            includeChildrenDepartments: includeChildrenDepartments,
+                                                            page: page,
+                                                            limit: limit,
+                                                            withCustomData: withCustomData,
+                                                            withIdentities: withIdentities,
+                                                            withDepartmentIds: withDepartmentIds,
+                                                        },
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 获取部门直属成员 ID 列表
+                                                 * @description 通过组织 code、部门 ID，获取部门直属成员 ID 列表。
+                                                 * @returns UserIdListRespDto
+                                                 */
+                                                public async listDepartmentMemberIds({
+                                                    organizationCode,
+                                                    departmentId,
+                                                    departmentIdType = 'department_id',
+                                                }: {
+                                                    /** 组织 code **/
+                                                    organizationCode: string,
+                                                    /** 部门 ID，根部门传 `root` **/
+                                                    departmentId: string,
+                                                    /** 此次调用中使用的部门 ID 的类型 **/
+                                                    departmentIdType?: 'department_id' | 'open_department_id',
+                                                }): Promise<UserIdListRespDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'GET',
+                                                        url: '/api/v3/list-department-member-ids',
+                                                        params: {
+                                                            organizationCode: organizationCode,
+                                                            departmentId: departmentId,
+                                                            departmentIdType: departmentIdType,
+                                                        },
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 搜索部门下的成员
+                                                 * @description 通过组织 code、部门 ID、搜索关键词，搜索部门下的成员，支持分页，可以选择获取自定义数据、identities 等。
+                                                 * @returns UserPaginatedRespDto
+                                                 */
+                                                public async searchDepartmentMembers({
+                                                    organizationCode,
+                                                    departmentId,
+                                                    keywords,
+                                                    page = 1,
+                                                    limit = 10,
+                                                    departmentIdType = 'department_id',
+                                                    includeChildrenDepartments = false,
+                                                    withCustomData = false,
+                                                    withIdentities = false,
+                                                    withDepartmentIds = false,
+                                                }: {
+                                                    /** 组织 code **/
+                                                    organizationCode: string,
+                                                    /** 部门 ID，根部门传 `root` **/
+                                                    departmentId: string,
+                                                    /** 搜索关键词，如成员名称 **/
+                                                    keywords: string,
+                                                    /** 当前页数，从 1 开始 **/
+                                                    page?: number,
+                                                    /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                    limit?: number,
+                                                    /** 此次调用中使用的部门 ID 的类型 **/
+                                                    departmentIdType?: 'department_id' | 'open_department_id',
+                                                    /** 是否包含子部门的成员 **/
+                                                    includeChildrenDepartments?: boolean,
+                                                    /** 是否获取自定义数据 **/
+                                                    withCustomData?: boolean,
+                                                    /** 是否获取 identities **/
+                                                    withIdentities?: boolean,
+                                                    /** 是否获取部门 ID 列表 **/
+                                                    withDepartmentIds?: boolean,
+                                                }): Promise<UserPaginatedRespDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'GET',
+                                                        url: '/api/v3/search-department-members',
+                                                        params: {
+                                                            organizationCode: organizationCode,
+                                                            departmentId: departmentId,
+                                                            keywords: keywords,
+                                                            page: page,
+                                                            limit: limit,
+                                                            departmentIdType: departmentIdType,
+                                                            includeChildrenDepartments: includeChildrenDepartments,
+                                                            withCustomData: withCustomData,
+                                                            withIdentities: withIdentities,
+                                                            withDepartmentIds: withDepartmentIds,
+                                                        },
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 部门下添加成员
+                                                 * @description 通过部门 ID、组织 code，添加部门下成员。
                                                  * @returns IsSuccessRespDto
                                                  */
-                                                public async removeDepartmentMembers(requestBody: RemoveDepartmentMembersReqDto,
+                                                public async addDepartmentMembers(requestBody: AddDepartmentMembersReqDto,
                                             ): Promise<IsSuccessRespDto> {
                                                 return await this.httpClient.request({
                                                     method: 'POST',
-                                                    url: '/api/v3/remove-department-members',
+                                                    url: '/api/v3/add-department-members',
                                                     data: requestBody,
                                                 });
                                             }
 
                                             /**
-                                             * @summary 获取父部门信息
-                                             * @description 通过组织 code、部门 ID，获取父部门信息，可以选择获取自定义数据等。
-                                             * @returns DepartmentSingleRespDto
+                                             * @summary 部门下删除成员
+                                             * @description 通过部门 ID、组织 code，删除部门下成员。
+                                             * @returns IsSuccessRespDto
                                              */
-                                            public async getParentDepartment({
-                                                organizationCode,
-                                                departmentId,
-                                                departmentIdType = 'department_id',
-                                                withCustomData = false,
-                                            }: {
-                                                /** 组织 code **/
-                                                organizationCode: string,
-                                                /** 部门 ID **/
-                                                departmentId: string,
-                                                /** 此次调用中使用的部门 ID 的类型 **/
-                                                departmentIdType?: 'department_id' | 'open_department_id',
-                                                /** 是否获取自定义数据 **/
-                                                withCustomData?: boolean,
-                                            }): Promise<DepartmentSingleRespDto> {
-                                                return await this.httpClient.request({
-                                                    method: 'GET',
-                                                    url: '/api/v3/get-parent-department',
-                                                    params: {
-                                                        organizationCode: organizationCode,
-                                                        departmentId: departmentId,
-                                                        departmentIdType: departmentIdType,
-                                                        withCustomData: withCustomData,
-                                                    },
-                                                });
-                                            }
-
-                                            /**
-                                             * @summary 判断用户是否在某个部门下
-                                             * @description 通过组织 code、部门 ID，判断用户是否在某个部门下，可以选择包含子部门。
-                                             * @returns IsUserInDepartmentRespDto
-                                             */
-                                            public async isUserInDepartment({
-                                                userId,
-                                                organizationCode,
-                                                departmentId,
-                                                departmentIdType = 'department_id',
-                                                includeChildrenDepartments = false,
-                                            }: {
-                                                /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
-                                                userId: string,
-                                                /** 组织 code **/
-                                                organizationCode: string,
-                                                /** 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
-                                                departmentId: string,
-                                                /** 此次调用中使用的部门 ID 的类型 **/
-                                                departmentIdType?: 'department_id' | 'open_department_id',
-                                                /** 是否包含子部门 **/
-                                                includeChildrenDepartments?: boolean,
-                                            }): Promise<IsUserInDepartmentRespDto> {
-                                                return await this.httpClient.request({
-                                                    method: 'GET',
-                                                    url: '/api/v3/is-user-in-department',
-                                                    params: {
-                                                        userId: userId,
-                                                        organizationCode: organizationCode,
-                                                        departmentId: departmentId,
-                                                        departmentIdType: departmentIdType,
-                                                        includeChildrenDepartments: includeChildrenDepartments,
-                                                    },
-                                                });
-                                            }
-
-                                            /**
-                                             * @summary 获取分组详情
-                                             * @description 通过分组 code，获取分组详情。
-                                             * @returns GroupSingleRespDto
-                                             */
-                                            public async getGroup({
-                                                code,
-                                            }: {
-                                                /** 分组 code **/
-                                                code: string,
-                                            }): Promise<GroupSingleRespDto> {
-                                                return await this.httpClient.request({
-                                                    method: 'GET',
-                                                    url: '/api/v3/get-group',
-                                                    params: {
-                                                        code: code,
-                                                    },
-                                                });
-                                            }
-
-                                            /**
-                                             * @summary 获取分组列表
-                                             * @description 获取分组列表，支持分页。
-                                             * @returns GroupPaginatedRespDto
-                                             */
-                                            public async listGroups({
-                                                keywords,
-                                                page = 1,
-                                                limit = 10,
-                                            }: {
-                                                /** 搜索分组 code 或分组名称 **/
-                                                keywords?: string,
-                                                /** 当前页数，从 1 开始 **/
-                                                page?: number,
-                                                /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                limit?: number,
-                                            }): Promise<GroupPaginatedRespDto> {
-                                                return await this.httpClient.request({
-                                                    method: 'GET',
-                                                    url: '/api/v3/list-groups',
-                                                    params: {
-                                                        keywords: keywords,
-                                                        page: page,
-                                                        limit: limit,
-                                                    },
-                                                });
-                                            }
-
-                                            /**
-                                             * @summary 创建分组
-                                             * @description 创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
-                                             * @returns GroupSingleRespDto
-                                             */
-                                            public async createGroup(requestBody: CreateGroupReqDto,
-                                        ): Promise<GroupSingleRespDto> {
+                                            public async removeDepartmentMembers(requestBody: RemoveDepartmentMembersReqDto,
+                                        ): Promise<IsSuccessRespDto> {
                                             return await this.httpClient.request({
                                                 method: 'POST',
-                                                url: '/api/v3/create-group',
+                                                url: '/api/v3/remove-department-members',
                                                 data: requestBody,
                                             });
                                         }
 
                                         /**
-                                         * @summary 批量创建分组
-                                         * @description 批量创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
-                                         * @returns GroupListRespDto
+                                         * @summary 获取父部门信息
+                                         * @description 通过组织 code、部门 ID，获取父部门信息，可以选择获取自定义数据等。
+                                         * @returns DepartmentSingleRespDto
                                          */
-                                        public async createGroupsBatch(requestBody: CreateGroupBatchReqDto,
-                                    ): Promise<GroupListRespDto> {
+                                        public async getParentDepartment({
+                                            organizationCode,
+                                            departmentId,
+                                            departmentIdType = 'department_id',
+                                            withCustomData = false,
+                                        }: {
+                                            /** 组织 code **/
+                                            organizationCode: string,
+                                            /** 部门 ID **/
+                                            departmentId: string,
+                                            /** 此次调用中使用的部门 ID 的类型 **/
+                                            departmentIdType?: 'department_id' | 'open_department_id',
+                                            /** 是否获取自定义数据 **/
+                                            withCustomData?: boolean,
+                                        }): Promise<DepartmentSingleRespDto> {
+                                            return await this.httpClient.request({
+                                                method: 'GET',
+                                                url: '/api/v3/get-parent-department',
+                                                params: {
+                                                    organizationCode: organizationCode,
+                                                    departmentId: departmentId,
+                                                    departmentIdType: departmentIdType,
+                                                    withCustomData: withCustomData,
+                                                },
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 判断用户是否在某个部门下
+                                         * @description 通过组织 code、部门 ID，判断用户是否在某个部门下，可以选择包含子部门。
+                                         * @returns IsUserInDepartmentRespDto
+                                         */
+                                        public async isUserInDepartment({
+                                            userId,
+                                            organizationCode,
+                                            departmentId,
+                                            departmentIdType = 'department_id',
+                                            includeChildrenDepartments = false,
+                                        }: {
+                                            /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+                                            userId: string,
+                                            /** 组织 code **/
+                                            organizationCode: string,
+                                            /** 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
+                                            departmentId: string,
+                                            /** 此次调用中使用的部门 ID 的类型 **/
+                                            departmentIdType?: 'department_id' | 'open_department_id',
+                                            /** 是否包含子部门 **/
+                                            includeChildrenDepartments?: boolean,
+                                        }): Promise<IsUserInDepartmentRespDto> {
+                                            return await this.httpClient.request({
+                                                method: 'GET',
+                                                url: '/api/v3/is-user-in-department',
+                                                params: {
+                                                    userId: userId,
+                                                    organizationCode: organizationCode,
+                                                    departmentId: departmentId,
+                                                    departmentIdType: departmentIdType,
+                                                    includeChildrenDepartments: includeChildrenDepartments,
+                                                },
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 根据部门id查询部门
+                                         * @description 根据部门id查询部门
+                                         * @returns DepartmentSingleRespDto
+                                         */
+                                        public async getDepartmentById({
+                                            departmentId,
+                                        }: {
+                                            /** 部门 ID **/
+                                            departmentId: string,
+                                        }): Promise<DepartmentSingleRespDto> {
+                                            return await this.httpClient.request({
+                                                method: 'GET',
+                                                url: '/api/v3/get-department-by-id',
+                                                params: {
+                                                    departmentId: departmentId,
+                                                },
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 获取分组详情
+                                         * @description 通过分组 code，获取分组详情。
+                                         * @returns GroupSingleRespDto
+                                         */
+                                        public async getGroup({
+                                            code,
+                                        }: {
+                                            /** 分组 code **/
+                                            code: string,
+                                        }): Promise<GroupSingleRespDto> {
+                                            return await this.httpClient.request({
+                                                method: 'GET',
+                                                url: '/api/v3/get-group',
+                                                params: {
+                                                    code: code,
+                                                },
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 获取分组列表
+                                         * @description 获取分组列表，支持分页。
+                                         * @returns GroupPaginatedRespDto
+                                         */
+                                        public async listGroups({
+                                            keywords,
+                                            page = 1,
+                                            limit = 10,
+                                        }: {
+                                            /** 搜索分组 code 或分组名称 **/
+                                            keywords?: string,
+                                            /** 当前页数，从 1 开始 **/
+                                            page?: number,
+                                            /** 每页数目，最大不能超过 50，默认为 10 **/
+                                            limit?: number,
+                                        }): Promise<GroupPaginatedRespDto> {
+                                            return await this.httpClient.request({
+                                                method: 'GET',
+                                                url: '/api/v3/list-groups',
+                                                params: {
+                                                    keywords: keywords,
+                                                    page: page,
+                                                    limit: limit,
+                                                },
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 创建分组
+                                         * @description 创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
+                                         * @returns GroupSingleRespDto
+                                         */
+                                        public async createGroup(requestBody: CreateGroupReqDto,
+                                    ): Promise<GroupSingleRespDto> {
                                         return await this.httpClient.request({
                                             method: 'POST',
-                                            url: '/api/v3/create-groups-batch',
+                                            url: '/api/v3/create-group',
                                             data: requestBody,
                                         });
                                     }
 
                                     /**
-                                     * @summary 修改分组
-                                     * @description 通过分组 code，修改分组，可以修改此分组的 code。
-                                     * @returns GroupSingleRespDto
+                                     * @summary 批量创建分组
+                                     * @description 批量创建分组，一个分组必须包含分组名称与唯一标志符 code，且必须为一个合法的英文标志符，如 developers。
+                                     * @returns GroupListRespDto
                                      */
-                                    public async updateGroup(requestBody: UpdateGroupReqDto,
-                                ): Promise<GroupSingleRespDto> {
+                                    public async createGroupsBatch(requestBody: CreateGroupBatchReqDto,
+                                ): Promise<GroupListRespDto> {
                                     return await this.httpClient.request({
                                         method: 'POST',
-                                        url: '/api/v3/update-group',
+                                        url: '/api/v3/create-groups-batch',
                                         data: requestBody,
                                     });
                                 }
 
                                 /**
-                                 * @summary 批量删除分组
-                                 * @description 通过分组 code，批量删除分组。
-                                 * @returns IsSuccessRespDto
+                                 * @summary 修改分组
+                                 * @description 通过分组 code，修改分组，可以修改此分组的 code。
+                                 * @returns GroupSingleRespDto
                                  */
-                                public async deleteGroupsBatch(requestBody: DeleteGroupsReqDto,
-                            ): Promise<IsSuccessRespDto> {
+                                public async updateGroup(requestBody: UpdateGroupReqDto,
+                            ): Promise<GroupSingleRespDto> {
                                 return await this.httpClient.request({
                                     method: 'POST',
-                                    url: '/api/v3/delete-groups-batch',
+                                    url: '/api/v3/update-group',
                                     data: requestBody,
                                 });
                             }
 
                             /**
-                             * @summary 添加分组成员
-                             * @description 添加分组成员，成员以用户 ID 数组形式传递。
+                             * @summary 批量删除分组
+                             * @description 通过分组 code，批量删除分组。
                              * @returns IsSuccessRespDto
                              */
-                            public async addGroupMembers(requestBody: AddGroupMembersReqDto,
+                            public async deleteGroupsBatch(requestBody: DeleteGroupsReqDto,
                         ): Promise<IsSuccessRespDto> {
                             return await this.httpClient.request({
                                 method: 'POST',
-                                url: '/api/v3/add-group-members',
+                                url: '/api/v3/delete-groups-batch',
                                 data: requestBody,
                             });
                         }
 
                         /**
-                         * @summary 批量移除分组成员
-                         * @description 批量移除分组成员，成员以用户 ID 数组形式传递。
+                         * @summary 添加分组成员
+                         * @description 添加分组成员，成员以用户 ID 数组形式传递。
                          * @returns IsSuccessRespDto
                          */
-                        public async removeGroupMembers(requestBody: RemoveGroupMembersReqDto,
+                        public async addGroupMembers(requestBody: AddGroupMembersReqDto,
                     ): Promise<IsSuccessRespDto> {
                         return await this.httpClient.request({
                             method: 'POST',
-                            url: '/api/v3/remove-group-members',
+                            url: '/api/v3/add-group-members',
                             data: requestBody,
                         });
                     }
 
                     /**
-                     * @summary 获取分组成员列表
-                     * @description 通过分组 code，获取分组成员列表，支持分页，可以获取自定义数据、identities、部门 ID 列表。
-                     * @returns UserPaginatedRespDto
-                     */
-                    public async listGroupMembers({
-                        code,
-                        page = 1,
-                        limit = 10,
-                        withCustomData = false,
-                        withIdentities = false,
-                        withDepartmentIds = false,
-                    }: {
-                        /** 分组 code **/
-                        code: string,
-                        /** 当前页数，从 1 开始 **/
-                        page?: number,
-                        /** 每页数目，最大不能超过 50，默认为 10 **/
-                        limit?: number,
-                        /** 是否获取自定义数据 **/
-                        withCustomData?: boolean,
-                        /** 是否获取 identities **/
-                        withIdentities?: boolean,
-                        /** 是否获取部门 ID 列表 **/
-                        withDepartmentIds?: boolean,
-                    }): Promise<UserPaginatedRespDto> {
-                        return await this.httpClient.request({
-                            method: 'GET',
-                            url: '/api/v3/list-group-members',
-                            params: {
-                                code: code,
-                                page: page,
-                                limit: limit,
-                                withCustomData: withCustomData,
-                                withIdentities: withIdentities,
-                                withDepartmentIds: withDepartmentIds,
-                            },
-                        });
-                    }
-
-                    /**
-                     * @summary 获取分组被授权的资源列表
-                     * @description 通过分组 code，获取分组被授权的资源列表，可以通过资源类型、权限分组 code 筛选。
-                     * @returns AuthorizedResourceListRespDto
-                     */
-                    public async getGroupAuthorizedResources({
-                        code,
-                        namespace,
-                        resourceType,
-                    }: {
-                        /** 分组 code **/
-                        code: string,
-                        /** 所属权限分组(权限空间)的 Code **/
-                        namespace?: string,
-                        /** 资源类型 **/
-                        resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON' | 'UI',
-                    }): Promise<AuthorizedResourceListRespDto> {
-                        return await this.httpClient.request({
-                            method: 'GET',
-                            url: '/api/v3/get-group-authorized-resources',
-                            params: {
-                                code: code,
-                                namespace: namespace,
-                                resourceType: resourceType,
-                            },
-                        });
-                    }
-
-                    /**
-                     * @summary 获取角色详情
-                     * @description 通过权限分组内角色 code，获取角色详情。
-                     * @returns RoleSingleRespDto
-                     */
-                    public async getRole({
-                        code,
-                        namespace,
-                    }: {
-                        /** 权限分组(权限空间)内角色的唯一标识符 **/
-                        code: string,
-                        /** 所属权限分组(权限空间)的 Code **/
-                        namespace?: string,
-                    }): Promise<RoleSingleRespDto> {
-                        return await this.httpClient.request({
-                            method: 'GET',
-                            url: '/api/v3/get-role',
-                            params: {
-                                code: code,
-                                namespace: namespace,
-                            },
-                        });
-                    }
-
-                    /**
-                     * @summary 分配角色
-                     * @description 通过权限分组内角色 code，分配角色，被分配者可以是用户或部门。
+                     * @summary 批量移除分组成员
+                     * @description 批量移除分组成员，成员以用户 ID 数组形式传递。
                      * @returns IsSuccessRespDto
                      */
-                    public async assignRole(requestBody: AssignRoleDto,
+                    public async removeGroupMembers(requestBody: RemoveGroupMembersReqDto,
                 ): Promise<IsSuccessRespDto> {
                     return await this.httpClient.request({
                         method: 'POST',
-                        url: '/api/v3/assign-role',
+                        url: '/api/v3/remove-group-members',
                         data: requestBody,
                     });
                 }
 
                 /**
-                 * @summary 移除分配的角色
-                 * @description 通过权限分组内角色 code，移除分配的角色，被分配者可以是用户或部门。
+                 * @summary 获取分组成员列表
+                 * @description 通过分组 code，获取分组成员列表，支持分页，可以获取自定义数据、identities、部门 ID 列表。
+                 * @returns UserPaginatedRespDto
+                 */
+                public async listGroupMembers({
+                    code,
+                    page = 1,
+                    limit = 10,
+                    withCustomData = false,
+                    withIdentities = false,
+                    withDepartmentIds = false,
+                }: {
+                    /** 分组 code **/
+                    code: string,
+                    /** 当前页数，从 1 开始 **/
+                    page?: number,
+                    /** 每页数目，最大不能超过 50，默认为 10 **/
+                    limit?: number,
+                    /** 是否获取自定义数据 **/
+                    withCustomData?: boolean,
+                    /** 是否获取 identities **/
+                    withIdentities?: boolean,
+                    /** 是否获取部门 ID 列表 **/
+                    withDepartmentIds?: boolean,
+                }): Promise<UserPaginatedRespDto> {
+                    return await this.httpClient.request({
+                        method: 'GET',
+                        url: '/api/v3/list-group-members',
+                        params: {
+                            code: code,
+                            page: page,
+                            limit: limit,
+                            withCustomData: withCustomData,
+                            withIdentities: withIdentities,
+                            withDepartmentIds: withDepartmentIds,
+                        },
+                    });
+                }
+
+                /**
+                 * @summary 获取分组被授权的资源列表
+                 * @description 通过分组 code，获取分组被授权的资源列表，可以通过资源类型、权限分组 code 筛选。
+                 * @returns AuthorizedResourceListRespDto
+                 */
+                public async getGroupAuthorizedResources({
+                    code,
+                    namespace,
+                    resourceType,
+                }: {
+                    /** 分组 code **/
+                    code: string,
+                    /** 所属权限分组(权限空间)的 Code **/
+                    namespace?: string,
+                    /** 资源类型 **/
+                    resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON' | 'UI',
+                }): Promise<AuthorizedResourceListRespDto> {
+                    return await this.httpClient.request({
+                        method: 'GET',
+                        url: '/api/v3/get-group-authorized-resources',
+                        params: {
+                            code: code,
+                            namespace: namespace,
+                            resourceType: resourceType,
+                        },
+                    });
+                }
+
+                /**
+                 * @summary 获取角色详情
+                 * @description 通过权限分组内角色 code，获取角色详情。
+                 * @returns RoleSingleRespDto
+                 */
+                public async getRole({
+                    code,
+                    namespace,
+                }: {
+                    /** 权限分组(权限空间)内角色的唯一标识符 **/
+                    code: string,
+                    /** 所属权限分组(权限空间)的 Code **/
+                    namespace?: string,
+                }): Promise<RoleSingleRespDto> {
+                    return await this.httpClient.request({
+                        method: 'GET',
+                        url: '/api/v3/get-role',
+                        params: {
+                            code: code,
+                            namespace: namespace,
+                        },
+                    });
+                }
+
+                /**
+                 * @summary 分配角色
+                 * @description 通过权限分组内角色 code，分配角色，被分配者可以是用户或部门。
                  * @returns IsSuccessRespDto
                  */
-                public async revokeRole(requestBody: RevokeRoleDto,
+                public async assignRole(requestBody: AssignRoleDto,
             ): Promise<IsSuccessRespDto> {
                 return await this.httpClient.request({
                     method: 'POST',
-                    url: '/api/v3/revoke-role',
+                    url: '/api/v3/assign-role',
                     data: requestBody,
                 });
             }
 
             /**
-             * @summary 获取角色被授权的资源列表
-             * @description 通过权限分组内角色 code，获取角色被授权的资源列表。
-             * @returns RoleAuthorizedResourcePaginatedRespDto
+             * @summary 移除分配的角色
+             * @description 通过权限分组内角色 code，移除分配的角色，被分配者可以是用户或部门。
+             * @returns IsSuccessRespDto
              */
-            public async getRoleAuthorizedResources({
-                code,
-                namespace,
-                resourceType,
-            }: {
-                /** 权限分组内角色的唯一标识符 **/
-                code: string,
-                /** 所属权限分组的 code **/
-                namespace?: string,
-                /** 资源类型，如 数据、API、按钮、菜单 **/
-                resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON' | 'UI',
-            }): Promise<RoleAuthorizedResourcePaginatedRespDto> {
-                return await this.httpClient.request({
-                    method: 'GET',
-                    url: '/api/v3/get-role-authorized-resources',
-                    params: {
-                        code: code,
-                        namespace: namespace,
-                        resourceType: resourceType,
-                    },
-                });
-            }
-
-            /**
-             * @summary 获取角色成员列表
-             * @description 通过权限分组内内角色 code，获取角色成员列表，支持分页，可以选择或获取自定义数据、identities 等。
-             * @returns UserPaginatedRespDto
-             */
-            public async listRoleMembers({
-                code,
-                page = 1,
-                limit = 10,
-                withCustomData = false,
-                withIdentities = false,
-                withDepartmentIds = false,
-                namespace,
-            }: {
-                /** 权限分组内角色的唯一标识符 **/
-                code: string,
-                /** 当前页数，从 1 开始 **/
-                page?: number,
-                /** 每页数目，最大不能超过 50，默认为 10 **/
-                limit?: number,
-                /** 是否获取自定义数据 **/
-                withCustomData?: boolean,
-                /** 是否获取 identities **/
-                withIdentities?: boolean,
-                /** 是否获取部门 ID 列表 **/
-                withDepartmentIds?: boolean,
-                /** 所属权限分组的 code **/
-                namespace?: string,
-            }): Promise<UserPaginatedRespDto> {
-                return await this.httpClient.request({
-                    method: 'GET',
-                    url: '/api/v3/list-role-members',
-                    params: {
-                        page: page,
-                        limit: limit,
-                        withCustomData: withCustomData,
-                        withIdentities: withIdentities,
-                        withDepartmentIds: withDepartmentIds,
-                        code: code,
-                        namespace: namespace,
-                    },
-                });
-            }
-
-            /**
-             * @summary 获取角色的部门列表
-             * @description 通过权限分组内角色 code，获取角色的部门列表，支持分页。
-             * @returns RoleDepartmentListPaginatedRespDto
-             */
-            public async listRoleDepartments({
-                code,
-                namespace,
-                page = 1,
-                limit = 10,
-            }: {
-                /** 权限分组内角色的唯一标识符 **/
-                code: string,
-                /** 所属权限分组的 code **/
-                namespace?: string,
-                /** 当前页数，从 1 开始 **/
-                page?: number,
-                /** 每页数目，最大不能超过 50，默认为 10 **/
-                limit?: number,
-            }): Promise<RoleDepartmentListPaginatedRespDto> {
-                return await this.httpClient.request({
-                    method: 'GET',
-                    url: '/api/v3/list-role-departments',
-                    params: {
-                        code: code,
-                        namespace: namespace,
-                        page: page,
-                        limit: limit,
-                    },
-                });
-            }
-
-            /**
-             * @summary 创建角色
-             * @description 通过权限分组（权限空间）内角色 code，创建角色，可以选择权限分组、角色描述、角色名称等。
-             * @returns RoleSingleRespDto
-             */
-            public async createRole(requestBody: CreateRoleDto,
-        ): Promise<RoleSingleRespDto> {
+            public async revokeRole(requestBody: RevokeRoleDto,
+        ): Promise<IsSuccessRespDto> {
             return await this.httpClient.request({
                 method: 'POST',
-                url: '/api/v3/create-role',
+                url: '/api/v3/revoke-role',
                 data: requestBody,
             });
         }
 
         /**
-         * @summary 获取角色列表
-         * @description 获取角色列表，支持分页、支持根据权限分组（权限空间）筛选
-         * @returns RolePaginatedRespDto
+         * @summary 获取角色被授权的资源列表
+         * @description 通过权限分组内角色 code，获取角色被授权的资源列表。
+         * @returns RoleAuthorizedResourcePaginatedRespDto
          */
-        public async listRoles({
+        public async getRoleAuthorizedResources({
+            code,
+            namespace,
+            resourceType,
+        }: {
+            /** 权限分组内角色的唯一标识符 **/
+            code: string,
+            /** 所属权限分组的 code **/
+            namespace?: string,
+            /** 资源类型，如 数据、API、按钮、菜单 **/
+            resourceType?: 'DATA' | 'API' | 'MENU' | 'BUTTON' | 'UI',
+        }): Promise<RoleAuthorizedResourcePaginatedRespDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/get-role-authorized-resources',
+                params: {
+                    code: code,
+                    namespace: namespace,
+                    resourceType: resourceType,
+                },
+            });
+        }
+
+        /**
+         * @summary 获取角色成员列表
+         * @description 通过权限分组内内角色 code，获取角色成员列表，支持分页，可以选择或获取自定义数据、identities 等。
+         * @returns UserPaginatedRespDto
+         */
+        public async listRoleMembers({
+            code,
             page = 1,
             limit = 10,
-            keywords,
-            namespace = 'default',
+            withCustomData = false,
+            withIdentities = false,
+            withDepartmentIds = false,
+            namespace,
         }: {
+            /** 权限分组内角色的唯一标识符 **/
+            code: string,
             /** 当前页数，从 1 开始 **/
             page?: number,
             /** 每页数目，最大不能超过 50，默认为 10 **/
             limit?: number,
-            /** 用于根据角色的 code 或者名称进行模糊搜索，可选。 **/
-            keywords?: string,
-            /** 所属权限分组(权限空间)的 code **/
+            /** 是否获取自定义数据 **/
+            withCustomData?: boolean,
+            /** 是否获取 identities **/
+            withIdentities?: boolean,
+            /** 是否获取部门 ID 列表 **/
+            withDepartmentIds?: boolean,
+            /** 所属权限分组的 code **/
             namespace?: string,
-        }): Promise<RolePaginatedRespDto> {
+        }): Promise<UserPaginatedRespDto> {
             return await this.httpClient.request({
                 method: 'GET',
-                url: '/api/v3/list-roles',
+                url: '/api/v3/list-role-members',
                 params: {
                     page: page,
                     limit: limit,
-                    keywords: keywords,
+                    withCustomData: withCustomData,
+                    withIdentities: withIdentities,
+                    withDepartmentIds: withDepartmentIds,
+                    code: code,
                     namespace: namespace,
                 },
             });
         }
 
         /**
-         * @summary 单个权限分组（权限空间）内删除角色
-         * @description 单个权限分组（权限空间）内删除角色，可以批量删除。
-         * @returns IsSuccessRespDto
+         * @summary 获取角色的部门列表
+         * @description 通过权限分组内角色 code，获取角色的部门列表，支持分页。
+         * @returns RoleDepartmentListPaginatedRespDto
          */
-        public async deleteRolesBatch(requestBody: DeleteRoleDto,
-    ): Promise<IsSuccessRespDto> {
+        public async listRoleDepartments({
+            code,
+            namespace,
+            page = 1,
+            limit = 10,
+        }: {
+            /** 权限分组内角色的唯一标识符 **/
+            code: string,
+            /** 所属权限分组的 code **/
+            namespace?: string,
+            /** 当前页数，从 1 开始 **/
+            page?: number,
+            /** 每页数目，最大不能超过 50，默认为 10 **/
+            limit?: number,
+        }): Promise<RoleDepartmentListPaginatedRespDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/list-role-departments',
+                params: {
+                    code: code,
+                    namespace: namespace,
+                    page: page,
+                    limit: limit,
+                },
+            });
+        }
+
+        /**
+         * @summary 创建角色
+         * @description 通过权限分组（权限空间）内角色 code，创建角色，可以选择权限分组、角色描述、角色名称等。
+         * @returns RoleSingleRespDto
+         */
+        public async createRole(requestBody: CreateRoleDto,
+    ): Promise<RoleSingleRespDto> {
         return await this.httpClient.request({
             method: 'POST',
-            url: '/api/v3/delete-roles-batch',
+            url: '/api/v3/create-role',
             data: requestBody,
         });
     }
 
     /**
-     * @summary 批量创建角色
-     * @description 批量创建角色，可以选择权限分组、角色描述等。
+     * @summary 获取角色列表
+     * @description 获取角色列表，支持分页、支持根据权限分组（权限空间）筛选
+     * @returns RolePaginatedRespDto
+     */
+    public async listRoles({
+        page = 1,
+        limit = 10,
+        keywords,
+        namespace = 'default',
+    }: {
+        /** 当前页数，从 1 开始 **/
+        page?: number,
+        /** 每页数目，最大不能超过 50，默认为 10 **/
+        limit?: number,
+        /** 用于根据角色的 code 或者名称进行模糊搜索，可选。 **/
+        keywords?: string,
+        /** 所属权限分组(权限空间)的 code **/
+        namespace?: string,
+    }): Promise<RolePaginatedRespDto> {
+        return await this.httpClient.request({
+            method: 'GET',
+            url: '/api/v3/list-roles',
+            params: {
+                page: page,
+                limit: limit,
+                keywords: keywords,
+                namespace: namespace,
+            },
+        });
+    }
+
+    /**
+     * @summary 单个权限分组（权限空间）内删除角色
+     * @description 单个权限分组（权限空间）内删除角色，可以批量删除。
      * @returns IsSuccessRespDto
      */
-    public async createRolesBatch(requestBody: CreateRolesBatch,
+    public async deleteRolesBatch(requestBody: DeleteRoleDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/delete-roles-batch',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 批量创建角色
+ * @description 批量创建角色，可以选择权限分组、角色描述等。
+ * @returns IsSuccessRespDto
+ */
+public async createRolesBatch(requestBody: CreateRolesBatch,
 ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
         method: 'POST',
@@ -2242,8 +2311,8 @@ public async checkParamsNamespace(requestBody: CheckRoleParamsDto,
 }
 
 /**
- * @summary 角色 list 分页查询
- * @description 搜索角色列表，可以通过角色 name 和 code 以及所属应用进行筛选
+ * @summary 获取角色授权列表
+ * @description 获取角色授权列表。
  * @returns RoleListPageRespDto
  */
 public async listRoleAssignments({
@@ -2781,7 +2850,7 @@ public async deleteResource(requestBody: DeleteResourceDto,
 
 /**
  * @summary 批量删除资源
- * @description 通过资源唯一标志符以及所属权限分组，批量删除资源
+ * @description 批量删除资源，允许通过资源 Id 列表进行批量删除，同时允许权限空间加资源 Code 列表进行批量删除，资源 Id 列表和资源 Code 列表同时必须存在一个，如果两个都存在，则以资源 Id 列表为主
  * @returns IsSuccessRespDto
  */
 public async deleteResourcesBatch(requestBody: DeleteResourcesBatchDto,
@@ -2794,11 +2863,12 @@ public async deleteResourcesBatch(requestBody: DeleteResourcesBatchDto,
 }
 
 /**
+ * @deprecated
  * @summary 批量删除资源
- * @description 通过资源id批量删除资源
+ * @description 批量删除资源，通过资源 Id 进行批量删除。
  * @returns IsSuccessRespDto
  */
-public async batchDeleteCommonResource(requestBody: DeleteCommonResourcesBatchDto,
+public async deleteResourcesByIdBatch(requestBody: DeleteCommonResourcesBatchDto,
 ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
         method: 'POST',
@@ -2823,7 +2893,7 @@ public async associateTenantResource(requestBody: AssociateTenantResourceDto,
 
 /**
  * @summary 创建权限分组
- * @description 创建权限分组，可以设置权限分组（名称、Code 和描述信息。
+ * @description 创建权限分组，可以设置权限分组名称、Code 和描述信息。
  * @returns NamespaceRespDto
  */
 public async createNamespace(requestBody: CreateNamespaceDto,
@@ -2851,7 +2921,7 @@ public async createNamespacesBatch(requestBody: CreateNamespacesBatchDto,
 
 /**
  * @summary 获取权限分组详情
- * @description 通过权限分组唯一标志符（Code），获取权限分组详情。
+ * @description 通过权限分组唯一标志符(Code)，获取权限分组详情。
  * @returns NamespaceRespDto
  */
 public async getNamespace({
@@ -2891,7 +2961,7 @@ public async getNamespacesBatch({
 
 /**
  * @summary 修改权限分组信息
- * @description 修改权限分组信息，可以修改名称、描述信息以及新的唯一标志符。
+ * @description 修改权限分组信息，可以修改名称、描述信息以及新的唯一标志符(NewCode)。
  * @returns UpdateNamespaceRespDto
  */
 public async updateNamespace(requestBody: UpdateNamespaceDto,
@@ -2905,7 +2975,7 @@ public async updateNamespace(requestBody: UpdateNamespaceDto,
 
 /**
  * @summary 删除权限分组信息
- * @description 通过权限分组唯一标志符，删除权限分组信息。
+ * @description 通过权限分组唯一标志符(Code)，删除权限分组信息。
  * @returns IsSuccessRespDto
  */
 public async deleteNamespace(requestBody: DeleteNamespaceDto,
@@ -2919,7 +2989,7 @@ public async deleteNamespace(requestBody: DeleteNamespaceDto,
 
 /**
  * @summary 批量删除权限分组
- * @description 分别通过权限分组唯一标志符，批量删除权限分组。
+ * @description 分别通过权限分组唯一标志符(Code)，批量删除权限分组。
  * @returns IsSuccessRespDto
  */
 public async deleteNamespacesBatch(requestBody: DeleteNamespacesBatchDto,
@@ -2932,8 +3002,8 @@ public async deleteNamespacesBatch(requestBody: DeleteNamespacesBatchDto,
 }
 
 /**
- * @summary 分页获取权限分组（列表
- * @description 根据筛选条件，分页获取资源详情列表。
+ * @summary 分页获取权限分组列表
+ * @description 根据筛选条件，分页获取权限分组列表。
  * @returns NamespaceListPaginatedRespDto
  */
 public async listNamespaces({
@@ -3717,6 +3787,240 @@ public async checkDomainAvailable(requestBody: CheckDomainAvailable,
 }
 
 /**
+ * @summary 创建 ASA 账号
+ * @description 在某一应用下创建 ASA 账号
+ * @returns AsaAccountSingleRespDto
+ */
+public async createAsaAccount(requestBody: CreateAsaAccountDto,
+): Promise<AsaAccountSingleRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/create-asa-account',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 批量创建 ASA 账号
+ * @description 在某一应用下批量创建 ASA 账号
+ * @returns IsSuccessRespDto
+ */
+public async createAsaAccountBatch(requestBody: CreateAsaAccountsBatchDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/create-asa-accounts-batch',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 更新 ASA 账号
+ * @description 更新某个 ASA 账号信息
+ * @returns AsaAccountSingleRespDto
+ */
+public async updateAsaAccount(requestBody: UpdateAsaAccountDto,
+): Promise<AsaAccountSingleRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/update-asa-account',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 获取 ASA 账号列表
+ * @description 分页获取某一应用下的 ASA 账号列表
+ * @returns AsaAccountPaginatedRespDto
+ */
+public async listAsaAccount({
+    appId,
+    page = 1,
+    limit = 10,
+}: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** 当前页数，从 1 开始 **/
+    page?: number,
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number,
+}): Promise<AsaAccountPaginatedRespDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/list-asa-accounts',
+        params: {
+            appId: appId,
+            page: page,
+            limit: limit,
+        },
+    });
+}
+
+/**
+ * @summary 获取 ASA 账号
+ * @description 根据 ASA 账号 ID 获取账号详细信息
+ * @returns AsaAccountSingleRespDto
+ */
+public async getAsaAccount({
+    appId,
+    accountId,
+}: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** ASA 账号 ID **/
+    accountId: string,
+}): Promise<AsaAccountSingleRespDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-asa-account',
+        params: {
+            appId: appId,
+            accountId: accountId,
+        },
+    });
+}
+
+/**
+ * @summary 批量获取 ASA 账号
+ * @description 根据 ASA 账号 ID 列表批量获取账号详细信息
+ * @returns AsaAccountListRespDto
+ */
+public async getAsaAccountBatch(requestBody: GetAsaAccountBatchDto,
+): Promise<AsaAccountListRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/get-asa-accounts-batch',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 删除 ASA 账号
+ * @description 通过 ASA 账号 ID 删除 ASA 账号
+ * @returns IsSuccessRespDto
+ */
+public async deleteAsaAccount(requestBody: DeleteAsaAccountDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/delete-asa-account',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 批量删除 ASA 账号
+ * @description 通过 ASA 账号 ID 批量删除 ASA 账号
+ * @returns IsSuccessRespDto
+ */
+public async deleteAsaAccountBatch(requestBody: DeleteAsaAccountBatchDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/delete-asa-accounts-batch',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 分配 ASA 账号
+ * @description 分配 ASA 账号给用户、组织、分组或角色
+ * @returns IsSuccessRespDto
+ */
+public async assignAsaAccount(requestBody: AssignAsaAccountsDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/assign-asa-account',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 取消分配 ASA 账号
+ * @description 取消分配给用户、组织、分组或角色的  ASA 账号
+ * @returns IsSuccessRespDto
+ */
+public async unassignAsaAccount(requestBody: AssignAsaAccountsDto,
+): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/unassign-asa-account',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 获取 ASA 账号分配的主体列表
+ * @description 根据 ASA 账号 ID 分页获取账号被分配的主体列表
+ * @returns GetAsaAccountAssignedTargetRespDto
+ */
+public async getAsaAccountAssignedTargets({
+    appId,
+    accountId,
+    page = 1,
+    limit = 10,
+}: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** ASA 账号 ID **/
+    accountId: string,
+    /** 当前页数，从 1 开始 **/
+    page?: number,
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number,
+}): Promise<GetAsaAccountAssignedTargetRespDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-asa-account-assigned-targets',
+        params: {
+            appId: appId,
+            accountId: accountId,
+            page: page,
+            limit: limit,
+        },
+    });
+}
+
+/**
+ * @summary 获取主体被分配的 ASA 账号
+ * @description 根据主体类型和标识获取直接分配给主体的 ASA 账号
+ * @returns AsaAccountSingleNullableRespDto
+ */
+public async getAssignedAccount({
+    appId,
+    targetType,
+    targetIdentifier,
+}: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     *  **/
+    targetType: 'USER' | 'ROLE' | 'GROUP' | 'DEPARTMENT',
+    /** 目标对象的唯一标志符：
+     * - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
+     * - 如果是角色，为角色的 code，如 `admin`
+     * - 如果是分组，为分组的 code，如 `developer`
+     * - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
+     *  **/
+    targetIdentifier: string,
+}): Promise<AsaAccountSingleNullableRespDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-assigned-account',
+        params: {
+            appId: appId,
+            targetType: targetType,
+            targetIdentifier: targetIdentifier,
+        },
+    });
+}
+
+/**
  * @summary 获取安全配置
  * @description 无需传参获取安全配置
  * @returns SecuritySettingsRespDto
@@ -3798,7 +4102,7 @@ public async createPermissionNamespacesBatch(requestBody: CreatePermissionNamesp
 
 /**
  * @summary 获取权限空间详情
- * @description 通过权限空间唯一标志符 Code，获取权限空间详情。
+ * @description 通过权限空间唯一标志符(Code)，获取权限空间详情。
  * @returns GetPermissionNamespaceResponseDto
  */
 public async getPermissionNamespace({
@@ -3818,7 +4122,7 @@ public async getPermissionNamespace({
 
 /**
  * @summary 批量获取权限空间详情列表
- * @description 分别通过权限空间唯一标志符 Code，批量获取权限空间详情。
+ * @description 分别通过权限空间唯一标志符(Code)，获取权限空间详情。
  * @returns GetPermissionNamespaceListResponseDto
  */
 public async getPermissionNamespacesBatch({
@@ -3866,7 +4170,7 @@ public async listPermissionNamespaces({
 
 /**
  * @summary 修改权限空间
- * @description 修改权限空间，可以修改权限空间名称、权限空间描述信息以及权限空间新的唯一标志符 Code。
+ * @description 修改权限空间，可以修改权限空间名称、权限空间描述信息以及权限空间新的唯一标志符(Code)。
  * @returns UpdatePermissionNamespaceResponseDto
  */
 public async updatePermissionNamespace(requestBody: UpdatePermissionNamespaceDto,
@@ -3880,7 +4184,7 @@ public async updatePermissionNamespace(requestBody: UpdatePermissionNamespaceDto
 
 /**
  * @summary 删除权限空间
- * @description 通过权限空间唯一标志符 Code，删除权限空间信息。
+ * @description 通过权限空间唯一标志符(Code)，删除权限空间信息。
  * @returns IsSuccessRespDto
  */
 public async deletePermissionNamespace(requestBody: DeletePermissionNamespaceDto,
@@ -3894,7 +4198,7 @@ public async deletePermissionNamespace(requestBody: DeletePermissionNamespaceDto
 
 /**
  * @summary 批量删除权限空间
- * @description 分别通过权限空间唯一标志符 Code，批量删除权限空间信息。
+ * @description 分别通过权限空间唯一标志符(Code)，批量删除权限空间信息。
  * @returns IsSuccessRespDto
  */
 public async deletePermissionNamespacesBatch(requestBody: DeletePermissionNamespacesBatchDto,
@@ -3961,7 +4265,7 @@ public async listPermissionNamespaceRoles({
  *
  * ```json
  * {
-     * "namespaceCode": "权限空间1",
+     * "namespaceCode": "examplePermissionNamespace",
      * "resourceName": "字符串资源1",
      * "resourceCode": "str1",
      * "type": "STRING",
@@ -3975,7 +4279,7 @@ public async listPermissionNamespaceRoles({
      *
      * ```json
      * {
-         * "namespaceCode": "权限空间1",
+         * "namespaceCode": "examplePermissionNamespace",
          * "resourceName": "数组资源1",
          * "resourceCode": "array1",
          * "description": "这是一个数据资源数组类型创建",
@@ -3989,7 +4293,7 @@ public async listPermissionNamespaceRoles({
          *
          * ```json
          * {
-             * "namespaceCode": "权限空间1",
+             * "namespaceCode": "examplePermissionNamespace",
              * "resourceName": "树资源1",
              * "resourceCode": "tree1",
              * "description": "这是一个数据资源树类型创建",
@@ -4025,101 +4329,167 @@ public async listPermissionNamespaceRoles({
                     }
 
                     /**
-                     * @summary 获取数据资源列表
-                     * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
-                     * @returns ListDataResourcesPaginatedRespDto
+                     * @summary 创建字符串数据资源
+                     * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+                     * @returns CreateStringDataResourceResponseDto
                      */
-                    public async listDataResources({
-                        page = 1,
-                        limit = 10,
-                        query,
-                        namespaceCodes,
-                    }: {
-                        /** 当前页数，从 1 开始 **/
-                        page?: number,
-                        /** 每页数目，最大不能超过 50，默认为 10 **/
-                        limit?: number,
-                        /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
-                        query?: string,
-                        /** 权限数据所属权限空间 Code 列表 **/
-                        namespaceCodes?: Array<string>,
-                    }): Promise<ListDataResourcesPaginatedRespDto> {
-                        return await this.httpClient.request({
-                            method: 'GET',
-                            url: '/api/v3/list-data-resources',
-                            params: {
-                                page: page,
-                                limit: limit,
-                                query: query,
-                                namespaceCodes: namespaceCodes,
-                            },
-                        });
-                    }
-
-                    /**
-                     * @summary 获取数据资源信息
-                     * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
-                     * @returns GetDataResourceResponseDto
-                     */
-                    public async getDataResource({
-                        namespaceCode,
-                        resourceCode,
-                    }: {
-                        /** 数据资源所属的权限空间 Code **/
-                        namespaceCode: string,
-                        /** 数据资源 Code,权限空间内唯一 **/
-                        resourceCode: string,
-                    }): Promise<GetDataResourceResponseDto> {
-                        return await this.httpClient.request({
-                            method: 'GET',
-                            url: '/api/v3/get-data-resource',
-                            params: {
-                                namespaceCode: namespaceCode,
-                                resourceCode: resourceCode,
-                            },
-                        });
-                    }
-
-                    /**
-                     * @summary 修改数据资源
-                     * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
-                     * @returns UpdateDataResourceResponseDto
-                     */
-                    public async updateDataResource(requestBody: UpdateDataResourceDto,
-                ): Promise<UpdateDataResourceResponseDto> {
+                    public async createDataResourceByString(requestBody: CreateStringDataResourceDto,
+                ): Promise<CreateStringDataResourceResponseDto> {
                     return await this.httpClient.request({
                         method: 'POST',
-                        url: '/api/v3/update-data-resource',
+                        url: '/api/v3/create-string-data-resource',
                         data: requestBody,
                     });
                 }
 
                 /**
-                 * @summary 删除数据资源
-                 * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
-                 * @returns CommonResponseDto
+                 * @summary 创建数组数据资源
+                 * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+                 * @returns CreateArrayDataResourceResponseDto
                  */
-                public async deleteDataResource(requestBody: DeleteDataResourceDto,
-            ): Promise<CommonResponseDto> {
+                public async createDataResourceByArray(requestBody: CreateArrayDataResourceDto,
+            ): Promise<CreateArrayDataResourceResponseDto> {
                 return await this.httpClient.request({
                     method: 'POST',
-                    url: '/api/v3/delete-data-resource',
+                    url: '/api/v3/create-array-data-resource',
                     data: requestBody,
                 });
             }
 
             /**
-             * @summary 检查数据资源名称或者 Code 是否有效
-             * @description 检查数据资源名称或者 Code 在权限空间内是否有效,通过数据资源名称或者数据资源 Code 以及所属权限空间 Code,判断在指定的权限空间内是否有效。
+             * @summary 创建树数据资源
+             * @description 创建树数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+             * @returns CreateTreeDataResourceResponseDto
+             */
+            public async createDataResourceByTree(requestBody: CreateTreeDataResourceDto,
+        ): Promise<CreateTreeDataResourceResponseDto> {
+            return await this.httpClient.request({
+                method: 'POST',
+                url: '/api/v3/create-tree-data-resource',
+                data: requestBody,
+            });
+        }
+
+        /**
+         * @summary 获取数据资源列表
+         * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
+         * @returns ListDataResourcesPaginatedRespDto
+         */
+        public async listDataResources({
+            page = 1,
+            limit = 10,
+            query,
+            namespaceCodes,
+        }: {
+            /** 当前页数，从 1 开始 **/
+            page?: number,
+            /** 每页数目，最大不能超过 50，默认为 10 **/
+            limit?: number,
+            /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
+            query?: string,
+            /** 权限数据所属权限空间 Code 列表 **/
+            namespaceCodes?: Array<string>,
+        }): Promise<ListDataResourcesPaginatedRespDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/list-data-resources',
+                params: {
+                    page: page,
+                    limit: limit,
+                    query: query,
+                    namespaceCodes: namespaceCodes,
+                },
+            });
+        }
+
+        /**
+         * @summary 获取数据资源信息
+         * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
+         * @returns GetDataResourceResponseDto
+         */
+        public async getDataResource({
+            namespaceCode,
+            resourceCode,
+        }: {
+            /** 数据资源所属的权限空间 Code **/
+            namespaceCode: string,
+            /** 数据资源 Code,权限空间内唯一 **/
+            resourceCode: string,
+        }): Promise<GetDataResourceResponseDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/get-data-resource',
+                params: {
+                    namespaceCode: namespaceCode,
+                    resourceCode: resourceCode,
+                },
+            });
+        }
+
+        /**
+         * @summary 修改数据资源
+         * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
+         * @returns UpdateDataResourceResponseDto
+         */
+        public async updateDataResource(requestBody: UpdateDataResourceDto,
+    ): Promise<UpdateDataResourceResponseDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-data-resource',
+            data: requestBody,
+        });
+    }
+
+    /**
+     * @summary 删除数据资源
+     * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
+     * @returns CommonResponseDto
+     */
+    public async deleteDataResource(requestBody: DeleteDataResourceDto,
+): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/delete-data-resource',
+        data: requestBody,
+    });
+}
+
+/**
+ * @summary 检查数据资源名称或者 Code 是否有效
+ * @description 检查数据资源名称或者 Code 在权限空间内是否有效,通过数据资源名称或者数据资源 Code 以及所属权限空间 Code,判断在指定的权限空间内是否有效。
+ *
+ * ### 数据资源 Code 有效示例
+ *
+ * - 入参
+ *
+ * ```json
+ * {
+     * "namespaceCode": "examplePermissionNamespace",
+     * "resourceCode": "test"
+     * }
+     * ```
+     *
+     * - 出参
+     *
+     * ```json
+     * {
+         * "statusCode": 200,
+         * "message": "操作成功",
+         * "apiCode": 0,
+         * "data": {
+             * "isValid": "true"
+             * }
+             * }
+             * ```
              *
-             * ### 数据资源 Code 有效示例
+             * ### 数据资源名称有效示例
              *
              * - 入参
              *
              * ```json
              * {
-                 * "namespaceCode": "权限空间1",
-                 * "resourceCode": "test"
+                 * "namespaceCode": "examplePermissionNamespace",
+                 * "resourceName": "test"
                  * }
                  * ```
                  *
@@ -4136,14 +4506,14 @@ public async listPermissionNamespaceRoles({
                          * }
                          * ```
                          *
-                         * ### 数据资源名称有效示例
+                         * ### 数据资源 Code 无效示例
                          *
                          * - 入参
                          *
                          * ```json
                          * {
-                             * "namespaceCode": "权限空间1",
-                             * "resourceName": "test"
+                             * "namespaceCode": "examplePermissionNamespace",
+                             * "resourceCode": "test"
                              * }
                              * ```
                              *
@@ -4154,946 +4524,1236 @@ public async listPermissionNamespaceRoles({
                                  * "statusCode": 200,
                                  * "message": "操作成功",
                                  * "apiCode": 0,
+                                 * "requestId": "934108e5-9fbf-4d24-8da1-c330328abd6c",
                                  * "data": {
-                                     * "isValid": "true"
+                                     * "isValid": "false",
+                                     * "message": "data resource code already exist"
                                      * }
                                      * }
                                      * ```
                                      *
-                                     * ### 数据资源 Code 无效示例
-                                     *
-                                     * - 入参
+                                     * @returns CheckParamsDataResourceResponseDto
+                                     */
+                                    public async checkDataResourceExists({
+                                        namespaceCode,
+                                        resourceName,
+                                        resourceCode,
+                                    }: {
+                                        /** 数据资源所属的权限空间 Code **/
+                                        namespaceCode: string,
+                                        /** 数据资源名称,权限空间内唯一 **/
+                                        resourceName?: string,
+                                        /** 数据资源 Code,权限空间内唯一 **/
+                                        resourceCode?: string,
+                                    }): Promise<CheckParamsDataResourceResponseDto> {
+                                        return await this.httpClient.request({
+                                            method: 'GET',
+                                            url: '/api/v3/check-data-resource-exists',
+                                            params: {
+                                                namespaceCode: namespaceCode,
+                                                resourceName: resourceName,
+                                                resourceCode: resourceCode,
+                                            },
+                                        });
+                                    }
+
+                                    /**
+                                     * @summary 创建数据策略
+                                     * @description
+                                     * 创建数据策略,通过数据策略名称、数据策略描述以及资源节点列表进行创建，数据策略支持跨多个权限空间进行数据资源创建，并且支持创建时设置资源的是否具有操作权限
                                      *
                                      * ```json
                                      * {
-                                         * "namespaceCode": "权限空间1",
-                                         * "resourceCode": "test"
-                                         * }
-                                         * ```
-                                         *
-                                         * - 出参
-                                         *
-                                         * ```json
-                                         * {
-                                             * "statusCode": 200,
-                                             * "message": "操作成功",
-                                             * "apiCode": 0,
-                                             * "requestId": "934108e5-9fbf-4d24-8da1-c330328abd6c",
-                                             * "data": {
-                                                 * "isValid": "false",
-                                                 * "message": "data resource code already exist"
-                                                 * }
-                                                 * }
-                                                 * ```
-                                                 *
-                                                 * @returns CheckParamsDataResourceResponseDto
+                                         * "policyName": "示例数据策略",
+                                         * "description": "这是一个示例数据策略",
+                                         * "statementList": [
+                                             * {
+                                                 * "effect": "ALLOW",
+                                                 * "dataPermissions": [
+                                                     * "examplePermissionNamespaceCode/strResourceCode/exampleAction", "examplePermissionNamespaceCode/arrResourceCode/exampleAction",
+                                                     * "examplePermissionNamespaceCode/treeResourceCode/strutCode1/exampleAction","examplePermissionNamespaceCode/treeResourceCode/strutCode2/exampleAction"
+                                                     * ]
+                                                     * },
+                                                     * {
+                                                         * "effect": "DENY",
+                                                         * "dataPermissions": [
+                                                             * "examplePermissionNamespaceCode/strResourceCode1/exampleAction", "examplePermissionNamespaceCode/arrResourceCode1/exampleAction",
+                                                             * "examplePermissionNamespaceCode/treeResourceCode1/strutCode1/exampleAction","examplePermissionNamespaceCode/treeResourceCode1/strutCode2/exampleAction"
+                                                             * ]
+                                                             * }
+                                                             * ]
+                                                             * }
+                                                             * ```
+                                                             *
+                                                             * @returns CreateDataPolicyResponseDto
+                                                             */
+                                                            public async createDataPolicy(requestBody: CreateDataPolicyDto,
+                                                        ): Promise<CreateDataPolicyResponseDto> {
+                                                            return await this.httpClient.request({
+                                                                method: 'POST',
+                                                                url: '/api/v3/create-data-policy',
+                                                                data: requestBody,
+                                                            });
+                                                        }
+
+                                                        /**
+                                                         * @summary 获取数据策略列表
+                                                         * @description 分页查询数据策略列表，也可通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找
+                                                         * @returns ListDataPoliciesPaginatedRespDto
+                                                         */
+                                                        public async listDataPolices({
+                                                            page = 1,
+                                                            limit = 10,
+                                                            query,
+                                                        }: {
+                                                            /** 当前页数，从 1 开始 **/
+                                                            page?: number,
+                                                            /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                            limit?: number,
+                                                            /** 数据策略名称关键字搜索， **/
+                                                            query?: string,
+                                                        }): Promise<ListDataPoliciesPaginatedRespDto> {
+                                                            return await this.httpClient.request({
+                                                                method: 'GET',
+                                                                url: '/api/v3/list-data-policies',
+                                                                params: {
+                                                                    page: page,
+                                                                    limit: limit,
+                                                                    query: query,
+                                                                },
+                                                            });
+                                                        }
+
+                                                        /**
+                                                         * @summary 获取数据策略简略信息列表
+                                                         * @description 分页获取数据策略简略信息列表,通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找出数据策略 ID、数据策略名称和数据策略描述信息。
+                                                         * @returns ListSimpleDataPoliciesPaginatedRespDto
+                                                         */
+                                                        public async listSimpleDataPolices({
+                                                            page = 1,
+                                                            limit = 10,
+                                                            query,
+                                                        }: {
+                                                            /** 当前页数，从 1 开始 **/
+                                                            page?: number,
+                                                            /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                            limit?: number,
+                                                            /** 数据策略名称关键字搜索， **/
+                                                            query?: string,
+                                                        }): Promise<ListSimpleDataPoliciesPaginatedRespDto> {
+                                                            return await this.httpClient.request({
+                                                                method: 'GET',
+                                                                url: '/api/v3/list-simple-data-policies',
+                                                                params: {
+                                                                    page: page,
+                                                                    limit: limit,
+                                                                    query: query,
+                                                                },
+                                                            });
+                                                        }
+
+                                                        /**
+                                                         * @summary 获取数据策略信息
+                                                         * @description 获取数据策略信息,通过数据策略 ID 获取对应数据策略信息,包含数据策略 ID、数据策略名称、数据策略描述、数据策略下所有的数据权限列表等信息
+                                                         * @returns GetDataPolicyResponseDto
+                                                         */
+                                                        public async getDataPolicy({
+                                                            policyId,
+                                                        }: {
+                                                            /** 数据策略 ID **/
+                                                            policyId: string,
+                                                        }): Promise<GetDataPolicyResponseDto> {
+                                                            return await this.httpClient.request({
+                                                                method: 'GET',
+                                                                url: '/api/v3/get-data-policy',
+                                                                params: {
+                                                                    policyId: policyId,
+                                                                },
+                                                            });
+                                                        }
+
+                                                        /**
+                                                         * @summary 修改数据策略
+                                                         * @description 修改数据策略,通过数据策略名称、数据策略描述和相关的数据资源等字段修改数据策略信息
+                                                         * @returns UpdateDataPolicyResponseDto
+                                                         */
+                                                        public async updateDataPolicy(requestBody: UpdateDataPolicyDto,
+                                                    ): Promise<UpdateDataPolicyResponseDto> {
+                                                        return await this.httpClient.request({
+                                                            method: 'POST',
+                                                            url: '/api/v3/update-data-policy',
+                                                            data: requestBody,
+                                                        });
+                                                    }
+
+                                                    /**
+                                                     * @summary 删除数据策略
+                                                     * @description 数据策略删除,通过数据策略 ID 删除对应的策略,同时也删除数据策略和对应的数据资源等关系数据
+                                                     * @returns CommonResponseDto
+                                                     */
+                                                    public async deleteDataPolicy(requestBody: DeleteDataPolicyDto,
+                                                ): Promise<CommonResponseDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'POST',
+                                                        url: '/api/v3/delete-data-policy',
+                                                        data: requestBody,
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 校验数据策略名称是否存在
+                                                 * @description 通过数据策略名称查询用户池内是否存在。
+                                                 * @returns CheckParamsDataPolicyResponseDto
                                                  */
-                                                public async checkDataResourceExists({
-                                                    namespaceCode,
-                                                    resourceName,
-                                                    resourceCode,
+                                                public async checkDataPolicyExists({
+                                                    policyName,
                                                 }: {
-                                                    /** 数据资源所属的权限空间 Code **/
-                                                    namespaceCode: string,
-                                                    /** 数据资源名称,权限空间内唯一 **/
-                                                    resourceName?: string,
-                                                    /** 数据资源 Code,权限空间内唯一 **/
-                                                    resourceCode?: string,
-                                                }): Promise<CheckParamsDataResourceResponseDto> {
+                                                    /** 数据策略名称权限空间内唯一 **/
+                                                    policyName: string,
+                                                }): Promise<CheckParamsDataPolicyResponseDto> {
                                                     return await this.httpClient.request({
                                                         method: 'GET',
-                                                        url: '/api/v3/check-data-resource-exists',
+                                                        url: '/api/v3/check-data-policy-exists',
                                                         params: {
-                                                            namespaceCode: namespaceCode,
-                                                            resourceName: resourceName,
-                                                            resourceCode: resourceCode,
+                                                            policyName: policyName,
                                                         },
                                                     });
                                                 }
 
                                                 /**
-                                                 * @summary 获取用户权限列表
-                                                 * @description 该接口用于用户列表权限查询，可以通过用户 ID 列表进行批量查询权限，也可以通过查询多个用户在同一个权限空间的权限。
+                                                 * @summary 获取数据策略下所有的授权主体的信息
+                                                 * @description 获取数据策略下所有的授权主体的信息,通过授权主体类型、数据策略 ID 和数据资源 ID 查找授权主体列表
+                                                 * @returns ListDataPolicySubjectPaginatedRespDto
+                                                 */
+                                                public async listDataPolicyTargets({
+                                                    policyId,
+                                                    page = 1,
+                                                    limit = 10,
+                                                    query,
+                                                    targetType,
+                                                }: {
+                                                    /** 数据策略 ID **/
+                                                    policyId: string,
+                                                    /** 当前页数，从 1 开始 **/
+                                                    page?: number,
+                                                    /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                    limit?: number,
+                                                    /** 关键字搜索，可以是数据策略名称 **/
+                                                    query?: string,
+                                                    /** 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型 **/
+                                                    targetType?: Array<'USER' | 'ORG' | 'GROUP' | 'ROLE'>,
+                                                }): Promise<ListDataPolicySubjectPaginatedRespDto> {
+                                                    return await this.httpClient.request({
+                                                        method: 'GET',
+                                                        url: '/api/v3/list-data-policy-targets',
+                                                        params: {
+                                                            policyId: policyId,
+                                                            page: page,
+                                                            limit: limit,
+                                                            query: query,
+                                                            targetType: targetType,
+                                                        },
+                                                    });
+                                                }
+
+                                                /**
+                                                 * @summary 授权数据策略
+                                                 * @description 数据策略创建主体授权,通过授权主体和数据策略进行相互授权
+                                                 * @returns CommonResponseDto
+                                                 */
+                                                public async authorizeDataPolicies(requestBody: CreateAuthorizeDataPolicyDto,
+                                            ): Promise<CommonResponseDto> {
+                                                return await this.httpClient.request({
+                                                    method: 'POST',
+                                                    url: '/api/v3/authorize-data-policies',
+                                                    data: requestBody,
+                                                });
+                                            }
+
+                                            /**
+                                             * @summary 撤销数据策略
+                                             * @description 删除数据策略相关的主体授权,通过授权主体 ID、授权主体类型和数据策略 ID 进行删除
+                                             * @returns CommonResponseDto
+                                             */
+                                            public async revokeDataPolicy(requestBody: DeleteAuthorizeDataPolicyDto,
+                                        ): Promise<CommonResponseDto> {
+                                            return await this.httpClient.request({
+                                                method: 'POST',
+                                                url: '/api/v3/revoke-data-policy',
+                                                data: requestBody,
+                                            });
+                                        }
+
+                                        /**
+                                         * @summary 获取用户权限列表
+                                         * @description 该接口用于用户列表权限查询，可以通过用户 ID 列表进行批量查询权限，也可以通过查询多个用户在同一个权限空间的权限。
+                                         *
+                                         * ### 查询一个用户拥有的数组资源、字符串资源和树资源权限列表示例
+                                         *
+                                         * - 入参
+                                         *
+                                         * ```json
+                                         * {
+                                             * "userIds": [
+                                                 * "6301ceaxxxxxxxxxxx27478"
+                                                 * ]
+                                                 * }
+                                                 * ```
                                                  *
-                                                 * ### 查询一个用户拥有的数组资源、字符串资源和树资源权限列表示例
-                                                 *
-                                                 * - 入参
+                                                 * - 出参
                                                  *
                                                  * ```json
                                                  * {
-                                                     * "userIds": [
-                                                         * "6301ceaxxxxxxxxxxx27478"
-                                                         * ]
-                                                         * }
-                                                         * ```
-                                                         *
-                                                         * - 出参
-                                                         *
-                                                         * ```json
-                                                         * {
-                                                             * "statusCode": 200,
-                                                             * "message": "操作成功",
-                                                             * "apiCode": 20001,
-                                                             * "data":{
-                                                                 * "userPermissionList": [{
-                                                                     * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                     * "namespaceCode": "权限空间1",
-                                                                     * "resourceList":[{
-                                                                         * "resourceCode": "str1",
-                                                                         * "actionList":["get"]
-                                                                         * },{
-                                                                             * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                             * "namespaceCode": "权限空间1",
-                                                                             * "resourceList":[{
-                                                                                 * "resourceCode": "str1",
-                                                                                 * "actionList":["get","read","update"]
-                                                                                 * }]
-                                                                                 * },{
-                                                                                     * "namespaceCode": "权限空间1",
-                                                                                     * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                                     * "resourceList":[{
-                                                                                         * "resourceCode": "tree1",
-                                                                                         * "actionList":[{
-                                                                                             * "nodePath": "/node",
-                                                                                             * "nodeActions": ["get","read","update"]
-                                                                                             * }]
-                                                                                             * }]
-                                                                                             * }]
-                                                                                             * }
-                                                                                             * }
-                                                                                             * ```
-                                                                                             *
-                                                                                             * ### 查询多个用户权限列表示例
-                                                                                             *
-                                                                                             * - 入参
-                                                                                             *
-                                                                                             * ```json
-                                                                                             * {
-                                                                                                 * "userIds": [
-                                                                                                     * "6301ceaxxxxxxxxxxx27478",
-                                                                                                     * "6121ceaxxxxxxxxxxx27312"
-                                                                                                     * ]
-                                                                                                     * }
-                                                                                                     * ```
-                                                                                                     *
-                                                                                                     * - 出参
-                                                                                                     *
-                                                                                                     * ```json
-                                                                                                     * {
-                                                                                                         * "statusCode": 200,
-                                                                                                         * "message": "操作成功",
-                                                                                                         * "apiCode": 20001,
-                                                                                                         * "data": {
-                                                                                                             * "userPermissionList": [
-                                                                                                                 * {
-                                                                                                                     * "namespaceCode": "权限空间1",
-                                                                                                                     * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                                                                     * "resourceList": {
-                                                                                                                         * "resourceCode": "tree1",
-                                                                                                                         * "actionList": [{
-                                                                                                                             * "nodePath": "/node",
-                                                                                                                             * "nodeActions": ["read","write" ]
-                                                                                                                             * }]
-                                                                                                                             * }
-                                                                                                                             * }, {
-                                                                                                                                 * "namespaceCode": "权限空间1",
-                                                                                                                                 * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                                                                                 * "resourceList": {
-                                                                                                                                     * "resourceCode": "array1",
-                                                                                                                                     * "actionList": ["read","write"]
+                                                     * "statusCode": 200,
+                                                     * "message": "操作成功",
+                                                     * "apiCode": 20001,
+                                                     * "data": {
+                                                         * "userPermissionList": [
+                                                             * {
+                                                                 * "userId": "6301ceaxxxxxxxxxxx27478",
+                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                 * "resourceList": [
+                                                                     * {
+                                                                         * "resourceCode": "strCode",
+                                                                         * "authorize": {
+                                                                             * "value": "示例字符串资源",
+                                                                             * "actions": [
+                                                                                 * "read",
+                                                                                 * "post",
+                                                                                 * "get",
+                                                                                 * "write"
+                                                                                 * ]
+                                                                                 * }
+                                                                                 * },
+                                                                                 * {
+                                                                                     * "resourceCode": "arrayCode",
+                                                                                     * "authorize": {
+                                                                                         * "values": [
+                                                                                             * "示例数据资源"
+                                                                                             * ],
+                                                                                             * "actions": [
+                                                                                                 * "read",
+                                                                                                 * "post",
+                                                                                                 * "get",
+                                                                                                 * "write"
+                                                                                                 * ]
+                                                                                                 * }
+                                                                                                 * },
+                                                                                                 * {
+                                                                                                     * "resourceCode": "treeCode",
+                                                                                                     * "authorize": {
+                                                                                                         * "authList": [
+                                                                                                             * {
+                                                                                                                 * "nodePath": "/treeCode/treeChildrenCode1",
+                                                                                                                 * "nodeActions": [
+                                                                                                                     * "read",
+                                                                                                                     * "get"
+                                                                                                                     * ],
+                                                                                                                     * "nodeName": "treeChildrenName1",
+                                                                                                                     * "nodeValue": "treeChildrenValue1"
+                                                                                                                     * },
+                                                                                                                     * {
+                                                                                                                         * "nodePath": "/treeCode/treeChildrenCode2",
+                                                                                                                         * "nodeActions": [
+                                                                                                                             * "read",
+                                                                                                                             * "get"
+                                                                                                                             * ],
+                                                                                                                             * "nodeName": "treeChildrenName2",
+                                                                                                                             * "nodeValue": "treeChildrenValue2"
+                                                                                                                             * },
+                                                                                                                             * {
+                                                                                                                                 * "nodePath": "/treeCode/treeChildrenCode3",
+                                                                                                                                 * "nodeActions": [
+                                                                                                                                     * "read"
+                                                                                                                                     * ],
+                                                                                                                                     * "nodeName": "treeChildrenName3",
+                                                                                                                                     * "nodeValue": "treeChildrenValue3"
                                                                                                                                      * }
-                                                                                                                                     * },{
-                                                                                                                                         * "namespaceCode": "权限空间1",
-                                                                                                                                         * "userId": "6121ceaxxxxxxxxxxx27312",
-                                                                                                                                         * "resourceList": {
-                                                                                                                                             * "resourceCode": "tree1",
-                                                                                                                                             * "actionList": [{
-                                                                                                                                                 * "nodePath": "/node",
-                                                                                                                                                 * "nodeActions": ["read","write" ]
-                                                                                                                                                 * }]
-                                                                                                                                                 * }
-                                                                                                                                                 * }, {
-                                                                                                                                                     * "namespaceCode": "权限空间1",
-                                                                                                                                                     * "userId": "6121ceaxxxxxxxxxxx27312",
-                                                                                                                                                     * "resourceList": {
-                                                                                                                                                         * "resourceCode": "array1",
-                                                                                                                                                         * "actionList": ["read","write"]
-                                                                                                                                                         * }
-                                                                                                                                                         * }]
-                                                                                                                                                         * }
-                                                                                                                                                         * }
-                                                                                                                                                         * ```
-                                                                                                                                                         *
-                                                                                                                                                         * ### 查询多个用户在多个权限空间下权限列表示例
-                                                                                                                                                         *
-                                                                                                                                                         * - 入参
-                                                                                                                                                         *
-                                                                                                                                                         * ```json
+                                                                                                                                     * ]
+                                                                                                                                     * }
+                                                                                                                                     * }
+                                                                                                                                     * ]
+                                                                                                                                     * }
+                                                                                                                                     * ]
+                                                                                                                                     * }
+                                                                                                                                     * }
+                                                                                                                                     * ```
+                                                                                                                                     *
+                                                                                                                                     * ### 查询多个用户权限列表示例
+                                                                                                                                     *
+                                                                                                                                     * - 入参
+                                                                                                                                     *
+                                                                                                                                     * ```json
+                                                                                                                                     * {
+                                                                                                                                         * "userIds": [
+                                                                                                                                             * "6301ceaxxxxxxxxxxx27478",
+                                                                                                                                             * "6121ceaxxxxxxxxxxx27312"
+                                                                                                                                             * ]
+                                                                                                                                             * }
+                                                                                                                                             * ```
+                                                                                                                                             *
+                                                                                                                                             * - 出参
+                                                                                                                                             *
+                                                                                                                                             * ```json
+                                                                                                                                             * {
+                                                                                                                                                 * "statusCode": 200,
+                                                                                                                                                 * "message": "操作成功",
+                                                                                                                                                 * "apiCode": 20001,
+                                                                                                                                                 * "data": {
+                                                                                                                                                     * "userPermissionList": [
                                                                                                                                                          * {
-                                                                                                                                                             * "userIds": [
-                                                                                                                                                                 * "6301ceaxxxxxxxxxxx27478",
-                                                                                                                                                                 * "6121ceaxxxxxxxxxxx27312"
-                                                                                                                                                                 * ],
-                                                                                                                                                                 * "namespaceCodes": [
-                                                                                                                                                                     * "权限空间1",
-                                                                                                                                                                     * "权限空间2"
-                                                                                                                                                                     * ]
-                                                                                                                                                                     * }
-                                                                                                                                                                     * ```
-                                                                                                                                                                     *
-                                                                                                                                                                     * - 出参
-                                                                                                                                                                     *
-                                                                                                                                                                     * ```json
-                                                                                                                                                                     * {
-                                                                                                                                                                         * "statusCode": 200,
-                                                                                                                                                                         * "message": "操作成功",
-                                                                                                                                                                         * "apiCode": 20001,
-                                                                                                                                                                         * "data": {
-                                                                                                                                                                             * "userPermissionList": [
-                                                                                                                                                                                 * {
-                                                                                                                                                                                     * "namespaceCode": "权限空间1",
-                                                                                                                                                                                     * "userId": "6301ceaxxxxxxxxxxx27478",
-                                                                                                                                                                                     * "resourceList": {
-                                                                                                                                                                                         * "resourceCode": "tree1",
-                                                                                                                                                                                         * "actionList": [{
-                                                                                                                                                                                             * "nodePath": "/node",
-                                                                                                                                                                                             * "nodeActions": ["read","write" ]
-                                                                                                                                                                                             * }]
-                                                                                                                                                                                             * }
-                                                                                                                                                                                             * },{
-                                                                                                                                                                                                 * "namespaceCode": "权限空间2",
-                                                                                                                                                                                                 * "userId": "6121ceaxxxxxxxxxxx27312",
-                                                                                                                                                                                                 * "resourceList": {
-                                                                                                                                                                                                     * "resourceCode": "tree1",
-                                                                                                                                                                                                     * "actionList": [{
-                                                                                                                                                                                                         * "nodePath": "/node",
-                                                                                                                                                                                                         * "nodeActions": ["read","write" ]
-                                                                                                                                                                                                         * }]
-                                                                                                                                                                                                         * }
-                                                                                                                                                                                                         * }]
-                                                                                                                                                                                                         * }
-                                                                                                                                                                                                         * }
-                                                                                                                                                                                                         * ```
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * @returns GetUserPermissionListRespDto
-                                                                                                                                                                                                         */
-                                                                                                                                                                                                        public async getUserPermissionList(requestBody: GetUserPermissionListDto,
-                                                                                                                                                                                                    ): Promise<GetUserPermissionListRespDto> {
-                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                            method: 'POST',
-                                                                                                                                                                                                            url: '/api/v3/get-user-permission-list',
-                                                                                                                                                                                                            data: requestBody,
-                                                                                                                                                                                                        });
-                                                                                                                                                                                                    }
-
-                                                                                                                                                                                                    /**
-                                                                                                                                                                                                     * @summary 判断用户权限
-                                                                                                                                                                                                     * @description 该接口用于判断用户权限，通过权限空间 Code、用户 ID、资源操作以及资源列表来判断用户是否对资源拥有操作权限。
+                                                                                                                                                             * "userId": "6301ceaxxxxxxxxxxx27478",
+                                                                                                                                                             * "namespaceCode": "examplePermissionNamespace1",
+                                                                                                                                                             * "resourceList": [
+                                                                                                                                                                 * {
+                                                                                                                                                                     * "resourceCode": "strCode1",
+                                                                                                                                                                     * "authorize": {
+                                                                                                                                                                         * "value": "示例字符串资源",
+                                                                                                                                                                         * "actions": [
+                                                                                                                                                                             * "read",
+                                                                                                                                                                             * "post",
+                                                                                                                                                                             * "get",
+                                                                                                                                                                             * "write"
+                                                                                                                                                                             * ]
+                                                                                                                                                                             * }
+                                                                                                                                                                             * }
+                                                                                                                                                                             * ]
+                                                                                                                                                                             * },
+                                                                                                                                                                             * {
+                                                                                                                                                                                 * "userId": "6121ceaxxxxxxxxxxx27312",
+                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace2",
+                                                                                                                                                                                 * "resourceList": [
+                                                                                                                                                                                     * {
+                                                                                                                                                                                         * "resourceCode": "arrayCode",
+                                                                                                                                                                                         * "authorize": {
+                                                                                                                                                                                             * "values": [
+                                                                                                                                                                                                 * "示例数组资源1",
+                                                                                                                                                                                                 * "示例数组资源2"
+                                                                                                                                                                                                 * ],
+                                                                                                                                                                                                 * "actions": [
+                                                                                                                                                                                                     * "read",
+                                                                                                                                                                                                     * "post",
+                                                                                                                                                                                                     * "get",
+                                                                                                                                                                                                     * "write"
+                                                                                                                                                                                                     * ]
+                                                                                                                                                                                                     * }
+                                                                                                                                                                                                     * }
+                                                                                                                                                                                                     * ]
+                                                                                                                                                                                                     * }
+                                                                                                                                                                                                     * ]
+                                                                                                                                                                                                     * }
+                                                                                                                                                                                                     * }
+                                                                                                                                                                                                     * ```
                                                                                                                                                                                                      *
-                                                                                                                                                                                                     * ### 判断用户对字符串和数组资源权限示例
+                                                                                                                                                                                                     * ### 查询多个用户在多个权限空间下权限列表示例
                                                                                                                                                                                                      *
                                                                                                                                                                                                      * - 入参
                                                                                                                                                                                                      *
                                                                                                                                                                                                      * ```json
                                                                                                                                                                                                      * {
-                                                                                                                                                                                                         * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                         * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                         * "action": "get"
-                                                                                                                                                                                                         * "resources":["strResourceCode1", "arrayResourceCode1"]
-                                                                                                                                                                                                         * }
-                                                                                                                                                                                                         * ```
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * - 出参
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * ```json
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * ```
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * ### 判断用户对树资源权限示例
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * - 入参
-                                                                                                                                                                                                         *
-                                                                                                                                                                                                         * ```json
-                                                                                                                                                                                                         * {
-                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                             * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                             * "action": "get"
-                                                                                                                                                                                                             * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
-                                                                                                                                                                                                             * }
-                                                                                                                                                                                                             * ```
-                                                                                                                                                                                                             *
-                                                                                                                                                                                                             * - 出参
-                                                                                                                                                                                                             *
-                                                                                                                                                                                                             * ```json
-                                                                                                                                                                                                             * {
-                                                                                                                                                                                                                 * "statusCode": 200,
-                                                                                                                                                                                                                 * "message": "操作成功",
-                                                                                                                                                                                                                 * "apiCode": 20001,
-                                                                                                                                                                                                                 * "data":{
-                                                                                                                                                                                                                     * "checkResultList": [{
-                                                                                                                                                                                                                         * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                         * "action": "get",
-                                                                                                                                                                                                                         * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
-                                                                                                                                                                                                                         * "enabled": true
-                                                                                                                                                                                                                         * },{
-                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                             * "action": "get",
-                                                                                                                                                                                                                             * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
-                                                                                                                                                                                                                             * "enabled": true
-                                                                                                                                                                                                                             * }]
-                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                             * ```
-                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                             * @returns CheckPermissionRespDto
-                                                                                                                                                                                                                             */
-                                                                                                                                                                                                                            public async checkPermission(requestBody: CheckPermissionDto,
-                                                                                                                                                                                                                        ): Promise<CheckPermissionRespDto> {
-                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                method: 'POST',
-                                                                                                                                                                                                                                url: '/api/v3/check-permission',
-                                                                                                                                                                                                                                data: requestBody,
-                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                        }
-
-                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                         * @summary 获取用户指定资源权限列表
-                                                                                                                                                                                                                         * @description 该接口主要用于获取用户指定资源的权限列表,通过权限空间 Code、用户 ID 以及资源列表查询所有权限。
-                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                         * ### 获取用户字符串和数组资源权限示例
-                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                         * - 入参
-                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                         * ```json
-                                                                                                                                                                                                                         * {
-                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                             * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                                             * "resources":["strResourceCode1", "arrayResourceCode1"]
-                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                             * ```
-                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                             * - 出参
-                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                             * ```json
+                                                                                                                                                                                                         * "userIds": [
+                                                                                                                                                                                                             * "6301ceaxxxxxxxxxxx27478",
+                                                                                                                                                                                                             * "6121ceaxxxxxxxxxxx27312"
+                                                                                                                                                                                                             * ],
+                                                                                                                                                                                                             * "namespaceCodes": [
+                                                                                                                                                                                                                 * "examplePermissionNamespace1",
+                                                                                                                                                                                                                 * "examplePermissionNamespace2"
+                                                                                                                                                                                                                 * ]
+                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                 * - 出参
+                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                 * {
+                                                                                                                                                                                                                     * "statusCode": 200,
+                                                                                                                                                                                                                     * "message": "操作成功",
+                                                                                                                                                                                                                     * "apiCode": 20001,
+                                                                                                                                                                                                                     * "data": {
+                                                                                                                                                                                                                         * "userPermissionList": [
                                                                                                                                                                                                                              * {
-                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                 * "statusCode": 200,
-                                                                                                                                                                                                                                 * "message": "操作成功",
-                                                                                                                                                                                                                                 * "apiCode": 20001,
-                                                                                                                                                                                                                                 * "data":{
-                                                                                                                                                                                                                                     * "permissionList": [{
-                                                                                                                                                                                                                                         * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                         * "actionList": ["read","get"],
-                                                                                                                                                                                                                                         * "resource": "strResourceCode1"
-                                                                                                                                                                                                                                         * },{
-                                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                             * "actionList": ["read","update","delete"],
-                                                                                                                                                                                                                                             * "resource": "arrayResourceCode1"
-                                                                                                                                                                                                                                             * }]
-                                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                                             * ```
-                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                             * ### 获取用户树资源权限示例
-                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                             * - 入参
-                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                             * ```json
-                                                                                                                                                                                                                                             * {
-                                                                                                                                                                                                                                                 * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                 * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                                                                 * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+                                                                                                                                                                                                                                 * "userId": "6301ceaxxxxxxxxxxx27478",
+                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace1",
+                                                                                                                                                                                                                                 * "resourceList": [
+                                                                                                                                                                                                                                     * {
+                                                                                                                                                                                                                                         * "resourceCode": "strCode1",
+                                                                                                                                                                                                                                         * "authorize": {
+                                                                                                                                                                                                                                             * "value": "示例字符串资源",
+                                                                                                                                                                                                                                             * "actions": [
+                                                                                                                                                                                                                                                 * "read",
+                                                                                                                                                                                                                                                 * "post",
+                                                                                                                                                                                                                                                 * "get",
+                                                                                                                                                                                                                                                 * "write"
+                                                                                                                                                                                                                                                 * ]
                                                                                                                                                                                                                                                  * }
-                                                                                                                                                                                                                                                 * ```
-                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                 * - 出参
-                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                 * ]
+                                                                                                                                                                                                                                                 * },
                                                                                                                                                                                                                                                  * {
-                                                                                                                                                                                                                                                     * "statusCode": 200,
-                                                                                                                                                                                                                                                     * "message": "操作成功",
-                                                                                                                                                                                                                                                     * "apiCode": 20001,
-                                                                                                                                                                                                                                                     * "data":{
-                                                                                                                                                                                                                                                         * "permissionList": [{
-                                                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                             * "actionList": ["read", "update", "delete"],
-                                                                                                                                                                                                                                                             * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1"
-                                                                                                                                                                                                                                                             * },{
-                                                                                                                                                                                                                                                                 * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                 * "actionList": ["read", "get", "delete"],
-                                                                                                                                                                                                                                                                 * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"
-                                                                                                                                                                                                                                                                 * }]
-                                                                                                                                                                                                                                                                 * }
-                                                                                                                                                                                                                                                                 * }
-                                                                                                                                                                                                                                                                 * ```
-                                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                                 * @returns GetUserResourcePermissionListRespDto
-                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                public async getUserResourcePermissionList(requestBody: GetUserResourcePermissionListDto,
-                                                                                                                                                                                                                                                            ): Promise<GetUserResourcePermissionListRespDto> {
-                                                                                                                                                                                                                                                                return await this.httpClient.request({
-                                                                                                                                                                                                                                                                    method: 'POST',
-                                                                                                                                                                                                                                                                    url: '/api/v3/get-user-resource-permission-list',
-                                                                                                                                                                                                                                                                    data: requestBody,
-                                                                                                                                                                                                                                                                });
-                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                     * "userId": "6121ceaxxxxxxxxxxx27312",
+                                                                                                                                                                                                                                                     * "namespaceCode": "examplePermissionNamespace2",
+                                                                                                                                                                                                                                                     * "resourceList": [
+                                                                                                                                                                                                                                                         * {
+                                                                                                                                                                                                                                                             * "resourceCode": "arrayCode",
+                                                                                                                                                                                                                                                             * "authorize": {
+                                                                                                                                                                                                                                                                 * "values": [
+                                                                                                                                                                                                                                                                     * "示例数组资源1",
+                                                                                                                                                                                                                                                                     * "示例数组资源2"
+                                                                                                                                                                                                                                                                     * ],
+                                                                                                                                                                                                                                                                     * "actions": [
+                                                                                                                                                                                                                                                                         * "read",
+                                                                                                                                                                                                                                                                         * "post",
+                                                                                                                                                                                                                                                                         * "get",
+                                                                                                                                                                                                                                                                         * "write"
+                                                                                                                                                                                                                                                                         * ]
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * ]
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * ]
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * ```
+                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                         * @returns GetUserPermissionListRespDto
+                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                        public async getUserPermissionList(requestBody: GetUserPermissionListDto,
+                                                                                                                                                                                                                                                                    ): Promise<GetUserPermissionListRespDto> {
+                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                            method: 'POST',
+                                                                                                                                                                                                                                                                            url: '/api/v3/get-user-permission-list',
+                                                                                                                                                                                                                                                                            data: requestBody,
+                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                            /**
-                                                                                                                                                                                                                                                             * @summary 获取资源被授权的用户列表
-                                                                                                                                                                                                                                                             * @description 该接口主要用于获取资源被授权的用户列表，通过权限空间 Code 、资源操作列表以及资源列表查询有权限的用户列表。
-                                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                                             * ### 获取字符串和数组资源被授权的用户列表示例
-                                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                                             * - 入参
-                                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                                             * ```json
-                                                                                                                                                                                                                                                             * {
-                                                                                                                                                                                                                                                                 * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                 * "actions": ["get", "update", "read"]
-                                                                                                                                                                                                                                                                 * "resources":["strResourceCode1", "arrayResourceCode1"]
-                                                                                                                                                                                                                                                                 * }
-                                                                                                                                                                                                                                                                 * ```
-                                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                                 * - 出参
-                                                                                                                                                                                                                                                                 *
-                                                                                                                                                                                                                                                                 * ```json
-                                                                                                                                                                                                                                                                 * {
-                                                                                                                                                                                                                                                                     * "statusCode": 200,
-                                                                                                                                                                                                                                                                     * "message": "操作成功",
-                                                                                                                                                                                                                                                                     * "apiCode": 20001,
-                                                                                                                                                                                                                                                                     * "data":{
-                                                                                                                                                                                                                                                                         * "authUserList": [{
-                                                                                                                                                                                                                                                                             * "resource": "strResourceCode1",
-                                                                                                                                                                                                                                                                             * "actionAuthList": [{
-                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                 * "action": "get"
-                                                                                                                                                                                                                                                                                 * },{
-                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                     * "action": "update"
-                                                                                                                                                                                                                                                                                     * },{
-                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                         * "action": "read"
-                                                                                                                                                                                                                                                                                         * }]
-                                                                                                                                                                                                                                                                                         * },{
+                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                     * @summary 判断用户权限
+                                                                                                                                                                                                                                                                     * @description 该接口用于判断用户权限，通过权限空间 Code、用户 ID、资源操作以及资源列表来判断用户是否对资源拥有操作权限。
+                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                     * ### 判断用户对字符串和数组资源权限示例
+                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                     * - 入参
+                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                     * ```json
+                                                                                                                                                                                                                                                                     * {
+                                                                                                                                                                                                                                                                         * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                         * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                         * "action": "get"
+                                                                                                                                                                                                                                                                         * "resources":["strResourceCode1", "arrayResourceCode1"]
+                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                         * ```
+                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                         * - 出参
+                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                         * ```json
+                                                                                                                                                                                                                                                                         * {
+                                                                                                                                                                                                                                                                             * "statusCode": 200,
+                                                                                                                                                                                                                                                                             * "message": "操作成功",
+                                                                                                                                                                                                                                                                             * "apiCode": 20001,
+                                                                                                                                                                                                                                                                             * "data": {
+                                                                                                                                                                                                                                                                                 * "checkResultList": [
+                                                                                                                                                                                                                                                                                     * {
+                                                                                                                                                                                                                                                                                         * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                         * "resource": "strResourceCode1",
+                                                                                                                                                                                                                                                                                         * "action": "get",
+                                                                                                                                                                                                                                                                                         * "enabled": true
+                                                                                                                                                                                                                                                                                         * },
+                                                                                                                                                                                                                                                                                         * {
+                                                                                                                                                                                                                                                                                             * "namespaceCode": "examplePermissionNamespace",
                                                                                                                                                                                                                                                                                              * "resource": "arrayResourceCode1",
-                                                                                                                                                                                                                                                                                             * "actionAuthList": [{
-                                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                             * "action": "get",
+                                                                                                                                                                                                                                                                                             * "enabled": false
+                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                             * ]
+                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                             * ```
+                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                             * ### 判断用户对树资源权限示例
+                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                             * - 入参
+                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                             * ```json
+                                                                                                                                                                                                                                                                                             * {
+                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                 * "userId": "63721xxxxxxxxxxxxdde14a3",
                                                                                                                                                                                                                                                                                                  * "action": "get"
-                                                                                                                                                                                                                                                                                                 * },{
-                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                     * "action": "update"
-                                                                                                                                                                                                                                                                                                     * },{
-                                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                         * "action": "read"
-                                                                                                                                                                                                                                                                                                         * }]
-                                                                                                                                                                                                                                                                                                         * }]
-                                                                                                                                                                                                                                                                                                         * }
-                                                                                                                                                                                                                                                                                                         * }
-                                                                                                                                                                                                                                                                                                         * ```
-                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                         * ### 获取树资源被授权的用户列表示例
-                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                         * - 入参
-                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                         * ```json
-                                                                                                                                                                                                                                                                                                         * {
-                                                                                                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                                                             * "actions": ["get", "update", "delete"]
-                                                                                                                                                                                                                                                                                                             * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
-                                                                                                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                                                                                                             * ```
+                                                                                                                                                                                                                                                                                                 * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                 * - 出参
+                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                                                                                                 * {
+                                                                                                                                                                                                                                                                                                     * "statusCode": 200,
+                                                                                                                                                                                                                                                                                                     * "message": "操作成功",
+                                                                                                                                                                                                                                                                                                     * "apiCode": 20001,
+                                                                                                                                                                                                                                                                                                     * "data":{
+                                                                                                                                                                                                                                                                                                         * "checkResultList": [{
+                                                                                                                                                                                                                                                                                                             * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                             * "action": "get",
+                                                                                                                                                                                                                                                                                                             * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+                                                                                                                                                                                                                                                                                                             * "enabled": true
+                                                                                                                                                                                                                                                                                                             * },{
+                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                 * "action": "get",
+                                                                                                                                                                                                                                                                                                                 * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+                                                                                                                                                                                                                                                                                                                 * "enabled": true
+                                                                                                                                                                                                                                                                                                                 * }]
+                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                 * @returns CheckPermissionRespDto
+                                                                                                                                                                                                                                                                                                                 */
+                                                                                                                                                                                                                                                                                                                public async checkPermission(requestBody: CheckPermissionDto,
+                                                                                                                                                                                                                                                                                                            ): Promise<CheckPermissionRespDto> {
+                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                    method: 'POST',
+                                                                                                                                                                                                                                                                                                                    url: '/api/v3/check-permission',
+                                                                                                                                                                                                                                                                                                                    data: requestBody,
+                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                            }
+
+                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                             * @summary 获取用户指定资源权限列表
+                                                                                                                                                                                                                                                                                                             * @description 该接口主要用于获取用户指定资源的权限列表,通过权限空间 Code、用户 ID 以及资源列表查询所有权限。
                                                                                                                                                                                                                                                                                                              *
-                                                                                                                                                                                                                                                                                                             * - 出参
+                                                                                                                                                                                                                                                                                                             * ### 获取用户字符串和数组资源权限示例
+                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                             * - 入参
                                                                                                                                                                                                                                                                                                              *
                                                                                                                                                                                                                                                                                                              * ```json
                                                                                                                                                                                                                                                                                                              * {
-                                                                                                                                                                                                                                                                                                                 * "statusCode": 200,
-                                                                                                                                                                                                                                                                                                                 * "message": "操作成功",
-                                                                                                                                                                                                                                                                                                                 * "apiCode": 20001,
-                                                                                                                                                                                                                                                                                                                 * "data":{
-                                                                                                                                                                                                                                                                                                                     * "authUserList": [{
-                                                                                                                                                                                                                                                                                                                         * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
-                                                                                                                                                                                                                                                                                                                         * "actionAuthList": [{
-                                                                                                                                                                                                                                                                                                                             * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                             * "action": "get"
+                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                 * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                                                                 * "resources":["strResourceCode1", "arrayResourceCode1"]
+                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                 * - 出参
+                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                                                                                                                 * {
+                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                     * "statusCode": 200,
+                                                                                                                                                                                                                                                                                                                     * "message": "操作成功",
+                                                                                                                                                                                                                                                                                                                     * "apiCode": 20001,
+                                                                                                                                                                                                                                                                                                                     * "data":{
+                                                                                                                                                                                                                                                                                                                         * "permissionList": [{
+                                                                                                                                                                                                                                                                                                                             * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                             * "actionList": ["read","get"],
+                                                                                                                                                                                                                                                                                                                             * "resource": "strResourceCode1"
                                                                                                                                                                                                                                                                                                                              * },{
-                                                                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                                 * "action": "update"
-                                                                                                                                                                                                                                                                                                                                 * },{
-                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                                     * "action": "delete"
-                                                                                                                                                                                                                                                                                                                                     * }]
-                                                                                                                                                                                                                                                                                                                                     * },{
-                                                                                                                                                                                                                                                                                                                                         * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
-                                                                                                                                                                                                                                                                                                                                         * "actionAuthList": [{
-                                                                                                                                                                                                                                                                                                                                             * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                                             * "action": "get"
-                                                                                                                                                                                                                                                                                                                                             * },{
-                                                                                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                                                 * "action": "update"
+                                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                 * "actionList": ["read","update","delete"],
+                                                                                                                                                                                                                                                                                                                                 * "resource": "arrayResourceCode1"
+                                                                                                                                                                                                                                                                                                                                 * }]
+                                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                 * ### 获取用户树资源权限示例
+                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                 * - 入参
+                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                                                                                                                                 * {
+                                                                                                                                                                                                                                                                                                                                     * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                     * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                                                                                     * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+                                                                                                                                                                                                                                                                                                                                     * }
+                                                                                                                                                                                                                                                                                                                                     * ```
+                                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                                     * - 出参
+                                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                                     * ```json
+                                                                                                                                                                                                                                                                                                                                     * {
+                                                                                                                                                                                                                                                                                                                                         * "statusCode": 200,
+                                                                                                                                                                                                                                                                                                                                         * "message": "操作成功",
+                                                                                                                                                                                                                                                                                                                                         * "apiCode": 20001,
+                                                                                                                                                                                                                                                                                                                                         * "data":{
+                                                                                                                                                                                                                                                                                                                                             * "permissionList": [{
+                                                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                 * "actionList": ["read", "update", "delete"],
+                                                                                                                                                                                                                                                                                                                                                 * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1"
                                                                                                                                                                                                                                                                                                                                                  * },{
-                                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
-                                                                                                                                                                                                                                                                                                                                                     * "action": "delete"
-                                                                                                                                                                                                                                                                                                                                                     * }]
+                                                                                                                                                                                                                                                                                                                                                     * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                     * "actionList": ["read", "get", "delete"],
+                                                                                                                                                                                                                                                                                                                                                     * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"
                                                                                                                                                                                                                                                                                                                                                      * }]
                                                                                                                                                                                                                                                                                                                                                      * }
                                                                                                                                                                                                                                                                                                                                                      * }
                                                                                                                                                                                                                                                                                                                                                      * ```
                                                                                                                                                                                                                                                                                                                                                      *
-                                                                                                                                                                                                                                                                                                                                                     * @returns ListResourceTargetsRespDto
+                                                                                                                                                                                                                                                                                                                                                     * @returns GetUserResourcePermissionListRespDto
                                                                                                                                                                                                                                                                                                                                                      */
-                                                                                                                                                                                                                                                                                                                                                    public async listResourceTargets(requestBody: ListResourceTargets,
-                                                                                                                                                                                                                                                                                                                                                ): Promise<ListResourceTargetsRespDto> {
+                                                                                                                                                                                                                                                                                                                                                    public async getUserResourcePermissionList(requestBody: GetUserResourcePermissionListDto,
+                                                                                                                                                                                                                                                                                                                                                ): Promise<GetUserResourcePermissionListRespDto> {
                                                                                                                                                                                                                                                                                                                                                     return await this.httpClient.request({
                                                                                                                                                                                                                                                                                                                                                         method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/list-resource-targets',
+                                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/get-user-resource-permission-list',
                                                                                                                                                                                                                                                                                                                                                         data: requestBody,
                                                                                                                                                                                                                                                                                                                                                     });
                                                                                                                                                                                                                                                                                                                                                 }
 
                                                                                                                                                                                                                                                                                                                                                 /**
-                                                                                                                                                                                                                                                                                                                                                 * @summary 判断用户在同层级资源下的权限
-                                                                                                                                                                                                                                                                                                                                                 * @description 该接口主要用于判断用户在同层级资源下的权限，通过权限空间 Code 、用户 ID、资源操作、资源或资源子节点查询用户是否有该同级资源的权限。
+                                                                                                                                                                                                                                                                                                                                                 * @summary 获取资源被授权的用户列表
+                                                                                                                                                                                                                                                                                                                                                 * @description 该接口主要用于获取资源被授权的用户列表，通过权限空间 Code 、资源操作列表以及资源列表查询有权限的用户列表。
                                                                                                                                                                                                                                                                                                                                                  *
-                                                                                                                                                                                                                                                                                                                                                 * ### 判断用户在同层级字符串资源权限示例
+                                                                                                                                                                                                                                                                                                                                                 * ### 获取字符串和数组资源被授权的用户列表示例
+                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                 * - 入参
                                                                                                                                                                                                                                                                                                                                                  *
                                                                                                                                                                                                                                                                                                                                                  * ```json
                                                                                                                                                                                                                                                                                                                                                  * {
-                                                                                                                                                                                                                                                                                                                                                     * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                                                                                                     * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                                                                                                                                                                     * "action": "read"
-                                                                                                                                                                                                                                                                                                                                                     * "resource":"strResourceCode1"
+                                                                                                                                                                                                                                                                                                                                                     * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                     * "actions": ["get", "update", "read"]
+                                                                                                                                                                                                                                                                                                                                                     * "resources":["strResourceCode1", "arrayResourceCode1"]
                                                                                                                                                                                                                                                                                                                                                      * }
                                                                                                                                                                                                                                                                                                                                                      * ```
                                                                                                                                                                                                                                                                                                                                                      *
-                                                                                                                                                                                                                                                                                                                                                     * ### 判断用户在同层级数组资源权限示例
+                                                                                                                                                                                                                                                                                                                                                     * - 出参
                                                                                                                                                                                                                                                                                                                                                      *
                                                                                                                                                                                                                                                                                                                                                      * ```json
                                                                                                                                                                                                                                                                                                                                                      * {
-                                                                                                                                                                                                                                                                                                                                                         * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                                                                                                         * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                                                                                                                                                                         * "action": "read",
-                                                                                                                                                                                                                                                                                                                                                         * "resource":"arrayResourceCode1"
-                                                                                                                                                                                                                                                                                                                                                         * }
-                                                                                                                                                                                                                                                                                                                                                         * ```
-                                                                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                                                                         * ### 判断用户在同层级树资源权限示例
-                                                                                                                                                                                                                                                                                                                                                         *
-                                                                                                                                                                                                                                                                                                                                                         * ```json
-                                                                                                                                                                                                                                                                                                                                                         * {
-                                                                                                                                                                                                                                                                                                                                                             * "namespaceCode": "权限空间1",
-                                                                                                                                                                                                                                                                                                                                                             * "userId": "63721xxxxxxxxxxxxdde14a3",
-                                                                                                                                                                                                                                                                                                                                                             * "action": "read",
-                                                                                                                                                                                                                                                                                                                                                             * "resource":"/treeResourceCode1/structCode1",
-                                                                                                                                                                                                                                                                                                                                                             * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
-                                                                                                                                                                                                                                                                                                                                                             * }
-                                                                                                                                                                                                                                                                                                                                                             * ```
-                                                                                                                                                                                                                                                                                                                                                             *
-                                                                                                                                                                                                                                                                                                                                                             * @returns CheckUserSameLevelPermissionResponseDto
-                                                                                                                                                                                                                                                                                                                                                             */
-                                                                                                                                                                                                                                                                                                                                                            public async checkUserSameLevelPermission(requestBody: CheckUserSameLevelPermissionDto,
-                                                                                                                                                                                                                                                                                                                                                        ): Promise<CheckUserSameLevelPermissionResponseDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/check-user-same-level-permission',
-                                                                                                                                                                                                                                                                                                                                                                data: requestBody,
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                         * "statusCode": 200,
+                                                                                                                                                                                                                                                                                                                                                         * "message": "操作成功",
+                                                                                                                                                                                                                                                                                                                                                         * "apiCode": 20001,
+                                                                                                                                                                                                                                                                                                                                                         * "data":{
+                                                                                                                                                                                                                                                                                                                                                             * "authUserList": [{
+                                                                                                                                                                                                                                                                                                                                                                 * "resource": "strResourceCode1",
+                                                                                                                                                                                                                                                                                                                                                                 * "actionAuthList": [{
+                                                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                     * "action": "get"
+                                                                                                                                                                                                                                                                                                                                                                     * },{
+                                                                                                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                         * "action": "update"
+                                                                                                                                                                                                                                                                                                                                                                         * },{
+                                                                                                                                                                                                                                                                                                                                                                             * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                             * "action": "read"
+                                                                                                                                                                                                                                                                                                                                                                             * }]
+                                                                                                                                                                                                                                                                                                                                                                             * },{
+                                                                                                                                                                                                                                                                                                                                                                                 * "resource": "arrayResourceCode1",
+                                                                                                                                                                                                                                                                                                                                                                                 * "actionAuthList": [{
+                                                                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                     * "action": "get"
+                                                                                                                                                                                                                                                                                                                                                                                     * },{
+                                                                                                                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                         * "action": "update"
+                                                                                                                                                                                                                                                                                                                                                                                         * },{
+                                                                                                                                                                                                                                                                                                                                                                                             * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                             * "action": "read"
+                                                                                                                                                                                                                                                                                                                                                                                             * }]
+                                                                                                                                                                                                                                                                                                                                                                                             * }]
+                                                                                                                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                                                                                                                             * ```
+                                                                                                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                                                                                                             * ### 获取树资源被授权的用户列表示例
+                                                                                                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                                                                                                             * - 入参
+                                                                                                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                                                                                                             * ```json
+                                                                                                                                                                                                                                                                                                                                                                                             * {
+                                                                                                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                                                                 * "actions": ["get", "update", "delete"]
+                                                                                                                                                                                                                                                                                                                                                                                                 * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+                                                                                                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                 * - 出参
+                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                 * ```json
+                                                                                                                                                                                                                                                                                                                                                                                                 * {
+                                                                                                                                                                                                                                                                                                                                                                                                     * "statusCode": 200,
+                                                                                                                                                                                                                                                                                                                                                                                                     * "message": "操作成功",
+                                                                                                                                                                                                                                                                                                                                                                                                     * "apiCode": 20001,
+                                                                                                                                                                                                                                                                                                                                                                                                     * "data":{
+                                                                                                                                                                                                                                                                                                                                                                                                         * "authUserList": [{
+                                                                                                                                                                                                                                                                                                                                                                                                             * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+                                                                                                                                                                                                                                                                                                                                                                                                             * "actionAuthList": [{
+                                                                                                                                                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                 * "action": "get"
+                                                                                                                                                                                                                                                                                                                                                                                                                 * },{
+                                                                                                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                     * "action": "update"
+                                                                                                                                                                                                                                                                                                                                                                                                                     * },{
+                                                                                                                                                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                         * "action": "delete"
+                                                                                                                                                                                                                                                                                                                                                                                                                         * }]
+                                                                                                                                                                                                                                                                                                                                                                                                                         * },{
+                                                                                                                                                                                                                                                                                                                                                                                                                             * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+                                                                                                                                                                                                                                                                                                                                                                                                                             * "actionAuthList": [{
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * "action": "get"
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * },{
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * "action": "update"
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * },{
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "action": "delete"
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * }]
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * }]
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * ```
+                                                                                                                                                                                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns ListResourceTargetsRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                                        public async listResourceTargets(requestBody: ListResourceTargets,
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ): Promise<ListResourceTargetsRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                            method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/list-resource-targets',
+                                                                                                                                                                                                                                                                                                                                                                                                                                            data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取套餐详情
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池套餐详情。
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetCurrentPackageRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getCurrentPackageInfo(): Promise<CostGetCurrentPackageRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-current-package-info',
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 判断用户在同层级资源下的权限
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * @description 该接口主要用于判断用户在同层级资源下的权限，通过权限空间 Code 、用户 ID、资源操作、资源或资源子节点查询用户是否有该同级资源的权限。
+                                                                                                                                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * ### 判断用户在同层级字符串资源权限示例
+                                                                                                                                                                                                                                                                                                                                                                                                                                     *
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * ```json
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * {
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "action": "read"
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * "resource":"strResourceCode1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * }
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * ```
+                                                                                                                                                                                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * ### 判断用户在同层级数组资源权限示例
+                                                                                                                                                                                                                                                                                                                                                                                                                                         *
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * ```json
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * {
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * "action": "read",
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * "resource":"arrayResourceCode1"
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * }
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * ```
+                                                                                                                                                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * ### 判断用户在同层级树资源权限示例
+                                                                                                                                                                                                                                                                                                                                                                                                                                             *
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * ```json
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * "namespaceCode": "examplePermissionNamespace",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * "userId": "63721xxxxxxxxxxxxdde14a3",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * "action": "read",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * "resource":"/treeResourceCode1/structCode1",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * ```
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 *
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 * @returns CheckUserSameLevelPermissionResponseDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                                 */
+                                                                                                                                                                                                                                                                                                                                                                                                                                                public async checkUserSameLevelPermission(requestBody: CheckUserSameLevelPermissionDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            ): Promise<CheckUserSameLevelPermissionResponseDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/check-user-same-level-permission',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取用量详情
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池用量详情。
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetCurrentUsageRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getUsageInfo(): Promise<CostGetCurrentUsageRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-usage-info',
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取套餐详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池套餐详情。
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetCurrentPackageRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getCurrentPackageInfo(): Promise<CostGetCurrentPackageRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-current-package-info',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取 MAU 使用记录
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池 MAU 使用记录
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetMauPeriodUsageHistoryRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getMauPeriodUsageHistory({
-                                                                                                                                                                                                                                                                                                                                                            startTime,
-                                                                                                                                                                                                                                                                                                                                                            endTime,
-                                                                                                                                                                                                                                                                                                                                                        }: {
-                                                                                                                                                                                                                                                                                                                                                            /** 起始时间（年月日） **/
-                                                                                                                                                                                                                                                                                                                                                            startTime: string,
-                                                                                                                                                                                                                                                                                                                                                            /** 截止时间（年月日） **/
-                                                                                                                                                                                                                                                                                                                                                            endTime: string,
-                                                                                                                                                                                                                                                                                                                                                        }): Promise<CostGetMauPeriodUsageHistoryRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-mau-period-usage-history',
-                                                                                                                                                                                                                                                                                                                                                                params: {
-                                                                                                                                                                                                                                                                                                                                                                    startTime: startTime,
-                                                                                                                                                                                                                                                                                                                                                                    endTime: endTime,
-                                                                                                                                                                                                                                                                                                                                                                },
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取用量详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池用量详情。
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetCurrentUsageRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getUsageInfo(): Promise<CostGetCurrentUsageRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-usage-info',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取所有权益
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池所有权益
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetAllRightItemRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getAllRightsItem(): Promise<CostGetAllRightItemRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-all-rights-items',
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取 MAU 使用记录
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池 MAU 使用记录
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetMauPeriodUsageHistoryRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getMauPeriodUsageHistory({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                startTime,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                endTime,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 起始时间（年月日） **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                startTime: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 截止时间（年月日） **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                endTime: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }): Promise<CostGetMauPeriodUsageHistoryRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-mau-period-usage-history',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        startTime: startTime,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        endTime: endTime,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取订单列表
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池订单列表
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetOrdersRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getOrders({
-                                                                                                                                                                                                                                                                                                                                                            page = 1,
-                                                                                                                                                                                                                                                                                                                                                            limit = 10,
-                                                                                                                                                                                                                                                                                                                                                        }: {
-                                                                                                                                                                                                                                                                                                                                                            /** 当前页数，从 1 开始 **/
-                                                                                                                                                                                                                                                                                                                                                            page?: number,
-                                                                                                                                                                                                                                                                                                                                                            /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                                                                                                                                                                                                                                                                                                                            limit?: number,
-                                                                                                                                                                                                                                                                                                                                                        }): Promise<CostGetOrdersRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-orders',
-                                                                                                                                                                                                                                                                                                                                                                params: {
-                                                                                                                                                                                                                                                                                                                                                                    page: page,
-                                                                                                                                                                                                                                                                                                                                                                    limit: limit,
-                                                                                                                                                                                                                                                                                                                                                                },
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取所有权益
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池所有权益
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetAllRightItemRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getAllRightsItem(): Promise<CostGetAllRightItemRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-all-rights-items',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取订单详情
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池订单详情
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetOrderDetailRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getOrderDetail({
-                                                                                                                                                                                                                                                                                                                                                            orderNo,
-                                                                                                                                                                                                                                                                                                                                                        }: {
-                                                                                                                                                                                                                                                                                                                                                            /** 订单号 **/
-                                                                                                                                                                                                                                                                                                                                                            orderNo: string,
-                                                                                                                                                                                                                                                                                                                                                        }): Promise<CostGetOrderDetailRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-order-detail',
-                                                                                                                                                                                                                                                                                                                                                                params: {
-                                                                                                                                                                                                                                                                                                                                                                    orderNo: orderNo,
-                                                                                                                                                                                                                                                                                                                                                                },
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取订单列表
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池订单列表
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetOrdersRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getOrders({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                page = 1,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                limit = 10,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 当前页数，从 1 开始 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                page?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                limit?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }): Promise<CostGetOrdersRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-orders',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        page: page,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        limit: limit,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 获取订单支付明细
-                                                                                                                                                                                                                                                                                                                                                         * @description 获取当前用户池订单支付明细
-                                                                                                                                                                                                                                                                                                                                                         * @returns CostGetOrderPayDetailRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async getOrderPayDetail({
-                                                                                                                                                                                                                                                                                                                                                            orderNo,
-                                                                                                                                                                                                                                                                                                                                                        }: {
-                                                                                                                                                                                                                                                                                                                                                            /** 订单号 **/
-                                                                                                                                                                                                                                                                                                                                                            orderNo: string,
-                                                                                                                                                                                                                                                                                                                                                        }): Promise<CostGetOrderPayDetailRespDto> {
-                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-order-pay-detail',
-                                                                                                                                                                                                                                                                                                                                                                params: {
-                                                                                                                                                                                                                                                                                                                                                                    orderNo: orderNo,
-                                                                                                                                                                                                                                                                                                                                                                },
-                                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取订单详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池订单详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetOrderDetailRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getOrderDetail({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                orderNo,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 订单号 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                orderNo: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }): Promise<CostGetOrderDetailRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-order-detail',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        orderNo: orderNo,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                                         * @summary 创建 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                         * @description 创建 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                         * @returns PipelineFunctionSingleRespDto
-                                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                                        public async createPipelineFunction(requestBody: CreatePipelineFunctionDto,
-                                                                                                                                                                                                                                                                                                                                                    ): Promise<PipelineFunctionSingleRespDto> {
-                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                            method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/create-pipeline-function',
-                                                                                                                                                                                                                                                                                                                                                            data: requestBody,
-                                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取订单支付明细
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 获取当前用户池订单支付明细
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CostGetOrderPayDetailRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async getOrderPayDetail({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                orderNo,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                /** 订单号 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                orderNo: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }): Promise<CostGetOrderPayDetailRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/get-order-pay-detail',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        orderNo: orderNo,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Pipeline 函数详情
-                                                                                                                                                                                                                                                                                                                                                     * @description 获取 Pipeline 函数详情
-                                                                                                                                                                                                                                                                                                                                                     * @returns PipelineFunctionSingleRespDto
-                                                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                                                    public async getPipelineFunction({
-                                                                                                                                                                                                                                                                                                                                                        funcId,
-                                                                                                                                                                                                                                                                                                                                                    }: {
-                                                                                                                                                                                                                                                                                                                                                        /** Pipeline 函数 ID **/
-                                                                                                                                                                                                                                                                                                                                                        funcId: string,
-                                                                                                                                                                                                                                                                                                                                                    }): Promise<PipelineFunctionSingleRespDto> {
-                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                            method: 'GET',
-                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/get-pipeline-function',
-                                                                                                                                                                                                                                                                                                                                                            params: {
-                                                                                                                                                                                                                                                                                                                                                                funcId: funcId,
-                                                                                                                                                                                                                                                                                                                                                            },
-                                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 创建 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 创建 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns PipelineFunctionSingleRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                                            public async createPipelineFunction(requestBody: CreatePipelineFunctionDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                                        ): Promise<PipelineFunctionSingleRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/create-pipeline-function',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                                                     * @summary 重新上传 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                     * @description 当 Pipeline 函数上传失败时，重新上传 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                     * @returns PipelineFunctionSingleRespDto
-                                                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                                                    public async reuploadPipelineFunction(requestBody: ReUploadPipelineFunctionDto,
-                                                                                                                                                                                                                                                                                                                                                ): Promise<PipelineFunctionSingleRespDto> {
-                                                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                        method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/reupload-pipeline-function',
-                                                                                                                                                                                                                                                                                                                                                        data: requestBody,
-                                                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 获取 Pipeline 函数详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @description 获取 Pipeline 函数详情
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns PipelineFunctionSingleRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                                        public async getPipelineFunction({
+                                                                                                                                                                                                                                                                                                                                                                                                                                            funcId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            /** Pipeline 函数 ID **/
+                                                                                                                                                                                                                                                                                                                                                                                                                                            funcId: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }): Promise<PipelineFunctionSingleRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-pipeline-function',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    funcId: funcId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                                                /**
-                                                                                                                                                                                                                                                                                                                                                 * @summary 修改 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                 * @description 修改 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                                 * @returns PipelineFunctionSingleRespDto
-                                                                                                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                                                                                                public async updatePipelineFunction(requestBody: UpdatePipelineFunctionDto,
-                                                                                                                                                                                                                                                                                                                                            ): Promise<PipelineFunctionSingleRespDto> {
-                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                    method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/update-pipeline-function',
-                                                                                                                                                                                                                                                                                                                                                    data: requestBody,
-                                                                                                                                                                                                                                                                                                                                                });
-                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 重新上传 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @description 当 Pipeline 函数上传失败时，重新上传 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns PipelineFunctionSingleRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                                        public async reuploadPipelineFunction(requestBody: ReUploadPipelineFunctionDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                                    ): Promise<PipelineFunctionSingleRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                            method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/reupload-pipeline-function',
+                                                                                                                                                                                                                                                                                                                                                                                                                                            data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                            /**
-                                                                                                                                                                                                                                                                                                                                             * @summary 修改 Pipeline 函数顺序
-                                                                                                                                                                                                                                                                                                                                             * @description 修改 Pipeline 函数顺序
-                                                                                                                                                                                                                                                                                                                                             * @returns CommonResponseDto
-                                                                                                                                                                                                                                                                                                                                             */
-                                                                                                                                                                                                                                                                                                                                            public async updatePipelineOrder(requestBody: UpdatePipelineOrderDto,
-                                                                                                                                                                                                                                                                                                                                        ): Promise<CommonResponseDto> {
-                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                                method: 'POST',
-                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/update-pipeline-order',
-                                                                                                                                                                                                                                                                                                                                                data: requestBody,
-                                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 修改 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * @description 修改 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                                     * @returns PipelineFunctionSingleRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                     */
+                                                                                                                                                                                                                                                                                                                                                                                                                                    public async updatePipelineFunction(requestBody: UpdatePipelineFunctionDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                                ): Promise<PipelineFunctionSingleRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                        method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/update-pipeline-function',
+                                                                                                                                                                                                                                                                                                                                                                                                                                        data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                                         * @summary 删除 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                         * @description 删除 Pipeline 函数
-                                                                                                                                                                                                                                                                                                                                         * @returns CommonResponseDto
-                                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                                        public async deletePipelineFunction(requestBody: DeletePipelineFunctionDto,
-                                                                                                                                                                                                                                                                                                                                    ): Promise<CommonResponseDto> {
-                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                            method: 'POST',
-                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/delete-pipeline-function',
-                                                                                                                                                                                                                                                                                                                                            data: requestBody,
-                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                                /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * @summary 修改 Pipeline 函数顺序
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * @description 修改 Pipeline 函数顺序
+                                                                                                                                                                                                                                                                                                                                                                                                                                 * @returns CommonResponseDto
+                                                                                                                                                                                                                                                                                                                                                                                                                                 */
+                                                                                                                                                                                                                                                                                                                                                                                                                                public async updatePipelineOrder(requestBody: UpdatePipelineOrderDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                            ): Promise<CommonResponseDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/update-pipeline-order',
+                                                                                                                                                                                                                                                                                                                                                                                                                                    data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Pipeline 函数列表
-                                                                                                                                                                                                                                                                                                                                     * @description 获取 Pipeline 函数列表
-                                                                                                                                                                                                                                                                                                                                     * @returns PipelineFunctionPaginatedRespDto
-                                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                                    public async listPipelineFunctions({
-                                                                                                                                                                                                                                                                                                                                        scene,
-                                                                                                                                                                                                                                                                                                                                    }: {
-                                                                                                                                                                                                                                                                                                                                        /** 通过函数的触发场景进行筛选（可选，默认返回所有）：
-                                                                                                                                                                                                                                                                                                                                         * - `PRE_REGISTER`: 注册前
-                                                                                                                                                                                                                                                                                                                                         * - `POST_REGISTER`: 注册后
-                                                                                                                                                                                                                                                                                                                                         * - `PRE_AUTHENTICATION`: 认证前
-                                                                                                                                                                                                                                                                                                                                         * - `POST_AUTHENTICATION`: 认证后
-                                                                                                                                                                                                                                                                                                                                         * - `PRE_OIDC_ID_TOKEN_ISSUED`: OIDC ID Token 签发前
-                                                                                                                                                                                                                                                                                                                                         * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: OIDC Access Token 签发前
-                                                                                                                                                                                                                                                                                                                                         * - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
-                                                                                                                                                                                                                                                                                                                                         *  **/
-                                                                                                                                                                                                                                                                                                                                        scene: 'PRE_REGISTER' | 'POST_REGISTER' | 'PRE_AUTHENTICATION' | 'POST_AUTHENTICATION' | 'PRE_OIDC_ID_TOKEN_ISSUED' | 'PRE_OIDC_ACCESS_TOKEN_ISSUED' | 'PRE_COMPLETE_USER_INFO',
-                                                                                                                                                                                                                                                                                                                                    }): Promise<PipelineFunctionPaginatedRespDto> {
-                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                            method: 'GET',
-                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/list-pipeline-functions',
-                                                                                                                                                                                                                                                                                                                                            params: {
-                                                                                                                                                                                                                                                                                                                                                scene: scene,
-                                                                                                                                                                                                                                                                                                                                            },
-                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 删除 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                             * @description 删除 Pipeline 函数
+                                                                                                                                                                                                                                                                                                                                                                                                                             * @returns CommonResponseDto
+                                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                                            public async deletePipelineFunction(requestBody: DeletePipelineFunctionDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                        ): Promise<CommonResponseDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/delete-pipeline-function',
+                                                                                                                                                                                                                                                                                                                                                                                                                                data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Pipeline 日志
-                                                                                                                                                                                                                                                                                                                                     * @description 获取 Pipeline
-                                                                                                                                                                                                                                                                                                                                     * @returns PipelineFunctionPaginatedRespDto
-                                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                                    public async getPipelineLogs({
-                                                                                                                                                                                                                                                                                                                                        funcId,
-                                                                                                                                                                                                                                                                                                                                        page = 1,
-                                                                                                                                                                                                                                                                                                                                        limit = 10,
-                                                                                                                                                                                                                                                                                                                                    }: {
-                                                                                                                                                                                                                                                                                                                                        /** Pipeline 函数 ID **/
-                                                                                                                                                                                                                                                                                                                                        funcId: string,
-                                                                                                                                                                                                                                                                                                                                        /** 当前页数，从 1 开始 **/
-                                                                                                                                                                                                                                                                                                                                        page?: number,
-                                                                                                                                                                                                                                                                                                                                        /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                                                                                                                                                                                                                                                                                                        limit?: number,
-                                                                                                                                                                                                                                                                                                                                    }): Promise<PipelineFunctionPaginatedRespDto> {
-                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                            method: 'GET',
-                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/get-pipeline-logs',
-                                                                                                                                                                                                                                                                                                                                            params: {
-                                                                                                                                                                                                                                                                                                                                                funcId: funcId,
-                                                                                                                                                                                                                                                                                                                                                page: page,
-                                                                                                                                                                                                                                                                                                                                                limit: limit,
-                                                                                                                                                                                                                                                                                                                                            },
-                                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 获取 Pipeline 函数列表
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @description 获取 Pipeline 函数列表
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns PipelineFunctionPaginatedRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                        public async listPipelineFunctions({
+                                                                                                                                                                                                                                                                                                                                                                                                                            scene,
+                                                                                                                                                                                                                                                                                                                                                                                                                        }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                            /** 通过函数的触发场景进行筛选（可选，默认返回所有）：
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `PRE_REGISTER`: 注册前
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `POST_REGISTER`: 注册后
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `PRE_AUTHENTICATION`: 认证前
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `POST_AUTHENTICATION`: 认证后
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `PRE_OIDC_ID_TOKEN_ISSUED`: OIDC ID Token 签发前
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: OIDC Access Token 签发前
+                                                                                                                                                                                                                                                                                                                                                                                                                             * - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
+                                                                                                                                                                                                                                                                                                                                                                                                                             *  **/
+                                                                                                                                                                                                                                                                                                                                                                                                                            scene: 'PRE_REGISTER' | 'POST_REGISTER' | 'PRE_AUTHENTICATION' | 'POST_AUTHENTICATION' | 'PRE_OIDC_ID_TOKEN_ISSUED' | 'PRE_OIDC_ACCESS_TOKEN_ISSUED' | 'PRE_COMPLETE_USER_INFO',
+                                                                                                                                                                                                                                                                                                                                                                                                                        }): Promise<PipelineFunctionPaginatedRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/list-pipeline-functions',
+                                                                                                                                                                                                                                                                                                                                                                                                                                params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                    scene: scene,
+                                                                                                                                                                                                                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                                     * @summary 创建 Webhook
-                                                                                                                                                                                                                                                                                                                                     * @description 你需要指定 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称来创建 Webhook。还可选是否启用、请求密钥进行创建
-                                                                                                                                                                                                                                                                                                                                     * @returns CreateWebhookRespDto
-                                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                                    public async createWebhook(requestBody: CreateWebhookDto,
-                                                                                                                                                                                                                                                                                                                                ): Promise<CreateWebhookRespDto> {
-                                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                        method: 'POST',
-                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/create-webhook',
-                                                                                                                                                                                                                                                                                                                                        data: requestBody,
-                                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 获取 Pipeline 日志
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @description 获取 Pipeline
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns PipelineFunctionPaginatedRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                        public async getPipelineLogs({
+                                                                                                                                                                                                                                                                                                                                                                                                                            funcId,
+                                                                                                                                                                                                                                                                                                                                                                                                                            page = 1,
+                                                                                                                                                                                                                                                                                                                                                                                                                            limit = 10,
+                                                                                                                                                                                                                                                                                                                                                                                                                        }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                            /** Pipeline 函数 ID **/
+                                                                                                                                                                                                                                                                                                                                                                                                                            funcId: string,
+                                                                                                                                                                                                                                                                                                                                                                                                                            /** 当前页数，从 1 开始 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                            page?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                            /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                            limit?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                        }): Promise<PipelineFunctionPaginatedRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                                method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-pipeline-logs',
+                                                                                                                                                                                                                                                                                                                                                                                                                                params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                    funcId: funcId,
+                                                                                                                                                                                                                                                                                                                                                                                                                                    page: page,
+                                                                                                                                                                                                                                                                                                                                                                                                                                    limit: limit,
+                                                                                                                                                                                                                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                                /**
-                                                                                                                                                                                                                                                                                                                                 * @summary 获取 Webhook 列表
-                                                                                                                                                                                                                                                                                                                                 * @description 获取 Webhook 列表，可选页数、分页大小来获取
-                                                                                                                                                                                                                                                                                                                                 * @returns GetWebhooksRespDto
-                                                                                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                                                                                public async listWebhooks({
-                                                                                                                                                                                                                                                                                                                                    page = 1,
-                                                                                                                                                                                                                                                                                                                                    limit = 10,
-                                                                                                                                                                                                                                                                                                                                }: {
-                                                                                                                                                                                                                                                                                                                                    /** 当前页数，从 1 开始 **/
-                                                                                                                                                                                                                                                                                                                                    page?: number,
-                                                                                                                                                                                                                                                                                                                                    /** 每页数目，最大不能超过 50，默认为 10 **/
-                                                                                                                                                                                                                                                                                                                                    limit?: number,
-                                                                                                                                                                                                                                                                                                                                }): Promise<GetWebhooksRespDto> {
-                                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                        method: 'GET',
-                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/list-webhooks',
-                                                                                                                                                                                                                                                                                                                                        params: {
-                                                                                                                                                                                                                                                                                                                                            page: page,
-                                                                                                                                                                                                                                                                                                                                            limit: limit,
-                                                                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 创建 Webhook
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @description 你需要指定 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称来创建 Webhook。还可选是否启用、请求密钥进行创建
+                                                                                                                                                                                                                                                                                                                                                                                                                         * @returns CreateWebhookRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                                        public async createWebhook(requestBody: CreateWebhookDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                    ): Promise<CreateWebhookRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                            method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/create-webhook',
+                                                                                                                                                                                                                                                                                                                                                                                                                            data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                                /**
-                                                                                                                                                                                                                                                                                                                                 * @summary 修改 Webhook 配置
-                                                                                                                                                                                                                                                                                                                                 * @description 需要指定 webhookId，可选 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称、是否启用、请求密钥参数进行修改 webhook
-                                                                                                                                                                                                                                                                                                                                 * @returns UpdateWebhooksRespDto
-                                                                                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                                                                                public async updateWebhook(requestBody: UpdateWebhookDto,
-                                                                                                                                                                                                                                                                                                                            ): Promise<UpdateWebhooksRespDto> {
-                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                    method: 'POST',
-                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/update-webhook',
-                                                                                                                                                                                                                                                                                                                                    data: requestBody,
-                                                                                                                                                                                                                                                                                                                                });
-                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Webhook 列表
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @description 获取 Webhook 列表，可选页数、分页大小来获取
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @returns GetWebhooksRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                     */
+                                                                                                                                                                                                                                                                                                                                                                                                                    public async listWebhooks({
+                                                                                                                                                                                                                                                                                                                                                                                                                        page = 1,
+                                                                                                                                                                                                                                                                                                                                                                                                                        limit = 10,
+                                                                                                                                                                                                                                                                                                                                                                                                                    }: {
+                                                                                                                                                                                                                                                                                                                                                                                                                        /** 当前页数，从 1 开始 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                        page?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                        /** 每页数目，最大不能超过 50，默认为 10 **/
+                                                                                                                                                                                                                                                                                                                                                                                                                        limit?: number,
+                                                                                                                                                                                                                                                                                                                                                                                                                    }): Promise<GetWebhooksRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                            method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/list-webhooks',
+                                                                                                                                                                                                                                                                                                                                                                                                                            params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                                page: page,
+                                                                                                                                                                                                                                                                                                                                                                                                                                limit: limit,
+                                                                                                                                                                                                                                                                                                                                                                                                                            },
+                                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                            /**
-                                                                                                                                                                                                                                                                                                                             * @summary 删除 Webhook
-                                                                                                                                                                                                                                                                                                                             * @description 通过指定多个 webhookId,以数组的形式进行 webhook 的删除,如果 webhookId 不存在,不提示报错
-                                                                                                                                                                                                                                                                                                                             * @returns DeleteWebhookRespDto
-                                                                                                                                                                                                                                                                                                                             */
-                                                                                                                                                                                                                                                                                                                            public async deleteWebhook(requestBody: DeleteWebhookDto,
-                                                                                                                                                                                                                                                                                                                        ): Promise<DeleteWebhookRespDto> {
-                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                                method: 'POST',
-                                                                                                                                                                                                                                                                                                                                url: '/api/v3/delete-webhook',
-                                                                                                                                                                                                                                                                                                                                data: requestBody,
-                                                                                                                                                                                                                                                                                                                            });
-                                                                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 修改 Webhook 配置
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @description 需要指定 webhookId，可选 Webhook 名称、Webhook 回调地址、请求数据格式、用户真实名称、是否启用、请求密钥参数进行修改 webhook
+                                                                                                                                                                                                                                                                                                                                                                                                                     * @returns UpdateWebhooksRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                     */
+                                                                                                                                                                                                                                                                                                                                                                                                                    public async updateWebhook(requestBody: UpdateWebhookDto,
+                                                                                                                                                                                                                                                                                                                                                                                                                ): Promise<UpdateWebhooksRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                        method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                        url: '/api/v3/update-webhook',
+                                                                                                                                                                                                                                                                                                                                                                                                                        data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                                                                                                                                                                                                                        /**
-                                                                                                                                                                                                                                                                                                                         * @summary 获取 Webhook 日志
-                                                                                                                                                                                                                                                                                                                         * @description 通过指定 webhookId，可选 page 和 limit 来获取 webhook 日志,如果 webhookId 不存在,不返回报错信息
-                                                                                                                                                                                                                                                                                                                         * @returns ListWebhookLogsRespDto
-                                                                                                                                                                                                                                                                                                                         */
-                                                                                                                                                                                                                                                                                                                        public async getWebhookLogs(requestBody: ListWebhookLogs,
-                                                                                                                                                                                                                                                                                                                    ): Promise<ListWebhookLogsRespDto> {
-                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                            method: 'POST',
-                                                                                                                                                                                                                                                                                                                            url: '/api/v3/get-webhook-logs',
-                                                                                                                                                                                                                                                                                                                            data: requestBody,
-                                                                                                                                                                                                                                                                                                                        });
-                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                                                                /**
+                                                                                                                                                                                                                                                                                                                                                                                                                 * @summary 删除 Webhook
+                                                                                                                                                                                                                                                                                                                                                                                                                 * @description 通过指定多个 webhookId,以数组的形式进行 webhook 的删除,如果 webhookId 不存在,不提示报错
+                                                                                                                                                                                                                                                                                                                                                                                                                 * @returns DeleteWebhookRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                                 */
+                                                                                                                                                                                                                                                                                                                                                                                                                public async deleteWebhook(requestBody: DeleteWebhookDto,
+                                                                                                                                                                                                                                                                                                                                                                                                            ): Promise<DeleteWebhookRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                                return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                    method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                    url: '/api/v3/delete-webhook',
+                                                                                                                                                                                                                                                                                                                                                                                                                    data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                                });
+                                                                                                                                                                                                                                                                                                                                                                                                            }
 
-                                                                                                                                                                                                                                                                                                                    /**
-                                                                                                                                                                                                                                                                                                                     * @summary 手动触发 Webhook 执行
-                                                                                                                                                                                                                                                                                                                     * @description 通过指定 webhookId，可选请求头和请求体进行手动触发 webhook 执行
-                                                                                                                                                                                                                                                                                                                     * @returns TriggerWebhookRespDto
-                                                                                                                                                                                                                                                                                                                     */
-                                                                                                                                                                                                                                                                                                                    public async triggerWebhook(requestBody: TriggerWebhookDto,
-                                                                                                                                                                                                                                                                                                                ): Promise<TriggerWebhookRespDto> {
-                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                        method: 'POST',
-                                                                                                                                                                                                                                                                                                                        url: '/api/v3/trigger-webhook',
-                                                                                                                                                                                                                                                                                                                        data: requestBody,
-                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                            /**
+                                                                                                                                                                                                                                                                                                                                                                                                             * @summary 获取 Webhook 日志
+                                                                                                                                                                                                                                                                                                                                                                                                             * @description 通过指定 webhookId，可选 page 和 limit 来获取 webhook 日志,如果 webhookId 不存在,不返回报错信息
+                                                                                                                                                                                                                                                                                                                                                                                                             * @returns ListWebhookLogsRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                             */
+                                                                                                                                                                                                                                                                                                                                                                                                            public async getWebhookLogs(requestBody: ListWebhookLogs,
+                                                                                                                                                                                                                                                                                                                                                                                                        ): Promise<ListWebhookLogsRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                            return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                                method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                url: '/api/v3/get-webhook-logs',
+                                                                                                                                                                                                                                                                                                                                                                                                                data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                            });
+                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                                                                                                                                                                                                                /**
-                                                                                                                                                                                                                                                                                                                 * @summary 获取 Webhook 详情
-                                                                                                                                                                                                                                                                                                                 * @description 根据指定的 webhookId 获取 webhook 详情
-                                                                                                                                                                                                                                                                                                                 * @returns GetWebhookRespDto
-                                                                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                                                                public async getWebhook({
-                                                                                                                                                                                                                                                                                                                    webhookId,
-                                                                                                                                                                                                                                                                                                                }: {
-                                                                                                                                                                                                                                                                                                                    /** Webhook ID **/
-                                                                                                                                                                                                                                                                                                                    webhookId: string,
-                                                                                                                                                                                                                                                                                                                }): Promise<GetWebhookRespDto> {
-                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                        method: 'GET',
-                                                                                                                                                                                                                                                                                                                        url: '/api/v3/get-webhook',
-                                                                                                                                                                                                                                                                                                                        params: {
-                                                                                                                                                                                                                                                                                                                            webhookId: webhookId,
-                                                                                                                                                                                                                                                                                                                        },
-                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                        /**
+                                                                                                                                                                                                                                                                                                                                                                                                         * @summary 手动触发 Webhook 执行
+                                                                                                                                                                                                                                                                                                                                                                                                         * @description 通过指定 webhookId，可选请求头和请求体进行手动触发 webhook 执行
+                                                                                                                                                                                                                                                                                                                                                                                                         * @returns TriggerWebhookRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                         */
+                                                                                                                                                                                                                                                                                                                                                                                                        public async triggerWebhook(requestBody: TriggerWebhookDto,
+                                                                                                                                                                                                                                                                                                                                                                                                    ): Promise<TriggerWebhookRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                            method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/trigger-webhook',
+                                                                                                                                                                                                                                                                                                                                                                                                            data: requestBody,
+                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                                /**
-                                                                                                                                                                                                                                                                                                                 * @summary 获取 Webhook 事件列表
-                                                                                                                                                                                                                                                                                                                 * @description 返回事件列表和分类列表
-                                                                                                                                                                                                                                                                                                                 * @returns WebhookEventListRespDto
-                                                                                                                                                                                                                                                                                                                 */
-                                                                                                                                                                                                                                                                                                                public async getWebhookEventList(): Promise<WebhookEventListRespDto> {
-                                                                                                                                                                                                                                                                                                                    return await this.httpClient.request({
-                                                                                                                                                                                                                                                                                                                        method: 'GET',
-                                                                                                                                                                                                                                                                                                                        url: '/api/v3/get-webhook-event-list',
-                                                                                                                                                                                                                                                                                                                    });
-                                                                                                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Webhook 详情
+                                                                                                                                                                                                                                                                                                                                                                                                     * @description 根据指定的 webhookId 获取 webhook 详情
+                                                                                                                                                                                                                                                                                                                                                                                                     * @returns GetWebhookRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                     */
+                                                                                                                                                                                                                                                                                                                                                                                                    public async getWebhook({
+                                                                                                                                                                                                                                                                                                                                                                                                        webhookId,
+                                                                                                                                                                                                                                                                                                                                                                                                    }: {
+                                                                                                                                                                                                                                                                                                                                                                                                        /** Webhook ID **/
+                                                                                                                                                                                                                                                                                                                                                                                                        webhookId: string,
+                                                                                                                                                                                                                                                                                                                                                                                                    }): Promise<GetWebhookRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                            method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/get-webhook',
+                                                                                                                                                                                                                                                                                                                                                                                                            params: {
+                                                                                                                                                                                                                                                                                                                                                                                                                webhookId: webhookId,
+                                                                                                                                                                                                                                                                                                                                                                                                            },
+                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                    }
 
-                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                    /**
+                                                                                                                                                                                                                                                                                                                                                                                                     * @summary 获取 Webhook 事件列表
+                                                                                                                                                                                                                                                                                                                                                                                                     * @description 返回事件列表和分类列表
+                                                                                                                                                                                                                                                                                                                                                                                                     * @returns WebhookEventListRespDto
+                                                                                                                                                                                                                                                                                                                                                                                                     */
+                                                                                                                                                                                                                                                                                                                                                                                                    public async getWebhookEventList(): Promise<WebhookEventListRespDto> {
+                                                                                                                                                                                                                                                                                                                                                                                                        return await this.httpClient.request({
+                                                                                                                                                                                                                                                                                                                                                                                                            method: 'GET',
+                                                                                                                                                                                                                                                                                                                                                                                                            url: '/api/v3/get-webhook-event-list',
+                                                                                                                                                                                                                                                                                                                                                                                                        });
+                                                                                                                                                                                                                                                                                                                                                                                                    }
+
+                                                                                                                                                                                                                                                                                                                                                                                                }

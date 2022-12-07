@@ -15,4 +15,8 @@ export type ResGroupDto = {
      * 分组描述
      */
     description: string;
+    /**
+     * 分组类型
+     */
+    type: string;
 };

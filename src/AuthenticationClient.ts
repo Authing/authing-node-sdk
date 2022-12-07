@@ -59,7 +59,7 @@ import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
-import { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
+import type { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
 import type { SystemInfoResp } from './models/SystemInfoResp';
 import type { UnbindEmailDto } from './models/UnbindEmailDto';
@@ -101,7 +101,7 @@ import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
-import { SignUpDto } from './models/SignUpDto';
+import type { SignUpDto } from './models/SignUpDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
 
@@ -2105,7 +2105,7 @@ public async sendEnrollFactorRequest(requestBody: SendEnrollFactorRequestDto,
 }
 /**
  * @summary 绑定 MFA 认证要素
- * @description 绑定 MFA 要素
+ * @description 绑定 MFA 要素。
  * @returns EnrollFactorRespDto
  */
 public async enrollFactor(requestBody: EnrollFactorDto,
@@ -2119,7 +2119,7 @@ public async enrollFactor(requestBody: EnrollFactorDto,
 }
 /**
  * @summary 解绑 MFA 认证要素
- * @description 当前不支持通过此接口解绑短信、邮箱验证码类型的认证要素。如果需要，请调用「解绑邮箱」和「解绑手机号」接口。
+ * @description 根据 Factor ID 解绑用户绑定的某个 MFA 认证要素。
  * @returns ResetFactorRespDto
  */
 public async resetFactor(requestBody: ResetFactorDto,
@@ -2133,7 +2133,7 @@ public async resetFactor(requestBody: ResetFactorDto,
 }
 /**
  * @summary 获取绑定的所有 MFA 认证要素
- * @description Authing 目前支持四种类型的 MFA 认证要素：手机短信、邮件验证码、OTP、人脸。如果用户绑定了手机号 / 邮箱之后，默认就具备了手机短信、邮箱验证码的 MFA 认证要素。
+ * @description Authing 目前支持四种类型的 MFA 认证要素：手机短信、邮件验证码、OTP、人脸。
  * @returns ListEnrolledFactorsRespDto
  */
 public async listEnrolledFactors(): Promise<ListEnrolledFactorsRespDto> {

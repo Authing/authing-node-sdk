@@ -10,7 +10,7 @@ export type RoleListPageDto = {
      */
     totalCount?: number;
     /**
-     * 数据
+     * 响应数据
      */
     data: Array<RolePermissionListDto>;
 };

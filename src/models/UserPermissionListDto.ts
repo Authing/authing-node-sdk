@@ -2,8 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { UserPermissionResourceDto } from './UserPermissionResourceDto';
-import type { UserPermissionResourceOtherDto } from './UserPermissionResourceOtherDto';
+import type { OpenResource } from './OpenResource';
 
 export type UserPermissionListDto = {
     /**
@@ -17,5 +16,5 @@ export type UserPermissionListDto = {
     /**
      * 用户在权限空间下所有的数据策略资源列表
      */
-    resourceList: (UserPermissionResourceDto | UserPermissionResourceOtherDto);
+    resourceList?: Array<OpenResource>;
 };

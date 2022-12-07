@@ -14,5 +14,5 @@ export type GetUserResourcePermissionList = {
     /**
      * 资源路径
      */
-    resources: string;
+    resource: string;
 };

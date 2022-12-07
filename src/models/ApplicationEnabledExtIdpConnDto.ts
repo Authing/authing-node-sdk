@@ -35,6 +35,10 @@ export type ApplicationEnabledExtIdpConnDto = {
      * 身份源连接 Logo
      */
     extIdpConnLogo: string;
+    /**
+     * 是否允许身份源连接
+     */
+    enabled?: boolean;
 };
 
 export namespace ApplicationEnabledExtIdpConnDto {

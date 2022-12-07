@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 分别通过权限空间唯一标志符 Code，批量获取权限空间详情。
+ * 分别通过权限空间唯一标志符(Code)，获取权限空间详情。
  */
 export type GetPermissionNamespacesBatchDto = {
     /**
