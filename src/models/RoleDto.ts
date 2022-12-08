@@ -23,4 +23,8 @@ export type RoleDto = {
      * 所属权限分组(权限空间)的名称
      */
     namespaceName: string;
+    /**
+     * 角色状态，ENABLE-表示正常，DISABLE-表示禁止
+     */
+    status?: string;
 };

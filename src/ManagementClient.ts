@@ -4560,7 +4560,7 @@ public async listPermissionNamespaceRoles({
                                     /**
                                      * @summary 创建数据策略
                                      * @description
-                                     * 创建数据策略,通过数据策略名称、数据策略描述以及资源节点列表进行创建，数据策略支持跨多个权限空间进行数据资源创建，并且支持创建时设置资源的是否具有操作权限
+                                     * 创建数据策略,通过数据策略名称、数据策略描述以及资源节点列表进行创建，数据策略支持跨多个权限空间进行数据资源创建，并且支持创建时设置数据资源是否具有操作权限。
                                      *
                                      * ```json
                                      * {
@@ -4570,15 +4570,17 @@ public async listPermissionNamespaceRoles({
                                              * {
                                                  * "effect": "ALLOW",
                                                  * "dataPermissions": [
-                                                     * "examplePermissionNamespaceCode/strResourceCode/exampleAction", "examplePermissionNamespaceCode/arrResourceCode/exampleAction",
-                                                     * "examplePermissionNamespaceCode/treeResourceCode/strutCode1/exampleAction","examplePermissionNamespaceCode/treeResourceCode/strutCode2/exampleAction"
+                                                     * "examplePermissionNamespaceCode/strResourceCode/exampleAction",
+                                                     * "examplePermissionNamespaceCode/arrResourceCode/exampleAction",
+                                                     * "examplePermissionNamespaceCode/treeResourceCode/strutCode1/exampleAction"
                                                      * ]
                                                      * },
                                                      * {
                                                          * "effect": "DENY",
                                                          * "dataPermissions": [
-                                                             * "examplePermissionNamespaceCode/strResourceCode1/exampleAction", "examplePermissionNamespaceCode/arrResourceCode1/exampleAction",
-                                                             * "examplePermissionNamespaceCode/treeResourceCode1/strutCode1/exampleAction","examplePermissionNamespaceCode/treeResourceCode1/strutCode2/exampleAction"
+                                                             * "examplePermissionNamespaceCode/strResourceCode1/exampleAction",
+                                                             * "examplePermissionNamespaceCode/arrResourceCode1/exampleAction",
+                                                             * "examplePermissionNamespaceCode/treeResourceCode1/strutCode1/exampleAction"
                                                              * ]
                                                              * }
                                                              * ]
@@ -4610,7 +4612,7 @@ public async listPermissionNamespaceRoles({
                                                             page?: number,
                                                             /** 每页数目，最大不能超过 50，默认为 10 **/
                                                             limit?: number,
-                                                            /** 数据策略名称关键字搜索， **/
+                                                            /** 数据策略名称关键字搜索 **/
                                                             query?: string,
                                                         }): Promise<ListDataPoliciesPaginatedRespDto> {
                                                             return await this.httpClient.request({
@@ -4638,7 +4640,7 @@ public async listPermissionNamespaceRoles({
                                                             page?: number,
                                                             /** 每页数目，最大不能超过 50，默认为 10 **/
                                                             limit?: number,
-                                                            /** 数据策略名称关键字搜索， **/
+                                                            /** 数据策略名称关键字搜索 **/
                                                             query?: string,
                                                         }): Promise<ListSimpleDataPoliciesPaginatedRespDto> {
                                                             return await this.httpClient.request({
@@ -4708,7 +4710,7 @@ public async listPermissionNamespaceRoles({
                                                 public async checkDataPolicyExists({
                                                     policyName,
                                                 }: {
-                                                    /** 数据策略名称权限空间内唯一 **/
+                                                    /** 数据策略名称，用户池唯一 **/
                                                     policyName: string,
                                                 }): Promise<CheckParamsDataPolicyResponseDto> {
                                                     return await this.httpClient.request({
@@ -4738,7 +4740,7 @@ public async listPermissionNamespaceRoles({
                                                     page?: number,
                                                     /** 每页数目，最大不能超过 50，默认为 10 **/
                                                     limit?: number,
-                                                    /** 关键字搜索，可以是数据策略名称 **/
+                                                    /** 数据策略名称搜索 **/
                                                     query?: string,
                                                     /** 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型 **/
                                                     targetType?: Array<'USER' | 'ORG' | 'GROUP' | 'ROLE'>,

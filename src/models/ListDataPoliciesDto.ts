@@ -15,7 +15,7 @@ export type ListDataPoliciesDto = {
      */
     limit?: any;
     /**
-     * 数据策略名称关键字搜索，
+     * 数据策略名称关键字搜索
      */
     query?: any;
 };

@@ -8,9 +8,9 @@ export type DataStatementPermissionDto = {
      */
     effect: DataStatementPermissionDto.effect;
     /**
-     * 资源权限列表，字符串数据资源和字符串数据资源，没有 path 路径，默认表达是 [‘namespaceCode/strResourceCode/action’]
+     * 资源权限列表，字符串数据资源和字符串数据资源，没有 path 路径
      */
-    dataPermissions: Array<string>;
+    permissions: Array<string>;
 };
 
 export namespace DataStatementPermissionDto {

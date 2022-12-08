@@ -23,4 +23,8 @@ export type UpdateRoleDto = {
      * 角色描述
      */
     description?: string;
+    /**
+     * 角色状态，ENABLE-表示正常，DISABLE-表示禁止
+     */
+    status?: string;
 };

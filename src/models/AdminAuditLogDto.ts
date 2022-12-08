@@ -136,7 +136,7 @@ export namespace AdminAuditLogDto {
         RESIGN = 'resign',
         RECOVER = 'recover',
         DISABLE = 'disable',
-        USER_ENABLE = 'userEnable',
+        ENABLE = 'enable',
         ACTIVATE = 'activate',
         DEACTIVATE = 'deactivate',
         ADD = 'add',

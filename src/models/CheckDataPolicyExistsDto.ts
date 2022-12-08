@@ -7,7 +7,7 @@
  */
 export type CheckDataPolicyExistsDto = {
     /**
-     * 数据策略名称权限空间内唯一
+     * 数据策略名称，用户池唯一
      */
     policyName?: any;
 };

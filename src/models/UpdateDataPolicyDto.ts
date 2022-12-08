@@ -6,7 +6,7 @@ import type { DataStatementPermissionDto } from './DataStatementPermissionDto';
 
 export type UpdateDataPolicyDto = {
     /**
-     * 数据策略名称权限空间内唯一
+     * 数据策略名称，用户池唯一
      */
     policyName: string;
     /**
@@ -14,7 +14,7 @@ export type UpdateDataPolicyDto = {
      */
     policyId: string;
     /**
-     * 数据策略描述， 限长 200 字符
+     * 数据策略描述
      */
     description?: string;
     /**
