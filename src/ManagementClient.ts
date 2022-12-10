@@ -54,6 +54,8 @@ import type { CreateAsaAccountsBatchDto } from './models/CreateAsaAccountsBatchD
 import type { CreateAuthorizeDataPolicyDto } from './models/CreateAuthorizeDataPolicyDto';
 import type { CreateDataPolicyDto } from './models/CreateDataPolicyDto';
 import type { CreateDataPolicyResponseDto } from './models/CreateDataPolicyResponseDto';
+import type { CreateDataResourceDto } from './models/CreateDataResourceDto';
+import type { CreateDataResourceResponseDto } from './models/CreateDataResourceResponseDto';
 import type { CreateDepartmentReqDto } from './models/CreateDepartmentReqDto';
 import type { CreateExtIdpConnDto } from './models/CreateExtIdpConnDto';
 import type { CreateExtIdpDto } from './models/CreateExtIdpDto';
@@ -4256,123 +4258,195 @@ public async listPermissionNamespaceRoles({
 }
 
 /**
- * @summary 创建字符串数据资源
- * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
- * @returns CreateStringDataResourceResponseDto
- */
-public async createDataResourceByString(requestBody: CreateStringDataResourceDto,
-): Promise<CreateStringDataResourceResponseDto> {
-    return await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/create-string-data-resource',
-        data: requestBody,
-    });
-}
+ * @summary 创建数据资源
+ * @description 该接口用于创建数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源类型（STRING、ARRAY、TREE）以及数据操作列表进行创建,
+ * 通过不同的数据资源类型适配不同的场景。
+ *
+ * ### 创建数据资源字符串类型示例
+ *
+ * ```json
+ * {
+     * "namespaceCode": "examplePermissionNamespace",
+     * "resourceName": "字符串资源1",
+     * "resourceCode": "str1",
+     * "type": "STRING",
+     * "description": "这是一个数据资源字符串类型创建",
+     * "struct":"str1",
+     * "actions": ["get","read","update"]
+     * }
+     * ```
+     *
+     * ### 创建数据资源数组类型示例
+     *
+     * ```json
+     * {
+         * "namespaceCode": "examplePermissionNamespace",
+         * "resourceName": "数组资源1",
+         * "resourceCode": "array1",
+         * "description": "这是一个数据资源数组类型创建",
+         * "type": "ARRAY",
+         * "struct":["array1", "array2", "array3"],
+         * "actions": ["get","read","update"]
+         * }
+         * ```
+         *
+         * ### 创建数据资源树类型示例
+         *
+         * ```json
+         * {
+             * "namespaceCode": "examplePermissionNamespace",
+             * "resourceName": "树资源1",
+             * "resourceCode": "tree1",
+             * "description": "这是一个数据资源树类型创建",
+             * "type": "TREE",
+             * "struct":[{
+                 * "code": "tree1",
+                 * "name": "tree1",
+                 * "value": "tree1",
+                 * "children": [{
+                     * "code": "tree2",
+                     * "name": "tree2",
+                     * "value": "tree2",
+                     * "children": [{
+                         * "code": "tree3",
+                         * "name": "tree3",
+                         * "value": "tree3"
+                         * }]
+                         * }]
+                         * }],
+                         * "actions": ["get","read","update"]
+                         * }
+                         * ```
+                         *
+                         * @returns CreateDataResourceResponseDto
+                         */
+                        public async createDataResource(requestBody: CreateDataResourceDto,
+                    ): Promise<CreateDataResourceResponseDto> {
+                        return await this.httpClient.request({
+                            method: 'POST',
+                            url: '/api/v3/create-data-resource',
+                            data: requestBody,
+                        });
+                    }
 
-/**
- * @summary 创建数组数据资源
- * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
- * @returns CreateArrayDataResourceResponseDto
- */
-public async createDataResourceByArray(requestBody: CreateArrayDataResourceDto,
-): Promise<CreateArrayDataResourceResponseDto> {
-    return await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/create-array-data-resource',
-        data: requestBody,
-    });
-}
+                    /**
+                     * @summary 创建字符串数据资源
+                     * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+                     * @returns CreateStringDataResourceResponseDto
+                     */
+                    public async createDataResourceByString(requestBody: CreateStringDataResourceDto,
+                ): Promise<CreateStringDataResourceResponseDto> {
+                    return await this.httpClient.request({
+                        method: 'POST',
+                        url: '/api/v3/create-string-data-resource',
+                        data: requestBody,
+                    });
+                }
 
-/**
- * @summary 创建树数据资源
- * @description 创建树数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
- * @returns CreateTreeDataResourceResponseDto
- */
-public async createDataResourceByTree(requestBody: CreateTreeDataResourceDto,
-): Promise<CreateTreeDataResourceResponseDto> {
-    return await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/create-tree-data-resource',
-        data: requestBody,
-    });
-}
+                /**
+                 * @summary 创建数组数据资源
+                 * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+                 * @returns CreateArrayDataResourceResponseDto
+                 */
+                public async createDataResourceByArray(requestBody: CreateArrayDataResourceDto,
+            ): Promise<CreateArrayDataResourceResponseDto> {
+                return await this.httpClient.request({
+                    method: 'POST',
+                    url: '/api/v3/create-array-data-resource',
+                    data: requestBody,
+                });
+            }
 
-/**
- * @summary 获取数据资源列表
- * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
- * @returns ListDataResourcesPaginatedRespDto
- */
-public async listDataResources({
-    page = 1,
-    limit = 10,
-    query,
-    namespaceCodes,
-}: {
-    /** 当前页数，从 1 开始 **/
-    page?: number,
-    /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number,
-    /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
-    query?: string,
-    /** 权限数据所属权限空间 Code 列表 **/
-    namespaceCodes?: Array<string>,
-}): Promise<ListDataResourcesPaginatedRespDto> {
-    return await this.httpClient.request({
-        method: 'GET',
-        url: '/api/v3/list-data-resources',
-        params: {
-            page: page,
-            limit: limit,
-            query: query,
-            namespaceCodes: namespaceCodes,
-        },
-    });
-}
+            /**
+             * @summary 创建树数据资源
+             * @description 创建树数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+             * @returns CreateTreeDataResourceResponseDto
+             */
+            public async createDataResourceByTree(requestBody: CreateTreeDataResourceDto,
+        ): Promise<CreateTreeDataResourceResponseDto> {
+            return await this.httpClient.request({
+                method: 'POST',
+                url: '/api/v3/create-tree-data-resource',
+                data: requestBody,
+            });
+        }
 
-/**
- * @summary 获取数据资源信息
- * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
- * @returns GetDataResourceResponseDto
- */
-public async getDataResource({
-    namespaceCode,
-    resourceCode,
-}: {
-    /** 数据资源所属的权限空间 Code **/
-    namespaceCode: string,
-    /** 数据资源 Code,权限空间内唯一 **/
-    resourceCode: string,
-}): Promise<GetDataResourceResponseDto> {
-    return await this.httpClient.request({
-        method: 'GET',
-        url: '/api/v3/get-data-resource',
-        params: {
-            namespaceCode: namespaceCode,
-            resourceCode: resourceCode,
-        },
-    });
-}
+        /**
+         * @summary 获取数据资源列表
+         * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
+         * @returns ListDataResourcesPaginatedRespDto
+         */
+        public async listDataResources({
+            page = 1,
+            limit = 10,
+            query,
+            namespaceCodes,
+        }: {
+            /** 当前页数，从 1 开始 **/
+            page?: number,
+            /** 每页数目，最大不能超过 50，默认为 10 **/
+            limit?: number,
+            /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
+            query?: string,
+            /** 权限数据所属权限空间 Code 列表 **/
+            namespaceCodes?: Array<string>,
+        }): Promise<ListDataResourcesPaginatedRespDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/list-data-resources',
+                params: {
+                    page: page,
+                    limit: limit,
+                    query: query,
+                    namespaceCodes: namespaceCodes,
+                },
+            });
+        }
 
-/**
- * @summary 修改数据资源
- * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
- * @returns UpdateDataResourceResponseDto
- */
-public async updateDataResource(requestBody: UpdateDataResourceDto,
-): Promise<UpdateDataResourceResponseDto> {
-    return await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/update-data-resource',
-        data: requestBody,
-    });
-}
+        /**
+         * @summary 获取数据资源信息
+         * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
+         * @returns GetDataResourceResponseDto
+         */
+        public async getDataResource({
+            namespaceCode,
+            resourceCode,
+        }: {
+            /** 数据资源所属的权限空间 Code **/
+            namespaceCode: string,
+            /** 数据资源 Code,权限空间内唯一 **/
+            resourceCode: string,
+        }): Promise<GetDataResourceResponseDto> {
+            return await this.httpClient.request({
+                method: 'GET',
+                url: '/api/v3/get-data-resource',
+                params: {
+                    namespaceCode: namespaceCode,
+                    resourceCode: resourceCode,
+                },
+            });
+        }
 
-/**
- * @summary 删除数据资源
- * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
- * @returns CommonResponseDto
- */
-public async deleteDataResource(requestBody: DeleteDataResourceDto,
+        /**
+         * @summary 修改数据资源
+         * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
+         * @returns UpdateDataResourceResponseDto
+         */
+        public async updateDataResource(requestBody: UpdateDataResourceDto,
+    ): Promise<UpdateDataResourceResponseDto> {
+        return await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/update-data-resource',
+            data: requestBody,
+        });
+    }
+
+    /**
+     * @summary 删除数据资源
+     * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
+     * @returns CommonResponseDto
+     */
+    public async deleteDataResource(requestBody: DeleteDataResourceDto,
 ): Promise<CommonResponseDto> {
     return await this.httpClient.request({
         method: 'POST',

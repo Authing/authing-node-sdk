@@ -59,7 +59,7 @@ import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
-import type { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
+import { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
 import type { SystemInfoResp } from './models/SystemInfoResp';
 import type { UnbindEmailDto } from './models/UnbindEmailDto';
@@ -101,7 +101,7 @@ import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
-import type { SignUpDto } from './models/SignUpDto';
+import { SignUpDto } from './models/SignUpDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
 
