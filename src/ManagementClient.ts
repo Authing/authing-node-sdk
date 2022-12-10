@@ -54,8 +54,6 @@ import type { CreateAsaAccountsBatchDto } from './models/CreateAsaAccountsBatchD
 import type { CreateAuthorizeDataPolicyDto } from './models/CreateAuthorizeDataPolicyDto';
 import type { CreateDataPolicyDto } from './models/CreateDataPolicyDto';
 import type { CreateDataPolicyResponseDto } from './models/CreateDataPolicyResponseDto';
-import type { CreateDataResourceDto } from './models/CreateDataResourceDto';
-import type { CreateDataResourceResponseDto } from './models/CreateDataResourceResponseDto';
 import type { CreateDepartmentReqDto } from './models/CreateDepartmentReqDto';
 import type { CreateExtIdpConnDto } from './models/CreateExtIdpConnDto';
 import type { CreateExtIdpDto } from './models/CreateExtIdpDto';
@@ -185,6 +183,7 @@ import type { RoleDepartmentListPaginatedRespDto } from './models/RoleDepartment
 import type { RoleListPageRespDto } from './models/RoleListPageRespDto';
 import type { RolePaginatedRespDto } from './models/RolePaginatedRespDto';
 import type { RoleSingleRespDto } from './models/RoleSingleRespDto';
+import type { SearchDepartmentsListReqDto } from './models/SearchDepartmentsListReqDto';
 import type { SearchDepartmentsReqDto } from './models/SearchDepartmentsReqDto';
 import type { SecuritySettingsRespDto } from './models/SecuritySettingsRespDto';
 import type { SetCustomDataReqDto } from './models/SetCustomDataReqDto';
@@ -1529,7 +1528,7 @@ export class ManagementClient {
                                                      * @description 通过组织 code、搜索关键词，搜索部门，可以搜索组织名称等。
                                                      * @returns DepartmentListRespDto
                                                      */
-                                                    public async searchDepartmentsList(requestBody: SearchDepartmentsReqDto,
+                                                    public async searchDepartmentsList(requestBody: SearchDepartmentsListReqDto,
                                                 ): Promise<DepartmentListRespDto> {
                                                     return await this.httpClient.request({
                                                         method: 'POST',
@@ -4211,8 +4210,8 @@ public async deletePermissionNamespacesBatch(requestBody: DeletePermissionNamesp
 }
 
 /**
- * @summary 校验权限空间 Code 或者名称是否有效
- * @description 通过用户池 ID 和权限空间 Code,或者用户池 ID 和权限空间名称查询是否有效。
+ * @summary 校验权限空间 Code 或者名称是否可用
+ * @description 通过用户池 ID 和权限空间 Code,或者用户池 ID 和权限空间名称查询是否可用。
  * @returns PermissionNamespaceCheckExistsRespDto
  */
 public async checkPermissionNamespaceExists(requestBody: CheckPermissionNamespaceExistsDto,
@@ -4257,195 +4256,123 @@ public async listPermissionNamespaceRoles({
 }
 
 /**
- * @summary 创建数据资源
- * @description 该接口用于创建数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源类型（STRING、ARRAY、TREE）以及数据操作列表进行创建,
- * 通过不同的数据资源类型适配不同的场景。
- *
- * ### 创建数据资源字符串类型示例
- *
- * ```json
- * {
-     * "namespaceCode": "examplePermissionNamespace",
-     * "resourceName": "字符串资源1",
-     * "resourceCode": "str1",
-     * "type": "STRING",
-     * "description": "这是一个数据资源字符串类型创建",
-     * "struct":"str1",
-     * "actions": ["get","read","update"]
-     * }
-     * ```
-     *
-     * ### 创建数据资源数组类型示例
-     *
-     * ```json
-     * {
-         * "namespaceCode": "examplePermissionNamespace",
-         * "resourceName": "数组资源1",
-         * "resourceCode": "array1",
-         * "description": "这是一个数据资源数组类型创建",
-         * "type": "ARRAY",
-         * "struct":["array1", "array2", "array3"],
-         * "actions": ["get","read","update"]
-         * }
-         * ```
-         *
-         * ### 创建数据资源树类型示例
-         *
-         * ```json
-         * {
-             * "namespaceCode": "examplePermissionNamespace",
-             * "resourceName": "树资源1",
-             * "resourceCode": "tree1",
-             * "description": "这是一个数据资源树类型创建",
-             * "type": "TREE",
-             * "struct":[{
-                 * "code": "tree1",
-                 * "name": "tree1",
-                 * "value": "tree1",
-                 * "children": [{
-                     * "code": "tree2",
-                     * "name": "tree2",
-                     * "value": "tree2",
-                     * "children": [{
-                         * "code": "tree3",
-                         * "name": "tree3",
-                         * "value": "tree3"
-                         * }]
-                         * }]
-                         * }],
-                         * "actions": ["get","read","update"]
-                         * }
-                         * ```
-                         *
-                         * @returns CreateDataResourceResponseDto
-                         */
-                        public async createDataResource(requestBody: CreateDataResourceDto,
-                    ): Promise<CreateDataResourceResponseDto> {
-                        return await this.httpClient.request({
-                            method: 'POST',
-                            url: '/api/v3/create-data-resource',
-                            data: requestBody,
-                        });
-                    }
+ * @summary 创建字符串数据资源
+ * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+ * @returns CreateStringDataResourceResponseDto
+ */
+public async createDataResourceByString(requestBody: CreateStringDataResourceDto,
+): Promise<CreateStringDataResourceResponseDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/create-string-data-resource',
+        data: requestBody,
+    });
+}
 
-                    /**
-                     * @summary 创建字符串数据资源
-                     * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
-                     * @returns CreateStringDataResourceResponseDto
-                     */
-                    public async createDataResourceByString(requestBody: CreateStringDataResourceDto,
-                ): Promise<CreateStringDataResourceResponseDto> {
-                    return await this.httpClient.request({
-                        method: 'POST',
-                        url: '/api/v3/create-string-data-resource',
-                        data: requestBody,
-                    });
-                }
+/**
+ * @summary 创建数组数据资源
+ * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+ * @returns CreateArrayDataResourceResponseDto
+ */
+public async createDataResourceByArray(requestBody: CreateArrayDataResourceDto,
+): Promise<CreateArrayDataResourceResponseDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/create-array-data-resource',
+        data: requestBody,
+    });
+}
 
-                /**
-                 * @summary 创建数组数据资源
-                 * @description 创建字符串数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
-                 * @returns CreateArrayDataResourceResponseDto
-                 */
-                public async createDataResourceByArray(requestBody: CreateArrayDataResourceDto,
-            ): Promise<CreateArrayDataResourceResponseDto> {
-                return await this.httpClient.request({
-                    method: 'POST',
-                    url: '/api/v3/create-array-data-resource',
-                    data: requestBody,
-                });
-            }
+/**
+ * @summary 创建树数据资源
+ * @description 创建树数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
+ * @returns CreateTreeDataResourceResponseDto
+ */
+public async createDataResourceByTree(requestBody: CreateTreeDataResourceDto,
+): Promise<CreateTreeDataResourceResponseDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/create-tree-data-resource',
+        data: requestBody,
+    });
+}
 
-            /**
-             * @summary 创建树数据资源
-             * @description 创建树数据资源，通过数据资源所属权限空间 Code、数据资源名称、数据资源 Code、数据资源节点和数据资源权限操作等字段进行创建
-             * @returns CreateTreeDataResourceResponseDto
-             */
-            public async createDataResourceByTree(requestBody: CreateTreeDataResourceDto,
-        ): Promise<CreateTreeDataResourceResponseDto> {
-            return await this.httpClient.request({
-                method: 'POST',
-                url: '/api/v3/create-tree-data-resource',
-                data: requestBody,
-            });
-        }
+/**
+ * @summary 获取数据资源列表
+ * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
+ * @returns ListDataResourcesPaginatedRespDto
+ */
+public async listDataResources({
+    page = 1,
+    limit = 10,
+    query,
+    namespaceCodes,
+}: {
+    /** 当前页数，从 1 开始 **/
+    page?: number,
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number,
+    /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
+    query?: string,
+    /** 权限数据所属权限空间 Code 列表 **/
+    namespaceCodes?: Array<string>,
+}): Promise<ListDataResourcesPaginatedRespDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/list-data-resources',
+        params: {
+            page: page,
+            limit: limit,
+            query: query,
+            namespaceCodes: namespaceCodes,
+        },
+    });
+}
 
-        /**
-         * @summary 获取数据资源列表
-         * @description 获取数据资源列表,可通过数据资源名称、数据资源 Code 和数据资源所属权限空间 Code 列表进行指定筛选。
-         * @returns ListDataResourcesPaginatedRespDto
-         */
-        public async listDataResources({
-            page = 1,
-            limit = 10,
-            query,
-            namespaceCodes,
-        }: {
-            /** 当前页数，从 1 开始 **/
-            page?: number,
-            /** 每页数目，最大不能超过 50，默认为 10 **/
-            limit?: number,
-            /** 关键字搜索，可以是数据资源名称或者数据资源 Code **/
-            query?: string,
-            /** 权限数据所属权限空间 Code 列表 **/
-            namespaceCodes?: Array<string>,
-        }): Promise<ListDataResourcesPaginatedRespDto> {
-            return await this.httpClient.request({
-                method: 'GET',
-                url: '/api/v3/list-data-resources',
-                params: {
-                    page: page,
-                    limit: limit,
-                    query: query,
-                    namespaceCodes: namespaceCodes,
-                },
-            });
-        }
+/**
+ * @summary 获取数据资源信息
+ * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
+ * @returns GetDataResourceResponseDto
+ */
+public async getDataResource({
+    namespaceCode,
+    resourceCode,
+}: {
+    /** 数据资源所属的权限空间 Code **/
+    namespaceCode: string,
+    /** 数据资源 Code,权限空间内唯一 **/
+    resourceCode: string,
+}): Promise<GetDataResourceResponseDto> {
+    return await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-data-resource',
+        params: {
+            namespaceCode: namespaceCode,
+            resourceCode: resourceCode,
+        },
+    });
+}
 
-        /**
-         * @summary 获取数据资源信息
-         * @description 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
-         * @returns GetDataResourceResponseDto
-         */
-        public async getDataResource({
-            namespaceCode,
-            resourceCode,
-        }: {
-            /** 数据资源所属的权限空间 Code **/
-            namespaceCode: string,
-            /** 数据资源 Code,权限空间内唯一 **/
-            resourceCode: string,
-        }): Promise<GetDataResourceResponseDto> {
-            return await this.httpClient.request({
-                method: 'GET',
-                url: '/api/v3/get-data-resource',
-                params: {
-                    namespaceCode: namespaceCode,
-                    resourceCode: resourceCode,
-                },
-            });
-        }
+/**
+ * @summary 修改数据资源
+ * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
+ * @returns UpdateDataResourceResponseDto
+ */
+public async updateDataResource(requestBody: UpdateDataResourceDto,
+): Promise<UpdateDataResourceResponseDto> {
+    return await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/update-data-resource',
+        data: requestBody,
+    });
+}
 
-        /**
-         * @summary 修改数据资源
-         * @description 修改数据资源,根据权限空间 Code 和数据资源 Code 查询原始信息,只允许修改数据资源名称、描述和数据资源节点。
-         * @returns UpdateDataResourceResponseDto
-         */
-        public async updateDataResource(requestBody: UpdateDataResourceDto,
-    ): Promise<UpdateDataResourceResponseDto> {
-        return await this.httpClient.request({
-            method: 'POST',
-            url: '/api/v3/update-data-resource',
-            data: requestBody,
-        });
-    }
-
-    /**
-     * @summary 删除数据资源
-     * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
-     * @returns CommonResponseDto
-     */
-    public async deleteDataResource(requestBody: DeleteDataResourceDto,
+/**
+ * @summary 删除数据资源
+ * @description 删除数据资源,根据数据资源 ID 删除对应的数据资源信息。
+ * @returns CommonResponseDto
+ */
+public async deleteDataResource(requestBody: DeleteDataResourceDto,
 ): Promise<CommonResponseDto> {
     return await this.httpClient.request({
         method: 'POST',
@@ -4455,8 +4382,8 @@ public async listPermissionNamespaceRoles({
 }
 
 /**
- * @summary 检查数据资源名称或者 Code 是否有效
- * @description 检查数据资源名称或者 Code 在权限空间内是否有效,通过数据资源名称或者数据资源 Code 以及所属权限空间 Code,判断在指定的权限空间内是否有效。
+ * @summary 检查数据资源名称或者 Code 是否可用
+ * @description 检查数据资源名称或者 Code 在权限空间内是否有效,通过数据资源名称或者数据资源 Code 以及所属权限空间 Code,判断在指定的权限空间内是否可用。
  *
  * ### 数据资源 Code 有效示例
  *
@@ -4560,7 +4487,7 @@ public async listPermissionNamespaceRoles({
                                     /**
                                      * @summary 创建数据策略
                                      * @description
-                                     * 创建数据策略,通过数据策略名称、数据策略描述以及资源节点列表进行创建，数据策略支持跨多个权限空间进行数据资源创建，并且支持创建时设置数据资源是否具有操作权限。
+                                     * 创建数据策略，通过数据策略名称、数据策略描述以及资源节点列表进行创建，数据策略支持跨多个权限空间进行数据资源创建，并且支持创建时设置数据资源是否具有操作权限。
                                      *
                                      * ```json
                                      * {
@@ -4569,7 +4496,7 @@ public async listPermissionNamespaceRoles({
                                          * "statementList": [
                                              * {
                                                  * "effect": "ALLOW",
-                                                 * "dataPermissions": [
+                                                 * "permissions": [
                                                      * "examplePermissionNamespaceCode/strResourceCode/exampleAction",
                                                      * "examplePermissionNamespaceCode/arrResourceCode/exampleAction",
                                                      * "examplePermissionNamespaceCode/treeResourceCode/strutCode1/exampleAction"
@@ -4577,7 +4504,7 @@ public async listPermissionNamespaceRoles({
                                                      * },
                                                      * {
                                                          * "effect": "DENY",
-                                                         * "dataPermissions": [
+                                                         * "permissions": [
                                                              * "examplePermissionNamespaceCode/strResourceCode1/exampleAction",
                                                              * "examplePermissionNamespaceCode/arrResourceCode1/exampleAction",
                                                              * "examplePermissionNamespaceCode/treeResourceCode1/strutCode1/exampleAction"
@@ -4600,7 +4527,7 @@ public async listPermissionNamespaceRoles({
 
                                                         /**
                                                          * @summary 获取数据策略列表
-                                                         * @description 分页查询数据策略列表，也可通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找
+                                                         * @description 分页查询数据策略列表，也可通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找。
                                                          * @returns ListDataPoliciesPaginatedRespDto
                                                          */
                                                         public async listDataPolices({
@@ -4628,7 +4555,7 @@ public async listPermissionNamespaceRoles({
 
                                                         /**
                                                          * @summary 获取数据策略简略信息列表
-                                                         * @description 分页获取数据策略简略信息列表,通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找出数据策略 ID、数据策略名称和数据策略描述信息。
+                                                         * @description 分页获取数据策略简略信息列表，通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找出数据策略 ID、数据策略名称和数据策略描述信息。
                                                          * @returns ListSimpleDataPoliciesPaginatedRespDto
                                                          */
                                                         public async listSimpleDataPolices({
@@ -4656,7 +4583,7 @@ public async listPermissionNamespaceRoles({
 
                                                         /**
                                                          * @summary 获取数据策略信息
-                                                         * @description 获取数据策略信息,通过数据策略 ID 获取对应数据策略信息,包含数据策略 ID、数据策略名称、数据策略描述、数据策略下所有的数据权限列表等信息
+                                                         * @description 获取数据策略信息，通过数据策略 ID 获取对应数据策略信息,包含数据策略 ID、数据策略名称、数据策略描述、数据策略下所有的数据权限列表等信息。
                                                          * @returns GetDataPolicyResponseDto
                                                          */
                                                         public async getDataPolicy({
@@ -4676,7 +4603,7 @@ public async listPermissionNamespaceRoles({
 
                                                         /**
                                                          * @summary 修改数据策略
-                                                         * @description 修改数据策略,通过数据策略名称、数据策略描述和相关的数据资源等字段修改数据策略信息
+                                                         * @description 修改数据策略，通过数据策略名称、数据策略描述和相关的数据资源等字段修改数据策略信息。
                                                          * @returns UpdateDataPolicyResponseDto
                                                          */
                                                         public async updateDataPolicy(requestBody: UpdateDataPolicyDto,
@@ -4690,7 +4617,7 @@ public async listPermissionNamespaceRoles({
 
                                                     /**
                                                      * @summary 删除数据策略
-                                                     * @description 数据策略删除,通过数据策略 ID 删除对应的策略,同时也删除数据策略和对应的数据资源等关系数据
+                                                     * @description 删除数据策略，通过数据策略 ID 删除对应的策略,同时也删除数据策略和对应的数据资源等关系数据。
                                                      * @returns CommonResponseDto
                                                      */
                                                     public async deleteDataPolicy(requestBody: DeleteDataPolicyDto,
@@ -4724,7 +4651,7 @@ public async listPermissionNamespaceRoles({
 
                                                 /**
                                                  * @summary 获取数据策略下所有的授权主体的信息
-                                                 * @description 获取数据策略下所有的授权主体的信息,通过授权主体类型、数据策略 ID 和数据资源 ID 查找授权主体列表
+                                                 * @description 获取数据策略下所有的授权主体的信息，通过授权主体类型、数据策略 ID 和数据资源 ID 查找授权主体列表。
                                                  * @returns ListDataPolicySubjectPaginatedRespDto
                                                  */
                                                 public async listDataPolicyTargets({
@@ -4760,7 +4687,7 @@ public async listPermissionNamespaceRoles({
 
                                                 /**
                                                  * @summary 授权数据策略
-                                                 * @description 数据策略创建主体授权,通过授权主体和数据策略进行相互授权
+                                                 * @description 数据策略创建主体授权，通过授权主体和数据策略进行相互授权。
                                                  * @returns CommonResponseDto
                                                  */
                                                 public async authorizeDataPolicies(requestBody: CreateAuthorizeDataPolicyDto,
@@ -4774,7 +4701,7 @@ public async listPermissionNamespaceRoles({
 
                                             /**
                                              * @summary 撤销数据策略
-                                             * @description 删除数据策略相关的主体授权,通过授权主体 ID、授权主体类型和数据策略 ID 进行删除
+                                             * @description 删除数据策略相关的主体授权，通过授权主体 ID、授权主体类型和数据策略 ID 进行删除。
                                              * @returns CommonResponseDto
                                              */
                                             public async revokeDataPolicy(requestBody: DeleteAuthorizeDataPolicyDto,

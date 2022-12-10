@@ -19,4 +19,8 @@ export type CreateRoleDto = {
      * 角色描述
      */
     description?: string;
+    /**
+     * 角色自动禁止时间，单位毫秒, 如果传null表示永久有效
+     */
+    disableTime?: string;
 };

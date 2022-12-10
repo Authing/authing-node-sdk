@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 分页查询数据策略列表，也可通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找
+ * 分页查询数据策略列表，也可通过关键字搜索数据策略名称或者数据策略 Code 进行模糊查找。
  */
 export type ListDataPoliciesDto = {
     /**

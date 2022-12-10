@@ -6,13 +6,13 @@ import type { DataStatementPermissionDto } from './DataStatementPermissionDto';
 
 export type UpdateDataPolicyDto = {
     /**
-     * 数据策略名称，用户池唯一
-     */
-    policyName: string;
-    /**
      * 数据策略 ID
      */
     policyId: string;
+    /**
+     * 数据策略名称，用户池唯一
+     */
+    policyName?: string;
     /**
      * 数据策略描述
      */

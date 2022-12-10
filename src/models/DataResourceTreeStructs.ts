@@ -18,5 +18,5 @@ export type DataResourceTreeStructs = {
     /**
      * 数据资源节点的子节点,子节点层级最多支持五个层级
      */
-    children?: Array<string>;
+    children?: Array<DataResourceTreeStructs>;
 };
