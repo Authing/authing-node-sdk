@@ -23,7 +23,7 @@ export type GetUserAuthorizedResourcesDto = {
      */
     userIdType?: any;
     /**
-     * 所属权限分组的 code
+     * 所属权限分组(权限空间)的 Code
      */
     namespace?: any;
     /**

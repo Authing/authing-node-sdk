@@ -35,6 +35,10 @@ export type GetUserDepartmentsDto = {
      */
     withCustomData?: any;
     /**
+     * 是否获取部门路径
+     */
+    withDepartmentPaths?: any;
+    /**
      * 排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符
      */
     sortBy?: any;

@@ -1,4 +1,3 @@
-import { CreateNamespaceDto } from "../../src/models";
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
@@ -27,7 +26,6 @@ describe("createNamespace", () => {
 
   // 析构;
   afterAll(async () => {
-    //删除用户
     const { statusCode, data, message } =
       await managementClient.deleteNamespacesBatch({
         codeList: [code],

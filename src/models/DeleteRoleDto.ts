@@ -8,7 +8,7 @@ export type DeleteRoleDto = {
      */
     codeList: Array<string>;
     /**
-     * 所属权限分组的 code
+     * 所属权限分组(权限空间)的 code
      */
     namespace?: string;
 };

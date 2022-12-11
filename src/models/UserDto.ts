@@ -266,7 +266,7 @@ export namespace UserDto {
         EXCEL = 'excel',
         REGISTER = 'register',
         ADMIN_CREATED = 'adminCreated',
-        SYNC_TASK = 'syncTask',
+        SYNC = 'sync',
     }
 
 

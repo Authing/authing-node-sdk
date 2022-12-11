@@ -7,11 +7,11 @@
  */
 export type GetRoleDto = {
     /**
-     * 权限分组内角色的唯一标识符
+     * 权限分组(权限空间)内角色的唯一标识符
      */
     code?: any;
     /**
-     * 所属权限分组的 code
+     * 所属权限分组(权限空间)的 Code
      */
     namespace?: any;
 };

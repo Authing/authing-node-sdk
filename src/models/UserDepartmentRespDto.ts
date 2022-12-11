@@ -57,4 +57,16 @@ export type UserDepartmentRespDto = {
      * 部门的扩展字段数据
      */
     customData?: any;
+    /**
+     * 部门 ID 路径
+     */
+    departmentIdPath?: Array<string>;
+    /**
+     * 部门 Code 路径
+     */
+    departmentCodePath?: Array<string>;
+    /**
+     * 部门名路径
+     */
+    departmentNamePath?: Array<string>;
 };

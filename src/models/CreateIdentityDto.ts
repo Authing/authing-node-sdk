@@ -48,6 +48,14 @@ export type CreateIdentityDto = {
      */
     userIdInIdp: string;
     /**
+     * 在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+     */
+    accessToken?: string;
+    /**
+     * 在外部身份源中的 Refresh Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+     */
+    refreshToken?: string;
+    /**
      * 身份来自的身份源连接 ID 列表
      */
     originConnIds: Array<string>;

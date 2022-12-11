@@ -69,11 +69,11 @@ export type SigninByMobileDto = {
      */
     yidunPayload?: SignInByYidunPayloadDto;
     /**
-     * 网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填。
+     * 微信小程序使用 code 登录相关数据，当 `connection` 为 `wechat_mini_program_code` 的时候必填。
      */
     wechatMiniProgramCodePayload?: SignInByWechatMiniProgramCodePayloadDto;
     /**
-     * 网易易盾移动端社会化登录数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填。
+     * 微信小程序使用手机号登录相关数据，当 `connection` 为 `wechat_mini_program_phone` 的时候必填。
      */
     wechatMiniProgramPhonePayload?: SignInByWechatMiniProgramPhonePayloadDto;
     /**
