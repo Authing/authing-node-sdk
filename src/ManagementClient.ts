@@ -49,6 +49,7 @@ import type { CostGetOrderDetailRespDto } from './models/CostGetOrderDetailRespD
 import type { CostGetOrderPayDetailRespDto } from './models/CostGetOrderPayDetailRespDto';
 import type { CostGetOrdersRespDto } from './models/CostGetOrdersRespDto';
 import type { CreateApplicationDto } from './models/CreateApplicationDto';
+import type { CreateApplicationRespDto } from './models/CreateApplicationRespDto';
 import type { CreateArrayDataResourceDto } from './models/CreateArrayDataResourceDto';
 import type { CreateArrayDataResourceResponseDto } from './models/CreateArrayDataResourceResponseDto';
 import type { CreateAsaAccountDto } from './models/CreateAsaAccountDto';
@@ -3665,10 +3666,10 @@ public async listApplicationSimpleInfo({
 /**
  * @summary 创建应用
  * @description 创建应用
- * @returns ApplicationPaginatedRespDto
+ * @returns CreateApplicationRespDto
  */
 public async createApplication(requestBody: CreateApplicationDto,
-): Promise<ApplicationPaginatedRespDto> {
+): Promise<CreateApplicationRespDto> {
     return await this.httpClient.request({
         method: 'POST',
         url: '/api/v3/create-application',
