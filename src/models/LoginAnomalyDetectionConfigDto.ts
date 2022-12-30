@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { LoginFailCheckConfigDto } from './LoginFailCheckConfigDto';
+import type { LoginIpWhitelistCheckConfigDto } from './LoginIpWhitelistCheckConfigDto';
 import type { LoginPassowrdFailCheckConfigDto } from './LoginPassowrdFailCheckConfigDto';
 
 export type LoginAnomalyDetectionConfigDto = {
@@ -34,6 +35,18 @@ export type LoginAnomalyDetectionConfigDto = {
      * 人机验证（验证码）-登录密码错误限制：当用户登录输入密码信息错误的时候会被按照「登录安全策略」规则触发相对应的策略。
      */
     robotVerifyLoginPasswordFailCheck: LoginPassowrdFailCheckConfigDto;
+    /**
+     * 人机验证（验证码）- ip 白名单：当登录者 ip 不在白名单会触发人机验证。
+     */
+    robotVerifyLoginIpWhitelistCheck: LoginIpWhitelistCheckConfigDto;
+    /**
+     * 是否开启登录时间限制
+     */
+    robotVerifyLoginTimeCheckEnable: boolean;
+    /**
+     * 登录时间限制周几+起始时间数组
+     */
+    robotVerifyloginWeekStartEndTime: Array<string>;
 };
 
 export namespace LoginAnomalyDetectionConfigDto {

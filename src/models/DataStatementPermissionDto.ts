@@ -8,7 +8,7 @@ export type DataStatementPermissionDto = {
      */
     effect: DataStatementPermissionDto.effect;
     /**
-     * 资源权限列表，字符串数据资源和字符串数据资源，没有 path 路径
+     * 资源权限列表，字符串数据资源和数组数据资源，没有 path 路径
      */
     permissions: Array<string>;
 };

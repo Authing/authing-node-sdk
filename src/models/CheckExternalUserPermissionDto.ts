@@ -4,7 +4,7 @@
 
 import type { AuthEnvParams } from './AuthEnvParams';
 
-export type CheckPermissionDto = {
+export type CheckExternalUserPermissionDto = {
     /**
      * 数据资源路径列表,
      */
@@ -14,15 +14,15 @@ export type CheckPermissionDto = {
      */
     action: string;
     /**
-     * 用户 ID
+     * 外部用户 ID
      */
-    userId: string;
+    externalId: string;
     /**
      * 权限空间 Code
      */
     namespaceCode: string;
     /**
-     * 是否开启条件判断，默认 false 不开启
+     * 是否开启条件判断，默认 true 开启
      */
     judgeConditionEnabled?: boolean;
     /**

@@ -37,7 +37,12 @@ import {
   Cas20ValidationFailureResult,
   Cas20ValidationSuccessResult,
 } from "./utils/types";
-import { SignInOptionsDto, SignUpOptionsDto, SignUpProfileDto } from "./models";
+import {
+  SigninByCredentialsDto,
+  SignInOptionsDto, SignUpDto,
+  SignUpOptionsDto,
+  SignUpProfileDto
+} from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { BindEmailDto } from './models/BindEmailDto';
 import type { BindPhoneDto } from './models/BindPhoneDto';
@@ -59,7 +64,7 @@ import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
-import { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
+
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
 import type { SystemInfoResp } from './models/SystemInfoResp';
 import type { UnbindEmailDto } from './models/UnbindEmailDto';
@@ -88,6 +93,10 @@ import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
 import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
 import type { SendEnrollFactorRequestRespDto } from './models/SendEnrollFactorRequestRespDto';
 import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
+import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
+import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
+import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
+import type { CheckResourcePermissionsRespDto } from './models/CheckResourcePermissionsRespDto';
 import type { DecryptWechatMiniProgramDataDto } from './models/DecryptWechatMiniProgramDataDto';
 import type { DecryptWechatMiniProgramDataRespDto } from './models/DecryptWechatMiniProgramDataRespDto';
 import type { GenerateBindExtIdpLinkRespDto } from './models/GenerateBindExtIdpLinkRespDto';
@@ -97,11 +106,11 @@ import type { GetIdentitiesRespDto } from './models/GetIdentitiesRespDto';
 import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
 import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
 import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
+import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
 import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
-import { SignUpDto } from './models/SignUpDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
 
@@ -2496,6 +2505,60 @@ public async getAuthorizedResources({
             namespace: namespace,
             resourceType: resourceType,
         },
+    });
+    return result;
+}
+/**
+ * @summary 字符串类型资源鉴权
+ * @description 字符串类型资源鉴权，支持用户对一个或者多个字符串资源进行权限判断
+ * @returns CheckResourcePermissionsRespDto
+ */
+public async checkPermissionByStringResource(requestBody: CheckPermissionStringResourceDto,
+): Promise<CheckResourcePermissionsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/check-permission-string-resource',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 数组类型资源鉴权
+ * @description 数组类型资源鉴权，支持用户对一个或者多个数组资源进行权限判断
+ * @returns CheckResourcePermissionsRespDto
+ */
+public async checkPermissionByArrayResource(requestBody: CheckPermissionArrayResourceDto,
+): Promise<CheckResourcePermissionsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/check-permission-array-resource',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 树类型资源鉴权
+ * @description 树类型资源鉴权，支持用户对一个或者多个树资源进行权限判断
+ * @returns CheckResourcePermissionsRespDto
+ */
+public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResourceDto,
+): Promise<CheckResourcePermissionsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/check-permission-tree-resource',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取用户在登录应用下被授权资源列表
+ * @description 获取用户指定资源权限列表，用户获取在某个应用下所拥有的资源列表
+ * @returns GetUserAuthResourceListRespDto
+ */
+public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-user-auth-resource-list',
     });
     return result;
 }

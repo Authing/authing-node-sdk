@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CheckParamsDataPolicyRespDto } from './CheckParamsDataPolicyRespDto';
+import type { GetAccessKeyRespDto } from './GetAccessKeyRespDto';
 
-export type CheckParamsDataPolicyResponseDto = {
+export type GetAccessKeyResponseDto = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -24,5 +24,5 @@ export type CheckParamsDataPolicyResponseDto = {
     /**
      * 响应数据
      */
-    data: CheckParamsDataPolicyRespDto;
+    data: Array<GetAccessKeyRespDto>;
 };

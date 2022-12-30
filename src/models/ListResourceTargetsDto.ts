@@ -2,15 +2,17 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ActionAuth } from './ActionAuth';
-
 export type ListResourceTargetsDto = {
     /**
-     * 资源路径
+     * 数据策略所属的数据资源路径列表
      */
-    resource: string;
+    resources: Array<string>;
     /**
      * 数据资源权限操作列表
      */
-    actionAuthList: Array<ActionAuth>;
+    actions: Array<string>;
+    /**
+     * 权限空间 Code
+     */
+    namespaceCode: string;
 };

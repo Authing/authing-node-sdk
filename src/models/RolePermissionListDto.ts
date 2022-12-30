@@ -8,6 +8,18 @@ export type RolePermissionListDto = {
      */
     roleId: string;
     /**
+     * 主体状态，DISABLE-未加入角色，ENABLE-已经加入了角色
+     */
+    status: string;
+    /**
+     * 主体加入时间毫秒值
+     */
+    enableTime?: number;
+    /**
+     * 主体失效时间毫秒值，为 null 表示用不失效
+     */
+    endTime?: number;
+    /**
      * 所属用户池 ID
      */
     userPoolId: string;

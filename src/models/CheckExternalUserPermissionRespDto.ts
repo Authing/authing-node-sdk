@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { CheckParamsDataPolicyRespDto } from './CheckParamsDataPolicyRespDto';
+import type { CheckExternalUserPermissionDataDto } from './CheckExternalUserPermissionDataDto';
 
-export type CheckParamsDataPolicyResponseDto = {
+export type CheckExternalUserPermissionRespDto = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -18,11 +18,7 @@ export type CheckParamsDataPolicyResponseDto = {
      */
     apiCode?: number;
     /**
-     * 请求 ID。当请求失败时会返回。
-     */
-    requestId?: string;
-    /**
      * 响应数据
      */
-    data: CheckParamsDataPolicyRespDto;
+    data: CheckExternalUserPermissionDataDto;
 };

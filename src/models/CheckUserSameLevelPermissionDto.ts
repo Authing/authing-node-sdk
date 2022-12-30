@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { AuthEnvParams } from './AuthEnvParams';
+
 export type CheckUserSameLevelPermissionDto = {
     /**
      * 资源路径
@@ -23,4 +25,12 @@ export type CheckUserSameLevelPermissionDto = {
      * 当前树资源路径子节点code
      */
     resourceNodeCodes?: Array<string>;
+    /**
+     * 是否开启条件判断，默认 false 不开启
+     */
+    judgeConditionEnabled?: boolean;
+    /**
+     * 条件环境属性，若开启条件判断则使用
+     */
+    authEnvParams?: AuthEnvParams;
 };
