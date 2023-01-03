@@ -1,0 +1,261 @@
+import { AuthenticationClient } from "./../../src/AuthenticationClient";
+import { DataStatementPermissionDto } from "../../src/models/DataStatementPermissionDto";
+import { SubjectDto } from "../../src/models/SubjectDto";
+import { managementClient } from "../client";
+import { CreateApplicationDto } from "../../src/models/CreateApplicationDto";
+import {
+  CheckPermissionArrayResourceDto,
+} from "../../src/models";
+import { DeleteAuthorizeDataPolicyDto } from "../../src/models/DeleteAuthorizeDataPolicyDto";
+import { DeleteDataPolicyDto } from "../../src/models/DeleteDataPolicyDto";
+import { DeleteDataResourceDto } from "../../src/models/DeleteDataResourceDto";
+import { DeleteApplicationDto } from "../../src/models/DeleteApplicationDto";
+import { DeleteUsersBatchDto } from "../../src/models/DeleteUsersBatchDto";
+import { randStr } from "../utils";
+
+describe("checkPermissionArrayResource", () => {
+  let userId = "";
+  let userDto = {
+    username: `testUserCreate${randStr(4)}`,
+    password: "123456",
+    email: `test${randStr(4)}@qq.com`,
+  };
+  it("Create User Success" /*这是当前用例的描述*/, async () => {
+    // 1、创建用户
+    const response = await managementClient.createUser(userDto);
+    // 期望响应状态码为 200
+    expect(response.statusCode).toEqual(200);
+    userId = response.data.userId;
+  });
+
+  let appId = "";
+  let appHost = "";
+  let appSecret = "";
+  it("Create Application Success" /*这是当前用例的描述*/, async () => {
+    let appDto: CreateApplicationDto = {
+      appIdentifier: `test-${randStr(2)}-user-permission-auth`,
+      appName: `test${randStr(2)}App`,
+      appDescription: "示例 app 描述",
+      loginConfig: {
+        enabledBasicLoginMethods: ["USERNAME_PASSWORD"],
+        showAuthorizationPage: true,
+      },
+    };
+    // 2、创建应用
+    const response = await managementClient.createApplication(appDto);
+    // 期望响应状态码为 200
+    expect(response.statusCode).toEqual(200);
+
+    appId = response.data.appId;
+    appHost = "https://" + response.data.appIdentifier + ".authing.cn";
+
+    const appSecretResponse = await managementClient.getApplicationSecret({
+      appId,
+    });
+    expect(appSecretResponse.statusCode).toEqual(200);
+    appSecret = appSecretResponse.data.secret;
+  });
+
+  let array1ResourceCode: string = "";
+  let array2ResourceCode: string = "";
+
+  it("Create Array Data Resource Success" /*这是当前用例的描述*/, async () => {
+    let createArray1DataResourceDto = {
+      resourceCode: `array${randStr(3)}DataResourceCode1`,
+      resourceName: `数据数据资源${randStr(4)}`,
+      namespaceCode: appId,
+      actions: ["get", "update", "delete"],
+      struct: ["arr1", "arr11"],
+    };
+
+    let createArray2DataResourceDto = {
+      resourceCode: `array${randStr(3)}DataResourceCode2`,
+      resourceName: `数组数据资源${randStr(4)}`,
+      namespaceCode: appId,
+      actions: ["get", "update", "delete"],
+      struct: ["arr2", "arr22"],
+    };
+    // 3、 创建数据资源
+    const str1 = await managementClient.createDataResourceByArray(
+      createArray1DataResourceDto
+    );
+    // 期望响应状态码为 200
+
+    expect(str1.statusCode).toEqual(200);
+    array1ResourceCode = str1.data.resourceCode;
+    const str2 = await managementClient.createDataResourceByArray(
+      createArray2DataResourceDto
+    );
+    // 期望响应状态码为 200
+    expect(str2.statusCode).toEqual(200);
+    array2ResourceCode = str2.data.resourceCode;
+  });
+  let policyAllowId = "";
+  let policyDenyId = "";
+  it("Create Data Policy Success" /*这是当前用例的描述*/, async () => {
+    let createPolicyAllowDto = {
+      policyName: `testStrAllowPolicy${randStr(4)}`,
+      policyDesc: "testStrAllowPolicy",
+      statementList: [
+        {
+          effect: DataStatementPermissionDto.effect.ALLOW,
+          permissions: [`${appId}/${array1ResourceCode}/*`],
+        },
+      ],
+    };
+
+    let createPolicyDenyDto = {
+      policyName: `testStrDenyPolicy${randStr(5)}`,
+      policyDesc: "testStrDenyPolicy",
+      statementList: [
+        {
+          effect: DataStatementPermissionDto.effect.DENY,
+          permissions: [`${appId}/${array2ResourceCode}/*`],
+        },
+      ],
+    };
+
+    const dataPolicyArrayAllow = await managementClient.createDataPolicy(
+      createPolicyAllowDto
+    );
+    expect(dataPolicyArrayAllow.statusCode).toEqual(200);
+
+    policyAllowId = dataPolicyArrayAllow.data.policyId;
+    const dataPolicyArrayDeny = await managementClient.createDataPolicy(
+      createPolicyDenyDto
+    );
+    expect(dataPolicyArrayDeny.statusCode).toEqual(200);
+    policyDenyId = dataPolicyArrayDeny.data.policyId;
+  });
+
+  let userToken: any = "";
+
+  it("User auth Success" /*这是当前用例的描述*/, async () => {
+    // 4、创建用户授权
+    let authPolicy = {
+      targetList: [
+        {
+          id: userId,
+          type: SubjectDto.type.USER,
+        },
+      ],
+      policyIds: [policyAllowId, policyDenyId],
+    };
+    const response = await managementClient.authorizeDataPolicies(authPolicy);
+    expect(response.statusCode).toEqual(200);
+  });
+
+  it("User Sing In  Success" /*这是当前用例的描述*/, async () => {
+    // 5、用户登录
+    // 初始化 认证侧
+    const authClient = new AuthenticationClient({
+      /** 应用 ID */
+      appId: appId,
+      appHost: appHost,
+      appSecret: appSecret,
+    });
+
+    const response = await authClient.signInByUsernamePassword({
+      username: userDto.username,
+      password: userDto.password,
+    });
+    expect(response.statusCode).toEqual(200);
+    userToken = response.data.access_token;
+  });
+
+  // 6、用户鉴权
+  it("Check Permission String Resource Success", async () => {
+    const checkAuthClient = new AuthenticationClient({
+      /** 应用 ID */
+      appId: appId,
+      appHost: appHost,
+      appSecret: appSecret,
+      accessToken: userToken,
+    });
+    let checkPermissionArrayResourceDto: CheckPermissionArrayResourceDto = {
+      resources: [array1ResourceCode, array2ResourceCode],
+      action: "get",
+    };
+    const result = await checkAuthClient.checkPermissionByArrayResource(
+      checkPermissionArrayResourceDto
+    );
+    expect(result.statusCode).toEqual(200);
+    console.log(result.data);
+  });
+
+  it("User  ReVoke Auth Success" /*这是当前用例的描述*/, async () => {
+    // 7、删除用户授权
+    const revokeAuthDto: DeleteAuthorizeDataPolicyDto = {
+      policyId: policyAllowId,
+      targetType: DeleteAuthorizeDataPolicyDto.targetType.USER,
+      targetIdentifier: userId,
+    };
+    const response = await managementClient.revokeDataPolicy(revokeAuthDto);
+    expect(response.statusCode).toEqual(200);
+  });
+
+  it("Delete  Data Policy  Success" /*这是当前用例的描述*/, async () => {
+    let deleteDataPolicyAllowDto: DeleteDataPolicyDto = {
+      policyId: policyAllowId,
+    };
+
+    let deleteDataPolicyDenyDto: DeleteDataPolicyDto = {
+      policyId: policyDenyId,
+    };
+    // 8、删除数据策略
+    const allowResp = await managementClient.deleteDataPolicy(
+      deleteDataPolicyAllowDto
+    );
+    expect(allowResp.statusCode).toEqual(200);
+
+    const denyResp = await managementClient.deleteDataPolicy(
+      deleteDataPolicyDenyDto
+    );
+    expect(denyResp.statusCode).toEqual(200);
+  });
+
+  it("Delete  Data Resource  Success" /*这是当前用例的描述*/, async () => {
+    let deleteArray1DataResourceDto: DeleteDataResourceDto = {
+      namespaceCode: appId,
+      resourceCode: array1ResourceCode,
+    };
+
+    let deleteArray2DataResourceDto: DeleteDataResourceDto = {
+      namespaceCode: appId,
+      resourceCode: array2ResourceCode,
+    };
+    // 9、删除数据资源
+
+    const array1Resp = await managementClient.deleteDataResource(
+      deleteArray1DataResourceDto
+    );
+    expect(array1Resp.statusCode).toEqual(200);
+
+    const array2Resp = await managementClient.deleteDataResource(
+      deleteArray2DataResourceDto
+    );
+    expect(array2Resp.statusCode).toEqual(200);
+  });
+
+  it("Delete  Application  Success" /*这是当前用例的描述*/, async () => {
+    let deleteApplication: DeleteApplicationDto = {
+      appId: appId,
+    };
+
+    // 10、删除应用
+    const resp = await managementClient.deleteApplication(deleteApplication);
+
+    expect(resp.statusCode).toEqual(200);
+  });
+
+  it("Delete  User  Success" /*这是当前用例的描述*/, async () => {
+    let deleteUserDto: DeleteUsersBatchDto = {
+      userIds: [userId],
+    };
+
+    // 10、删除用户
+    const resp = await managementClient.deleteUsersBatch(deleteUserDto);
+
+    expect(resp.statusCode).toEqual(200);
+  });
+});

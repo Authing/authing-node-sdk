@@ -24,8 +24,8 @@ describe('authorizeDataPolices', () => {
 
   const createDto = {
     policyName: 'test-policy-name',
-    statementList: [{ effect: DataStatementPermissionDto.effect.ALLOW, 
-      permissions: [createNamespaceDto.code+'/'+createDataResourceDto.resourceCode+'/'+createDataResourceDto.actions[0]] 
+    statementList: [{ effect: DataStatementPermissionDto.effect.ALLOW,
+      permissions: [createNamespaceDto.code+'/'+createDataResourceDto.resourceCode+'/'+createDataResourceDto.actions[0]]
     }],
     description: 'test',
   };
@@ -62,7 +62,6 @@ describe('authorizeDataPolices', () => {
       resourceCode : createDataResourceDto.resourceCode,
       namespaceCode : createDataResourceDto.namespaceCode,
     };
-
     await managementClient.revokeDataPolicy({policyId: policyId, targetIdentifier: userId, targetType: DeleteAuthorizeDataPolicyDto.targetType.USER});
     await managementClient.deleteDataPolicy({policyId});
     await managementClient.deleteUsersBatch({userIds: [userId]});

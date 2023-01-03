@@ -10,3 +10,15 @@ export function getRandomInt(min: number, max: number) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+const rnd = (seed :any ) => ((seed * 9301 + 49297) % 233280) / 233280.0;
+const rand = (number:any) =>
+  Math.floor(rnd(new Date().getTime() * Math.random()) * number);
+export const randStr = (len: number, x = 'abcdefhijkmnprstwxyz2345678') => {
+  const maxPos = x.length;
+  let pwd = '';
+  for (let i = 0; i < len; i += 1) {
+    pwd += x.charAt(rand(maxPos));
+  }
+  return pwd;
+};
