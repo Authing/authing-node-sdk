@@ -14,7 +14,7 @@ export type GetUserActionLogsDto = {
      */
     clientIp?: string;
     /**
-     * 事件类型
+     * 事件类型，用户的一系列操作，比如 login、logout、register、verifyMfa 等
      */
     eventType?: string;
     /**

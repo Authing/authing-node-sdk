@@ -14,11 +14,11 @@ export type GetAdminAuditLogsDto = {
      */
     clientIp?: string;
     /**
-     * 操作类型
+     * 操作类型，例如 create、update、delete、login 等
      */
     operationType?: string;
     /**
-     * 资源类型
+     * 资源类型，例如 DATA、API、BUTTON 等
      */
     resourceType?: string;
     /**
