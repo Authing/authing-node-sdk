@@ -4,6 +4,10 @@
 
 export type RoleDto = {
     /**
+     * 角色 ID
+     */
+    id: string;
+    /**
      * 权限分组(权限空间)内角色的唯一标识符 Code
      */
     code: string;

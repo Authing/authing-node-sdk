@@ -88,6 +88,8 @@ import type { EnrollFactorRespDto } from './models/EnrollFactorRespDto';
 import type { GetFactorRespDto } from './models/GetFactorRespDto';
 import type { ListEnrolledFactorsRespDto } from './models/ListEnrolledFactorsRespDto';
 import type { ListFactorsToEnrollRespDto } from './models/ListFactorsToEnrollRespDto';
+import type { MfaOtpVerityDto } from './models/MfaOtpVerityDto';
+import type { MfaOtpVerityRespDto } from './models/MfaOtpVerityRespDto';
 import type { ResetFactorDto } from './models/ResetFactorDto';
 import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
 import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
@@ -2181,6 +2183,20 @@ public async listFactorsToEnroll(): Promise<ListFactorsToEnrollRespDto> {
     const result = await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/list-factors-to-enroll',
+    });
+    return result;
+}
+/**
+ * @summary 校验用户 MFA 绑定的 OTP
+ * @description 校验用户 MFA 绑定的 OTP。
+ * @returns MfaOtpVerityRespDto
+ */
+public async mfaOtpVerify(requestBody: MfaOtpVerityDto,
+): Promise<MfaOtpVerityRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/mfa-totp-verify',
+        data: requestBody,
     });
     return result;
 }

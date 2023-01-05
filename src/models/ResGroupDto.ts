@@ -4,6 +4,10 @@
 
 export type ResGroupDto = {
     /**
+     * 分组 ID
+     */
+    id: string;
+    /**
      * 分组 code
      */
     code: string;

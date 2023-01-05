@@ -125,6 +125,7 @@ import type { GetDataResourceResponseDto } from "./models/GetDataResourceRespons
 import type { GetEmailTemplatesRespDto } from "./models/GetEmailTemplatesRespDto";
 import type { GetExternalUserResourceStructDto } from "./models/GetExternalUserResourceStructDto";
 import type { GetExternalUserResourceStructRespDto } from "./models/GetExternalUserResourceStructRespDto";
+import type { GetOtpSecretRespDto } from "./models/GetOtpSecretRespDto";
 import type { GetPermissionNamespaceListResponseDto } from "./models/GetPermissionNamespaceListResponseDto";
 import type { GetPermissionNamespaceResponseDto } from "./models/GetPermissionNamespaceResponseDto";
 import type { GetResourceAuthorizedTargetRespDto } from "./models/GetResourceAuthorizedTargetRespDto";
@@ -279,6 +280,7 @@ import Axios, { AxiosRequestConfig } from "axios";
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
+
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
     Object.keys(options).forEach((i: any) => !options[i] && delete options[i]);
@@ -1394,6 +1396,44 @@ export class ManagementClient {
       method: "POST",
       url: "/api/v3/import-otp",
       data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户绑定 OTP 的秘钥
+   * @description 通过用户 ID，获取用户绑定 OTP 的秘钥。可以选择指定用户 ID 类型等。
+   * @returns GetOtpSecretRespDto
+   */
+  public async getOtpSecretByUser({
+    userId,
+    userIdType = "user_id",
+  }: {
+    /** 用户 ID **/
+    userId: string;
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?:
+      | "user_id"
+      | "external_id"
+      | "phone"
+      | "email"
+      | "username"
+      | "identity";
+  }): Promise<GetOtpSecretRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-otp-secret-by-user",
+      params: {
+        userId: userId,
+        userIdType: userIdType,
+      },
     });
   }
 
@@ -5090,7 +5130,7 @@ export class ManagementClient {
    * "authorize": {
    * "authList": [
    * {
-   * "nodePath": "/treeCode/treeChildrenCode1",
+   * "nodePath": "treeCode/treeChildrenCode1",
    * "nodeActions": [
    * "read",
    * "get"
@@ -5099,7 +5139,7 @@ export class ManagementClient {
    * "nodeValue": "treeChildrenValue1"
    * },
    * {
-   * "nodePath": "/treeCode/treeChildrenCode2",
+   * "nodePath": "treeCode/treeChildrenCode2",
    * "nodeActions": [
    * "read",
    * "get"
@@ -5108,7 +5148,7 @@ export class ManagementClient {
    * "nodeValue": "treeChildrenValue2"
    * },
    * {
-   * "nodePath": "/treeCode/treeChildrenCode3",
+   * "nodePath": "treeCode/treeChildrenCode3",
    * "nodeActions": [
    * "read"
    * ],
@@ -5375,7 +5415,7 @@ export class ManagementClient {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
    * "action": "get"
-   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * "resources":["treeResourceCode1/StructCode1/resourceStructChildrenCode1", "treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
    * }
    * ```
    *
@@ -5390,12 +5430,12 @@ export class ManagementClient {
    * "checkResultList": [{
    * "namespaceCode": "examplePermissionNamespace",
    * "action": "get",
-   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+   * "resource": "treeResourceCode1/StructCode1/resourceStructChildrenCode1",
    * "enabled": true
    * },{
    * "namespaceCode": "examplePermissionNamespace",
    * "action": "get",
-   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+   * "resource": "treeResourceCode2/StructCode1/resourceStructChildrenCode1",
    * "enabled": true
    * }]
    * }
@@ -5475,7 +5515,7 @@ export class ManagementClient {
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
-   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * "resources":["treeResourceCode1/StructCode1/resourceStructChildrenCode1", "treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
    * }
    * ```
    *
@@ -5490,11 +5530,11 @@ export class ManagementClient {
    * "permissionList": [{
    * "namespaceCode": "examplePermissionNamespace",
    * "actionList": ["read", "update", "delete"],
-   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1"
+   * "resource": "treeResourceCode1/StructCode1/resourceStructChildrenCode1"
    * },{
    * "namespaceCode": "examplePermissionNamespace",
    * "actionList": ["read", "get", "delete"],
-   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"
+   * "resource": "treeResourceCode2/StructCode1/resourceStructChildrenCode1"
    * }]
    * }
    * }
@@ -5573,7 +5613,7 @@ export class ManagementClient {
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "actions": ["get", "update", "delete"]
-   * "resources":["/treeResourceCode1/StructCode1/resourceStructChildrenCode1", "/treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
+   * "resources":["treeResourceCode1/StructCode1/resourceStructChildrenCode1", "treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
    * }
    * ```
    *
@@ -5586,7 +5626,7 @@ export class ManagementClient {
    * "apiCode": 20001,
    * "data":{
    * "authUserList": [{
-   * "resource": "/treeResourceCode1/StructCode1/resourceStructChildrenCode1",
+   * "resource": "treeResourceCode1/StructCode1/resourceStructChildrenCode1",
    * "actionAuthList": [{
    * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
    * "action": "get"
@@ -5598,7 +5638,7 @@ export class ManagementClient {
    * "action": "delete"
    * }]
    * },{
-   * "resource": "/treeResourceCode2/StructCode1/resourceStructChildrenCode1",
+   * "resource": "treeResourceCode2/StructCode1/resourceStructChildrenCode1",
    * "actionAuthList": [{
    * "userIds": ["63721xxxxxxxxxxxxdde14a3"],
    * "action": "get"
@@ -5845,7 +5885,7 @@ export class ManagementClient {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
    * "action": "read",
-   * "resource": "/treeResourceCode1/structCode1",
+   * "resource": "treeResourceCode1/structCode1",
    * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
    * }
    * ```
