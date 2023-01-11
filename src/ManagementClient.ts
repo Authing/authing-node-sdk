@@ -24,6 +24,7 @@ import type { CancelSyncRiskOperationDto } from "./models/CancelSyncRiskOperatio
 import type { CancelSyncRiskOperationsRespDto } from "./models/CancelSyncRiskOperationsRespDto";
 import type { ChangeExtIdpAssociationStateDto } from "./models/ChangeExtIdpAssociationStateDto";
 import type { ChangeExtIdpConnStateDto } from "./models/ChangeExtIdpConnStateDto";
+import type { ChangeUserPoolTenantExtIdpConnDto } from "./models/ChangeUserPoolTenantExtIdpConnDto";
 import type { CheckDomainAvailable } from "./models/CheckDomainAvailable";
 import type { CheckDomainAvailableSecretRespDto } from "./models/CheckDomainAvailableSecretRespDto";
 import type { CheckExternalUserPermissionDto } from "./models/CheckExternalUserPermissionDto";
@@ -207,6 +208,7 @@ import type { SyncJobSingleRespDto } from "./models/SyncJobSingleRespDto";
 import type { SyncRiskOperationPaginatedRespDto } from "./models/SyncRiskOperationPaginatedRespDto";
 import type { SyncTaskPaginatedRespDto } from "./models/SyncTaskPaginatedRespDto";
 import type { SyncTaskSingleRespDto } from "./models/SyncTaskSingleRespDto";
+import type { TenantApplicationListPaginatedRespDto } from "./models/TenantApplicationListPaginatedRespDto";
 import type { TriggerSyncRiskOperationDto } from "./models/TriggerSyncRiskOperationDto";
 import type { TriggerSyncRiskOperationsRespDto } from "./models/TriggerSyncRiskOperationsRespDto";
 import type { TriggerSyncTaskDto } from "./models/TriggerSyncTaskDto";
@@ -222,6 +224,7 @@ import type { UpdateEmailTemplateDto } from "./models/UpdateEmailTemplateDto";
 import type { UpdateExtIdpConnDto } from "./models/UpdateExtIdpConnDto";
 import type { UpdateExtIdpDto } from "./models/UpdateExtIdpDto";
 import type { UpdateGroupReqDto } from "./models/UpdateGroupReqDto";
+import type { UpdateLoginConfigDto } from "./models/UpdateLoginConfigDto";
 import type { UpdateNamespaceDto } from "./models/UpdateNamespaceDto";
 import type { UpdateNamespaceRespDto } from "./models/UpdateNamespaceRespDto";
 import type { UpdateOrganizationReqDto } from "./models/UpdateOrganizationReqDto";
@@ -232,6 +235,7 @@ import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { UpdateSecuritySettingsDto } from "./models/UpdateSecuritySettingsDto";
 import type { UpdateSyncTaskDto } from "./models/UpdateSyncTaskDto";
 import type { UpdateUserBatchReqDto } from "./models/UpdateUserBatchReqDto";
+import type { UpdateUserPoolTenantLoginConfigDto } from "./models/UpdateUserPoolTenantLoginConfigDto";
 import type { UpdateUserReqDto } from "./models/UpdateUserReqDto";
 import type { UserActionLogRespDto } from "./models/UserActionLogRespDto";
 import type { UserDepartmentPaginatedRespDto } from "./models/UserDepartmentPaginatedRespDto";
@@ -242,6 +246,7 @@ import type { UserLoggedInIdentitiesRespDto } from "./models/UserLoggedInIdentit
 import type { UserLoginHistoryPaginatedRespDto } from "./models/UserLoginHistoryPaginatedRespDto";
 import type { UserMfaSingleRespDto } from "./models/UserMfaSingleRespDto";
 import type { UserPaginatedRespDto } from "./models/UserPaginatedRespDto";
+import type { UserPoolTenantConfigDtoRespDto } from "./models/UserPoolTenantConfigDtoRespDto";
 import type { UserSingleRespDto } from "./models/UserSingleRespDto";
 import type { CreatePipelineFunctionDto } from "./models/CreatePipelineFunctionDto";
 import type { DeletePipelineFunctionDto } from "./models/DeletePipelineFunctionDto";
@@ -268,6 +273,7 @@ import type { CreateAccessKeyResponseDto } from "./models/CreateAccessKeyRespons
 import type { DeleteAccessKeyDto } from "./models/DeleteAccessKeyDto";
 import type { GetAccessKeyResponseDto } from "./models/GetAccessKeyResponseDto";
 import type { ListAccessKeyResponseDto } from "./models/ListAccessKeyResponseDto";
+import type { UpdateAccessKeyDto } from "./models/UpdateAccessKeyDto";
 
 import {
   DEFAULT_OPTIONS,
@@ -1445,11 +1451,14 @@ export class ManagementClient {
   public async getOrganization({
     organizationCode,
     withCustomData = false,
+    tenantId,
   }: {
     /** 组织 Code（organizationCode） **/
     organizationCode: string;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<OrganizationSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1457,6 +1466,7 @@ export class ManagementClient {
       params: {
         organizationCode: organizationCode,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1469,11 +1479,14 @@ export class ManagementClient {
   public async getOrganizationsBatch({
     organizationCodeList,
     withCustomData = false,
+    tenantId,
   }: {
     /** 组织 Code（organizationCode）列表 **/
     organizationCodeList: Array<string>;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<OrganizationListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1481,6 +1494,7 @@ export class ManagementClient {
       params: {
         organizationCodeList: organizationCodeList,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1495,6 +1509,7 @@ export class ManagementClient {
     limit = 10,
     fetchAll = false,
     withCustomData = false,
+    tenantId,
   }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
@@ -1504,6 +1519,8 @@ export class ManagementClient {
     fetchAll?: boolean;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<OrganizationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1513,6 +1530,7 @@ export class ManagementClient {
         limit: limit,
         fetchAll: fetchAll,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1572,6 +1590,7 @@ export class ManagementClient {
     page = 1,
     limit = 10,
     withCustomData = false,
+    tenantId,
   }: {
     /** 搜索关键词，如组织机构名称 **/
     keywords: string;
@@ -1581,6 +1600,8 @@ export class ManagementClient {
     limit?: number;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<OrganizationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1590,6 +1611,7 @@ export class ManagementClient {
         page: page,
         limit: limit,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1605,6 +1627,7 @@ export class ManagementClient {
     departmentCode,
     departmentIdType = "department_id",
     withCustomData = false,
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1616,6 +1639,8 @@ export class ManagementClient {
     departmentIdType?: "department_id" | "open_department_id";
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1626,6 +1651,7 @@ export class ManagementClient {
         departmentCode: departmentCode,
         departmentIdType: departmentIdType,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1675,6 +1701,7 @@ export class ManagementClient {
     });
   }
 
+
   /**
    * @deprecated
    * @summary 搜索部门
@@ -1718,6 +1745,7 @@ export class ManagementClient {
     excludeVirtualNode = false,
     onlyVirtualNode = false,
     withCustomData = false,
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1731,6 +1759,8 @@ export class ManagementClient {
     onlyVirtualNode?: boolean;
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<DepartmentPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1742,6 +1772,7 @@ export class ManagementClient {
         excludeVirtualNode: excludeVirtualNode,
         onlyVirtualNode: onlyVirtualNode,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1763,6 +1794,7 @@ export class ManagementClient {
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1786,6 +1818,8 @@ export class ManagementClient {
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1802,6 +1836,7 @@ export class ManagementClient {
         withCustomData: withCustomData,
         withIdentities: withIdentities,
         withDepartmentIds: withDepartmentIds,
+        tenantId: tenantId,
       },
     });
   }
@@ -1815,6 +1850,7 @@ export class ManagementClient {
     organizationCode,
     departmentId,
     departmentIdType = "department_id",
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1822,6 +1858,8 @@ export class ManagementClient {
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
     departmentIdType?: "department_id" | "open_department_id";
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<UserIdListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1830,6 +1868,7 @@ export class ManagementClient {
         organizationCode: organizationCode,
         departmentId: departmentId,
         departmentIdType: departmentIdType,
+        tenantId: tenantId,
       },
     });
   }
@@ -1850,6 +1889,7 @@ export class ManagementClient {
     withCustomData = false,
     withIdentities = false,
     withDepartmentIds = false,
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1871,6 +1911,8 @@ export class ManagementClient {
     withIdentities?: boolean;
     /** 是否获取部门 ID 列表 **/
     withDepartmentIds?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<UserPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1886,6 +1928,7 @@ export class ManagementClient {
         withCustomData: withCustomData,
         withIdentities: withIdentities,
         withDepartmentIds: withDepartmentIds,
+        tenantId: tenantId,
       },
     });
   }
@@ -1930,6 +1973,7 @@ export class ManagementClient {
     departmentId,
     departmentIdType = "department_id",
     withCustomData = false,
+    tenantId,
   }: {
     /** 组织 code **/
     organizationCode: string;
@@ -1939,6 +1983,8 @@ export class ManagementClient {
     departmentIdType?: "department_id" | "open_department_id";
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1948,6 +1994,7 @@ export class ManagementClient {
         departmentId: departmentId,
         departmentIdType: departmentIdType,
         withCustomData: withCustomData,
+        tenantId: tenantId,
       },
     });
   }
@@ -1963,6 +2010,7 @@ export class ManagementClient {
     departmentId,
     departmentIdType = "department_id",
     includeChildrenDepartments = false,
+    tenantId,
   }: {
     /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
     userId: string;
@@ -1974,6 +2022,8 @@ export class ManagementClient {
     departmentIdType?: "department_id" | "open_department_id";
     /** 是否包含子部门 **/
     includeChildrenDepartments?: boolean;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<IsUserInDepartmentRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1984,6 +2034,7 @@ export class ManagementClient {
         departmentId: departmentId,
         departmentIdType: departmentIdType,
         includeChildrenDepartments: includeChildrenDepartments,
+        tenantId: tenantId,
       },
     });
   }
@@ -1995,15 +2046,19 @@ export class ManagementClient {
    */
   public async getDepartmentById({
     departmentId,
+    tenantId,
   }: {
     /** 部门 ID **/
     departmentId: string;
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<DepartmentSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-department-by-id",
       params: {
         departmentId: departmentId,
+        tenantId: tenantId,
       },
     });
   }
@@ -2641,7 +2696,6 @@ export class ManagementClient {
       data: requestBody,
     });
   }
-
   /**
    * @summary 更新身份源连接
    * @description 更新身份源连接，可以设置身份源图标、是否只支持登录等。
@@ -4044,6 +4098,95 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 获取租户应用列表
+   * @description 获取应用列表，可以指定 租户 ID 筛选。
+   * @returns TenantApplicationListPaginatedRespDto
+   */
+  public async listTenantApplications({
+    page,
+    limit,
+    keywords,
+    ssoEnabled,
+  }: {
+    /** 获取应用列表的页码 **/
+    page: string;
+    /** 每页获取的应用数量 **/
+    limit: string;
+    /** 搜索关键字 **/
+    keywords: string;
+    /** 应用是否加入单点登录 **/
+    ssoEnabled: boolean;
+  }): Promise<TenantApplicationListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-tenant-applications",
+      params: {
+        page: page,
+        limit: limit,
+        keywords: keywords,
+        sso_enabled: ssoEnabled,
+      },
+    });
+  }
+
+  /**
+   * @summary 更新应用登录页配置
+   * @description 通过应用 ID 更新登录页配置。
+   * @returns IsSuccessRespDto
+   */
+  public async updateLoginPageConfig(
+    requestBody: UpdateLoginConfigDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-login-page-config",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户池租户配置信息
+   * @description 根据用户池 ID 获取用户池多租户配置信息
+   * @returns UserPoolTenantConfigDtoRespDto
+   */
+  public async userpollTenantConfig(): Promise<UserPoolTenantConfigDtoRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/userpool-tenant-config",
+    });
+  }
+
+  /**
+   * @summary 更新用户池租户配置信息
+   * @description 更新用户池多租户配置内登录信息
+   * @returns IsSuccessRespDto
+   */
+  public async updateUserPoolTenantConfig(
+    requestBody: UpdateUserPoolTenantLoginConfigDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-userpool-tenant-config",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 设置用户池多租户身份源连接
+   * @description 设置用户池多租户身份源连接，支持同时设置多个身份源连接，支持设置连接和取消连接
+   * @returns IsSuccessRespDto
+   */
+  public async changeUserpoolTenanExtIdpConnState(
+    requestBody: ChangeUserPoolTenantExtIdpConnDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/change-userpool-tenant-ext-idp-conn-state",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 创建 ASA 账号
    * @description 在某一应用下创建 ASA 账号
    * @returns AsaAccountSingleRespDto
@@ -5072,7 +5215,7 @@ export class ManagementClient {
 
   /**
    * @summary 获取用户权限列表
-   * @description 该接口用于用户列表权限查询，可以通过用户 ID 列表进行批量查询权限，也可以通过查询多个用户在同一个权限空间的权限。
+   * @description 该接口用于用户列表权限查询，可以通过用户 ID 列表进行批量查询权限，也可以通过查询多个用户在同一个权限空间的权限,不同数据资源类型返回相应的资源结果。
    *
    * ### 查询一个用户拥有的数组资源、字符串资源和树资源权限列表示例
    *
@@ -5101,7 +5244,8 @@ export class ManagementClient {
    * "resourceList": [
    * {
    * "resourceCode": "strCode",
-   * "authorize": {
+   * "resourceType": "STRING",
+   * "strAuthorize": {
    * "value": "示例字符串资源",
    * "actions": [
    * "read",
@@ -5113,9 +5257,11 @@ export class ManagementClient {
    * },
    * {
    * "resourceCode": "arrayCode",
-   * "authorize": {
+   * "resourceType": "ARRAY",
+   * "arrAuthorize": {
    * "values": [
-   * "示例数据资源"
+   * "示例数据资源1",
+   * "示例数据资源2"
    * ],
    * "actions": [
    * "read",
@@ -5127,10 +5273,11 @@ export class ManagementClient {
    * },
    * {
    * "resourceCode": "treeCode",
-   * "authorize": {
+   * "resourceType": "TREE",
+   * "treeAuthorize": {
    * "authList": [
    * {
-   * "nodePath": "treeCode/treeChildrenCode1",
+   * "nodePath": "/treeChildrenCode/treeChildrenCode1",
    * "nodeActions": [
    * "read",
    * "get"
@@ -5139,7 +5286,7 @@ export class ManagementClient {
    * "nodeValue": "treeChildrenValue1"
    * },
    * {
-   * "nodePath": "treeCode/treeChildrenCode2",
+   * "nodePath": "/treeChildrenCode/treeChildrenCode2",
    * "nodeActions": [
    * "read",
    * "get"
@@ -5148,7 +5295,7 @@ export class ManagementClient {
    * "nodeValue": "treeChildrenValue2"
    * },
    * {
-   * "nodePath": "treeCode/treeChildrenCode3",
+   * "nodePath": "/treeChildrenCode/treeChildrenCode3",
    * "nodeActions": [
    * "read"
    * ],
@@ -5192,8 +5339,9 @@ export class ManagementClient {
    * "namespaceCode": "examplePermissionNamespace1",
    * "resourceList": [
    * {
-   * "resourceCode": "strCode1",
-   * "authorize": {
+   * "resourceCode": "strCode",
+   * "resourceType": "STRING",
+   * "strAuthorize": {
    * "value": "示例字符串资源",
    * "actions": [
    * "read",
@@ -5211,7 +5359,8 @@ export class ManagementClient {
    * "resourceList": [
    * {
    * "resourceCode": "arrayCode",
-   * "authorize": {
+   * "resourceType": "ARRAY",
+   * "arrAuthorize": {
    * "values": [
    * "示例数组资源1",
    * "示例数组资源2"
@@ -5263,7 +5412,8 @@ export class ManagementClient {
    * "resourceList": [
    * {
    * "resourceCode": "strCode1",
-   * "authorize": {
+   * "resourceType": "STRING",
+   * "strAuthorize": {
    * "value": "示例字符串资源",
    * "actions": [
    * "read",
@@ -5281,7 +5431,8 @@ export class ManagementClient {
    * "resourceList": [
    * {
    * "resourceCode": "arrayCode",
-   * "authorize": {
+   * "resourceType": "ARRAY",
+   * "arrAuthorize": {
    * "values": [
    * "示例数组资源1",
    * "示例数组资源2"
@@ -5563,7 +5714,7 @@ export class ManagementClient {
    * ```json
    * {
    * "namespaceCode": "examplePermissionNamespace",
-   * "actions": ["get", "update", "read"]
+   * "actions": ["get", "update", "read"],
    * "resources":["strResourceCode1", "arrayResourceCode1"]
    * }
    * ```
@@ -5612,7 +5763,7 @@ export class ManagementClient {
    * ```json
    * {
    * "namespaceCode": "examplePermissionNamespace",
-   * "actions": ["get", "update", "delete"]
+   * "actions": ["get", "update", "delete"],
    * "resources":["treeResourceCode1/StructCode1/resourceStructChildrenCode1", "treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
    * }
    * ```
@@ -5668,9 +5819,9 @@ export class ManagementClient {
 
   /**
    * @summary 获取用户授权资源的结构列表
-   * @description 该接口主要用于获取用户授权的资源列表，通过权限空间 Code、用户 id、资源 Code 获取用户资源的授权列表。
+   * @description 该接口主要用于获取用户授权的资源列表，通过权限空间 Code、用户 Id、资源 Code 获取用户资源的授权列表，通过不同的资源类型返回对应资源的授权。
    *
-   * ### 示例
+   * ### 获取用户授权字符串数据资源示例
    *
    * - 入参
    *
@@ -5678,7 +5829,7 @@ export class ManagementClient {
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
-   * "resourceCode": "exampleResourceCode"
+   * "resourceCode": "exampleStrResourceCode"
    * }
    * ```
    *
@@ -5691,46 +5842,90 @@ export class ManagementClient {
    * "apiCode": 20001,
    * "data":{
    * "namespaceCode": "exampleNamespaceCode",
-   * "resourceCode": "exampleResourceCode",
-   * "permissionBo": {
-   * "resourceId": "63xxxxxxxxxxxxx999",
+   * "resourceCode": "exampleStrResourceCode",
+   * "resourceType": "STRING",
+   * "strResourceAuthAction":{
+   * "value": "strTestValue",
+   * "actions": ["get","delete"]
+   * }
+   * }
+   * }
+   * ```
+   *
+   *
+   * ### 获取用户授权数据数组资源示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "examplePermissionNamespace",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "resourceCode": "exampleArrResourceCode"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "namespaceCode": "exampleNamespaceCode",
+   * "resourceCode": "exampleArrResourceCode",
+   * "resourceType": "ARRAY",
+   * "arrResourceAuthAction":{
+   * "values": ["arrTestValue1","arrTestValue2","arrTestValue3"],
+   * "actions": ["get","delete"]
+   * }
+   * }
+   * }
+   * ```
+   *
+   *
+   * ### 获取用户授权树数据资源示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "examplePermissionNamespace",
+   * "userId": "63721xxxxxxxxxxxxdde14a3",
+   * "resourceCode": "exampleArrResourceCode"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "namespaceCode": "exampleNamespaceCode",
+   * "resourceCode": "exampleArrResourceCode",
    * "resourceType": "TREE",
-   * "nodeAuthActionList": [
-   * {
-   * "name": "1",
-   * "code": "1",
-   * "children": [
-   * {
-   * "name": "1-1",
-   * "code": "1-1",
-   * "children": [],
-   * "actions": [
-   * "read",
-   * "get"
-   * ]
-   * }
-   * ],
-   * "actions": [
-   * "read"
-   * ]
-   * },
-   * {
-   * "name": "2",
-   * "code": "2",
-   * "children": [
-   * {
-   * "name": "2-1",
-   * "code": "2-1",
-   * "actions": [
-   * "read"
-   * ]
-   * }
-   * ],
-   * "actions": [
-   * "get"
-   * ]
-   * }
-   * ]
+   * "treeResourceAuthAction":{
+   * "nodeAuthActionList":[{
+   * "code": "tree11",
+   * "name": "tree11",
+   * "value": "test11Value",
+   * "actions": ["get","delete"],
+   * "children": [{
+   * "code": "tree111",
+   * "name": "tree111",
+   * "value": "test111Value",
+   * "actions": ["update","read"],
+   * }]
+   * },{
+   * "code": "tree22",
+   * "name": "tree22",
+   * "value": "test22Value",
+   * "actions": ["get","delete"],
+   * }]
    * }
    * }
    * }
@@ -5750,9 +5945,10 @@ export class ManagementClient {
 
   /**
    * @summary 获取外部用户授权资源的结构列表
-   * @description 该接口主要用于获取外部用户授权的资源列表，通过权限空间 Code、外部用户 id、资源 Code 获取外部用户资源的授权列表。
+   * @description 该接口主要用于获取外部用户授权的资源列表，通过权限空间 Code、外部用户 Id、资源 Code 获取外部用户资源的授权列表,通过不同的资源类型返回对应资源的授权。
    *
-   * ### 示例
+   *
+   * ### 获取用户授权字符串数据资源示例
    *
    * - 入参
    *
@@ -5760,7 +5956,7 @@ export class ManagementClient {
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "externalId": "63721xxxxxxxxxxxxdde14a3",
-   * "resourceCode": "exampleResourceCode"
+   * "resourceCode": "exampleStrResourceCode"
    * }
    * ```
    *
@@ -5773,46 +5969,90 @@ export class ManagementClient {
    * "apiCode": 20001,
    * "data":{
    * "namespaceCode": "exampleNamespaceCode",
-   * "resourceCode": "exampleResourceCode",
-   * "permissionBo": {
-   * "resourceId": "63xxxxxxxxxxxxx999",
+   * "resourceCode": "exampleStrResourceCode",
+   * "resourceType": "STRING",
+   * "strResourceAuthAction":{
+   * "value": "strTestValue",
+   * "actions": ["get","delete"]
+   * }
+   * }
+   * }
+   * ```
+   *
+   *
+   * ### 获取用户授权数据数组资源示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "examplePermissionNamespace",
+   * "externalId": "63721xxxxxxxxxxxxdde14a3",
+   * "resourceCode": "exampleArrResourceCode"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "namespaceCode": "exampleNamespaceCode",
+   * "resourceCode": "exampleArrResourceCode",
+   * "resourceType": "ARRAY",
+   * "arrResourceAuthAction":{
+   * "values": ["arrTestValue1","arrTestValue2","arrTestValue3"],
+   * "actions": ["get","delete"]
+   * }
+   * }
+   * }
+   * ```
+   *
+   *
+   * ### 获取用户授权树数据资源示例
+   *
+   * - 入参
+   *
+   * ```json
+   * {
+   * "namespaceCode": "examplePermissionNamespace",
+   * "externalId": "63721xxxxxxxxxxxxdde14a3",
+   * "resourceCode": "exampleArrResourceCode"
+   * }
+   * ```
+   *
+   * - 出参
+   *
+   * ```json
+   * {
+   * "statusCode": 200,
+   * "message": "操作成功",
+   * "apiCode": 20001,
+   * "data":{
+   * "namespaceCode": "exampleNamespaceCode",
+   * "resourceCode": "exampleArrResourceCode",
    * "resourceType": "TREE",
-   * "nodeAuthActionList": [
-   * {
-   * "name": "1",
-   * "code": "1",
-   * "children": [
-   * {
-   * "name": "1-1",
-   * "code": "1-1",
-   * "children": [],
-   * "actions": [
-   * "read",
-   * "get"
-   * ]
-   * }
-   * ],
-   * "actions": [
-   * "read"
-   * ]
-   * },
-   * {
-   * "name": "2",
-   * "code": "2",
-   * "children": [
-   * {
-   * "name": "2-1",
-   * "code": "2-1",
-   * "actions": [
-   * "read"
-   * ]
-   * }
-   * ],
-   * "actions": [
-   * "get"
-   * ]
-   * }
-   * ]
+   * "treeResourceAuthAction":{
+   * "nodeAuthActionList":[{
+   * "code": "tree11",
+   * "name": "tree11",
+   * "value": "test11Value",
+   * "actions": ["get","delete"],
+   * "children": [{
+   * "code": "tree111",
+   * "name": "tree111",
+   * "value": "test111Value",
+   * "actions": ["update","read"],
+   * }]
+   * },{
+   * "code": "tree22",
+   * "name": "tree22",
+   * "value": "test22Value",
+   * "actions": ["get","delete"],
+   * }]
    * }
    * }
    * }
@@ -5831,28 +6071,31 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 判断用户在同层级资源下的权限
-   * @description 该接口主要用于判断用户在同层级资源下的权限，通过权限空间 Code 、用户 ID、资源操作、资源或资源子节点查询用户是否有该同级资源的权限。可选传条件属性参数，默认不开启条件判断。
+   * @summary 判断用户在树资源同层级下的权限
+   * @description 该接口主要用于判断用户在树资源同层级下的权限，通过权限空间 Code 、用户 ID、资源操作、资源或资源子节点查询用户是否有该树资源同级路径的权限。可选传条件属性参数，默认不开启条件判断。
    *
-   * ### 判断用户在同层级字符串资源权限示例（无条件判断）
+   *
+   * ### 判断用户在树资源同层级权限示例（无条件判断）
    *
    * ```json
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
    * "action": "read",
-   * "resource": "strResourceCode1"
+   * "resource": "treeResourceCode/structCode",
+   * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
    * }
    * ```
    *
-   * ### 判断用户在同层级字符串资源权限示例（开启条件判断）
+   * ### 判断用户在树资源同层级权限示例（开启条件判断）
    *
    * ```json
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
    * "action": "read",
-   * "resource": "strResourceCode1",
+   * "resource": "treeResourceCode/structCode",
+   * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"],
    * "judgeConditionEnabled": true,
    * "authEnvParams":{
    * "ip":"110.96.0.0",
@@ -5864,29 +6107,6 @@ export class ManagementClient {
    * "browserType":"IE",
    * "requestDate":"2022-12-26 17:40:00"
    * }
-   * }
-   * ```
-   *
-   * ### 判断用户在同层级数组资源权限示例
-   *
-   * ```json
-   * {
-   * "namespaceCode": "examplePermissionNamespace",
-   * "userId": "63721xxxxxxxxxxxxdde14a3",
-   * "action": "read",
-   * "resource": "arrayResourceCode1"
-   * }
-   * ```
-   *
-   * ### 判断用户在同层级树资源权限示例
-   *
-   * ```json
-   * {
-   * "namespaceCode": "examplePermissionNamespace",
-   * "userId": "63721xxxxxxxxxxxxdde14a3",
-   * "action": "read",
-   * "resource": "treeResourceCode1/structCode1",
-   * "resourceNodeCodes": ["resourceStructChildrenCode1","resourceStructChildrenCode2","resourceStructChildrenCode3"]
    * }
    * ```
    *
@@ -6324,22 +6544,34 @@ export class ManagementClient {
    */
   public async getAccessKeyList({
     userId,
+    tenantId,
+    type,
+    status,
   }: {
-    /** 用户 ID **/
-    userId: string;
+    /** 密钥所属用户 ID **/
+    userId?: string;
+    /** 密钥所属租户 ID **/
+    tenantId?: string;
+    /** 密钥类型 **/
+    type?: string;
+    /** AccessKey 状态，activated：已激活，staging：分级（可轮换），revoked：已撤销 **/
+    status?: Array<string>;
   }): Promise<ListAccessKeyResponseDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/list-access-key",
       params: {
         userId: userId,
+        tenantId: tenantId,
+        type: type,
+        status: status,
       },
     });
   }
 
   /**
-   * @summary 获取协作管理员 AK/Sk 详细信息
-   * @description 获取协作管理员 AK/Sk 详细信息,根据协作管理员 ID 和 accessKeyId 获取对应 AK/SK 的详细信息。
+   * @summary 获取协作管理员 AK/SK 详细信息
+   * @description 获取协作管理员 AK/SK 详细信息,根据协作管理员 ID 和 accessKeyId 获取对应 AK/SK 的详细信息。
    * @returns GetAccessKeyResponseDto
    */
   public async getAccessKey({
@@ -6387,6 +6619,21 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/delete-access-key",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新一个管理员 AccessKey
+   * @description 根据 AccessKeyId 更新一个管理员 AccessKey，目前只支持更新 status，status 支持 activated / revoked
+   * @returns IsSuccessRespDto
+   */
+  public async updateAccessKey(
+    requestBody: UpdateAccessKeyDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-access-key",
       data: requestBody,
     });
   }

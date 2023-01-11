@@ -31,4 +31,8 @@ export type GetAccessKeyRespDto = {
      * accessKeyId 所在用户池
      */
     userPoolId: string;
+    /**
+     * 密钥是否启用
+     */
+    enable: boolean;
 };

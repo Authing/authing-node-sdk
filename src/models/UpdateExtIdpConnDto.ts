@@ -4,17 +4,17 @@
 
 export type UpdateExtIdpConnDto = {
     /**
-     * 身份源连接自定义参数（增量修改）
+     * 身份源连接 ID
      */
-    fields: any;
+    id: string;
     /**
      * 身份源连接显示名称
      */
     displayName: string;
     /**
-     * 身份源连接 ID
+     * 身份源连接自定义参数（增量修改）
      */
-    id: string;
+    fields: any;
     /**
      * 身份源连接的图标
      */
@@ -23,4 +23,8 @@ export type UpdateExtIdpConnDto = {
      * 是否只支持登录
      */
     loginOnly?: boolean;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

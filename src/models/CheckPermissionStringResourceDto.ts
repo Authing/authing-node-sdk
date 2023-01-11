@@ -4,7 +4,7 @@
 
 export type CheckPermissionStringResourceDto = {
     /**
-     * 数据资源路径列表,
+     * 字符串数据资源路径列表,
      */
     resources: Array<string>;
     /**

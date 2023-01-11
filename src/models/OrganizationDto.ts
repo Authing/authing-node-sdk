@@ -57,4 +57,8 @@ export type OrganizationDto = {
      * 部门的扩展字段数据
      */
     customData?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

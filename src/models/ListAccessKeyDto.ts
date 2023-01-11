@@ -7,7 +7,19 @@
  */
 export type ListAccessKeyDto = {
     /**
-     * 用户 ID
+     * 密钥所属用户 ID
      */
     userId?: any;
+    /**
+     * 密钥所属租户 ID
+     */
+    tenantId?: any;
+    /**
+     * 密钥类型
+     */
+    type?: any;
+    /**
+     * AccessKey 状态，activated：已激活，staging：分级（可轮换），revoked：已撤销
+     */
+    status?: any;
 };

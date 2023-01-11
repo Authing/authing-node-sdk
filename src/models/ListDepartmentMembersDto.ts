@@ -50,4 +50,8 @@ export type ListDepartmentMembersDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

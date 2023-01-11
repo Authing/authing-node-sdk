@@ -4,7 +4,7 @@
 
 export type GetUserResourceStructDto = {
     /**
-     * 资源 Code
+     * 数据资源 Code
      */
     resourceCode: string;
     /**

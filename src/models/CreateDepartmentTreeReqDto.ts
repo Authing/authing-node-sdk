@@ -17,4 +17,8 @@ export type CreateDepartmentTreeReqDto = {
      * 部门成员
      */
     members?: UserInfoDto;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

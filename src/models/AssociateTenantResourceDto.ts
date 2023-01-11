@@ -4,17 +4,17 @@
 
 export type AssociateTenantResourceDto = {
     /**
-     * 应用 ID
+     * 资源 Code
      */
-    appId: string;
+    code: string;
     /**
      * 是否关联应用资源
      */
     association: boolean;
     /**
-     * 资源 Code
+     * 应用 ID
      */
-    code: string;
+    appId: string;
     /**
      * 租户 ID
      */

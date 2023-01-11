@@ -4,17 +4,17 @@
 
 export type ChangeExtIdpConnStateDto = {
     /**
-     * 应用 ID
+     * 身份源连接 ID
      */
-    appId: string;
+    id: string;
     /**
      * 是否开启身份源连接
      */
     enabled: boolean;
     /**
-     * 身份源连接 ID
+     * 应用 ID
      */
-    id: string;
+    appId: string;
     /**
      * 租户 ID
      */

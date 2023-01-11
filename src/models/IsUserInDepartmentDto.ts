@@ -26,4 +26,8 @@ export type IsUserInDepartmentDto = {
      * 是否包含子部门
      */
     includeChildrenDepartments?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

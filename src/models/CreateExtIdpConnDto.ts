@@ -4,25 +4,25 @@
 
 export type CreateExtIdpConnDto = {
     /**
-     * 连接的自定义配置信息
+     * 身份源连接 ID
      */
-    fields: any;
-    /**
-     * 连接在登录页的显示名称
-     */
-    displayName: string;
-    /**
-     * 身份源连接标识
-     */
-    identifier: string;
+    extIdpId: string;
     /**
      * 身份源连接类型
      */
     type: CreateExtIdpConnDto.type;
     /**
-     * 身份源连接 ID
+     * 身份源连接标识
      */
-    extIdpId: string;
+    identifier: string;
+    /**
+     * 连接在登录页的显示名称
+     */
+    displayName: string;
+    /**
+     * 连接的自定义配置信息
+     */
+    fields: any;
     /**
      * 是否只支持登录
      */
@@ -31,6 +31,10 @@ export type CreateExtIdpConnDto = {
      * 身份源图标
      */
     logo?: string;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace CreateExtIdpConnDto {
