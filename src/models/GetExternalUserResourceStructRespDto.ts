@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { GetUserResourceStructDataDto } from './GetUserResourceStructDataDto';
+import type { GetExternalUserResourceStructDataDto } from './GetExternalUserResourceStructDataDto';
 
 export type GetExternalUserResourceStructRespDto = {
     /**
@@ -24,5 +24,5 @@ export type GetExternalUserResourceStructRespDto = {
     /**
      * 响应数据
      */
-    data: GetUserResourceStructDataDto;
+    data: GetExternalUserResourceStructDataDto;
 };

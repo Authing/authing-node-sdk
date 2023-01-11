@@ -10,7 +10,7 @@ export type CheckUserSameLevelPermissionRespDto = {
     /**
      * 树资源节点code
      */
-    resourceNodeCode?: string;
+    resourceNodeCode: string;
     /**
      * 是否拥有 action 权限
      */

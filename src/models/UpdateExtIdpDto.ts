@@ -4,11 +4,15 @@
 
 export type UpdateExtIdpDto = {
     /**
+     * 名称
+     */
+    name: string;
+    /**
      * 身份源 ID
      */
     id: string;
     /**
-     * 名称
+     * 租户 ID
      */
-    name: string;
+    tenantId?: string;
 };

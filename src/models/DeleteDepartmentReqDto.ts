@@ -4,17 +4,21 @@
 
 export type DeleteDepartmentReqDto = {
     /**
-     * 部门系统 ID（为 Authing 系统自动生成，不可修改）
-     */
-    departmentId: string;
-    /**
      * 组织 Code（organizationCode）
      */
     organizationCode: string;
     /**
+     * 部门系统 ID（为 Authing 系统自动生成，不可修改）
+     */
+    departmentId: string;
+    /**
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: DeleteDepartmentReqDto.departmentIdType;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace DeleteDepartmentReqDto {

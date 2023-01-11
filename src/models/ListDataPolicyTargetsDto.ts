@@ -19,7 +19,7 @@ export type ListDataPolicyTargetsDto = {
      */
     limit?: any;
     /**
-     * 数据策略名称搜索
+     * 主体名称
      */
     query?: any;
     /**

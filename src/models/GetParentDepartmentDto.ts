@@ -22,4 +22,8 @@ export type GetParentDepartmentDto = {
      * 是否获取自定义数据
      */
     withCustomData?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

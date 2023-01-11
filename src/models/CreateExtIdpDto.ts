@@ -4,13 +4,13 @@
 
 export type CreateExtIdpDto = {
     /**
-     * 身份源连接类型
-     */
-    type: CreateExtIdpDto.type;
-    /**
      * 身份源名称
      */
     name: string;
+    /**
+     * 身份源连接类型
+     */
+    type: CreateExtIdpDto.type;
     /**
      * 租户 ID
      */

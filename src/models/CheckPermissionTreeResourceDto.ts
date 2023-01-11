@@ -4,7 +4,7 @@
 
 export type CheckPermissionTreeResourceDto = {
     /**
-     * 数据资源路径列表,
+     * 树数据资源路径列表,
      */
     resources: Array<string>;
     /**

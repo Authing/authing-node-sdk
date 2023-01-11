@@ -6,7 +6,15 @@ import type { AuthEnvParams } from './AuthEnvParams';
 
 export type CheckUserSameLevelPermissionDto = {
     /**
-     * 资源路径
+     * 当前树资源路径子节点 Code
+     */
+    resourceNodeCodes: Array<string>;
+    /**
+     * 树资源路径,允许多层级路径，示例如下所示
+     * - treeResourceCode
+     * - treeResourceCode/structCode
+     * - treeResourceCode/structCode/struct1Code
+     * - treeResourceCode/.../structCode
      */
     resource: string;
     /**
@@ -21,10 +29,6 @@ export type CheckUserSameLevelPermissionDto = {
      * 权限空间 Code
      */
     namespaceCode: string;
-    /**
-     * 当前树资源路径子节点code
-     */
-    resourceNodeCodes?: Array<string>;
     /**
      * 是否开启条件判断，默认 false 不开启
      */

@@ -6,17 +6,17 @@ import type { DepartmentI18nDto } from './DepartmentI18nDto';
 
 export type CreateDepartmentReqDto = {
     /**
-     * 父部门 id
+     * 组织 Code（organizationCode）
      */
-    parentDepartmentId: string;
+    organizationCode: string;
     /**
      * 部门名称
      */
     name: string;
     /**
-     * 组织 Code（organizationCode）
+     * 父部门 id
      */
-    organizationCode: string;
+    parentDepartmentId: string;
     /**
      * 自定义部门 ID，用于存储自定义的 ID
      */
@@ -45,6 +45,10 @@ export type CreateDepartmentReqDto = {
      * 此次调用中使用的父部门 ID 的类型
      */
     departmentIdType?: CreateDepartmentReqDto.departmentIdType;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace CreateDepartmentReqDto {
