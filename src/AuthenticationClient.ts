@@ -83,6 +83,7 @@ import type { VerifyUpdatePhoneRequestDto } from './models/VerifyUpdatePhoneRequ
 import type { VerifyUpdatePhoneRequestRespDto } from './models/VerifyUpdatePhoneRequestRespDto';
 import type { PreCheckCodeDto } from './models/PreCheckCodeDto';
 import type { PreCheckCodeRespDto } from './models/PreCheckCodeRespDto';
+import type { WechatMobileAuthByCodeInput } from './models/WechatMobileAuthByCodeInput';
 import type { EnrollFactorDto } from './models/EnrollFactorDto';
 import type { EnrollFactorRespDto } from './models/EnrollFactorRespDto';
 import type { GetFactorRespDto } from './models/GetFactorRespDto';
@@ -95,6 +96,12 @@ import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
 import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
 import type { SendEnrollFactorRequestRespDto } from './models/SendEnrollFactorRequestRespDto';
 import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
+import type { BindByAccountIdInputApi } from './models/BindByAccountIdInputApi';
+import type { BindByAccountInputApi } from './models/BindByAccountInputApi';
+import type { BindByAccountsInputApi } from './models/BindByAccountsInputApi';
+import type { BindByEmailCodeInputApi } from './models/BindByEmailCodeInputApi';
+import type { BindByPhoneCodeInputApi } from './models/BindByPhoneCodeInputApi';
+import type { BindByRegiserInputApi } from './models/BindByRegiserInputApi';
 import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
 import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
 import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
@@ -112,9 +119,12 @@ import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourc
 import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
+import type { LoginTokenResponseDataDto } from './models/LoginTokenResponseDataDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
+import type { WechatLoginTokenRespDto } from './models/WechatLoginTokenRespDto';
+import type { WechatMobileAuthByCodeIdentityInput } from './models/WechatMobileAuthByCodeIdentityInput';
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
@@ -1605,6 +1615,68 @@ public async signInByCredentials(requestBody: SigninByCredentialsDto,
     return result;
 }
 /**
+ * @summary 使用用户凭证登录
+ * @description
+ * 此端点为基于直接 API 调用形式的登录端点，适用于你需要自建登录页面的场景。**此端点暂时不支持 MFA、信息补全、首次密码重置等流程，如有需要，请使用 OIDC 标准协议认证端点。**
+ *
+ *
+ * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+ *
+ * <details>
+ * <summary>点击展开详情</summary>
+ *
+ * <br>
+ *
+ * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+ * 中找到**换取 token 身份验证方式** 配置项：
+ *
+ * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+ *
+ * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+ *
+ * #### 换取 token 身份验证方式为 none 时
+ *
+ * 调用此接口不需要进行额外操作。
+ *
+ * #### 换取 token 身份验证方式为 client_secret_post 时
+ *
+ * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+ *
+ * #### 换取 token 身份验证方式为 client_secret_basic 时
+ *
+ * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+ *
+ * ```
+ * Basic base64(<client_id>:<client_secret>)
+ * ```
+ *
+ * 结果示例：
+ *
+ * ```
+ * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+ * ```
+ *
+ * JS 代码示例：
+ *
+ * ```js
+ * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+ * ```
+ *
+ * </details>
+ *
+ *
+ * @returns LoginTokenRespDto 成功认证
+ */
+public async signInByCredentials1(requestBody: SigninByCredentialsDto,
+): Promise<LoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/signin',
+        data: requestBody,
+    });
+    return result;
+}
+/**
  * @summary 使用移动端社会化登录
  * @description
  * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
@@ -2101,6 +2173,18 @@ public async preCheckCode(requestBody: PreCheckCodeDto,
     return result;
 }
 /**
+ * @returns any
+ */
+public async authByCode(requestBody: WechatMobileAuthByCodeInput,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/authByCode',
+        data: requestBody,
+    });
+    return result;
+}
+/**
  * @summary 发起绑定 MFA 认证要素请求
  * @description 当用户未绑定某个 MFA 认证要素时，可以发起绑定 MFA 认证要素请求。不同类型的 MFA 认证要素绑定请求需要发送不同的参数，详细见 profile 参数。发起验证请求之后，Authing 服务器会根据相应的认证要素类型和传递的参数，使用不同的手段要求验证。此接口会返回 enrollmentToken，你需要在请求「绑定 MFA 认证要素」接口时带上此 enrollmentToken，并提供相应的凭证。
  * @returns SendEnrollFactorRequestRespDto
@@ -2325,25 +2409,25 @@ public async unlinkExtIdp(requestBody: UnlinkExtIdpDto,
             return result;
         }
         /**
-         * @summary 解密微信小程序数据
-         * @description 解密微信小程序数据
-         * @returns DecryptWechatMiniProgramDataRespDto
-         */
-        public async decryptWechatMiniProgramData(requestBody: DecryptWechatMiniProgramDataDto,
-    ): Promise<DecryptWechatMiniProgramDataRespDto> {
-        const result = await this.httpClient.request({
-            method: 'POST',
-            url: '/api/v3/decrypt-wechat-miniprogram-data',
-            data: requestBody,
-        });
-        return result;
-    }
-    /**
-     * @summary 获取微信小程序、公众号 Access Token
-     * @description 获取 Authing 服务器缓存的微信小程序、公众号 Access Token
-     * @returns GetWechatAccessTokenRespDto
+     * @summary 解密微信小程序数据
+     * @description 解密微信小程序数据
+     * @returns DecryptWechatMiniProgramDataRespDto
      */
-    public async getWechatMpAccessToken(requestBody: GetWechatAccessTokenDto,
+    public async decryptWechatMiniProgramData(requestBody: DecryptWechatMiniProgramDataDto,
+): Promise<DecryptWechatMiniProgramDataRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/decrypt-wechat-miniprogram-data',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取微信小程序、公众号 Access Token
+ * @description 获取 Authing 服务器缓存的微信小程序、公众号 Access Token
+ * @returns GetWechatAccessTokenRespDto
+ */
+public async getWechatMpAccessToken(requestBody: GetWechatAccessTokenDto,
 ): Promise<GetWechatAccessTokenRespDto> {
     const result = await this.httpClient.request({
         method: 'POST',
@@ -2575,6 +2659,104 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
     const result = await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-auth-resource-list',
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端登录
+ * @description 移动端应用：使用微信作为外部身份源登录。
+ * @returns LoginTokenResponseDataDto
+ */
+public async authByCodeIdentity(requestBody: WechatMobileAuthByCodeIdentityInput,
+): Promise<LoginTokenResponseDataDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/authByCodeIdentity',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：使用身份源中用户信息
+ * @description 询问绑定开启时：绑定到外部身份源，根据外部身份源中的用户信息创建用户后绑定到当前身份源并登录。
+ * @returns WechatLoginTokenRespDto
+ */
+public async registerNewUser(requestBody: BindByRegiserInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/register',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：邮箱验证码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的邮箱验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByEmailCode(requestBody: BindByEmailCodeInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byEmailCode',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：手机号验证码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的手机验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByPhoneCode(requestBody: BindByPhoneCodeInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byPhoneCode',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：账号密码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的账号（用户名/手机号/邮箱）密码验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByAccount(requestBody: BindByAccountInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byAccount',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：多账号场景
+ * @description 询问绑定开启时：根据选择的账号绑定外部身份源，根据输入的账号 ID 验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async selectAccount(requestBody: BindByAccountsInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/select',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：账号 ID 模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的账号 ID 验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByAccountId(requestBody: BindByAccountIdInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byAccountId',
+        data: requestBody,
     });
     return result;
 }
