@@ -15,4 +15,8 @@ export type SearchDepartmentsReqDto = {
      * 是否获取自定义数据
      */
     withCustomData?: boolean;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

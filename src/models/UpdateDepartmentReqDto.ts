@@ -6,13 +6,13 @@ import type { DepartmentI18nDto } from './DepartmentI18nDto';
 
 export type UpdateDepartmentReqDto = {
     /**
-     * 部门系统 ID（为 Authing 系统自动生成，不可修改）
-     */
-    departmentId: string;
-    /**
      * 组织 Code（organizationCode）
      */
     organizationCode: string;
+    /**
+     * 部门系统 ID（为 Authing 系统自动生成，不可修改）
+     */
+    departmentId: string;
     /**
      * 部门负责人 ID
      */
@@ -45,6 +45,10 @@ export type UpdateDepartmentReqDto = {
      * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
      */
     customData?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace UpdateDepartmentReqDto {

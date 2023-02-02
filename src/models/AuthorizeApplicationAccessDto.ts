@@ -6,11 +6,11 @@ import type { ApplicationPermissionRecordItem } from './ApplicationPermissionRec
 
 export type AuthorizeApplicationAccessDto = {
     /**
-     * 授权主体列表，最多 10 条
-     */
-    list: Array<ApplicationPermissionRecordItem>;
-    /**
      * 应用 ID
      */
     appId: string;
+    /**
+     * 授权主体列表，最多 10 条
+     */
+    list: Array<ApplicationPermissionRecordItem>;
 };

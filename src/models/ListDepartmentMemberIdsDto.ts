@@ -18,4 +18,8 @@ export type ListDepartmentMemberIdsDto = {
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

@@ -218,6 +218,10 @@ export type UserDto = {
      * 用户状态上次修改时间
      */
     statusChangedAt?: string;
+    /**
+     * 用户租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace UserDto {

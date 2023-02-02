@@ -8,6 +8,10 @@ export type ListAccessKeyRespDto = {
      */
     accessKeyId: string;
     /**
+     * 用户所拥有的 accessKeySecret
+     */
+    accessKeySecret: string;
+    /**
      * 用户 ID
      */
     userId: string;
@@ -27,4 +31,8 @@ export type ListAccessKeyRespDto = {
      * accessKeyId 所在用户池
      */
     userPoolId: string;
+    /**
+     * 密钥是否启用
+     */
+    enable: boolean;
 };

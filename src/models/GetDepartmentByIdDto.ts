@@ -10,4 +10,8 @@ export type GetDepartmentByIdDto = {
      * 部门 ID
      */
     departmentId?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

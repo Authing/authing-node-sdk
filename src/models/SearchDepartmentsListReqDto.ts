@@ -33,6 +33,10 @@ export type SearchDepartmentsListReqDto = {
      * 增序或降序
      */
     orderBy?: SearchDepartmentsListReqDto.orderBy;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
 
 export namespace SearchDepartmentsListReqDto {

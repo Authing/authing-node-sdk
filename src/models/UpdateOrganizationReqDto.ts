@@ -26,6 +26,10 @@ export type UpdateOrganizationReqDto = {
      */
     i18n?: OrganizationNameI18nDto;
     /**
+     * 租户 ID
+     */
+    tenantId?: string;
+    /**
      * 新组织 code
      */
     organizationNewCode?: string;

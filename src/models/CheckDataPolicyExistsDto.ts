@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 通过数据策略名称查询用户池内是否存在。
+ * 通过数据策略名称查询用户池内是否有效。
  */
 export type CheckDataPolicyExistsDto = {
     /**

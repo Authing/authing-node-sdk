@@ -25,4 +25,8 @@ export type CreateOrganizationReqDto = {
      * 多语言设置
      */
     i18n?: OrganizationNameI18nDto;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

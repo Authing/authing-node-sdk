@@ -4,17 +4,17 @@
 
 export type IsActionAllowedDto = {
     /**
-     * 资源标识符
+     * 用户 ID
      */
-    resource: string;
+    userId: string;
     /**
      * 资源对应的操作
      */
     action: string;
     /**
-     * 用户 ID
+     * 资源标识符
      */
-    userId: string;
+    resource: string;
     /**
      * 所属权限分组(权限空间)的 Code
      */
