@@ -2,7 +2,21 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type TenantUserDto = {
+import type { CreateTenantUserOptionsDto } from './CreateTenantUserOptionsDto';
+
+export type CreateTenantUserReqDto = {
+    /**
+     * 租户 ID
+     */
+    tenantId: string;
+    /**
+     * 性别:
+     * - `M`: 男性，`male`
+     * - `F`: 女性，`female`
+     * - `U`: 未知，`unknown`
+     *
+     */
+    gender: CreateTenantUserReqDto.gender;
     /**
      * 邮箱，不区分大小写
      */
@@ -31,22 +45,6 @@ export type TenantUserDto = {
      * 头像链接
      */
     photo?: string;
-    /**
-     * 历史总登录次数
-     */
-    loginsCount?: number;
-    /**
-     * 上次登录 IP
-     */
-    lastIp?: string;
-    /**
-     * 性别:
-     * - `M`: 男性，`male`
-     * - `F`: 女性，`female`
-     * - `U`: 未知，`unknown`
-     *
-     */
-    gender: TenantUserDto.gender;
     /**
      * 出生日期
      */
@@ -92,30 +90,6 @@ export type TenantUserDto = {
      */
     preferredUsername?: string;
     /**
-     * 用户上次登录的应用 ID
-     */
-    lastLoginApp?: string;
-    /**
-     * 用户池 ID
-     */
-    userPoolId: string;
-    /**
-     * 租户 ID
-     */
-    tenantId: string;
-    /**
-     * 租户成员 ID
-     */
-    memberId: string;
-    /**
-     * 关联的用户池级别的用户 ID
-     */
-    linkUserId: string;
-    /**
-     * 是否为租户管理员
-     */
-    isTenantAdmin: boolean;
-    /**
      * 用户密码。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
      */
     password?: string;
@@ -123,9 +97,13 @@ export type TenantUserDto = {
      * 加密用户密码的盐
      */
     salt?: string;
+    /**
+     * 可选参数
+     */
+    options?: CreateTenantUserOptionsDto;
 };
 
-export namespace TenantUserDto {
+export namespace CreateTenantUserReqDto {
 
     /**
      * 性别:

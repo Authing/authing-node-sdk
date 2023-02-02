@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { TenantRespDto } from './TenantRespDto';
+import type { TenantCooperatorDto } from './TenantCooperatorDto';
 
-export type TenantListPagingDto = {
+export type TenantCooperatorListPagingDto = {
     /**
      * 记录总数
      */
@@ -12,5 +12,5 @@ export type TenantListPagingDto = {
     /**
      * 响应数据
      */
-    list: Array<TenantRespDto>;
+    list: Array<TenantCooperatorDto>;
 };

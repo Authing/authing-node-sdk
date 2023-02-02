@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { TenantRespDto } from './TenantRespDto';
+import type { TenantCooperatorListPagingDto } from './TenantCooperatorListPagingDto';
 
-export type TenantSingleRespDto = {
+export type TenantCooperatorPaginatedRespDto = {
     /**
      * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
      */
@@ -24,5 +24,5 @@ export type TenantSingleRespDto = {
     /**
      * 响应数据
      */
-    data: TenantRespDto;
+    data: TenantCooperatorListPagingDto;
 };

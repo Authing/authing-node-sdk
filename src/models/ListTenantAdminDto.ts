@@ -2,9 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { ListTenantUsersOptionsDto } from './ListTenantUsersOptionsDto';
-
-export type ListTenantUserDto = {
+export type ListTenantAdminDto = {
     /**
      * 租户 ID
      */
@@ -14,7 +12,11 @@ export type ListTenantUserDto = {
      */
     keywords?: string;
     /**
-     * 可选项
+     * 页码
      */
-    options?: ListTenantUsersOptionsDto;
+    page?: string;
+    /**
+     * 每页获取的数据量
+     */
+    limit?: string;
 };

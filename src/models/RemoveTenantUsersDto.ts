@@ -2,11 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UpdateTenantUserDto = {
-    /**
-     * 要更新的租户成员信息
-     */
-    updates: any;
+export type RemoveTenantUsersDto = {
     /**
      * 租户 ID
      */
@@ -14,9 +10,9 @@ export type UpdateTenantUserDto = {
     /**
      * 关联的用户池级别的用户 ID
      */
-    linkUserId?: string;
+    linkUserIds?: Array<string>;
     /**
      * 租户成员 ID
      */
-    memberId?: string;
+    memberIds?: Array<string>;
 };
