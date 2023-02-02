@@ -2,6 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+/**
+ * 根据租户 ID 获取租户详情
+ */
 export type GetTenantDto = {
     /**
      * 租户 ID
@@ -12,7 +15,15 @@ export type GetTenantDto = {
      */
     withMembersCount?: any;
     /**
-     * 增加返回租户下 app 简单信息
+     * 增加返回租户关联应用简单信息
      */
     withAppDetail?: any;
+    /**
+     * 增加返回租户下创建者简单信息
+     */
+    withCreatorDetail?: any;
+    /**
+     * 增加返回租户来源应用简单信息
+     */
+    withSourceAppDetail?: any;
 };

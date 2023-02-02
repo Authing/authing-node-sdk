@@ -122,6 +122,7 @@ export namespace SigninByMobileDto {
         YIDUN = 'yidun',
         WECHAT_MINI_PROGRAM_CODE = 'wechat_mini_program_code',
         WECHAT_MINI_PROGRAM_PHONE = 'wechat_mini_program_phone',
+        WECHAT_MINI_PROGRAM_CODE_AND_PHONE = 'wechat_mini_program_code_and_phone',
         GOOGLE = 'google',
     }
 
