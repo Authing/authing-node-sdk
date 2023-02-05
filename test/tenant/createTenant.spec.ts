@@ -7,7 +7,7 @@ describe("createTenant", () => {
   beforeAll(async () => {});
 
   describe("Success", () => {
-    it("with full basic tenant", async () => {
+    it("create tenant", async () => {
       const {
         statusCode,
         data: tenant,
