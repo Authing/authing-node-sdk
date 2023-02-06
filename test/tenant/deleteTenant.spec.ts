@@ -1,7 +1,7 @@
 import { generateRandomString } from "../../src/utils";
 import { managementClient } from "../client";
 
-describe("createTenant", () => {
+describe("deleteTenant", () => {
   let tenantId: string;
 
   beforeAll(async () => {
