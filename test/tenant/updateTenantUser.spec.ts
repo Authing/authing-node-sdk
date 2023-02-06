@@ -1,7 +1,7 @@
 import { Models } from "../../src";
 import { managementClient } from "../client";
 
-describe("updateUser", () => {
+describe("updateTenantUser", () => {
   const tenantId = process.env.AUTHING_SDK_TEST_TENANT_ID; // 设置好租户 id
   let linkUserIds: string[] = [];
 
