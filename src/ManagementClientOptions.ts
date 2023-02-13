@@ -22,6 +22,9 @@ export interface ManagementClientOptions {
    */
   rejectUnauthorized?: boolean;
 
+  // 事件订阅 socket 连接地址
+  socketUri?: string;
+
   // /**
   //  * 请求头 key，适用于去 Authing 品牌化场景
   //  */

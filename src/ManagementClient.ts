@@ -274,6 +274,8 @@ import type { DeleteAccessKeyDto } from "./models/DeleteAccessKeyDto";
 import type { GetAccessKeyResponseDto } from "./models/GetAccessKeyResponseDto";
 import type { ListAccessKeyResponseDto } from "./models/ListAccessKeyResponseDto";
 import type { UpdateAccessKeyDto } from "./models/UpdateAccessKeyDto";
+import WebSocket from 'ws';
+
 
 import {
   DEFAULT_OPTIONS,
@@ -282,10 +284,13 @@ import {
 import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
+import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
 
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
+  private ws: WebSocket | null;
+  private eventBus: {[propName: string]: [Function]};
 
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
@@ -293,6 +298,9 @@ export class ManagementClient {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     Axios.defaults.baseURL = domainC14n(String(this.options.host));
     this.httpClient = new ManagementHttpClient(this.options);
+    this.ws = null;
+    this.eventBus = {}
+
 
     if (!this.options.accessKeyId) {
       throw new Error("accessKeyId is required");
@@ -6636,5 +6644,80 @@ export class ManagementClient {
       url: "/api/v3/update-access-key",
       data: requestBody,
     });
+  }
+
+  private initWebSocket() {
+    if (!this.ws) {
+
+      if (!this.options.socketUri) {
+        throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
+      }
+
+      this.ws = new WebSocket(this.options.socketUri, {
+        headers: {
+          // 构建 token
+          authorization: buildAuthorization(
+            this.options.accessKeyId,
+            this.options.accessKeySecret,
+            buildStringToSign("websocket", this.options.socketUri, {}, {})
+          )
+        }
+      })
+
+      this.ws.on('message', (data) => {
+        try {
+          const { name, source } = JSON.parse(data.toString("utf8"))
+          if (this.eventBus[name]) {
+            this.eventBus[name].forEach(callback => {
+              callback(source)
+            })
+          } else {
+            // 未订阅事件
+            console.warn("未订阅的事件：", name);
+          }
+        } catch (error) {
+          console.error("数据格式化错误，检查传输数据格式！！！", error);
+        }
+      })
+
+      this.ws.on('error', (error) => {
+        console.error("webSocket 连接错误：", error);
+      })
+    }
+  }
+
+  public sub(eventName: string, callback: Function) {
+    /**
+     * 1. 判断是否连接 socket
+     * 2. 获取 socket 实例
+     * 3. 订阅
+     */
+    if (typeof eventName !== 'string') {
+      console.error("订阅事件名称为 string 类型！！！")
+      return
+    }
+
+    if (typeof callback !== 'function') {
+      console.error("订阅事件回调函数需要为 function 类型！！！");
+      return
+    }
+
+
+
+    this.initWebSocket()
+
+    if (this.eventBus[eventName]) {
+      this.eventBus[eventName].push(callback)
+    } else {
+      this.eventBus[eventName] = [callback]
+      // 需要告诉服务端订阅了哪些事件
+      if (this.ws?.readyState === this.ws?.OPEN) {
+        this.ws?.send(eventName)
+      } else {
+        this.ws?.on("open", () => {
+          this.ws?.send(eventName)
+        })
+      }
+    }
   }
 }
