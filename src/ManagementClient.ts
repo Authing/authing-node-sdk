@@ -289,7 +289,7 @@ import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
-  private ws: WebSocket | null;
+  private wsMap: {[propName: string]: WebSocket};
   private eventBus: {[propName: string]: [Function]};
 
   constructor(options: ManagementClientOptions) {
@@ -298,7 +298,7 @@ export class ManagementClient {
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     Axios.defaults.baseURL = domainC14n(String(this.options.host));
     this.httpClient = new ManagementHttpClient(this.options);
-    this.ws = null;
+    this.wsMap = {};
     this.eventBus = {}
 
 
@@ -6646,14 +6646,14 @@ export class ManagementClient {
     });
   }
 
-  private initWebSocket() {
-    if (!this.ws) {
+  private initWebSocket(eventName: string) {
+    if (!this.wsMap[eventName]) {
 
       if (!this.options.socketUri) {
         throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
       }
 
-      this.ws = new WebSocket(this.options.socketUri, {
+      this.wsMap[eventName] = new WebSocket(`${this.options.socketUri}?code=${eventName}`, {
         headers: {
           // 构建 token
           authorization: buildAuthorization(
@@ -6664,23 +6664,22 @@ export class ManagementClient {
         }
       })
 
-      this.ws.on('message', (data) => {
+      this.wsMap[eventName].on('message', (data) => {
         try {
-          const { name, source } = JSON.parse(data.toString("utf8"))
-          if (this.eventBus[name]) {
-            this.eventBus[name].forEach(callback => {
-              callback(source)
+          if (this.eventBus[eventName]) {
+            this.eventBus[eventName].forEach(callback => {
+              callback(data.toString("utf8"))
             })
           } else {
             // 未订阅事件
-            console.warn("未订阅的事件：", name);
+            console.warn("未订阅的事件：", eventName);
           }
         } catch (error) {
           console.error("数据格式化错误，检查传输数据格式！！！", error);
         }
       })
 
-      this.ws.on('error', (error) => {
+      this.wsMap[eventName].on('error', (error) => {
         console.error("webSocket 连接错误：", error);
       })
     }
@@ -6704,18 +6703,18 @@ export class ManagementClient {
 
 
 
-    this.initWebSocket()
+    this.initWebSocket(eventName)
 
     if (this.eventBus[eventName]) {
       this.eventBus[eventName].push(callback)
     } else {
       this.eventBus[eventName] = [callback]
       // 需要告诉服务端订阅了哪些事件
-      if (this.ws?.readyState === this.ws?.OPEN) {
-        this.ws?.send(eventName)
+      if (this.wsMap[eventName]?.readyState === this.wsMap[eventName]?.OPEN) {
+        this.wsMap[eventName]?.send(eventName)
       } else {
-        this.ws?.on("open", () => {
-          this.ws?.send(eventName)
+        this.wsMap[eventName]?.on("open", () => {
+          this.wsMap[eventName]?.send(eventName)
         })
       }
     }
