@@ -6675,12 +6675,12 @@ export class ManagementClient {
             console.warn("未订阅的事件：", eventName);
           }
         } catch (error) {
-          console.error("数据格式化错误，检查传输数据格式！！！", error);
+          throw new Error(`数据格式化错误，检查传输数据格式！！！ ${error}`);
         }
       })
 
       this.wsMap[eventName].on('error', (error) => {
-        console.error("webSocket 连接错误：", error);
+        throw new Error(`webSocket 连接错误： ${error}`);
       })
     }
   }
@@ -6692,16 +6692,12 @@ export class ManagementClient {
      * 3. 订阅
      */
     if (typeof eventName !== 'string') {
-      console.error("订阅事件名称为 string 类型！！！")
-      return
+      throw new Error("订阅事件名称为 string 类型！！！")
     }
 
     if (typeof callback !== 'function') {
-      console.error("订阅事件回调函数需要为 function 类型！！！");
-      return
+      throw new Error("订阅事件回调函数需要为 function 类型！！！");
     }
-
-
 
     this.initWebSocket(eventName)
 
