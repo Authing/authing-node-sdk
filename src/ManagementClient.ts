@@ -6659,7 +6659,7 @@ export class ManagementClient {
           authorization: buildAuthorization(
             this.options.accessKeyId,
             this.options.accessKeySecret,
-            buildStringToSign("websocket", this.options.socketUri, {}, {})
+            buildStringToSign("websocket", "", {}, {})
           )
         }
       })
@@ -6668,7 +6668,7 @@ export class ManagementClient {
         try {
           if (this.eventBus[eventName]) {
             this.eventBus[eventName].forEach(callback => {
-              callback(data.toString("utf8"))
+              callback(JSON.parse(data.toString("utf8")))
             })
           } else {
             // 未订阅事件
