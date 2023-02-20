@@ -289,8 +289,12 @@ import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
-  private wsMap: {[propName: string]: WebSocket};
-  private eventBus: {[propName: string]: [Function]};
+  private wsMap: {[propName: string]: {
+    socket: WebSocket,
+    lockConnect: boolean,
+    timeConnect: number
+  }};
+  private eventBus: {[propName: string]: [Function, Function][]};
 
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
@@ -6646,73 +6650,119 @@ export class ManagementClient {
     });
   }
 
-  private initWebSocket(eventName: string) {
-    if (!this.wsMap[eventName]) {
+  private reconnect(eventName: string) {
+    return new Promise((resolve, reject) => {
+      if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
+        if (!this.wsMap[eventName].lockConnect) {
+          this.wsMap[eventName].lockConnect = true
+          this.wsMap[eventName].timeConnect ++
+          console.log(`第 ${this.wsMap[eventName].timeConnect} 次重连-----------`);
 
-      if (!this.options.socketUri) {
-        throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
-      }
-
-      this.wsMap[eventName] = new WebSocket(`${this.options.socketUri}?code=${eventName}`, {
-        headers: {
-          // 构建 token
-          authorization: buildAuthorization(
-            this.options.accessKeyId,
-            this.options.accessKeySecret,
-            buildStringToSign("websocket", "", {}, {})
-          )
-        }
-      })
-
-      this.wsMap[eventName].on('message', (data) => {
-        try {
-          if (this.eventBus[eventName]) {
-            this.eventBus[eventName].forEach(callback => {
-              callback(JSON.parse(data.toString("utf8")))
+          setTimeout(() => {
+            this.wsMap[eventName].lockConnect = false
+            this.initWebSocket(eventName, true).then(res => {
+              resolve(true)
+            }).catch(e => {
+              reject(`socket 服务器连接超时`)
             })
-          } else {
-            // 未订阅事件
-            console.warn("未订阅的事件：", eventName);
-          }
-        } catch (error) {
-          throw new Error(`数据格式化错误，检查传输数据格式！！！ ${error}`);
+          }, 2000);
         }
-      })
-
-      this.wsMap[eventName].on('error', (error) => {
-        throw new Error(`webSocket 连接错误： ${error}`);
-      })
-    }
+      } else {
+        reject(`socket 服务器连接超时`);
+      }
+    })
   }
 
-  public sub(eventName: string, callback: Function) {
+  private initWebSocket(eventName: string, retry?: boolean) {
+    return new Promise((resolve, reject) => {
+      if (!this.wsMap[eventName] || retry) {
+
+        if (!this.options.socketUri) {
+          return reject("订阅事件需要添加 socketUri 连接地址！！！")
+        }
+
+        this.wsMap[eventName] = {
+          socket: new WebSocket(`${this.options.socketUri}?code=${eventName}`, {
+            headers: {
+              // 构建 token
+              authorization: buildAuthorization(
+                this.options.accessKeyId,
+                this.options.accessKeySecret,
+                buildStringToSign("websocket", this.options.socketUri, {}, {})
+              )
+            }
+          }),
+          timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
+          lockConnect: false
+        }
+
+        this.wsMap[eventName].socket.on('open', () => {
+          resolve(true)
+        })
+
+        this.wsMap[eventName].socket.on('message', (data: Buffer) => {
+          try {
+            if (this.eventBus[eventName]) {
+              this.eventBus[eventName].forEach(callback => {
+                callback[0](data.toString("utf8"))
+              })
+            } else {
+              // 未订阅事件
+              console.warn("未订阅的事件：", eventName);
+            }
+          } catch (error) {
+            return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
+          }
+        })
+
+        this.wsMap[eventName].socket.on('error', async() => {
+          try {
+            await this.reconnect(eventName)
+            resolve(true)
+          } catch (error) {
+            return reject('socket 服务器连接超时')
+          }
+        })
+
+        this.wsMap[eventName].socket.on('close', async() => {
+          try {
+            await this.reconnect(eventName)
+            resolve(true)
+          } catch (error) {
+            return reject('socket 服务器连接超时')
+          }
+        })
+      } else {
+        resolve(true)
+      }
+    })
+  }
+
+  public sub(eventName: string, callback: Function, errCallback: Function) {
     /**
      * 1. 判断是否连接 socket
      * 2. 获取 socket 实例
      * 3. 订阅
      */
     if (typeof eventName !== 'string') {
-      throw new Error("订阅事件名称为 string 类型！！！")
+      errCallback("订阅事件名称为 string 类型！！！")
     }
 
     if (typeof callback !== 'function') {
-      throw new Error("订阅事件回调函数需要为 function 类型！！！");
+      errCallback("订阅事件回调函数需要为 function 类型！！！");
     }
 
-    this.initWebSocket(eventName)
+    this.initWebSocket(eventName).catch(e => {
+      this.eventBus[eventName].forEach((item) => {
+        item[1]?.(e)
+      })
+    })
 
-    if (this.eventBus[eventName]) {
-      this.eventBus[eventName].push(callback)
+     if (this.eventBus[eventName]) {
+      this.eventBus[eventName].push([callback, errCallback])
     } else {
-      this.eventBus[eventName] = [callback]
-      // 需要告诉服务端订阅了哪些事件
-      if (this.wsMap[eventName]?.readyState === this.wsMap[eventName]?.OPEN) {
-        this.wsMap[eventName]?.send(eventName)
-      } else {
-        this.wsMap[eventName]?.on("open", () => {
-          this.wsMap[eventName]?.send(eventName)
-        })
-      }
+      this.eventBus[eventName] = [[callback, errCallback]]
     }
   }
+
 }
