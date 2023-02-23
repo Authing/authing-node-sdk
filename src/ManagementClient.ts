@@ -6698,7 +6698,7 @@ export class ManagementClient {
               authorization: buildAuthorization(
                 this.options.accessKeyId,
                 this.options.accessKeySecret,
-                buildStringToSign("websocket", this.options.socketUri, {}, {})
+                buildStringToSign("websocket", '', {}, {})
               )
             }
           }),
