@@ -300,7 +300,7 @@ export class ManagementClient {
 
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
-    Object.keys(options).forEach((i: any) => !options[i] && delete options[i]);
+    Object.keys(options).forEach((i: any) => typeof options[i] !== 'number' && !options[i] && delete options[i]);
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     Axios.defaults.baseURL = domainC14n(String(this.options.host));
     this.httpClient = new ManagementHttpClient(this.options);
@@ -6692,7 +6692,7 @@ export class ManagementClient {
         }
 
         this.wsMap[eventName] = {
-          socket: new WebSocket(`${this.options.socketUri}?code=${eventName}`, {
+          socket: new WebSocket(`${this.options.socketUri}/events/v1/management/sub?code=${eventName}`, {
             headers: {
               // 构建 token
               authorization: buildAuthorization(

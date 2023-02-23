@@ -54,6 +54,6 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
   accessKeyId: "",
   accessKeySecret: "",
   rejectUnauthorized: true,
-  socketUri: "",
+  socketUri: "wss://events.hydra.authing-inc.co/",
   retryTimes: 5
 };
