@@ -286,6 +286,8 @@ import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
 import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
 
+const pkg = require("../package.json")
+
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
@@ -6650,6 +6652,10 @@ export class ManagementClient {
     });
   }
 
+  /**
+   * @summary socket 重连
+   * @returns
+   */
   private reconnect(eventName: string) {
     return new Promise((resolve, reject) => {
       if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
@@ -6673,6 +6679,10 @@ export class ManagementClient {
     })
   }
 
+  /**
+   * @summary 建立 socket 连接，监听 message 回调事件队列
+   * @returns
+   */
   private initWebSocket(eventName: string, retry?: boolean) {
     return new Promise((resolve, reject) => {
       if (!this.wsMap[eventName] || retry) {
@@ -6729,7 +6739,7 @@ export class ManagementClient {
             await this.reconnect(eventName)
             resolve(true)
           } catch (error) {
-            return reject('socket 服务器连接超时')
+            return reject('socket 服务器连接关闭')
           }
         })
       } else {
@@ -6738,6 +6748,11 @@ export class ManagementClient {
     })
   }
 
+  /**
+   * @summary 事件订阅
+   * @description 订阅后通过建立 socket 连接接收服务端消息回调
+   * @returns
+   */
   public sub(eventName: string, callback: Function, errCallback: Function) {
     /**
      * 1. 判断是否连接 socket
@@ -6758,11 +6773,32 @@ export class ManagementClient {
       })
     })
 
-     if (this.eventBus[eventName]) {
+    if (this.eventBus[eventName]) {
       this.eventBus[eventName].push([callback, errCallback])
     } else {
       this.eventBus[eventName] = [[callback, errCallback]]
     }
+  }
+
+  /**
+   * @summary 事件发布
+   * @description 客户调用发布事件到事件中心
+   * @returns
+   */
+  public async pub(eventName: string, data: any) {
+    if (typeof eventName !== 'string') {
+      throw new Error("事件名称为 string 类型！！！")
+    }
+
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/app/event/pub",
+      data: {
+        type: eventName,
+        source: `${pkg.name}: ${pkg.version}`,
+        data
+      },
+    });
   }
 
 }

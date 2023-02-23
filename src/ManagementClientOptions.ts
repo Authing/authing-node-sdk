@@ -54,5 +54,6 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
   accessKeyId: "",
   accessKeySecret: "",
   rejectUnauthorized: true,
+  socketUri: "",
   retryTimes: 5
 };
