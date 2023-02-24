@@ -97,5 +97,13 @@ export interface AuthenticationClientInitOptions {
   /**
    * 是否拒绝非法的 HTTPS 请求，默认为 true；如果是私有化部署的场景且证书不被信任，可以设置为 false
    */
-   rejectUnauthorized?: boolean;
+  rejectUnauthorized?: boolean;
+
+  // 事件订阅 socket 连接地址
+  socketUri?: string;
+
+  // 重试次数
+  retryTimes?: number;
 }
+
+export const DEFAULT_SOCKET_URI = 'wss://events.authing.com/'

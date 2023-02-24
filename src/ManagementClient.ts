@@ -6662,19 +6662,17 @@ export class ManagementClient {
         if (!this.wsMap[eventName].lockConnect) {
           this.wsMap[eventName].lockConnect = true
           this.wsMap[eventName].timeConnect ++
-          console.log(`第 ${this.wsMap[eventName].timeConnect} 次重连-----------`);
-
           setTimeout(() => {
             this.wsMap[eventName].lockConnect = false
             this.initWebSocket(eventName, true).then(res => {
               resolve(true)
             }).catch(e => {
-              reject(`socket 服务器连接超时`)
+              reject(e)
             })
           }, 2000);
         }
       } else {
-        reject(`socket 服务器连接超时`);
+        reject(`socket 服务连接超时`);
       }
     })
   }
@@ -6686,10 +6684,6 @@ export class ManagementClient {
   private initWebSocket(eventName: string, retry?: boolean) {
     return new Promise((resolve, reject) => {
       if (!this.wsMap[eventName] || retry) {
-
-        if (!this.options.socketUri) {
-          return reject("订阅事件需要添加 socketUri 连接地址！！！")
-        }
 
         this.wsMap[eventName] = {
           socket: new WebSocket(`${this.options.socketUri}/events/v1/management/sub?code=${eventName}`, {
@@ -6725,12 +6719,12 @@ export class ManagementClient {
           }
         })
 
-        this.wsMap[eventName].socket.on('error', async() => {
+        this.wsMap[eventName].socket.on('error', async(e) => {
           try {
             await this.reconnect(eventName)
             resolve(true)
           } catch (error) {
-            return reject('socket 服务器连接超时')
+            return reject(`socket 连接异常：${e}`)
           }
         })
 
@@ -6739,7 +6733,7 @@ export class ManagementClient {
             await this.reconnect(eventName)
             resolve(true)
           } catch (error) {
-            return reject('socket 服务器连接关闭')
+            return reject(`socket 连接关闭`)
           }
         })
       } else {
@@ -6760,11 +6754,15 @@ export class ManagementClient {
      * 3. 订阅
      */
     if (typeof eventName !== 'string') {
-      errCallback("订阅事件名称为 string 类型！！！")
+      throw new Error("订阅事件名称为 string 类型！！！")
     }
 
     if (typeof callback !== 'function') {
-      errCallback("订阅事件回调函数需要为 function 类型！！！");
+      throw new Error("订阅事件回调函数需要为 function 类型！！！");
+    }
+
+    if (!this.options.socketUri) {
+      throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
     }
 
     this.initWebSocket(eventName).catch(e => {
@@ -6785,18 +6783,22 @@ export class ManagementClient {
    * @description 客户调用发布事件到事件中心
    * @returns
    */
-  public async pub(eventName: string, data: any) {
+  public async pub(eventName: string, data: string) {
     if (typeof eventName !== 'string') {
       throw new Error("事件名称为 string 类型！！！")
     }
 
+    if (typeof data !== 'string') {
+      throw new Error("发布数据为 string 类型！！！")
+    }
+
     return await this.httpClient.request({
       method: "POST",
-      url: "/app/event/pub",
+      url: "/api/v3/pub-event",
       data: {
-        type: eventName,
+        eventType: eventName,
         source: `${pkg.name}: ${pkg.version}`,
-        data
+        eventData: data
       },
     });
   }
