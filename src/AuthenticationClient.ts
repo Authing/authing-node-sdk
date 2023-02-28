@@ -2712,5 +2712,34 @@ public sub(eventName: string, callback: Function, errCallback: Function) {
   }
 }
 
+/**
+   * @summary 事件发布
+   * @description 客户调用发布事件到事件中心
+   * @returns
+   */
+public async pub(eventName: string, data: string) {
+  if (typeof eventName !== 'string') {
+    throw new Error("事件名称为 string 类型！！！")
+  }
+
+  if (typeof data !== 'string') {
+    throw new Error("发布数据为 string 类型！！！")
+  }
+
+  if (!this.options.accessToken) {
+    throw new Error("accessToken 为必填项")
+  }
+
+  return await this.httpClient.request({
+    method: "POST",
+    url: "/api/v3/pub-userEvent",
+    data: {
+      eventType: eventName,
+      source: `${pkg.name}: ${pkg.version}`,
+      eventData: data
+    },
+  });
+}
+
 // ==== AUTO GENERATED AUTHENTICATION METHODS END ====
 }
