@@ -98,12 +98,13 @@ import type {GroupListRespDto} from './models/GroupListRespDto';
 import type {RoleListRespDto} from './models/RoleListRespDto';
 import type {UnlinkExtIdpDto} from './models/UnlinkExtIdpDto';
 import type {UserDepartmentPaginatedRespDto} from './models/UserDepartmentPaginatedRespDto';
+
+// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
+
 import {GetUserAuthResourcePermissionListDto} from "./models/GetUserAuthResourcePermissionListDto";
 import {GetUserAuthResourcePermissionListRespDto} from "./models/GetUserAuthResourcePermissionListRespDto";
 import {GetUserAuthResourceStructDto} from "./models/GetUserAuthResourceStructDto";
 import {GetUserAuthResourceStructRespDto} from "./models/GetUserAuthResourceStructRespDto";
-
-// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
