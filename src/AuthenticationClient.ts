@@ -98,12 +98,13 @@ import type {GroupListRespDto} from './models/GroupListRespDto';
 import type {RoleListRespDto} from './models/RoleListRespDto';
 import type {UnlinkExtIdpDto} from './models/UnlinkExtIdpDto';
 import type {UserDepartmentPaginatedRespDto} from './models/UserDepartmentPaginatedRespDto';
+
+// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
+
 import {GetUserAuthResourcePermissionListDto} from "./models/GetUserAuthResourcePermissionListDto";
 import {GetUserAuthResourcePermissionListRespDto} from "./models/GetUserAuthResourcePermissionListRespDto";
 import {GetUserAuthResourceStructDto} from "./models/GetUserAuthResourceStructDto";
 import {GetUserAuthResourceStructRespDto} from "./models/GetUserAuthResourceStructRespDto";
-
-// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
@@ -2563,6 +2564,8 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
 }
 
 
+// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
+
   /**
    * @summary 获取用户指定资源权限列表
    * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
@@ -2590,5 +2593,4 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
     });
   }
 
-// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
 }
