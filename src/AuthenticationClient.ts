@@ -116,10 +116,10 @@ import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
+// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
+
 import WebSocket from 'ws';
 const pkg = require("../package.json")
-
-// ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
@@ -2592,6 +2592,8 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
     return result;
 }
 
+// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
+
 /**
    * @summary socket 重连
    * @returns
@@ -2741,5 +2743,4 @@ public async pub(eventName: string, data: string) {
   });
 }
 
-// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
 }
