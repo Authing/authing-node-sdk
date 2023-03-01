@@ -2563,6 +2563,8 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
 }
 
 
+// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
+
   /**
    * @summary 获取用户指定资源权限列表
    * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
@@ -2590,5 +2592,4 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
     });
   }
 
-// ==== AUTO GENERATED AUTHENTICATION METHODS END ====
 }
