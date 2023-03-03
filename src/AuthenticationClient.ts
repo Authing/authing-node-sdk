@@ -1,122 +1,110 @@
 import base64url from "base64url";
-import { createSecretKey } from "crypto";
-import { IncomingMessage, ServerResponse } from "http";
-import { compactVerify } from "jose";
-import { TextDecoder } from "util";
+import {createSecretKey} from "crypto";
+import {IncomingMessage, ServerResponse} from "http";
+import {compactVerify} from "jose";
+import {TextDecoder} from "util";
 import {
   AccessToken,
-  AuthUrlResult,
   AuthURLParams,
+  AuthUrlResult,
   IDToken,
   LoginTransaction,
   LogoutURLParams,
   OIDCTokenResponse,
 } from "./AuthenticationClientInterface";
-import {
-  AuthenticationClientInitOptions,
-  DEFAULT_COOKIE_KEY,
-  DEFAULT_SCOPE,
-} from "./AuthenticationClientOptions";
-import {
-  createQueryParams,
-  domainC14n,
-  generateRandomString,
-  JoseKey,
-  JWKSObject,
-  parseJWKS,
-  serialize,
-} from "./utils";
+import {AuthenticationClientInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE,} from "./AuthenticationClientOptions";
+import {createQueryParams, domainC14n, generateRandomString, JoseKey, JWKSObject, parseJWKS, serialize,} from "./utils";
 import sha256 from "crypto-js/sha256";
 import CryptoJS from "crypto-js";
-import { AuthenticationHttpClient } from "./AutherticationHttpClient";
+import {AuthenticationHttpClient} from "./AutherticationHttpClient";
 import {
-  OidcParams,
-  OauthParams,
-  CasParams,
-  LogoutParams,
   Cas20ValidationFailureResult,
   Cas20ValidationSuccessResult,
+  CasParams,
+  LogoutParams,
+  OauthParams,
+  OidcParams,
 } from "./utils/types";
-import {
-  SigninByCredentialsDto,
-  SignInOptionsDto, SignUpDto,
-  SignUpOptionsDto,
-  SignUpProfileDto
-} from "./models";
+import {SigninByCredentialsDto, SignInOptionsDto, SignUpDto, SignUpOptionsDto, SignUpProfileDto} from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
-import type { BindEmailDto } from './models/BindEmailDto';
-import type { BindPhoneDto } from './models/BindPhoneDto';
-import type { ChangeQRCodeStatusDto } from './models/ChangeQRCodeStatusDto';
-import type { CheckQRCodeStatusRespDto } from './models/CheckQRCodeStatusRespDto';
-import type { CommonResponseDto } from './models/CommonResponseDto';
-import type { DeleteAccounDto } from './models/DeleteAccounDto';
-import type { ExchangeTokenSetWithQRcodeTicketDto } from './models/ExchangeTokenSetWithQRcodeTicketDto';
-import type { GeneQRCodeRespDto } from './models/GeneQRCodeRespDto';
-import type { GenerateQrcodeDto } from './models/GenerateQrcodeDto';
-import type { GetAlipayAuthInfoRespDto } from './models/GetAlipayAuthInfoRespDto';
-import type { GetCountryListRespDto } from './models/GetCountryListRespDto';
-import type { GetSecurityInfoRespDto } from './models/GetSecurityInfoRespDto';
-import type { IsSuccessRespDto } from './models/IsSuccessRespDto';
-import type { LoginTokenRespDto } from './models/LoginTokenRespDto';
-import type { PasswordResetVerifyResp } from './models/PasswordResetVerifyResp';
-import type { ResetPasswordDto } from './models/ResetPasswordDto';
-import type { SendEmailDto } from './models/SendEmailDto';
-import type { SendEmailRespDto } from './models/SendEmailRespDto';
-import type { SendSMSDto } from './models/SendSMSDto';
-import type { SendSMSRespDto } from './models/SendSMSRespDto';
+import type {BindEmailDto} from './models/BindEmailDto';
+import type {BindPhoneDto} from './models/BindPhoneDto';
+import type {ChangeQRCodeStatusDto} from './models/ChangeQRCodeStatusDto';
+import type {CheckQRCodeStatusRespDto} from './models/CheckQRCodeStatusRespDto';
+import type {CommonResponseDto} from './models/CommonResponseDto';
+import type {DeleteAccounDto} from './models/DeleteAccounDto';
+import type {ExchangeTokenSetWithQRcodeTicketDto} from './models/ExchangeTokenSetWithQRcodeTicketDto';
+import type {GeneQRCodeRespDto} from './models/GeneQRCodeRespDto';
+import type {GenerateQrcodeDto} from './models/GenerateQrcodeDto';
+import type {GetAlipayAuthInfoRespDto} from './models/GetAlipayAuthInfoRespDto';
+import type {GetCountryListRespDto} from './models/GetCountryListRespDto';
+import type {GetSecurityInfoRespDto} from './models/GetSecurityInfoRespDto';
+import type {IsSuccessRespDto} from './models/IsSuccessRespDto';
+import type {LoginTokenRespDto} from './models/LoginTokenRespDto';
+import type {PasswordResetVerifyResp} from './models/PasswordResetVerifyResp';
+import type {ResetPasswordDto} from './models/ResetPasswordDto';
+import type {SendEmailDto} from './models/SendEmailDto';
+import type {SendEmailRespDto} from './models/SendEmailRespDto';
+import type {SendSMSDto} from './models/SendSMSDto';
+import type {SendSMSRespDto} from './models/SendSMSRespDto';
 
-import type { SigninByMobileDto } from './models/SigninByMobileDto';
-import type { SystemInfoResp } from './models/SystemInfoResp';
-import type { UnbindEmailDto } from './models/UnbindEmailDto';
-import type { UnbindPhoneDto } from './models/UnbindPhoneDto';
-import type { UpdateEmailDto } from './models/UpdateEmailDto';
-import type { UpdatePasswordDto } from './models/UpdatePasswordDto';
-import type { UpdatePhoneDto } from './models/UpdatePhoneDto';
-import type { UpdateUserProfileDto } from './models/UpdateUserProfileDto';
-import type { UserSingleRespDto } from './models/UserSingleRespDto';
-import type { VerifyDeleteAccountRequestDto } from './models/VerifyDeleteAccountRequestDto';
-import type { VerifyDeleteAccountRequestRespDto } from './models/VerifyDeleteAccountRequestRespDto';
-import type { VerifyResetPasswordRequestDto } from './models/VerifyResetPasswordRequestDto';
-import type { VerifyUpdateEmailRequestDto } from './models/VerifyUpdateEmailRequestDto';
-import type { VerifyUpdateEmailRequestRespDto } from './models/VerifyUpdateEmailRequestRespDto';
-import type { VerifyUpdatePhoneRequestDto } from './models/VerifyUpdatePhoneRequestDto';
-import type { VerifyUpdatePhoneRequestRespDto } from './models/VerifyUpdatePhoneRequestRespDto';
-import type { PreCheckCodeDto } from './models/PreCheckCodeDto';
-import type { PreCheckCodeRespDto } from './models/PreCheckCodeRespDto';
-import type { EnrollFactorDto } from './models/EnrollFactorDto';
-import type { EnrollFactorRespDto } from './models/EnrollFactorRespDto';
-import type { GetFactorRespDto } from './models/GetFactorRespDto';
-import type { ListEnrolledFactorsRespDto } from './models/ListEnrolledFactorsRespDto';
-import type { ListFactorsToEnrollRespDto } from './models/ListFactorsToEnrollRespDto';
-import type { MfaOtpVerityDto } from './models/MfaOtpVerityDto';
-import type { MfaOtpVerityRespDto } from './models/MfaOtpVerityRespDto';
-import type { ResetFactorDto } from './models/ResetFactorDto';
-import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
-import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
-import type { SendEnrollFactorRequestRespDto } from './models/SendEnrollFactorRequestRespDto';
-import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
-import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
-import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
-import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
-import type { CheckResourcePermissionsRespDto } from './models/CheckResourcePermissionsRespDto';
-import type { DecryptWechatMiniProgramDataDto } from './models/DecryptWechatMiniProgramDataDto';
-import type { DecryptWechatMiniProgramDataRespDto } from './models/DecryptWechatMiniProgramDataRespDto';
-import type { GenerateBindExtIdpLinkRespDto } from './models/GenerateBindExtIdpLinkRespDto';
-import type { GetAccessibleAppsRespDto } from './models/GetAccessibleAppsRespDto';
-import type { GetExtIdpsRespDto } from './models/GetExtIdpsRespDto';
-import type { GetIdentitiesRespDto } from './models/GetIdentitiesRespDto';
-import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
-import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
-import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
-import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
-import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
-import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
-import type { GroupListRespDto } from './models/GroupListRespDto';
-import type { RoleListRespDto } from './models/RoleListRespDto';
-import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
-import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
+import type {SigninByMobileDto} from './models/SigninByMobileDto';
+import type {SystemInfoResp} from './models/SystemInfoResp';
+import type {UnbindEmailDto} from './models/UnbindEmailDto';
+import type {UnbindPhoneDto} from './models/UnbindPhoneDto';
+import type {UpdateEmailDto} from './models/UpdateEmailDto';
+import type {UpdatePasswordDto} from './models/UpdatePasswordDto';
+import type {UpdatePhoneDto} from './models/UpdatePhoneDto';
+import type {UpdateUserProfileDto} from './models/UpdateUserProfileDto';
+import type {UserSingleRespDto} from './models/UserSingleRespDto';
+import type {VerifyDeleteAccountRequestDto} from './models/VerifyDeleteAccountRequestDto';
+import type {VerifyDeleteAccountRequestRespDto} from './models/VerifyDeleteAccountRequestRespDto';
+import type {VerifyResetPasswordRequestDto} from './models/VerifyResetPasswordRequestDto';
+import type {VerifyUpdateEmailRequestDto} from './models/VerifyUpdateEmailRequestDto';
+import type {VerifyUpdateEmailRequestRespDto} from './models/VerifyUpdateEmailRequestRespDto';
+import type {VerifyUpdatePhoneRequestDto} from './models/VerifyUpdatePhoneRequestDto';
+import type {VerifyUpdatePhoneRequestRespDto} from './models/VerifyUpdatePhoneRequestRespDto';
+import type {PreCheckCodeDto} from './models/PreCheckCodeDto';
+import type {PreCheckCodeRespDto} from './models/PreCheckCodeRespDto';
+import type {EnrollFactorDto} from './models/EnrollFactorDto';
+import type {EnrollFactorRespDto} from './models/EnrollFactorRespDto';
+import type {GetFactorRespDto} from './models/GetFactorRespDto';
+import type {ListEnrolledFactorsRespDto} from './models/ListEnrolledFactorsRespDto';
+import type {ListFactorsToEnrollRespDto} from './models/ListFactorsToEnrollRespDto';
+import type {MfaOtpVerityDto} from './models/MfaOtpVerityDto';
+import type {MfaOtpVerityRespDto} from './models/MfaOtpVerityRespDto';
+import type {ResetFactorDto} from './models/ResetFactorDto';
+import type {ResetFactorRespDto} from './models/ResetFactorRespDto';
+import type {SendEnrollFactorRequestDto} from './models/SendEnrollFactorRequestDto';
+import type {SendEnrollFactorRequestRespDto} from './models/SendEnrollFactorRequestRespDto';
+import type {AuthorizedResourcePaginatedRespDto} from './models/AuthorizedResourcePaginatedRespDto';
+import type {CheckPermissionArrayResourceDto} from './models/CheckPermissionArrayResourceDto';
+import type {CheckPermissionStringResourceDto} from './models/CheckPermissionStringResourceDto';
+import type {CheckPermissionTreeResourceDto} from './models/CheckPermissionTreeResourceDto';
+import type {CheckResourcePermissionsRespDto} from './models/CheckResourcePermissionsRespDto';
+import type {DecryptWechatMiniProgramDataDto} from './models/DecryptWechatMiniProgramDataDto';
+import type {DecryptWechatMiniProgramDataRespDto} from './models/DecryptWechatMiniProgramDataRespDto';
+import type {GenerateBindExtIdpLinkRespDto} from './models/GenerateBindExtIdpLinkRespDto';
+import type {GetAccessibleAppsRespDto} from './models/GetAccessibleAppsRespDto';
+import type {GetExtIdpsRespDto} from './models/GetExtIdpsRespDto';
+import type {GetIdentitiesRespDto} from './models/GetIdentitiesRespDto';
+import type {GetLoggedInAppsRespDto} from './models/GetLoggedInAppsRespDto';
+import type {GetLoginHistoryRespDto} from './models/GetLoginHistoryRespDto';
+import type {GetTenantListRespDto} from './models/GetTenantListRespDto';
+import type {GetUserAuthResourceListRespDto} from './models/GetUserAuthResourceListRespDto';
+import type {GetWechatAccessTokenDto} from './models/GetWechatAccessTokenDto';
+import type {GetWechatAccessTokenRespDto} from './models/GetWechatAccessTokenRespDto';
+import type {GroupListRespDto} from './models/GroupListRespDto';
+import type {RoleListRespDto} from './models/RoleListRespDto';
+import type {UnlinkExtIdpDto} from './models/UnlinkExtIdpDto';
+import type {UserDepartmentPaginatedRespDto} from './models/UserDepartmentPaginatedRespDto';
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
+
+import {GetUserAuthResourcePermissionListDto} from "./models/GetUserAuthResourcePermissionListDto";
+import {GetUserAuthResourcePermissionListRespDto} from "./models/GetUserAuthResourcePermissionListRespDto";
+import {GetUserAuthResourceStructDto} from "./models/GetUserAuthResourceStructDto";
+import {GetUserAuthResourceStructRespDto} from "./models/GetUserAuthResourceStructRespDto";
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
@@ -2531,12 +2519,11 @@ public async getAuthorizedResources({
  */
 public async checkPermissionByStringResource(requestBody: CheckPermissionStringResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-string-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-string-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 数组类型资源鉴权
@@ -2545,12 +2532,11 @@ public async checkPermissionByStringResource(requestBody: CheckPermissionStringR
  */
 public async checkPermissionByArrayResource(requestBody: CheckPermissionArrayResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-array-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-array-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 树类型资源鉴权
@@ -2559,12 +2545,11 @@ public async checkPermissionByArrayResource(requestBody: CheckPermissionArrayRes
  */
 public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-tree-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-tree-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 获取用户在登录应用下被授权资源列表
@@ -2572,12 +2557,40 @@ public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResou
  * @returns GetUserAuthResourceListRespDto
  */
 public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRespDto> {
-    const result = await this.httpClient.request({
-        method: 'GET',
-        url: '/api/v3/get-user-auth-resource-list',
+  return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-user-auth-resource-list',
     });
-    return result;
 }
 
+
 // ==== AUTO GENERATED AUTHENTICATION METHODS END ====
+
+  /**
+   * @summary 获取用户指定资源权限列表
+   * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
+   * @returns GetUserAuthResourcePermissionListRespDto
+   */
+  public async getUserAuthResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto): Promise<GetUserAuthResourcePermissionListRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-user-auth-resource-permission-list',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary   获取用户授权资源的结构列表
+   * @description 获取用户授权的资源列表，用户获取某个应用下的某个资源所授权的结构列表，通过不同的资源类型返回对应资源的授权列表。
+   * @returns GetUserAuthResourceStructRespDto
+   */
+
+  public async getUserAuthResourceStruct(requestBody: GetUserAuthResourceStructDto): Promise<GetUserAuthResourceStructRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-user-auth-resource-struct',
+      data: requestBody,
+    });
+  }
+
 }
