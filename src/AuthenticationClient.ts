@@ -1,48 +1,31 @@
 import base64url from "base64url";
-import { createSecretKey } from "crypto";
-import { IncomingMessage, ServerResponse } from "http";
-import { compactVerify } from "jose";
-import { TextDecoder } from "util";
+import {createSecretKey} from "crypto";
+import {IncomingMessage, ServerResponse} from "http";
+import {compactVerify} from "jose";
+import {TextDecoder} from "util";
 import {
   AccessToken,
-  AuthUrlResult,
   AuthURLParams,
+  AuthUrlResult,
   IDToken,
   LoginTransaction,
   LogoutURLParams,
   OIDCTokenResponse,
 } from "./AuthenticationClientInterface";
-import {
-  AuthenticationClientInitOptions,
-  DEFAULT_COOKIE_KEY,
-  DEFAULT_SCOPE,
-} from "./AuthenticationClientOptions";
-import {
-  createQueryParams,
-  domainC14n,
-  generateRandomString,
-  JoseKey,
-  JWKSObject,
-  parseJWKS,
-  serialize,
-} from "./utils";
+import {AuthenticationClientInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE,} from "./AuthenticationClientOptions";
+import {createQueryParams, domainC14n, generateRandomString, JoseKey, JWKSObject, parseJWKS, serialize,} from "./utils";
 import sha256 from "crypto-js/sha256";
 import CryptoJS from "crypto-js";
-import { AuthenticationHttpClient } from "./AutherticationHttpClient";
+import {AuthenticationHttpClient} from "./AutherticationHttpClient";
 import {
-  OidcParams,
-  OauthParams,
-  CasParams,
-  LogoutParams,
   Cas20ValidationFailureResult,
   Cas20ValidationSuccessResult,
+  CasParams,
+  LogoutParams,
+  OauthParams,
+  OidcParams,
 } from "./utils/types";
-import {
-  SigninByCredentialsDto,
-  SignInOptionsDto, SignUpDto,
-  SignUpOptionsDto,
-  SignUpProfileDto
-} from "./models";
+import {SigninByCredentialsDto, SignInOptionsDto, SignUpDto, SignUpOptionsDto, SignUpProfileDto} from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { BindEmailDto } from './models/BindEmailDto';
 import type { BindPhoneDto } from './models/BindPhoneDto';
@@ -149,6 +132,11 @@ import type { VerifyRegistrationDto } from './models/VerifyRegistrationDto';
 import type { VerifyRegistrationResultRespDto } from './models/VerifyRegistrationResultRespDto';
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
+
+import {GetUserAuthResourcePermissionListDto} from "./models/GetUserAuthResourcePermissionListDto";
+import {GetUserAuthResourcePermissionListRespDto} from "./models/GetUserAuthResourcePermissionListRespDto";
+import {GetUserAuthResourceStructDto} from "./models/GetUserAuthResourceStructDto";
+import {GetUserAuthResourceStructRespDto} from "./models/GetUserAuthResourceStructRespDto";
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
@@ -2740,12 +2728,11 @@ public async getAuthorizedResources({
  */
 public async checkPermissionByStringResource(requestBody: CheckPermissionStringResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-string-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-string-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 数组类型资源鉴权
@@ -2754,12 +2741,11 @@ public async checkPermissionByStringResource(requestBody: CheckPermissionStringR
  */
 public async checkPermissionByArrayResource(requestBody: CheckPermissionArrayResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-array-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-array-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 树类型资源鉴权
@@ -2768,12 +2754,11 @@ public async checkPermissionByArrayResource(requestBody: CheckPermissionArrayRes
  */
 public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResourceDto,
 ): Promise<CheckResourcePermissionsRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/check-permission-tree-resource',
-        data: requestBody,
+  return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/check-permission-tree-resource',
+      data: requestBody,
     });
-    return result;
 }
 /**
  * @summary 获取用户在登录应用下被授权资源列表
@@ -2781,11 +2766,10 @@ public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResou
  * @returns GetUserAuthResourceListRespDto
  */
 public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRespDto> {
-    const result = await this.httpClient.request({
-        method: 'GET',
-        url: '/api/v3/get-user-auth-resource-list',
+  return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-user-auth-resource-list',
     });
-    return result;
 }
 /**
  * @summary 获取用户指定资源权限列表
@@ -2966,5 +2950,34 @@ public async verifyRegister(requestBody: VerifyRegistrationDto,
     return result;
 }
 
+
 // ==== AUTO GENERATED AUTHENTICATION METHODS END ====
+
+  /**
+   * @summary 获取用户指定资源权限列表
+   * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
+   * @returns GetUserAuthResourcePermissionListRespDto
+   */
+  public async getUserAuthResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto): Promise<GetUserAuthResourcePermissionListRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-user-auth-resource-permission-list',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary   获取用户授权资源的结构列表
+   * @description 获取用户授权的资源列表，用户获取某个应用下的某个资源所授权的结构列表，通过不同的资源类型返回对应资源的授权列表。
+   * @returns GetUserAuthResourceStructRespDto
+   */
+
+  public async getUserAuthResourceStruct(requestBody: GetUserAuthResourceStructDto): Promise<GetUserAuthResourceStructRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-user-auth-resource-struct',
+      data: requestBody,
+    });
+  }
+
 }
