@@ -65,4 +65,8 @@ export type DepartmentDto = {
      * 部门的扩展字段数据
      */
     customData?: any;
+    /**
+     * 岗位 id 列表
+     */
+    postIdList?: string;
 };

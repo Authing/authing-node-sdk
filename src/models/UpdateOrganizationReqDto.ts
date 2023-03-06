@@ -37,4 +37,8 @@ export type UpdateOrganizationReqDto = {
      * 组织名称
      */
     organizationName?: string;
+    /**
+     * 岗位 id 列表
+     */
+    postIdList?: string;
 };

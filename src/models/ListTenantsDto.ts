@@ -19,6 +19,14 @@ export type ListTenantsDto = {
      */
     withAppDetail?: any;
     /**
+     * 增加返回租户下创建者简单信息
+     */
+    withCreatorDetail?: any;
+    /**
+     * 增加返回租户下来源 app 简单信息
+     */
+    withSourceAppDetail?: any;
+    /**
      * 页码
      */
     page?: any;

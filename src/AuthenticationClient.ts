@@ -46,15 +46,20 @@ import {
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { BindEmailDto } from './models/BindEmailDto';
 import type { BindPhoneDto } from './models/BindPhoneDto';
+import type { ChangePushCodeStatusDto } from './models/ChangePushCodeStatusDto';
 import type { ChangeQRCodeStatusDto } from './models/ChangeQRCodeStatusDto';
+import type { CheckPushCodeStatusRespDto } from './models/CheckPushCodeStatusRespDto';
 import type { CheckQRCodeStatusRespDto } from './models/CheckQRCodeStatusRespDto';
 import type { CommonResponseDto } from './models/CommonResponseDto';
 import type { DeleteAccounDto } from './models/DeleteAccounDto';
 import type { ExchangeTokenSetWithQRcodeTicketDto } from './models/ExchangeTokenSetWithQRcodeTicketDto';
+import type { GeneFastpassQRCodeRespDto } from './models/GeneFastpassQRCodeRespDto';
+import type { GenePushCodeRespDto } from './models/GenePushCodeRespDto';
 import type { GeneQRCodeRespDto } from './models/GeneQRCodeRespDto';
 import type { GenerateQrcodeDto } from './models/GenerateQrcodeDto';
 import type { GetAlipayAuthInfoRespDto } from './models/GetAlipayAuthInfoRespDto';
 import type { GetCountryListRespDto } from './models/GetCountryListRespDto';
+import type { GetFastpassQRCodeRelationAppsRespDto } from './models/GetFastpassQRCodeRelationAppsRespDto';
 import type { GetSecurityInfoRespDto } from './models/GetSecurityInfoRespDto';
 import type { IsSuccessRespDto } from './models/IsSuccessRespDto';
 import type { LoginTokenRespDto } from './models/LoginTokenRespDto';
@@ -64,8 +69,10 @@ import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
-
+import type { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
+import type { SignInByPushDto } from './models/SignInByPushDto';
+import type { SignInFastpassDto } from './models/SignInFastpassDto';
 import type { SystemInfoResp } from './models/SystemInfoResp';
 import type { UnbindEmailDto } from './models/UnbindEmailDto';
 import type { UnbindPhoneDto } from './models/UnbindPhoneDto';
@@ -81,8 +88,13 @@ import type { VerifyUpdateEmailRequestDto } from './models/VerifyUpdateEmailRequ
 import type { VerifyUpdateEmailRequestRespDto } from './models/VerifyUpdateEmailRequestRespDto';
 import type { VerifyUpdatePhoneRequestDto } from './models/VerifyUpdatePhoneRequestDto';
 import type { VerifyUpdatePhoneRequestRespDto } from './models/VerifyUpdatePhoneRequestRespDto';
+import type { AppQRCodeLoginDto } from './models/AppQRCodeLoginDto';
+import type { CheckDeviceCredentialIdDto } from './models/CheckDeviceCredentialIdDto';
+import type { ListDeviceCredentialDto } from './models/ListDeviceCredentialDto';
 import type { PreCheckCodeDto } from './models/PreCheckCodeDto';
 import type { PreCheckCodeRespDto } from './models/PreCheckCodeRespDto';
+import type { RemoveDeviceCredentialDto } from './models/RemoveDeviceCredentialDto';
+import type { WechatMobileAuthByCodeInput } from './models/WechatMobileAuthByCodeInput';
 import type { EnrollFactorDto } from './models/EnrollFactorDto';
 import type { EnrollFactorRespDto } from './models/EnrollFactorRespDto';
 import type { GetFactorRespDto } from './models/GetFactorRespDto';
@@ -95,6 +107,12 @@ import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
 import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
 import type { SendEnrollFactorRequestRespDto } from './models/SendEnrollFactorRequestRespDto';
 import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
+import type { BindByAccountIdInputApi } from './models/BindByAccountIdInputApi';
+import type { BindByAccountInputApi } from './models/BindByAccountInputApi';
+import type { BindByAccountsInputApi } from './models/BindByAccountsInputApi';
+import type { BindByEmailCodeInputApi } from './models/BindByEmailCodeInputApi';
+import type { BindByPhoneCodeInputApi } from './models/BindByPhoneCodeInputApi';
+import type { BindByRegiserInputApi } from './models/BindByRegiserInputApi';
 import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
 import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
 import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
@@ -109,12 +127,26 @@ import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
 import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
 import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
 import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
+import type { GetUserAuthResourcePermissionListDto } from './models/GetUserAuthResourcePermissionListDto';
+import type { GetUserAuthResourcePermissionListRespDto } from './models/GetUserAuthResourcePermissionListRespDto';
+import type { GetUserAuthResourceStructDto } from './models/GetUserAuthResourceStructDto';
+import type { GetUserAuthResourceStructRespDto } from './models/GetUserAuthResourceStructRespDto';
 import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
+import type { LoginTokenResponseDataDto } from './models/LoginTokenResponseDataDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
+import type { SignUpDto } from './models/SignUpDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
+import type { WechatLoginTokenRespDto } from './models/WechatLoginTokenRespDto';
+import type { WechatMobileAuthByCodeIdentityInput } from './models/WechatMobileAuthByCodeIdentityInput';
+import type { GetAuthenticationOptionsRespDto } from './models/GetAuthenticationOptionsRespDto';
+import type { GetRegistrationOptionsRespDto } from './models/GetRegistrationOptionsRespDto';
+import type { VerifyAuthenticationDto } from './models/VerifyAuthenticationDto';
+import type { VerifyAuthenticationResultRespDto } from './models/VerifyAuthenticationResultRespDto';
+import type { VerifyRegistrationDto } from './models/VerifyRegistrationDto';
+import type { VerifyRegistrationResultRespDto } from './models/VerifyRegistrationResultRespDto';
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
@@ -1797,6 +1829,90 @@ public async changeQrCodeStatus(requestBody: ChangeQRCodeStatusDto,
     return result;
 }
 /**
+ * @summary 推送登录
+ * @description 推送登录。
+ * @returns GenePushCodeRespDto
+ */
+public async signInByPush(requestBody: SignInByPushDto,
+): Promise<GenePushCodeRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/signin-by-push',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 查询推送码状态
+ * @description 按照推送码使用顺序，共分为已推送、等待用户 同意/取消 授权、推送码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+ * @returns CheckPushCodeStatusRespDto
+ */
+public async checkPushCodeStatus({
+    pushCodeId,
+}: {
+    /** 推送码（推送登录唯一 ID） **/
+    pushCodeId: string,
+}): Promise<CheckPushCodeStatusRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/check-pushcode-status',
+        params: {
+            pushCodeId: pushCodeId,
+        },
+    });
+    return result;
+}
+/**
+ * @summary 推送登录：APP 端修改推送码状态
+ * @description 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+ * @returns CommonResponseDto
+ */
+public async changePushCodeStatus(requestBody: ChangePushCodeStatusDto,
+): Promise<CommonResponseDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/change-pushcode-status',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取快速认证二维码数据
+ * @description 此端点用于在用户个人中心，获取快速认证参数生成二维码，可使用 Authing 令牌 APP 扫码，完成快速认证。**此接口要求具备用户的登录态**。
+ * @returns GeneFastpassQRCodeRespDto
+ */
+public async geneFastpassQrcodeInfo(requestBody: SignInFastpassDto,
+): Promise<GeneFastpassQRCodeRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/gene-fastpass-qrcode-info',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取快速认证的应用列表
+ * @description 此端点用于使用 Authing 令牌 APP 扫「用户个人中心」-「快速认证」二维码后，拉取可快速认证的客户端应用列表。
+ * @returns GetFastpassQRCodeRelationAppsRespDto
+ */
+public async getFastpassParams({
+    qrcodeId,
+    appId,
+}: {
+    qrcodeId: string,
+    appId: string,
+}): Promise<GetFastpassQRCodeRelationAppsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-fastpass-client-apps',
+        params: {
+            qrcodeId: qrcodeId,
+            appId: appId,
+        },
+    });
+    return result;
+}
+/**
  * @summary 发送短信
  * @description 发送短信时必须指定短信 Channel，每个手机号同一 Channel 在一分钟内只能发送一次。
  * @returns SendSMSRespDto
@@ -2087,6 +2203,40 @@ public async getCountryList(): Promise<GetCountryListRespDto> {
     return result;
 }
 /**
+ * @summary 查询个人中心「快速认证二维码」的状态
+ * @description 按照用户扫码顺序，共分为未扫码、已扫码、已登录、二维码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+ * @returns CheckQRCodeStatusRespDto
+ */
+public async getQrCodeStatus({
+    qrcodeId,
+}: {
+    /** 二维码唯一 ID **/
+    qrcodeId: string,
+}): Promise<CheckQRCodeStatusRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/get-app-login-qrcode-status',
+        params: {
+            qrcodeId: qrcodeId,
+        },
+    });
+    return result;
+}
+/**
+ * @summary APP 端扫码登录
+ * @description 此端点用于在授权使 APP 成功扫码登录中，对应着在「个人中心」-「快速认证」页面渲染出二维码，终端用户扫码并成功登录的过程。
+ * @returns LoginTokenRespDto
+ */
+public async qrCodeAppLogin(requestBody: AppQRCodeLoginDto,
+): Promise<LoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/qrcode-app-login',
+        data: requestBody,
+    });
+    return result;
+}
+/**
  * @summary 预检验验证码是否正确
  * @description 预检测验证码是否有效，此检验不会使得验证码失效。
  * @returns PreCheckCodeRespDto
@@ -2096,6 +2246,65 @@ public async preCheckCode(requestBody: PreCheckCodeDto,
     const result = await this.httpClient.request({
         method: 'POST',
         url: '/api/v3/pre-check-code',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @returns any
+ */
+public async listCredentialsByPage(requestBody: ListDeviceCredentialDto,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/page-authenticator-device',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @returns any
+ */
+public async checkValidCredentialsByCredIds(requestBody: CheckDeviceCredentialIdDto,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/check-valid-credentials-by-credIds',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @returns any
+ */
+public async removeAllCredentials(requestBody: RemoveDeviceCredentialDto,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/remove-credentials-by-authenticator-code',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @returns any
+ */
+public async removeCredential(credentialId: string,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/remove-credential/{credentialID}',
+    });
+    return result;
+}
+/**
+ * @returns any
+ */
+public async authByCode(requestBody: WechatMobileAuthByCodeInput,
+): Promise<any> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/authByCode',
         data: requestBody,
     });
     return result;
@@ -2568,13 +2777,191 @@ public async checkPermissionByTreeResource(requestBody: CheckPermissionTreeResou
 }
 /**
  * @summary 获取用户在登录应用下被授权资源列表
- * @description 获取用户指定资源权限列表，用户获取在某个应用下所拥有的资源列表
+ * @description 获取用户指定资源权限列表，用户获取在某个应用下所拥有的资源列表。
  * @returns GetUserAuthResourceListRespDto
  */
 public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRespDto> {
     const result = await this.httpClient.request({
         method: 'GET',
         url: '/api/v3/get-user-auth-resource-list',
+    });
+    return result;
+}
+/**
+ * @summary 获取用户指定资源权限列表
+ * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
+ * @returns GetUserAuthResourcePermissionListRespDto
+ */
+public async getUserResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto,
+): Promise<GetUserAuthResourcePermissionListRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/get-user-auth-resource-permission-list',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取用户授权资源的结构列表
+ * @description 获取用户授权的资源列表，用户获取某个应用下的某个资源所授权的结构列表，通过不同的资源类型返回对应资源的授权列表。
+ * @returns GetUserAuthResourceStructRespDto
+ */
+public async getUserResourceStruct(requestBody: GetUserAuthResourceStructDto,
+): Promise<GetUserAuthResourceStructRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/get-user-auth-resource-struct',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端登录
+ * @description 移动端应用：使用微信作为外部身份源登录。
+ * @returns LoginTokenResponseDataDto
+ */
+public async authByCodeIdentity(requestBody: WechatMobileAuthByCodeIdentityInput,
+): Promise<LoginTokenResponseDataDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/authByCodeIdentity',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：使用身份源中用户信息
+ * @description 询问绑定开启时：绑定到外部身份源，根据外部身份源中的用户信息创建用户后绑定到当前身份源并登录。
+ * @returns WechatLoginTokenRespDto
+ */
+public async registerNewUser(requestBody: BindByRegiserInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/register',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：邮箱验证码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的邮箱验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByEmailCode(requestBody: BindByEmailCodeInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byEmailCode',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：手机号验证码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的手机验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByPhoneCode(requestBody: BindByPhoneCodeInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byPhoneCode',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：账号密码模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的账号（用户名/手机号/邮箱）密码验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByAccount(requestBody: BindByAccountInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byAccount',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：多账号场景
+ * @description 询问绑定开启时：根据选择的账号绑定外部身份源，根据输入的账号 ID 验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async selectAccount(requestBody: BindByAccountsInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/select',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 微信移动端：账号 ID 模式
+ * @description 询问绑定开启时：绑定到外部身份源，根据输入的账号 ID 验证用户信息，找到对应的用户后绑定到当前身份源并登录；找不到时报错“用户不存在”。
+ * @returns WechatLoginTokenRespDto
+ */
+public async bindByAccountId(requestBody: BindByAccountIdInputApi,
+): Promise<WechatLoginTokenRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v2/ecConn/wechatMobile/byAccountId',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取 WebAuthn 认证请求初始化参数
+ * @description 获取 WebAuthn 认证请求初始化参数
+ * @returns GetAuthenticationOptionsRespDto
+ */
+public async initAuthenticationOptions(): Promise<GetAuthenticationOptionsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/webauthn/authentication',
+    });
+    return result;
+}
+/**
+ * @summary 验证 WebAuthn 认证请求凭证
+ * @description 验证 WebAuthn 认证请求凭证
+ * @returns VerifyAuthenticationResultRespDto
+ */
+public async verifyAuthentication(requestBody: VerifyAuthenticationDto,
+): Promise<VerifyAuthenticationResultRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/authentication',
+        data: requestBody,
+    });
+    return result;
+}
+/**
+ * @summary 获取 webauthn 凭证创建初始化参数
+ * @description 获取 webauthn 凭证创建初始化参数。此接口要求具备用户的登录态**
+ * @returns GetRegistrationOptionsRespDto
+ */
+public async initRegisterOptions(): Promise<GetRegistrationOptionsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'GET',
+        url: '/api/v3/webauthn/registration',
+    });
+    return result;
+}
+/**
+ * @summary 验证 webauthn 绑定注册认证器凭证
+ * @description 验证 webauthn 绑定注册认证器凭证
+ * @returns VerifyRegistrationResultRespDto
+ */
+public async verifyRegister(requestBody: VerifyRegistrationDto,
+): Promise<VerifyRegistrationResultRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/webauthn/registration',
+        data: requestBody,
     });
     return result;
 }

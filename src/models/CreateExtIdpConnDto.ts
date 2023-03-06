@@ -52,6 +52,7 @@ export namespace CreateExtIdpConnDto {
         AZURE_AD = 'azure-ad',
         ALIPAY = 'alipay',
         FACEBOOK = 'facebook',
+        FACEBOOK_MOBILE = 'facebook:mobile',
         TWITTER = 'twitter',
         GOOGLE_MOBILE = 'google:mobile',
         GOOGLE = 'google',
@@ -64,6 +65,7 @@ export namespace CreateExtIdpConnDto {
         WECHAT_MINIPROGRAM_APP_LAUNCH = 'wechat:miniprogram:app-launch',
         GITHUB = 'github',
         QQ = 'qq',
+        QQ_MOBILE = 'qq:mobile',
         WECHATWORK_CORP_QRCONNECT = 'wechatwork:corp:qrconnect',
         WECHATWORK_AGENCY_QRCONNECT = 'wechatwork:agency:qrconnect',
         WECHATWORK_SERVICE_PROVIDER_QRCONNECT = 'wechatwork:service-provider:qrconnect',
@@ -72,9 +74,11 @@ export namespace CreateExtIdpConnDto {
         DINGTALK = 'dingtalk',
         DINGTALK_PROVIDER = 'dingtalk:provider',
         WEIBO = 'weibo',
+        WEIBO_MOBILE = 'weibo:mobile',
         APPLE = 'apple',
         APPLE_WEB = 'apple:web',
         BAIDU = 'baidu',
+        BAIDU_MOBILE = 'baidu:mobile',
         LARK_INTERNAL = 'lark-internal',
         LARK_PUBLIC = 'lark-public',
         GITLAB = 'gitlab',
@@ -86,6 +90,10 @@ export namespace CreateExtIdpConnDto {
         INSTAGRAM = 'instagram',
         WELINK = 'welink',
         AD_KERBEROS = 'ad-kerberos',
+        HUAWEI = 'huawei',
+        HONOR = 'honor',
+        XIAOMI = 'xiaomi',
+        AWS = 'aws',
     }
 
 

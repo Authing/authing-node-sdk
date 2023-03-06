@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { UpdateTenantDto } from './UpdateTenantDto';
+import type { TenantRespDto } from './TenantRespDto';
 
 export type TenantListPagingDto = {
     /**
@@ -12,5 +12,5 @@ export type TenantListPagingDto = {
     /**
      * 响应数据
      */
-    list: Array<UpdateTenantDto>;
+    list: Array<TenantRespDto>;
 };
