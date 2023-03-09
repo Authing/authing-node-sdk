@@ -2,12 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-
-import {GetUserAuthResourcePermissionList} from "./GetUserAuthResourcePermissionList";
+import type { GetUserAuthResourcePermissionList } from './GetUserAuthResourcePermissionList';
 
 export type GetUserAuthResourcePermissionListDataDto = {
-  /**
-   * 用户权限列表
-   */
-  permissionList: Array<GetUserAuthResourcePermissionList>;
+    /**
+     * 权限列表
+     */
+    permissionList: Array<GetUserAuthResourcePermissionList>;
 };

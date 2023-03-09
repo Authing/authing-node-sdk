@@ -4,15 +4,20 @@
 
 import type { SignInByAlipayPayloadDto } from './SignInByAlipayPayloadDto';
 import type { SignInByApplePayloadDto } from './SignInByApplePayloadDto';
+import type { SignInByBaiduPayloadDto } from './SignInByBaiduPayloadDto';
+import type { SignInByFacebookPayloadDto } from './SignInByFacebookPayloadDto';
 import type { SignInByGooglePayloadDto } from './SignInByGooglePayloadDto';
 import type { SignInByLarkInternalPayloadDto } from './SignInByLarkInternalPayloadDto';
 import type { SignInByLarkPublicPayloadDto } from './SignInByLarkPublicPayloadDto';
 import type { SignInByMobileOptionsDto } from './SignInByMobileOptionsDto';
+import type { SignInByQQPayloadDto } from './SignInByQQPayloadDto';
+import type { SignInByWechatMiniProgramCodeAndPhonePayloadDto } from './SignInByWechatMiniProgramCodeAndPhonePayloadDto';
 import type { SignInByWechatMiniProgramCodePayloadDto } from './SignInByWechatMiniProgramCodePayloadDto';
 import type { SignInByWechatMiniProgramPhonePayloadDto } from './SignInByWechatMiniProgramPhonePayloadDto';
 import type { SignInByWechatPayloadDto } from './SignInByWechatPayloadDto';
 import type { SignInByWechatworkAgencyPayloadDto } from './SignInByWechatworkAgencyPayloadDto';
 import type { SignInByWechatworkDto } from './SignInByWechatworkDto';
+import type { SignInByWeiboPayloadDto } from './SignInByWeiboPayloadDto';
 import type { SignInByYidunPayloadDto } from './SignInByYidunPayloadDto';
 
 export type SigninByMobileDto = {
@@ -32,7 +37,12 @@ export type SigninByMobileDto = {
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
+     * - `wechat_mini_program_code_and_phone `: 微信小程序使用 code 和手机号登录
      * - `google`: Google 移动端社会化登录
+     * - `facebook`: Facebook 移动端社会化登录
+     * - `qq`: QQ 移动端社会化登录
+     * - `weibo`: 新浪微博移动端社会化登录
+     * - `baidu`: 百度移动端社会化登录
      *
      */
     connection: SigninByMobileDto.connection;
@@ -77,9 +87,29 @@ export type SigninByMobileDto = {
      */
     wechatMiniProgramPhonePayload?: SignInByWechatMiniProgramPhonePayloadDto;
     /**
+     * 微信小程序使用 code 和手机号登录相关数据，当 `connection` 为 `wechat_mini_program_code_and_phone` 的时候必填。
+     */
+    wechatMiniProgramCodeAndPhonePayload?: SignInByWechatMiniProgramCodeAndPhonePayloadDto;
+    /**
      * Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填。
      */
     googlePayload?: SignInByGooglePayloadDto;
+    /**
+     * Facebook 移动端社会化登录数据，当 `connection` 为 `facebook` 的时候必填。
+     */
+    facebookPayload?: SignInByFacebookPayloadDto;
+    /**
+     * QQ 移动端社会化登录数据，当 `connection` 为 `qq` 的时候必填。
+     */
+    qqPayload?: SignInByQQPayloadDto;
+    /**
+     * 新浪微博移动端社会化登录数据，当 `connection` 为 `weibo` 的时候必填。
+     */
+    weiboPayload?: SignInByWeiboPayloadDto;
+    /**
+     * 百度移动端社会化登录数据，当 `connection` 为 `baidu` 的时候必填。
+     */
+    baiduPayload?: SignInByBaiduPayloadDto;
     /**
      * 可选参数
      */
@@ -108,7 +138,12 @@ export namespace SigninByMobileDto {
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
+     * - `wechat_mini_program_code_and_phone `: 微信小程序使用 code 和手机号登录
      * - `google`: Google 移动端社会化登录
+     * - `facebook`: Facebook 移动端社会化登录
+     * - `qq`: QQ 移动端社会化登录
+     * - `weibo`: 新浪微博移动端社会化登录
+     * - `baidu`: 百度移动端社会化登录
      *
      */
     export enum connection {
@@ -122,7 +157,12 @@ export namespace SigninByMobileDto {
         YIDUN = 'yidun',
         WECHAT_MINI_PROGRAM_CODE = 'wechat_mini_program_code',
         WECHAT_MINI_PROGRAM_PHONE = 'wechat_mini_program_phone',
+        WECHAT_MINI_PROGRAM_CODE_AND_PHONE = 'wechat_mini_program_code_and_phone',
         GOOGLE = 'google',
+        FACEBOOK = 'facebook',
+        QQ = 'qq',
+        WEIBO = 'weibo',
+        BAIDU = 'baidu',
     }
 
 

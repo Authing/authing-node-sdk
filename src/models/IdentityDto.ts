@@ -133,6 +133,10 @@ export namespace IdentityDto {
         GITEE = 'gitee',
         INSTAGRAM = 'instagram',
         WELINK = 'welink',
+        HUAWEI = 'huawei',
+        HONOR = 'honor',
+        XIAOMI = 'xiaomi',
+        AWS = 'aws',
     }
 
 

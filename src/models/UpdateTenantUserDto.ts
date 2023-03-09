@@ -4,7 +4,7 @@
 
 export type UpdateTenantUserDto = {
     /**
-     * 租户成员 ID
+     * 要更新的租户成员信息
      */
     updates: any;
     /**

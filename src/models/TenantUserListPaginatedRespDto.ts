@@ -22,7 +22,7 @@ export type TenantUserListPaginatedRespDto = {
      */
     requestId?: string;
     /**
-     * 数据
+     * 响应数据
      */
     data: TenantUserListPagingDto;
 };

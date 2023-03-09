@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { ListTenantUsersOptionsDto } from './ListTenantUsersOptionsDto';
+
 export type ListTenantUserDto = {
     /**
      * 租户 ID
@@ -12,20 +14,7 @@ export type ListTenantUserDto = {
      */
     keywords?: string;
     /**
-     * 页码
+     * 可选项
      */
-    page?: string;
-    /**
-     * 每页获取的数据量
-     */
-    limit?: string;
-    /**
-     * 是否返回自定义字段
-     */
-    withCustomData?: boolean;
-    withIdentities?: boolean;
-    /**
-     * 是否返回部门信息
-     */
-    withDepartmentIds?: boolean;
+    options?: ListTenantUsersOptionsDto;
 };
