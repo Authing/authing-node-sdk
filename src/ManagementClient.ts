@@ -3844,6 +3844,21 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 批量删除资源
+   * @description 通过资源id批量删除资源
+   * @returns IsSuccessRespDto
+   */
+  public async deleteResourcesByIdBatch(
+    requestBody: DeleteCommonResourcesBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-common-resources-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 关联/取消关联应用资源到租户
    * @description 通过资源唯一标识以及权限分组，关联或取消关联资源到租户
    * @returns IsSuccessRespDto

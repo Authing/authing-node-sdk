@@ -52,7 +52,6 @@ import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
-import type { SigninByCredentialsDto } from './models/SigninByCredentialsDto';
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
 import type { SignInByPushDto } from './models/SignInByPushDto';
 import type { SignInFastpassDto } from './models/SignInFastpassDto';
@@ -109,17 +108,11 @@ import type { GetIdentitiesRespDto } from './models/GetIdentitiesRespDto';
 import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
 import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
 import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
-import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
-import type { GetUserAuthResourcePermissionListDto } from './models/GetUserAuthResourcePermissionListDto';
-import type { GetUserAuthResourcePermissionListRespDto } from './models/GetUserAuthResourcePermissionListRespDto';
-import type { GetUserAuthResourceStructDto } from './models/GetUserAuthResourceStructDto';
-import type { GetUserAuthResourceStructRespDto } from './models/GetUserAuthResourceStructRespDto';
 import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
 import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
 import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { LoginTokenResponseDataDto } from './models/LoginTokenResponseDataDto';
 import type { RoleListRespDto } from './models/RoleListRespDto';
-import type { SignUpDto } from './models/SignUpDto';
 import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
 import type { WechatLoginTokenRespDto } from './models/WechatLoginTokenRespDto';
@@ -133,10 +126,11 @@ import type { VerifyRegistrationResultRespDto } from './models/VerifyRegistratio
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
-import {GetUserAuthResourcePermissionListDto} from "./models/GetUserAuthResourcePermissionListDto";
-import {GetUserAuthResourcePermissionListRespDto} from "./models/GetUserAuthResourcePermissionListRespDto";
-import {GetUserAuthResourceStructDto} from "./models/GetUserAuthResourceStructDto";
-import {GetUserAuthResourceStructRespDto} from "./models/GetUserAuthResourceStructRespDto";
+import { GetUserAuthResourcePermissionListDto } from "./models/GetUserAuthResourcePermissionListDto";
+import { GetUserAuthResourcePermissionListRespDto } from "./models/GetUserAuthResourcePermissionListRespDto";
+import { GetUserAuthResourceStructDto } from "./models/GetUserAuthResourceStructDto";
+import { GetUserAuthResourceStructRespDto } from "./models/GetUserAuthResourceStructRespDto";
+import { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
