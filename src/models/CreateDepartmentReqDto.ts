@@ -46,6 +46,10 @@ export type CreateDepartmentReqDto = {
      */
     departmentIdType?: CreateDepartmentReqDto.departmentIdType;
     /**
+     * 岗位 id 列表
+     */
+    postIdList?: string;
+    /**
      * 租户 ID
      */
     tenantId?: string;

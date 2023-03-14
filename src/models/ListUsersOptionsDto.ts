@@ -35,7 +35,7 @@ export type ListUsersOptionsDto = {
      * - `postalCode`: 邮编号码
      *
      */
-    fuzzySearchOn?: Array<'id' | 'phone' | 'email' | 'name' | 'username' | 'externalId' | 'nickname' | 'company' | 'givenName' | 'familyName' | 'middleName' | 'profile' | 'preferredUsername' | 'website' | 'address' | 'formatted' | 'streetAddress' | 'postalCode'>;
+    fuzzySearchOn?: Array<'id' | 'phone' | 'email' | 'name' | 'username' | 'externalId' | 'nickname' | 'company' | 'givenName' | 'familyName' | 'middleName' | 'profile' | 'preferredUsername' | 'website' | 'address' | 'formatted' | 'streetAddress' | 'postalCode' | 'identityNumber'>;
     /**
      * 是否获取自定义数据
      */

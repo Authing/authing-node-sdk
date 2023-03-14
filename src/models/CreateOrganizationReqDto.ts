@@ -29,4 +29,8 @@ export type CreateOrganizationReqDto = {
      * 租户 ID
      */
     tenantId?: string;
+    /**
+     * 岗位 id 列表
+     */
+    postIdList?: string;
 };

@@ -3,6 +3,8 @@
 /* eslint-disable */
 import type { AddDepartmentMembersReqDto } from "./models/AddDepartmentMembersReqDto";
 import type { AddGroupMembersReqDto } from "./models/AddGroupMembersReqDto";
+import type { AddTenantDepartmentMembersReqDto } from "./models/AddTenantDepartmentMembersReqDto";
+import type { AddTenantUsersDto } from "./models/AddTenantUsersDto";
 import type { AdminAuditLogRespDto } from "./models/AdminAuditLogRespDto";
 import type { ApplicationPaginatedRespDto } from "./models/ApplicationPaginatedRespDto";
 import type { ApplicationSimpleInfoPaginatedRespDto } from "./models/ApplicationSimpleInfoPaginatedRespDto";
@@ -63,16 +65,20 @@ import type { CreateDataResourceResponseDto } from "./models/CreateDataResourceR
 import type { CreateDepartmentReqDto } from "./models/CreateDepartmentReqDto";
 import type { CreateDepartmentTreeReqDto } from "./models/CreateDepartmentTreeReqDto";
 import type { CreateDepartmentTreeRespDto } from "./models/CreateDepartmentTreeRespDto";
+import type { CreateEventAppDto } from "./models/CreateEventAppDto";
 import type { CreateExtIdpConnDto } from "./models/CreateExtIdpConnDto";
 import type { CreateExtIdpDto } from "./models/CreateExtIdpDto";
 import type { CreateGroupBatchReqDto } from "./models/CreateGroupBatchReqDto";
 import type { CreateGroupReqDto } from "./models/CreateGroupReqDto";
+import type { CreateMultipleTenantAdminDto } from "./models/CreateMultipleTenantAdminDto";
 import type { CreateNamespaceDto } from "./models/CreateNamespaceDto";
 import type { CreateNamespacesBatchDto } from "./models/CreateNamespacesBatchDto";
 import type { CreateOrganizationReqDto } from "./models/CreateOrganizationReqDto";
 import type { CreatePermissionNamespaceDto } from "./models/CreatePermissionNamespaceDto";
 import type { CreatePermissionNamespaceResponseDto } from "./models/CreatePermissionNamespaceResponseDto";
 import type { CreatePermissionNamespacesBatchDto } from "./models/CreatePermissionNamespacesBatchDto";
+import type { CreatePostDto } from "./models/CreatePostDto";
+import type { CreatePostRespDto } from "./models/CreatePostRespDto";
 import type { CreateResourceDto } from "./models/CreateResourceDto";
 import type { CreateResourcesBatchDto } from "./models/CreateResourcesBatchDto";
 import type { CreateRoleDto } from "./models/CreateRoleDto";
@@ -80,11 +86,16 @@ import type { CreateRolesBatch } from "./models/CreateRolesBatch";
 import type { CreateStringDataResourceDto } from "./models/CreateStringDataResourceDto";
 import type { CreateStringDataResourceResponseDto } from "./models/CreateStringDataResourceResponseDto";
 import type { CreateSyncTaskDto } from "./models/CreateSyncTaskDto";
+import type { CreateTenantCooperatorDto } from "./models/CreateTenantCooperatorDto";
+import type { CreateTenantDto } from "./models/CreateTenantDto";
+import type { CreateTenantRespDto } from "./models/CreateTenantRespDto";
+import type { CreateTenantUserReqDto } from "./models/CreateTenantUserReqDto";
 import type { CreateTreeDataResourceDto } from "./models/CreateTreeDataResourceDto";
 import type { CreateTreeDataResourceResponseDto } from "./models/CreateTreeDataResourceResponseDto";
 import type { CreateUserBatchReqDto } from "./models/CreateUserBatchReqDto";
 import type { CreateUserReqDto } from "./models/CreateUserReqDto";
 import type { CustomFieldListRespDto } from "./models/CustomFieldListRespDto";
+import type { DefineEventDto } from "./models/DefineEventDto";
 import type { DeleteApplicationDto } from "./models/DeleteApplicationDto";
 import type { DeleteAsaAccountBatchDto } from "./models/DeleteAsaAccountBatchDto";
 import type { DeleteAsaAccountDto } from "./models/DeleteAsaAccountDto";
@@ -105,16 +116,20 @@ import type { DeleteResourceDto } from "./models/DeleteResourceDto";
 import type { DeleteResourcesBatchDto } from "./models/DeleteResourcesBatchDto";
 import type { DeleteRoleBatchDto } from "./models/DeleteRoleBatchDto";
 import type { DeleteRoleDto } from "./models/DeleteRoleDto";
+import type { DeleteTenantDto } from "./models/DeleteTenantDto";
 import type { DeleteUsersBatchDto } from "./models/DeleteUsersBatchDto";
 import type { DepartmentListRespDto } from "./models/DepartmentListRespDto";
 import type { DepartmentPaginatedRespDto } from "./models/DepartmentPaginatedRespDto";
 import type { DepartmentSingleRespDto } from "./models/DepartmentSingleRespDto";
 import type { EmailProviderRespDto } from "./models/EmailProviderRespDto";
 import type { EmailTemplateSingleItemRespDto } from "./models/EmailTemplateSingleItemRespDto";
+import type { EventAppPaginatedRespDto } from "./models/EventAppPaginatedRespDto";
 import type { ExtIdpConnDetailSingleRespDto } from "./models/ExtIdpConnDetailSingleRespDto";
 import type { ExtIdpDetailSingleRespDto } from "./models/ExtIdpDetailSingleRespDto";
 import type { ExtIdpListPaginatedRespDto } from "./models/ExtIdpListPaginatedRespDto";
 import type { ExtIdpSingleRespDto } from "./models/ExtIdpSingleRespDto";
+import type { GenerateInviteTenantUserLink } from "./models/GenerateInviteTenantUserLink";
+import type { GetAccessibleAppsRespDto } from "./models/GetAccessibleAppsRespDto";
 import type { GetAdminAuditLogsDto } from "./models/GetAdminAuditLogsDto";
 import type { GetApplicationPermissionStrategyRespDto } from "./models/GetApplicationPermissionStrategyRespDto";
 import type { GetApplicationSecretRespDto } from "./models/GetApplicationSecretRespDto";
@@ -126,11 +141,16 @@ import type { GetDataResourceResponseDto } from "./models/GetDataResourceRespons
 import type { GetEmailTemplatesRespDto } from "./models/GetEmailTemplatesRespDto";
 import type { GetExternalUserResourceStructDto } from "./models/GetExternalUserResourceStructDto";
 import type { GetExternalUserResourceStructRespDto } from "./models/GetExternalUserResourceStructRespDto";
+import type { GetLoggedInAppsRespDto } from "./models/GetLoggedInAppsRespDto";
+import type { GetLoginHistoryRespDto } from "./models/GetLoginHistoryRespDto";
 import type { GetOtpSecretRespDto } from "./models/GetOtpSecretRespDto";
 import type { GetPermissionNamespaceListResponseDto } from "./models/GetPermissionNamespaceListResponseDto";
 import type { GetPermissionNamespaceResponseDto } from "./models/GetPermissionNamespaceResponseDto";
+import type { GetPostByIdListDto } from "./models/GetPostByIdListDto";
 import type { GetResourceAuthorizedTargetRespDto } from "./models/GetResourceAuthorizedTargetRespDto";
 import type { GetResourceAuthorizedTargetsDto } from "./models/GetResourceAuthorizedTargetsDto";
+import type { GetTenantListRespDto } from "./models/GetTenantListRespDto";
+import type { GetTenantUserDto } from "./models/GetTenantUserDto";
 import type { GetUserActionLogsDto } from "./models/GetUserActionLogsDto";
 import type { GetUserPermissionListDto } from "./models/GetUserPermissionListDto";
 import type { GetUserPermissionListRespDto } from "./models/GetUserPermissionListRespDto";
@@ -145,6 +165,9 @@ import type { HasAnyRoleReqDto } from "./models/HasAnyRoleReqDto";
 import type { HasAnyRoleRespDto } from "./models/HasAnyRoleRespDto";
 import type { IdentityListRespDto } from "./models/IdentityListRespDto";
 import type { ImportOtpReqDto } from "./models/ImportOtpReqDto";
+import type { ImportTenantDto } from "./models/ImportTenantDto";
+import type { InviteTenantUserRecordListRespDto } from "./models/InviteTenantUserRecordListRespDto";
+import type { InviteTenantUsersRespDto } from "./models/InviteTenantUsersRespDto";
 import type { IsActionAllowedDto } from "./models/IsActionAllowedDto";
 import type { IsActionAllowedRespDtp } from "./models/IsActionAllowedRespDtp";
 import type { IsSuccessRespDto } from "./models/IsSuccessRespDto";
@@ -161,26 +184,37 @@ import type { ListResourceTargetsDto } from "./models/ListResourceTargetsDto";
 import type { ListResourceTargetsRespDto } from "./models/ListResourceTargetsRespDto";
 import type { ListRoleAssignmentsDto } from "./models/ListRoleAssignmentsDto";
 import type { ListSimpleDataPoliciesPaginatedRespDto } from "./models/ListSimpleDataPoliciesPaginatedRespDto";
+import type { ListTenantAdminDto } from "./models/ListTenantAdminDto";
+import type { ListTenantUserDto } from "./models/ListTenantUserDto";
 import type { ListUsersRequestDto } from "./models/ListUsersRequestDto";
 import type { MFASettingsDto } from "./models/MFASettingsDto";
 import type { MFASettingsRespDto } from "./models/MFASettingsRespDto";
+import type { MultipleTenantAdminPaginatedRespDto } from "./models/MultipleTenantAdminPaginatedRespDto";
 import type { NamespaceListPaginatedRespDto } from "./models/NamespaceListPaginatedRespDto";
 import type { NamespaceListRespDto } from "./models/NamespaceListRespDto";
 import type { NamespaceRespDto } from "./models/NamespaceRespDto";
 import type { NamespaceRolesListPaginatedRespDto } from "./models/NamespaceRolesListPaginatedRespDto";
+import type { OpenEventPaginatedRespDto } from "./models/OpenEventPaginatedRespDto";
 import type { OrganizationListRespDto } from "./models/OrganizationListRespDto";
 import type { OrganizationPaginatedRespDto } from "./models/OrganizationPaginatedRespDto";
 import type { OrganizationSingleRespDto } from "./models/OrganizationSingleRespDto";
 import type { PermissionNamespaceCheckExistsRespDto } from "./models/PermissionNamespaceCheckExistsRespDto";
 import type { PermissionNamespaceListPaginatedRespDto } from "./models/PermissionNamespaceListPaginatedRespDto";
 import type { PermissionNamespaceRolesListPaginatedRespDto } from "./models/PermissionNamespaceRolesListPaginatedRespDto";
+import type { PostPaginatedRespDto } from "./models/PostPaginatedRespDto";
+import type { PostRespDto } from "./models/PostRespDto";
 import type { PreviewEmailTemplateDto } from "./models/PreviewEmailTemplateDto";
 import type { PreviewEmailTemplateRespDto } from "./models/PreviewEmailTemplateRespDto";
 import type { PrincipalAuthenticationInfoPaginatedRespDto } from "./models/PrincipalAuthenticationInfoPaginatedRespDto";
+import type { PubEventDto } from "./models/PubEventDto";
+import type { PubEventRespDto } from "./models/PubEventRespDto";
 import type { RefreshApplicationSecretDto } from "./models/RefreshApplicationSecretDto";
 import type { RefreshApplicationSecretRespDto } from "./models/RefreshApplicationSecretRespDto";
 import type { RemoveDepartmentMembersReqDto } from "./models/RemoveDepartmentMembersReqDto";
 import type { RemoveGroupMembersReqDto } from "./models/RemoveGroupMembersReqDto";
+import type { RemovePostDto } from "./models/RemovePostDto";
+import type { RemoveTenantDepartmentMembersReqDto } from "./models/RemoveTenantDepartmentMembersReqDto";
+import type { RemoveTenantUsersDto } from "./models/RemoveTenantUsersDto";
 import type { ResetUserPrincipalAuthenticationInfoDto } from "./models/ResetUserPrincipalAuthenticationInfoDto";
 import type { ResignUserBatchReqDto } from "./models/ResignUserBatchReqDto";
 import type { ResignUserReqDto } from "./models/ResignUserReqDto";
@@ -194,21 +228,33 @@ import type { RoleAuthorizedResourcePaginatedRespDto } from "./models/RoleAuthor
 import type { RoleCheckParamsRespDto } from "./models/RoleCheckParamsRespDto";
 import type { RoleDepartmentListPaginatedRespDto } from "./models/RoleDepartmentListPaginatedRespDto";
 import type { RoleListPageRespDto } from "./models/RoleListPageRespDto";
+import type { RoleListRespDto } from "./models/RoleListRespDto";
 import type { RolePaginatedRespDto } from "./models/RolePaginatedRespDto";
 import type { RoleSingleRespDto } from "./models/RoleSingleRespDto";
 import type { SearchDepartmentsListReqDto } from "./models/SearchDepartmentsListReqDto";
 import type { SearchDepartmentsReqDto } from "./models/SearchDepartmentsReqDto";
 import type { SecuritySettingsRespDto } from "./models/SecuritySettingsRespDto";
+import type { sendInviteTenantUserEmailDto } from "./models/sendInviteTenantUserEmailDto";
+import type { SendManyTenantEmailDto } from "./models/SendManyTenantEmailDto";
+import type { SendManyTenantSmsDto } from "./models/SendManyTenantSmsDto";
 import type { SetCustomDataReqDto } from "./models/SetCustomDataReqDto";
 import type { SetCustomFieldsReqDto } from "./models/SetCustomFieldsReqDto";
 import type { SetUserBaseFieldsReqDto } from "./models/SetUserBaseFieldsReqDto";
 import type { SetUserDepartmentsDto } from "./models/SetUserDepartmentsDto";
+import type { SignUpDto } from "./models/SignUpDto";
 import type { SyncJobPaginatedRespDto } from "./models/SyncJobPaginatedRespDto";
 import type { SyncJobSingleRespDto } from "./models/SyncJobSingleRespDto";
 import type { SyncRiskOperationPaginatedRespDto } from "./models/SyncRiskOperationPaginatedRespDto";
 import type { SyncTaskPaginatedRespDto } from "./models/SyncTaskPaginatedRespDto";
 import type { SyncTaskSingleRespDto } from "./models/SyncTaskSingleRespDto";
 import type { TenantApplicationListPaginatedRespDto } from "./models/TenantApplicationListPaginatedRespDto";
+import type { TenantCooperatorPaginatedRespDto } from "./models/TenantCooperatorPaginatedRespDto";
+import type { TenantCooperatorSingleRespDto } from "./models/TenantCooperatorSingleRespDto";
+import type { TenantListPaginatedRespDto } from "./models/TenantListPaginatedRespDto";
+import type { TenantSingleRespDto } from "./models/TenantSingleRespDto";
+import type { TenantUserDto } from "./models/TenantUserDto";
+import type { TenantUserListPaginatedRespDto } from "./models/TenantUserListPaginatedRespDto";
+import type { TenantUserSingleRespDto } from "./models/TenantUserSingleRespDto";
 import type { TriggerSyncRiskOperationDto } from "./models/TriggerSyncRiskOperationDto";
 import type { TriggerSyncRiskOperationsRespDto } from "./models/TriggerSyncRiskOperationsRespDto";
 import type { TriggerSyncTaskDto } from "./models/TriggerSyncTaskDto";
@@ -225,6 +271,7 @@ import type { UpdateExtIdpConnDto } from "./models/UpdateExtIdpConnDto";
 import type { UpdateExtIdpDto } from "./models/UpdateExtIdpDto";
 import type { UpdateGroupReqDto } from "./models/UpdateGroupReqDto";
 import type { UpdateLoginConfigDto } from "./models/UpdateLoginConfigDto";
+import type { UpdateMultipleTenantAdminDto } from "./models/UpdateMultipleTenantAdminDto";
 import type { UpdateNamespaceDto } from "./models/UpdateNamespaceDto";
 import type { UpdateNamespaceRespDto } from "./models/UpdateNamespaceRespDto";
 import type { UpdateOrganizationReqDto } from "./models/UpdateOrganizationReqDto";
@@ -234,10 +281,14 @@ import type { UpdateResourceDto } from "./models/UpdateResourceDto";
 import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { UpdateSecuritySettingsDto } from "./models/UpdateSecuritySettingsDto";
 import type { UpdateSyncTaskDto } from "./models/UpdateSyncTaskDto";
+import type { UpdateTenantCooperatorDto } from "./models/UpdateTenantCooperatorDto";
+import type { UpdateTenantDto } from "./models/UpdateTenantDto";
+import type { UpdateTenantUserDto } from "./models/UpdateTenantUserDto";
 import type { UpdateUserBatchReqDto } from "./models/UpdateUserBatchReqDto";
 import type { UpdateUserPoolTenantLoginConfigDto } from "./models/UpdateUserPoolTenantLoginConfigDto";
 import type { UpdateUserReqDto } from "./models/UpdateUserReqDto";
 import type { UserActionLogRespDto } from "./models/UserActionLogRespDto";
+import type { UserConnectionPostDto } from "./models/UserConnectionPostDto";
 import type { UserDepartmentPaginatedRespDto } from "./models/UserDepartmentPaginatedRespDto";
 import type { UserIdListRespDto } from "./models/UserIdListRespDto";
 import type { UserListRespDto } from "./models/UserListRespDto";
@@ -248,6 +299,23 @@ import type { UserMfaSingleRespDto } from "./models/UserMfaSingleRespDto";
 import type { UserPaginatedRespDto } from "./models/UserPaginatedRespDto";
 import type { UserPoolTenantConfigDtoRespDto } from "./models/UserPoolTenantConfigDtoRespDto";
 import type { UserSingleRespDto } from "./models/UserSingleRespDto";
+import type { ChangePushCodeStatusDto } from "./models/ChangePushCodeStatusDto";
+import type { ChangeQRCodeStatusDto } from "./models/ChangeQRCodeStatusDto";
+import type { CheckPushCodeStatusRespDto } from "./models/CheckPushCodeStatusRespDto";
+import type { CheckQRCodeStatusRespDto } from "./models/CheckQRCodeStatusRespDto";
+import type { ExchangeTokenSetWithQRcodeTicketDto } from "./models/ExchangeTokenSetWithQRcodeTicketDto";
+import type { GeneFastpassQRCodeRespDto } from "./models/GeneFastpassQRCodeRespDto";
+import type { GenePushCodeRespDto } from "./models/GenePushCodeRespDto";
+import type { GeneQRCodeRespDto } from "./models/GeneQRCodeRespDto";
+import type { GenerateQrcodeDto } from "./models/GenerateQrcodeDto";
+import type { GetAlipayAuthInfoRespDto } from "./models/GetAlipayAuthInfoRespDto";
+import type { GetFastpassQRCodeRelationAppsRespDto } from "./models/GetFastpassQRCodeRelationAppsRespDto";
+import type { LoginTokenRespDto } from "./models/LoginTokenRespDto";
+import type { SigninByCredentialsDto } from "./models/SigninByCredentialsDto";
+import type { SigninByMobileDto } from "./models/SigninByMobileDto";
+import type { SignInByPushDto } from "./models/SignInByPushDto";
+import type { SignInFastpassDto } from "./models/SignInFastpassDto";
+import type { AppQRCodeLoginDto } from "./models/AppQRCodeLoginDto";
 import type { CreatePipelineFunctionDto } from "./models/CreatePipelineFunctionDto";
 import type { DeletePipelineFunctionDto } from "./models/DeletePipelineFunctionDto";
 import type { PipelineFunctionPaginatedRespDto } from "./models/PipelineFunctionPaginatedRespDto";
@@ -319,6 +387,635 @@ export class ManagementClient {
 
   public async makeRequest(params: AxiosRequestConfig) {
     return await this.httpClient.request(params);
+  }
+
+  /**
+   * @summary 岗位列表
+   * @description 岗位列表
+   * @returns PostPaginatedRespDto
+   */
+  public async postList({
+    keywords,
+    skipCount,
+    page = 1,
+    limit = 10,
+  }: {
+    /** 搜索岗位 code 或名称 **/
+    keywords?: string;
+    /** 是否统计岗位关联的部门数和用户数 **/
+    skipCount?: boolean;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+  }): Promise<PostPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-post",
+      params: {
+        keywords: keywords,
+        skipCount: skipCount,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取岗位
+   * @description 获取岗位
+   * @returns CreatePostDto
+   */
+  public async getPost({
+    code,
+  }: {
+    /** 岗位 code **/
+    code: string;
+  }): Promise<CreatePostDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-post",
+      params: {
+        code: code,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取用户关联岗位
+   * @description 获取用户关联岗位
+   * @returns CreatePostDto
+   */
+  public async getUserPost({
+    userId,
+  }: {
+    /** 用户 id **/
+    userId: string;
+  }): Promise<CreatePostDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-user-post",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取岗位信息
+   * @description 根据岗位 id 获取岗位详情
+   * @returns PostRespDto
+   */
+  public async getPostById(
+    requestBody: GetPostByIdListDto
+  ): Promise<PostRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/get-post-by-id",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 创建岗位
+   * @description 创建岗位
+   * @returns CreatePostRespDto
+   */
+  public async createPost(
+    requestBody: CreatePostDto
+  ): Promise<CreatePostRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-post",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新岗位信息
+   * @description 更新岗位信息
+   * @returns CreatePostRespDto
+   */
+  public async updatePost(
+    requestBody: CreatePostDto
+  ): Promise<CreatePostRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-post",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除岗位
+   * @description 删除岗位
+   * @returns CommonResponseDto
+   */
+  public async removePost(
+    requestBody: RemovePostDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/remove-post",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 用户关联岗位
+   * @description 用户关联岗位
+   * @returns CommonResponseDto
+   */
+  public async userConnectionPost(
+    requestBody: UserConnectionPostDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/user-connection-post",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取同步任务详情
+   * @description 获取同步任务详情
+   * @returns SyncTaskSingleRespDto
+   */
+  public async getSyncTask({
+    syncTaskId,
+  }: {
+    /** 同步任务 ID **/
+    syncTaskId: number;
+  }): Promise<SyncTaskSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-sync-task",
+      params: {
+        syncTaskId: syncTaskId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步任务列表
+   * @description 获取同步任务列表
+   * @returns SyncTaskPaginatedRespDto
+   */
+  public async listSyncTasks({
+    page = 1,
+    limit = 10,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+  }): Promise<SyncTaskPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-tasks",
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 创建同步任务
+   * @description 创建同步任务
+   * @returns SyncTaskPaginatedRespDto
+   */
+  public async createSyncTask(
+    requestBody: CreateSyncTaskDto
+  ): Promise<SyncTaskPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 修改同步任务
+   * @description 修改同步任务
+   * @returns SyncTaskPaginatedRespDto
+   */
+  public async updateSyncTask(
+    requestBody: UpdateSyncTaskDto
+  ): Promise<SyncTaskPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 执行同步任务
+   * @description 执行同步任务
+   * @returns TriggerSyncTaskRespDto
+   */
+  public async triggerSyncTask(
+    requestBody: TriggerSyncTaskDto
+  ): Promise<TriggerSyncTaskRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/trigger-sync-task",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns SyncJobSingleRespDto
+   */
+  public async getSyncJob({
+    syncJobId,
+  }: {
+    /** 同步作业 ID **/
+    syncJobId: number;
+  }): Promise<SyncJobSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-sync-job",
+      params: {
+        syncJobId: syncJobId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns SyncJobPaginatedRespDto
+   */
+  public async listSyncJobs({
+    syncTaskId,
+    page = 1,
+    limit = 10,
+    syncTrigger,
+  }: {
+    /** 同步任务 ID **/
+    syncTaskId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 同步任务触发类型：
+     * - `manually`: 手动触发执行
+     * - `timed`: 定时触发
+     * - `automatic`: 根据事件自动触发
+     *  **/
+    syncTrigger?: "manually" | "timed" | "automatic";
+  }): Promise<SyncJobPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-jobs",
+      params: {
+        syncTaskId: syncTaskId,
+        page: page,
+        limit: limit,
+        syncTrigger: syncTrigger,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步作业详情
+   * @description 获取同步作业详情
+   * @returns TriggerSyncTaskRespDto
+   */
+  public async listSyncJobLogs({
+    syncJobId,
+    page = 1,
+    limit = 10,
+    success,
+    action,
+    objectType,
+  }: {
+    /** 同步作业 ID **/
+    syncJobId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 根据是否操作成功进行筛选 **/
+    success?: boolean;
+    /** 根据操作类型进行筛选：
+     * - `CreateUser`: 创建用户
+     * - `UpdateUser`: 修改用户信息
+     * - `DeleteUser`: 删除用户
+     * - `UpdateUserIdentifier`: 修改用户唯一标志符
+     * - `ChangeUserDepartment`: 修改用户部门
+     * - `CreateDepartment`: 创建部门
+     * - `UpdateDepartment`: 修改部门信息
+     * - `DeleteDepartment`: 删除部门
+     * - `MoveDepartment`: 移动部门
+     * - `UpdateDepartmentLeader`: 同步部门负责人
+     * - `CreateGroup`: 创建分组
+     * - `UpdateGroup`: 修改分组
+     * - `DeleteGroup`: 删除分组
+     * - `Updateless`: 无更新
+     *  **/
+    action?:
+      | "CreateUser"
+      | "UpdateUser"
+      | "DeleteUser"
+      | "UpdateUserIdentifier"
+      | "ChangeUserDepartment"
+      | "CreateDepartment"
+      | "UpdateDepartment"
+      | "DeleteDepartment"
+      | "MoveDepartment"
+      | "UpdateDepartmentLeader"
+      | "CreateGroup"
+      | "UpdateGroup"
+      | "DeleteGroup"
+      | "Updateless";
+    /** 操作对象类型:
+     * - `department`: 部门
+     * - `user`: 用户
+     *  **/
+    objectType?: "DEPARTMENT" | "USER";
+  }): Promise<TriggerSyncTaskRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-job-logs",
+      params: {
+        syncJobId: syncJobId,
+        page: page,
+        limit: limit,
+        success: success,
+        action: action,
+        objectType: objectType,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取同步风险操作列表
+   * @description 获取同步风险操作列表
+   * @returns SyncRiskOperationPaginatedRespDto
+   */
+  public async listSyncRiskOperations({
+    syncTaskId,
+    page = 1,
+    limit = 10,
+    status,
+    objectType,
+  }: {
+    /** 同步任务 ID **/
+    syncTaskId: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 根据执行状态筛选 **/
+    status?: Array<"PENDING" | "SUCCESS" | "FAILED" | "CANCELED" | "EXECUTING">;
+    /** 根据操作对象类型，默认获取所有类型的记录：
+     * - `department`: 部门
+     * - `user`: 用户
+     *  **/
+    objectType?: Array<"DEPARTMENT" | "USER">;
+  }): Promise<SyncRiskOperationPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-sync-risk-operations",
+      params: {
+        syncTaskId: syncTaskId,
+        page: page,
+        limit: limit,
+        status: status,
+        objectType: objectType,
+      },
+    });
+  }
+
+  /**
+   * @summary 执行同步风险操作
+   * @description 执行同步风险操作
+   * @returns TriggerSyncRiskOperationsRespDto
+   */
+  public async triggerSyncRiskOperations(
+    requestBody: TriggerSyncRiskOperationDto
+  ): Promise<TriggerSyncRiskOperationsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/trigger-sync-risk-operations",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 取消同步风险操作
+   * @description 取消同步风险操作
+   * @returns CancelSyncRiskOperationsRespDto
+   */
+  public async cancelSyncRiskOperation(
+    requestBody: CancelSyncRiskOperationDto
+  ): Promise<CancelSyncRiskOperationsRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/cancel-sync-risk-operation",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 注册
+   * @description
+   * 此端点目前支持以下几种基于的注册方式：
+   *
+   * 1. 基于密码（PASSWORD）：用户名 + 密码，邮箱 + 密码。
+   * 2. 基于一次性临时验证码（PASSCODE）：手机号 + 验证码，邮箱 + 验证码。你需要先调用发送短信或者发送邮件接口获取验证码。
+   *
+   * 社会化登录等使用外部身份源“注册”请直接使用**登录**接口，我们会在其第一次登录的时候为其创建一个新账号。
+   *
+   * @returns UserSingleRespDto
+   */
+  public async signUp(requestBody: SignUpDto): Promise<UserSingleRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signup",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取登录日志
+   * @description 获取登录日志
+   * @returns GetLoginHistoryRespDto
+   */
+  public async getLoginHistory({
+    appId,
+    clientIp,
+    success,
+    start,
+    end,
+    page = 1,
+    limit = 10,
+  }: {
+    /** 应用 ID，可根据应用 ID 筛选。默认不传获取所有应用的登录历史。 **/
+    appId?: string;
+    /** 客户端 IP，可根据登录时的客户端 IP 进行筛选。默认不传获取所有登录 IP 的登录历史。 **/
+    clientIp?: string;
+    /** 是否登录成功，可根据是否登录成功进行筛选。默认不传获取的记录中既包含成功也包含失败的的登录历史。 **/
+    success?: boolean;
+    /** 开始时间，为单位为毫秒的时间戳 **/
+    start?: number;
+    /** 结束时间，为单位为毫秒的时间戳 **/
+    end?: number;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+  }): Promise<GetLoginHistoryRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-login-history",
+      params: {
+        appId: appId,
+        clientIp: clientIp,
+        success: success,
+        start: start,
+        end: end,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取登录应用
+   * @description 获取登录应用
+   * @returns GetLoggedInAppsRespDto
+   */
+  public async getLoggedInApps(): Promise<GetLoggedInAppsRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-logged-in-apps",
+    });
+  }
+
+  /**
+   * @summary 获取具备访问权限的应用
+   * @description 获取具备访问权限的应用
+   * @returns GetAccessibleAppsRespDto
+   */
+  public async getAccessibleApps(): Promise<GetAccessibleAppsRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-accessible-apps",
+    });
+  }
+
+  /**
+   * @summary 获取租户列表
+   * @description 获取租户列表
+   * @returns GetTenantListRespDto
+   */
+  public async getTenantList(): Promise<GetTenantListRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-tenant-list",
+    });
+  }
+
+  /**
+   * @summary 获取角色列表
+   * @description 获取角色列表
+   * @returns RoleListRespDto
+   */
+  public async getRoleList({
+    namespace,
+  }: {
+    /** 所属权限分组(权限空间)的 Code **/
+    namespace?: string;
+  }): Promise<RoleListRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-role-list",
+      params: {
+        namespace: namespace,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取分组列表
+   * @description 获取分组列表
+   * @returns GroupListRespDto
+   */
+  public async getGroupList(): Promise<GroupListRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-group-list",
+    });
+  }
+
+  /**
+   * @summary 获取部门列表
+   * @description 此接口用于获取用户的部门列表，可根据一定排序规则进行排序。
+   * @returns UserDepartmentPaginatedRespDto
+   */
+  public async getDepartmentList({
+    page = 1,
+    limit = 10,
+    withCustomData = false,
+    sortBy = "JoinDepartmentAt",
+    orderBy = "Desc",
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 是否获取部门的自定义数据 **/
+    withCustomData?: boolean;
+    /** 排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符 **/
+    sortBy?:
+      | "DepartmentCreatedAt"
+      | "JoinDepartmentAt"
+      | "DepartmentName"
+      | "DepartmemtCode";
+    /** 增序或降序 **/
+    orderBy?: "Asc" | "Desc";
+  }): Promise<UserDepartmentPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-department-list",
+      params: {
+        page: page,
+        limit: limit,
+        withCustomData: withCustomData,
+        sortBy: sortBy,
+        orderBy: orderBy,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取被授权的资源列表
+   * @description 此接口用于获取用户被授权的资源列表。
+   * @returns AuthorizedResourcePaginatedRespDto
+   */
+  public async getAuthorizedResources({
+    namespace,
+    resourceType,
+  }: {
+    /** 所属权限分组(权限空间)的 Code **/
+    namespace?: string;
+    /** 资源类型，如 数据、API、菜单、按钮 **/
+    resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
+  }): Promise<AuthorizedResourcePaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-my-authorized-resources",
+      params: {
+        namespace: namespace,
+        resourceType: resourceType,
+      },
+    });
   }
 
   /**
@@ -1715,7 +2412,6 @@ export class ManagementClient {
     });
   }
 
-
   /**
    * @deprecated
    * @summary 搜索部门
@@ -2710,6 +3406,7 @@ export class ManagementClient {
       data: requestBody,
     });
   }
+
   /**
    * @summary 更新身份源连接
    * @description 更新身份源连接，可以设置身份源图标、是否只支持登录等。
@@ -3132,7 +3829,7 @@ export class ManagementClient {
 
   /**
    * @summary 批量删除资源
-   * @description 批量删除资源，允许通过资源 Id 列表进行批量删除，同时允许权限空间加资源 Code 列表进行批量删除，资源 Id 列表和资源 Code 列表同时必须存在一个，如果两个都存在，则以资源 Id 列表为主
+   * @description 通过资源唯一标志符以及所属权限分组，批量删除资源
    * @returns IsSuccessRespDto
    */
   public async deleteResourcesBatch(
@@ -3146,9 +3843,23 @@ export class ManagementClient {
   }
 
   /**
-   * @deprecated
    * @summary 批量删除资源
-   * @description 批量删除资源，通过资源 Id 进行批量删除。
+   * @description 通过资源id批量删除资源
+   * @returns IsSuccessRespDto
+   */
+  public async batchDeleteCommonResource(
+    requestBody: DeleteCommonResourcesBatchDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-common-resources-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量删除资源
+   * @description 通过资源id批量删除资源
    * @returns IsSuccessRespDto
    */
   public async deleteResourcesByIdBatch(
@@ -3367,56 +4078,6 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 获取某个主体被授权的资源列表
-   * @description 根据筛选条件，获取某个主体被授权的资源列表。
-   * @returns AuthorizedResourcePaginatedRespDto
-   */
-  public async getAuthorizedResources({
-    targetType,
-    targetIdentifier,
-    namespace,
-    resourceType,
-    resourceList,
-    withDenied = false,
-  }: {
-    /** 目标对象类型：
-     * - `USER`: 用户
-     * - `ROLE`: 角色
-     * - `GROUP`: 分组
-     * - `DEPARTMENT`: 部门
-     *  **/
-    targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
-    /** 目标对象的唯一标志符：
-     * - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
-     * - 如果是角色，为角色的 code，如 `admin`
-     * - 如果是分组，为分组的 code，如 `developer`
-     * - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
-     *  **/
-    targetIdentifier: string;
-    /** 所属权限分组(权限空间)的 Code **/
-    namespace?: string;
-    /** 限定资源类型，如数据、API、按钮、菜单 **/
-    resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
-    /** 限定查询的资源列表，如果指定，只会返回所指定的资源列表。 **/
-    resourceList?: Array<string>;
-    /** 是否获取被拒绝的资源 **/
-    withDenied?: boolean;
-  }): Promise<AuthorizedResourcePaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/get-authorized-resources",
-      params: {
-        targetType: targetType,
-        targetIdentifier: targetIdentifier,
-        namespace: namespace,
-        resourceType: resourceType,
-        resourceList: resourceList,
-        withDenied: withDenied,
-      },
-    });
-  }
-
-  /**
    * @summary 判断用户是否对某个资源的某个操作有权限
    * @description 判断用户是否对某个资源的某个操作有权限。
    * @returns IsActionAllowedRespDtp
@@ -3442,292 +4103,6 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/get-resource-authorized-targets",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 获取同步任务详情
-   * @description 获取同步任务详情
-   * @returns SyncTaskSingleRespDto
-   */
-  public async getSyncTask({
-    syncTaskId,
-  }: {
-    /** 同步任务 ID **/
-    syncTaskId: number;
-  }): Promise<SyncTaskSingleRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/get-sync-task",
-      params: {
-        syncTaskId: syncTaskId,
-      },
-    });
-  }
-
-  /**
-   * @summary 获取同步任务列表
-   * @description 获取同步任务列表
-   * @returns SyncTaskPaginatedRespDto
-   */
-  public async listSyncTasks({
-    page = 1,
-    limit = 10,
-  }: {
-    /** 当前页数，从 1 开始 **/
-    page?: number;
-    /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
-  }): Promise<SyncTaskPaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/list-sync-tasks",
-      params: {
-        page: page,
-        limit: limit,
-      },
-    });
-  }
-
-  /**
-   * @summary 创建同步任务
-   * @description 创建同步任务
-   * @returns SyncTaskPaginatedRespDto
-   */
-  public async createSyncTask(
-    requestBody: CreateSyncTaskDto
-  ): Promise<SyncTaskPaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/create-sync-task",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 修改同步任务
-   * @description 修改同步任务
-   * @returns SyncTaskPaginatedRespDto
-   */
-  public async updateSyncTask(
-    requestBody: UpdateSyncTaskDto
-  ): Promise<SyncTaskPaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/update-sync-task",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 执行同步任务
-   * @description 执行同步任务
-   * @returns TriggerSyncTaskRespDto
-   */
-  public async triggerSyncTask(
-    requestBody: TriggerSyncTaskDto
-  ): Promise<TriggerSyncTaskRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/trigger-sync-task",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 获取同步作业详情
-   * @description 获取同步作业详情
-   * @returns SyncJobSingleRespDto
-   */
-  public async getSyncJob({
-    syncJobId,
-  }: {
-    /** 同步作业 ID **/
-    syncJobId: number;
-  }): Promise<SyncJobSingleRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/get-sync-job",
-      params: {
-        syncJobId: syncJobId,
-      },
-    });
-  }
-
-  /**
-   * @summary 获取同步作业详情
-   * @description 获取同步作业详情
-   * @returns SyncJobPaginatedRespDto
-   */
-  public async listSyncJobs({
-    syncTaskId,
-    page = 1,
-    limit = 10,
-    syncTrigger,
-  }: {
-    /** 同步任务 ID **/
-    syncTaskId: number;
-    /** 当前页数，从 1 开始 **/
-    page?: number;
-    /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
-    /** 同步任务触发类型：
-     * - `manually`: 手动触发执行
-     * - `timed`: 定时触发
-     * - `automatic`: 根据事件自动触发
-     *  **/
-    syncTrigger?: "manually" | "timed" | "automatic";
-  }): Promise<SyncJobPaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/list-sync-jobs",
-      params: {
-        syncTaskId: syncTaskId,
-        page: page,
-        limit: limit,
-        syncTrigger: syncTrigger,
-      },
-    });
-  }
-
-  /**
-   * @summary 获取同步作业详情
-   * @description 获取同步作业详情
-   * @returns TriggerSyncTaskRespDto
-   */
-  public async listSyncJobLogs({
-    syncJobId,
-    page = 1,
-    limit = 10,
-    success,
-    action,
-    objectType,
-  }: {
-    /** 同步作业 ID **/
-    syncJobId: number;
-    /** 当前页数，从 1 开始 **/
-    page?: number;
-    /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
-    /** 根据是否操作成功进行筛选 **/
-    success?: boolean;
-    /** 根据操作类型进行筛选：
-     * - `CreateUser`: 创建用户
-     * - `UpdateUser`: 修改用户信息
-     * - `DeleteUser`: 删除用户
-     * - `UpdateUserIdentifier`: 修改用户唯一标志符
-     * - `ChangeUserDepartment`: 修改用户部门
-     * - `CreateDepartment`: 创建部门
-     * - `UpdateDepartment`: 修改部门信息
-     * - `DeleteDepartment`: 删除部门
-     * - `MoveDepartment`: 移动部门
-     * - `UpdateDepartmentLeader`: 同步部门负责人
-     * - `CreateGroup`: 创建分组
-     * - `UpdateGroup`: 修改分组
-     * - `DeleteGroup`: 删除分组
-     * - `Updateless`: 无更新
-     *  **/
-    action?:
-      | "CreateUser"
-      | "UpdateUser"
-      | "DeleteUser"
-      | "UpdateUserIdentifier"
-      | "ChangeUserDepartment"
-      | "CreateDepartment"
-      | "UpdateDepartment"
-      | "DeleteDepartment"
-      | "MoveDepartment"
-      | "UpdateDepartmentLeader"
-      | "CreateGroup"
-      | "UpdateGroup"
-      | "DeleteGroup"
-      | "Updateless";
-    /** 操作对象类型:
-     * - `department`: 部门
-     * - `user`: 用户
-     *  **/
-    objectType?: "DEPARTMENT" | "USER";
-  }): Promise<TriggerSyncTaskRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/list-sync-job-logs",
-      params: {
-        syncJobId: syncJobId,
-        page: page,
-        limit: limit,
-        success: success,
-        action: action,
-        objectType: objectType,
-      },
-    });
-  }
-
-  /**
-   * @summary 获取同步风险操作列表
-   * @description 获取同步风险操作列表
-   * @returns SyncRiskOperationPaginatedRespDto
-   */
-  public async listSyncRiskOperations({
-    syncTaskId,
-    page = 1,
-    limit = 10,
-    status,
-    objectType,
-  }: {
-    /** 同步任务 ID **/
-    syncTaskId: number;
-    /** 当前页数，从 1 开始 **/
-    page?: number;
-    /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
-    /** 根据执行状态筛选 **/
-    status?: Array<"PENDING" | "SUCCESS" | "FAILED" | "CANCELED" | "EXECUTING">;
-    /** 根据操作对象类型，默认获取所有类型的记录：
-     * - `department`: 部门
-     * - `user`: 用户
-     *  **/
-    objectType?: Array<"DEPARTMENT" | "USER">;
-  }): Promise<SyncRiskOperationPaginatedRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/list-sync-risk-operations",
-      params: {
-        syncTaskId: syncTaskId,
-        page: page,
-        limit: limit,
-        status: status,
-        objectType: objectType,
-      },
-    });
-  }
-
-  /**
-   * @summary 执行同步风险操作
-   * @description 执行同步风险操作
-   * @returns TriggerSyncRiskOperationsRespDto
-   */
-  public async triggerSyncRiskOperations(
-    requestBody: TriggerSyncRiskOperationDto
-  ): Promise<TriggerSyncRiskOperationsRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/trigger-sync-risk-operations",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 取消同步风险操作
-   * @description 取消同步风险操作
-   * @returns CancelSyncRiskOperationsRespDto
-   */
-  public async cancelSyncRiskOperation(
-    requestBody: CancelSyncRiskOperationDto
-  ): Promise<CancelSyncRiskOperationsRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/cancel-sync-risk-operation",
       data: requestBody,
     });
   }
@@ -4497,6 +4872,840 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 创建租户
+   * @returns CreateTenantRespDto
+   */
+  public async createTenant(
+    requestBody: CreateTenantDto
+  ): Promise<CreateTenantRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-tenant",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新租户数据
+   * @description 此接口用于更新租户基本信息。
+   * @returns IsSuccessRespDto
+   */
+  public async updateTenant(
+    requestBody: UpdateTenantDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-tenant",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除租户
+   * @description 此接口用于删除租户。
+   * @returns IsSuccessRespDto
+   */
+  public async deleteTenant(
+    requestBody: DeleteTenantDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-tenant",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取/搜索租户列表
+   * @description 此接口用于获取租户列表，支持模糊搜索。
+   * @returns TenantListPaginatedRespDto
+   */
+  public async listTenants({
+    keywords,
+    withMembersCount,
+    withAppDetail,
+    withCreatorDetail,
+    withSourceAppDetail,
+    page,
+    limit,
+  }: {
+    /** 搜索关键字 **/
+    keywords?: string;
+    /** 是否增加返回租户成员统计 **/
+    withMembersCount?: boolean;
+    /** 增加返回租户下 app 简单信息 **/
+    withAppDetail?: boolean;
+    /** 增加返回租户下创建者简单信息 **/
+    withCreatorDetail?: boolean;
+    /** 增加返回租户下来源 app 简单信息 **/
+    withSourceAppDetail?: boolean;
+    /** 页码 **/
+    page?: string;
+    /** 每页获取的数据量 **/
+    limit?: string;
+  }): Promise<TenantListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-tenants",
+      params: {
+        keywords: keywords,
+        withMembersCount: withMembersCount,
+        withAppDetail: withAppDetail,
+        withCreatorDetail: withCreatorDetail,
+        withSourceAppDetail: withSourceAppDetail,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取租户详情
+   * @description 根据租户 ID 获取租户详情
+   * @returns TenantSingleRespDto
+   */
+  public async getTenant({
+    tenantId,
+    withMembersCount,
+    withAppDetail,
+    withCreatorDetail,
+    withSourceAppDetail,
+  }: {
+    /** 租户 ID **/
+    tenantId: string;
+    /** 是否增加返回租户成员统计 **/
+    withMembersCount?: boolean;
+    /** 增加返回租户关联应用简单信息 **/
+    withAppDetail?: boolean;
+    /** 增加返回租户下创建者简单信息 **/
+    withCreatorDetail?: boolean;
+    /** 增加返回租户来源应用简单信息 **/
+    withSourceAppDetail?: boolean;
+  }): Promise<TenantSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant",
+      params: {
+        tenantId: tenantId,
+        withMembersCount: withMembersCount,
+        withAppDetail: withAppDetail,
+        withCreatorDetail: withCreatorDetail,
+        withSourceAppDetail: withSourceAppDetail,
+      },
+    });
+  }
+
+  /**
+   * @summary 导入租户
+   * @description 此接口用于 Excel 导入租户。
+   * @returns any
+   */
+  public async importTenant(requestBody: ImportTenantDto): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/import-tenant",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 导入租户历史
+   * @description 此接口用于 Excel 导入租户的历史查询。
+   * @returns any
+   */
+  public async importTenantHistory({
+    page,
+    limit,
+  }: {
+    /** 页码 **/
+    page?: string;
+    /** 每页获取的数据量 **/
+    limit?: string;
+  }): Promise<any> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/import-tenant-history",
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 导入租户通知用户列表
+   * @description 此接口用于查询导入租户通知用户列表。
+   * @returns any
+   */
+  public async importTenantNotifyUser({
+    importId,
+    page,
+    limit,
+  }: {
+    /** 导入记录 id **/
+    importId: string;
+    /** 页码 **/
+    page?: string;
+    /** 每页获取的数据量 **/
+    limit?: string;
+  }): Promise<any> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/import-tenant-notify-user",
+      params: {
+        importId: importId,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 导入租户通知邮箱用户
+   * @description 此接口用于批量发送邮件通知。
+   * @returns any
+   */
+  public async sendEmailBatch(
+    requestBody: SendManyTenantEmailDto
+  ): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/send-email-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 导入租户短信通知用户
+   * @description 此接口用于批量发送短信通知。
+   * @returns any
+   */
+  public async sendSmsBatch(requestBody: SendManyTenantSmsDto): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/send-sms-batch",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取租户管理员列表
+   * @description 此接口用于获取租户成员列表，支持模糊搜索。
+   * @returns TenantUserListPaginatedRespDto
+   */
+  public async listTenantAdmin(
+    requestBody: ListTenantAdminDto
+  ): Promise<TenantUserListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/list-tenant-admin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 设置租户管理员
+   * @description 此接口用于根据用户 ID 或租户成员 ID 设置租户管理员。
+   * @returns CommonResponseDto
+   */
+  public async setTenantAdmin(
+    requestBody: RemoveTenantUsersDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/set-tenant-admin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 取消设置租户管理员
+   * @description 此接口用于根据用户 ID 或租户成员 ID 取消设置租户管理员。
+   * @returns CommonResponseDto
+   */
+  public async deleteTenantAdmin(
+    requestBody: GetTenantUserDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-tenant-admin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量移除租户成员
+   * @description 此接口用于根据用户 ID 或租户成员 ID 批量移除租户成员。
+   * @returns CommonResponseDto
+   */
+  public async deleteTenantUser(
+    requestBody: RemoveTenantUsersDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-tenant-user",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 生成一个邀请租户成员的链接
+   * @description 此接口用于生成一个邀请租户成员的链接。appId 为用户注册成功后要访问的应用 ID
+   * @returns InviteTenantUsersRespDto
+   */
+  public async generateInviteTenantUserLink(
+    requestBody: GenerateInviteTenantUserLink
+  ): Promise<InviteTenantUsersRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/generate-invite-tenant-user-link",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取可访问的租户控制台列表
+   * @description 根据用户 ID 获取可访问的租户控制台列表
+   * @returns InviteTenantUserRecordListRespDto
+   */
+  public async listInviteTennatUserRecords({
+    keywords,
+    page,
+    limit,
+  }: {
+    /** 搜索关键字 **/
+    keywords: string;
+    /** 页码 **/
+    page: string;
+    /** 每页获取的数据量 **/
+    limit: string;
+  }): Promise<InviteTenantUserRecordListRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-invite-tenant-user-records",
+      params: {
+        keywords: keywords,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取多租户管理员用户列表
+   * @description 根据用户池 ID 获取某个用户池内拥有多租户管理权限的用户列表
+   * @returns MultipleTenantAdminPaginatedRespDto
+   */
+  public async listMultipleTenantAdmin({
+    keywords,
+    page,
+    limit,
+  }: {
+    /** 搜索关键字 **/
+    keywords?: string;
+    /** 页码 **/
+    page?: string;
+    /** 每页获取的数据量 **/
+    limit?: string;
+  }): Promise<MultipleTenantAdminPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-multiple-tenant-admins",
+      params: {
+        keywords: keywords,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 创建多租户管理员用户
+   * @description 根据用户 ID 创建一个用户池内拥有多租户管理权限的用户
+   * @returns CommonResponseDto
+   */
+  public async createMultipleTenantAdmin(
+    requestBody: CreateMultipleTenantAdminDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-multiple-tenant-admin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取多租户管理员用户列表
+   * @description 根据用户池 ID 获取某个用户池内拥有多租户管理权限的用户列表
+   * @returns MultipleTenantAdminPaginatedRespDto
+   */
+  public async getMultipleTenantAdmin({
+    userId,
+  }: {
+    /** 用户 ID **/
+    userId: string;
+  }): Promise<MultipleTenantAdminPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-multiple-tenant-admin",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 更新多租户管理员用户
+   * @description 根据用户 ID 更新一个用户池内拥有多租户管理权限的用户的信息
+   * @returns CommonResponseDto
+   */
+  public async updateMultipleTenantAdmin(
+    userId: string,
+    requestBody: UpdateMultipleTenantAdminDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-multiple-tenant-admin",
+      params: {
+        userId: userId,
+      },
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除多租户管理员用户
+   * @description 根据用户 ID 删除一个用户池内拥有多租户管理权限的用户
+   * @returns CommonResponseDto
+   */
+  public async deleteMultipleTenantAdmin(
+    userId: string
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-multiple-tenant-admin",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取协作管理员用户列表
+   * @description 根据用户池 ID 获取某个用户池内拥有协作管理员能力的用户列表
+   * @returns TenantCooperatorPaginatedRespDto
+   */
+  public async listTenantCooperators({
+    keywords,
+    external,
+    page,
+    limit,
+  }: {
+    /** 搜索关键字 **/
+    keywords?: string;
+    /** 是否外部 **/
+    external?: boolean;
+    /** 页码 **/
+    page?: string;
+    /** 每页获取的数据量 **/
+    limit?: string;
+  }): Promise<TenantCooperatorPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-tenant-cooperators",
+      params: {
+        keywords: keywords,
+        external: external,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取一个协调管理员
+   * @description 根据用户池 ID 获取某个协调管理员的列表
+   * @returns TenantCooperatorSingleRespDto
+   */
+  public async getTenantCooperator({
+    userId,
+  }: {
+    /** 用户 ID **/
+    userId: string;
+  }): Promise<TenantCooperatorSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant-cooperator",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取一个协调管理员拥有的列表
+   * @description 根据用户池 ID 获取某个协调管理员的列表
+   * @returns TenantCooperatorSingleRespDto
+   */
+  public async getTenantCooperatorMenu({
+    userId,
+  }: {
+    /** 用户 ID **/
+    userId: string;
+  }): Promise<TenantCooperatorSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant-cooperator-menu",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 创建协调管理员
+   * @description 创建一个协调管理员
+   * @returns CommonResponseDto
+   */
+  public async createTenantCooperator(
+    requestBody: CreateTenantCooperatorDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-tenant-cooperator",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新协调管理员
+   * @description 根据用户 ID 更新一个协调管理员
+   * @returns CommonResponseDto
+   */
+  public async updateTenantCooperator(
+    userId: string,
+    requestBody: UpdateTenantCooperatorDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-tenant-cooperator",
+      params: {
+        userId: userId,
+      },
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除协调管理员
+   * @description 使用用户 ID 删除一个协调管理员
+   * @returns CommonResponseDto
+   */
+  public async deleteTenantCooperator(
+    userId: string
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-tenant-cooperator",
+      params: {
+        userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 发送邀请租户用户邮件
+   * @description 向多个邮箱发送邀请成为租户用户的邮件
+   * @returns CommonResponseDto
+   */
+  public async sendInviteTenantUserEmail(
+    requestBody: sendInviteTenantUserEmailDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/send-invite-tenant-user-email",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 添加租户成员
+   * @description 根据用户 ID 批量添加租户成员
+   * @returns CommonResponseDto
+   */
+  public async addTenantUsers(
+    requestBody: AddTenantUsersDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/add-tenant-users",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量移除租户成员
+   * @description 此接口用于根据用户 ID 或租户成员 ID 批量移除租户成员。
+   * @returns CommonResponseDto
+   */
+  public async removeTenantUsers(
+    requestBody: RemoveTenantUsersDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/remove-tenant-users",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新租户成员
+   * @description 此接口用于根据用户 ID 或租户成员 ID 更新租户成员。
+   * @returns CommonResponseDto
+   */
+  public async updateTenantUser(
+    requestBody: UpdateTenantUserDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-tenant-user",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 创建租户成员
+   * @description 创建租户成员，邮箱、手机号、用户名必须包含其中一个，邮箱、手机号、用户名、externalId 用户池内唯一，此接口将以管理员身份创建用户因此不需要进行手机号验证码检验等安全检测。
+   * @returns TenantUserDto
+   */
+  public async createTenantUser(
+    requestBody: CreateTenantUserReqDto
+  ): Promise<TenantUserDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-tenant-user",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取/搜索租户成员列表
+   * @description
+   * 此接口用于获取用户列表，支持模糊搜索，以及通过用户基础字段、用户自定义字段、用户所在部门、用户历史登录应用等维度筛选用户。
+   *
+   * ### 模糊搜素示例
+   *
+   * 模糊搜索默认会从 `phone`, `email`, `name`, `username`, `nickname` 五个字段对用户进行模糊搜索，你也可以通过设置 `options.fuzzySearchOn`
+   * 决定模糊匹配的字段范围：
+   *
+   * ```json
+   * {
+   * "keywords": "北京",
+   * "options": {
+   * "fuzzySearchOn": [
+   * "address"
+   * ]
+   * }
+   * }
+   * ```
+   *
+   * ### 高级搜索示例
+   *
+   * 你可以通过 `advancedFilter` 进行高级搜索，高级搜索支持通过用户的基础信息、自定义数据、所在部门、用户来源、登录应用、外部身份源信息等维度对用户进行筛选。
+   * **且这些筛选条件可以任意组合。**
+   *
+   * #### 筛选邮箱中包含 `@example.com` 的用户
+   *
+   * 用户邮箱（`email`）为字符串类型，可以进行模糊搜索：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "email",
+   * "operator": "CONTAINS",
+   * "value": "@example.com"
+   * }
+   * ]
+   * }
+   * ```
+   *
+   *
+   * #### 根据用户登录次数筛选
+   *
+   * 筛选登录次数大于 10 的用户：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "loginsCount",
+   * "operator": "GREATER",
+   * "value": 10
+   * }
+   * ]
+   * }
+   * ```
+   *
+   * 筛选登录次数在 10 - 100 次的用户：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "loginsCount",
+   * "operator": "BETWEEN",
+   * "value": [10, 100]
+   * }
+   * ]
+   * }
+   * ```
+   *
+   * #### 根据用户上次登录时间进行筛选
+   *
+   * 筛选最近 7 天内登录过的用户：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "lastLoginTime",
+   * "operator": "GREATER",
+   * "value": new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * }
+   * ]
+   * }
+   * ```
+   *
+   * 筛选在某一段时间内登录过的用户：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "lastLoginTime",
+   * "operator": "BETWEEN",
+   * "value": [
+   * new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
+   * new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * ]
+   * }
+   * ]
+   * }
+   * ```
+   *
+   * #### 根据用户曾经登录过的应用筛选
+   *
+   * 筛选出曾经登录过应用 `appId1` 或者 `appId2` 的用户：
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "loggedInApps",
+   * "operator": "IN",
+   * "value": [
+   * "appId1",
+   * "appId2"
+   * ]
+   * }
+   * ]
+   * }
+   * ```
+   *
+   * #### 根据用户所在部门进行筛选
+   *
+   * ```json
+   * {
+   * "advancedFilter": [
+   * {
+   * "field": "department",
+   * "operator": "IN",
+   * "value": [
+   * {
+   * "organizationCode": "steamory",
+   * "departmentId": "root",
+   * "departmentIdType": "department_id",
+   * "includeChildrenDepartments": true
+   * }
+   * ]
+   * }
+   * ]
+   * }
+   * ```
+   *
+   *
+   * @returns TenantUserListPaginatedRespDto
+   */
+  public async listTenantUsers(
+    requestBody: ListTenantUserDto
+  ): Promise<TenantUserListPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/list-tenant-users",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取单个租户成员
+   * @description 根据用户 ID 或租户成员 ID 获取租户成员信息
+   * @returns TenantUserSingleRespDto
+   */
+  public async getTenantUser({
+    tenantId,
+    linkUserId,
+    memberId,
+  }: {
+    /** 租户 ID **/
+    tenantId: string;
+    /** 关联的用户池级别的用户 ID **/
+    linkUserId?: string;
+    /** 租户成员 ID **/
+    memberId?: string;
+  }): Promise<TenantUserSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant-user",
+      params: {
+        tenantId: tenantId,
+        linkUserId: linkUserId,
+        memberId: memberId,
+      },
+    });
+  }
+
+  /**
+   * @summary 租户部门下添加成员
+   * @description 通过部门 ID、组织 code，添加部门下成员。
+   * @returns IsSuccessRespDto
+   */
+  public async addTenantDepartmentMembers(
+    requestBody: AddTenantDepartmentMembersReqDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/add-tenant-department-members",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 租户部门下删除成员
+   * @description 通过部门 ID、组织 code，删除部门下成员。
+   * @returns IsSuccessRespDto
+   */
+  public async removeTenantDepartmentMembers(
+    requestBody: RemoveTenantDepartmentMembersReqDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/remove-tenant-department-members",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 创建权限空间
    * @description 创建权限空间,可以设置权限空间名称、Code 和描述信息。
    * @returns CreatePermissionNamespaceResponseDto
@@ -5142,8 +6351,8 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 校验数据策略名称是否存在
-   * @description 通过数据策略名称查询用户池内是否存在。
+   * @summary 校验数据策略名称是否有效
+   * @description 通过数据策略名称查询用户池内是否有效。
    * @returns CheckParamsDataPolicyResponseDto
    */
   public async checkDataPolicyExists({
@@ -5579,7 +6788,7 @@ export class ManagementClient {
    * {
    * "namespaceCode": "examplePermissionNamespace",
    * "userId": "63721xxxxxxxxxxxxdde14a3",
-   * "action": "get"
+   * "action": "get",
    * "resources":["treeResourceCode1/StructCode1/resourceStructChildrenCode1", "treeResourceCode2/StructCode1/resourceStructChildrenCode1"]
    * }
    * ```
@@ -5661,11 +6870,11 @@ export class ManagementClient {
    * "data":{
    * "permissionList": [{
    * "namespaceCode": "examplePermissionNamespace",
-   * "actionList": ["read","get"],
+   * "actions": ["read","get"],
    * "resource": "strResourceCode1"
    * },{
    * "namespaceCode": "examplePermissionNamespace",
-   * "actionList": ["read","update","delete"],
+   * "actions": ["read","update","delete"],
    * "resource": "arrayResourceCode1"
    * }]
    * }
@@ -5694,11 +6903,11 @@ export class ManagementClient {
    * "data":{
    * "permissionList": [{
    * "namespaceCode": "examplePermissionNamespace",
-   * "actionList": ["read", "update", "delete"],
+   * "actions": ["read", "update", "delete"],
    * "resource": "treeResourceCode1/StructCode1/resourceStructChildrenCode1"
    * },{
    * "namespaceCode": "examplePermissionNamespace",
-   * "actionList": ["read", "get", "delete"],
+   * "actions": ["read", "get", "delete"],
    * "resource": "treeResourceCode2/StructCode1/resourceStructChildrenCode1"
    * }]
    * }
@@ -5938,7 +7147,7 @@ export class ManagementClient {
    * "code": "tree22",
    * "name": "tree22",
    * "value": "test22Value",
-   * "actions": ["get","delete"],
+   * "actions": ["get","delete"]
    * }]
    * }
    * }
@@ -6065,7 +7274,7 @@ export class ManagementClient {
    * "code": "tree22",
    * "name": "tree22",
    * "value": "test22Value",
-   * "actions": ["get","delete"],
+   * "actions": ["get","delete"]
    * }]
    * }
    * }
@@ -6257,6 +7466,495 @@ export class ManagementClient {
       params: {
         orderNo: orderNo,
       },
+    });
+  }
+
+  /**
+   * @summary 点击联系我们
+   * @description 用户点击联系我们事件
+   * @returns any
+   */
+  public async costContactClick(): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/click-cost-contact",
+    });
+  }
+
+  /**
+   * @summary 创建自定义事件应用
+   * @description 创建自定义事件应用
+   * @returns any
+   */
+  public async createEventApp(requestBody: CreateEventAppDto): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/create-event-app",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取事件应用列表
+   * @description 获取事件应用列表
+   * @returns EventAppPaginatedRespDto
+   */
+  public async listEventApps(): Promise<EventAppPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-event-apps",
+    });
+  }
+
+  /**
+   * @summary 获取事件列表
+   * @description 获取 Authing 服务支持的所有事件列表
+   * @returns OpenEventPaginatedRespDto
+   */
+  public async listEvents({
+    page = 1,
+    limit = 10,
+    app,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 应用类型 **/
+    app?: string;
+  }): Promise<OpenEventPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-events",
+      params: {
+        page: page,
+        limit: limit,
+        app: app,
+      },
+    });
+  }
+
+  /**
+   * @summary 定义自定义事件
+   * @description 在 Authing 事件中心定义自定义事件
+   * @returns CommonResponseDto
+   */
+  public async defineEvent(
+    requestBody: DefineEventDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/define-event",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 推送自定义事件
+   * @description 向 Authing 事件中心推送自定义事件
+   * @returns PubEventRespDto
+   */
+  public async verifyEvent(requestBody: PubEventDto): Promise<PubEventRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/pub-event",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 认证端推送自定义事件
+   * @description 认证端向 Authing 事件中心推送自定义事件
+   * @returns PubEventRespDto
+   */
+  public async pubUserEvent(
+    requestBody: PubEventDto
+  ): Promise<PubEventRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/pub-userEvent",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 使用用户凭证登录
+   * @description
+   * 此端点为基于直接 API 调用形式的登录端点，适用于你需要自建登录页面的场景。**此端点暂时不支持 MFA、信息补全、首次密码重置等流程，如有需要，请使用 OIDC 标准协议认证端点。**
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto 成功认证
+   */
+  public async signInByCredentials(
+    requestBody: SigninByCredentialsDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 使用移动端社会化登录
+   * @description
+   * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto
+   */
+  public async signInByMobile(
+    requestBody: SigninByMobileDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin-by-mobile",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取支付宝 AuthInfo
+   * @description 此接口用于获取发起支付宝认证需要的[初始化参数 AuthInfo](https://opendocs.alipay.com/open/218/105325)。
+   * @returns GetAlipayAuthInfoRespDto
+   */
+  public async getAlipayAuthInfo({
+    extIdpConnidentifier,
+  }: {
+    /** 外部身份源连接标志符 **/
+    extIdpConnidentifier: string;
+  }): Promise<GetAlipayAuthInfoRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-alipay-authinfo",
+      params: {
+        extIdpConnidentifier: extIdpConnidentifier,
+      },
+    });
+  }
+
+  /**
+   * @summary 生成用于登录的二维码
+   * @description 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
+   * @returns GeneQRCodeRespDto
+   */
+  public async geneQrCode(
+    requestBody: GenerateQrcodeDto
+  ): Promise<GeneQRCodeRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/gene-qrcode",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 查询二维码状态
+   * @description 按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
+   * @returns CheckQRCodeStatusRespDto
+   */
+  public async checkQrCodeStatus({
+    qrcodeId,
+  }: {
+    /** 二维码唯一 ID **/
+    qrcodeId: string;
+  }): Promise<CheckQRCodeStatusRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/check-qrcode-status",
+      params: {
+        qrcodeId: qrcodeId,
+      },
+    });
+  }
+
+  /**
+   * @summary 使用二维码 ticket 换取 TokenSet
+   * @description
+   * 此端点为使用二维码的 ticket 换取用户的 `access_token` 和 `id_token`。
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto
+   */
+  public async exchangeTokenSetWithQrCodeTicket(
+    requestBody: ExchangeTokenSetWithQRcodeTicketDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/exchange-tokenset-with-qrcode-ticket",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 自建 APP 扫码登录：APP 端修改二维码状态
+   * @description 此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns CommonResponseDto
+   */
+  public async changeQrCodeStatus(
+    requestBody: ChangeQRCodeStatusDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/change-qrcode-status",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 推送登录
+   * @description 推送登录。
+   * @returns GenePushCodeRespDto
+   */
+  public async signInByPush(
+    requestBody: SignInByPushDto
+  ): Promise<GenePushCodeRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin-by-push",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 查询推送码状态
+   * @description 按照推送码使用顺序，共分为已推送、等待用户 同意/取消 授权、推送码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+   * @returns CheckPushCodeStatusRespDto
+   */
+  public async checkPushCodeStatus({
+    pushCodeId,
+  }: {
+    /** 推送码（推送登录唯一 ID） **/
+    pushCodeId: string;
+  }): Promise<CheckPushCodeStatusRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/check-pushcode-status",
+      params: {
+        pushCodeId: pushCodeId,
+      },
+    });
+  }
+
+  /**
+   * @summary 推送登录：APP 端修改推送码状态
+   * @description 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns CommonResponseDto
+   */
+  public async changePushCodeStatus(
+    requestBody: ChangePushCodeStatusDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/change-pushcode-status",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取快速认证二维码数据
+   * @description 此端点用于在用户个人中心，获取快速认证参数生成二维码，可使用 Authing 令牌 APP 扫码，完成快速认证。**此接口要求具备用户的登录态**。
+   * @returns GeneFastpassQRCodeRespDto
+   */
+  public async geneFastpassQrcodeInfo(
+    requestBody: SignInFastpassDto
+  ): Promise<GeneFastpassQRCodeRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/gene-fastpass-qrcode-info",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取快速认证的应用列表
+   * @description 此端点用于使用 Authing 令牌 APP 扫「用户个人中心」-「快速认证」二维码后，拉取可快速认证的客户端应用列表。
+   * @returns GetFastpassQRCodeRelationAppsRespDto
+   */
+  public async getFastpassParams({
+    qrcodeId,
+    appId,
+  }: {
+    qrcodeId: string;
+    appId: string;
+  }): Promise<GetFastpassQRCodeRelationAppsRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-fastpass-client-apps",
+      params: {
+        qrcodeId: qrcodeId,
+        appId: appId,
+      },
+    });
+  }
+
+  /**
+   * @summary 查询个人中心「快速认证二维码」的状态
+   * @description 按照用户扫码顺序，共分为未扫码、已扫码、已登录、二维码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+   * @returns CheckQRCodeStatusRespDto
+   */
+  public async getQrCodeStatus({
+    qrcodeId,
+  }: {
+    /** 二维码唯一 ID **/
+    qrcodeId: string;
+  }): Promise<CheckQRCodeStatusRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-app-login-qrcode-status",
+      params: {
+        qrcodeId: qrcodeId,
+      },
+    });
+  }
+
+  /**
+   * @summary APP 端扫码登录
+   * @description 此端点用于在授权使 APP 成功扫码登录中，对应着在「个人中心」-「快速认证」页面渲染出二维码，终端用户扫码并成功登录的过程。
+   * @returns LoginTokenRespDto
+   */
+  public async qrCodeAppLogin(
+    requestBody: AppQRCodeLoginDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/qrcode-app-login",
+      data: requestBody,
     });
   }
 
