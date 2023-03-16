@@ -249,3 +249,4 @@ export * from './WechatIdentityResolveRespDto';
 export * from './WechatLoginTokenRespDto';
 export * from './WechatMobileAuthByCodeIdentityInput';
 export * from './WechatMobileAuthByCodeInput';
+export * from './MetadataDto';
