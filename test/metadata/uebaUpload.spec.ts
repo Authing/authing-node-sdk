@@ -29,8 +29,6 @@ describe('MetadUEBAata', () => {
       data,
       message,
     } = await uebaModel.upload<CustomUEBAInfo>(customUEBAInfo);
-    console.log(data);
-
     // 处理
     expect(statusCode).toEqual(200);
   });

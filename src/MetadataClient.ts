@@ -79,6 +79,7 @@ class UEBAModel extends MetadataModel {
     return this.create<CustomUEBAInfo & AutoParseUEBAInfo>({
       ...this.parseUa(info.ua),
       ...(await this.parseIp(info.ip)),
+      ...this.parseTimestamp(info.timestamp),
       ...info,
     });
   }
@@ -89,6 +90,14 @@ class UEBAModel extends MetadataModel {
       device: parser.getDevice().type || 'pc',
       system: parser.getOS().name || '',
       browser: parser.getBrowser().name || '',
+    };
+  }
+
+  private parseTimestamp(timestamp: number) {
+    const date = new Date(timestamp);
+    return {
+      request_date: `${date.getUTCFullYear()}.${date.getMonth() + 1}.${date.getDate()}`,
+      request_time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
     };
   }
 
