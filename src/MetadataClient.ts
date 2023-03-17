@@ -2,7 +2,13 @@ import { ManagementHttpClient } from './ManagementHttpClient';
 import { MetadataClientOptions } from './MetadataClientOptions';
 import Axios from 'axios';
 import { DEFAULT_OPTIONS } from './ManagementClientOptions';
-import { AutoParseUEBAInfo, BaseType, MetadataCommonResponseDto, ReserveKey, UEBAInfo } from './models/MetadataDto';
+import {
+  AutoParseUEBAInfo,
+  BaseType,
+  MetadataCommonResponseDto,
+  ReserveKey,
+  UEBAInfo,
+} from './models/MetadataDto';
 import { domainC14n } from './utils';
 import { UAParser } from 'ua-parser-js';
 import { Reader } from '@maxmind/geoip2-node';
@@ -53,18 +59,57 @@ export class MetadataClient {
 class MetadataModel {
   constructor(
     private httpClient: ManagementHttpClient,
-    private modelId: string,
+    private modelId: string
   ) {}
 
-  public create<
-    MetadataDataType = Record<string, BaseType>
-  >(data: MetadataDataType): Promise<MetadataCommonResponseDto<MetadataDataType & ReserveKey>> {
+  public create<MetadataDataType = Record<string, BaseType>>(
+    data: MetadataDataType
+  ): Promise<MetadataCommonResponseDto<MetadataDataType & ReserveKey>> {
     return this.httpClient.request({
       method: 'POST',
       url: '/api/v3/metadata/create-line',
       data: {
         modelId: this.modelId,
         data,
+      },
+    });
+  }
+
+  public get<MetadataDataType = Record<string, BaseType>>(
+    id: string
+  ): Promise<MetadataCommonResponseDto<MetadataDataType & ReserveKey>> {
+    return this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/metadata/get-line',
+      params: {
+        modelId: this.modelId,
+        lineId: id,
+      },
+    });
+  }
+
+  public update<MetadataDataType = Record<string, BaseType>>(
+    id: string,
+    updates: Partial<MetadataDataType>
+  ): Promise<MetadataCommonResponseDto<Partial<MetadataDataType & ReserveKey>>> {
+    return this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/metadata/update-line',
+      data: {
+        modelId: this.modelId,
+        lineId: id,
+        updates,
+      },
+    });
+  }
+
+  public remove(idList: string[]): Promise<MetadataCommonResponseDto> {
+    return this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/metadata/remove-line',
+      data: {
+        modelId: this.modelId,
+        lineIdList: idList,
       },
     });
   }
@@ -76,12 +121,16 @@ class UEBAModel extends MetadataModel {
   }
 
   public async upload<CustomUEBAInfo extends UEBAInfo>(info: CustomUEBAInfo) {
-    return this.create<CustomUEBAInfo & AutoParseUEBAInfo>({
+    return super.create<CustomUEBAInfo & AutoParseUEBAInfo>({
       ...this.parseUa(info.ua),
       ...(await this.parseIp(info.ip)),
       ...this.parseTimestamp(info.timestamp),
       ...info,
     });
+  }
+
+  public async getHistory<CustomUEBAInfo extends UEBAInfo>(id: string) {
+    return super.get<CustomUEBAInfo>(id);
   }
 
   private parseUa(ua: string) {
@@ -96,7 +145,9 @@ class UEBAModel extends MetadataModel {
   private parseTimestamp(timestamp: number) {
     const date = new Date(timestamp);
     return {
-      request_date: `${date.getUTCFullYear()}.${date.getMonth() + 1}.${date.getDate()}`,
+      request_date: `${date.getUTCFullYear()}.${
+        date.getMonth() + 1
+      }.${date.getDate()}`,
       request_time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
     };
   }
@@ -112,4 +163,3 @@ class UEBAModel extends MetadataModel {
     };
   }
 }
-
