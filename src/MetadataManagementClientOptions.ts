@@ -1,6 +1,6 @@
 import { Lang } from './utils';
 
-export interface MetadataClientOptions {
+export interface MetadataManagementClientOptions {
   /** 用户池 ID **/
   accessKeyId: string;
 
