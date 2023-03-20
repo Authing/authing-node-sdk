@@ -16,7 +16,7 @@ describe('MetadUEBAata', () => {
       statusCode,
       data,
       message,
-    } = await uebaModel.upload<CustomUEBAInfo>({
+    } = await uebaModel.capture<CustomUEBAInfo>({
       appId: 'xxxxx',
       timestamp: Date.now(),
       ip: '183.95.62.38',
