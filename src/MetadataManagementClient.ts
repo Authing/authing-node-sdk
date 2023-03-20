@@ -153,13 +153,21 @@ class UEBAModel extends MetadataModel {
   }
 
   private async parseIp(ip: string) {
-    const res = (await reader).city(ip);
-    return {
-      country: res.country?.names['zh-CN'] || '',
-      province: res.subdivisions
-        ? res.subdivisions[0].names['zh-CN'] || ''
-        : '',
-      city: res.city?.names['zh-CN'] || '',
-    };
+    try {
+      const res = (await reader).city(ip);
+      return {
+        country: res.country?.names['zh-CN'] || '',
+        province: res.subdivisions
+          ? res.subdivisions[0].names['zh-CN'] || ''
+          : '',
+        city: res.city?.names['zh-CN'] || '',
+      };
+    } catch (error) {
+      return {
+        country: '',
+        province: '',
+        city: '',
+      };
+    }
   }
 }
