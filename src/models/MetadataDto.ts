@@ -34,6 +34,8 @@ export interface ReserveKey {
   metaUpdateUser: string;
 }
 
+export type BehaviorResult = 'Login_failed_by_account' | 'Login_failed_by_password' | string;
+
 export interface UEBAInfo {
   /** 应用 ID */
   appId: string;
@@ -54,7 +56,7 @@ export interface UEBAInfo {
   behaviorType?: string;
 
   /** 行为类型 */
-  behaviorResult?: string;
+  behaviorResult?: BehaviorResult;
 
   /** 操作类型 */
   actionType?: string;
