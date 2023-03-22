@@ -13,6 +13,7 @@ import { domainC14n } from './utils';
 import { UAParser } from 'ua-parser-js';
 import { Reader } from '@maxmind/geoip2-node';
 import * as path from 'path';
+import moment from 'moment';
 
 const reader = Reader.open(path.join(__dirname, '../GeoLite2-City.mmdb'));
 
@@ -121,10 +122,10 @@ class UEBAModel extends MetadataModel {
   }
 
   public async capture<CustomUEBAInfo extends UEBAInfo>(info: CustomUEBAInfo) {
-    return super.create<CustomUEBAInfo & AutoParseUEBAInfo>({
+    return super.create<Omit<CustomUEBAInfo, 'timestamp'> & AutoParseUEBAInfo>({
+      requestDate: moment(info.timestamp).format('YYYY-MM-DD HH:mm:ss'),
       ...this.parseUa(info.ua),
       ...(await this.parseIp(info.ip)),
-      ...this.parseTimestamp(info.timestamp),
       ...info,
     });
   }
@@ -136,19 +137,9 @@ class UEBAModel extends MetadataModel {
   private parseUa(ua: string) {
     const parser = new UAParser(ua);
     return {
-      device: parser.getDevice().type || 'pc',
-      system: parser.getOS().name || '',
-      browser: parser.getBrowser().name || '',
-    };
-  }
-
-  private parseTimestamp(timestamp: number) {
-    const date = new Date(timestamp);
-    return {
-      request_date: `${date.getUTCFullYear()}.${
-        date.getMonth() + 1
-      }.${date.getDate()}`,
-      request_time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+      deviceType: parser.getDevice().type || 'pc',
+      systemType: parser.getOS().name || '',
+      browserType: parser.getBrowser().name || '',
     };
   }
 

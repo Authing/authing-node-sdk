@@ -53,6 +53,9 @@ export interface UEBAInfo {
   /** 行为类型 */
   behaviorType?: string;
 
+  /** 行为类型 */
+  behaviorResult?: string;
+
   /** 操作类型 */
   actionType?: string;
 
@@ -62,13 +65,13 @@ export interface UEBAInfo {
 
 export interface AutoParseUEBAInfo {
   /** UA 设备类型 */
-  device: string;
+  deviceType: string;
 
   /** UA 系统类型 */
-  system: string;
+  systemType: string;
 
   /** UA 浏览器类型 */
-  browser: string;
+  browserType: string;
 
   /** IP 国家 */
   country: string;
@@ -78,4 +81,7 @@ export interface AutoParseUEBAInfo {
 
   /** IP 城市 */
   city: string;
+
+  /** 请求时间 */
+  requestDate: string;
 }

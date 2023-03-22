@@ -15,7 +15,6 @@ describe('MetadUEBAata', () => {
     const {
       statusCode,
       data,
-      message,
     } = await uebaModel.capture<CustomUEBAInfo>({
       appId: 'xxxxx',
       timestamp: Date.now(),
@@ -38,7 +37,6 @@ describe('MetadUEBAata', () => {
       data,
       message,
     } = await uebaModel.get(history.id);
-    console.log(data);
     expect(statusCode).toEqual(200);
   })
 });
