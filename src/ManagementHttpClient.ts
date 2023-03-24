@@ -20,7 +20,7 @@ export class ManagementHttpClient {
     });
   }
 
-  async request(config: AxiosRequestConfig) {
+  async request<ResponseData = any>(config: AxiosRequestConfig): Promise<ResponseData> {
     // 此次请求的请求头
     let headers: any = {};
     if (this.options.tenantId) {
