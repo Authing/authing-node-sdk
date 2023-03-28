@@ -62,8 +62,11 @@ export enum FieldType {
   /** 枚举 */
   Enum = 6,
 
-  /** 关联类型 */
+  /** 单向关联 */
   Relation = 7,
+
+  /** 双向关联 */
+  ReverseRelation = 8,
 }
 
 export interface ModelInfo {
@@ -82,7 +85,7 @@ export interface ModelInfo {
   enable: string;
 
   /** 父级菜单 key */
-  parentKey: string;
+  parentKey: ParentKey;
 
   /** 创建时间 */
   createdAt: string;
@@ -184,13 +187,13 @@ export interface ModelFieldInfo {
   help: string;
 
   /** 默认值 */
-  default: string;
+  default: string | number | boolean;
 
   /** 是否必填 */
-  require: string;
+  require: boolean;
 
   /** 是否唯一 */
-  unique: string;
+  unique: boolean;
 
   /** 文本类型的最大长度 */
   maxLength: number;
@@ -217,7 +220,7 @@ export interface ModelFieldInfo {
   relationType: string;
 
   /** 关联类型是否多选 */
-  relationMultiple: string;
+  relationMultiple: boolean;
 
   /** 关联类型的关联数据在列表页展示的属性 key */
   relationShowKey: string;
@@ -294,12 +297,12 @@ export type UpdateModelFieldDto = Partial<
   >
 >;
 
-export enum CONJUNCTION {
+export enum Conjunction {
   AND = "and",
   OR = "or",
 }
 
-export enum OPERATOR {
+export enum Operator {
   /** 等于 */
   EQ = "eq",
 
@@ -324,7 +327,7 @@ export interface MetadataSearchQuery {
   keywords?: string;
 
   /** 连词 */
-  conjunction: CONJUNCTION;
+  conjunction: Conjunction;
 
   /** 条件列表 */
   conditions: {
@@ -335,7 +338,7 @@ export interface MetadataSearchQuery {
     value: BaseType | BaseType[];
 
     /** 关系条件 */
-    operator: OPERATOR;
+    operator: Operator;
   }[];
 
   /** 限定关联关系搜索范围 */
@@ -359,7 +362,7 @@ export interface FilterOptions {
   query: MetadataSearchQuery;
 
   /** 分页配置 */
-  paginateOpt: {
+  paginateOpt?: {
     /** 每页条数 */
     limit?: number;
 

@@ -65,7 +65,7 @@ export class MetadataManagementClient {
       method: "GET",
       url: "/api/v3/metadata/get-model",
       params: {
-        modelId,
+        id: modelId,
       },
     });
   }
@@ -74,9 +74,7 @@ export class MetadataManagementClient {
    * 获取全部自定义功能
    */
   public getAllModelInfo() {
-    return this.httpClient.request<
-      MetadataCommonResponseDto<{ list: ModelInfo[] }>
-    >({
+    return this.httpClient.request<MetadataCommonResponseDto<ModelInfo[]>>({
       method: "GET",
       url: "/api/v3/metadata/list-model",
     });
@@ -105,7 +103,7 @@ export class MetadataManagementClient {
   public removeModel(modelId: string) {
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
-      url: "/api/v3/metadata/update-model",
+      url: "/api/v3/metadata/remove-model",
       data: {
         id: modelId,
       },
@@ -132,7 +130,7 @@ export class MetadataManagementClient {
 /**
  * 自定义功能模块
  */
-class MetadataModel {
+export class MetadataModel {
   constructor(
     private httpClient: ManagementHttpClient,
     private modelId: string
@@ -188,27 +186,32 @@ class MetadataModel {
    * 获取全部功能字段
    */
   public getAllField() {
-    return this.httpClient.request<
-      MetadataCommonResponseDto<{ list: ModelFieldInfo[] }>
-    >({
-      method: "GET",
-      url: "/api/v3/metadata/list-field",
-      params: {
-        modelId: this.modelId,
-      },
-    });
+    return this.httpClient.request<MetadataCommonResponseDto<ModelFieldInfo[]>>(
+      {
+        method: "GET",
+        url: "/api/v3/metadata/list-field",
+        params: {
+          modelId: this.modelId,
+        },
+      }
+    );
   }
 
   /**
    * 高级搜索
    */
-  public filter(options: FilterOptions) {
+  public filter<MetadataDataType = Record<string, BaseType>>(
+    options: FilterOptions
+  ) {
     return this.httpClient.request<
-      MetadataCommonResponseDto<PaginateRes<Record<string, any>>>
+      MetadataCommonResponseDto<PaginateRes<MetadataDataType>>
     >({
       method: "POST",
       url: "/api/v3/metadata/filter",
-      data: options,
+      data: {
+        ...options,
+        modelId: this.modelId,
+      },
     });
   }
 
@@ -264,7 +267,7 @@ class MetadataModel {
       data: {
         modelId: this.modelId,
         lineId: id,
-        updates,
+        data: updates,
       },
     });
   }
@@ -299,7 +302,7 @@ class MetadataModel {
     }
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
-      url: "/api/v3/metadata/remove-line",
+      url: "/api/v3/metadata/create-line-relation",
       data: {
         modelId: this.modelId,
         fieldId,
@@ -326,9 +329,9 @@ class MetadataModel {
     return this.httpClient.request<
       MetadataCommonResponseDto<PaginateRes<string>>
     >({
-      method: "POST",
+      method: "GET",
       url: "/api/v3/metadata/get-line-relation",
-      data: {
+      params: {
         modelId: this.modelId,
         fieldId,
         lineId,
