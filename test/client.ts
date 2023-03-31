@@ -12,4 +12,4 @@ export const metadataManagementClient = new MetadataManagementClient({
   host: process.env.AUTHING_SDK_TEST_HOST,
 });
 
-export const uebaModel = metadataManagementClient.getUebaModel(process.env.AUTHING_SDK_UEBA_MODEL_ID!);
+export const uebaModel = metadataManagementClient.getUebaModel();

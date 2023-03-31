@@ -118,7 +118,7 @@ export class MetadataManagementClient {
    * 获取 UEBA 功能实例
    * @param modelId 功能标识符
    */
-  public getUebaModel(modelId: string) {
+  public getUebaModel(modelId?: string) {
     return new UEBAModel(this.httpClient, modelId);
   }
 }
@@ -359,7 +359,7 @@ export class MetadataModel {
 class UEBAModel {
   constructor(
     private httpClient: ManagementHttpClient,
-    private modelId: string
+    private modelId?: string
   ) {}
 
   public async capture<CustomUEBAInfo extends UEBAInfo>(data: CustomUEBAInfo) {
