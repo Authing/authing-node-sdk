@@ -27,9 +27,4 @@ describe("MetadUEBAata", () => {
     Object.assign(history, data);
     expect(statusCode).toEqual(200);
   });
-
-  it("get", async () => {
-    const { statusCode, data, message } = await uebaModel.getLine(history.id);
-    expect(statusCode).toEqual(200);
-  });
 });

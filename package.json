@@ -12,7 +12,6 @@
   "author": "Willin Wang <willin@willin.org> (https://willin.wang/)",
   "license": "MIT",
   "dependencies": {
-    "@maxmind/geoip2-node": "^3.5.0",
     "axios": "^0.26.1",
     "base64url": "^3.0.1",
     "buffer": "^6.0.3",
@@ -25,7 +24,6 @@
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.24",
-    "@types/ua-parser-js": "^0.7.36",
     "dotenv": "^16.0.1",
     "jest": "^27.5.1",
     "ts-jest": "^27.1.4",

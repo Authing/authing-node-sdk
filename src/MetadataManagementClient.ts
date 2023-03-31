@@ -18,12 +18,8 @@ import {
   UpdateModelFieldDto,
 } from "./models/MetadataDto";
 import { domainC14n } from "./utils";
-import { UAParser } from "ua-parser-js";
-import { Reader } from "@maxmind/geoip2-node";
 import * as path from "path";
 import moment from "moment";
-
-const reader = Reader.open(path.join(__dirname, "../GeoLite2-City.mmdb"));
 
 export class MetadataManagementClient {
   private httpClient: ManagementHttpClient;
@@ -360,51 +356,24 @@ export class MetadataModel {
   }
 }
 
-class UEBAModel extends MetadataModel {
-  constructor(httpClient: ManagementHttpClient, modelId: string) {
-    super(httpClient, modelId);
-  }
+class UEBAModel {
+  constructor(
+    private httpClient: ManagementHttpClient,
+    private modelId: string
+  ) {}
 
-  public async capture<CustomUEBAInfo extends UEBAInfo>(info: CustomUEBAInfo) {
-    return super.createLine<
-      Omit<CustomUEBAInfo, "timestamp"> & AutoParseUEBAInfo
+  public async capture<CustomUEBAInfo extends UEBAInfo>(data: CustomUEBAInfo) {
+    return this.httpClient.request<
+      MetadataCommonResponseDto<
+        Omit<CustomUEBAInfo, "timestamp"> & AutoParseUEBAInfo
+      >
     >({
-      requestDate: moment(info.timestamp).format("YYYY-MM-DD HH:mm:ss"),
-      ...this.parseUa(info.ua),
-      ...(await this.parseIp(info.ip)),
-      ...info,
+      method: "POST",
+      url: "/api/v3/metadata/ueba/capture",
+      data: {
+        modelId: this.modelId,
+        data,
+      },
     });
-  }
-
-  public async getHistory<CustomUEBAInfo extends UEBAInfo>(id: string) {
-    return super.getLine<CustomUEBAInfo>(id);
-  }
-
-  private parseUa(ua: string) {
-    const parser = new UAParser(ua);
-    return {
-      deviceType: parser.getDevice().type || "pc",
-      systemType: parser.getOS().name || "",
-      browserType: parser.getBrowser().name || "",
-    };
-  }
-
-  private async parseIp(ip: string) {
-    try {
-      const res = (await reader).city(ip);
-      return {
-        country: res.country?.names["zh-CN"] || "",
-        province: res.subdivisions
-          ? res.subdivisions[0].names["zh-CN"] || ""
-          : "",
-        city: res.city?.names["zh-CN"] || "",
-      };
-    } catch (error) {
-      return {
-        country: "",
-        province: "",
-        city: "",
-      };
-    }
   }
 }
