@@ -18,8 +18,6 @@ import {
   UpdateModelFieldDto,
 } from "./models/MetadataDto";
 import { domainC14n } from "./utils";
-import * as path from "path";
-import moment from "moment";
 
 export class MetadataManagementClient {
   private httpClient: ManagementHttpClient;
