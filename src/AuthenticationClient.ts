@@ -2986,154 +2986,152 @@ public async verifyRegister(requestBody: VerifyRegistrationDto,
     });
   }
 
-// /**
-//  * @summary socket 重连
-//  * @returns
-//  */
-// private reconnect(eventName: string) {
-//   return new Promise((resolve, reject) => {
-//     if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
-//       if (!this.wsMap[eventName].lockConnect) {
-//         this.wsMap[eventName].lockConnect = true
-//         this.wsMap[eventName].timeConnect ++
-//         setTimeout(() => {
-//           this.wsMap[eventName].lockConnect = false
-//           this.initWebSocket(eventName, true).then(res => {
-//             resolve(true)
-//           }).catch(e => {
-//             reject(e)
-//           })
-//         }, 2000);
-//       }
-//     } else {
-//       reject(`socket 服务连接超时`);
-//     }
-//   })
-// }
+/**
+ * @summary socket 重连
+ * @returns
+ */
+private reconnect(eventName: string) {
+  return new Promise((resolve, reject) => {
+    if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
+      if (!this.wsMap[eventName].lockConnect) {
+        this.wsMap[eventName].lockConnect = true
+        this.wsMap[eventName].timeConnect ++
+        setTimeout(() => {
+          this.wsMap[eventName].lockConnect = false
+          this.initWebSocket(eventName, true).then(res => {
+            resolve(true)
+          }).catch(e => {
+            reject(e)
+          })
+        }, 2000);
+      }
+    } else {
+      reject(`socket 服务连接超时`);
+    }
+  })
+}
 
-// /**
-//  * @summary 建立 socket 连接，监听 message 回调事件队列
-//  * @returns
-//  */
-// private initWebSocket(eventName: string, retry?: boolean) {
-//   return new Promise((resolve, reject) => {
-//     if (!this.wsMap[eventName] || retry) {
-//       this.wsMap[eventName] = {
-//         socket: new WebSocket(`${this.options.socketUri}/events/v1/authentication/sub?code=${eventName}&token=${this.options.accessToken}`),
-//         timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
-//         lockConnect: false
-//       }
+/**
+ * @summary 建立 socket 连接，监听 message 回调事件队列
+ * @returns
+ */
+private initWebSocket(eventName: string, retry?: boolean) {
+  return new Promise((resolve, reject) => {
+    if (!this.wsMap[eventName] || retry) {
+      this.wsMap[eventName] = {
+        socket: new WebSocket(`${this.options.socketUri}/events/v1/authentication/sub?code=${eventName}&token=${this.options.accessToken}`),
+        timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
+        lockConnect: false
+      }
 
-//       this.wsMap[eventName].socket.on('open', () => {
-//         resolve(true)
-//       })
+      this.wsMap[eventName].socket.on('open', () => {
+        resolve(true)
+      })
 
-//       this.wsMap[eventName].socket.on('message', (data: Buffer) => {
-//         try {
-//           if (this.eventBus[eventName]) {
-//             this.eventBus[eventName].forEach(callback => {
-//               callback[0](data.toString("utf8"))
-//             })
-//           } else {
-//             // 未订阅事件
-//             console.warn("未订阅的事件：", eventName);
-//           }
-//         } catch (error) {
-//           return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
-//         }
-//       })
+      this.wsMap[eventName].socket.on('message', (data: Buffer) => {
+        try {
+          if (this.eventBus[eventName]) {
+            this.eventBus[eventName].forEach(callback => {
+              callback[0](data.toString("utf8"))
+            })
+          } else {
+            // 未订阅事件
+            console.warn("未订阅的事件：", eventName);
+          }
+        } catch (error) {
+          return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
+        }
+      })
 
-//       this.wsMap[eventName].socket.on('error', async(e) => {
-//         try {
-//           await this.reconnect(eventName)
-//           resolve(true)
-//         } catch (error) {
-//           return reject(`socket 连接异常：${e}`)
-//         }
-//       })
+      this.wsMap[eventName].socket.on('error', async(e) => {
+        try {
+          await this.reconnect(eventName)
+          resolve(true)
+        } catch (error) {
+          return reject(`socket 连接异常：${e}`)
+        }
+      })
 
-//       this.wsMap[eventName].socket.on('close', async() => {
-//         try {
-//           await this.reconnect(eventName)
-//           resolve(true)
-//         } catch (error) {
-//           return reject(`socket 连接关闭`)
-//         }
-//       })
-//     } else {
-//       resolve(true)
-//     }
-//   })
-// }
+      this.wsMap[eventName].socket.on('close', async() => {
+        try {
+          await this.reconnect(eventName)
+          resolve(true)
+        } catch (error) {
+          return reject(`socket 连接关闭`)
+        }
+      })
+    } else {
+      resolve(true)
+    }
+  })
+}
 
-//   /**
-//    * @summary 事件订阅
-//    * @description 订阅后通过建立 socket 连接接收服务端消息回调
-//    * @returns
-//    */
-//   public sub(eventName: string, callback: Function, errCallback: Function) {
-//     /**
-//      * 1. 判断是否连接 socket
-//      * 2. 获取 socket 实例
-//      * 3. 订阅
-//      */
-//     if (typeof eventName !== 'string') {
-//       throw new Error("订阅事件名称为 string 类型！！！")
-//     }
+  /**
+   * @summary 事件订阅
+   * @description 订阅后通过建立 socket 连接接收服务端消息回调
+   * @returns
+   */
+  public sub(eventName: string, callback: Function, errCallback: Function) {
+    /**
+     * 1. 判断是否连接 socket
+     * 2. 获取 socket 实例
+     * 3. 订阅
+     */
+    if (typeof eventName !== 'string') {
+      throw new Error("订阅事件名称为 string 类型！！！")
+    }
 
-//     if (typeof callback !== 'function') {
-//       throw new Error("订阅事件回调函数需要为 function 类型！！！");
-//     }
+    if (typeof callback !== 'function') {
+      throw new Error("订阅事件回调函数需要为 function 类型！！！");
+    }
 
-//     if (!this.options.socketUri) {
-//       throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
-//     }
+    if (!this.options.socketUri) {
+      throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
+    }
 
-//     if (!this.options.accessToken) {
-//       throw new Error("订阅事件需要 accessToken！！！")
-//     }
+    if (!this.options.accessToken) {
+      throw new Error("订阅事件需要 accessToken！！！")
+    }
 
-//     this.initWebSocket(eventName).catch(e => {
-//       this.eventBus[eventName].forEach((item) => {
-//         item[1]?.(e)
-//       })
-//     })
+    this.initWebSocket(eventName).catch(e => {
+      this.eventBus[eventName].forEach((item) => {
+        item[1]?.(e)
+      })
+    })
 
-//     if (this.eventBus[eventName]) {
-//       this.eventBus[eventName].push([callback, errCallback])
-//     } else {
-//       this.eventBus[eventName] = [[callback, errCallback]]
-//     }
-//   }
+    if (this.eventBus[eventName]) {
+      this.eventBus[eventName].push([callback, errCallback])
+    } else {
+      this.eventBus[eventName] = [[callback, errCallback]]
+    }
+  }
 
-//   /**
-//      * @summary 事件发布
-//      * @description 客户调用发布事件到事件中心
-//      * @returns
-//      */
-//   public async pub(eventName: string, data: string) {
-//     if (typeof eventName !== 'string') {
-//       throw new Error("事件名称为 string 类型！！！")
-//     }
+  /**
+     * @summary 事件发布
+     * @description 客户调用发布事件到事件中心
+     * @returns
+     */
+  public async pub(eventName: string, data: string) {
+    if (typeof eventName !== 'string') {
+      throw new Error("事件名称为 string 类型！！！")
+    }
 
-//     if (typeof data !== 'string') {
-//       throw new Error("发布数据为 string 类型！！！")
-//     }
+    if (typeof data !== 'string') {
+      throw new Error("发布数据为 string 类型！！！")
+    }
 
-//     if (!this.options.accessToken) {
-//       throw new Error("accessToken 为必填项")
-//     }
+    if (!this.options.accessToken) {
+      throw new Error("accessToken 为必填项")
+    }
 
-//     return await this.httpClient.request({
-//       method: "POST",
-//       url: "/api/v3/pub-userEvent",
-//       data: {
-//         eventType: eventName,
-//         source: `${pkg.name}: ${pkg.version}`,
-//         eventData: data
-//       },
-//     });
-//   }
-
-
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/pub-userEvent",
+      data: {
+        eventType: eventName,
+        source: `${pkg.name}: ${pkg.version}`,
+        eventData: data
+      },
+    });
+  }
 }

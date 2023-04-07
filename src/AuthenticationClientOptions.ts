@@ -106,4 +106,4 @@ export interface AuthenticationClientInitOptions {
   retryTimes?: number;
 }
 
-export const DEFAULT_SOCKET_URI = 'wss://events.authing.com'
+export const DEFAULT_SOCKET_URI = 'wss://openevent.authing.cn'
