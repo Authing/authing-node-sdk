@@ -22,6 +22,12 @@ export interface ManagementClientOptions {
    */
   rejectUnauthorized?: boolean;
 
+  // 事件订阅 socket 连接地址
+  socketUri?: string;
+
+  // 重试次数
+  retryTimes?: number;
+
   // /**
   //  * 请求头 key，适用于去 Authing 品牌化场景
   //  */
@@ -47,5 +53,7 @@ export const DEFAULT_OPTIONS: ManagementClientOptions = {
   lang: "zh-CN",
   accessKeyId: "",
   accessKeySecret: "",
-  rejectUnauthorized: true
+  rejectUnauthorized: true,
+  socketUri: "wss://openevent.authing.cn",
+  retryTimes: 5
 };
