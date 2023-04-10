@@ -25,7 +25,14 @@ import {
   OauthParams,
   OidcParams,
 } from "./utils/types";
-import {SigninByCredentialsDto, SignInOptionsDto, SignUpDto, SignUpOptionsDto, SignUpProfileDto} from "./models";
+import {
+  MfaTokenIntrospectEndpointParams, MfaTokenIntrospectResponse,
+  SigninByCredentialsDto,
+  SignInOptionsDto,
+  SignUpDto,
+  SignUpOptionsDto,
+  SignUpProfileDto
+} from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
 import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
 import type { BindByAccountIdInputApi } from './models/BindByAccountIdInputApi';
@@ -2976,6 +2983,20 @@ public async verifyRegister(requestBody: VerifyRegistrationDto,
     });
     return result;
 }
+
+  /**
+   * @summary 验证 MFA Token
+   * @description 验证 MFA Token
+   * @returns MfaTokenIntrospectResponse
+   */
+  public async verifyMfaToken(formData: MfaTokenIntrospectEndpointParams,
+  ): Promise<MfaTokenIntrospectResponse> {
+    const result = await this.httpClient.request({
+      method: 'POST',
+      url: '/mfa/token/introspection',
+    });
+    return result;
+  }
 
 
 // ==== AUTO GENERATED AUTHENTICATION METHODS END ====
