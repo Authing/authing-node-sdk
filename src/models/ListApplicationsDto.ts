@@ -30,4 +30,8 @@ export type ListApplicationsDto = {
      * 模糊搜索字符串
      */
     keywords?: any;
+    /**
+     * 搜索应用，true：搜索所有应用, 默认为 false
+     */
+    all?: any;
 };
