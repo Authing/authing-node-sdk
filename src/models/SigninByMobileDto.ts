@@ -3,14 +3,26 @@
 /* eslint-disable */
 
 import type { SignInByAlipayPayloadDto } from './SignInByAlipayPayloadDto';
+import type { SignInByAmazonPayloadDto } from './SignInByAmazonPayloadDto';
 import type { SignInByApplePayloadDto } from './SignInByApplePayloadDto';
 import type { SignInByBaiduPayloadDto } from './SignInByBaiduPayloadDto';
+import type { SignInByDingTalkPayloadDto } from './SignInByDingTalkPayloadDto';
+import type { SignInByDouyinPayloadDto } from './SignInByDouyinPayloadDto';
 import type { SignInByFacebookPayloadDto } from './SignInByFacebookPayloadDto';
+import type { SignInByGiteePayloadDto } from './SignInByGiteePayloadDto';
+import type { SignInByGithubPayloadDto } from './SignInByGithubPayloadDto';
+import type { SignInByGitlabPayloadDto } from './SignInByGitlabPayloadDto';
 import type { SignInByGooglePayloadDto } from './SignInByGooglePayloadDto';
+import type { SignInByHuaweiPayloadDto } from './SignInByHuaweiPayloadDto';
+import type { SignInByKuaishouPayloadDto } from './SignInByKuaishouPayloadDto';
 import type { SignInByLarkInternalPayloadDto } from './SignInByLarkInternalPayloadDto';
 import type { SignInByLarkPublicPayloadDto } from './SignInByLarkPublicPayloadDto';
+import type { SignInByLinePayloadDto } from './SignInByLinePayloadDto';
+import type { SignInByLinkedInPayloadDto } from './SignInByLinkedInPayloadDto';
 import type { SignInByMobileOptionsDto } from './SignInByMobileOptionsDto';
+import type { SignInByOPPOPayloadDto } from './SignInByOPPOPayloadDto';
 import type { SignInByQQPayloadDto } from './SignInByQQPayloadDto';
+import type { SignInBySlackPayloadDto } from './SignInBySlackPayloadDto';
 import type { SignInByWechatMiniProgramCodeAndPhonePayloadDto } from './SignInByWechatMiniProgramCodeAndPhonePayloadDto';
 import type { SignInByWechatMiniProgramCodePayloadDto } from './SignInByWechatMiniProgramCodePayloadDto';
 import type { SignInByWechatMiniProgramPhonePayloadDto } from './SignInByWechatMiniProgramPhonePayloadDto';
@@ -18,6 +30,7 @@ import type { SignInByWechatPayloadDto } from './SignInByWechatPayloadDto';
 import type { SignInByWechatworkAgencyPayloadDto } from './SignInByWechatworkAgencyPayloadDto';
 import type { SignInByWechatworkDto } from './SignInByWechatworkDto';
 import type { SignInByWeiboPayloadDto } from './SignInByWeiboPayloadDto';
+import type { SignInByXiaomiPayloadDto } from './SignInByXiaomiPayloadDto';
 import type { SignInByYidunPayloadDto } from './SignInByYidunPayloadDto';
 
 export type SigninByMobileDto = {
@@ -43,6 +56,19 @@ export type SigninByMobileDto = {
      * - `qq`: QQ 移动端社会化登录
      * - `weibo`: 新浪微博移动端社会化登录
      * - `baidu`: 百度移动端社会化登录
+     * - `linkedin`: LinkedIn 移动端社会化登录
+     * - `dingtalk`: 钉钉移动端社会化登录
+     * - `github`: Github 动端社会化登录
+     * - `gitee`: Gitee 移动端社会化登录
+     * - `gitlab`: GitLab 移动端社会化登录
+     * - `douyin`: 抖音移动端社会化登录
+     * - `kuaishou`: 快手移动端社会化登录
+     * - `xiaomi`: 小米移动端社会化登录
+     * - `line`: LINE 移动端社会化登录
+     * - `slack`: Slack 移动端社会化登录
+     * - `oppo`: OPPO 移动端社会化登录
+     * - `huawei`: 华为移动端社会化登录
+     * - `amazon`: 亚马逊移动端社会化登录
      *
      */
     connection: SigninByMobileDto.connection;
@@ -107,9 +133,61 @@ export type SigninByMobileDto = {
      */
     weiboPayload?: SignInByWeiboPayloadDto;
     /**
-     * 百度移动端社会化登录数据，当 `connection` 为 `baidu` 的时候必填。
+     * 百度移动端社会化登录数据，当 `connection` 为 `baidu` 的时候必填，且 `baiduPayload` 的属性 `code` 和 `access_token` 必选其一，优先使用 `code` 值作为授权登录方式。
      */
     baiduPayload?: SignInByBaiduPayloadDto;
+    /**
+     * LinkedIn 移动端社会化登录数据，当 `connection` 为 `linkedin` 的时候必填。
+     */
+    linkedInPayload?: SignInByLinkedInPayloadDto;
+    /**
+     * 钉钉移动端社会化登录数据，当 `connection` 为 `dingtalk` 的时候必填。
+     */
+    dingTalkPayload?: SignInByDingTalkPayloadDto;
+    /**
+     * Github 移动端社会化登录数据，当 `connection` 为 `github` 的时候必填。
+     */
+    githubPayload?: SignInByGithubPayloadDto;
+    /**
+     * Gitee 移动端社会化登录数据，当 `connection` 为 `gitee` 的时候必填。
+     */
+    giteePayload?: SignInByGiteePayloadDto;
+    /**
+     * GitLab 移动端社会化登录数据，当 `connection` 为 `gitlab` 的时候必填。
+     */
+    gitlabPayload?: SignInByGitlabPayloadDto;
+    /**
+     * 抖音移动端社会化登录数据，当 `connection` 为 `douyin` 的时候必填。
+     */
+    douyinPayload?: SignInByDouyinPayloadDto;
+    /**
+     * 快手移动端社会化登录数据，当 `connection` 为 `kuaishou` 的时候必填。
+     */
+    kuaishouPayload?: SignInByKuaishouPayloadDto;
+    /**
+     * 小米移动端社会化登录数据，当 `connection` 为 `xiaomi` 的时候必填。
+     */
+    xiaomiPayload?: SignInByXiaomiPayloadDto;
+    /**
+     * LINE 移动端社会化登录数据，当 `connection` 为 `line` 的时候必填。
+     */
+    linePayload?: SignInByLinePayloadDto;
+    /**
+     * Slack 移动端社会化登录数据，当 `connection` 为 `slack` 的时候必填。
+     */
+    slackPayload?: SignInBySlackPayloadDto;
+    /**
+     * OPPO 移动端社会化登录数据，当 `connection` 为 `oppo` 的时候必填。
+     */
+    oppoPayload?: SignInByOPPOPayloadDto;
+    /**
+     * 华为移动端社会化登录数据，当 `connection` 为 `huawei` 的时候必填。
+     */
+    huaweiPayload?: SignInByHuaweiPayloadDto;
+    /**
+     * 亚马逊移动端社会化登录数据，当 `connection` 为 `amazon` 的时候必填。
+     */
+    amazonPayload?: SignInByAmazonPayloadDto;
     /**
      * 可选参数
      */
@@ -144,6 +222,19 @@ export namespace SigninByMobileDto {
      * - `qq`: QQ 移动端社会化登录
      * - `weibo`: 新浪微博移动端社会化登录
      * - `baidu`: 百度移动端社会化登录
+     * - `linkedin`: LinkedIn 移动端社会化登录
+     * - `dingtalk`: 钉钉移动端社会化登录
+     * - `github`: Github 动端社会化登录
+     * - `gitee`: Gitee 移动端社会化登录
+     * - `gitlab`: GitLab 移动端社会化登录
+     * - `douyin`: 抖音移动端社会化登录
+     * - `kuaishou`: 快手移动端社会化登录
+     * - `xiaomi`: 小米移动端社会化登录
+     * - `line`: LINE 移动端社会化登录
+     * - `slack`: Slack 移动端社会化登录
+     * - `oppo`: OPPO 移动端社会化登录
+     * - `huawei`: 华为移动端社会化登录
+     * - `amazon`: 亚马逊移动端社会化登录
      *
      */
     export enum connection {
@@ -163,6 +254,19 @@ export namespace SigninByMobileDto {
         QQ = 'qq',
         WEIBO = 'weibo',
         BAIDU = 'baidu',
+        LINKEDIN = 'linkedin',
+        DINGTALK = 'dingtalk',
+        GITHUB = 'github',
+        GITEE = 'gitee',
+        GITLAB = 'gitlab',
+        DOUYIN = 'douyin',
+        KUAISHOU = 'kuaishou',
+        XIAOMI = 'xiaomi',
+        LINE = 'line',
+        SLACK = 'slack',
+        OPPO = 'oppo',
+        HUAWEI = 'huawei',
+        AMAZON = 'amazon',
     }
 
 

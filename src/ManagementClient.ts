@@ -353,6 +353,14 @@ import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
 import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
+import {GetMapInfoRespDto} from "./models/GetMapInfoRespDto";
+import {UpdateAuthEnabledDto} from "./models/UpdateAuthEnabledDto";
+import {ListApplicationAuthDto} from "./models/ListApplicationAuthDto";
+import {ListApplicationAuthPaginatedRespDto} from "./models/ListApplicationAuthPaginatedRespDto";
+import {GetSubjectAuthRespDto} from "./models/GetSubjectAuthRespDto";
+import {ListAuthSubjectDto} from "./models/ListAuthSubjectDto";
+import {ListApplicationSubjectRespDto} from "./models/ListApplicationSubjectRespDto";
+import {UpdateApplicationMfaSettingsDto} from "./models/UpdateApplicationMfaSettingsDto";
 
 const pkg = require("../package.json")
 
@@ -1142,11 +1150,11 @@ export class ManagementClient {
    * {
    * "advancedFilter": [
    * {
-   * "field": "lastLoginTime",
+   * "field": "lastLogin",
    * "operator": "BETWEEN",
    * "value": [
-   * new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-   * new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * Date.now() - 14 * 24 * 60 * 60 * 1000,
+   * Date.now() - 7 * 24 * 60 * 60 * 1000
    * ]
    * }
    * ]
@@ -2153,6 +2161,20 @@ export class ManagementClient {
       },
     });
   }
+
+  // /**
+  //  * @summary 获取用户自定义加密的密码
+  //  * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
+  //  * @returns GetUserPasswordCiphertextRespDto
+  //  */
+  // public async getUserPasswordCiphertext(requestBody: GetUserPasswordCiphertextDto,
+  // ): Promise<GetUserPasswordCiphertextRespDto> {
+  //   return await this.httpClient.request({
+  //     method: 'POST',
+  //     url: '/api/v3/get-user-password-ciphertext',
+  //     data: requestBody,
+  //   });
+  // }
 
   /**
    * @summary 获取组织机构详情
@@ -4227,18 +4249,105 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 主体授权详情
+   * @description 主体授权详情
+   * @returns GetSubjectAuthRespDto
+   */
+  public async detailAuthSubject({
+                                   targetId,
+                                   targetType,
+                                   appId,
+                                 }: {
+    /** 主体 id **/
+    targetId: string,
+    /** 主体类型 **/
+    targetType: 'USER' | 'ROLE' | 'GROUP' | 'ORG' | 'AK_SK',
+    /** 应用 ID **/
+    appId: string,
+  }): Promise<GetSubjectAuthRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-subject-auth-detail',
+      params: {
+        targetId: targetId,
+        targetType: targetType,
+        appId: appId,
+      },
+    });
+  }
+
+  /**
+   * @summary 主体授权列表
+   * @description 主体授权列表
+   * @returns ListApplicationSubjectRespDto
+   */
+  public async listAuthSubject(requestBody: ListAuthSubjectDto,
+  ): Promise<ListApplicationSubjectRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/list-subject-auth',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 应用授权列表
+   * @description 应用授权列表
+   * @returns ListApplicationAuthPaginatedRespDto
+   */
+  public async listAuthApplication(requestBody: ListApplicationAuthDto,
+  ): Promise<ListApplicationAuthPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/list-applications-auth',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新授权开关
+   * @description 更新授权开关
+   * @returns IsSuccessRespDto
+   */
+  public async enabledAuth(requestBody: UpdateAuthEnabledDto,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-auth-enabled',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量删除应用授权
+   * @description 批量删除应用授权
+   * @returns IsSuccessRespDto
+   */
+  public async deleteAuth(authIds: Array<string>,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'DELETE',
+      url: '/api/v3/batch-applications-auth',
+      params: {
+        authIds: authIds,
+      },
+    });
+  }
+
+  /**
    * @summary 获取应用列表
    * @description 获取应用列表
    * @returns ApplicationPaginatedRespDto
    */
   public async listApplications({
-    page = 1,
-    limit = 10,
-    isIntegrateApp = false,
-    isSelfBuiltApp = false,
-    ssoEnabled = false,
-    keywords,
-  }: {
+                                  page = 1,
+                                  limit = 10,
+                                  isIntegrateApp = false,
+                                  isSelfBuiltApp = false,
+                                  ssoEnabled = false,
+                                  keywords,
+                                  all,
+                                }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -4250,7 +4359,9 @@ export class ManagementClient {
     /** 是否开启单点登录 **/
     ssoEnabled?: boolean;
     /** 模糊搜索字符串 **/
-    keywords?: string;
+    keywords?: string,
+    /** 搜索应用，true：搜索所有应用, 默认为 false **/
+    all?: boolean,
   }): Promise<ApplicationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -4262,6 +4373,7 @@ export class ManagementClient {
         isSelfBuiltApp: isSelfBuiltApp,
         ssoEnabled: ssoEnabled,
         keywords: keywords,
+        all: all,
       },
     });
   }
@@ -4572,6 +4684,56 @@ export class ManagementClient {
       method: "POST",
       url: "/api/v3/change-userpool-tenant-ext-idp-conn-state",
       data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 修改应用多因素认证配置
+   * @description 传入 MFA 认证因素列表进行开启或关闭
+   * @returns MFASettingsRespDto
+   */
+  public async updateApplicationMfaSettings(requestBody: UpdateApplicationMfaSettingsDto,
+  ): Promise<MFASettingsRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-application-mfa-settings',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取应用下用户 MFA 触发数据
+   * @description 获取应用下用户 MFA 触发数据。
+   * @returns GetMapInfoRespDto
+   */
+  public async getMfaTriggerData({
+                                   appId,
+                                   userId,
+                                   userIdType = 'user_id',
+                                 }: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+    userId: string,
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity',
+  }): Promise<GetMapInfoRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-mfa-trigger-data',
+      params: {
+        appId: appId,
+        userId: userId,
+        userIdType: userIdType,
+      },
     });
   }
 
@@ -5586,8 +5748,8 @@ export class ManagementClient {
    * "field": "lastLoginTime",
    * "operator": "BETWEEN",
    * "value": [
-   * new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-   * new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * Date.now() - 14 * 24 * 60 * 60 * 1000,
+   * Date.now() - 7 * 24 * 60 * 60 * 1000
    * ]
    * }
    * ]
