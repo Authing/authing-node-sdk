@@ -4,6 +4,10 @@
 
 export type SetCustomDataDto = {
     /**
+     * 租户 ID
+     */
+    tenantId: string;
+    /**
      * 字段 key，不能和内置字段的 key 冲突
      */
     key: string;

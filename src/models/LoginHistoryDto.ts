@@ -58,4 +58,8 @@ export type LoginHistoryDto = {
      * 地理位置
      */
     geoip: GeoIp;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };
