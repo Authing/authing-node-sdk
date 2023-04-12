@@ -27,4 +27,24 @@ export type CreateTenantDto = {
      * 租户来源的应用 ID，该值不存在时代表租户来源为 Authing 控制台
      */
     sourceAppId?: string;
+    /**
+     * 企业邮箱域名
+     */
+    enterpriseDomains?: Array<string>;
+    /**
+     * 租户过期时间
+     */
+    expireTime?: string;
+    /**
+     * 租户 MAU 上限
+     */
+    mauAmount?: number;
+    /**
+     * 租户成员上限
+     */
+    memberAmount?: number;
+    /**
+     * 租户管理员上限
+     */
+    adminAmount?: number;
 };

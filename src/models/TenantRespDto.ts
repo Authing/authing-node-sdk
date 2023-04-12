@@ -40,6 +40,18 @@ export type TenantRespDto = {
      */
     sourceAppId: string;
     /**
+     * 租户来源
+     */
+    source: string;
+    /**
+     * 租户 Code
+     */
+    code: string;
+    /**
+     * 租户配置的企业域名
+     */
+    enterpriseDomains: string;
+    /**
      * 创建者基本信息
      */
     creatorDetail?: any;

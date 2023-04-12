@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { SetCustomFieldDto } from './SetCustomFieldDto';
+import type { DeleteCustomFieldDto } from './DeleteCustomFieldDto';
 
-export type SetCustomFieldsReqDto = {
+export type DeleteCustomFieldsReqDto = {
     /**
      * 租户 ID
      */
@@ -12,5 +12,5 @@ export type SetCustomFieldsReqDto = {
     /**
      * 自定义字段列表
      */
-    list: Array<SetCustomFieldDto>;
+    list: Array<DeleteCustomFieldDto>;
 };

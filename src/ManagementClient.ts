@@ -26,6 +26,8 @@ import type { CancelSyncRiskOperationDto } from "./models/CancelSyncRiskOperatio
 import type { CancelSyncRiskOperationsRespDto } from "./models/CancelSyncRiskOperationsRespDto";
 import type { ChangeExtIdpAssociationStateDto } from "./models/ChangeExtIdpAssociationStateDto";
 import type { ChangeExtIdpConnStateDto } from "./models/ChangeExtIdpConnStateDto";
+import type { ChangePushCodeStatusDto } from "./models/ChangePushCodeStatusDto";
+import type { ChangeQRCodeStatusDto } from "./models/ChangeQRCodeStatusDto";
 import type { ChangeUserPoolTenantExtIdpConnDto } from "./models/ChangeUserPoolTenantExtIdpConnDto";
 import type { CheckDomainAvailable } from "./models/CheckDomainAvailable";
 import type { CheckDomainAvailableSecretRespDto } from "./models/CheckDomainAvailableSecretRespDto";
@@ -36,6 +38,8 @@ import type { CheckParamsDataResourceResponseDto } from "./models/CheckParamsDat
 import type { CheckPermissionDto } from "./models/CheckPermissionDto";
 import type { CheckPermissionNamespaceExistsDto } from "./models/CheckPermissionNamespaceExistsDto";
 import type { CheckPermissionRespDto } from "./models/CheckPermissionRespDto";
+import type { CheckPushCodeStatusRespDto } from "./models/CheckPushCodeStatusRespDto";
+import type { CheckQRCodeStatusRespDto } from "./models/CheckQRCodeStatusRespDto";
 import type { CheckRoleParamsDto } from "./models/CheckRoleParamsDto";
 import type { CheckSessionStatusDto } from "./models/CheckSessionStatusDto";
 import type { CheckSessionStatusRespDto } from "./models/CheckSessionStatusRespDto";
@@ -101,6 +105,7 @@ import type { DeleteAsaAccountBatchDto } from "./models/DeleteAsaAccountBatchDto
 import type { DeleteAsaAccountDto } from "./models/DeleteAsaAccountDto";
 import type { DeleteAuthorizeDataPolicyDto } from "./models/DeleteAuthorizeDataPolicyDto";
 import type { DeleteCommonResourcesBatchDto } from "./models/DeleteCommonResourcesBatchDto";
+import type { DeleteCustomFieldsReqDto } from "./models/DeleteCustomFieldsReqDto";
 import type { DeleteDataPolicyDto } from "./models/DeleteDataPolicyDto";
 import type { DeleteDataResourceDto } from "./models/DeleteDataResourceDto";
 import type { DeleteDepartmentReqDto } from "./models/DeleteDepartmentReqDto";
@@ -124,13 +129,18 @@ import type { DepartmentSingleRespDto } from "./models/DepartmentSingleRespDto";
 import type { EmailProviderRespDto } from "./models/EmailProviderRespDto";
 import type { EmailTemplateSingleItemRespDto } from "./models/EmailTemplateSingleItemRespDto";
 import type { EventAppPaginatedRespDto } from "./models/EventAppPaginatedRespDto";
+import type { ExchangeTokenSetWithQRcodeTicketDto } from "./models/ExchangeTokenSetWithQRcodeTicketDto";
 import type { ExtIdpConnDetailSingleRespDto } from "./models/ExtIdpConnDetailSingleRespDto";
 import type { ExtIdpDetailSingleRespDto } from "./models/ExtIdpDetailSingleRespDto";
 import type { ExtIdpListPaginatedRespDto } from "./models/ExtIdpListPaginatedRespDto";
 import type { ExtIdpSingleRespDto } from "./models/ExtIdpSingleRespDto";
+import type { GenePushCodeRespDto } from "./models/GenePushCodeRespDto";
+import type { GeneQRCodeRespDto } from "./models/GeneQRCodeRespDto";
 import type { GenerateInviteTenantUserLink } from "./models/GenerateInviteTenantUserLink";
+import type { GenerateQrcodeDto } from "./models/GenerateQrcodeDto";
 import type { GetAccessibleAppsRespDto } from "./models/GetAccessibleAppsRespDto";
 import type { GetAdminAuditLogsDto } from "./models/GetAdminAuditLogsDto";
+import type { GetAlipayAuthInfoRespDto } from "./models/GetAlipayAuthInfoRespDto";
 import type { GetApplicationPermissionStrategyRespDto } from "./models/GetApplicationPermissionStrategyRespDto";
 import type { GetApplicationSecretRespDto } from "./models/GetApplicationSecretRespDto";
 import type { GetAsaAccountAssignedTargetRespDto } from "./models/GetAsaAccountAssignedTargetRespDto";
@@ -143,15 +153,19 @@ import type { GetExternalUserResourceStructDto } from "./models/GetExternalUserR
 import type { GetExternalUserResourceStructRespDto } from "./models/GetExternalUserResourceStructRespDto";
 import type { GetLoggedInAppsRespDto } from "./models/GetLoggedInAppsRespDto";
 import type { GetLoginHistoryRespDto } from "./models/GetLoginHistoryRespDto";
+import type { GetMapInfoRespDto } from "./models/GetMapInfoRespDto";
 import type { GetOtpSecretRespDto } from "./models/GetOtpSecretRespDto";
 import type { GetPermissionNamespaceListResponseDto } from "./models/GetPermissionNamespaceListResponseDto";
 import type { GetPermissionNamespaceResponseDto } from "./models/GetPermissionNamespaceResponseDto";
 import type { GetPostByIdListDto } from "./models/GetPostByIdListDto";
 import type { GetResourceAuthorizedTargetRespDto } from "./models/GetResourceAuthorizedTargetRespDto";
 import type { GetResourceAuthorizedTargetsDto } from "./models/GetResourceAuthorizedTargetsDto";
+import type { GetSubjectAuthRespDto } from "./models/GetSubjectAuthRespDto";
 import type { GetTenantListRespDto } from "./models/GetTenantListRespDto";
 import type { GetTenantUserDto } from "./models/GetTenantUserDto";
 import type { GetUserActionLogsDto } from "./models/GetUserActionLogsDto";
+import type { GetUserPasswordCiphertextDto } from "./models/GetUserPasswordCiphertextDto";
+import type { GetUserPasswordCiphertextRespDto } from "./models/GetUserPasswordCiphertextRespDto";
 import type { GetUserPermissionListDto } from "./models/GetUserPermissionListDto";
 import type { GetUserPermissionListRespDto } from "./models/GetUserPermissionListRespDto";
 import type { GetUserResourcePermissionListDto } from "./models/GetUserResourcePermissionListDto";
@@ -175,8 +189,14 @@ import type { IsUserExistsReqDto } from "./models/IsUserExistsReqDto";
 import type { IsUserExistsRespDto } from "./models/IsUserExistsRespDto";
 import type { IsUserInDepartmentRespDto } from "./models/IsUserInDepartmentRespDto";
 import type { KickUsersDto } from "./models/KickUsersDto";
+import type { LinkIdentity } from "./models/LinkIdentity";
 import type { ListApplicationActiveUsersDto } from "./models/ListApplicationActiveUsersDto";
+import type { ListApplicationAuthDto } from "./models/ListApplicationAuthDto";
+import type { ListApplicationAuthPaginatedRespDto } from "./models/ListApplicationAuthPaginatedRespDto";
+import type { ListApplicationSubjectRespDto } from "./models/ListApplicationSubjectRespDto";
 import type { ListArchivedUsersSingleRespDto } from "./models/ListArchivedUsersSingleRespDto";
+import type { ListAuthSubjectDto } from "./models/ListAuthSubjectDto";
+import type { ListCistomFieldsResDto } from "./models/ListCistomFieldsResDto";
 import type { ListDataPoliciesPaginatedRespDto } from "./models/ListDataPoliciesPaginatedRespDto";
 import type { ListDataPolicySubjectPaginatedRespDto } from "./models/ListDataPolicySubjectPaginatedRespDto";
 import type { ListDataResourcesPaginatedRespDto } from "./models/ListDataResourcesPaginatedRespDto";
@@ -187,6 +207,7 @@ import type { ListSimpleDataPoliciesPaginatedRespDto } from "./models/ListSimple
 import type { ListTenantAdminDto } from "./models/ListTenantAdminDto";
 import type { ListTenantUserDto } from "./models/ListTenantUserDto";
 import type { ListUsersRequestDto } from "./models/ListUsersRequestDto";
+import type { LoginTokenRespDto } from "./models/LoginTokenRespDto";
 import type { MFASettingsDto } from "./models/MFASettingsDto";
 import type { MFASettingsRespDto } from "./models/MFASettingsRespDto";
 import type { MultipleTenantAdminPaginatedRespDto } from "./models/MultipleTenantAdminPaginatedRespDto";
@@ -239,8 +260,12 @@ import type { SendManyTenantEmailDto } from "./models/SendManyTenantEmailDto";
 import type { SendManyTenantSmsDto } from "./models/SendManyTenantSmsDto";
 import type { SetCustomDataReqDto } from "./models/SetCustomDataReqDto";
 import type { SetCustomFieldsReqDto } from "./models/SetCustomFieldsReqDto";
+import type { SetMfaStatusDto } from "./models/SetMfaStatusDto";
 import type { SetUserBaseFieldsReqDto } from "./models/SetUserBaseFieldsReqDto";
 import type { SetUserDepartmentsDto } from "./models/SetUserDepartmentsDto";
+import type { SigninByCredentialsDto } from "./models/SigninByCredentialsDto";
+import type { SigninByMobileDto } from "./models/SigninByMobileDto";
+import type { SignInByPushDto } from "./models/SignInByPushDto";
 import type { SignUpDto } from "./models/SignUpDto";
 import type { SyncJobPaginatedRespDto } from "./models/SyncJobPaginatedRespDto";
 import type { SyncJobSingleRespDto } from "./models/SyncJobSingleRespDto";
@@ -259,8 +284,11 @@ import type { TriggerSyncRiskOperationDto } from "./models/TriggerSyncRiskOperat
 import type { TriggerSyncRiskOperationsRespDto } from "./models/TriggerSyncRiskOperationsRespDto";
 import type { TriggerSyncTaskDto } from "./models/TriggerSyncTaskDto";
 import type { TriggerSyncTaskRespDto } from "./models/TriggerSyncTaskRespDto";
+import type { UnlinkIdentity } from "./models/UnlinkIdentity";
+import type { UpdateApplicationMfaSettingsDto } from "./models/UpdateApplicationMfaSettingsDto";
 import type { UpdateApplicationPermissionStrategyDataDto } from "./models/UpdateApplicationPermissionStrategyDataDto";
 import type { UpdateAsaAccountDto } from "./models/UpdateAsaAccountDto";
+import type { UpdateAuthEnabledDto } from "./models/UpdateAuthEnabledDto";
 import type { UpdateDataPolicyDto } from "./models/UpdateDataPolicyDto";
 import type { UpdateDataPolicyResponseDto } from "./models/UpdateDataPolicyResponseDto";
 import type { UpdateDataResourceDto } from "./models/UpdateDataResourceDto";
@@ -281,6 +309,7 @@ import type { UpdateResourceDto } from "./models/UpdateResourceDto";
 import type { UpdateRoleDto } from "./models/UpdateRoleDto";
 import type { UpdateSecuritySettingsDto } from "./models/UpdateSecuritySettingsDto";
 import type { UpdateSyncTaskDto } from "./models/UpdateSyncTaskDto";
+import type { UpdateTenantAppqrcodeState } from "./models/UpdateTenantAppqrcodeState";
 import type { UpdateTenantCooperatorDto } from "./models/UpdateTenantCooperatorDto";
 import type { UpdateTenantDto } from "./models/UpdateTenantDto";
 import type { UpdateTenantUserDto } from "./models/UpdateTenantUserDto";
@@ -299,21 +328,10 @@ import type { UserMfaSingleRespDto } from "./models/UserMfaSingleRespDto";
 import type { UserPaginatedRespDto } from "./models/UserPaginatedRespDto";
 import type { UserPoolTenantConfigDtoRespDto } from "./models/UserPoolTenantConfigDtoRespDto";
 import type { UserSingleRespDto } from "./models/UserSingleRespDto";
-import type { ChangePushCodeStatusDto } from "./models/ChangePushCodeStatusDto";
-import type { ChangeQRCodeStatusDto } from "./models/ChangeQRCodeStatusDto";
-import type { CheckPushCodeStatusRespDto } from "./models/CheckPushCodeStatusRespDto";
-import type { CheckQRCodeStatusRespDto } from "./models/CheckQRCodeStatusRespDto";
-import type { ExchangeTokenSetWithQRcodeTicketDto } from "./models/ExchangeTokenSetWithQRcodeTicketDto";
 import type { GeneFastpassQRCodeRespDto } from "./models/GeneFastpassQRCodeRespDto";
-import type { GenePushCodeRespDto } from "./models/GenePushCodeRespDto";
-import type { GeneQRCodeRespDto } from "./models/GeneQRCodeRespDto";
-import type { GenerateQrcodeDto } from "./models/GenerateQrcodeDto";
-import type { GetAlipayAuthInfoRespDto } from "./models/GetAlipayAuthInfoRespDto";
 import type { GetFastpassQRCodeRelationAppsRespDto } from "./models/GetFastpassQRCodeRelationAppsRespDto";
-import type { LoginTokenRespDto } from "./models/LoginTokenRespDto";
-import type { SigninByCredentialsDto } from "./models/SigninByCredentialsDto";
-import type { SigninByMobileDto } from "./models/SigninByMobileDto";
-import type { SignInByPushDto } from "./models/SignInByPushDto";
+import type { GetPushCodeRelationAppsDto } from "./models/GetPushCodeRelationAppsDto";
+import type { GetPushCodeRelationAppsRespDto } from "./models/GetPushCodeRelationAppsRespDto";
 import type { SignInFastpassDto } from "./models/SignInFastpassDto";
 import type { AppQRCodeLoginDto } from "./models/AppQRCodeLoginDto";
 import type { CreatePipelineFunctionDto } from "./models/CreatePipelineFunctionDto";
@@ -342,8 +360,6 @@ import type { DeleteAccessKeyDto } from "./models/DeleteAccessKeyDto";
 import type { GetAccessKeyResponseDto } from "./models/GetAccessKeyResponseDto";
 import type { ListAccessKeyResponseDto } from "./models/ListAccessKeyResponseDto";
 import type { UpdateAccessKeyDto } from "./models/UpdateAccessKeyDto";
-import WebSocket from 'ws';
-
 
 import {
   DEFAULT_OPTIONS,
@@ -352,37 +368,16 @@ import {
 import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
-import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
-import {GetMapInfoRespDto} from "./models/GetMapInfoRespDto";
-import {UpdateAuthEnabledDto} from "./models/UpdateAuthEnabledDto";
-import {ListApplicationAuthDto} from "./models/ListApplicationAuthDto";
-import {ListApplicationAuthPaginatedRespDto} from "./models/ListApplicationAuthPaginatedRespDto";
-import {GetSubjectAuthRespDto} from "./models/GetSubjectAuthRespDto";
-import {ListAuthSubjectDto} from "./models/ListAuthSubjectDto";
-import {ListApplicationSubjectRespDto} from "./models/ListApplicationSubjectRespDto";
-import {UpdateApplicationMfaSettingsDto} from "./models/UpdateApplicationMfaSettingsDto";
-
-const pkg = require("../package.json")
 
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
-  private wsMap: {[propName: string]: {
-    socket: WebSocket,
-    lockConnect: boolean,
-    timeConnect: number
-  }};
-  private eventBus: {[propName: string]: [Function, Function][]};
-
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
-    Object.keys(options).forEach((i: any) => typeof options[i] !== 'number' && !options[i] && delete options[i]);
+    Object.keys(options).forEach((i: any) => !options[i] && delete options[i]);
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     Axios.defaults.baseURL = domainC14n(String(this.options.host));
     this.httpClient = new ManagementHttpClient(this.options);
-    this.wsMap = {};
-    this.eventBus = {}
-
 
     if (!this.options.accessKeyId) {
       throw new Error("accessKeyId is required");
@@ -826,6 +821,315 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/cancel-sync-risk-operation",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 使用用户凭证登录
+   * @description
+   * 此端点为基于直接 API 调用形式的登录端点，适用于你需要自建登录页面的场景。**此端点暂时不支持 MFA、信息补全、首次密码重置等流程，如有需要，请使用 OIDC 标准协议认证端点。**
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto 成功认证
+   */
+  public async signInByCredentials(
+    requestBody: SigninByCredentialsDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 使用移动端社会化登录
+   * @description
+   * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto
+   */
+  public async signInByMobile(
+    requestBody: SigninByMobileDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin-by-mobile",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取支付宝 AuthInfo
+   * @description 此接口用于获取发起支付宝认证需要的[初始化参数 AuthInfo](https://opendocs.alipay.com/open/218/105325)。
+   * @returns GetAlipayAuthInfoRespDto
+   */
+  public async getAlipayAuthInfo({
+    extIdpConnidentifier,
+  }: {
+    /** 外部身份源连接标志符 **/
+    extIdpConnidentifier: string;
+  }): Promise<GetAlipayAuthInfoRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-alipay-authinfo",
+      params: {
+        extIdpConnidentifier: extIdpConnidentifier,
+      },
+    });
+  }
+
+  /**
+   * @summary 生成用于登录的二维码
+   * @description 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
+   * @returns GeneQRCodeRespDto
+   */
+  public async geneQrCode(
+    requestBody: GenerateQrcodeDto
+  ): Promise<GeneQRCodeRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/gene-qrcode",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 查询二维码状态
+   * @description 按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
+   * @returns CheckQRCodeStatusRespDto
+   */
+  public async checkQrCodeStatus({
+    qrcodeId,
+  }: {
+    /** 二维码唯一 ID **/
+    qrcodeId: string;
+  }): Promise<CheckQRCodeStatusRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/check-qrcode-status",
+      params: {
+        qrcodeId: qrcodeId,
+      },
+    });
+  }
+
+  /**
+   * @summary 使用二维码 ticket 换取 TokenSet
+   * @description
+   * 此端点为使用二维码的 ticket 换取用户的 `access_token` 和 `id_token`。
+   *
+   *
+   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+   *
+   * <details>
+   * <summary>点击展开详情</summary>
+   *
+   * <br>
+   *
+   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+   * 中找到**换取 token 身份验证方式** 配置项：
+   *
+   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+   *
+   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+   *
+   * #### 换取 token 身份验证方式为 none 时
+   *
+   * 调用此接口不需要进行额外操作。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_post 时
+   *
+   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+   *
+   * #### 换取 token 身份验证方式为 client_secret_basic 时
+   *
+   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+   *
+   * ```
+   * Basic base64(<client_id>:<client_secret>)
+   * ```
+   *
+   * 结果示例：
+   *
+   * ```
+   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+   * ```
+   *
+   * JS 代码示例：
+   *
+   * ```js
+   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+   * ```
+   *
+   * </details>
+   *
+   *
+   * @returns LoginTokenRespDto
+   */
+  public async exchangeTokenSetWithQrCodeTicket(
+    requestBody: ExchangeTokenSetWithQRcodeTicketDto
+  ): Promise<LoginTokenRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/exchange-tokenset-with-qrcode-ticket",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 自建 APP 扫码登录：APP 端修改二维码状态
+   * @description 此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns CommonResponseDto
+   */
+  public async changeQrCodeStatus(
+    requestBody: ChangeQRCodeStatusDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/change-qrcode-status",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 推送登录
+   * @description 推送登录。
+   * @returns GenePushCodeRespDto
+   */
+  public async signInByPush(
+    requestBody: SignInByPushDto
+  ): Promise<GenePushCodeRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signin-by-push",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 查询推送码状态
+   * @description 按照推送码使用顺序，共分为已推送、等待用户 同意/取消 授权、推送码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+   * @returns CheckPushCodeStatusRespDto
+   */
+  public async checkPushCodeStatus({
+    pushCodeId,
+  }: {
+    /** 推送码（推送登录唯一 ID） **/
+    pushCodeId: string;
+  }): Promise<CheckPushCodeStatusRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/check-pushcode-status",
+      params: {
+        pushCodeId: pushCodeId,
+      },
+    });
+  }
+
+  /**
+   * @summary 推送登录：APP 端修改推送码状态
+   * @description 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns CommonResponseDto
+   */
+  public async changePushCodeStatus(
+    requestBody: ChangePushCodeStatusDto
+  ): Promise<CommonResponseDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/change-pushcode-status",
       data: requestBody,
     });
   }
@@ -2162,19 +2466,99 @@ export class ManagementClient {
     });
   }
 
-  // /**
-  //  * @summary 获取用户自定义加密的密码
-  //  * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
-  //  * @returns GetUserPasswordCiphertextRespDto
-  //  */
-  // public async getUserPasswordCiphertext(requestBody: GetUserPasswordCiphertextDto,
-  // ): Promise<GetUserPasswordCiphertextRespDto> {
-  //   return await this.httpClient.request({
-  //     method: 'POST',
-  //     url: '/api/v3/get-user-password-ciphertext',
-  //     data: requestBody,
-  //   });
-  // }
+  /**
+   * @summary 获取用户自定义加密的密码
+   * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
+   * @returns GetUserPasswordCiphertextRespDto
+   */
+  public async getUserPasswordCiphertext(
+    requestBody: GetUserPasswordCiphertextDto
+  ): Promise<GetUserPasswordCiphertextRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/get-user-password-ciphertext",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 给用户绑定一个身份信息
+   * @description 用户池管理员手动将来自外部身份源的身份信息绑定到用户上。绑定完成后，可以用执行过绑定操作的身份源登录到对应的 Authing 用户。
+   * @returns any
+   */
+  public async linkIdentity(requestBody: LinkIdentity): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/link-identity",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 解除绑定用户在身份源下的所有身份信息
+   * @description 解除绑定用户在某个身份源下的所有身份信息。解绑后，将无法使用执行过解绑操作的身份源登录到对应的 Authing 用户，除非重新绑定身份信息。
+   * @returns any
+   */
+  public async unlinkIdentity(requestBody: UnlinkIdentity): Promise<any> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/unlink-identity",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 设置用户 MFA 状态
+   * @description 设置用户 MFA 状态，即 MFA 触发数据。
+   * @returns IsSuccessRespDto
+   */
+  public async setUsersMfaStatus(
+    requestBody: SetMfaStatusDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/set-mfa-status",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户 MFA 状态
+   * @description 获取用户 MFA 状态，即 MFA 触发数据。
+   * @returns GetMapInfoRespDto
+   */
+  public async getUserMfaStatus({
+    userId,
+    userIdType = "user_id",
+  }: {
+    /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+    userId: string;
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?:
+      | "user_id"
+      | "external_id"
+      | "phone"
+      | "email"
+      | "username"
+      | "identity";
+  }): Promise<GetMapInfoRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-mfa-status",
+      params: {
+        userId: userId,
+        userIdType: userIdType,
+      },
+    });
+  }
 
   /**
    * @summary 获取组织机构详情
@@ -3570,6 +3954,73 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 获取用户内置字段列表
+   * @description 获取用户内置的字段列表
+   * @returns ListCistomFieldsResDto
+   */
+  public async listUserBaseFields({
+    targetType,
+    dataType,
+    tenantId,
+    page = 1,
+    limit = 10,
+    userVisible,
+    adminVisible,
+    accessControl,
+    keyword,
+    lang,
+  }: {
+    /** 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     * ;该接口暂不支持分组(GROUP) **/
+    targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
+    /** 字段类型 **/
+    dataType:
+      | "STRING"
+      | "NUMBER"
+      | "DATETIME"
+      | "BOOLEAN"
+      | "OBJECT"
+      | "SELECT";
+    /** 租户 ID **/
+    tenantId?: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 用户是否可见 **/
+    userVisible?: boolean;
+    /** 管理员是否可见 **/
+    adminVisible?: boolean;
+    /** 访问控制 **/
+    accessControl?: boolean;
+    /** 搜索关键词 **/
+    keyword?: string;
+    /** 搜索语言 **/
+    lang?: string;
+  }): Promise<ListCistomFieldsResDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-user-base-fields",
+      params: {
+        tenantId: tenantId,
+        targetType: targetType,
+        dataType: dataType,
+        page: page,
+        limit: limit,
+        userVisible: userVisible,
+        adminVisible: adminVisible,
+        accessControl: accessControl,
+        keyword: keyword,
+        lang: lang,
+      },
+    });
+  }
+
+  /**
    * @summary 修改用户内置字段配置
    * @description 修改用户内置字段配置，内置字段不允许修改数据类型、唯一性。
    * @returns CustomFieldListRespDto
@@ -3591,6 +4042,7 @@ export class ManagementClient {
    */
   public async getCustomFields({
     targetType,
+    tenantId,
   }: {
     /** 目标对象类型：
      * - `USER`: 用户
@@ -3599,12 +4051,82 @@ export class ManagementClient {
      * - `DEPARTMENT`: 部门
      * ;该接口暂不支持分组(GROUP) **/
     targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
+    /** 租户 ID **/
+    tenantId?: string;
   }): Promise<CustomFieldListRespDto> {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-custom-fields",
       params: {
         targetType: targetType,
+        tenantId: tenantId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取自定义字段列表
+   * @description 通过主体类型，获取用户、部门或角色的自定义字段列表。
+   * @returns ListCistomFieldsResDto
+   */
+  public async listCustFields({
+    targetType,
+    dataType,
+    tenantId,
+    page = 1,
+    limit = 10,
+    userVisible,
+    adminVisible,
+    accessControl,
+    keyword,
+    lang,
+  }: {
+    /** 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     * ;该接口暂不支持分组(GROUP) **/
+    targetType: "USER" | "ROLE" | "GROUP" | "DEPARTMENT";
+    /** 字段类型 **/
+    dataType:
+      | "STRING"
+      | "NUMBER"
+      | "DATETIME"
+      | "BOOLEAN"
+      | "OBJECT"
+      | "SELECT";
+    /** 租户 ID **/
+    tenantId?: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 用户是否可见 **/
+    userVisible?: boolean;
+    /** 管理员是否可见 **/
+    adminVisible?: boolean;
+    /** 访问控制 **/
+    accessControl?: boolean;
+    /** 搜索关键词 **/
+    keyword?: string;
+    /** 搜索语言 **/
+    lang?: string;
+  }): Promise<ListCistomFieldsResDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/list-custom-fields",
+      params: {
+        tenantId: tenantId,
+        targetType: targetType,
+        dataType: dataType,
+        page: page,
+        limit: limit,
+        userVisible: userVisible,
+        adminVisible: adminVisible,
+        accessControl: accessControl,
+        keyword: keyword,
+        lang: lang,
       },
     });
   }
@@ -3620,6 +4142,21 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/set-custom-fields",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除自定义字段定义
+   * @description 删除用户、部门或角色自定义字段定义。
+   * @returns IsSuccessRespDto
+   */
+  public async deleteCustomFields(
+    requestBody: DeleteCustomFieldsReqDto
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/delete-custom-fields",
       data: requestBody,
     });
   }
@@ -3645,10 +4182,13 @@ export class ManagementClient {
    * @returns GetCustomDataRespDto
    */
   public async getCustomData({
+    tenantId,
     targetType,
     targetIdentifier,
     namespace,
   }: {
+    /** 租户 ID **/
+    tenantId: string;
     /** 目标对象类型：
      * - `USER`: 用户
      * - `ROLE`: 角色
@@ -3670,6 +4210,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-custom-data",
       params: {
+        tenantId: tenantId,
         targetType: targetType,
         targetIdentifier: targetIdentifier,
         namespace: namespace,
@@ -3870,21 +4411,6 @@ export class ManagementClient {
    * @returns IsSuccessRespDto
    */
   public async batchDeleteCommonResource(
-    requestBody: DeleteCommonResourcesBatchDto
-  ): Promise<IsSuccessRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/delete-common-resources-batch",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 批量删除资源
-   * @description 通过资源id批量删除资源
-   * @returns IsSuccessRespDto
-   */
-  public async deleteResourcesByIdBatch(
     requestBody: DeleteCommonResourcesBatchDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
@@ -4254,20 +4780,20 @@ export class ManagementClient {
    * @returns GetSubjectAuthRespDto
    */
   public async detailAuthSubject({
-                                   targetId,
-                                   targetType,
-                                   appId,
-                                 }: {
+    targetId,
+    targetType,
+    appId,
+  }: {
     /** 主体 id **/
-    targetId: string,
+    targetId: string;
     /** 主体类型 **/
-    targetType: 'USER' | 'ROLE' | 'GROUP' | 'ORG' | 'AK_SK',
+    targetType: "USER" | "ROLE" | "GROUP" | "ORG" | "AK_SK";
     /** 应用 ID **/
-    appId: string,
+    appId: string;
   }): Promise<GetSubjectAuthRespDto> {
     return await this.httpClient.request({
-      method: 'GET',
-      url: '/api/v3/get-subject-auth-detail',
+      method: "GET",
+      url: "/api/v3/get-subject-auth-detail",
       params: {
         targetId: targetId,
         targetType: targetType,
@@ -4281,11 +4807,12 @@ export class ManagementClient {
    * @description 主体授权列表
    * @returns ListApplicationSubjectRespDto
    */
-  public async listAuthSubject(requestBody: ListAuthSubjectDto,
+  public async listAuthSubject(
+    requestBody: ListAuthSubjectDto
   ): Promise<ListApplicationSubjectRespDto> {
     return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/list-subject-auth',
+      method: "POST",
+      url: "/api/v3/list-subject-auth",
       data: requestBody,
     });
   }
@@ -4295,11 +4822,12 @@ export class ManagementClient {
    * @description 应用授权列表
    * @returns ListApplicationAuthPaginatedRespDto
    */
-  public async listAuthApplication(requestBody: ListApplicationAuthDto,
+  public async listAuthApplication(
+    requestBody: ListApplicationAuthDto
   ): Promise<ListApplicationAuthPaginatedRespDto> {
     return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/list-applications-auth',
+      method: "POST",
+      url: "/api/v3/list-applications-auth",
       data: requestBody,
     });
   }
@@ -4309,11 +4837,12 @@ export class ManagementClient {
    * @description 更新授权开关
    * @returns IsSuccessRespDto
    */
-  public async enabledAuth(requestBody: UpdateAuthEnabledDto,
+  public async enabledAuth(
+    requestBody: UpdateAuthEnabledDto
   ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/update-auth-enabled',
+      method: "POST",
+      url: "/api/v3/update-auth-enabled",
       data: requestBody,
     });
   }
@@ -4323,11 +4852,10 @@ export class ManagementClient {
    * @description 批量删除应用授权
    * @returns IsSuccessRespDto
    */
-  public async deleteAuth(authIds: Array<string>,
-  ): Promise<IsSuccessRespDto> {
+  public async deleteAuth(authIds: Array<string>): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
-      method: 'DELETE',
-      url: '/api/v3/batch-applications-auth',
+      method: "DELETE",
+      url: "/api/v3/batch-applications-auth",
       params: {
         authIds: authIds,
       },
@@ -4340,14 +4868,14 @@ export class ManagementClient {
    * @returns ApplicationPaginatedRespDto
    */
   public async listApplications({
-                                  page = 1,
-                                  limit = 10,
-                                  isIntegrateApp = false,
-                                  isSelfBuiltApp = false,
-                                  ssoEnabled = false,
-                                  keywords,
-                                  all,
-                                }: {
+    page = 1,
+    limit = 10,
+    isIntegrateApp = false,
+    isSelfBuiltApp = false,
+    ssoEnabled = false,
+    keywords,
+    all,
+  }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -4359,9 +4887,9 @@ export class ManagementClient {
     /** 是否开启单点登录 **/
     ssoEnabled?: boolean;
     /** 模糊搜索字符串 **/
-    keywords?: string,
+    keywords?: string;
     /** 搜索应用，true：搜索所有应用, 默认为 false **/
-    all?: boolean,
+    all?: boolean;
   }): Promise<ApplicationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -4673,6 +5201,21 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 更新租户控制台扫码登录状态
+   * @description 更新租户控制台扫码登录状态
+   * @returns IsSuccessRespDto
+   */
+  public async updateTenantQrCodeState(
+    requestBody: UpdateTenantAppqrcodeState
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/update-userpool-tenant-appqrcode-state",
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 设置用户池多租户身份源连接
    * @description 设置用户池多租户身份源连接，支持同时设置多个身份源连接，支持设置连接和取消连接
    * @returns IsSuccessRespDto
@@ -4692,11 +5235,12 @@ export class ManagementClient {
    * @description 传入 MFA 认证因素列表进行开启或关闭
    * @returns MFASettingsRespDto
    */
-  public async updateApplicationMfaSettings(requestBody: UpdateApplicationMfaSettingsDto,
+  public async updateApplicationMfaSettings(
+    requestBody: UpdateApplicationMfaSettingsDto
   ): Promise<MFASettingsRespDto> {
     return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/update-application-mfa-settings',
+      method: "POST",
+      url: "/api/v3/update-application-mfa-settings",
       data: requestBody,
     });
   }
@@ -4707,14 +5251,14 @@ export class ManagementClient {
    * @returns GetMapInfoRespDto
    */
   public async getMfaTriggerData({
-                                   appId,
-                                   userId,
-                                   userIdType = 'user_id',
-                                 }: {
+    appId,
+    userId,
+    userIdType = "user_id",
+  }: {
     /** 所属应用 ID **/
-    appId: string,
+    appId: string;
     /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
-    userId: string,
+    userId: string;
     /** 用户 ID 类型，默认值为 `user_id`，可选值为：
      * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
      * - `phone`: 用户手机号
@@ -4724,11 +5268,17 @@ export class ManagementClient {
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity',
+    userIdType?:
+      | "user_id"
+      | "external_id"
+      | "phone"
+      | "email"
+      | "username"
+      | "identity";
   }): Promise<GetMapInfoRespDto> {
     return await this.httpClient.request({
-      method: 'GET',
-      url: '/api/v3/get-mfa-trigger-data',
+      method: "GET",
+      url: "/api/v3/get-mfa-trigger-data",
       params: {
         appId: appId,
         userId: userId,
@@ -5090,6 +5640,7 @@ export class ManagementClient {
     withSourceAppDetail,
     page,
     limit,
+    source,
   }: {
     /** 搜索关键字 **/
     keywords?: string;
@@ -5105,6 +5656,8 @@ export class ManagementClient {
     page?: string;
     /** 每页获取的数据量 **/
     limit?: string;
+    /** 租户来源 **/
+    source?: any;
   }): Promise<TenantListPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -5117,6 +5670,43 @@ export class ManagementClient {
         withSourceAppDetail: withSourceAppDetail,
         page: page,
         limit: limit,
+        source: source,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取租户一点点的信息
+   * @description 根据租户 ID 获取租户一点点的详情
+   * @returns TenantSingleRespDto
+   */
+  public async getTenantLittleInfo({
+    tenantId,
+    withMembersCount,
+    withAppDetail,
+    withCreatorDetail,
+    withSourceAppDetail,
+  }: {
+    /** 租户 ID **/
+    tenantId: string;
+    /** 是否增加返回租户成员统计 **/
+    withMembersCount?: boolean;
+    /** 增加返回租户关联应用简单信息 **/
+    withAppDetail?: boolean;
+    /** 增加返回租户下创建者简单信息 **/
+    withCreatorDetail?: boolean;
+    /** 增加返回租户来源应用简单信息 **/
+    withSourceAppDetail?: boolean;
+  }): Promise<TenantSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant-little-info",
+      params: {
+        tenantId: tenantId,
+        withMembersCount: withMembersCount,
+        withAppDetail: withAppDetail,
+        withCreatorDetail: withCreatorDetail,
+        withSourceAppDetail: withSourceAppDetail,
       },
     });
   }
@@ -5571,6 +6161,26 @@ export class ManagementClient {
       url: "/api/v3/delete-tenant-cooperator",
       params: {
         userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取租户详情
+   * @description 根据租户 Code 获取租户详情
+   * @returns TenantSingleRespDto
+   */
+  public async getTenantByCode({
+    code,
+  }: {
+    /** 租户 Code **/
+    code: string;
+  }): Promise<TenantSingleRespDto> {
+    return await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-tenant-by-code",
+      params: {
+        code: code,
       },
     });
   }
@@ -7803,247 +8413,16 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 使用移动端社会化登录
-   * @description
-   * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
-   *
-   *
-   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
-   *
-   * <details>
-   * <summary>点击展开详情</summary>
-   *
-   * <br>
-   *
-   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
-   * 中找到**换取 token 身份验证方式** 配置项：
-   *
-   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
-   *
-   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
-   *
-   * #### 换取 token 身份验证方式为 none 时
-   *
-   * 调用此接口不需要进行额外操作。
-   *
-   * #### 换取 token 身份验证方式为 client_secret_post 时
-   *
-   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
-   *
-   * #### 换取 token 身份验证方式为 client_secret_basic 时
-   *
-   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
-   *
-   * ```
-   * Basic base64(<client_id>:<client_secret>)
-   * ```
-   *
-   * 结果示例：
-   *
-   * ```
-   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
-   * ```
-   *
-   * JS 代码示例：
-   *
-   * ```js
-   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
-   * ```
-   *
-   * </details>
-   *
-   *
-   * @returns LoginTokenRespDto
+   * @summary 获取推送登录请求关联的客户端应用
+   * @description 此端点用于在 Authing 令牌 APP 收到推送登录通知时，可检查当前用户登录的应用是否支持对推送登录请求进行授权。
+   * @returns GetPushCodeRelationAppsRespDto
    */
-  public async signInByMobile(
-    requestBody: SigninByMobileDto
-  ): Promise<LoginTokenRespDto> {
+  public async getPushLoginRelationApps(
+    requestBody: GetPushCodeRelationAppsDto
+  ): Promise<GetPushCodeRelationAppsRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/signin-by-mobile",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 获取支付宝 AuthInfo
-   * @description 此接口用于获取发起支付宝认证需要的[初始化参数 AuthInfo](https://opendocs.alipay.com/open/218/105325)。
-   * @returns GetAlipayAuthInfoRespDto
-   */
-  public async getAlipayAuthInfo({
-    extIdpConnidentifier,
-  }: {
-    /** 外部身份源连接标志符 **/
-    extIdpConnidentifier: string;
-  }): Promise<GetAlipayAuthInfoRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/get-alipay-authinfo",
-      params: {
-        extIdpConnidentifier: extIdpConnidentifier,
-      },
-    });
-  }
-
-  /**
-   * @summary 生成用于登录的二维码
-   * @description 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
-   * @returns GeneQRCodeRespDto
-   */
-  public async geneQrCode(
-    requestBody: GenerateQrcodeDto
-  ): Promise<GeneQRCodeRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/gene-qrcode",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 查询二维码状态
-   * @description 按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
-   * @returns CheckQRCodeStatusRespDto
-   */
-  public async checkQrCodeStatus({
-    qrcodeId,
-  }: {
-    /** 二维码唯一 ID **/
-    qrcodeId: string;
-  }): Promise<CheckQRCodeStatusRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/check-qrcode-status",
-      params: {
-        qrcodeId: qrcodeId,
-      },
-    });
-  }
-
-  /**
-   * @summary 使用二维码 ticket 换取 TokenSet
-   * @description
-   * 此端点为使用二维码的 ticket 换取用户的 `access_token` 和 `id_token`。
-   *
-   *
-   * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
-   *
-   * <details>
-   * <summary>点击展开详情</summary>
-   *
-   * <br>
-   *
-   * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
-   * 中找到**换取 token 身份验证方式** 配置项：
-   *
-   * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
-   *
-   * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
-   *
-   * #### 换取 token 身份验证方式为 none 时
-   *
-   * 调用此接口不需要进行额外操作。
-   *
-   * #### 换取 token 身份验证方式为 client_secret_post 时
-   *
-   * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
-   *
-   * #### 换取 token 身份验证方式为 client_secret_basic 时
-   *
-   * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
-   *
-   * ```
-   * Basic base64(<client_id>:<client_secret>)
-   * ```
-   *
-   * 结果示例：
-   *
-   * ```
-   * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
-   * ```
-   *
-   * JS 代码示例：
-   *
-   * ```js
-   * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
-   * ```
-   *
-   * </details>
-   *
-   *
-   * @returns LoginTokenRespDto
-   */
-  public async exchangeTokenSetWithQrCodeTicket(
-    requestBody: ExchangeTokenSetWithQRcodeTicketDto
-  ): Promise<LoginTokenRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/exchange-tokenset-with-qrcode-ticket",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 自建 APP 扫码登录：APP 端修改二维码状态
-   * @description 此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
-   * @returns CommonResponseDto
-   */
-  public async changeQrCodeStatus(
-    requestBody: ChangeQRCodeStatusDto
-  ): Promise<CommonResponseDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/change-qrcode-status",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 推送登录
-   * @description 推送登录。
-   * @returns GenePushCodeRespDto
-   */
-  public async signInByPush(
-    requestBody: SignInByPushDto
-  ): Promise<GenePushCodeRespDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/signin-by-push",
-      data: requestBody,
-    });
-  }
-
-  /**
-   * @summary 查询推送码状态
-   * @description 按照推送码使用顺序，共分为已推送、等待用户 同意/取消 授权、推送码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
-   * @returns CheckPushCodeStatusRespDto
-   */
-  public async checkPushCodeStatus({
-    pushCodeId,
-  }: {
-    /** 推送码（推送登录唯一 ID） **/
-    pushCodeId: string;
-  }): Promise<CheckPushCodeStatusRespDto> {
-    return await this.httpClient.request({
-      method: "GET",
-      url: "/api/v3/check-pushcode-status",
-      params: {
-        pushCodeId: pushCodeId,
-      },
-    });
-  }
-
-  /**
-   * @summary 推送登录：APP 端修改推送码状态
-   * @description 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
-   * @returns CommonResponseDto
-   */
-  public async changePushCodeStatus(
-    requestBody: ChangePushCodeStatusDto
-  ): Promise<CommonResponseDto> {
-    return await this.httpClient.request({
-      method: "POST",
-      url: "/api/v3/change-pushcode-status",
+      url: "/api/v3/get-pushlogin-relation-apps",
       data: requestBody,
     });
   }
@@ -8513,154 +8892,17 @@ export class ManagementClient {
   }
 
   /**
-   * @summary socket 重连
-   * @returns
+   * @summary 更新一个管理员 AccessKey
+   * @description 根据 AccessKeyId 更新一个管理员 AccessKey，目前只支持更新 status，status 支持 activated / revoked
+   * @returns IsSuccessRespDto
    */
-  private reconnect(eventName: string) {
-    return new Promise((resolve, reject) => {
-      if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
-        if (!this.wsMap[eventName].lockConnect) {
-          this.wsMap[eventName].lockConnect = true
-          this.wsMap[eventName].timeConnect ++
-          setTimeout(() => {
-            this.wsMap[eventName].lockConnect = false
-            this.initWebSocket(eventName, true).then(res => {
-              resolve(true)
-            }).catch(e => {
-              reject(e)
-            })
-          }, 2000);
-        }
-      } else {
-        reject(`socket 服务连接超时`);
-      }
-    })
-  }
-
-  /**
-   * @summary 建立 socket 连接，监听 message 回调事件队列
-   * @returns
-   */
-  private initWebSocket(eventName: string, retry?: boolean) {
-    return new Promise((resolve, reject) => {
-      if (!this.wsMap[eventName] || retry) {
-
-        this.wsMap[eventName] = {
-          socket: new WebSocket(`${this.options.socketUri}/events/v1/management/sub?code=${eventName}`, {
-            headers: {
-              // 构建 token
-              authorization: buildAuthorization(
-                this.options.accessKeyId,
-                this.options.accessKeySecret,
-                buildStringToSign("websocket", '', {}, {})
-              )
-            }
-          }),
-          timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
-          lockConnect: false
-        }
-
-        this.wsMap[eventName].socket.on('open', () => {
-          resolve(true)
-        })
-
-        this.wsMap[eventName].socket.on('message', (data: Buffer) => {
-          try {
-            if (this.eventBus[eventName]) {
-              this.eventBus[eventName].forEach(callback => {
-                callback[0](data.toString("utf8"))
-              })
-            } else {
-              // 未订阅事件
-              console.warn("未订阅的事件：", eventName);
-            }
-          } catch (error) {
-            return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
-          }
-        })
-
-        this.wsMap[eventName].socket.on('error', async(e) => {
-          try {
-            await this.reconnect(eventName)
-            resolve(true)
-          } catch (error) {
-            return reject(`socket 连接异常：${e}`)
-          }
-        })
-
-        this.wsMap[eventName].socket.on('close', async() => {
-          try {
-            await this.reconnect(eventName)
-            resolve(true)
-          } catch (error) {
-            return reject(`socket 连接关闭`)
-          }
-        })
-      } else {
-        resolve(true)
-      }
-    })
-  }
-
-  /**
-   * @summary 事件订阅
-   * @description 订阅后通过建立 socket 连接接收服务端消息回调
-   * @returns
-   */
-  public sub(eventName: string, callback: Function, errCallback: Function) {
-    /**
-     * 1. 判断是否连接 socket
-     * 2. 获取 socket 实例
-     * 3. 订阅
-     */
-    if (typeof eventName !== 'string') {
-      throw new Error("订阅事件名称为 string 类型！！！")
-    }
-
-    if (typeof callback !== 'function') {
-      throw new Error("订阅事件回调函数需要为 function 类型！！！");
-    }
-
-    if (!this.options.socketUri) {
-      throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
-    }
-
-    this.initWebSocket(eventName).catch(e => {
-      this.eventBus[eventName].forEach((item) => {
-        item[1]?.(e)
-      })
-    })
-
-    if (this.eventBus[eventName]) {
-      this.eventBus[eventName].push([callback, errCallback])
-    } else {
-      this.eventBus[eventName] = [[callback, errCallback]]
-    }
-  }
-
-  /**
-   * @summary 事件发布
-   * @description 客户调用发布事件到事件中心
-   * @returns
-   */
-  public async pub(eventName: string, data: string) {
-    if (typeof eventName !== 'string') {
-      throw new Error("事件名称为 string 类型！！！")
-    }
-
-    if (typeof data !== 'string') {
-      throw new Error("发布数据为 string 类型！！！")
-    }
-
+  public async updateAccessKey(
+    requestBody: UpdateAccessKeyDto
+  ): Promise<IsSuccessRespDto> {
     return await this.httpClient.request({
       method: "POST",
-      url: "/api/v3/pub-event",
-      data: {
-        eventType: eventName,
-        source: `${pkg.name}: ${pkg.version}`,
-        eventData: data
-      },
+      url: "/api/v3/update-access-key",
+      data: requestBody,
     });
   }
-
 }
