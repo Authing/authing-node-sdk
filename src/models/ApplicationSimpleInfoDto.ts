@@ -43,6 +43,7 @@ export namespace ApplicationSimpleInfoDto {
         SPA = 'spa',
         NATIVE = 'native',
         API = 'api',
+        MFA = 'mfa',
         MINI_PROGRAM = 'mini-program',
     }
 

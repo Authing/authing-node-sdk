@@ -29,7 +29,7 @@ export type ListUsersAdvancedFilterItemDto = {
      * - `formatted`: 格式化的地址
      * - `signedUp`: 注册时间
      * - `locale`: 语言信息
-     * - `lastLoginTime`: 上次登录时间，为日期类型
+     * - `lastLogin`: 上次登录时间，为时间戳类型
      * - `loginsCount`: 登录次数，为数字类型
      * - `lastLoginApp`: 上次登录的应用 ID
      * - `userSource`: 用户来源，具体使用见示例

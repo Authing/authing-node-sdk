@@ -111,6 +111,7 @@ export namespace CreateApplicationDto {
         SPA = 'spa',
         NATIVE = 'native',
         API = 'api',
+        MFA = 'mfa',
         MINI_PROGRAM = 'mini-program',
     }
 

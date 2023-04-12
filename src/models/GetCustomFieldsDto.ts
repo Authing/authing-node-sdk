@@ -15,4 +15,8 @@ export type GetCustomFieldsDto = {
      * ;该接口暂不支持分组(GROUP)
      */
     targetType?: any;
+    /**
+     * 租户 ID
+     */
+    tenantId?: any;
 };

@@ -7,6 +7,10 @@
  */
 export type GetCustomDataDto = {
     /**
+     * 租户 ID
+     */
+    tenantId?: any;
+    /**
      * 目标对象类型：
      * - `USER`: 用户
      * - `ROLE`: 角色

@@ -82,7 +82,12 @@ export namespace ExtIdpInfoDto {
         HUAWEI = 'huawei',
         HONOR = 'honor',
         XIAOMI = 'xiaomi',
+        OPPO = 'oppo',
         AWS = 'aws',
+        AMAZON = 'amazon',
+        DOUYIN = 'douyin',
+        KUAISHOU = 'kuaishou',
+        LINE = 'line',
     }
 
     /**

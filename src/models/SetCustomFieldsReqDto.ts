@@ -6,6 +6,10 @@ import type { SetCustomFieldDto } from './SetCustomFieldDto';
 
 export type SetCustomFieldsReqDto = {
     /**
+     * 租户 ID
+     */
+    tenantId: string;
+    /**
      * 自定义字段列表
      */
     list: Array<SetCustomFieldDto>;
