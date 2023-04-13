@@ -239,7 +239,7 @@ export class MetadataModel {
       url: "/api/v3/metadata/get-line",
       params: {
         modelId: this.modelId,
-        lineId: id,
+        rowId: id,
       },
     });
   }
@@ -260,7 +260,7 @@ export class MetadataModel {
       url: "/api/v3/metadata/update-line",
       data: {
         modelId: this.modelId,
-        lineId: id,
+        rowId: id,
         data: updates,
       },
     });
@@ -275,7 +275,7 @@ export class MetadataModel {
       url: "/api/v3/metadata/remove-line",
       data: {
         modelId: this.modelId,
-        lineIdList: idList,
+        rowIdList: idList,
       },
     });
   }
@@ -283,12 +283,12 @@ export class MetadataModel {
   /**
    * 创建行关联关系
    * @param fieldId 字段 id
-   * @param lineId 行 id
+   * @param rowId 行 id
    * @param value 关联数据的 id
    */
   public createLineRelation(
     fieldId: string,
-    lineId: string,
+    rowId: string,
     value: string | string[]
   ) {
     if (!Array.isArray(value)) {
@@ -300,7 +300,7 @@ export class MetadataModel {
       data: {
         modelId: this.modelId,
         fieldId,
-        lineId,
+        rowId,
         valueList: value,
       },
     });
@@ -309,12 +309,12 @@ export class MetadataModel {
   /**
    * 获取行关联关系
    * @param fieldId 字段 id
-   * @param lineId 行 id
+   * @param rowId 行 id
    * @param value 关联数据的 id
    */
   public getLineRelation(
     fieldId: string,
-    lineId: string,
+    rowId: string,
     paginateOpt: {
       limit?: number;
       page?: number;
@@ -328,7 +328,7 @@ export class MetadataModel {
       params: {
         modelId: this.modelId,
         fieldId,
-        lineId,
+        rowId,
         ...paginateOpt,
       },
     });
@@ -337,17 +337,17 @@ export class MetadataModel {
   /**
    * 删除行关联关系
    * @param fieldId 字段 id
-   * @param lineId 行 id
+   * @param rowId 行 id
    * @param value 关联数据 id
    */
-  public removeLineRelation(fieldId: string, lineId: string, value: string) {
+  public removeLineRelation(fieldId: string, rowId: string, value: string) {
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
       url: "/api/v3/metadata/remove-line-relation",
       data: {
         modelId: this.modelId,
         fieldId,
-        lineId,
+        rowId,
         value,
       },
     });
