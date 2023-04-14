@@ -10,7 +10,7 @@ import {
 } from "../../src/models";
 import { metadataManagementClient } from "../client";
 
-interface Line {
+interface Row {
   unitTest: string;
   user: string[];
 }
@@ -19,7 +19,7 @@ const modelInfo = {} as ModelInfo;
 let model: MetadataModel;
 const unitTestFieldInfo = {} as ModelFieldInfo;
 const userFieldInfo = {} as ModelFieldInfo;
-const line = {} as Line & ReserveKey;
+const row = {} as Row & ReserveKey;
 
 // UEBA
 describe("Metadata", () => {
@@ -115,73 +115,73 @@ describe("Metadata", () => {
     expect(res.data.name).toEqual(newName);
   });
 
-  it("Create line", async () => {
+  it("Create Row", async () => {
     const user = ["6421671ac7695fe4e806269e"];
     const unitTest = "测试用例";
-    const res = await model.createLine<Line>({
+    const res = await model.createRow<Row>({
       user,
       unitTest,
     });
     expect(res.statusCode).toEqual(200);
     expect(res.data.unitTest).toEqual(unitTest);
     expect(res.data.user[0]).toEqual(user[0]);
-    Object.assign(line, res.data);
+    Object.assign(row, res.data);
   });
 
-  it("Get Line", async () => {
-    const res = await model.getLine<Line>(line.id);
+  it("Get Row", async () => {
+    const res = await model.getRow<Row>(row.id);
     expect(res.statusCode).toEqual(200);
-    expect(res.data.unitTest).toEqual(line.unitTest);
+    expect(res.data.unitTest).toEqual(row.unitTest);
   });
 
-  it("Get Line Relation", async () => {
-    const res = await model.getLineRelation(userFieldInfo.id, line.id);
+  it("Get Row Relation", async () => {
+    const res = await model.getRowRelation(userFieldInfo.id, row.id);
     expect(res.statusCode).toEqual(200);
     expect(res.data.totalCount).toEqual(1);
-    expect(res.data.list[0]).toEqual(line.user[0]);
+    expect(res.data.list[0]).toEqual(row.user[0]);
   });
 
-  it("Create Line Relation", async () => {
-    const res = await model.createLineRelation(
+  it("Create Row Relation", async () => {
+    const res = await model.createRowRelation(
       userFieldInfo.id,
-      line.id,
+      row.id,
       "642164533014849679c57d35"
     );
     expect(res.statusCode).toEqual(200);
   });
 
-  it("Get Line Relation", async () => {
-    const res = await model.getLineRelation(userFieldInfo.id, line.id);
+  it("Get Row Relation", async () => {
+    const res = await model.getRowRelation(userFieldInfo.id, row.id);
     expect(res.statusCode).toEqual(200);
     expect(res.data.totalCount).toEqual(2);
   });
 
-  it("Remove Line Relation", async () => {
-    const res = await model.removeLineRelation(
+  it("Remove Row Relation", async () => {
+    const res = await model.removeRowRelation(
       userFieldInfo.id,
-      line.id,
+      row.id,
       "642164533014849679c57d35"
     );
     expect(res.statusCode).toEqual(200);
   });
 
-  it("Get Line Relation", async () => {
-    const res = await model.getLineRelation(userFieldInfo.id, line.id);
+  it("Get Row Relation", async () => {
+    const res = await model.getRowRelation(userFieldInfo.id, row.id);
     expect(res.statusCode).toEqual(200);
     expect(res.data.totalCount).toEqual(1);
   });
 
-  it("Update Line", async () => {
+  it("Update Row", async () => {
     const newUnitTest = "更新测试用例";
-    const res = await model.updateLine<Line>(unitTestFieldInfo.id, {
+    const res = await model.updateRow<Row>(unitTestFieldInfo.id, {
       unitTest: newUnitTest,
     });
     expect(res.statusCode).toEqual(200);
     expect(res.data.unitTest).toEqual(newUnitTest);
   });
 
-  it("Filter Line", async () => {
-    const res = await model.filter<Line>({
+  it("Filter Row", async () => {
+    const res = await model.filter<Row>({
       query: {
         keywords: "试用",
         conjunction: Conjunction.AND,
@@ -190,11 +190,11 @@ describe("Metadata", () => {
     });
     expect(res.statusCode).toEqual(200);
     expect(res.data.totalCount).toEqual(1);
-    expect(res.data.list[0].unitTest).toEqual(line.unitTest);
+    expect(res.data.list[0].unitTest).toEqual(row.unitTest);
   });
 
-  it("Remove Line", async () => {
-    const res = await model.removeLine([line.id]);
+  it("Remove Row", async () => {
+    const res = await model.removeRow([row.id]);
     expect(res.statusCode).toEqual(200);
   });
 

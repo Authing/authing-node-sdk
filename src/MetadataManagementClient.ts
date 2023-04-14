@@ -212,14 +212,14 @@ export class MetadataModel {
   /**
    * 创建行
    */
-  public createLine<MetadataDataType = Record<string, BaseType>>(
+  public createRow<MetadataDataType = Record<string, BaseType>>(
     data: MetadataDataType
   ) {
     return this.httpClient.request<
       MetadataCommonResponseDto<MetadataDataType & ReserveKey>
     >({
       method: "POST",
-      url: "/api/v3/metadata/create-line",
+      url: "/api/v3/metadata/create-row",
       data: {
         modelId: this.modelId,
         data,
@@ -231,12 +231,12 @@ export class MetadataModel {
    * 获取单行
    * @param id 行 id
    */
-  public getLine<MetadataDataType = Record<string, BaseType>>(id: string) {
+  public getRow<MetadataDataType = Record<string, BaseType>>(id: string) {
     return this.httpClient.request<
       MetadataCommonResponseDto<MetadataDataType & ReserveKey>
     >({
       method: "GET",
-      url: "/api/v3/metadata/get-line",
+      url: "/api/v3/metadata/get-row",
       params: {
         modelId: this.modelId,
         rowId: id,
@@ -249,7 +249,7 @@ export class MetadataModel {
    * @param id 行 id
    * @param updates 更新信息
    */
-  public updateLine<MetadataDataType = Record<string, BaseType>>(
+  public updateRow<MetadataDataType = Record<string, BaseType>>(
     id: string,
     updates: Partial<MetadataDataType>
   ) {
@@ -257,7 +257,7 @@ export class MetadataModel {
       MetadataCommonResponseDto<Partial<MetadataDataType & ReserveKey>>
     >({
       method: "POST",
-      url: "/api/v3/metadata/update-line",
+      url: "/api/v3/metadata/update-row",
       data: {
         modelId: this.modelId,
         rowId: id,
@@ -269,10 +269,10 @@ export class MetadataModel {
   /**
    * 批量删除行
    */
-  public removeLine(idList: string[]) {
+  public removeRow(idList: string[]) {
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
-      url: "/api/v3/metadata/remove-line",
+      url: "/api/v3/metadata/remove-row",
       data: {
         modelId: this.modelId,
         rowIdList: idList,
@@ -286,7 +286,7 @@ export class MetadataModel {
    * @param rowId 行 id
    * @param value 关联数据的 id
    */
-  public createLineRelation(
+  public createRowRelation(
     fieldId: string,
     rowId: string,
     value: string | string[]
@@ -296,7 +296,7 @@ export class MetadataModel {
     }
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
-      url: "/api/v3/metadata/create-line-relation",
+      url: "/api/v3/metadata/create-row-relation",
       data: {
         modelId: this.modelId,
         fieldId,
@@ -312,7 +312,7 @@ export class MetadataModel {
    * @param rowId 行 id
    * @param value 关联数据的 id
    */
-  public getLineRelation(
+  public getRowRelation(
     fieldId: string,
     rowId: string,
     paginateOpt: {
@@ -324,7 +324,7 @@ export class MetadataModel {
       MetadataCommonResponseDto<PaginateRes<string>>
     >({
       method: "GET",
-      url: "/api/v3/metadata/get-line-relation",
+      url: "/api/v3/metadata/get-row-relation",
       params: {
         modelId: this.modelId,
         fieldId,
@@ -340,10 +340,10 @@ export class MetadataModel {
    * @param rowId 行 id
    * @param value 关联数据 id
    */
-  public removeLineRelation(fieldId: string, rowId: string, value: string) {
+  public removeRowRelation(fieldId: string, rowId: string, value: string) {
     return this.httpClient.request<MetadataCommonResponseDto>({
       method: "POST",
-      url: "/api/v3/metadata/remove-line-relation",
+      url: "/api/v3/metadata/remove-row-relation",
       data: {
         modelId: this.modelId,
         fieldId,
