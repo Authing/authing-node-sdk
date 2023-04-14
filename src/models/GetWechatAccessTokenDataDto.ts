@@ -10,5 +10,5 @@ export type GetWechatAccessTokenDataDto = {
     /**
      * Access Token 到期时间，为单位为秒的时间戳
      */
-    expiresAt: number;
+    expiresAt: string;
 };

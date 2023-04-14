@@ -12,7 +12,7 @@ import {
   LogoutURLParams,
   OIDCTokenResponse,
 } from "./AuthenticationClientInterface";
-import {AuthenticationClientInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE,} from "./AuthenticationClientOptions";
+import {AuthenticationClientInitOptions, DEFAULT_COOKIE_KEY, DEFAULT_SCOPE, DEFAULT_SOCKET_URI} from "./AuthenticationClientOptions";
 import {createQueryParams, domainC14n, generateRandomString, JoseKey, JWKSObject, parseJWKS, serialize,} from "./utils";
 import sha256 from "crypto-js/sha256";
 import CryptoJS from "crypto-js";
@@ -25,51 +25,101 @@ import {
   OauthParams,
   OidcParams,
 } from "./utils/types";
-import {SigninByCredentialsDto, SignInOptionsDto, SignUpDto, SignUpOptionsDto, SignUpProfileDto} from "./models";
+import {
+  MfaTokenIntrospectEndpointParams, MfaTokenIntrospectResponse,
+  SigninByCredentialsDto,
+  SignInOptionsDto,
+  SignUpDto,
+  SignUpOptionsDto,
+  SignUpProfileDto
+} from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
+import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
+import type { BindByAccountIdInputApi } from './models/BindByAccountIdInputApi';
+import type { BindByAccountInputApi } from './models/BindByAccountInputApi';
+import type { BindByAccountsInputApi } from './models/BindByAccountsInputApi';
+import type { BindByEmailCodeInputApi } from './models/BindByEmailCodeInputApi';
+import type { BindByPhoneCodeInputApi } from './models/BindByPhoneCodeInputApi';
+import type { BindByRegiserInputApi } from './models/BindByRegiserInputApi';
 import type { BindEmailDto } from './models/BindEmailDto';
 import type { BindPhoneDto } from './models/BindPhoneDto';
 import type { ChangePushCodeStatusDto } from './models/ChangePushCodeStatusDto';
 import type { ChangeQRCodeStatusDto } from './models/ChangeQRCodeStatusDto';
+import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
+import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
+import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
 import type { CheckPushCodeStatusRespDto } from './models/CheckPushCodeStatusRespDto';
 import type { CheckQRCodeStatusRespDto } from './models/CheckQRCodeStatusRespDto';
+import type { CheckResourcePermissionsRespDto } from './models/CheckResourcePermissionsRespDto';
 import type { CommonResponseDto } from './models/CommonResponseDto';
+import type { DecryptWechatMiniProgramDataDto } from './models/DecryptWechatMiniProgramDataDto';
+import type { DecryptWechatMiniProgramDataRespDto } from './models/DecryptWechatMiniProgramDataRespDto';
 import type { DeleteAccounDto } from './models/DeleteAccounDto';
 import type { ExchangeTokenSetWithQRcodeTicketDto } from './models/ExchangeTokenSetWithQRcodeTicketDto';
-import type { GeneFastpassQRCodeRespDto } from './models/GeneFastpassQRCodeRespDto';
 import type { GenePushCodeRespDto } from './models/GenePushCodeRespDto';
 import type { GeneQRCodeRespDto } from './models/GeneQRCodeRespDto';
+import type { GenerateBindExtIdpLinkRespDto } from './models/GenerateBindExtIdpLinkRespDto';
 import type { GenerateQrcodeDto } from './models/GenerateQrcodeDto';
+import type { GetAccessibleAppsRespDto } from './models/GetAccessibleAppsRespDto';
 import type { GetAlipayAuthInfoRespDto } from './models/GetAlipayAuthInfoRespDto';
+import type { GetAuthenticationOptionsRespDto } from './models/GetAuthenticationOptionsRespDto';
 import type { GetCountryListRespDto } from './models/GetCountryListRespDto';
-import type { GetFastpassQRCodeRelationAppsRespDto } from './models/GetFastpassQRCodeRelationAppsRespDto';
+import type { GetExtIdpsRespDto } from './models/GetExtIdpsRespDto';
+import type { GetIdentitiesRespDto } from './models/GetIdentitiesRespDto';
+import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
+import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
+import type { GetRegistrationOptionsRespDto } from './models/GetRegistrationOptionsRespDto';
 import type { GetSecurityInfoRespDto } from './models/GetSecurityInfoRespDto';
+import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
+import type { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
+import type { GetUserAuthResourcePermissionListDto } from './models/GetUserAuthResourcePermissionListDto';
+import type { GetUserAuthResourcePermissionListRespDto } from './models/GetUserAuthResourcePermissionListRespDto';
+import type { GetUserAuthResourceStructDto } from './models/GetUserAuthResourceStructDto';
+import type { GetUserAuthResourceStructRespDto } from './models/GetUserAuthResourceStructRespDto';
+import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
+import type { GetWechatAccessTokenInfoRespDto } from './models/GetWechatAccessTokenInfoRespDto';
+import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
+import type { GroupListRespDto } from './models/GroupListRespDto';
 import type { IsSuccessRespDto } from './models/IsSuccessRespDto';
 import type { LoginTokenRespDto } from './models/LoginTokenRespDto';
+import type { LoginTokenResponseDataDto } from './models/LoginTokenResponseDataDto';
 import type { PasswordResetVerifyResp } from './models/PasswordResetVerifyResp';
 import type { ResetPasswordDto } from './models/ResetPasswordDto';
+import type { RoleListRespDto } from './models/RoleListRespDto';
 import type { SendEmailDto } from './models/SendEmailDto';
 import type { SendEmailRespDto } from './models/SendEmailRespDto';
 import type { SendSMSDto } from './models/SendSMSDto';
 import type { SendSMSRespDto } from './models/SendSMSRespDto';
 import type { SigninByMobileDto } from './models/SigninByMobileDto';
 import type { SignInByPushDto } from './models/SignInByPushDto';
-import type { SignInFastpassDto } from './models/SignInFastpassDto';
 import type { SystemInfoResp } from './models/SystemInfoResp';
 import type { UnbindEmailDto } from './models/UnbindEmailDto';
 import type { UnbindPhoneDto } from './models/UnbindPhoneDto';
+import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
 import type { UpdateEmailDto } from './models/UpdateEmailDto';
 import type { UpdatePasswordDto } from './models/UpdatePasswordDto';
 import type { UpdatePhoneDto } from './models/UpdatePhoneDto';
 import type { UpdateUserProfileDto } from './models/UpdateUserProfileDto';
+import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
 import type { UserSingleRespDto } from './models/UserSingleRespDto';
+import type { VerifyAuthenticationDto } from './models/VerifyAuthenticationDto';
+import type { VerifyAuthenticationResultRespDto } from './models/VerifyAuthenticationResultRespDto';
 import type { VerifyDeleteAccountRequestDto } from './models/VerifyDeleteAccountRequestDto';
 import type { VerifyDeleteAccountRequestRespDto } from './models/VerifyDeleteAccountRequestRespDto';
+import type { VerifyRegistrationDto } from './models/VerifyRegistrationDto';
+import type { VerifyRegistrationResultRespDto } from './models/VerifyRegistrationResultRespDto';
 import type { VerifyResetPasswordRequestDto } from './models/VerifyResetPasswordRequestDto';
 import type { VerifyUpdateEmailRequestDto } from './models/VerifyUpdateEmailRequestDto';
 import type { VerifyUpdateEmailRequestRespDto } from './models/VerifyUpdateEmailRequestRespDto';
 import type { VerifyUpdatePhoneRequestDto } from './models/VerifyUpdatePhoneRequestDto';
 import type { VerifyUpdatePhoneRequestRespDto } from './models/VerifyUpdatePhoneRequestRespDto';
+import type { WechatLoginTokenRespDto } from './models/WechatLoginTokenRespDto';
+import type { WechatMobileAuthByCodeIdentityInput } from './models/WechatMobileAuthByCodeIdentityInput';
+import type { GeneFastpassQRCodeRespDto } from './models/GeneFastpassQRCodeRespDto';
+import type { GetFastpassQRCodeRelationAppsRespDto } from './models/GetFastpassQRCodeRelationAppsRespDto';
+import type { GetPushCodeRelationAppsDto } from './models/GetPushCodeRelationAppsDto';
+import type { GetPushCodeRelationAppsRespDto } from './models/GetPushCodeRelationAppsRespDto';
+import type { SignInFastpassDto } from './models/SignInFastpassDto';
 import type { AppQRCodeLoginDto } from './models/AppQRCodeLoginDto';
 import type { CheckDeviceCredentialIdDto } from './models/CheckDeviceCredentialIdDto';
 import type { ListDeviceCredentialDto } from './models/ListDeviceCredentialDto';
@@ -88,53 +138,21 @@ import type { ResetFactorDto } from './models/ResetFactorDto';
 import type { ResetFactorRespDto } from './models/ResetFactorRespDto';
 import type { SendEnrollFactorRequestDto } from './models/SendEnrollFactorRequestDto';
 import type { SendEnrollFactorRequestRespDto } from './models/SendEnrollFactorRequestRespDto';
-import type { AuthorizedResourcePaginatedRespDto } from './models/AuthorizedResourcePaginatedRespDto';
-import type { BindByAccountIdInputApi } from './models/BindByAccountIdInputApi';
-import type { BindByAccountInputApi } from './models/BindByAccountInputApi';
-import type { BindByAccountsInputApi } from './models/BindByAccountsInputApi';
-import type { BindByEmailCodeInputApi } from './models/BindByEmailCodeInputApi';
-import type { BindByPhoneCodeInputApi } from './models/BindByPhoneCodeInputApi';
-import type { BindByRegiserInputApi } from './models/BindByRegiserInputApi';
-import type { CheckPermissionArrayResourceDto } from './models/CheckPermissionArrayResourceDto';
-import type { CheckPermissionStringResourceDto } from './models/CheckPermissionStringResourceDto';
-import type { CheckPermissionTreeResourceDto } from './models/CheckPermissionTreeResourceDto';
-import type { CheckResourcePermissionsRespDto } from './models/CheckResourcePermissionsRespDto';
-import type { DecryptWechatMiniProgramDataDto } from './models/DecryptWechatMiniProgramDataDto';
-import type { DecryptWechatMiniProgramDataRespDto } from './models/DecryptWechatMiniProgramDataRespDto';
-import type { GenerateBindExtIdpLinkRespDto } from './models/GenerateBindExtIdpLinkRespDto';
-import type { GetAccessibleAppsRespDto } from './models/GetAccessibleAppsRespDto';
-import type { GetExtIdpsRespDto } from './models/GetExtIdpsRespDto';
-import type { GetIdentitiesRespDto } from './models/GetIdentitiesRespDto';
-import type { GetLoggedInAppsRespDto } from './models/GetLoggedInAppsRespDto';
-import type { GetLoginHistoryRespDto } from './models/GetLoginHistoryRespDto';
-import type { GetTenantListRespDto } from './models/GetTenantListRespDto';
-import type { GetWechatAccessTokenDto } from './models/GetWechatAccessTokenDto';
-import type { GetWechatAccessTokenRespDto } from './models/GetWechatAccessTokenRespDto';
-import type { GroupListRespDto } from './models/GroupListRespDto';
-import type { LoginTokenResponseDataDto } from './models/LoginTokenResponseDataDto';
-import type { RoleListRespDto } from './models/RoleListRespDto';
-import type { UnlinkExtIdpDto } from './models/UnlinkExtIdpDto';
-import type { UserDepartmentPaginatedRespDto } from './models/UserDepartmentPaginatedRespDto';
-import type { WechatLoginTokenRespDto } from './models/WechatLoginTokenRespDto';
-import type { WechatMobileAuthByCodeIdentityInput } from './models/WechatMobileAuthByCodeIdentityInput';
-import type { GetAuthenticationOptionsRespDto } from './models/GetAuthenticationOptionsRespDto';
-import type { GetRegistrationOptionsRespDto } from './models/GetRegistrationOptionsRespDto';
-import type { VerifyAuthenticationDto } from './models/VerifyAuthenticationDto';
-import type { VerifyAuthenticationResultRespDto } from './models/VerifyAuthenticationResultRespDto';
-import type { VerifyRegistrationDto } from './models/VerifyRegistrationDto';
-import type { VerifyRegistrationResultRespDto } from './models/VerifyRegistrationResultRespDto';
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
-import { GetUserAuthResourcePermissionListDto } from "./models/GetUserAuthResourcePermissionListDto";
-import { GetUserAuthResourcePermissionListRespDto } from "./models/GetUserAuthResourcePermissionListRespDto";
-import { GetUserAuthResourceStructDto } from "./models/GetUserAuthResourceStructDto";
-import { GetUserAuthResourceStructRespDto } from "./models/GetUserAuthResourceStructRespDto";
-import { GetUserAuthResourceListRespDto } from './models/GetUserAuthResourceListRespDto';
+import WebSocket from 'ws';
+const pkg = require("../package.json")
 
 export class AuthenticationClient {
   private readonly options: Required<AuthenticationClientInitOptions>;
   private readonly httpClient: AuthenticationHttpClient;
+  private wsMap: {[propName: string]: {
+    socket: WebSocket,
+    lockConnect: boolean,
+    timeConnect: number
+  }};
+  private eventBus: {[propName: string]: [Function, Function][]};
 
   constructor(options: AuthenticationClientInitOptions) {
     options.cookieKey = options.cookieKey ?? DEFAULT_COOKIE_KEY;
@@ -147,6 +165,8 @@ export class AuthenticationClient {
     options.revocationEndPointAuthMethod =
       options.revocationEndPointAuthMethod ?? "client_secret_post";
     options.timeout = options.timeout || 10000;
+    options.retryTimes = options.retryTimes ?? 5;
+    options.socketUri = options.socketUri ?? DEFAULT_SOCKET_URI;
 
     if (!options.scope?.includes("openid")) {
       throw new Error("scope 中必须包含 openid");
@@ -175,6 +195,8 @@ export class AuthenticationClient {
     this.options.appHost = domainC14n(options.appHost);
 
     this.httpClient = new AuthenticationHttpClient(this.options);
+    this.wsMap = {};
+    this.eventBus = {}
   }
 
   /**
@@ -1557,155 +1579,156 @@ export class AuthenticationClient {
 
   // ==== AUTO GENERATED AUTHENTICATION METHODS BEGIN ====
 /**
- * @summary 使用用户凭证登录
- * @description
- * 此端点为基于直接 API 调用形式的登录端点，适用于你需要自建登录页面的场景。**此端点暂时不支持 MFA、信息补全、首次密码重置等流程，如有需要，请使用 OIDC 标准协议认证端点。**
- *
- *
- * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
- *
- * <details>
- * <summary>点击展开详情</summary>
- *
- * <br>
- *
- * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
- * 中找到**换取 token 身份验证方式** 配置项：
- *
- * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
- *
- * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
- *
- * #### 换取 token 身份验证方式为 none 时
- *
- * 调用此接口不需要进行额外操作。
- *
- * #### 换取 token 身份验证方式为 client_secret_post 时
- *
- * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
- *
- * #### 换取 token 身份验证方式为 client_secret_basic 时
- *
- * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
- *
- * ```
- * Basic base64(<client_id>:<client_secret>)
- * ```
- *
- * 结果示例：
- *
- * ```
- * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
- * ```
- *
- * JS 代码示例：
- *
- * ```js
- * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
- * ```
- *
- * </details>
- *
- *
- * @returns LoginTokenRespDto 成功认证
- */
-public async signInByCredentials(requestBody: SigninByCredentialsDto,
-): Promise<LoginTokenRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/signin',
-        data: requestBody,
-    });
-    return result;
-}
-/**
- * @summary 使用移动端社会化登录
- * @description
- * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
- *
- *
- * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
- *
- * <details>
- * <summary>点击展开详情</summary>
- *
- * <br>
- *
- * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
- * 中找到**换取 token 身份验证方式** 配置项：
- *
- * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
- *
- * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
- *
- * #### 换取 token 身份验证方式为 none 时
- *
- * 调用此接口不需要进行额外操作。
- *
- * #### 换取 token 身份验证方式为 client_secret_post 时
- *
- * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
- *
- * #### 换取 token 身份验证方式为 client_secret_basic 时
- *
- * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
- *
- * ```
- * Basic base64(<client_id>:<client_secret>)
- * ```
- *
- * 结果示例：
- *
- * ```
- * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
- * ```
- *
- * JS 代码示例：
- *
- * ```js
- * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
- * ```
- *
- * </details>
- *
- *
- * @returns LoginTokenRespDto
- */
-public async signInByMobile(requestBody: SigninByMobileDto,
-): Promise<LoginTokenRespDto> {
-    const result = await this.httpClient.request({
-        method: 'POST',
-        url: '/api/v3/signin-by-mobile',
-        data: requestBody,
-    });
-    return result;
-}
-/**
- * @summary 获取支付宝 AuthInfo
- * @description 此接口用于获取发起支付宝认证需要的[初始化参数 AuthInfo](https://opendocs.alipay.com/open/218/105325)。
- * @returns GetAlipayAuthInfoRespDto
- */
-public async getAlipayAuthInfo({
-    extIdpConnidentifier,
-}: {
-    /** 外部身份源连接标志符 **/
-    extIdpConnidentifier: string,
-}): Promise<GetAlipayAuthInfoRespDto> {
-    const result = await this.httpClient.request({
-        method: 'GET',
-        url: '/api/v3/get-alipay-authinfo',
-        params: {
-            extIdpConnidentifier: extIdpConnidentifier,
-        },
-    });
-    return result;
-}
-/**
- * @summary 生成用于登录的二维码
- * @description 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
- * @returns GeneQRCodeRespDto
- */
-public async geneQrCode(requestBody: GenerateQrcodeDto,
+            /**
+             * @summary 使用用户凭证登录
+             * @description
+             * 此端点为基于直接 API 调用形式的登录端点，适用于你需要自建登录页面的场景。**此端点暂时不支持 MFA、信息补全、首次密码重置等流程，如有需要，请使用 OIDC 标准协议认证端点。**
+             *
+             *
+             * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+             *
+             * <details>
+             * <summary>点击展开详情</summary>
+             *
+             * <br>
+             *
+             * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+             * 中找到**换取 token 身份验证方式** 配置项：
+             *
+             * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+             *
+             * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+             *
+             * #### 换取 token 身份验证方式为 none 时
+             *
+             * 调用此接口不需要进行额外操作。
+             *
+             * #### 换取 token 身份验证方式为 client_secret_post 时
+             *
+             * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+             *
+             * #### 换取 token 身份验证方式为 client_secret_basic 时
+             *
+             * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+             *
+             * ```
+             * Basic base64(<client_id>:<client_secret>)
+             * ```
+             *
+             * 结果示例：
+             *
+             * ```
+             * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+             * ```
+             *
+             * JS 代码示例：
+             *
+             * ```js
+             * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+             * ```
+             *
+             * </details>
+             *
+             *
+             * @returns LoginTokenRespDto 成功认证
+             */
+            public async signInByCredentials(requestBody: SigninByCredentialsDto,
+        ): Promise<LoginTokenRespDto> {
+            const result = await this.httpClient.request({
+                method: 'POST',
+                url: '/api/v3/signin',
+                data: requestBody,
+            });
+            return result;
+        }
+        /**
+         * @summary 使用移动端社会化登录
+         * @description
+         * 此端点为移动端社会化登录接口，使用第三方移动社会化登录返回的临时凭证登录，并换取用户的 `id_token` 和 `access_token`。请先阅读相应社会化登录的接入流程。
+         *
+         *
+         * 注意事项：取决于你在 Authing 创建应用时选择的**应用类型**和应用配置的**换取 token 身份验证方式**，在调用此接口时需要对客户端的身份进行不同形式的验证。
+         *
+         * <details>
+         * <summary>点击展开详情</summary>
+         *
+         * <br>
+         *
+         * 你可以在 [Authing 控制台](https://console.authing.cn) 的**应用** - **自建应用** - **应用详情** - **应用配置** - **其他设置** - **授权配置**
+         * 中找到**换取 token 身份验证方式** 配置项：
+         *
+         * > 单页 Web 应用和客户端应用隐藏，默认为 `none`，不允许修改；后端应用和标准 Web 应用可以修改此配置项。
+         *
+         * ![](https://files.authing.co/api-explorer/tokenAuthMethod.jpg)
+         *
+         * #### 换取 token 身份验证方式为 none 时
+         *
+         * 调用此接口不需要进行额外操作。
+         *
+         * #### 换取 token 身份验证方式为 client_secret_post 时
+         *
+         * 调用此接口时必须在 body 中传递 `client_id` 和 `client_secret` 参数，作为验证客户端身份的条件。其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。
+         *
+         * #### 换取 token 身份验证方式为 client_secret_basic 时
+         *
+         * 调用此接口时必须在 HTTP 请求头中携带 `authorization` 请求头，作为验证客户端身份的条件。`authorization` 请求头的格式如下（其中 `client_id` 为应用 ID、`client_secret` 为应用密钥。）：
+         *
+         * ```
+         * Basic base64(<client_id>:<client_secret>)
+         * ```
+         *
+         * 结果示例：
+         *
+         * ```
+         * Basic NjA2M2ZiMmYzY3h4eHg2ZGY1NWYzOWViOjJmZTdjODdhODFmODY3eHh4eDAzMjRkZjEyZGFlZGM3
+         * ```
+         *
+         * JS 代码示例：
+         *
+         * ```js
+         * 'Basic ' + Buffer.from(client_id + ':' + client_secret).toString('base64');
+         * ```
+         *
+         * </details>
+         *
+         *
+         * @returns LoginTokenRespDto
+         */
+        public async signInByMobile(requestBody: SigninByMobileDto,
+    ): Promise<LoginTokenRespDto> {
+        const result = await this.httpClient.request({
+            method: 'POST',
+            url: '/api/v3/signin-by-mobile',
+            data: requestBody,
+        });
+        return result;
+    }
+    /**
+     * @summary 获取支付宝 AuthInfo
+     * @description 此接口用于获取发起支付宝认证需要的[初始化参数 AuthInfo](https://opendocs.alipay.com/open/218/105325)。
+     * @returns GetAlipayAuthInfoRespDto
+     */
+    public async getAlipayAuthInfo({
+        extIdpConnidentifier,
+    }: {
+        /** 外部身份源连接标志符 **/
+        extIdpConnidentifier: string,
+    }): Promise<GetAlipayAuthInfoRespDto> {
+        const result = await this.httpClient.request({
+            method: 'GET',
+            url: '/api/v3/get-alipay-authinfo',
+            params: {
+                extIdpConnidentifier: extIdpConnidentifier,
+            },
+        });
+        return result;
+    }
+    /**
+     * @summary 生成用于登录的二维码
+     * @description 生成用于登录的二维码，目前支持生成微信公众号扫码登录、小程序扫码登录、自建移动 APP 扫码登录的二维码。
+     * @returns GeneQRCodeRespDto
+     */
+    public async geneQrCode(requestBody: GenerateQrcodeDto,
 ): Promise<GeneQRCodeRespDto> {
     const result = await this.httpClient.request({
         method: 'POST',
@@ -2062,7 +2085,7 @@ public async verifyUpdateEmailRequest(requestBody: VerifyUpdateEmailRequestDto,
 }
 /**
  * @summary 修改邮箱
- * @description 终端用户自主修改邮箱，需要提供相应的验证手段，见[发起修改邮箱的验证请求](#tag/用户资料/修改邮箱/operation/ProfileV3Controller_updateEmailVerification)。
+ * @description 终端用户自主修改邮箱，需要提供相应的验证手段，见[发起修改邮箱的验证请求](#tag/用户资料/API%20列表/operation/ProfileV3Controller_verifyUpdateEmailRequest)。
  * 此参数需要提供一次性临时凭证 `updateEmailToken`，此数据需要从**发起修改邮箱的验证请求**接口获取。
  * @returns CommonResponseDto
  */
@@ -2091,7 +2114,7 @@ public async verifyUpdatePhoneRequest(requestBody: VerifyUpdatePhoneRequestDto,
 }
 /**
  * @summary 修改手机号
- * @description 终端用户自主修改手机号，需要提供相应的验证手段，见[发起修改手机号的验证请求](#tag/用户资料/修改邮箱/operation/ProfileV3Controller_updatePhoneVerification)。
+ * @description 终端用户自主修改手机号，需要提供相应的验证手段，见[发起修改手机号的验证请求](#tag/用户资料/API%20列表/operation/ProfileV3Controller_updatePhoneVerification)。
  * 此参数需要提供一次性临时凭证 `updatePhoneToken`，此数据需要从**发起修改手机号的验证请求**接口获取。
  * @returns CommonResponseDto
  */
@@ -2184,6 +2207,23 @@ public async getCountryList(): Promise<GetCountryListRespDto> {
     });
     return result;
 }
+
+/**
+ * @summary 获取推送登录请求关联的客户端应用
+ * @description 此端点用于在 Authing 令牌 APP 收到推送登录通知时，可检查当前用户登录的应用是否支持对推送登录请求进行授权。
+ * @returns GetPushCodeRelationAppsRespDto
+ */
+public async getPushLoginRelationApps(requestBody: GetPushCodeRelationAppsDto,
+): Promise<GetPushCodeRelationAppsRespDto> {
+    const result = await this.httpClient.request({
+        method: 'POST',
+        url: '/api/v3/get-pushlogin-relation-apps',
+        data: requestBody,
+    });
+    return result;
+}
+
+
 /**
  * @summary 查询个人中心「快速认证二维码」的状态
  * @description 按照用户扫码顺序，共分为未扫码、已扫码、已登录、二维码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
@@ -2770,7 +2810,7 @@ public async getUserAuthorizedResourcesList(): Promise<GetUserAuthResourceListRe
  * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
  * @returns GetUserAuthResourcePermissionListRespDto
  */
-public async getUserResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto,
+public async getUserAuthResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto,
 ): Promise<GetUserAuthResourcePermissionListRespDto> {
     const result = await this.httpClient.request({
         method: 'POST',
@@ -2784,7 +2824,7 @@ public async getUserResourcePermissionList(requestBody: GetUserAuthResourcePermi
  * @description 获取用户授权的资源列表，用户获取某个应用下的某个资源所授权的结构列表，通过不同的资源类型返回对应资源的授权列表。
  * @returns GetUserAuthResourceStructRespDto
  */
-public async getUserResourceStruct(requestBody: GetUserAuthResourceStructDto,
+public async getUserAuthResourceStruct(requestBody: GetUserAuthResourceStructDto,
 ): Promise<GetUserAuthResourceStructRespDto> {
     const result = await this.httpClient.request({
         method: 'POST',
@@ -2944,34 +2984,169 @@ public async verifyRegister(requestBody: VerifyRegistrationDto,
     return result;
 }
 
+  /**
+   * @summary 验证 MFA Token
+   * @description 验证 MFA Token
+   * @returns MfaTokenIntrospectResponse
+   */
+  public async verifyMfaToken(formData: MfaTokenIntrospectEndpointParams,
+  ): Promise<MfaTokenIntrospectResponse> {
+    const result = await this.httpClient.request({
+      method: 'POST',
+      url: '/mfa/token/introspection',
+    });
+    return result;
+  }
+
 
 // ==== AUTO GENERATED AUTHENTICATION METHODS END ====
 
+/**
+ * @summary socket 重连
+ * @returns
+ */
+private reconnect(eventName: string) {
+  return new Promise((resolve, reject) => {
+    if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
+      if (!this.wsMap[eventName].lockConnect) {
+        this.wsMap[eventName].lockConnect = true
+        this.wsMap[eventName].timeConnect ++
+        setTimeout(() => {
+          this.wsMap[eventName].lockConnect = false
+          this.initWebSocket(eventName, true).then(res => {
+            resolve(true)
+          }).catch(e => {
+            reject(e)
+          })
+        }, 2000);
+      }
+    } else {
+      reject(`socket 服务连接超时`);
+    }
+  })
+}
+
+/**
+ * @summary 建立 socket 连接，监听 message 回调事件队列
+ * @returns
+ */
+private initWebSocket(eventName: string, retry?: boolean) {
+  return new Promise((resolve, reject) => {
+    if (!this.wsMap[eventName] || retry) {
+      this.wsMap[eventName] = {
+        socket: new WebSocket(`${this.options.socketUri}/events/v1/authentication/sub?code=${eventName}&token=${this.options.accessToken}`),
+        timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
+        lockConnect: false
+      }
+
+      this.wsMap[eventName].socket.on('open', () => {
+        resolve(true)
+      })
+
+      this.wsMap[eventName].socket.on('message', (data: Buffer) => {
+        try {
+          if (this.eventBus[eventName]) {
+            this.eventBus[eventName].forEach(callback => {
+              callback[0](data.toString("utf8"))
+            })
+          } else {
+            // 未订阅事件
+            console.warn("未订阅的事件：", eventName);
+          }
+        } catch (error) {
+          return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
+        }
+      })
+
+      this.wsMap[eventName].socket.on('error', async(e) => {
+        try {
+          await this.reconnect(eventName)
+          resolve(true)
+        } catch (error) {
+          return reject(`socket 连接异常：${e}`)
+        }
+      })
+
+      this.wsMap[eventName].socket.on('close', async() => {
+        try {
+          await this.reconnect(eventName)
+          resolve(true)
+        } catch (error) {
+          return reject(`socket 连接关闭`)
+        }
+      })
+    } else {
+      resolve(true)
+    }
+  })
+}
+
   /**
-   * @summary 获取用户指定资源权限列表
-   * @description 获取用户指定资源的权限列表,用户获取某个应用下指定资源的权限列表。
-   * @returns GetUserAuthResourcePermissionListRespDto
+   * @summary 事件订阅
+   * @description 订阅后通过建立 socket 连接接收服务端消息回调
+   * @returns
    */
-  public async getUserAuthResourcePermissionList(requestBody: GetUserAuthResourcePermissionListDto): Promise<GetUserAuthResourcePermissionListRespDto> {
-    return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/get-user-auth-resource-permission-list',
-      data: requestBody,
-    });
+  public sub(eventName: string, callback: Function, errCallback: Function) {
+    /**
+     * 1. 判断是否连接 socket
+     * 2. 获取 socket 实例
+     * 3. 订阅
+     */
+    if (typeof eventName !== 'string') {
+      throw new Error("订阅事件名称为 string 类型！！！")
+    }
+
+    if (typeof callback !== 'function') {
+      throw new Error("订阅事件回调函数需要为 function 类型！！！");
+    }
+
+    if (!this.options.socketUri) {
+      throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
+    }
+
+    if (!this.options.accessToken) {
+      throw new Error("订阅事件需要 accessToken！！！")
+    }
+
+    this.initWebSocket(eventName).catch(e => {
+      this.eventBus[eventName].forEach((item) => {
+        item[1]?.(e)
+      })
+    })
+
+    if (this.eventBus[eventName]) {
+      this.eventBus[eventName].push([callback, errCallback])
+    } else {
+      this.eventBus[eventName] = [[callback, errCallback]]
+    }
   }
 
   /**
-   * @summary   获取用户授权资源的结构列表
-   * @description 获取用户授权的资源列表，用户获取某个应用下的某个资源所授权的结构列表，通过不同的资源类型返回对应资源的授权列表。
-   * @returns GetUserAuthResourceStructRespDto
-   */
+     * @summary 事件发布
+     * @description 客户调用发布事件到事件中心
+     * @returns
+     */
+  public async pub(eventName: string, data: string) {
+    if (typeof eventName !== 'string') {
+      throw new Error("事件名称为 string 类型！！！")
+    }
 
-  public async getUserAuthResourceStruct(requestBody: GetUserAuthResourceStructDto): Promise<GetUserAuthResourceStructRespDto> {
+    if (typeof data !== 'string') {
+      throw new Error("发布数据为 string 类型！！！")
+    }
+
+    if (!this.options.accessToken) {
+      throw new Error("accessToken 为必填项")
+    }
+
     return await this.httpClient.request({
-      method: 'POST',
-      url: '/api/v3/get-user-auth-resource-struct',
-      data: requestBody,
+      method: "POST",
+      url: "/api/v3/pub-userEvent",
+      data: {
+        eventType: eventName,
+        source: `${pkg.name}: ${pkg.version}`,
+        eventData: data
+      },
     });
   }
-
 }

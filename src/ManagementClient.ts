@@ -342,6 +342,8 @@ import type { DeleteAccessKeyDto } from "./models/DeleteAccessKeyDto";
 import type { GetAccessKeyResponseDto } from "./models/GetAccessKeyResponseDto";
 import type { ListAccessKeyResponseDto } from "./models/ListAccessKeyResponseDto";
 import type { UpdateAccessKeyDto } from "./models/UpdateAccessKeyDto";
+import WebSocket from 'ws';
+
 
 import {
   DEFAULT_OPTIONS,
@@ -350,17 +352,37 @@ import {
 import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
+import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
+import {GetMapInfoRespDto} from "./models/GetMapInfoRespDto";
+import {UpdateAuthEnabledDto} from "./models/UpdateAuthEnabledDto";
+import {ListApplicationAuthDto} from "./models/ListApplicationAuthDto";
+import {ListApplicationAuthPaginatedRespDto} from "./models/ListApplicationAuthPaginatedRespDto";
+import {GetSubjectAuthRespDto} from "./models/GetSubjectAuthRespDto";
+import {ListAuthSubjectDto} from "./models/ListAuthSubjectDto";
+import {ListApplicationSubjectRespDto} from "./models/ListApplicationSubjectRespDto";
+import {UpdateApplicationMfaSettingsDto} from "./models/UpdateApplicationMfaSettingsDto";
+
+const pkg = require("../package.json")
 
 export class ManagementClient {
   private httpClient: ManagementHttpClient;
   private options: ManagementClientOptions;
+  private wsMap: {[propName: string]: {
+    socket: WebSocket,
+    lockConnect: boolean,
+    timeConnect: number
+  }};
+  private eventBus: {[propName: string]: [Function, Function][]};
 
   constructor(options: ManagementClientOptions) {
     // @ts-ignore
-    Object.keys(options).forEach((i: any) => !options[i] && delete options[i]);
+    Object.keys(options).forEach((i: any) => typeof options[i] !== 'number' && !options[i] && delete options[i]);
     this.options = Object.assign({}, DEFAULT_OPTIONS, options);
     Axios.defaults.baseURL = domainC14n(String(this.options.host));
     this.httpClient = new ManagementHttpClient(this.options);
+    this.wsMap = {};
+    this.eventBus = {}
+
 
     if (!this.options.accessKeyId) {
       throw new Error("accessKeyId is required");
@@ -1128,11 +1150,11 @@ export class ManagementClient {
    * {
    * "advancedFilter": [
    * {
-   * "field": "lastLoginTime",
+   * "field": "lastLogin",
    * "operator": "BETWEEN",
    * "value": [
-   * new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-   * new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * Date.now() - 14 * 24 * 60 * 60 * 1000,
+   * Date.now() - 7 * 24 * 60 * 60 * 1000
    * ]
    * }
    * ]
@@ -2139,6 +2161,20 @@ export class ManagementClient {
       },
     });
   }
+
+  // /**
+  //  * @summary 获取用户自定义加密的密码
+  //  * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
+  //  * @returns GetUserPasswordCiphertextRespDto
+  //  */
+  // public async getUserPasswordCiphertext(requestBody: GetUserPasswordCiphertextDto,
+  // ): Promise<GetUserPasswordCiphertextRespDto> {
+  //   return await this.httpClient.request({
+  //     method: 'POST',
+  //     url: '/api/v3/get-user-password-ciphertext',
+  //     data: requestBody,
+  //   });
+  // }
 
   /**
    * @summary 获取组织机构详情
@@ -4213,18 +4249,105 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 主体授权详情
+   * @description 主体授权详情
+   * @returns GetSubjectAuthRespDto
+   */
+  public async detailAuthSubject({
+                                   targetId,
+                                   targetType,
+                                   appId,
+                                 }: {
+    /** 主体 id **/
+    targetId: string,
+    /** 主体类型 **/
+    targetType: 'USER' | 'ROLE' | 'GROUP' | 'ORG' | 'AK_SK',
+    /** 应用 ID **/
+    appId: string,
+  }): Promise<GetSubjectAuthRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-subject-auth-detail',
+      params: {
+        targetId: targetId,
+        targetType: targetType,
+        appId: appId,
+      },
+    });
+  }
+
+  /**
+   * @summary 主体授权列表
+   * @description 主体授权列表
+   * @returns ListApplicationSubjectRespDto
+   */
+  public async listAuthSubject(requestBody: ListAuthSubjectDto,
+  ): Promise<ListApplicationSubjectRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/list-subject-auth',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 应用授权列表
+   * @description 应用授权列表
+   * @returns ListApplicationAuthPaginatedRespDto
+   */
+  public async listAuthApplication(requestBody: ListApplicationAuthDto,
+  ): Promise<ListApplicationAuthPaginatedRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/list-applications-auth',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 更新授权开关
+   * @description 更新授权开关
+   * @returns IsSuccessRespDto
+   */
+  public async enabledAuth(requestBody: UpdateAuthEnabledDto,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-auth-enabled',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 批量删除应用授权
+   * @description 批量删除应用授权
+   * @returns IsSuccessRespDto
+   */
+  public async deleteAuth(authIds: Array<string>,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'DELETE',
+      url: '/api/v3/batch-applications-auth',
+      params: {
+        authIds: authIds,
+      },
+    });
+  }
+
+  /**
    * @summary 获取应用列表
    * @description 获取应用列表
    * @returns ApplicationPaginatedRespDto
    */
   public async listApplications({
-    page = 1,
-    limit = 10,
-    isIntegrateApp = false,
-    isSelfBuiltApp = false,
-    ssoEnabled = false,
-    keywords,
-  }: {
+                                  page = 1,
+                                  limit = 10,
+                                  isIntegrateApp = false,
+                                  isSelfBuiltApp = false,
+                                  ssoEnabled = false,
+                                  keywords,
+                                  all,
+                                }: {
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -4236,7 +4359,9 @@ export class ManagementClient {
     /** 是否开启单点登录 **/
     ssoEnabled?: boolean;
     /** 模糊搜索字符串 **/
-    keywords?: string;
+    keywords?: string,
+    /** 搜索应用，true：搜索所有应用, 默认为 false **/
+    all?: boolean,
   }): Promise<ApplicationPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -4248,6 +4373,7 @@ export class ManagementClient {
         isSelfBuiltApp: isSelfBuiltApp,
         ssoEnabled: ssoEnabled,
         keywords: keywords,
+        all: all,
       },
     });
   }
@@ -4558,6 +4684,56 @@ export class ManagementClient {
       method: "POST",
       url: "/api/v3/change-userpool-tenant-ext-idp-conn-state",
       data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 修改应用多因素认证配置
+   * @description 传入 MFA 认证因素列表进行开启或关闭
+   * @returns MFASettingsRespDto
+   */
+  public async updateApplicationMfaSettings(requestBody: UpdateApplicationMfaSettingsDto,
+  ): Promise<MFASettingsRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-application-mfa-settings',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取应用下用户 MFA 触发数据
+   * @description 获取应用下用户 MFA 触发数据。
+   * @returns GetMapInfoRespDto
+   */
+  public async getMfaTriggerData({
+                                   appId,
+                                   userId,
+                                   userIdType = 'user_id',
+                                 }: {
+    /** 所属应用 ID **/
+    appId: string,
+    /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+    userId: string,
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity',
+  }): Promise<GetMapInfoRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-mfa-trigger-data',
+      params: {
+        appId: appId,
+        userId: userId,
+        userIdType: userIdType,
+      },
     });
   }
 
@@ -5572,8 +5748,8 @@ export class ManagementClient {
    * "field": "lastLoginTime",
    * "operator": "BETWEEN",
    * "value": [
-   * new Date(Date.now() - 14 * 24 * 60 * 60 * 1000),
-   * new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+   * Date.now() - 14 * 24 * 60 * 60 * 1000,
+   * Date.now() - 7 * 24 * 60 * 60 * 1000
    * ]
    * }
    * ]
@@ -8335,4 +8511,156 @@ export class ManagementClient {
       data: requestBody,
     });
   }
+
+  /**
+   * @summary socket 重连
+   * @returns
+   */
+  private reconnect(eventName: string) {
+    return new Promise((resolve, reject) => {
+      if (this.options.retryTimes && this.wsMap[eventName].timeConnect < this.options.retryTimes) {
+        if (!this.wsMap[eventName].lockConnect) {
+          this.wsMap[eventName].lockConnect = true
+          this.wsMap[eventName].timeConnect ++
+          setTimeout(() => {
+            this.wsMap[eventName].lockConnect = false
+            this.initWebSocket(eventName, true).then(res => {
+              resolve(true)
+            }).catch(e => {
+              reject(e)
+            })
+          }, 2000);
+        }
+      } else {
+        reject(`socket 服务连接超时`);
+      }
+    })
+  }
+
+  /**
+   * @summary 建立 socket 连接，监听 message 回调事件队列
+   * @returns
+   */
+  private initWebSocket(eventName: string, retry?: boolean) {
+    return new Promise((resolve, reject) => {
+      if (!this.wsMap[eventName] || retry) {
+
+        this.wsMap[eventName] = {
+          socket: new WebSocket(`${this.options.socketUri}/events/v1/management/sub?code=${eventName}`, {
+            headers: {
+              // 构建 token
+              authorization: buildAuthorization(
+                this.options.accessKeyId,
+                this.options.accessKeySecret,
+                buildStringToSign("websocket", '', {}, {})
+              )
+            }
+          }),
+          timeConnect: retry ? this.wsMap[eventName].timeConnect : 0,
+          lockConnect: false
+        }
+
+        this.wsMap[eventName].socket.on('open', () => {
+          resolve(true)
+        })
+
+        this.wsMap[eventName].socket.on('message', (data: Buffer) => {
+          try {
+            if (this.eventBus[eventName]) {
+              this.eventBus[eventName].forEach(callback => {
+                callback[0](data.toString("utf8"))
+              })
+            } else {
+              // 未订阅事件
+              console.warn("未订阅的事件：", eventName);
+            }
+          } catch (error) {
+            return reject(`数据格式化错误，检查传输数据格式！！！ ${error}`);
+          }
+        })
+
+        this.wsMap[eventName].socket.on('error', async(e) => {
+          try {
+            await this.reconnect(eventName)
+            resolve(true)
+          } catch (error) {
+            return reject(`socket 连接异常：${e}`)
+          }
+        })
+
+        this.wsMap[eventName].socket.on('close', async() => {
+          try {
+            await this.reconnect(eventName)
+            resolve(true)
+          } catch (error) {
+            return reject(`socket 连接关闭`)
+          }
+        })
+      } else {
+        resolve(true)
+      }
+    })
+  }
+
+  /**
+   * @summary 事件订阅
+   * @description 订阅后通过建立 socket 连接接收服务端消息回调
+   * @returns
+   */
+  public sub(eventName: string, callback: Function, errCallback: Function) {
+    /**
+     * 1. 判断是否连接 socket
+     * 2. 获取 socket 实例
+     * 3. 订阅
+     */
+    if (typeof eventName !== 'string') {
+      throw new Error("订阅事件名称为 string 类型！！！")
+    }
+
+    if (typeof callback !== 'function') {
+      throw new Error("订阅事件回调函数需要为 function 类型！！！");
+    }
+
+    if (!this.options.socketUri) {
+      throw new Error("订阅事件需要添加 socketUri 连接地址！！！")
+    }
+
+    this.initWebSocket(eventName).catch(e => {
+      this.eventBus[eventName].forEach((item) => {
+        item[1]?.(e)
+      })
+    })
+
+    if (this.eventBus[eventName]) {
+      this.eventBus[eventName].push([callback, errCallback])
+    } else {
+      this.eventBus[eventName] = [[callback, errCallback]]
+    }
+  }
+
+  /**
+   * @summary 事件发布
+   * @description 客户调用发布事件到事件中心
+   * @returns
+   */
+  public async pub(eventName: string, data: string) {
+    if (typeof eventName !== 'string') {
+      throw new Error("事件名称为 string 类型！！！")
+    }
+
+    if (typeof data !== 'string') {
+      throw new Error("发布数据为 string 类型！！！")
+    }
+
+    return await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/pub-event",
+      data: {
+        eventType: eventName,
+        source: `${pkg.name}: ${pkg.version}`,
+        eventData: data
+      },
+    });
+  }
+
 }

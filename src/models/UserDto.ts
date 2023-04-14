@@ -203,6 +203,10 @@ export type UserDto = {
      */
     resetPasswordOnNextLogin?: boolean;
     /**
+     * 注册方式
+     */
+    registerSource?: Array<string>;
+    /**
      * 用户所属部门 ID 列表
      */
     departmentIds?: Array<string>;

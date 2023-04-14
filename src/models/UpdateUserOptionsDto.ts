@@ -18,6 +18,10 @@ export type UpdateUserOptionsDto = {
      */
     userIdType?: UpdateUserOptionsDto.userIdType;
     /**
+     * 设置用户首次登录要求重置密码
+     */
+    resetPasswordOnFirstLogin?: boolean;
+    /**
      * 下次登录要求重置密码
      */
     resetPasswordOnNextLogin?: boolean;
