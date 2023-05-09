@@ -353,14 +353,31 @@ import { ManagementHttpClient } from "./ManagementHttpClient";
 import { domainC14n } from "./utils";
 import Axios, { AxiosRequestConfig } from "axios";
 import { buildAuthorization, buildStringToSign } from "./utils/buildSignature";
-import {GetMapInfoRespDto} from "./models/GetMapInfoRespDto";
-import {UpdateAuthEnabledDto} from "./models/UpdateAuthEnabledDto";
-import {ListApplicationAuthDto} from "./models/ListApplicationAuthDto";
-import {ListApplicationAuthPaginatedRespDto} from "./models/ListApplicationAuthPaginatedRespDto";
-import {GetSubjectAuthRespDto} from "./models/GetSubjectAuthRespDto";
-import {ListAuthSubjectDto} from "./models/ListAuthSubjectDto";
-import {ListApplicationSubjectRespDto} from "./models/ListApplicationSubjectRespDto";
-import {UpdateApplicationMfaSettingsDto} from "./models/UpdateApplicationMfaSettingsDto";
+import { GetMapInfoRespDto } from "./models/GetMapInfoRespDto";
+import { UpdateAuthEnabledDto } from "./models/UpdateAuthEnabledDto";
+import { ListApplicationAuthDto } from "./models/ListApplicationAuthDto";
+import { ListApplicationAuthPaginatedRespDto } from "./models/ListApplicationAuthPaginatedRespDto";
+import { GetSubjectAuthRespDto } from "./models/GetSubjectAuthRespDto";
+import { ListAuthSubjectDto } from "./models/ListAuthSubjectDto";
+import { ListApplicationSubjectRespDto } from "./models/ListApplicationSubjectRespDto";
+import { UpdateApplicationMfaSettingsDto } from "./models/UpdateApplicationMfaSettingsDto";
+import { LdapLogRespDto } from "./models/LdapLogRespDto";
+import {LdapGetBindPwdRespDto} from "./models/LdapGetBindPwdRespDto";
+import {LdapConfigInfoRespDto} from "./models/LdapConfigInfoRespDto";
+import {LdapUpdateDto} from "./models/LdapUpdateDto";
+import {LdapOperateRespDto} from "./models/LdapOperateRespDto";
+import {LdapSaveDto} from "./models/LdapSaveDto";
+import {LdapSetEnabledFlagDto} from "./models/LdapSetEnabledFlagDto";
+import {GetPushCodeRelationAppsDto, GetPushCodeRelationAppsRespDto} from "./models";
+import {GetUserPasswordCiphertextRespDto} from "./models/GetUserPasswordCiphertextRespDto";
+import {GetUserPasswordCiphertextDto} from "./models/GetUserPasswordCiphertextDto";
+import {LinkIdentity} from "./models/LinkIdentity";
+import {UnlinkIdentity} from "./models/UnlinkIdentity";
+import {SetMfaStatusDto} from "./models/SetMfaStatusDto";
+import {SyncRelationListRespDto} from "./models/SyncRelationListRespDto";
+import {ListCistomFieldsResDto} from "./models/ListCistomFieldsResDto";
+import {DeleteCustomFieldsReqDto} from "./models/DeleteCustomFieldsReqDto";
+import {UpdateTenantAppqrcodeState} from "./models/UpdateTenantAppqrcodeState";
 
 const pkg = require("../package.json")
 
@@ -403,11 +420,12 @@ export class ManagementClient {
    * @returns PostPaginatedRespDto
    */
   public async postList({
-    keywords,
-    skipCount,
-    page = 1,
-    limit = 10,
-  }: {
+                          keywords,
+                          skipCount,
+                          page = 1,
+                          limit = 10,
+                          withMetadata,
+                        }: {
     /** 搜索岗位 code 或名称 **/
     keywords?: string;
     /** 是否统计岗位关联的部门数和用户数 **/
@@ -415,7 +433,9 @@ export class ManagementClient {
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
+    limit?: number,
+    /** 是否展示元数据内容 **/
+    withMetadata?: boolean,
   }): Promise<PostPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -425,6 +445,7 @@ export class ManagementClient {
         skipCount: skipCount,
         page: page,
         limit: limit,
+        withMetadata: withMetadata,
       },
     });
   }
@@ -1290,14 +1311,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 是否获取 identities **/
@@ -1340,14 +1357,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 是否获取 identities **/
@@ -1429,7 +1442,7 @@ export class ManagementClient {
   }
 
   /**
-   * @summary 删除用户
+   * @summary 批量删除用户
    * @description 通过用户 ID 列表，删除用户，支持批量删除，可以选择指定用户 ID 类型等。
    * @returns IsSuccessRespDto
    */
@@ -1462,14 +1475,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<IdentityListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1501,14 +1510,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
   }): Promise<RolePaginatedRespDto> {
@@ -1542,14 +1547,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<PrincipalAuthenticationInfoPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1601,14 +1602,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
@@ -1676,14 +1673,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<GroupPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1714,14 +1707,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<UserMfaSingleRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1808,14 +1797,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<AppListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1846,14 +1831,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<AppListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1905,14 +1886,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 应用 ID **/
     appId?: string;
     /** 客户端 IP **/
@@ -1961,14 +1938,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<UserLoggedInAppsListRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -1999,14 +1972,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<UserLoggedInIdentitiesRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -2069,14 +2038,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
     /** 所属权限分组(权限空间)的 Code **/
     namespace?: string;
     /** 资源类型，如 数据、API、菜单、按钮 **/
@@ -2143,14 +2108,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?:
-      | "user_id"
-      | "external_id"
-      | "phone"
-      | "email"
-      | "username"
-      | "identity";
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<GetOtpSecretRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -2162,19 +2123,129 @@ export class ManagementClient {
     });
   }
 
-  // /**
-  //  * @summary 获取用户自定义加密的密码
-  //  * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
-  //  * @returns GetUserPasswordCiphertextRespDto
-  //  */
-  // public async getUserPasswordCiphertext(requestBody: GetUserPasswordCiphertextDto,
-  // ): Promise<GetUserPasswordCiphertextRespDto> {
-  //   return await this.httpClient.request({
-  //     method: 'POST',
-  //     url: '/api/v3/get-user-password-ciphertext',
-  //     data: requestBody,
-  //   });
-  // }
+  /**
+   * @summary 获取用户自定义加密的密码
+   * @description 此功能主要是用户在控制台配置加基于 RSA、SM2 等加密的密钥后，加密用户的密码。
+   * @returns GetUserPasswordCiphertextRespDto
+   */
+  public async getUserPasswordCiphertext(requestBody: GetUserPasswordCiphertextDto,
+  ): Promise<GetUserPasswordCiphertextRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-user-password-ciphertext',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 给用户绑定一个身份信息
+   * @description 用户池管理员手动将来自外部身份源的身份信息绑定到用户上。绑定完成后，可以用执行过绑定操作的身份源登录到对应的 Authing 用户。
+   * @returns any
+   */
+  public async linkIdentity(requestBody: LinkIdentity,
+  ): Promise<any> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/link-identity',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 解除绑定用户在身份源下的所有身份信息
+   * @description 解除绑定用户在某个身份源下的所有身份信息。解绑后，将无法使用执行过解绑操作的身份源登录到对应的 Authing 用户，除非重新绑定身份信息。
+   * @returns any
+   */
+  public async unlinkIdentity(requestBody: UnlinkIdentity,
+  ): Promise<any> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/unlink-identity',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 设置用户 MFA 状态
+   * @description 设置用户 MFA 状态，即 MFA 触发数据。
+   * @returns IsSuccessRespDto
+   */
+  public async setUsersMfaStatus(requestBody: SetMfaStatusDto,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/set-mfa-status',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 获取用户 MFA 状态
+   * @description 获取用户 MFA 状态，即 MFA 触发数据。
+   * @returns GetMapInfoRespDto
+   */
+  public async getUserMfaStatus({
+                                  userId,
+                                  userIdType = 'user_id',
+                                }: {
+    /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+    userId: string,
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
+  }): Promise<GetMapInfoRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-mfa-status',
+      params: {
+        userId: userId,
+        userIdType: userIdType,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取用户绑定的第三方同步关系
+   * @description 如果在 Authing 中的用户进行了上下游同步，此接口可以用于查询出在第三方的关联用户信息
+   * @returns SyncRelationListRespDto
+   */
+  public async getUserSyncRelations({
+                                      userId,
+                                      userIdType = 'user_id',
+                                    }: {
+    /** 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。 **/
+    userId: string,
+    /** 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *  **/
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
+  }): Promise<SyncRelationListRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-user-sync-relations',
+      params: {
+        userId: userId,
+        userIdType: userIdType,
+      },
+    });
+  }
 
   /**
    * @summary 获取组织机构详情
@@ -2369,7 +2440,7 @@ export class ManagementClient {
     /** 部门 code。departmentId 和 departmentCode 必传其一。 **/
     departmentCode?: string;
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 租户 ID **/
@@ -2484,7 +2555,7 @@ export class ManagementClient {
     /** 需要获取的部门 ID **/
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否要排除虚拟组织 **/
     excludeVirtualNode?: boolean;
     /** 是否只包含虚拟组织 **/
@@ -2537,7 +2608,7 @@ export class ManagementClient {
     /** 增序还是倒序 **/
     orderBy?: "Asc" | "Desc";
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否包含子部门的成员 **/
     includeChildrenDepartments?: boolean;
     /** 当前页数，从 1 开始 **/
@@ -2589,7 +2660,7 @@ export class ManagementClient {
     /** 部门 ID，根部门传 `root` **/
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 租户 ID **/
     tenantId?: string;
   }): Promise<UserIdListRespDto> {
@@ -2634,7 +2705,7 @@ export class ManagementClient {
     /** 每页数目，最大不能超过 50，默认为 10 **/
     limit?: number;
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否包含子部门的成员 **/
     includeChildrenDepartments?: boolean;
     /** 是否获取自定义数据 **/
@@ -2712,7 +2783,7 @@ export class ManagementClient {
     /** 部门 ID **/
     departmentId: string;
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否获取自定义数据 **/
     withCustomData?: boolean;
     /** 租户 ID **/
@@ -2749,9 +2820,9 @@ export class ManagementClient {
     /** 组织 code **/
     organizationCode: string;
     /** 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。 **/
-    departmentId: string;
+    departmentId: string,
     /** 此次调用中使用的部门 ID 的类型 **/
-    departmentIdType?: "department_id" | "open_department_id";
+    departmentIdType?: 'department_id' | 'open_department_id' | 'sync_relation',
     /** 是否包含子部门 **/
     includeChildrenDepartments?: boolean;
     /** 租户 ID **/
@@ -2836,16 +2907,19 @@ export class ManagementClient {
    * @returns GroupPaginatedRespDto
    */
   public async listGroups({
-    keywords,
-    page = 1,
-    limit = 10,
-  }: {
+                            keywords,
+                            page = 1,
+                            limit = 10,
+                            withMetadata,
+                          }: {
     /** 搜索分组 code 或分组名称 **/
     keywords?: string;
     /** 当前页数，从 1 开始 **/
     page?: number;
     /** 每页数目，最大不能超过 50，默认为 10 **/
-    limit?: number;
+    limit?: number,
+    /** 是否展示元数据内容 **/
+    withMetadata?: boolean,
   }): Promise<GroupPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -2854,6 +2928,7 @@ export class ManagementClient {
         keywords: keywords,
         page: page,
         limit: limit,
+        withMetadata: withMetadata,
       },
     });
   }
@@ -3570,6 +3645,67 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 获取用户内置字段列表
+   * @description 获取用户内置的字段列表
+   * @returns ListCistomFieldsResDto
+   */
+  public async listUserBaseFields({
+                                    targetType,
+                                    dataType,
+                                    tenantId,
+                                    page = 1,
+                                    limit = 10,
+                                    userVisible,
+                                    adminVisible,
+                                    accessControl,
+                                    keyword,
+                                    lang,
+                                  }: {
+    /** 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     * ;该接口暂不支持分组(GROUP) **/
+    targetType: 'USER' | 'ROLE' | 'GROUP' | 'DEPARTMENT',
+    /** 字段类型 **/
+    dataType: 'STRING' | 'NUMBER' | 'DATETIME' | 'BOOLEAN' | 'OBJECT' | 'SELECT',
+    /** 租户 ID **/
+    tenantId?: string,
+    /** 当前页数，从 1 开始 **/
+    page?: number,
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number,
+    /** 用户是否可见 **/
+    userVisible?: boolean,
+    /** 管理员是否可见 **/
+    adminVisible?: boolean,
+    /** 访问控制 **/
+    accessControl?: boolean,
+    /** 搜索关键词 **/
+    keyword?: string,
+    /** 搜索语言 **/
+    lang?: string,
+  }): Promise<ListCistomFieldsResDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/list-user-base-fields',
+      params: {
+        tenantId: tenantId,
+        targetType: targetType,
+        dataType: dataType,
+        page: page,
+        limit: limit,
+        userVisible: userVisible,
+        adminVisible: adminVisible,
+        accessControl: accessControl,
+        keyword: keyword,
+        lang: lang,
+      },
+    });
+  }
+
+  /**
    * @summary 修改用户内置字段配置
    * @description 修改用户内置字段配置，内置字段不允许修改数据类型、唯一性。
    * @returns CustomFieldListRespDto
@@ -3610,6 +3746,67 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 获取自定义字段列表
+   * @description 通过主体类型，获取用户、部门或角色的自定义字段列表。
+   * @returns ListCistomFieldsResDto
+   */
+  public async listCustFields({
+                                targetType,
+                                dataType,
+                                tenantId,
+                                page = 1,
+                                limit = 10,
+                                userVisible,
+                                adminVisible,
+                                accessControl,
+                                keyword,
+                                lang,
+                              }: {
+    /** 目标对象类型：
+     * - `USER`: 用户
+     * - `ROLE`: 角色
+     * - `GROUP`: 分组
+     * - `DEPARTMENT`: 部门
+     * ;该接口暂不支持分组(GROUP) **/
+    targetType: 'USER' | 'ROLE' | 'GROUP' | 'DEPARTMENT',
+    /** 字段类型 **/
+    dataType: 'STRING' | 'NUMBER' | 'DATETIME' | 'BOOLEAN' | 'OBJECT' | 'SELECT',
+    /** 租户 ID **/
+    tenantId?: string,
+    /** 当前页数，从 1 开始 **/
+    page?: number,
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number,
+    /** 用户是否可见 **/
+    userVisible?: boolean,
+    /** 管理员是否可见 **/
+    adminVisible?: boolean,
+    /** 访问控制 **/
+    accessControl?: boolean,
+    /** 搜索关键词 **/
+    keyword?: string,
+    /** 搜索语言 **/
+    lang?: string,
+  }): Promise<ListCistomFieldsResDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/list-custom-fields',
+      params: {
+        tenantId: tenantId,
+        targetType: targetType,
+        dataType: dataType,
+        page: page,
+        limit: limit,
+        userVisible: userVisible,
+        adminVisible: adminVisible,
+        accessControl: accessControl,
+        keyword: keyword,
+        lang: lang,
+      },
+    });
+  }
+
+  /**
    * @summary 创建/修改自定义字段定义
    * @description 创建/修改用户、部门或角色自定义字段定义，如果传入的 key 不存在则创建，存在则更新。
    * @returns CustomFieldListRespDto
@@ -3620,6 +3817,20 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "POST",
       url: "/api/v3/set-custom-fields",
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 删除自定义字段定义
+   * @description 删除用户、部门或角色自定义字段定义。
+   * @returns IsSuccessRespDto
+   */
+  public async deleteCustomFields(requestBody: DeleteCustomFieldsReqDto,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/delete-custom-fields',
       data: requestBody,
     });
   }
@@ -3645,10 +3856,13 @@ export class ManagementClient {
    * @returns GetCustomDataRespDto
    */
   public async getCustomData({
-    targetType,
-    targetIdentifier,
-    namespace,
-  }: {
+                               tenantId,
+                               targetType,
+                               targetIdentifier,
+                               namespace,
+                             }: {
+    /** 租户 ID **/
+    tenantId: string,
     /** 目标对象类型：
      * - `USER`: 用户
      * - `ROLE`: 角色
@@ -3670,6 +3884,7 @@ export class ManagementClient {
       method: "GET",
       url: "/api/v3/get-custom-data",
       params: {
+        tenantId: tenantId,
         targetType: targetType,
         targetIdentifier: targetIdentifier,
         namespace: namespace,
@@ -4673,6 +4888,20 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 更新租户控制台扫码登录状态
+   * @description 更新租户控制台扫码登录状态
+   * @returns IsSuccessRespDto
+   */
+  public async updateTenantQrCodeState(requestBody: UpdateTenantAppqrcodeState,
+  ): Promise<IsSuccessRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-userpool-tenant-appqrcode-state',
+      data: requestBody,
+    });
+  }
+
+  /**
    * @summary 设置用户池多租户身份源连接
    * @description 设置用户池多租户身份源连接，支持同时设置多个身份源连接，支持设置连接和取消连接
    * @returns IsSuccessRespDto
@@ -4723,8 +4952,10 @@ export class ManagementClient {
      * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
      * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
      * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
      *  **/
-    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity',
+    userIdType?: 'user_id' | 'external_id' | 'phone' | 'email' | 'username' | 'identity' | 'sync_relation',
   }): Promise<GetMapInfoRespDto> {
     return await this.httpClient.request({
       method: 'GET',
@@ -5083,14 +5314,15 @@ export class ManagementClient {
    * @returns TenantListPaginatedRespDto
    */
   public async listTenants({
-    keywords,
-    withMembersCount,
-    withAppDetail,
-    withCreatorDetail,
-    withSourceAppDetail,
-    page,
-    limit,
-  }: {
+                             keywords,
+                             withMembersCount,
+                             withAppDetail,
+                             withCreatorDetail,
+                             withSourceAppDetail,
+                             page,
+                             limit,
+                             source,
+                           }: {
     /** 搜索关键字 **/
     keywords?: string;
     /** 是否增加返回租户成员统计 **/
@@ -5104,7 +5336,9 @@ export class ManagementClient {
     /** 页码 **/
     page?: string;
     /** 每页获取的数据量 **/
-    limit?: string;
+    limit?: string,
+    /** 租户来源 **/
+    source?: any,
   }): Promise<TenantListPaginatedRespDto> {
     return await this.httpClient.request({
       method: "GET",
@@ -5117,6 +5351,43 @@ export class ManagementClient {
         withSourceAppDetail: withSourceAppDetail,
         page: page,
         limit: limit,
+        source: source,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取租户一点点的信息
+   * @description 根据租户 ID 获取租户一点点的详情
+   * @returns TenantSingleRespDto
+   */
+  public async getTenantLittleInfo({
+                                     tenantId,
+                                     withMembersCount,
+                                     withAppDetail,
+                                     withCreatorDetail,
+                                     withSourceAppDetail,
+                                   }: {
+    /** 租户 ID **/
+    tenantId: string,
+    /** 是否增加返回租户成员统计 **/
+    withMembersCount?: boolean,
+    /** 增加返回租户关联应用简单信息 **/
+    withAppDetail?: boolean,
+    /** 增加返回租户下创建者简单信息 **/
+    withCreatorDetail?: boolean,
+    /** 增加返回租户来源应用简单信息 **/
+    withSourceAppDetail?: boolean,
+  }): Promise<TenantSingleRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-tenant-little-info',
+      params: {
+        tenantId: tenantId,
+        withMembersCount: withMembersCount,
+        withAppDetail: withAppDetail,
+        withCreatorDetail: withCreatorDetail,
+        withSourceAppDetail: withSourceAppDetail,
       },
     });
   }
@@ -5571,6 +5842,26 @@ export class ManagementClient {
       url: "/api/v3/delete-tenant-cooperator",
       params: {
         userId: userId,
+      },
+    });
+  }
+
+  /**
+   * @summary 获取租户详情
+   * @description 根据租户 Code 获取租户详情
+   * @returns TenantSingleRespDto
+   */
+  public async getTenantByCode({
+                                 code,
+                               }: {
+    /** 租户 Code **/
+    code: string,
+  }): Promise<TenantSingleRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-tenant-by-code',
+      params: {
+        code: code,
       },
     });
   }
@@ -7999,6 +8290,21 @@ export class ManagementClient {
   }
 
   /**
+   * @summary 获取推送登录请求关联的客户端应用
+   * @description 此端点用于在 Authing 令牌 APP 收到推送登录通知时，可检查当前用户登录的应用是否支持对推送登录请求进行授权。
+   * @returns GetPushCodeRelationAppsRespDto
+   */
+  public async getPushLoginRelationApps(requestBody: GetPushCodeRelationAppsDto,
+  ): Promise<GetPushCodeRelationAppsRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/get-pushlogin-relation-apps',
+      data: requestBody,
+    });
+  }
+
+
+  /**
    * @summary 推送登录
    * @description 推送登录。
    * @returns GenePushCodeRespDto
@@ -8019,8 +8325,8 @@ export class ManagementClient {
    * @returns CheckPushCodeStatusRespDto
    */
   public async checkPushCodeStatus({
-    pushCodeId,
-  }: {
+                                     pushCodeId,
+                                   }: {
     /** 推送码（推送登录唯一 ID） **/
     pushCodeId: string;
   }): Promise<CheckPushCodeStatusRespDto> {
@@ -8408,6 +8714,152 @@ export class ManagementClient {
     return await this.httpClient.request({
       method: "GET",
       url: "/api/v3/get-webhook-event-list",
+    });
+  }
+
+  /**
+   * @summary 生成 LDAP Server 管理员密码
+   * @description 生成 LDAP Server 管理员密码
+   * @returns LdapGetBindPwdRespDto
+   */
+  public async getBindPwd(): Promise<LdapGetBindPwdRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-ldap-server-random-pwd',
+    });
+  }
+
+  /**
+   * @summary 获取 LDAP server 配置信息
+   * @description 获取 LDAP server 配置信息
+   * @returns LdapConfigInfoRespDto
+   */
+  public async queryLdapConfigInfo(): Promise<LdapConfigInfoRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-ldap-server-config',
+    });
+  }
+
+  /**
+   * @summary 更新 LDAP server 配置信息
+   * @description 更新 LDAP server 配置信息
+   * @returns LdapOperateRespDto
+   */
+  public async updateLdapConfigInfo(requestBody: LdapUpdateDto,
+  ): Promise<LdapOperateRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/update-ldap-server-config',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 初始化/重启 LDAP server
+   * @description 初始化/重启 LDAP server
+   * @returns LdapOperateRespDto
+   */
+  public async saveLdapConfigInfo(requestBody: LdapSaveDto,
+  ): Promise<LdapOperateRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/enable-ldap-server',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary 关闭 LDAP server 服务，关闭前必须先初始化
+   * @description 关闭 LDAP server 服务，关闭前必须先初始化
+   * @returns LdapOperateRespDto
+   */
+  public async disableLdapServer(requestBody: LdapSetEnabledFlagDto,
+  ): Promise<LdapOperateRespDto> {
+    return await this.httpClient.request({
+      method: 'POST',
+      url: '/api/v3/disable-ldap-server',
+      data: requestBody,
+    });
+  }
+
+  /**
+   * @summary LDAP server 日志查询
+   * @description LDAP server 日志查询
+   * @returns LdapLogRespDto
+   */
+  public async queryLdapLog({
+                              type,
+                              page,
+                              limit,
+                              connection,
+                              operationNumber,
+                              errorCode,
+                              message,
+                              startTime,
+                              endTime,
+                            }: {
+    /** 类型：1 访问日志，2 错误日志 **/
+    type: number,
+    /** 当前页,从 1 开始 **/
+    page: number,
+    /** 每页条数 **/
+    limit: number,
+    /** 连接标识 **/
+    connection?: number,
+    /** 操作码 **/
+    operationNumber?: number,
+    /** 错误码 **/
+    errorCode?: number,
+    /** 消息内容 **/
+    message?: string,
+    /** 开始时间-时间戳 **/
+    startTime?: number,
+    /** 结束时间-时间戳 **/
+    endTime?: number,
+  }): Promise<LdapLogRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-ldap-server-log',
+      params: {
+        type: type,
+        connection: connection,
+        operationNumber: operationNumber,
+        errorCode: errorCode,
+        message: message,
+        startTime: startTime,
+        endTime: endTime,
+        page: page,
+        limit: limit,
+      },
+    });
+  }
+
+  /**
+   * @summary LDAP server 根据 DN 查询下一级
+   * @description LDAP server 根据 DN 查询下一级
+   * @returns LdapLogRespDto
+   */
+  public async queryLdapSubEntries({
+                                     page,
+                                     limit,
+                                     dn,
+                                   }: {
+    /** 当前页,从 1 开始 **/
+    page: number,
+    /** 每页条数 **/
+    limit: number,
+    /** 当前 DN **/
+    dn?: string,
+  }): Promise<LdapLogRespDto> {
+    return await this.httpClient.request({
+      method: 'GET',
+      url: '/api/v3/get-ldap-sub-entries',
+      params: {
+        dn: dn,
+        page: page,
+        limit: limit,
+      },
     });
   }
 
