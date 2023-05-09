@@ -18,6 +18,10 @@ export type CreateDepartmentReqDto = {
      */
     parentDepartmentId: string;
     /**
+     * 元数据信息
+     */
+    metadata: any;
+    /**
      * 自定义部门 ID，用于存储自定义的 ID
      */
     openDepartmentId?: string;
@@ -63,6 +67,7 @@ export namespace CreateDepartmentReqDto {
     export enum departmentIdType {
         DEPARTMENT_ID = 'department_id',
         OPEN_DEPARTMENT_ID = 'open_department_id',
+        SYNC_RELATION = 'sync_relation',
     }
 
 

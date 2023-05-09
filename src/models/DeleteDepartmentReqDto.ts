@@ -29,6 +29,7 @@ export namespace DeleteDepartmentReqDto {
     export enum departmentIdType {
         DEPARTMENT_ID = 'department_id',
         OPEN_DEPARTMENT_ID = 'open_department_id',
+        SYNC_RELATION = 'sync_relation',
     }
 
 

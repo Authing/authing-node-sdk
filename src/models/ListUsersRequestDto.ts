@@ -15,6 +15,10 @@ export type ListUsersRequestDto = {
      */
     advancedFilter?: Array<ListUsersAdvancedFilterItemDto>;
     /**
+     * 使用 ES 查询语句执行搜索命令
+     */
+    searchQuery?: any;
+    /**
      * 可选项
      */
     options?: ListUsersOptionsDto;

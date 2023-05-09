@@ -12,39 +12,39 @@ export type GetMfaInfoDataDto = {
     /**
      * MFA 绑定的手机号
      */
-    mfaPhone: string;
+    mfaPhone?: string;
     /**
      * MFA 绑定的手机区号
      */
-    mfaPhoneCountryCode: string;
+    mfaPhoneCountryCode?: string;
     /**
      * MFA 绑定的邮箱
      */
-    mfaEmail: string;
+    mfaEmail?: string;
     /**
      * 用户昵称
      */
-    nickname: string;
+    nickname?: string;
     /**
      * 用户名
      */
-    username: string;
+    username?: string;
     /**
      * 用户手机号
      */
-    phone: string;
+    phone?: string;
     /**
      * 用户手机区号
      */
-    phoneCountryCode: string;
+    phoneCountryCode?: string;
     /**
      * 人脸校验是否开启
      */
-    faceMfaEnabled: boolean;
+    faceMfaEnabled?: boolean;
     /**
      * OTP 校验是否开启
      */
-    totpMfaEnabled: boolean;
+    totpMfaEnabled?: boolean;
     /**
      * MFA Factor 列表
      */
