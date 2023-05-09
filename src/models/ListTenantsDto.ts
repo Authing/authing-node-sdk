@@ -34,4 +34,8 @@ export type ListTenantsDto = {
      * 每页获取的数据量
      */
     limit?: any;
+    /**
+     * 租户来源
+     */
+    source?: any;
 };

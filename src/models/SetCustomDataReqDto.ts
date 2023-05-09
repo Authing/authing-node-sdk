@@ -28,6 +28,10 @@ export type SetCustomDataReqDto = {
      */
     targetType: SetCustomDataReqDto.targetType;
     /**
+     * 租户 ID
+     */
+    tenantId?: string;
+    /**
      * 所属权限分组的 code，当 target_type 为角色的时候需要填写，否则可以忽略
      */
     namespace?: string;

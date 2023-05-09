@@ -23,4 +23,8 @@ export type ResGroupDto = {
      * 分组类型
      */
     type: string;
+    /**
+     * 分组元数据信息
+     */
+    metadataSource: Array<string>;
 };

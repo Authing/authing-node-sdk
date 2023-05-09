@@ -215,6 +215,10 @@ export type UserDto = {
      */
     identities?: Array<IdentityDto>;
     /**
+     * 用户身份证号码
+     */
+    identityNumber?: string;
+    /**
      * 用户的扩展字段数据
      */
     customData?: any;

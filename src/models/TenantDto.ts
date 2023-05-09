@@ -39,4 +39,16 @@ export type TenantDto = {
      * 租户来源的应用 ID，该值不存在时代表租户来源为 Authing 控制台
      */
     sourceAppId: string;
+    /**
+     * 租户来源
+     */
+    source: string;
+    /**
+     * 租户 Code
+     */
+    code: string;
+    /**
+     * 租户配置的企业域名
+     */
+    enterpriseDomains: string;
 };

@@ -43,6 +43,30 @@ export type UserPoolTenantConfigDto = {
      */
     loadingBackground: string;
     /**
+     * 是否允许创建租户
+     */
+    enableCreateTenant: boolean;
+    /**
+     * 允许创建租户的场景
+     */
+    createTenantScenes: Array<string>;
+    /**
+     * 是否允许加入租户
+     */
+    enableJoinTenant: boolean;
+    /**
+     * 允许创建加入的场景
+     */
+    joinTenantScenes: Array<string>;
+    /**
+     * 是否校验企业域名
+     */
+    enableVerifyDomain: boolean;
+    /**
+     * 校验企业域名的场景
+     */
+    verifyDomainScenes: Array<string>;
+    /**
      * 页面自定义配置
      */
     ssoPageCustomizationSettings: ISsoPageCustomizationSettingsDto;
