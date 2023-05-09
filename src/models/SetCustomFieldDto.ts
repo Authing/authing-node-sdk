@@ -57,6 +57,18 @@ export type SetCustomFieldDto = {
      */
     visibleInUserCenter?: boolean;
     /**
+     * 校验规则
+     */
+    validateRules?: any;
+    /**
+     * App Id 列表
+     */
+    appIds?: Array<string>;
+    /**
+     * 脱敏
+     */
+    desensitization?: boolean;
+    /**
      * 枚举值类型选择项
      */
     options?: Array<CustomFieldSelectOption>;

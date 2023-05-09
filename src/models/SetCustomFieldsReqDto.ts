@@ -9,4 +9,8 @@ export type SetCustomFieldsReqDto = {
      * 自定义字段列表
      */
     list: Array<SetCustomFieldDto>;
+    /**
+     * 租户 ID
+     */
+    tenantId?: string;
 };

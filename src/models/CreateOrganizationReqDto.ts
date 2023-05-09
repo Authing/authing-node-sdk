@@ -6,6 +6,10 @@ import type { OrganizationNameI18nDto } from './OrganizationNameI18nDto';
 
 export type CreateOrganizationReqDto = {
     /**
+     * 元数据信息
+     */
+    metadata: any;
+    /**
      * 组织名称
      */
     organizationName: string;

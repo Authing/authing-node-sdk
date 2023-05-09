@@ -18,4 +18,8 @@ export type ListGroupsDto = {
      * 每页数目，最大不能超过 50，默认为 10
      */
     limit?: any;
+    /**
+     * 是否展示元数据内容
+     */
+    withMetadata?: any;
 };

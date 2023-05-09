@@ -23,4 +23,8 @@ export type PostItemDto = {
      * 岗位关联部门数，只有在 skipCount 不为 true 时才存在
      */
     departmentCount: number;
+    /**
+     * 岗位元数据信息
+     */
+    metadataSource: Array<string>;
 };
