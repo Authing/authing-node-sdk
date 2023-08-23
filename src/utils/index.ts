@@ -116,12 +116,19 @@ export function domainC14n(domain: string) {
   if (domain.startsWith("http://localhost:") || domain.startsWith("localhost:")) {
     return domain;
   }
-  const domainExp = /^(((?:http)|(?:https)):\/\/)?((?:[\w-_]+)(?:\.[\w-_]+)+)(:\d{1,6})?(?:\/.*)?$/;
-  const matchRes = domainExp.exec(domain);
-  if (matchRes && matchRes[3]) {
-    return `${matchRes[1] ?? 'https://'}${matchRes[3]}${matchRes[4] || ""}`;
+  if (!domain.startsWith(`http`)) {
+    domain = `https://${domain}`
+    }
+
+  try {
+    new URL(domain);
+  } catch(e) {
+    throw (`Invalid appHost received: ${domain}`)
   }
-  throw Error(`Invalid appHost received: ${domain}`);
+
+  domain = domain.replace(/(\/)*$/, '');
+
+  return domain;
 }
 
 export function parseJWKS(jwks: JWKSObject): Promise<JoseKey[]> {
