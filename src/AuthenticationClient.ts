@@ -663,8 +663,8 @@ export class AuthenticationClient {
 
     const params: AuthURLParams = {
       redirect_uri: options?.redirectUri ?? this.options.redirectUri,
-      response_mode: "query",
-      response_type: "code",
+      response_mode: options?.responseMode || "query",
+      response_type: options?.responseType || "code",
       client_id: this.options.appId,
       scope,
       state,
