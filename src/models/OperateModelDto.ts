@@ -20,15 +20,21 @@ export type OperateModelDto = {
      */
     operateName: string;
     /**
-     * 操作方法key
+     * 操作方法 key
      */
     operateKey: string;
     /**
-     * 是否展示
+     * 是否展示:
+     * - true: 展示
+     * - false: 不展示
+     *
      */
     show: boolean;
     /**
-     * 是否为默认操作
+     * 是否为默认操作:
+     * - true 是默认操作
+     * - fasle 不是默认操作
+     *
      */
     isDefault: boolean;
     /**

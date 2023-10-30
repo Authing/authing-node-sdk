@@ -27,6 +27,10 @@ export type GetDepartmentDto = {
      */
     withCustomData?: any;
     /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: any;
+    /**
      * 租户 ID
      */
     tenantId?: any;

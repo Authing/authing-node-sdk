@@ -4,15 +4,19 @@
 
 export type UpdateRowDto = {
     /**
-     * 功能 id
+     * 数据内容
      */
-    modelId: string;
+    data: any;
     /**
      * 行 id
      */
     rowId: string;
     /**
-     * 数据内容
+     * 功能 id
      */
-    data: any;
+    modelId: string;
+    /**
+     * 响应中键是否为 FieldId
+     */
+    showFieldId?: boolean;
 };

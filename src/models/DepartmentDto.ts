@@ -46,6 +46,10 @@ export type DepartmentDto = {
      */
     code?: string;
     /**
+     * 父部门 code
+     */
+    parentDepartmentCode: string;
+    /**
      * 部门人数（仅包含直属成员）
      */
     membersCount: number;
@@ -66,7 +70,19 @@ export type DepartmentDto = {
      */
     customData?: any;
     /**
+     * 部门关联的岗位
+     */
+    posts?: Array<string>;
+    /**
      * 岗位 id 列表
      */
-    postIdList?: string;
+    postIdList?: Array<string>;
+    /**
+     * 部门状态
+     */
+    status?: boolean;
+    /**
+     * 访问限制
+     */
+    allow?: string;
 };

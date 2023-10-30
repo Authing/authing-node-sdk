@@ -15,6 +15,7 @@ import type { SignInByGitlabPayloadDto } from './SignInByGitlabPayloadDto';
 import type { SignInByGooglePayloadDto } from './SignInByGooglePayloadDto';
 import type { SignInByHuaweiPayloadDto } from './SignInByHuaweiPayloadDto';
 import type { SignInByKuaishouPayloadDto } from './SignInByKuaishouPayloadDto';
+import type { SignInByLarkBlockPayloadDto } from './SignInByLarkBlockPayloadDto';
 import type { SignInByLarkInternalPayloadDto } from './SignInByLarkInternalPayloadDto';
 import type { SignInByLarkPublicPayloadDto } from './SignInByLarkPublicPayloadDto';
 import type { SignInByLinePayloadDto } from './SignInByLinePayloadDto';
@@ -47,6 +48,7 @@ export type SigninByMobileDto = {
      * - `wechatwork_agency`: 企业微信移动应用（代开发模式）
      * - `lark_internal`: 飞书移动端企业自建应用
      * - `lark_public`: 飞书移动端应用商店应用
+     * - `lark_block`: 飞书小组件
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
@@ -100,6 +102,10 @@ export type SigninByMobileDto = {
      * 飞书自建应用移动端社会化登录数据，当 `connection` 为 `lark_internal` 的时候必填。
      */
     larkInternalPayload?: SignInByLarkInternalPayloadDto;
+    /**
+     * 飞书小组件移动端社会化登录数据，当 `connection` 为 `lark_block` 的时候必填。
+     */
+    larkBlockPayload?: SignInByLarkBlockPayloadDto;
     /**
      * 网易易盾移动端社会化登录数据，当 `connection` 为 `yidun` 的时候必填。
      */
@@ -213,6 +219,7 @@ export namespace SigninByMobileDto {
      * - `wechatwork_agency`: 企业微信移动应用（代开发模式）
      * - `lark_internal`: 飞书移动端企业自建应用
      * - `lark_public`: 飞书移动端应用商店应用
+     * - `lark_block`: 飞书小组件
      * - `yidun`: 网易易盾一键登录
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
@@ -245,6 +252,7 @@ export namespace SigninByMobileDto {
         WECHATWORK_AGENCY = 'wechatwork_agency',
         LARK_INTERNAL = 'lark_internal',
         LARK_PUBLIC = 'lark_public',
+        LARK_BLOCK = 'lark_block',
         YIDUN = 'yidun',
         WECHAT_MINI_PROGRAM_CODE = 'wechat_mini_program_code',
         WECHAT_MINI_PROGRAM_PHONE = 'wechat_mini_program_phone',

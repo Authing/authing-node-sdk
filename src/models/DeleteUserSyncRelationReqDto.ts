@@ -1,0 +1,69 @@
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+
+export type DeleteUserSyncRelationReqDto = {
+    /**
+     * 外部身份源类型，如：
+     * - `wechatwork`: 企业微信
+     * - `dingtalk`: 钉钉
+     * - `lark`: 飞书
+     * - `welink`: Welink
+     * - `ldap`: LDAP
+     * - `active-directory`: Windows AD
+     * - `italent`: 北森
+     * - `xiaoshouyi`: 销售易
+     * - `maycur`: 每刻报销
+     * - `scim`: SCIM
+     * - `moka`: Moka HR
+     *
+     */
+    provider: string;
+    /**
+     * 用户 ID
+     */
+    userId: string;
+    /**
+     * 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *
+     */
+    userIdType?: DeleteUserSyncRelationReqDto.userIdType;
+};
+
+export namespace DeleteUserSyncRelationReqDto {
+
+    /**
+     * 用户 ID 类型，默认值为 `user_id`，可选值为：
+     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: 用户手机号
+     * - `email`: 用户邮箱
+     * - `username`: 用户名
+     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
+     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     *
+     */
+    export enum userIdType {
+        USER_ID = 'user_id',
+        EXTERNAL_ID = 'external_id',
+        PHONE = 'phone',
+        EMAIL = 'email',
+        USERNAME = 'username',
+        IDENTITY = 'identity',
+        SYNC_RELATION = 'sync_relation',
+        CUSTOM_FIELD = 'custom_field',
+    }
+
+
+}

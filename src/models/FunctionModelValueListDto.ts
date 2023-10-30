@@ -10,5 +10,5 @@ export type FunctionModelValueListDto = {
     /**
      * 响应数据
      */
-    list: Array<any[]>;
+    list: Array<any>;
 };

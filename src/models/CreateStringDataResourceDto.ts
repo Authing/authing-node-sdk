@@ -12,11 +12,11 @@ export type CreateStringDataResourceDto = {
      */
     struct: string;
     /**
-     * 数据资源 Code,权限空间内唯一
+     * 数据资源 Code, 权限空间内唯一
      */
     resourceCode: string;
     /**
-     * 数据资源名称,权限空间内唯一
+     * 数据资源名称, 权限空间内唯一
      */
     resourceName: string;
     /**

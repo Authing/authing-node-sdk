@@ -15,6 +15,10 @@ export type ListChildrenDepartmentsDto = {
      */
     departmentId?: any;
     /**
+     * 部门的状态
+     */
+    status?: any;
+    /**
      * 此次调用中使用的部门 ID 的类型
      */
     departmentIdType?: any;

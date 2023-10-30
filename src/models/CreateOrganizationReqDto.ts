@@ -36,5 +36,5 @@ export type CreateOrganizationReqDto = {
     /**
      * 岗位 id 列表
      */
-    postIdList?: string;
+    postIdList?: Array<string>;
 };

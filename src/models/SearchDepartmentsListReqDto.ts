@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { DepartmentSortingDto } from './DepartmentSortingDto';
 import type { SearchDepartmentsFilterItemDto } from './SearchDepartmentsFilterItemDto';
 
 export type SearchDepartmentsListReqDto = {
@@ -13,6 +14,10 @@ export type SearchDepartmentsListReqDto = {
      * 是否获取自定义数据
      */
     withCustomData?: boolean;
+    /**
+     * 是否获取 部门信息
+     */
+    withPost?: boolean;
     /**
      * 当前页数，从 1 开始
      */
@@ -33,6 +38,10 @@ export type SearchDepartmentsListReqDto = {
      * 增序或降序
      */
     orderBy?: SearchDepartmentsListReqDto.orderBy;
+    /**
+     * 排序设置，可以设置多项按照多个字段进行排序
+     */
+    sort?: Array<DepartmentSortingDto>;
     /**
      * 租户 ID
      */

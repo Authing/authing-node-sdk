@@ -19,4 +19,8 @@ export type UserLoggedInIdentitiesDto = {
      * 身份源 logo
      */
     idpLogo: string;
+    /**
+     * 身份源 id
+     */
+    idpId: string;
 };

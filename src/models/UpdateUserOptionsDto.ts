@@ -68,6 +68,7 @@ export namespace UpdateUserOptionsDto {
         USERNAME = 'username',
         IDENTITY = 'identity',
         SYNC_RELATION = 'sync_relation',
+        CUSTOM_FIELD = 'custom_field',
     }
 
     /**

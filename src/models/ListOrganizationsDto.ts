@@ -23,7 +23,15 @@ export type ListOrganizationsDto = {
      */
     withCustomData?: any;
     /**
+     * 是否获取 部门信息
+     */
+    withPost?: any;
+    /**
      * 租户 ID
      */
     tenantId?: any;
+    /**
+     * 组织的状态
+     */
+    status?: any;
 };

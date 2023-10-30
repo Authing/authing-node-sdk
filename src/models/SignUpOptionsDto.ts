@@ -12,7 +12,7 @@ export type SignUpOptionsDto = {
      */
     phonePassCodeForInformationCompletion?: string;
     /**
-     * 用于注册时补全用户信息的短信验证码
+     * 用于注册时验证用户的邮箱验证码
      */
     emailPassCodeForInformationCompletion?: string;
     /**

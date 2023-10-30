@@ -25,7 +25,7 @@ export type SignInOptionsDto = {
     /**
      * 额外请求上下文，将会传递到认证前和认证后的 [Pipeline](https://docs.authing.cn/v2/guides/pipeline/) 的 `context` 对象中。了解[如何在 Pipeline 的 `context` 参数中获取传入的额外 context](https://docs.authing.cn/v2/guides/pipeline/context-object.html)。
      */
-    context?: string;
+    context?: any;
     /**
      * 租户 ID
      */

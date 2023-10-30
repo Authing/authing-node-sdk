@@ -29,6 +29,10 @@ export type GetUserBatchDto = {
      */
     withCustomData?: any;
     /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: any;
+    /**
      * 是否获取 identities
      */
     withIdentities?: any;
