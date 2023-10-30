@@ -20,7 +20,17 @@ export type FunctionModelDto = {
      */
     description: string;
     /**
-     * 功能是否启用
+     * 数据类型：
+     * - list: 列表类型数据。
+     * - tree: 树状结构数据。
+     *
+     */
+    dataType: FunctionModelDto.dataType;
+    /**
+     * 功能是否启用:
+     * - true: 启用
+     * - false: 不启用
+     *
      */
     enable: boolean;
     /**
@@ -36,11 +46,21 @@ export type FunctionModelDto = {
      */
     updatedAt: string;
     /**
-     * 功能类型
+     * 功能类型：
+     * - user: 用户
+     * - post: 岗位
+     * - group: 用户组
+     * - ueba: ueba
+     * - department: 树状结构数据
+     * - organization: 组织
+     * - device: 设备
+     * - device_rely: 设备
+     * - custom: 自定义
+     *
      */
     type: FunctionModelDto.type;
     /**
-     * 字段序
+     * 字段排序
      */
     fieldOrder: string;
     /**
@@ -52,7 +72,28 @@ export type FunctionModelDto = {
 export namespace FunctionModelDto {
 
     /**
-     * 功能类型
+     * 数据类型：
+     * - list: 列表类型数据。
+     * - tree: 树状结构数据。
+     *
+     */
+    export enum dataType {
+        LIST = 'list',
+        TREE = 'tree',
+    }
+
+    /**
+     * 功能类型：
+     * - user: 用户
+     * - post: 岗位
+     * - group: 用户组
+     * - ueba: ueba
+     * - department: 树状结构数据
+     * - organization: 组织
+     * - device: 设备
+     * - device_rely: 设备
+     * - custom: 自定义
+     *
      */
     export enum type {
         UEBA = 'ueba',
@@ -61,6 +102,8 @@ export namespace FunctionModelDto {
         GROUP = 'group',
         DEPARTMENT = 'department',
         ORGANIZATION = 'organization',
+        DEVICE = 'device',
+        DEVICE_RELY = 'device_rely',
         CUSTOM = 'custom',
     }
 

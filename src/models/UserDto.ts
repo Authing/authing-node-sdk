@@ -223,6 +223,10 @@ export type UserDto = {
      */
     customData?: any;
     /**
+     * 用户关联的部门 Id
+     */
+    postIdList?: Array<string>;
+    /**
      * 用户状态上次修改时间
      */
     statusChangedAt?: string;

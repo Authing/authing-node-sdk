@@ -4,19 +4,19 @@
 
 export type RemoveRelationValueDto = {
     /**
-     * 功能 id
+     * 关联数据
      */
-    modelId: string;
+    value: string;
     /**
      * 字段 id
      */
-    fieldId: string;
+    fieldIds: Array<string>;
     /**
      * 行 id
      */
     rowId: string;
     /**
-     * 关联数据
+     * 功能 id
      */
-    value: string;
+    modelId: string;
 };

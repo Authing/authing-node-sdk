@@ -64,5 +64,13 @@ export type OrganizationDto = {
     /**
      * 岗位 id 列表
      */
-    postIdList?: string;
+    postIdList?: Array<string>;
+    /**
+     * 状态
+     */
+    status?: string;
+    /**
+     * 访问限制
+     */
+    allow?: string;
 };

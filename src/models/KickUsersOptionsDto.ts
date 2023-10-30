@@ -42,6 +42,7 @@ export namespace KickUsersOptionsDto {
         USERNAME = 'username',
         IDENTITY = 'identity',
         SYNC_RELATION = 'sync_relation',
+        CUSTOM_FIELD = 'custom_field',
     }
 
 

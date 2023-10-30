@@ -8,7 +8,11 @@ export type ScopeDto = {
      */
     modelId: string;
     /**
-     * id
+     * 行 id
      */
     id: string;
+    /**
+     * 字段 id
+     */
+    fieldId: string;
 };

@@ -22,15 +22,30 @@ export type FunctionModelFieldDto = {
      */
     key: string;
     /**
-     * 字段类型
+     * 字段类型:
+     * - 1: 单行文本
+     * - 2: 多行文本
+     * - 3: 数字
+     * - 4: 布尔类型
+     * - 5: 日期
+     * - 6: 枚举
+     * - 7: 关联类型
+     * - 8: 反向关联数据展示
+     *
      */
     type: number;
     /**
-     * 是否展示
+     * 是否展示:
+     * - true: 展示
+     * - false: 不展示
+     *
      */
     show: boolean;
     /**
-     * 是否可编辑
+     * 是否可编辑:
+     * - true: 可编辑
+     * - false: 不可编辑
+     *
      */
     editable: boolean;
     /**
@@ -42,11 +57,17 @@ export type FunctionModelFieldDto = {
      */
     default: string;
     /**
-     * 是否必填
+     * 是否必填:
+     * - true: 必填
+     * - false: 不必填
+     *
      */
     require: boolean;
     /**
-     * 是否唯一
+     * 是否唯一:
+     * - true: 唯一
+     * - false: 不唯一
+     *
      */
     unique: boolean;
     /**
@@ -54,19 +75,19 @@ export type FunctionModelFieldDto = {
      */
     maxLength: number;
     /**
-     * 上限(数字、日期)
+     * 如果类型是数字表示数字上限，如果类型是日期表示结束日期
      */
     max: number;
     /**
-     * 下限(数字、日期)
+     * 如果类型是数字表示数字下限，如果类型是日期表示开始日期
      */
     min: number;
     /**
-     * 字符串规则
+     * 字符串的校验匹配规则
      */
     regexp: string;
     /**
-     * 前端格式化规则
+     * 前端格式化显示规则:
      */
     format: number;
     /**
@@ -78,7 +99,10 @@ export type FunctionModelFieldDto = {
      */
     relationType: string;
     /**
-     * 关联关系是否为 1-N
+     * 关联关系是否为 1-N:
+     * - true: 是 1-N 的关系
+     * - false: 不是 1-N 的关系
+     *
      */
     relationMultiple: boolean;
     /**
@@ -89,4 +113,11 @@ export type FunctionModelFieldDto = {
      * 关联数据可选范围
      */
     relationOptionalRange: RelationOptionalRange;
+    /**
+     * 用户中心是否显示，仅在 user 模块下有意义:
+     * - true: 用户中心展示
+     * - false: 用户中心不展示
+     *
+     */
+    userVisible: boolean;
 };

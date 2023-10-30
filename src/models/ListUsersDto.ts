@@ -31,6 +31,10 @@ export type ListUsersDto = {
      */
     withCustomData?: any;
     /**
+     * 是否获取 部门信息
+     */
+    withPost?: any;
+    /**
      * 是否获取 identities
      */
     withIdentities?: any;

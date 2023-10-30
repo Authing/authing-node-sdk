@@ -159,6 +159,10 @@ export type CreateUserInfoDto = {
      */
     customData?: any;
     /**
+     * 数据对象数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     */
+    metadataSource?: any;
+    /**
      * 第三方身份源（建议调用绑定接口进行绑定）
      */
     identities?: Array<CreateIdentityDto>;

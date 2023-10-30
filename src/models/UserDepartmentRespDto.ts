@@ -14,6 +14,10 @@ export type UserDepartmentRespDto = {
      */
     departmentId: string;
     /**
+     * 是否为根部门
+     */
+    isRoot: boolean;
+    /**
      * 部门创建时间
      */
     createdAt: string;

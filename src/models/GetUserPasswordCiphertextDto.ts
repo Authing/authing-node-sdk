@@ -46,6 +46,7 @@ export namespace GetUserPasswordCiphertextDto {
         USERNAME = 'username',
         IDENTITY = 'identity',
         SYNC_RELATION = 'sync_relation',
+        CUSTOM_FIELD = 'custom_field',
     }
 
 

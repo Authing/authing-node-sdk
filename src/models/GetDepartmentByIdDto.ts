@@ -14,4 +14,8 @@ export type GetDepartmentByIdDto = {
      * 租户 ID
      */
     tenantId?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

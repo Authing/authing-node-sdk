@@ -25,9 +25,17 @@ export type GetUserDto = {
      */
     userIdType?: any;
     /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: any;
+    /**
      * 是否获取自定义数据
      */
     withCustomData?: any;
+    /**
+     * 是否获取 部门信息
+     */
+    withPost?: any;
     /**
      * 是否获取 identities
      */

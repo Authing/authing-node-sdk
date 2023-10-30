@@ -4,19 +4,19 @@
 
 export type CreateRelationValueDto = {
     /**
-     * 功能 id
+     * 关联数据
      */
-    modelId: string;
-    /**
-     * 字段 id
-     */
-    fieldId: string;
+    valueList: Array<string>;
     /**
      * 行 id
      */
     rowId: string;
     /**
-     * 关联数据
+     * 字段 id
      */
-    valueList: Array<string>;
+    fieldId: string;
+    /**
+     * 功能 id
+     */
+    modelId: string;
 };

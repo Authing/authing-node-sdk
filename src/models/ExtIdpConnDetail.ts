@@ -87,6 +87,7 @@ export namespace ExtIdpConnDetail {
         BAIDU_MOBILE = 'baidu:mobile',
         LARK_INTERNAL = 'lark-internal',
         LARK_PUBLIC = 'lark-public',
+        LARK_BLOCK = 'lark-block',
         GITLAB = 'gitlab',
         GITLAB_MOBILE = 'gitlab:mobile',
         LINKEDIN = 'linkedin',
@@ -112,6 +113,8 @@ export namespace ExtIdpConnDetail {
         KUAISHOU_MOBILE = 'kuaishou:mobile',
         LINE_MOBILE = 'line:mobile',
         OPPO_MOBILE = 'oppo:mobile',
+        WECHATWORK_QRCONNECT_OF_AUTHING_AGENCY = 'wechatwork:qrconnect:of:authing:agency',
+        SDBZ = 'sdbz',
     }
 
     /**

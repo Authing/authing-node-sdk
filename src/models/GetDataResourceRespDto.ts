@@ -6,11 +6,11 @@ import type { DataResourceTreeStructs } from './DataResourceTreeStructs';
 
 export type GetDataResourceRespDto = {
     /**
-     * 数据资源名称,权限空间内唯一
+     * 数据资源名称, 权限空间内唯一
      */
     resourceName: string;
     /**
-     * 数据资源 Code,权限空间内唯一
+     * 数据资源 Code, 权限空间内唯一
      */
     resourceCode: string;
     /**
@@ -22,7 +22,7 @@ export type GetDataResourceRespDto = {
      */
     description?: string;
     /**
-     * 数据资源节点类型，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
+     * 数据资源结构，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
      */
     struct: (DataResourceTreeStructs | string | Array<string>);
     /**

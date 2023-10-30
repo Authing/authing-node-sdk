@@ -10,4 +10,8 @@ export type GetGroupDto = {
      * 分组 code
      */
     code?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

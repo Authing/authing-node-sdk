@@ -2,5 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type sendInviteTenantUserEmailDto = {
+export type SendInviteTenantUserEmailDto = {
 };

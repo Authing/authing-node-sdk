@@ -11,7 +11,7 @@ export type GetDataResourceDto = {
      */
     namespaceCode?: any;
     /**
-     * 数据资源 Code,权限空间内唯一
+     * 数据资源 Code, 权限空间内唯一
      */
     resourceCode?: any;
 };

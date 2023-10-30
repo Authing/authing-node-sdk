@@ -60,6 +60,7 @@ export namespace CreateExtIdpDto {
         DOUYIN = 'douyin',
         KUAISHOU = 'kuaishou',
         LINE = 'line',
+        SDBZ = 'sdbz',
     }
 
 

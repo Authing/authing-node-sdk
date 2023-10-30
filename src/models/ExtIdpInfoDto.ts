@@ -88,6 +88,7 @@ export namespace ExtIdpInfoDto {
         DOUYIN = 'douyin',
         KUAISHOU = 'kuaishou',
         LINE = 'line',
+        SDBZ = 'sdbz',
     }
 
     /**

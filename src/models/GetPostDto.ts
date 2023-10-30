@@ -10,4 +10,8 @@ export type GetPostDto = {
      * 岗位 code
      */
     code?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
 };

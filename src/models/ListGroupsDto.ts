@@ -22,4 +22,12 @@ export type ListGroupsDto = {
      * 是否展示元数据内容
      */
     withMetadata?: any;
+    /**
+     * 是否获取自定义数据
+     */
+    withCustomData?: any;
+    /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: any;
 };

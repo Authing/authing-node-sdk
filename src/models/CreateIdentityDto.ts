@@ -2,8 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { User } from './User';
-
 export type CreateIdentityDto = {
     /**
      * 身份源连接 ID
@@ -52,7 +50,7 @@ export type CreateIdentityDto = {
     /**
      * 用户在 idp 中的身份信息
      */
-    userInfoInIdp: User;
+    userInfoInIdp: any;
     /**
      * 在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
      */
@@ -138,6 +136,7 @@ export namespace CreateIdentityDto {
         DOUYIN = 'douyin',
         KUAISHOU = 'kuaishou',
         LINE = 'line',
+        SDBZ = 'sdbz',
     }
 
 

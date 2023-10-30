@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { UserDto } from './UserDto';
+
 export type ResGroupDto = {
     /**
      * 分组 ID
@@ -27,4 +29,8 @@ export type ResGroupDto = {
      * 分组元数据信息
      */
     metadataSource: Array<string>;
+    /**
+     * 成员列表
+     */
+    members: Array<UserDto>;
 };

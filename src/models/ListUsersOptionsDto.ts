@@ -41,6 +41,10 @@ export type ListUsersOptionsDto = {
      */
     withCustomData?: boolean;
     /**
+     * 是否获取 部门信息
+     */
+    withPost?: boolean;
+    /**
      * 是否获取 identities
      */
     withIdentities?: boolean;
@@ -48,4 +52,8 @@ export type ListUsersOptionsDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: boolean;
+    /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: boolean;
 };

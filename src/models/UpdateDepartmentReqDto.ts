@@ -30,6 +30,10 @@ export type UpdateDepartmentReqDto = {
      */
     i18n?: DepartmentI18nDto;
     /**
+     * 部门状态
+     */
+    status?: boolean;
+    /**
      * 部门名称
      */
     name?: string;
@@ -48,7 +52,7 @@ export type UpdateDepartmentReqDto = {
     /**
      * 岗位 id 列表
      */
-    postIdList?: string;
+    postIdList?: Array<string>;
     /**
      * 租户 ID
      */
@@ -64,6 +68,8 @@ export namespace UpdateDepartmentReqDto {
         DEPARTMENT_ID = 'department_id',
         OPEN_DEPARTMENT_ID = 'open_department_id',
         SYNC_RELATION = 'sync_relation',
+        CUSTOM_FIELD = 'custom_field',
+        CODE = 'code',
     }
 
 
