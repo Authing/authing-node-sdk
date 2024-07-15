@@ -693,6 +693,9 @@ export class AuthenticationClient {
       state,
       nonce,
     };
+    if(options?.tenantId) {
+      params.tenantId = options?.tenantId
+    }
     if (options?.forced) {
       params.prompt = "login";
     } else if (scope.split(" ").includes("offline_access")) {

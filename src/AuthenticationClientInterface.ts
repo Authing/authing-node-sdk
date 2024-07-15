@@ -13,6 +13,7 @@ export interface AuthURLParams {
   nonce: string;
   scope: string;
   prompt?: string;
+  tenantId?: string;
 }
 
 export interface OIDCTokenResponse {
