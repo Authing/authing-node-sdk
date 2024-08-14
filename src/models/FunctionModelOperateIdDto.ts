@@ -15,4 +15,8 @@ export type FunctionModelOperateIdDto = {
      * 自定义操作 id
      */
     id: string;
+    /**
+     * 字段 id
+     */
+    fieldId?: string;
 };

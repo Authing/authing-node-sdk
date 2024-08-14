@@ -19,6 +19,10 @@ export type UpdatePasswordDto = {
      *
      */
     passwordEncryptType?: UpdatePasswordDto.passwordEncryptType;
+    /**
+     * 重置密码的 token，可通过`/api/v3/verify-reset-password-request` 接口获取
+     */
+    passwordResetToken?: string;
 };
 
 export namespace UpdatePasswordDto {

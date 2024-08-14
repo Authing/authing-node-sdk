@@ -6,7 +6,7 @@ import type { UpdateUserOptionsDto } from './UpdateUserOptionsDto';
 
 export type UpdateUserReqDto = {
     /**
-     * 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
      */
     userId: string;
     /**
@@ -149,6 +149,10 @@ export type UpdateUserReqDto = {
      * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
      */
     customData?: any;
+    /**
+     * 数据对象数据，传入的对象中的 key 必须先在用户数据对象相关自定义字段
+     */
+    metadata?: any;
     /**
      * 可选参数
      */

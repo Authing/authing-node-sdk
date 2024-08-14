@@ -4,6 +4,10 @@
 
 export type LoginTokenResponseDataDto = {
     /**
+     * access_token 对应的 scope
+     */
+    scope?: string;
+    /**
      * 接口调用凭据，在限制时间内被授权访问资源 API
      */
     access_token?: string;

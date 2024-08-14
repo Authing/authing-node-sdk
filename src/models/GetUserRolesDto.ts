@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过用户 ID，获取用户角色列表，可以选择所属权限分组 code、选择指定用户 ID 类型等。
+ * 通过用户 ID，获取用户角色列表，可以选择所属权限分组 code、选择指定用户 ID 类型等。注意：如果不传 namespace，默认只会获取默认权限分组下面的角色！
  */
 export type GetUserRolesDto = {
     /**
-     * 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
      */
     userId?: any;
     /**
@@ -25,7 +25,7 @@ export type GetUserRolesDto = {
      */
     userIdType?: any;
     /**
-     * 所属权限分组(权限空间)的 Code
+     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
      */
     namespace?: any;
 };

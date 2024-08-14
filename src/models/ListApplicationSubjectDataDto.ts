@@ -31,6 +31,7 @@ export namespace ListApplicationSubjectDataDto {
     export enum appType {
         INTEGRATED = 'INTEGRATED',
         SELFBUILT = 'SELFBUILT',
+        APP_PANEL = 'APP_PANEL',
     }
 
     /**

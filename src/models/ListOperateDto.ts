@@ -15,6 +15,14 @@ export type ListOperateDto = {
      */
     keywords?: any;
     /**
+     * 关联字段 id
+     */
+    fieldId?: any;
+    /**
+     * 是否返回用户创建的操作，仅在传了 fieldId 时有效
+     */
+    showCreated?: any;
+    /**
      * 当前页数，从 1 开始
      */
     page?: any;

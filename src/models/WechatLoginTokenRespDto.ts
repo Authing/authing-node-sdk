@@ -4,6 +4,10 @@
 
 export type WechatLoginTokenRespDto = {
     /**
+     * 登录请求中的 scope
+     */
+    scope?: string;
+    /**
      * 接口调用凭据，在限制时间内被授权访问资源 API
      */
     access_token?: string;
@@ -23,8 +27,4 @@ export type WechatLoginTokenRespDto = {
      * 过期时间 单位是秒
      */
     expire_in: number;
-    /**
-     * 登录请求中的 scope
-     */
-    scope: string;
 };

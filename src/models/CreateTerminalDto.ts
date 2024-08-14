@@ -4,17 +4,17 @@
 
 export type CreateTerminalDto = {
     /**
-     * 设备唯一标识
+     * 自定义数据, 自定义数据的属性对应在元数据里自定义的字段
      */
-    deviceUniqueId: string;
+    customData: any;
     /**
      * 设备类型
      */
     type: CreateTerminalDto.type;
     /**
-     * 自定义数据, 自定义数据的属性对应在元数据里自定义的字段
+     * 设备唯一标识
      */
-    customData: any;
+    deviceUniqueId: string;
     /**
      * 设备名称
      */

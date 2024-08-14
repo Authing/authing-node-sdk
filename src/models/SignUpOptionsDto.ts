@@ -16,6 +16,10 @@ export type SignUpOptionsDto = {
      */
     emailPassCodeForInformationCompletion?: string;
     /**
+     * 用于`手机号验证码注册`时补充密码
+     */
+    passwordForPhonePassCode?: string;
+    /**
      * 登录/注册时传的额外参数，会存到用户自定义字段里面
      */
     context: any;

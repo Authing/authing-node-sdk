@@ -38,13 +38,11 @@ import {
   OauthParams,
   OidcParams,
 } from "./utils/types";
-import {
-  SignInOptionsDto,
-  SignUpOptionsDto,
-  SignUpProfileDto,
-} from "./models";
+import { SignInOptionsDto, SignUpOptionsDto, SignUpProfileDto } from "./models";
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS BEGIN ====
+import type { ApprovalDetailRes } from "./models/ApprovalDetailRes";
 import type { AuthorizedResourcePaginatedRespDto } from "./models/AuthorizedResourcePaginatedRespDto";
+import type { BatchCreateApprovalReq } from "./models/BatchCreateApprovalReq";
 import type { BindByAccountIdInputApi } from "./models/BindByAccountIdInputApi";
 import type { BindByAccountInputApi } from "./models/BindByAccountInputApi";
 import type { BindByAccountsInputApi } from "./models/BindByAccountsInputApi";
@@ -62,39 +60,51 @@ import type { CheckPushCodeStatusRespDto } from "./models/CheckPushCodeStatusRes
 import type { CheckQRCodeStatusRespDto } from "./models/CheckQRCodeStatusRespDto";
 import type { CheckResourcePermissionsRespDto } from "./models/CheckResourcePermissionsRespDto";
 import type { CommonResponseDto } from "./models/CommonResponseDto";
+import type { CreateApprovalReq } from "./models/CreateApprovalReq";
+import type { CreateApprovalRes } from "./models/CreateApprovalRes";
+import type { DecryptDouyinMiniProgramDataDto } from "./models/DecryptDouyinMiniProgramDataDto";
+import type { DecryptDouyinMiniProgramDataRespDto } from "./models/DecryptDouyinMiniProgramDataRespDto";
 import type { DecryptWechatMiniProgramDataDto } from "./models/DecryptWechatMiniProgramDataDto";
 import type { DecryptWechatMiniProgramDataRespDto } from "./models/DecryptWechatMiniProgramDataRespDto";
 import type { DeleteAccounDto } from "./models/DeleteAccounDto";
+import type { EnablePermissionApplyApplicationListRes } from "./models/EnablePermissionApplyApplicationListRes";
+import type { EnablePermissionApplyRoleListRes } from "./models/EnablePermissionApplyRoleListRes";
 import type { ExchangeTokenSetWithQRcodeTicketDto } from "./models/ExchangeTokenSetWithQRcodeTicketDto";
 import type { GenePushCodeRespDto } from "./models/GenePushCodeRespDto";
 import type { GeneQRCodeRespDto } from "./models/GeneQRCodeRespDto";
 import type { GenerateBindExtIdpLinkRespDto } from "./models/GenerateBindExtIdpLinkRespDto";
+import type { GenerateInvitationLinkRespDto } from "./models/GenerateInvitationLinkRespDto";
+import type { GenerateInviteeTokenRespDto } from "./models/GenerateInviteeTokenRespDto";
 import type { GenerateQrcodeDto } from "./models/GenerateQrcodeDto";
 import type { GetAccessibleAppsRespDto } from "./models/GetAccessibleAppsRespDto";
 import type { GetAlipayAuthInfoRespDto } from "./models/GetAlipayAuthInfoRespDto";
 import type { GetAuthenticationOptionsRespDto } from "./models/GetAuthenticationOptionsRespDto";
+import type { GetCaptchaCodeRespDto } from "./models/GetCaptchaCodeRespDto";
 import type { GetCountryListRespDto } from "./models/GetCountryListRespDto";
 import type { GetExtIdpsRespDto } from "./models/GetExtIdpsRespDto";
 import type { GetIdentitiesRespDto } from "./models/GetIdentitiesRespDto";
+import type { GetInviteeContextRespDto } from "./models/GetInviteeContextRespDto";
 import type { GetLoggedInAppsRespDto } from "./models/GetLoggedInAppsRespDto";
 import type { GetLoginHistoryRespDto } from "./models/GetLoginHistoryRespDto";
 import type { GetPublicAccountDataRespDto } from "./models/GetPublicAccountDataRespDto";
 import type { GetRegistrationOptionsRespDto } from "./models/GetRegistrationOptionsRespDto";
 import type { GetSecurityInfoRespDto } from "./models/GetSecurityInfoRespDto";
 import type { GetTenantListRespDto } from "./models/GetTenantListRespDto";
+import type { GetUniversalInvitationJoinRespDto } from "./models/GetUniversalInvitationJoinRespDto";
+import type { GetUniversalInvitationPublicConfigRespDto } from "./models/GetUniversalInvitationPublicConfigRespDto";
 import type { GetUserAuthResourceListRespDto } from "./models/GetUserAuthResourceListRespDto";
 import type { GetUserAuthResourcePermissionListDto } from "./models/GetUserAuthResourcePermissionListDto";
 import type { GetUserAuthResourcePermissionListRespDto } from "./models/GetUserAuthResourcePermissionListRespDto";
 import type { GetUserAuthResourceStructDto } from "./models/GetUserAuthResourceStructDto";
 import type { GetUserAuthResourceStructRespDto } from "./models/GetUserAuthResourceStructRespDto";
-import type { GetWechatAccessTokenDto } from "./models/GetWechatAccessTokenDto";
-import type { GetWechatAccessTokenInfoRespDto } from "./models/GetWechatAccessTokenInfoRespDto";
-import type { GetWechatAccessTokenRespDto } from "./models/GetWechatAccessTokenRespDto";
 import type { GroupListRespDto } from "./models/GroupListRespDto";
+import type { InitiatedApprovalListRes } from "./models/InitiatedApprovalListRes";
+import type { InvitationLinkDto } from "./models/InvitationLinkDto";
 import type { IsSuccessRespDto } from "./models/IsSuccessRespDto";
 import type { LoginTokenRespDto } from "./models/LoginTokenRespDto";
 import type { LoginTokenResponseDataDto } from "./models/LoginTokenResponseDataDto";
 import type { PasswordResetVerifyResp } from "./models/PasswordResetVerifyResp";
+import type { PolicyInviteeJoinedDto } from "./models/PolicyInviteeJoinedDto";
 import type { PublicAccountSwitchLoginDto } from "./models/PublicAccountSwitchLoginDto";
 import type { ResetPasswordDto } from "./models/ResetPasswordDto";
 import type { RevokeDeviceSessionDto } from "./models/RevokeDeviceSessionDto";
@@ -112,6 +122,7 @@ import type { TerminalSessionRespDto } from "./models/TerminalSessionRespDto";
 import type { UnbindDeviceDto } from "./models/UnbindDeviceDto";
 import type { UnbindEmailDto } from "./models/UnbindEmailDto";
 import type { UnbindPhoneDto } from "./models/UnbindPhoneDto";
+import type { UniversalInvitationUserJoinDto } from "./models/UniversalInvitationUserJoinDto";
 import type { UnlinkExtIdpDto } from "./models/UnlinkExtIdpDto";
 import type { UpdateEmailDto } from "./models/UpdateEmailDto";
 import type { UpdatePasswordDto } from "./models/UpdatePasswordDto";
@@ -119,10 +130,13 @@ import type { UpdatePhoneDto } from "./models/UpdatePhoneDto";
 import type { UpdateUserProfileDto } from "./models/UpdateUserProfileDto";
 import type { UserDepartmentPaginatedRespDto } from "./models/UserDepartmentPaginatedRespDto";
 import type { UserSingleRespDto } from "./models/UserSingleRespDto";
+import type { ValidatePasswordDto } from "./models/ValidatePasswordDto";
+import type { ValidatePasswordRespDto } from "./models/ValidatePasswordRespDto";
 import type { VerifyAuthenticationDto } from "./models/VerifyAuthenticationDto";
 import type { VerifyAuthenticationResultRespDto } from "./models/VerifyAuthenticationResultRespDto";
 import type { VerifyDeleteAccountRequestDto } from "./models/VerifyDeleteAccountRequestDto";
 import type { VerifyDeleteAccountRequestRespDto } from "./models/VerifyDeleteAccountRequestRespDto";
+import type { VerifyInviteCodeDto } from "./models/VerifyInviteCodeDto";
 import type { VerifyRegistrationDto } from "./models/VerifyRegistrationDto";
 import type { VerifyRegistrationResultRespDto } from "./models/VerifyRegistrationResultRespDto";
 import type { VerifyResetPasswordRequestDto } from "./models/VerifyResetPasswordRequestDto";
@@ -144,8 +158,11 @@ import type { ListWebAuthnAuthenticatorDeviceDataDto } from "./models/ListWebAut
 import type { PreCheckCodeDto } from "./models/PreCheckCodeDto";
 import type { PreCheckCodeRespDto } from "./models/PreCheckCodeRespDto";
 import type { RemoveDeviceCredentialDto } from "./models/RemoveDeviceCredentialDto";
+import type { UpdatePasskeyDto } from "./models/UpdatePasskeyDto";
 import type { WebAuthnCheckValidCredentialsByCredIdsRespDto } from "./models/WebAuthnCheckValidCredentialsByCredIdsRespDto";
 import type { WebAuthnRemoveCredentialDto } from "./models/WebAuthnRemoveCredentialDto";
+import type { LegacyExchangeTokenParams } from "./models/LegacyExchangeTokenParams";
+import type { LegacyExchangeTokenResponse } from "./models/LegacyExchangeTokenResponse";
 import type { MfaTokenIntrospectEndpointParams } from "./models/MfaTokenIntrospectEndpointParams";
 import type { MfaTokenIntrospectResponse } from "./models/MfaTokenIntrospectResponse";
 import type { EnrollFactorDto } from "./models/EnrollFactorDto";
@@ -159,10 +176,14 @@ import type { ResetFactorDto } from "./models/ResetFactorDto";
 import type { ResetFactorRespDto } from "./models/ResetFactorRespDto";
 import type { SendEnrollFactorRequestDto } from "./models/SendEnrollFactorRequestDto";
 import type { SendEnrollFactorRequestRespDto } from "./models/SendEnrollFactorRequestRespDto";
+import type { FinalizeWebAuthnLoginDto } from "./models/FinalizeWebAuthnLoginDto";
 
 // ==== AUTO GENERATED AUTHENTICATION IMPORTS END ====
 
 import WebSocket from "ws";
+import type { GetWechatAccessTokenDto } from "./models/GetWechatAccessTokenDto";
+import type { GetWechatAccessTokenRespDto } from "./models/GetWechatAccessTokenRespDto";
+import type { GetWechatAccessTokenInfoRespDto } from "./models/GetWechatAccessTokenInfoRespDto";
 const pkg = require("../package.json");
 
 export class AuthenticationClient {
@@ -693,8 +714,8 @@ export class AuthenticationClient {
       state,
       nonce,
     };
-    if(options?.tenantId) {
-      params.tenantId = options?.tenantId
+    if (options?.tenantId) {
+      params.tenantId = options?.tenantId;
     }
     if (options?.forced) {
       params.prompt = "login";
@@ -1635,6 +1656,10 @@ export class AuthenticationClient {
     extIdpConnIdentifier,
     appId,
     idToken,
+    needUrlRedirect,
+    onlyRedirectToken,
+    needFormPost,
+    targetUrl,
   }: {
     /** 外部身份源连接唯一标志 **/
     extIdpConnIdentifier: string;
@@ -1642,6 +1667,14 @@ export class AuthenticationClient {
     appId: string;
     /** 用户的 id_token **/
     idToken: string;
+    /** 是否使用 URL 重定向的方式返回绑定信息 **/
+    needUrlRedirect?: string;
+    /** 当使用 URL 重定向的方式返回绑定信息时，是否只返回 token 信息，传入此参数，因为某些浏览器会限制 URL 长度 **/
+    onlyRedirectToken?: string;
+    /** 是否使用 form post 的方式返回绑定信息 **/
+    needFormPost?: string;
+    /** 当使用 URL 重定向或 form post 方式返回绑定信息时，接收信息的 URL **/
+    targetUrl?: string;
   }): Promise<GenerateBindExtIdpLinkRespDto> {
     const result = await this.httpClient.request({
       method: "GET",
@@ -1650,6 +1683,10 @@ export class AuthenticationClient {
         ext_idp_conn_identifier: extIdpConnIdentifier,
         app_id: appId,
         id_token: idToken,
+        need_url_redirect: needUrlRedirect,
+        only_redirect_token: onlyRedirectToken,
+        need_form_post: needFormPost,
+        target_url: targetUrl,
       },
     });
     return result;
@@ -1909,6 +1946,27 @@ export class AuthenticationClient {
    * @description 按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
    * @returns CheckQRCodeStatusRespDto
    */
+  public async getQrCodeStatus({
+    qrcodeId,
+  }: {
+    /** 二维码唯一 ID **/
+    qrcodeId: string;
+  }): Promise<CheckQRCodeStatusRespDto> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-qrcode-status",
+      params: {
+        qrcodeId: qrcodeId,
+      },
+    });
+    return result;
+  }
+  /**
+   * @deprecated
+   * @summary 查询二维码状态
+   * @description 返回格式不规范，推荐使用 /api/v3/get-qrcode-status，按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
+   * @returns CheckQRCodeStatusRespDto
+   */
   public async checkQrCodeStatus({
     qrcodeId,
   }: {
@@ -1988,8 +2046,21 @@ export class AuthenticationClient {
     return result;
   }
   /**
+   * @summary 生成图形验证码(NEW)
+   * @description 当用户池开启**登录失败次数限制**并且**登录安全策略**设置为**验证码**时，如果当前请求触发登录失败次数上限，要求用户输入图形验证码。此接口用于生成验证码及其 token。
+   * @returns GetCaptchaCodeRespDto
+   */
+  public async geneCatchaCodeAndToken(): Promise<GetCaptchaCodeRespDto> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-captcha-code",
+    });
+    return result;
+  }
+  /**
+   * @deprecated
    * @summary 自建 APP 扫码登录：APP 端修改二维码状态
-   * @description 此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @description 返回不规范，推荐使用 /api/v3/set-qrcode-status，此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
    * @returns CommonResponseDto
    */
   public async changeQrCodeStatus(
@@ -1998,6 +2069,21 @@ export class AuthenticationClient {
     const result = await this.httpClient.request({
       method: "POST",
       url: "/api/v3/change-qrcode-status",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 自建 APP 扫码登录：APP 端修改二维码状态
+   * @description 此端点用于在自建 APP 扫码登录中修改二维码状态，对应着在浏览器渲染出二维码之后，终端用户扫码、确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns IsSuccessRespDto
+   */
+  public async setQrCodeStatus(
+    requestBody: ChangeQRCodeStatusDto
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/set-qrcode-status",
       data: requestBody,
     });
     return result;
@@ -2040,6 +2126,22 @@ export class AuthenticationClient {
   /**
    * @summary 推送登录：APP 端修改推送码状态
    * @description 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
+   * @returns IsSuccessRespDto
+   */
+  public async setPushCodeStatus(
+    requestBody: ChangePushCodeStatusDto
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/set-pushcode-status",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @deprecated
+   * @summary 推送登录：APP 端修改推送码状态
+   * @description 返回格式不规范，推荐使用 /api/v3/set-pushcode-status， 此端点用于在 Authing 令牌 APP 推送登录中修改推送码状态，对应着在浏览器使用推送登录，点击登录之后，终端用户收到推送登录信息，确认授权、取消授权的过程。**此接口要求具备用户的登录态**。
    * @returns CommonResponseDto
    */
   public async changePushCodeStatus(
@@ -2212,7 +2314,7 @@ export class AuthenticationClient {
   public async getRoleList({
     namespace,
   }: {
-    /** 所属权限分组(权限空间)的 Code **/
+    /** 所属权限分组(权限空间)的 Code，不传获取默认权限分组。 **/
     namespace?: string;
   }): Promise<RoleListRespDto> {
     const result = await this.httpClient.request({
@@ -2285,7 +2387,7 @@ export class AuthenticationClient {
     namespace,
     resourceType,
   }: {
-    /** 所属权限分组(权限空间)的 Code **/
+    /** 所属权限分组(权限空间)的 Code，不传获取默认权限分组。 **/
     namespace?: string;
     /** 资源类型，如 数据、API、菜单、按钮 **/
     resourceType?: "DATA" | "API" | "MENU" | "BUTTON" | "UI";
@@ -2449,11 +2551,11 @@ export class AuthenticationClient {
    * @summary 修改邮箱
    * @description 终端用户自主修改邮箱，需要提供相应的验证手段，见[发起修改邮箱的验证请求](#tag/用户资料/API%20列表/operation/ProfileV3Controller_verifyUpdateEmailRequest)。
    * 此参数需要提供一次性临时凭证 `updateEmailToken`，此数据需要从**发起修改邮箱的验证请求**接口获取。
-   * @returns CommonResponseDto
+   * @returns IsSuccessRespDto
    */
   public async updateEmail(
     requestBody: UpdateEmailDto
-  ): Promise<CommonResponseDto> {
+  ): Promise<IsSuccessRespDto> {
     const result = await this.httpClient.request({
       method: "POST",
       url: "/api/v3/update-email",
@@ -2480,11 +2582,11 @@ export class AuthenticationClient {
    * @summary 修改手机号
    * @description 终端用户自主修改手机号，需要提供相应的验证手段，见[发起修改手机号的验证请求](#tag/用户资料/API%20列表/operation/ProfileV3Controller_updatePhoneVerification)。
    * 此参数需要提供一次性临时凭证 `updatePhoneToken`，此数据需要从**发起修改手机号的验证请求**接口获取。
-   * @returns CommonResponseDto
+   * @returns IsSuccessRespDto
    */
   public async updatePhone(
     requestBody: UpdatePhoneDto
-  ): Promise<CommonResponseDto> {
+  ): Promise<IsSuccessRespDto> {
     const result = await this.httpClient.request({
       method: "POST",
       url: "/api/v3/update-phone",
@@ -2792,6 +2894,294 @@ export class AuthenticationClient {
     return result;
   }
   /**
+   * @summary 验证账号密码是否正确
+   * @description 验证账号密码是否正确，手机号、邮箱、用户名如果同时传递，优先级为邮箱 -> 手机号 -> 用户名。
+   * @returns ValidatePasswordRespDto
+   */
+  public async validatePassword(
+    requestBody: ValidatePasswordDto
+  ): Promise<ValidatePasswordRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/validate-password",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 解密抖音小程序用户信息
+   * @description 解密抖音小程序用户信息
+   * @returns DecryptDouyinMiniProgramDataRespDto
+   */
+  public async decryptDouyinMiniProgramData(
+    requestBody: DecryptDouyinMiniProgramDataDto
+  ): Promise<DecryptDouyinMiniProgramDataRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/decrypt-douyin-miniprogram-data",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取可申请权限的应用列表
+   * @description 获取可申请权限的应用列表
+   * @returns EnablePermissionApplyApplicationListRes
+   */
+  public async getEnablePermissionApplyApplicationList({
+    appName,
+  }: {
+    /** 根据应用名称进行模糊查询 **/
+    appName?: string;
+  }): Promise<EnablePermissionApplyApplicationListRes> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/applications-permission-applicable",
+      params: {
+        appName: appName,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 获取可申请权限的角色列表
+   * @description 获取可申请权限的角色列表
+   * @returns EnablePermissionApplyRoleListRes
+   */
+  public async getEnablePermissionApplyRoleList({
+    appId,
+    page = 1,
+    limit = 10,
+    keyword,
+  }: {
+    /** Authing 应用 ID **/
+    appId: string;
+    /** 当前页数，从 1 开始 **/
+    page?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    limit?: number;
+    /** 用于根据角色的 code 或者名称进行模糊搜索，可选。 **/
+    keyword?: string;
+  }): Promise<EnablePermissionApplyRoleListRes> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/roles-permission-applicable",
+      params: {
+        page: page,
+        limit: limit,
+        keyword: keyword,
+        appId: appId,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 发起单个审批
+   * @description 发起单个审批
+   * @returns CreateApprovalRes
+   */
+  public async createApproval(
+    requestBody: CreateApprovalReq
+  ): Promise<CreateApprovalRes> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/approval",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取审批详情
+   * @description 获取审批详情
+   * @returns ApprovalDetailRes
+   */
+  public async getDetail({
+    number,
+  }: {
+    /** 审批编号 **/
+    number: string;
+  }): Promise<ApprovalDetailRes> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/approval",
+      params: {
+        number: number,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 批量发起审批
+   * @description 批量发起审批
+   * @returns IsSuccessRespDto
+   */
+  public async batchCreateApproval(
+    requestBody: BatchCreateApprovalReq
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/approval-batch",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取已发起审批列表
+   * @description 获取已发起审批列表
+   * @returns InitiatedApprovalListRes
+   */
+  public async initiatedList({
+    pageNo = 1,
+    pageSize = 10,
+    objectType,
+    keyword,
+  }: {
+    /** 当前页数，从 1 开始 **/
+    pageNo?: number;
+    /** 每页数目，最大不能超过 50，默认为 10 **/
+    pageSize?: number;
+    /** 发起审批对象类型，目前支持：应用权限申请（APP_PERMISSION_APPLY）、角色权限申请（ROLE_PERMISSION_APPLY） **/
+    objectType?: "APP_PERMISSION_APPLY" | "ROLE_PERMISSION_APPLY";
+    /** 用于根据审批编号或者发起人名称进行模糊搜索，可选。 **/
+    keyword?: string;
+  }): Promise<InitiatedApprovalListRes> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/approval-initiated-list",
+      params: {
+        pageNo: pageNo,
+        pageSize: pageSize,
+        objectType: objectType,
+        keyword: keyword,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 获取通用邀请公共配置
+   * @description 获取通用邀请公共配置。
+   * @returns GetUniversalInvitationPublicConfigRespDto
+   */
+  public async getUniversalInvitationPublicConfig({
+    identifier,
+  }: {
+    /** 邀请链接唯一标识 **/
+    identifier: string;
+  }): Promise<GetUniversalInvitationPublicConfigRespDto> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-universal-invitation-public-config",
+      params: {
+        identifier: identifier,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 通过通用邀请申请加入
+   * @description 通过通用邀请申请加入。
+   * @returns GetUniversalInvitationJoinRespDto
+   */
+  public async signupByUniversal(
+    requestBody: UniversalInvitationUserJoinDto
+  ): Promise<GetUniversalInvitationJoinRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/signup-by-invitation",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 生成策略邀请 token
+   * @description 生成策略邀请 token
+   * @returns GenerateInviteeTokenRespDto
+   */
+  public async generateInviteToken(
+    requestBody: InvitationLinkDto
+  ): Promise<GenerateInviteeTokenRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/generate-policy-invitation-token",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取邀请注册上下文数据
+   * @description 获取邀请注册上下文数据
+   * @returns GetInviteeContextRespDto
+   */
+  public async getInviteCodeContext({
+    token,
+  }: {
+    /** 受邀人注册凭证 **/
+    token: string;
+  }): Promise<GetInviteeContextRespDto> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/get-policy-invitation-context",
+      params: {
+        token: token,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 检查身份验证码
+   * @description 检查身份验证码
+   * @returns IsSuccessRespDto
+   */
+  public async verifyInviteCode(
+    requestBody: VerifyInviteCodeDto
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/verify-invite-code",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 通过策略邀请确认加入
+   * @description 通过策略邀请确认加入。
+   * @returns IsSuccessRespDto
+   */
+  public async signupByPolicy(
+    requestBody: PolicyInviteeJoinedDto
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/join-by-invitation",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 生成成员邀请链接
+   * @description 为当前用户生成成员生成通用邀请的链接。
+   * @returns GenerateInvitationLinkRespDto
+   */
+  public async generateUniversalInvitationByMember(): Promise<GenerateInvitationLinkRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/generate-universal-invitation-link-by-member",
+    });
+    return result;
+  }
+  /**
+   * @summary 重置我的全部邀请链接
+   * @description 清理我的所有邀请链接。
+   * @returns IsSuccessRespDto
+   */
+  public async clearMyAllUniversalInvitationLinks(): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/clear-my-all-invitation-links",
+    });
+    return result;
+  }
+  /**
    * @summary 微信移动端登录
    * @description 移动端应用：使用微信作为外部身份源登录。
    * @returns LoginTokenResponseDataDto
@@ -2953,7 +3343,7 @@ export class AuthenticationClient {
    * @description 按照用户扫码顺序，共分为未扫码、已扫码、已登录、二维码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
    * @returns CheckQRCodeStatusRespDto
    */
-  public async getQrCodeStatus({
+  public async getAppLoginQrCodeStatus({
     qrcodeId,
   }: {
     /** 二维码唯一 ID **/
@@ -3048,6 +3438,94 @@ export class AuthenticationClient {
       method: "POST",
       url: "/api/v3/webauthn/remove-credential/{credentialID}",
       data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async webAuthnAdminInitialize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/admin/initialize",
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async webAuthnAdminRegisterFinalize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/admin/registration/finalize",
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async updateWebAuthnAdminCredential(
+    credentialId: string,
+    requestBody: UpdatePasskeyDto
+  ): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "PUT",
+      url: "/api/v3/webauthn/admin/credentials/{credentialId}",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async deleteWebAuthnAdminCredential(
+    credentialId: string,
+    userId: string,
+    appId: string
+  ): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "DELETE",
+      url: "/api/v3/webauthn/admin/credentials/{credentialId}/{userId}/{appId}",
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async listSubjectAuth(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v2/applications/subject/person/list",
+    });
+    return result;
+  }
+  /**
+   * @returns any
+   */
+  public async listWebAuthnPersonCredentials({
+    userId,
+    page = 1,
+    limit = 10,
+    appId,
+  }: {
+    /** 用户 ID **/
+    userId: string;
+    /** 页码数 **/
+    page?: number;
+    /** 每页数目 **/
+    limit?: number;
+    /** 应用 id **/
+    appId?: string;
+  }): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/webauthn/person/credentials",
+      params: {
+        page: page,
+        limit: limit,
+        userId: userId,
+        appId: appId,
+      },
     });
     return result;
   }
@@ -3166,6 +3644,133 @@ export class AuthenticationClient {
       method: "POST",
       url: "/api/v3/mfa-totp-verify",
       data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取 Passkey 登录参数
+   * @description 获取 Passkey 登录参数
+   * @returns any
+   */
+  public async webAuthnLoginInitalize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/login/initialize",
+    });
+    return result;
+  }
+  /**
+   * @summary 使用 Passkey 登录
+   * @description 使用 Passkey 登录
+   * @returns any
+   */
+  public async webAuthnLoginFinalize(
+    requestBody: FinalizeWebAuthnLoginDto
+  ): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/login/finalize",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 获取绑定 Passkey 参数
+   * @description 获取绑定 Passkey 参数
+   * @returns any
+   */
+  public async webAuthnRegisterInitalize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/registration/initialize",
+    });
+    return result;
+  }
+  /**
+   * @summary MFA 获取绑定 Passkey 参数
+   * @description MFA 获取绑定 Passkey 参数
+   * @returns any
+   */
+  public async webAuthnMfaBindInitialize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/mfa-bind/initialize",
+    });
+    return result;
+  }
+  /**
+   * @summary 获取 Passkey MFA 登录参数
+   * @description 获取 Passkey MFA 登录参数
+   * @returns any
+   */
+  public async webAuthnMfaVerifyInitalize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/mfa-verify/initialize",
+    });
+    return result;
+  }
+  /**
+   * @summary 绑定 Passkey
+   * @description 绑定 Passkey
+   * @returns any
+   */
+  public async webAuthnRegisterFinalize(): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "POST",
+      url: "/api/v3/webauthn/registration/finalize",
+    });
+    return result;
+  }
+  /**
+   * @summary 获取绑定的 Passkey 列表
+   * @description 获取绑定的 Passkey 列表
+   * @returns any
+   */
+  public async listWebAuthnCredentials({
+    page = 1,
+    limit = 10,
+  }: {
+    /** 页码数 **/
+    page?: number;
+    /** 每页数目 **/
+    limit?: number;
+  }): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "GET",
+      url: "/api/v3/webauthn/credentials",
+      params: {
+        page: page,
+        limit: limit,
+      },
+    });
+    return result;
+  }
+  /**
+   * @summary 修改 passkey
+   * @description 修改 passkey
+   * @returns IsSuccessRespDto
+   */
+  public async updateWebAuthnCredential(
+    credentialId: string,
+    requestBody: UpdatePasskeyDto
+  ): Promise<IsSuccessRespDto> {
+    const result = await this.httpClient.request({
+      method: "PUT",
+      url: "/api/v3/webauthn/credentials/{credentialId}",
+      data: requestBody,
+    });
+    return result;
+  }
+  /**
+   * @summary 删除 passkey
+   * @description 删除 passkey
+   * @returns any
+   */
+  public async deleteWebAuthnCredential(credentialId: string): Promise<any> {
+    const result = await this.httpClient.request({
+      method: "DELETE",
+      url: "/api/v3/webauthn/credentials/{credentialId}",
     });
     return result;
   }

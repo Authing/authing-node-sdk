@@ -70,4 +70,8 @@ export type FilterDto = {
      * 获取对应关联数据的详细字段
      */
     expand?: Array<Expand>;
+    /**
+     * 是否返回嵌套的关联数据
+     */
+    getNestData?: boolean;
 };

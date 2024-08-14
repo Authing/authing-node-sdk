@@ -15,6 +15,10 @@ export type GetDepartmentByIdDto = {
      */
     tenantId?: any;
     /**
+     * 应用类型列表
+     */
+    appTypeList?: any;
+    /**
      * 是否获取自定义数据
      */
     withCustomData?: any;

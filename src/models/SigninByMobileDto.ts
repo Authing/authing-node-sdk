@@ -7,6 +7,8 @@ import type { SignInByAmazonPayloadDto } from './SignInByAmazonPayloadDto';
 import type { SignInByApplePayloadDto } from './SignInByApplePayloadDto';
 import type { SignInByBaiduPayloadDto } from './SignInByBaiduPayloadDto';
 import type { SignInByDingTalkPayloadDto } from './SignInByDingTalkPayloadDto';
+import type { SignInByDouyinMiniProgramCodeAndPhonePayloadDto } from './SignInByDouyinMiniProgramCodeAndPhonePayloadDto';
+import type { SignInByDouyinMiniProgramCodePayloadDto } from './SignInByDouyinMiniProgramCodePayloadDto';
 import type { SignInByDouyinPayloadDto } from './SignInByDouyinPayloadDto';
 import type { SignInByFacebookPayloadDto } from './SignInByFacebookPayloadDto';
 import type { SignInByGiteePayloadDto } from './SignInByGiteePayloadDto';
@@ -53,6 +55,8 @@ export type SigninByMobileDto = {
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
      * - `wechat_mini_program_code_and_phone `: 微信小程序使用 code 和手机号登录
+     * - `douyin_mini_program_code`: 抖音小程序使用 code 登录
+     * - `douyin_mini_program_code_and_phone `: 抖音小程序使用 code 和手机号登录
      * - `google`: Google 移动端社会化登录
      * - `facebook`: Facebook 移动端社会化登录
      * - `qq`: QQ 移动端社会化登录
@@ -122,6 +126,14 @@ export type SigninByMobileDto = {
      * 微信小程序使用 code 和手机号登录相关数据，当 `connection` 为 `wechat_mini_program_code_and_phone` 的时候必填。
      */
     wechatMiniProgramCodeAndPhonePayload?: SignInByWechatMiniProgramCodeAndPhonePayloadDto;
+    /**
+     * 抖音小程序使用 code 登录相关数据，当 `connection` 为 `douyin_mini_program_code` 的时候必填。
+     */
+    douyinMiniProgramCodePayload?: SignInByDouyinMiniProgramCodePayloadDto;
+    /**
+     * 抖音小程序使用 code 和手机号登录相关数据，当 `connection` 为 `douyin_mini_program_code_and_phone` 的时候必填。
+     */
+    douyinMiniProgramCodeAndPhonePayload?: SignInByDouyinMiniProgramCodeAndPhonePayloadDto;
     /**
      * Google 移动端社会化登录数据，当 `connection` 为 `google` 的时候必填。
      */
@@ -224,6 +236,8 @@ export namespace SigninByMobileDto {
      * - `wechat_mini_program_code`: 微信小程序使用 code 登录
      * - `wechat_mini_program_phone `: 微信小程序使用手机号登录
      * - `wechat_mini_program_code_and_phone `: 微信小程序使用 code 和手机号登录
+     * - `douyin_mini_program_code`: 抖音小程序使用 code 登录
+     * - `douyin_mini_program_code_and_phone `: 抖音小程序使用 code 和手机号登录
      * - `google`: Google 移动端社会化登录
      * - `facebook`: Facebook 移动端社会化登录
      * - `qq`: QQ 移动端社会化登录
@@ -275,6 +289,8 @@ export namespace SigninByMobileDto {
         OPPO = 'oppo',
         HUAWEI = 'huawei',
         AMAZON = 'amazon',
+        DOUYIN_MINI_PROGRAM_CODE = 'douyin_mini_program_code',
+        DOUYIN_MINI_PROGRAM_CODE_AND_PHONE = 'douyin_mini_program_code_and_phone',
     }
 
 

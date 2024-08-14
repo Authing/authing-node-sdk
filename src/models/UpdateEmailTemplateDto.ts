@@ -4,26 +4,6 @@
 
 export type UpdateEmailTemplateDto = {
     /**
-     * 邮件内容模版
-     */
-    content: string;
-    /**
-     * 邮件发件人名称
-     */
-    sender: string;
-    /**
-     * 邮件主题
-     */
-    subject: string;
-    /**
-     * 邮件模版名称
-     */
-    name: string;
-    /**
-     * 是否启用自定义模版
-     */
-    customizeEnabled: boolean;
-    /**
      * 模版类型:
      * - `WELCOME_EMAIL`: 欢迎邮件
      * - `FIRST_CREATED_USER`: 首次创建用户通知
@@ -43,6 +23,26 @@ export type UpdateEmailTemplateDto = {
      *
      */
     type: UpdateEmailTemplateDto.type;
+    /**
+     * 是否启用自定义模版
+     */
+    customizeEnabled: boolean;
+    /**
+     * 邮件模版名称
+     */
+    name: string;
+    /**
+     * 邮件主题
+     */
+    subject: string;
+    /**
+     * 邮件发件人名称
+     */
+    sender: string;
+    /**
+     * 邮件内容模版
+     */
+    content: string;
     /**
      * 验证码/邮件有效时间，只有验证类邮件才有有效时间。
      */

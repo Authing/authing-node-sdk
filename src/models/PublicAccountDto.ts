@@ -4,7 +4,7 @@
 
 export type PublicAccountDto = {
     /**
-     * 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
      */
     userId: string;
     /**
@@ -16,7 +16,13 @@ export type PublicAccountDto = {
      */
     updatedAt: string;
     /**
-     * 账户当前状态
+     * 账户当前状态：
+     * - Activated: 正常状态
+     * - Suspended: 已停用
+     * - Deactivated: 已禁用
+     * - Resigned: 已离职
+     * - Archived: 已归档
+     *
      */
     status: PublicAccountDto.status;
     /**
@@ -229,7 +235,13 @@ export type PublicAccountDto = {
 export namespace PublicAccountDto {
 
     /**
-     * 账户当前状态
+     * 账户当前状态：
+     * - Activated: 正常状态
+     * - Suspended: 已停用
+     * - Deactivated: 已禁用
+     * - Resigned: 已离职
+     * - Archived: 已归档
+     *
      */
     export enum status {
         SUSPENDED = 'Suspended',

@@ -35,6 +35,10 @@ export type UpdateLoginConfig = {
      */
     enableVerifyDomain: boolean;
     /**
+     * 是否自动关联租户应用
+     */
+    enableAutoConnectTenantApp: boolean;
+    /**
      * 校验企业域名的场景
      */
     verifyDomainScenes: Array<string>;

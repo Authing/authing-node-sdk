@@ -89,6 +89,9 @@ export namespace ExtIdpInfoDto {
         KUAISHOU = 'kuaishou',
         LINE = 'line',
         SDBZ = 'sdbz',
+        ZJZWFW = 'zjzwfw',
+        ZZDING = 'zzding',
+        SEEYONA8V5 = 'seeyona8v5',
     }
 
     /**

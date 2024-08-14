@@ -10,7 +10,7 @@ export type AuthorizeResourcesDto = {
      */
     list: Array<AuthorizeResourceItem>;
     /**
-     * 所属权限分组(权限空间)的 Code
+     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
      */
     namespace?: string;
 };

@@ -14,6 +14,10 @@ export type UpdateDepartmentReqDto = {
      */
     departmentId: string;
     /**
+     * 元数据信息
+     */
+    metadata: any;
+    /**
      * 部门负责人 ID
      */
     leaderUserIds?: Array<string>;
@@ -42,7 +46,7 @@ export type UpdateDepartmentReqDto = {
      */
     departmentIdType?: UpdateDepartmentReqDto.departmentIdType;
     /**
-     * 父部门 ID
+     * 父部门 id，如果是根部门，传 root
      */
     parentDepartmentId?: string;
     /**

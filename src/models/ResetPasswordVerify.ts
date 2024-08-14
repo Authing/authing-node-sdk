@@ -8,7 +8,7 @@ export type ResetPasswordVerify = {
      */
     passwordResetToken: string;
     /**
-     * 过期时间
+     * 过期时间，单位为秒。
      */
     tokenExpiresIn: number;
 };

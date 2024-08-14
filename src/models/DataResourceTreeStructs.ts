@@ -19,4 +19,8 @@ export type DataResourceTreeStructs = {
      * 数据资源节点的子节点,子节点层级最多支持五个层级
      */
     children?: Array<any>;
+    /**
+     * 扩展字段值, 以 key:value 形式存储
+     */
+    extendFieldValue?: any;
 };

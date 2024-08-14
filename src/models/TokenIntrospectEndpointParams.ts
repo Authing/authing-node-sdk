@@ -15,4 +15,8 @@ export type TokenIntrospectEndpointParams = {
      * `access_token` 或者 `refresh_token` 的值
      */
     token: string;
+    /**
+     * 是否校验用户状态，若传入 true，当用户被删除、停用、归档、离职后，即使 token 在有效期内，也会被认为是无效 token
+     */
+    strict?: boolean;
 };

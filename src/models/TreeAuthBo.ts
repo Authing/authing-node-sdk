@@ -19,4 +19,8 @@ export type TreeAuthBo = {
      * 树资源节点 Value
      */
     nodeValue?: string;
+    /**
+     * 树资源节点扩展字段值
+     */
+    nodeExtendFieldValue?: any;
 };

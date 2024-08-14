@@ -35,13 +35,17 @@ export type SignInOptionsDto = {
      */
     customData?: any;
     /**
-     * 是否开启自动注册。如果设置为 true，当用户不存在的时候，会先自动为其创建一个账号。
+     * 是否开启自动注册。如果设置为 true，当用户不存在的时候，会先自动为其创建一个账号。注意：此参数只针对指定的用户名密码、邮箱密码、手机号密码有效，通用的账号密码不能设置此参数。
      */
     autoRegister?: boolean;
     /**
      * Captcha 图形验证码，不区分大小写。当**安全策略**设置为**验证码**且触发**登录失败次数限制**时，下次登录需要填写图形验证码。
      */
     captchaCode?: string;
+    /**
+     * /api/v3/get-captcha-code 获取 Captcha 图形验证码时，对应返回的 token，当传入 captchaCode 时，此参数必传
+     */
+    captchaToken?: string;
     /**
      * 密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
      * - `none`: 不对密码进行加密，使用明文进行传输。

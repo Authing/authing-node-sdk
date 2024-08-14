@@ -20,4 +20,20 @@ export type GenerateLinkExtidpUrlDto = {
      * 用户的 id_token
      */
     idToken?: any;
+    /**
+     * 是否使用 URL 重定向的方式返回绑定信息
+     */
+    needUrlRedirect?: any;
+    /**
+     * 当使用 URL 重定向的方式返回绑定信息时，是否只返回 token 信息，传入此参数，因为某些浏览器会限制 URL 长度
+     */
+    onlyRedirectToken?: any;
+    /**
+     * 是否使用 form post 的方式返回绑定信息
+     */
+    needFormPost?: any;
+    /**
+     * 当使用 URL 重定向或 form post 方式返回绑定信息时，接收信息的 URL
+     */
+    targetUrl?: any;
 };

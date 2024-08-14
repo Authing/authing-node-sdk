@@ -34,4 +34,24 @@ export type ListPostDto = {
      * 是否拍平扩展字段
      */
     flatCustomData?: any;
+    /**
+     * 是否不显示 metadata 的 fieldId 字段
+     */
+    metadataNoFieldId?: any;
+    /**
+     * 创建时间在此时间之后的岗位
+     */
+    createdAfter?: any;
+    /**
+     * 创建时间在此时间之前的岗位
+     */
+    createdBefore?: any;
+    /**
+     * 更新时间在此时间之后的岗位
+     */
+    updatedAfter?: any;
+    /**
+     * 更新时间在此时间之前的岗位
+     */
+    updatedBefore?: any;
 };

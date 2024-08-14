@@ -8,7 +8,7 @@ export type VerifyUpdatePhoneRequestData = {
      */
     updatePhoneToken: string;
     /**
-     * 过期时间
+     * 过期时间，单位为秒。
      */
     tokenExpiresIn: number;
 };

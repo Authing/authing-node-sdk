@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { LastExecuteStatus } from './LastExecuteStatus';
+
 export type PipelineFunctionDto = {
     /**
      * 函数 ID
@@ -67,6 +69,14 @@ export type PipelineFunctionDto = {
      * 此 Pipeline 是否被启用
      */
     enabled: boolean;
+    /**
+     * 是否为云函数
+     */
+    isCloud: boolean;
+    /**
+     * 最后执行状态
+     */
+    lastExecuteStatus: LastExecuteStatus;
 };
 
 export namespace PipelineFunctionDto {

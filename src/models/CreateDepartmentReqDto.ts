@@ -14,7 +14,7 @@ export type CreateDepartmentReqDto = {
      */
     name: string;
     /**
-     * 父部门 id
+     * 父部门 id，如果是根部门，传 root
      */
     parentDepartmentId: string;
     /**

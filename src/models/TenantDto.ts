@@ -22,7 +22,7 @@ export type TenantDto = {
     /**
      * 租户 logo
      */
-    logo: Array<string>;
+    logo: string;
     /**
      * 用户被租户拒绝登录时显示的提示文案
      */
@@ -48,7 +48,11 @@ export type TenantDto = {
      */
     code: string;
     /**
+     * 租户地址
+     */
+    host: string;
+    /**
      * 租户配置的企业域名
      */
-    enterpriseDomains: string;
+    enterpriseDomains: Array<string>;
 };

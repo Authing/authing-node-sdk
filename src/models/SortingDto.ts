@@ -58,6 +58,7 @@ export namespace SortingDto {
      *
      */
     export enum field {
+        ID = 'id',
         CREATED_AT = 'createdAt',
         UPDATED_AT = 'updatedAt',
         EMAIL = 'email',

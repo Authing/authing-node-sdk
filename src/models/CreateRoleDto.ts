@@ -12,7 +12,7 @@ export type CreateRoleDto = {
      */
     name?: string;
     /**
-     * 所属权限分组(权限空间)的 code
+     * 所属权限分组(权限空间)的 code，不传获取默认权限分组。
      */
     namespace?: string;
     /**

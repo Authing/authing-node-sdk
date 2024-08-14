@@ -7,7 +7,7 @@
  */
 export type GetUserAuthorizedResourcesDto = {
     /**
-     * 用户唯一标志，可以是用户 ID、用户名、邮箱、手机号、外部 ID、在外部身份源的 ID。
+     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
      */
     userId?: any;
     /**
@@ -25,7 +25,7 @@ export type GetUserAuthorizedResourcesDto = {
      */
     userIdType?: any;
     /**
-     * 所属权限分组(权限空间)的 Code
+     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
      */
     namespace?: any;
     /**

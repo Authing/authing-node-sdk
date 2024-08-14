@@ -4,15 +4,19 @@
 
 export type PostItemDto = {
     /**
-     * 分组 code
+     * 岗位 ID
+     */
+    id?: string;
+    /**
+     * 岗位 code
      */
     code: string;
     /**
-     * 分组名称
+     * 岗位名称
      */
     name: string;
     /**
-     * 分组描述
+     * 岗位描述
      */
     description?: string;
     /**

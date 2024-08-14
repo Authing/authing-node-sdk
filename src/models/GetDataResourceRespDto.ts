@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { DataResourceTreeStructs } from './DataResourceTreeStructs';
+import type { ExtendField } from './ExtendField';
 
 export type GetDataResourceRespDto = {
     /**
@@ -25,6 +26,10 @@ export type GetDataResourceRespDto = {
      * 数据资源结构，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
      */
     struct: (DataResourceTreeStructs | string | Array<string>);
+    /**
+     * 扩展字段列表，目前只支持树类型资源
+     */
+    extendFieldList?: Array<ExtendField>;
     /**
      * 数据策略所在的权限空间 Code
      */

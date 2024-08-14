@@ -10,7 +10,7 @@ export type ParsedUserAgent = {
     /**
      * 浏览器名称
      */
-    browser: string;
+    name: string;
     /**
      * 操作系统
      */

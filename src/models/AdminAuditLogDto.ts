@@ -66,7 +66,7 @@ export type AdminAuditLogDto = {
     /**
      * 事件详情
      */
-    eventDetail?: string;
+    eventDetails?: string;
     /**
      * 具体的操作参数
      */
@@ -90,7 +90,7 @@ export type AdminAuditLogDto = {
     /**
      * 解析过后的 User Agent
      */
-    parsedUserAgent: ParsedUserAgent;
+    ua: ParsedUserAgent;
     /**
      * 地理位置
      */
@@ -142,6 +142,10 @@ export namespace AdminAuditLogDto {
         ADD = 'add',
         REMOVE = 'remove',
         QUERY = 'query',
+        SEND_INVITATION = 'sendInvitation',
+        REVERT_INVITATION = 'revertInvitation',
+        APPROVAL = 'approval',
+        REJECT = 'reject',
     }
 
     /**
@@ -198,6 +202,15 @@ export namespace AdminAuditLogDto {
         DATA_POLICY = 'dataPolicy',
         AUTHORIZATION = 'authorization',
         USER_AUTHORIZATION = 'userAuthorization',
+        ADMIN_PERMISSION_ROLE = 'adminPermissionRole',
+        ADMIN_PERMISSION_ADMIN = 'adminPermissionAdmin',
+        ADMIN_PERMISSION_POLICY = 'adminPermissionPolicy',
+        UNIVERSAL_INVITATION = 'universalInvitation',
+        POLICY_INVITATION = 'policyInvitation',
+        INVITATION_ROSTER = 'invitationRoster',
+        INVITATION_USER = 'invitationUser',
+        INVITATION_POLICY = 'invitationPolicy',
+        APPLICANT = 'applicant',
     }
 
 

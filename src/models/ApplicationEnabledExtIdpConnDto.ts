@@ -85,6 +85,9 @@ export namespace ApplicationEnabledExtIdpConnDto {
         KUAISHOU = 'kuaishou',
         LINE = 'line',
         SDBZ = 'sdbz',
+        ZJZWFW = 'zjzwfw',
+        ZZDING = 'zzding',
+        SEEYONA8V5 = 'seeyona8v5',
     }
 
     /**
@@ -154,11 +157,15 @@ export namespace ApplicationEnabledExtIdpConnDto {
         AMAZON = 'amazon',
         AMAZON_MOBILE = 'amazon:mobile',
         DOUYIN_MOBILE = 'douyin:mobile',
+        DOUYIN_MINIPROGRAM_DEFAULT = 'douyin:miniprogram:default',
         KUAISHOU_MOBILE = 'kuaishou:mobile',
         LINE_MOBILE = 'line:mobile',
         OPPO_MOBILE = 'oppo:mobile',
         WECHATWORK_QRCONNECT_OF_AUTHING_AGENCY = 'wechatwork:qrconnect:of:authing:agency',
         SDBZ = 'sdbz',
+        ZJZWFW_QRCODE = 'zjzwfw-qrcode',
+        ZZDING = 'zzding',
+        SEEYONA8V5 = 'seeyona8v5',
     }
 
 

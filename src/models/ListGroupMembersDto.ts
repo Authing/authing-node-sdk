@@ -30,4 +30,8 @@ export type ListGroupMembersDto = {
      * 是否获取部门 ID 列表
      */
     withDepartmentIds?: any;
+    /**
+     * 是否拍平扩展字段
+     */
+    flatCustomData?: any;
 };

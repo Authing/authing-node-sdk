@@ -3,6 +3,7 @@
 /* eslint-disable */
 
 import type { DataResourceTreeStructs } from './DataResourceTreeStructs';
+import type { ExtendField } from './ExtendField';
 
 export type CreateTreeDataResourceRespDto = {
     /**
@@ -29,6 +30,10 @@ export type CreateTreeDataResourceRespDto = {
      * 数据资源权限操作列表
      */
     actions: Array<string>;
+    /**
+     * 扩展字段列表，目前只支持树类型资源
+     */
+    extendFieldList?: Array<ExtendField>;
 };
 
 export namespace CreateTreeDataResourceRespDto {

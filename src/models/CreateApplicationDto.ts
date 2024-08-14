@@ -22,7 +22,7 @@ export type CreateApplicationDto = {
     /**
      * 集成应用配置信息，**集成应用必填**。
      */
-    templateData?: string;
+    templateData?: any;
     /**
      * 应用唯一标志，**自建应用必填**。
      */
@@ -113,6 +113,8 @@ export namespace CreateApplicationDto {
         API = 'api',
         MFA = 'mfa',
         MINI_PROGRAM = 'mini-program',
+        GATEWAY_APP = 'gateway-app',
+        GATEWAY_AGENT = 'gateway-agent',
     }
 
     /**

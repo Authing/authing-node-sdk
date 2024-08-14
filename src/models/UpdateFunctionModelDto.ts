@@ -4,6 +4,10 @@
 
 export type UpdateFunctionModelDto = {
     /**
+     * 展示字段 key
+     */
+    showFieldKey: string;
+    /**
      * 详情页配置
      */
     config: any;

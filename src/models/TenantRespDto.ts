@@ -22,7 +22,7 @@ export type TenantRespDto = {
     /**
      * 租户 logo
      */
-    logo: Array<string>;
+    logo: string;
     /**
      * 用户被租户拒绝登录时显示的提示文案
      */
@@ -48,9 +48,13 @@ export type TenantRespDto = {
      */
     code: string;
     /**
+     * 租户地址
+     */
+    host: string;
+    /**
      * 租户配置的企业域名
      */
-    enterpriseDomains: string;
+    enterpriseDomains: Array<string>;
     /**
      * 创建者基本信息
      */
@@ -59,4 +63,8 @@ export type TenantRespDto = {
      * 来源 app 基本信息
      */
     sourceAppDetail?: any;
+    /**
+     * 租户内成员数
+     */
+    membersCount?: number;
 };

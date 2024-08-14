@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 分页获取用户列表
+ * 分页获取风险名单用户列表
  */
 export type UserListDto = {
     /**

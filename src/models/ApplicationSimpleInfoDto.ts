@@ -45,6 +45,8 @@ export namespace ApplicationSimpleInfoDto {
         API = 'api',
         MFA = 'mfa',
         MINI_PROGRAM = 'mini-program',
+        GATEWAY_APP = 'gateway-app',
+        GATEWAY_AGENT = 'gateway-agent',
     }
 
 

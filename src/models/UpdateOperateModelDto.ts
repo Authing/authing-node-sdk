@@ -34,4 +34,8 @@ export type UpdateOperateModelDto = {
      * id
      */
     id: string;
+    /**
+     * 关联字段 id
+     */
+    fieldId?: string;
 };
