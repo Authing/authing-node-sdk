@@ -27,7 +27,7 @@ jobs:
       - name: build
         run: |
           yarn
-          npx tsc
+          yarn build
 
       # - name: test
       #   run: yarn test
