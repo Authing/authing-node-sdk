@@ -1,4 +1,4 @@
-import Axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import Axios, { AxiosHeaders, AxiosInstance, AxiosRequestConfig } from "axios";
 
 import { ManagementClientOptions } from "./ManagementClientOptions";
 import { pickBy } from "./utils";
@@ -22,25 +22,27 @@ export class ManagementHttpClient {
 
   async request(config: AxiosRequestConfig) {
     // 此次请求的请求头
-    let headers: any = {};
+    let headers = new AxiosHeaders(DEFAULT_HEADERS());
     if (this.options.tenantId) {
-      headers["x-authing-tenant-id"] = this.options.tenantId;
+      headers.set("x-authing-app-id", this.options.tenantId, true);
     }
-    headers["x-authing-lang"] = this.options.lang || "zh-CN";
-    headers["date"] = new Date().toUTCString();
-    headers = Object.assign(DEFAULT_HEADERS(), headers);
+    headers.set("x-authing-lang", this.options.lang || "zh-CN");
+    headers.set("date", new Date().toUTCString());
 
     // 计算签名
     const stringToSign = buildStringToSign(
       config.method!,
       config.url!,
       headers,
-      config.method === 'GET' ? config.params || {} : config.data || {},
+      config.method === "GET" ? config.params || {} : config.data || {}
     );
-    headers["authorization"] = buildAuthorization(
-      this.options.accessKeyId,
-      this.options.accessKeySecret,
-      stringToSign
+    headers.set(
+      "authorization",
+      buildAuthorization(
+        this.options.accessKeyId,
+        this.options.accessKeySecret,
+        stringToSign
+      )
     );
 
     config.headers = headers;
@@ -51,11 +53,11 @@ export class ManagementHttpClient {
         ...pickBy(config.headers, (i) => !!i),
       },
       httpsAgent:
-      this.options.rejectUnauthorized === false
-        ? new https.Agent({
-            rejectUnauthorized: false,
-          })
-        : undefined,
+        this.options.rejectUnauthorized === false
+          ? new https.Agent({
+              rejectUnauthorized: false,
+            })
+          : undefined,
     });
     return data;
   }
