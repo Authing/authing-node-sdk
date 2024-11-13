@@ -715,7 +715,7 @@ export class AuthenticationClient {
       nonce,
     };
     if (options?.tenantId) {
-      params.tenantId = options?.tenantId;
+      params.tenant_id = options?.tenantId;
     }
     if (options?.forced) {
       params.prompt = "login";
