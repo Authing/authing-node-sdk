@@ -6,23 +6,23 @@ import type { GetAuthorizedResourceActionDto } from './GetAuthorizedResourceActi
 
 export type GetAuthorizedTargetsDto = {
     /**
-     * 资源
+     * Resource
      */
     resource: string;
     /**
-     * 权限分组
+     * Permission namespace
      */
     namespace?: string;
     /**
-     * 资源类型
+     * Resource type
      */
     resourceType?: GetAuthorizedTargetsDto.resourceType;
     /**
-     * 主体类型
+     * Subject type
      */
     targetType?: GetAuthorizedTargetsDto.targetType;
     /**
-     * Action 列表
+     * Action list
      */
     actions?: GetAuthorizedResourceActionDto;
 };
@@ -30,7 +30,7 @@ export type GetAuthorizedTargetsDto = {
 export namespace GetAuthorizedTargetsDto {
 
     /**
-     * 资源类型
+     * Resource Type
      */
     export enum resourceType {
         DATA = 'DATA',
@@ -41,7 +41,7 @@ export namespace GetAuthorizedTargetsDto {
     }
 
     /**
-     * 主体类型
+     * Subject Type
      */
     export enum targetType {
         USER = 'USER',

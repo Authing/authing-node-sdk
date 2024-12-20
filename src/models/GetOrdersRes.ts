@@ -6,11 +6,11 @@ import type { OrderItem } from './OrderItem';
 
 export type GetOrdersRes = {
     /**
-     * 总数
+     * Total
      */
     totalCount: string;
     /**
-     * 响应数据
+     * Data list
      */
     list: Array<OrderItem>;
 };

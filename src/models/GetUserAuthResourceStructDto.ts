@@ -4,7 +4,7 @@
 
 export type GetUserAuthResourceStructDto = {
     /**
-     * 数据资源 Code
+     * Resource Code
      */
     resource: string;
 };

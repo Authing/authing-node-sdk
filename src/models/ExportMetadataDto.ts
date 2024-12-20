@@ -4,7 +4,7 @@
 
 export type ExportMetadataDto = {
     /**
-     * 功能 id
+     * Model id
      */
     modelId: string;
 };

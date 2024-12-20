@@ -6,7 +6,7 @@ import type { ExtendsFieldDto } from './ExtendsFieldDto';
 
 export type GetExtendsFieldsDto = {
     /**
-     * 字段信息列表
+     * Extends field list
      */
     extendsFields?: Array<ExtendsFieldDto>;
 };

@@ -6,11 +6,11 @@ import type { ResourcePermissionAssignmentDto } from './ResourcePermissionAssign
 
 export type GetAuthorizedTargetDataDto = {
     /**
-     * 总数
+     * Total
      */
     totalCount: number;
     /**
-     * 元素列表
+     * Data list
      */
     list: Array<ResourcePermissionAssignmentDto>;
 };

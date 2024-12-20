@@ -4,11 +4,11 @@
 
 export type GetRelationInfoDto = {
     /**
-     * 关联 id 列表
+     * Association id list
      */
     idList: Array<string>;
     /**
-     * 功能 id
+     * Model id
      */
     modelId: string;
 };

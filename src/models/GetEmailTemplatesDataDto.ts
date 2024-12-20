@@ -7,11 +7,11 @@ import type { EmailTemplateDto } from './EmailTemplateDto';
 
 export type GetEmailTemplatesDataDto = {
     /**
-     * 模版列表
+     * Template list
      */
     templates: Array<EmailTemplateDto>;
     /**
-     * 模版类型列表
+     * Template categories
      */
     categories: Array<EmailTemplateCategoryDto>;
 };

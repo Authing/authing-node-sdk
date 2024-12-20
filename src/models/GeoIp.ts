@@ -6,7 +6,7 @@ import type { GeoIpLocation } from './GeoIpLocation';
 
 export type GeoIp = {
     /**
-     * 地理位置
+     * Location
      */
     location: GeoIpLocation;
     /**
@@ -30,7 +30,7 @@ export type GeoIp = {
      */
     region_code: string;
     /**
-     * 城市名称
+     * City name
      */
     city_name: string;
     /**
@@ -38,7 +38,7 @@ export type GeoIp = {
      */
     continent_code: string;
     /**
-     * 时区
+     * TimeZone
      */
     timezone: string;
 };

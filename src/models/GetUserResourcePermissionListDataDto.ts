@@ -6,7 +6,7 @@ import type { GetUserResourcePermissionList } from './GetUserResourcePermissionL
 
 export type GetUserResourcePermissionListDataDto = {
     /**
-     * 权限列表
+     * Permission list
      */
     permissionList: Array<GetUserResourcePermissionList>;
 };

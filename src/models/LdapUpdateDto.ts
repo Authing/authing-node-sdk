@@ -4,7 +4,7 @@
 
 export type LdapUpdateDto = {
     /**
-     * bindDn 密码
+     * bindDn Password
      */
     bindPwd?: string;
 };

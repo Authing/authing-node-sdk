@@ -6,11 +6,11 @@ import type { ResourceAuthorizedTargetDto } from './ResourceAuthorizedTargetDto'
 
 export type GetResourceAuthorizedTargetDataDto = {
     /**
-     * 总数
+     * Total
      */
     totalCount: number;
     /**
-     * 元素列表
+     * Data List
      */
     list: Array<ResourceAuthorizedTargetDto>;
 };

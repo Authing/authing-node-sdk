@@ -6,11 +6,11 @@ import type { AsaAccountTargetDto } from './AsaAccountTargetDto';
 
 export type GetAsaAccountAssignedTargetDataDto = {
     /**
-     * 总数
+     * Total
      */
     totalCount: number;
     /**
-     * 主体列表
+     * Subject list
      */
     list: Array<AsaAccountTargetDto>;
 };

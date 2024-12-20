@@ -4,7 +4,7 @@
 
 export type ExportUsersDto = {
     /**
-     * 名单 ID
+     * Roster ID
      */
     rosterId: string;
 };

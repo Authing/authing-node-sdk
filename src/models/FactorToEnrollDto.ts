@@ -4,7 +4,7 @@
 
 export type FactorToEnrollDto = {
     /**
-     * MFA Factor 类型
+     * MFA Factor Type
      */
     factorType: FactorToEnrollDto.factorType;
 };
@@ -12,7 +12,7 @@ export type FactorToEnrollDto = {
 export namespace FactorToEnrollDto {
 
     /**
-     * MFA Factor 类型
+     * MFA Factor Type
      */
     export enum factorType {
         OTP = 'OTP',

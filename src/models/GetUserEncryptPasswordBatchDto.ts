@@ -4,7 +4,7 @@
 
 export type GetUserEncryptPasswordBatchDto = {
     /**
-     * 用户 ID 数组
+     * User IDs
      */
     userIds: Array<string>;
 };

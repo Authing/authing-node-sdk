@@ -4,11 +4,11 @@
 
 export type GetRowBatchDto = {
     /**
-     * 行 id 列表
+     * Row ids
      */
     rowIds: Array<string>;
     /**
-     * 功能 id
+     * Model id
      */
     modelId: string;
 };

@@ -4,7 +4,7 @@
 
 export type GetApplicationSecretDataDto = {
     /**
-     * 应用密钥
+     * Application secret
      */
     secret: string;
 };
