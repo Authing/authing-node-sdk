@@ -4,11 +4,11 @@
 
 export type CheckParamsDataPolicyRespDto = {
     /**
-     * 数据策略名称校验是否有效
+     * Is the data policy name verification valid?
      */
     isValid: boolean;
     /**
-     * 数据策略名称校验失败提示信息,如果校验成功, message 不返回
+     * Prompt message for data policy name verification failure. If verification is successful, message will not be returned.
      */
     message?: string;
 };

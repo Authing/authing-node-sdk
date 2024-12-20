@@ -4,15 +4,15 @@
 
 export type GetPermissionNamespaceRespDto = {
     /**
-     * 权限空间唯一标志符
+     * Permission space unique identifier
      */
     code: string;
     /**
-     * 权限空间名称
+     * Permission space name
      */
     name: string;
     /**
-     * 权限空间描述信息
+     * Permission space description information
      */
     description?: string;
 };

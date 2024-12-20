@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 根据用户池 ID 获取某个协调管理员的列表
+ * Get a list of coordinating administrators based on user pool ID
  */
 export type GetTenantCooperatorDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId?: any;
 };

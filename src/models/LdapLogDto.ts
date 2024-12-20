@@ -4,11 +4,11 @@
 
 export type LdapLogDto = {
     /**
-     * 总数
+     *Total
      */
     totalCount: number;
     /**
-     * 记录数据
+     * Record data
      */
     list: any;
 };

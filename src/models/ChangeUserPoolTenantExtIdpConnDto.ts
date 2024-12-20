@@ -4,11 +4,11 @@
 
 export type ChangeUserPoolTenantExtIdpConnDto = {
     /**
-     * 是否开启身份源连接
+     * Whether to enable identity source connection
      */
     enabled: boolean;
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     connIds: Array<string>;
 };

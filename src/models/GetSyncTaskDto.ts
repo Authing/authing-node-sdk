@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取同步任务详情
+ * Get synchronization task details
  */
 export type GetSyncTaskDto = {
     /**
-     * 同步任务 ID
+     * Sync task ID
      */
     syncTaskId?: any;
 };

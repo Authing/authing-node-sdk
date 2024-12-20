@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 此端点用户获取用户资料，需要在请求头中带上用户的 `access_token`，Authing 服务器会根据用户 `access_token` 中的 `scope` 返回对应的字段。
+ * To obtain user information at this endpoint, users need to bring the user's `access_token` in the request header, and the Authing server will return the corresponding fields based on the `scope` in the user's `access_token`.
  */
 export type GetProfileDto = {
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 是否获取 identities
+     * Whether to obtain identities
      */
     withIdentities?: any;
     /**
-     * 是否获取部门 ID 列表
+     * Whether to obtain the department ID list
      */
     withDepartmentIds?: any;
 };

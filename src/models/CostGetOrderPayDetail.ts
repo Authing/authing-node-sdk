@@ -4,35 +4,35 @@
 
 export type CostGetOrderPayDetail = {
     /**
-     * 订单号
+     *Order number
      */
     orderNo: string;
     /**
-     * 渠道订单号
+     * Channel order number
      */
     channelOrderNo: string;
     /**
-     * 渠道订单号
+     * Channel order number
      */
     paidAmount: string;
     /**
-     * 支付时间
+     * Payment time
      */
     paidTime: string;
     /**
-     * 支付账号
+     * Payment account
      */
     paidAccountNo: string;
     /**
-     * 支付状态
+     * Payment status
      */
     payStatus: string;
     /**
-     * 创建时间
+     * Creation time
      */
     createTime: string;
     /**
-     * 支付方式
+     * Payment method
      */
     payType: string;
 };

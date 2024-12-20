@@ -4,31 +4,31 @@
 
 export type ExtIdpDetail = {
     /**
-     * 身份源 id
+     * Identity source id
      */
     id: string;
     /**
-     * 身份源名称
+     * Identity source name
      */
     name: string;
     /**
-     * 身份源的 Logo
+     * Logo of identity source
      */
     logo: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
     /**
-     * 身份源类型
+     * Identity source type
      */
     type: string;
     /**
-     * 身份源的连接列表
+     * Connection list of identity sources
      */
     connections: any;
     /**
-     * 租户场景下自动加入
+     * Automatically join in tenant scenario
      */
     autoJoin: boolean;
 };

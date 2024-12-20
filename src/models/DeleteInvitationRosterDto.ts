@@ -4,7 +4,7 @@
 
 export type DeleteInvitationRosterDto = {
     /**
-     * 名单 ID
+     * Roster ID
      */
     id: string;
 };

@@ -4,67 +4,67 @@
 
 export type FunctionModelDto = {
     /**
-     * 功能 id
+     * function id
      */
     id: string;
     /**
-     * 用户池 id
+     *User pool id
      */
     userPoolId: string;
     /**
-     * 功能名称
+     * Function name
      */
     name: string;
     /**
-     * 功能描述
+     * Function description
      */
     description: string;
     /**
-     * 数据类型：
-     * - list: 列表类型数据。
-     * - tree: 树状结构数据。
+     *Data type:
+     * - list: list type data.
+     * - tree: tree structure data.
      *
      */
     dataType: FunctionModelDto.dataType;
     /**
-     * 功能是否启用:
-     * - true: 启用
-     * - false: 不启用
+     * Whether the function is enabled:
+     * - true: enable
+     * - false: disable
      *
      */
     enable: boolean;
     /**
-     * 父级菜单
+     * Parent menu
      */
     parentKey: string;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * 更新时间
+     * Update time
      */
     updatedAt: string;
     /**
-     * 功能类型：
-     * - user: 用户
-     * - post: 岗位
-     * - group: 用户组
+     * Function type:
+     * - user: user
+     * - post: position
+     * - group: user group
      * - ueba: ueba
-     * - department: 树状结构数据
-     * - organization: 组织
-     * - device: 设备
-     * - device_rely: 设备
-     * - custom: 自定义
+     * - department: tree structure data
+     * - organization: organization
+     * - device: device
+     * - device_rely: device
+     * - custom: custom
      *
      */
     type: FunctionModelDto.type;
     /**
-     * 字段排序
+     * Field sorting
      */
     fieldOrder: string;
     /**
-     * 详情页配置
+     *Details page configuration
      */
     config: any;
 };
@@ -72,9 +72,9 @@ export type FunctionModelDto = {
 export namespace FunctionModelDto {
 
     /**
-     * 数据类型：
-     * - list: 列表类型数据。
-     * - tree: 树状结构数据。
+     *Data type:
+     * - list: list type data.
+     * - tree: tree structure data.
      *
      */
     export enum dataType {
@@ -83,16 +83,16 @@ export namespace FunctionModelDto {
     }
 
     /**
-     * 功能类型：
-     * - user: 用户
-     * - post: 岗位
-     * - group: 用户组
+     * Function type:
+     * - user: user
+     * - post: position
+     * - group: user group
      * - ueba: ueba
-     * - department: 树状结构数据
-     * - organization: 组织
-     * - device: 设备
-     * - device_rely: 设备
-     * - custom: 自定义
+     * - department: tree structure data
+     * - organization: organization
+     * - device: device
+     * - device_rely: device
+     * - custom: custom
      *
      */
     export enum type {

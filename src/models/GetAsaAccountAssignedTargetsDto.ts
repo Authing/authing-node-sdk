@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 根据 ASA 账号 ID 分页获取账号被分配的主体列表
+ * Get the list of principals assigned to the account by paging according to the ASA account ID
  */
 export type GetAsaAccountAssignedTargetsDto = {
     /**
-     * 所属应用 ID
+     * The application ID to which it belongs
      */
     appId?: any;
     /**
-     * ASA 账号 ID
+     * ASA account ID
      */
     accountId?: any;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: any;
 };

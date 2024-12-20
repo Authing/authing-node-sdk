@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 通过权限分组内角色 code，获取角色被授权的资源列表。
+ * Get the list of resources authorized by the role through the role code in the permission group.
  */
 export type GetRoleAuthorizedResourcesDto = {
     /**
-     * 权限分组内角色的唯一标识符
+     * The unique identifier of the role within the permission group
      */
     code?: any;
     /**
-     * 所属权限分组的 code
+     * The code of the permission group it belongs to
      */
     namespace?: any;
     /**
-     * 资源类型，如 数据、API、按钮、菜单
+     * Resource type, such as data, API, button, menu
      */
     resourceType?: any;
 };

@@ -4,11 +4,11 @@
 
 export type BindEmailDto = {
     /**
-     * 邮箱验证码，一个邮箱验证码只能使用一次，且有一定有效时间。
+     * Email verification code. Each email verification code can only be used once and has a certain validity period.
      */
     passCode: string;
     /**
-     * 邮箱，不区分大小写。
+     * Email address is not case sensitive.
      */
     email: string;
 };

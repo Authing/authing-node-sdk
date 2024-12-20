@@ -4,7 +4,7 @@
 
 export type CheckDomainAvailableDataDto = {
     /**
-     * 是否可用
+     * Available
      */
     available: boolean;
 };

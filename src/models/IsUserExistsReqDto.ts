@@ -4,19 +4,19 @@
 
 export type IsUserExistsReqDto = {
     /**
-     * 用户名，用户池内唯一
+     * Username, unique in the user pool
      */
     username?: string;
     /**
-     * 邮箱，不区分大小写
+     * Email, not case sensitive
      */
     email?: string;
     /**
-     * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
+     *Mobile phone number without area code. If it is a foreign mobile phone number, please specify the area code in the phoneCountryCode parameter.
      */
     phone?: string;
     /**
-     * 第三方外部 ID
+     * Third-party external ID
      */
     externalId?: string;
 };

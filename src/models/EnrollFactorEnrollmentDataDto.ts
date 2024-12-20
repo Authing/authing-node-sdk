@@ -4,15 +4,15 @@
 
 export type EnrollFactorEnrollmentDataDto = {
     /**
-     * 绑定短信、邮箱验证码、OTP 类型的认证要素时，需要传此参数。值为短信/邮箱/OTP 验证码。
+     * This parameter needs to be passed when binding SMS, email verification code, and OTP type authentication elements. The value is SMS/email/OTP verification code.
      */
     passCode?: string;
     /**
-     * 绑定 FACE 类型的认证要素时，需要传此参数。值为绑定人脸图片链接。
+     * This parameter needs to be passed when binding FACE type authentication elements. The value is the link to the bound face image.
      */
     photo?: string;
     /**
-     * 绑定 FACE 类型的认证要素时，需要传此参数。是否是外部链接图片。
+     * This parameter needs to be passed when binding FACE type authentication elements. Whether it is an external link image.
      */
     isExternalPhoto?: boolean;
 };

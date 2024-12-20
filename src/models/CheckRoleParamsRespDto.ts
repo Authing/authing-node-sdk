@@ -4,11 +4,11 @@
 
 export type CheckRoleParamsRespDto = {
     /**
-     * 权限空间名称或者权限空间 Code 校验是否有效
+     * Verify whether the permission space name or permission space code is valid
      */
     isValid: boolean;
     /**
-     * 权限空间名称或权限空间 Code 校验失败提示信息,如果校验成功, Message 不返回
+     * Prompt message for permission space name or permission space Code verification failure. If the verification is successful, Message will not be returned.
      */
     message: boolean;
 };

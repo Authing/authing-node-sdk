@@ -4,34 +4,34 @@
 
 import type { ArrResourceAuthAction } from './ArrResourceAuthAction';
 import type { StrResourceAuthAction } from './StrResourceAuthAction';
-import type { TreeResourceAuthAction } from './TreeResourceAuthAction';
+import type {TreeResourceAuthAction} from './TreeResourceAuthAction';
 
 export type GetExternalUserResourceStructDataDto = {
     /**
-     * 权限空间 Code
+     * Permission space code
      */
     namespaceCode: string;
     /**
-     * 数据资源 Code
+     * Data resource code
      */
     resourceCode: string;
     /**
-     * 数据资源类型，目前支持树结构（TREE）、字符串（STRING）、数组（ARRAY）三种类型，根据不同的类型返回不同的结构。
-     * - `STRING`: 字符串类型结果 StrResourceAuthAction
-     * - `ARRAY`: 数组类型 ArrResourceAuthAction
-     * - `TREE`: 树类型 TreeResourceAuthAction
+     * Data resource types currently support three types: tree structure (TREE), string (STRING), and array (ARRAY). Different structures are returned according to different types.
+     * - `STRING`: String type result StrResourceAuthAction
+     * - `ARRAY`: array type ArrResourceAuthAction
+     * - `TREE`: tree type TreeResourceAuthAction
      */
     resourceType: GetExternalUserResourceStructDataDto.resourceType;
     /**
-     * 字符串资源授权
+     * String resource authorization
      */
     strResourceAuthAction?: StrResourceAuthAction;
     /**
-     * 数组资源授权
+     * Array resource authorization
      */
     arrResourceAuthAction?: ArrResourceAuthAction;
     /**
-     * 树资源授权
+     *Tree resource authorization
      */
     treeResourceAuthAction?: TreeResourceAuthAction;
 };
@@ -39,10 +39,10 @@ export type GetExternalUserResourceStructDataDto = {
 export namespace GetExternalUserResourceStructDataDto {
 
     /**
-     * 数据资源类型，目前支持树结构（TREE）、字符串（STRING）、数组（ARRAY）三种类型，根据不同的类型返回不同的结构。
-     * - `STRING`: 字符串类型结果 StrResourceAuthAction
-     * - `ARRAY`: 数组类型 ArrResourceAuthAction
-     * - `TREE`: 树类型 TreeResourceAuthAction
+     * Data resource types currently support three types: tree structure (TREE), string (STRING), and array (ARRAY). Different structures are returned according to different types.
+     * - `STRING`: String type result StrResourceAuthAction
+     * - `ARRAY`: array type ArrResourceAuthAction
+     * - `TREE`: tree type TreeResourceAuthAction
      */
     export enum resourceType {
         TREE = 'TREE',

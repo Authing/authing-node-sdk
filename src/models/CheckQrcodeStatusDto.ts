@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 返回格式不规范，推荐使用 /api/v3/get-qrcode-status，按照用户扫码顺序，共分为未扫码、已扫码等待用户确认、用户同意/取消授权、二维码过期以及未知错误六种状态，前端应该通过不同的状态给到用户不同的反馈。你可以通过下面这篇文章了解扫码登录详细的流程：https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
+ * The return format is not standardized. It is recommended to use /api/v3/get-qrcode-status. According to the order of user scanning code, it is divided into unscanned code, scanned code and waiting for user confirmation, user consent/cancellation of authorization, QR code expiration and There are six states of unknown errors. The front end should give different feedback to users through different states. You can learn about the detailed process of scanning QR code to log in through the following article: https://docs.authing.cn/v2/concepts/how-qrcode-works.html.
  */
 export type CheckQrcodeStatusDto = {
     /**
-     * 二维码唯一 ID
+     * QR code unique ID
      */
     qrcodeId?: any;
 };

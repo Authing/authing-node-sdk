@@ -6,19 +6,19 @@ import type { GoodsPackageDto } from './GoodsPackageDto';
 
 export type CostCurrentPackageInfo = {
     /**
-     * 套餐包编码
+     * Package code
      */
     code: string;
     /**
-     * 套餐结束时间
+     * Package end time
      */
     endTime: string;
     /**
-     * 套餐逾期天数
+     * Number of days the package is overdue
      */
     overdueDays: string;
     /**
-     * 套餐包信息
+     * Package information
      */
     goodsPackage: GoodsPackageDto;
 };

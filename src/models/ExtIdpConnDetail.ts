@@ -4,39 +4,39 @@
 
 export type ExtIdpConnDetail = {
     /**
-     * 身份源连接 id
+     * Identity source connection id
      */
     id: string;
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     type: ExtIdpConnDetail.type;
     /**
-     * 身份源 ID
+     * Identity source ID
      */
     extIdpId: string;
     /**
-     * 身份源连接图标
+     * Identity source connection icon
      */
     logo: string;
     /**
-     * 身份源连接标识
+     * Identity source connection ID
      */
     identifier?: string;
     /**
-     * 身份源连接在登录页的显示名称
+     * The display name of the identity source connection on the login page
      */
     displayName?: string;
     /**
-     * 是否只支持登录
+     * Whether to only support login
      */
     loginOnly: boolean;
     /**
-     * 账号关联模式
+     *Account association mode
      */
     associationMode: ExtIdpConnDetail.associationMode;
     /**
-     * 账号绑定方式
+     *Account binding method
      */
     challengeBindingMethods: Array<string>;
 };
@@ -44,7 +44,7 @@ export type ExtIdpConnDetail = {
 export namespace ExtIdpConnDetail {
 
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     export enum type {
         OIDC = 'oidc',
@@ -122,7 +122,7 @@ export namespace ExtIdpConnDetail {
     }
 
     /**
-     * 账号关联模式
+     *Account association mode
      */
     export enum associationMode {
         NONE = 'none',

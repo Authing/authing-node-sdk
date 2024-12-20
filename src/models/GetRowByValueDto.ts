@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 根据属性值获取数据对象行信息，只允许通过唯一性字段进行精确查询。
+ * Obtain data object row information based on attribute values, and only allow precise queries through unique fields.
  */
 export type GetRowByValueDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId?: any;
     /**
-     * 字段 key
+     * field key
      */
     key?: any;
     /**
-     * 字段值
+     *Field value
      */
     value?: any;
     /**
-     * 返回结果中是否使用字段 id 作为 key
+     * Whether to use field id as key in the return result
      */
     showFieldId?: any;
 };

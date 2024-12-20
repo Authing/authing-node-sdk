@@ -6,19 +6,19 @@ import type { PaginationDto } from './PaginationDto';
 
 export type ListApplicationActiveUsersOptionsDto = {
     /**
-     * 分页配置
+     *Paging configuration
      */
     pagination?: PaginationDto;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: boolean;
     /**
-     * 是否获取 identities
+     * Whether to obtain identities
      */
     withIdentities?: boolean;
     /**
-     * 是否获取部门 ID 列表
+     * Whether to obtain the department ID list
      */
     withDepartmentIds?: boolean;
 };

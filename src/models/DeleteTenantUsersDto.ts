@@ -4,15 +4,15 @@
 
 export type DeleteTenantUsersDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId: string;
     /**
-     * 关联的用户池级别的用户 ID
+     * User ID at the associated user pool level
      */
     linkUserIds: Array<string>;
     /**
-     * 租户成员 ID
+     * Tenant member ID
      */
     memberIds: Array<string>;
 };

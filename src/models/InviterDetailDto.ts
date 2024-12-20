@@ -4,7 +4,7 @@
 
 export type InviterDetailDto = {
     /**
-     * 邀请人名称
+     * Name of inviter
      */
     displayName: string;
 };

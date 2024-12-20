@@ -4,11 +4,11 @@
 
 export type GeoIpLocation = {
     /**
-     * 经度
+     * Longitude
      */
     lon: number;
     /**
-     * 纬度
+     * Latitude
      */
     lat: number;
 };

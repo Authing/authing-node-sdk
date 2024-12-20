@@ -6,11 +6,11 @@ import type { CreateAsaAccountsBatchItemDto } from './CreateAsaAccountsBatchItem
 
 export type CreateAsaAccountsBatchDto = {
     /**
-     * 账号列表
+     * Account list
      */
     list: Array<CreateAsaAccountsBatchItemDto>;
     /**
-     * 所属应用 ID
+     * Belonging application ID
      */
     appId: string;
 };

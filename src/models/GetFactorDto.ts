@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 根据 Factor ID 获取用户绑定的某个 MFA Factor 详情。
+ * Get the details of an MFA Factor bound to the user based on the Factor ID.
  */
 export type GetFactorDto = {
     /**

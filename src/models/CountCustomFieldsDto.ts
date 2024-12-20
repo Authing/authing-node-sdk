@@ -4,15 +4,15 @@
 
 export type CountCustomFieldsDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     all: number;
     /**
-     * 计数
+     * count
      */
     userVisible: number;
     /**
-     * 计数
+     * count
      */
     adminVisible: number;
 };

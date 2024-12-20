@@ -4,23 +4,23 @@
 
 export type DataResourceTreeStructs = {
     /**
-     * 数据资源节点 Code, 同层级唯一
+     * Data resource node Code, unique at the same level
      */
     code: string;
     /**
-     * 数据资源节点名称 ，同层级唯一
+     * Data resource node name, unique at the same level
      */
     name: string;
     /**
-     * 数据资源节点 Value
+     * Data resource node Value
      */
     value?: string;
     /**
-     * 数据资源节点的子节点,子节点层级最多支持五个层级
+     * The child node of the data resource node supports up to five levels of child nodes.
      */
     children?: Array<any>;
     /**
-     * 扩展字段值, 以 key:value 形式存储
+     * Extended field value, stored in key:value format
      */
     extendFieldValue?: any;
 };

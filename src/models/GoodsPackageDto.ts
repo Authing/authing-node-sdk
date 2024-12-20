@@ -4,31 +4,31 @@
 
 export type GoodsPackageDto = {
     /**
-     * 套餐包名称 name
+     * Package name name
      */
     name: string;
     /**
-     * 套餐包名称 nameEn
+     * Package name nameEn
      */
     nameEn: string;
     /**
-     * 套餐包单价
+     * Package unit price
      */
     unitPrice: string;
     /**
-     * 套餐包编码 code
+     * Package code code
      */
     code: string;
     /**
-     * 套餐包版本
+     * Package version
      */
     group: string;
     /**
-     * 套餐包场景编码
+     * Package scene encoding
      */
     sceneCode: string;
     /**
-     * 套餐包 MAU 数量
+     * Package MAU quantity
      */
     amount: string;
 };

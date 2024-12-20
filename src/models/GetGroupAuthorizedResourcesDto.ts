@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 通过分组 code，获取分组被授权的资源列表，可以通过资源类型、权限分组 code 筛选。
+ * Obtain the list of resources authorized by the group through the group code, which can be filtered by resource type and permission group code.
  */
 export type GetGroupAuthorizedResourcesDto = {
     /**
-     * 分组 code
+     * group code
      */
     code?: any;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
     /**
-     * 资源类型
+     * Resource type
      */
     resourceType?: any;
 };

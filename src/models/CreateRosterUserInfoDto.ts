@@ -4,23 +4,23 @@
 
 export type CreateRosterUserInfoDto = {
     /**
-     * 名单 ID
+     * List ID
      */
     rosterId: string;
     /**
-     * 受邀人名称
+     * Name of invitee
      */
     name: string;
     /**
-     * 受邀人邮箱，不区分大小写
+     * Email address of the invitee, not case sensitive
      */
     email: string;
     /**
-     * 受邀人手机号国际区码
+     *International area code of the invitee’s mobile phone number
      */
     phoneCountryCode?: string;
     /**
-     * 受邀人手机号
+     * Invitee’s mobile phone number
      */
     phone?: string;
 };

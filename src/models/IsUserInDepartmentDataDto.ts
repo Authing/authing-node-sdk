@@ -4,7 +4,7 @@
 
 export type IsUserInDepartmentDataDto = {
     /**
-     * 是否在此部门内
+     * Are you in this department?
      */
     inDepartment: boolean;
 };

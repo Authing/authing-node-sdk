@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 根据 ASA 账号 ID 获取账号详细信息
+ * Get account details based on ASA account ID
  */
 export type GetAsaAccountDto = {
     /**
-     * 所属应用 ID
+     * The application ID to which it belongs
      */
     appId?: any;
     /**
-     * ASA 账号 ID
+     * ASA account ID
      */
     accountId?: any;
 };

@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取应用密钥
+ * Get application key
  */
 export type GetApplicationSecretDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
 };

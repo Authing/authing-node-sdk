@@ -4,15 +4,15 @@
 
 export type DeleteApplicationPermissionRecordItem = {
     /**
-     * 主体类型
+     * Subject type
      */
     targetType: DeleteApplicationPermissionRecordItem.targetType;
     /**
-     * 权限分组 code，当主体类型为 "ROLE" 时必传
+     * Permission group code, must be passed when the subject type is "ROLE"
      */
     namespaceCode?: string;
     /**
-     * 主体标识列表，当主体类型为 "USER" 时，值应为用户 ID；当主体类型为 "GROUP" 时，值应为分组 code；当主体类型为 "ROLE" 时，值应为角色 code；当主体类型为 "ORG" 时，值应为组织节点 ID。最多 50 条。
+     * List of subject identifiers. When the subject type is "USER", the value should be the user ID; when the subject type is "GROUP", the value should be the group code; when the subject type is "ROLE", the value should be the role code; when the subject type is "ORG", the value should be the organization node ID. Maximum 50 entries.
      */
     targetIdentifier: Array<string>;
 };
@@ -20,7 +20,7 @@ export type DeleteApplicationPermissionRecordItem = {
 export namespace DeleteApplicationPermissionRecordItem {
 
     /**
-     * 主体类型
+     * Subject type
      */
     export enum targetType {
         USER = 'USER',

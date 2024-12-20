@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取通用邀请配置。
+ * Get the general invitation configuration.
  */
 export type GetUniversalInvitationSettingsDto = {
     /**
-     * 是否获取所选部门的详细信息
+     * Whether to obtain detailed information of the selected department
      */
     withDepartmentDetail?: any;
 };

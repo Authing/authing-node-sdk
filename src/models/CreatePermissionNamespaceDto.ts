@@ -4,15 +4,15 @@
 
 export type CreatePermissionNamespaceDto = {
     /**
-     * 权限空间名称
+     * Permission space name
      */
     name: string;
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     code: string;
     /**
-     * 权限空间描述
+     * Permission space description
      */
     description?: string;
 };

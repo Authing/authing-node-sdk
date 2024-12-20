@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 此接口用于获取用户被授权的资源列表。
+ * This interface is used to obtain the user's authorized resource list.
  */
 export type GetMyAuthorizedResourcesDto = {
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
     /**
-     * 资源类型，如 数据、API、菜单、按钮
+     * Resource type, such as data, API, menu, button
      */
     resourceType?: any;
 };

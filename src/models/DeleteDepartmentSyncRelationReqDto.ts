@@ -4,31 +4,31 @@
 
 export type DeleteDepartmentSyncRelationReqDto = {
     /**
-     * 外部身份源类型，如：
-     * - `wechatwork`: 企业微信
-     * - `dingtalk`: 钉钉
-     * - `lark`: 飞书
+     * External identity source type, such as:
+     * - `wechatwork`: Enterprise WeChat
+     * - `dingtalk`: DingTalk
+     * - `lark`: Feishu
      * - `welink`: Welink
      * - `ldap`: LDAP
      * - `active-directory`: Windows AD
-     * - `italent`: 北森
-     * - `xiaoshouyi`: 销售易
-     * - `maycur`: 每刻报销
+     * - `italent`: Beisen
+     * - `xiaoshouyi`: easy sales
+     * - `maycur`: reimburse every tick
      * - `scim`: SCIM
      * - `moka`: Moka HR
      *
      */
     provider: string;
     /**
-     * 部门 ID，根部门传 `root`
+     * Department ID, the root department passes `root`
      */
     departmentId: string;
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode: string;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: DeleteDepartmentSyncRelationReqDto.departmentIdType;
 };
@@ -36,7 +36,7 @@ export type DeleteDepartmentSyncRelationReqDto = {
 export namespace DeleteDepartmentSyncRelationReqDto {
 
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     export enum departmentIdType {
         DEPARTMENT_ID = 'department_id',

@@ -4,43 +4,43 @@
 
 export type CreatePipelineFunctionDto = {
     /**
-     * 函数源代码
+     * Function source code
      */
     sourceCode: string;
     /**
-     * 函数的触发场景：
-     * - `PRE_REGISTER`: 注册前
-     * - `POST_REGISTER`: 注册后
-     * - `PRE_AUTHENTICATION`: 认证前
-     * - `POST_AUTHENTICATION`: 认证后
-     * - `PRE_OIDC_ID_TOKEN_ISSUED`: OIDC ID Token 签发前
-     * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: OIDC Access Token 签发前
-     * - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
+     * Function trigger scenario:
+     * - `PRE_REGISTER`: before registration
+     * - `POST_REGISTER`: after registration
+     * - `PRE_AUTHENTICATION`: before authentication
+     * - `POST_AUTHENTICATION`: after authentication
+     * - `PRE_OIDC_ID_TOKEN_ISSUED`: before OIDC ID Token issuance
+     * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: before OIDC Access Token issuance
+     * - `PRE_COMPLETE_USER_INFO`: before completing user information
      *
      */
     scene: CreatePipelineFunctionDto.scene;
     /**
-     * 函数名称
+     * function name
      */
     funcName: string;
     /**
-     * 函数描述
+     * Function description
      */
     funcDescription?: string;
     /**
-     * 是否异步执行。设置为异步执行的函数不会阻塞整个流程的执行，适用于异步通知的场景，比如飞书群通知、钉钉群通知等。
+     * Whether to execute asynchronously. Functions set for asynchronous execution will not block the execution of the entire process and are suitable for asynchronous notification scenarios, such as Feishu group notifications, DingTalk group notifications, etc.
      */
     isAsynchronous?: boolean;
     /**
-     * 函数运行超时时间，要求必须为整数，最短为 1 秒，最长为 60 秒，默认为 3 秒。
+     * The function running timeout must be an integer, the minimum is 1 second, the maximum is 60 seconds, and the default is 3 seconds.
      */
     timeout?: number;
     /**
-     * 如果函数运行超时，是否终止整个流程，默认为否。
+     * If the function times out, whether to terminate the entire process, the default is no.
      */
     terminateOnTimeout?: boolean;
     /**
-     * 是否启用此 Pipeline
+     * Whether to enable this Pipeline
      */
     enabled?: boolean;
 };
@@ -48,14 +48,14 @@ export type CreatePipelineFunctionDto = {
 export namespace CreatePipelineFunctionDto {
 
     /**
-     * 函数的触发场景：
-     * - `PRE_REGISTER`: 注册前
-     * - `POST_REGISTER`: 注册后
-     * - `PRE_AUTHENTICATION`: 认证前
-     * - `POST_AUTHENTICATION`: 认证后
-     * - `PRE_OIDC_ID_TOKEN_ISSUED`: OIDC ID Token 签发前
-     * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: OIDC Access Token 签发前
-     * - `PRE_COMPLETE_USER_INFO`: 补全用户信息前
+     * Function trigger scenario:
+     * - `PRE_REGISTER`: before registration
+     * - `POST_REGISTER`: after registration
+     * - `PRE_AUTHENTICATION`: before authentication
+     * - `POST_AUTHENTICATION`: after authentication
+     * - `PRE_OIDC_ID_TOKEN_ISSUED`: before OIDC ID Token issuance
+     * - `PRE_OIDC_ACCESS_TOKEN_ISSUED`: before OIDC Access Token issuance
+     * - `PRE_COMPLETE_USER_INFO`: before completing user information
      *
      */
     export enum scene {

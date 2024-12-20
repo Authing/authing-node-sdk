@@ -4,27 +4,27 @@
 
 export type InviteTenantUserRecord = {
     /**
-     * 邀请记录编号
+     * Invitation record number
      */
     recordId: number;
     /**
-     * 邀请账号
+     * Invite account
      */
     inviteAccount: string;
     /**
-     * 账号激活状态
+     *Account activation status
      */
     verifiedStatus: string;
     /**
-     * 邀请链接
+     * Invitation link
      */
     inviteLink: string;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * 账号激活时间
+     *Account activation time
      */
     activatedAt: string;
 };

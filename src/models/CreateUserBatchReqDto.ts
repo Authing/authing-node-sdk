@@ -7,11 +7,11 @@ import type { CreateUserOptionsDto } from './CreateUserOptionsDto';
 
 export type CreateUserBatchReqDto = {
     /**
-     * 用户列表
+     * User list
      */
     list: Array<CreateUserInfoDto>;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: CreateUserOptionsDto;
 };

@@ -6,7 +6,7 @@ import type { LangObject } from './LangObject';
 
 export type DepartmentI18nDto = {
     /**
-     * 支持多语言的字段
+     *Support multi-language fields
      */
     name: LangObject;
 };

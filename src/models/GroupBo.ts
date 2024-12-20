@@ -4,15 +4,15 @@
 
 export type GroupBo = {
     /**
-     * 用户组 id
+     *User group id
      */
     groupId: string;
     /**
-     * 用户组名称
+     * User group name
      */
     groupName: string;
     /**
-     * 用户组 Code
+     * User group code
      */
     groupCode: string;
 };

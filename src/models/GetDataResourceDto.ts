@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取数据资源,通过数据资源 ID 查询对应的数据资源信息,包含数据资源名称、数据资源 Code、数据资源类型（TREE、STRING、ARRAY）、数据资源所属权限空间 ID、数据资源所属权限空间 Code 以及数据资源操作列表等基本信息。
+ * Obtain data resources and query the corresponding data resource information through the data resource ID, including data resource name, data resource Code, data resource type (TREE, STRING, ARRAY), permission space ID to which the data resource belongs, permission space code to which the data resource belongs, and Basic information such as data resource operation list.
  */
 export type GetDataResourceDto = {
     /**
-     * 数据资源所属的权限空间 Code
+     * The permission space code to which the data resource belongs
      */
     namespaceCode?: any;
     /**
-     * 数据资源 Code, 权限空间内唯一
+     * Data resource Code, unique in the permission space
      */
     resourceCode?: any;
 };

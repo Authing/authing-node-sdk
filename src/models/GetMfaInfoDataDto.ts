@@ -10,43 +10,43 @@ export type GetMfaInfoDataDto = {
      */
     mfaToken: string;
     /**
-     * MFA 绑定的手机号
+     * Mobile phone number bound to MFA
      */
     mfaPhone?: string;
     /**
-     * MFA 绑定的手机区号
+     * Mobile phone area code bound to MFA
      */
     mfaPhoneCountryCode?: string;
     /**
-     * MFA 绑定的邮箱
+     *MFA bound email address
      */
     mfaEmail?: string;
     /**
-     * 用户昵称
+     * User nickname
      */
     nickname?: string;
     /**
-     * 用户名
+     * username
      */
     username?: string;
     /**
-     * 用户手机号
+     *User mobile phone number
      */
     phone?: string;
     /**
-     * 用户手机区号
+     * User mobile phone area code
      */
     phoneCountryCode?: string;
     /**
-     * 人脸校验是否开启
+     * Whether face verification is turned on
      */
     faceMfaEnabled?: boolean;
     /**
-     * OTP 校验是否开启
+     * Whether OTP verification is enabled
      */
     totpMfaEnabled?: boolean;
     /**
-     * MFA Factor 列表
+     *MFA Factor List
      */
     applicationMfa: Array<ApplicationMfaDto>;
 };

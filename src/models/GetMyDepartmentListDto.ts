@@ -3,27 +3,27 @@
 /* eslint-disable */
 
 /**
- * 此接口用于获取用户的部门列表，可根据一定排序规则进行排序。
+ * This interface is used to obtain the user's department list, which can be sorted according to certain sorting rules.
  */
 export type GetMyDepartmentListDto = {
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page, the maximum cannot exceed 50, the default is 10
      */
     limit?: any;
     /**
-     * 是否获取部门的自定义数据
+     * Whether to obtain the department’s custom data
      */
     withCustomData?: any;
     /**
-     * 排序依据，如 部门创建时间、加入部门时间、部门名称、部门标志符
+     * Sorting basis, such as department creation time, department joining time, department name, department identifier
      */
     sortBy?: any;
     /**
-     * 增序或降序
+     * ascending or descending order
      */
     orderBy?: any;
 };

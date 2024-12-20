@@ -4,7 +4,7 @@
 
 export type DeleteCommonResourcesBatchDto = {
     /**
-     * 资源 id 列表
+     * Resource id list
      */
     ids: Array<string>;
 };

@@ -3,27 +3,27 @@
 /* eslint-disable */
 
 /**
- * 如果在 Authing 中的部门进行了上下游同步，此接口可以用于查询出在第三方的关联用户信息
+ * If the departments in Authing are synchronized upstream and downstream, this interface can be used to query the associated user information in the third party
  */
 export type GetDepartmentSyncRelationsDto = {
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
+     * Department ID, the root department passes `root`. One of departmentId and departmentCode must be passed.
      */
     departmentId?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

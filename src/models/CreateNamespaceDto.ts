@@ -4,15 +4,15 @@
 
 export type CreateNamespaceDto = {
     /**
-     * 权限分组唯一标志符
+     * Permission group unique identifier
      */
     code: string;
     /**
-     * 权限分组名称
+     *Permission group name
      */
     name?: string;
     /**
-     * 权限分组描述信息
+     * Permission group description information
      */
     description?: string;
 };

@@ -7,19 +7,19 @@ import type { IPRuleDto } from './IPRuleDto';
 
 export type GetDeviceExclusiveRuleDataDto = {
     /**
-     * 设备互斥规则条件配置：
-     * - `disable`: 不启用
-     * - `condition:device`: 按「设备唯一标识」条件触发
-     * - `condition:ip`: 按「最近登录 IP」条件触发
+     * Device mutual exclusion rule condition configuration:
+     * - `disable`: disable
+     * - `condition:device`: Triggered by the condition of "device unique identifier"
+     * - `condition:ip`: Triggered based on the "recent login IP" condition
      *
      */
     rule: GetDeviceExclusiveRuleDataDto.rule;
     /**
-     * 「设备唯一标识」同时在线数量上限
+     * The maximum number of "Unique Device Identifiers" online at the same time
      */
     deviceRule?: DeviceRuleDto;
     /**
-     * 「最近登录 IP」同时在线数量上限
+     * The maximum number of "recently logged in IP" online at the same time
      */
     ipRule?: IPRuleDto;
 };
@@ -27,10 +27,10 @@ export type GetDeviceExclusiveRuleDataDto = {
 export namespace GetDeviceExclusiveRuleDataDto {
 
     /**
-     * 设备互斥规则条件配置：
-     * - `disable`: 不启用
-     * - `condition:device`: 按「设备唯一标识」条件触发
-     * - `condition:ip`: 按「最近登录 IP」条件触发
+     * Device mutual exclusion rule condition configuration:
+     * - `disable`: disable
+     * - `condition:device`: Triggered by the condition of "device unique identifier"
+     * - `condition:ip`: Triggered based on the "recent login IP" condition
      *
      */
     export enum rule {

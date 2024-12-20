@@ -6,11 +6,11 @@ import type { CombineFilterItemDto } from './CombineFilterItemDto';
 
 export type CombineFiltersBaseDto = {
     /**
-     * 条件组合方式
+     * Condition combination method
      */
     type: CombineFiltersBaseDto.type;
     /**
-     * 筛选条件
+     * Filter conditions
      */
     filters: Array<CombineFilterItemDto>;
 };
@@ -18,7 +18,7 @@ export type CombineFiltersBaseDto = {
 export namespace CombineFiltersBaseDto {
 
     /**
-     * 条件组合方式
+     * Condition combination method
      */
     export enum type {
         AND = 'and',

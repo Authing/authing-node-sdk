@@ -6,11 +6,11 @@ import type { PublicKeyCredentialRequestOptionsDto } from './PublicKeyCredential
 
 export type AuthenticationOptionsDto = {
     /**
-     * 认证器认证参数
+     * Authenticator authentication parameters
      */
     authenticationOptions: PublicKeyCredentialRequestOptionsDto;
     /**
-     * ticket 需回传，用作向服务器发起验证从认证器获得的认证结果
+     * The ticket needs to be returned and used to initiate verification to the server of the authentication result obtained from the authenticator.
      */
     ticket: string;
 };

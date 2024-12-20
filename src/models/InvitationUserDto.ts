@@ -6,51 +6,51 @@ import type { CommonUserDto } from './CommonUserDto';
 
 export type InvitationUserDto = {
     /**
-     * 名单 ID
+     * List ID
      */
     rosterId: string;
     /**
-     * 受邀人 ID
+     * Invitee ID
      */
     inviteeId: string;
     /**
-     * 受邀人名称
+     * Name of invitee
      */
     name: string;
     /**
-     * 受邀人手机号国际区码
+     *International area code of the invitee’s mobile phone number
      */
     phoneCountryCode?: string;
     /**
-     * 受邀人手机号
+     * Invitee’s mobile phone number
      */
     phone?: string;
     /**
-     * 受邀人邮箱，不区分大小写
+     * Email address of the invitee, not case sensitive
      */
     email: string;
     /**
-     * 受邀人状态
+     * Invitee status
      */
     status: InvitationUserDto.status;
     /**
-     * 受邀人来源
+     * Source of invitees
      */
     source: InvitationUserDto.source;
     /**
-     * 创建者 ID
+     *Creator ID
      */
     creatorId: string;
     /**
-     * 创建者详情
+     *Creator details
      */
     creatorDetail?: CommonUserDto;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * 更新时间
+     * Update time
      */
     updatedAt: string;
 };
@@ -58,7 +58,7 @@ export type InvitationUserDto = {
 export namespace InvitationUserDto {
 
     /**
-     * 受邀人状态
+     * Invitee status
      */
     export enum status {
         INVITED = 'invited',
@@ -72,7 +72,7 @@ export namespace InvitationUserDto {
     }
 
     /**
-     * 受邀人来源
+     * Source of invitees
      */
     export enum source {
         MANUAL_CREATE = 'manualCreate',

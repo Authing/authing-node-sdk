@@ -6,15 +6,15 @@ import type { DataStatementPermissionDto } from './DataStatementPermissionDto';
 
 export type CreateDataPolicyDto = {
     /**
-     * 数据权限列表，策略下数据资源权限列表
+     * Data permission list, data resource permission list under the policy
      */
     statementList: Array<DataStatementPermissionDto>;
     /**
-     * 数据策略名称，用户池唯一
+     * Data policy name, unique to user pool
      */
     policyName: string;
     /**
-     * 数据策略描述
+     * Data strategy description
      */
     description?: string;
 };

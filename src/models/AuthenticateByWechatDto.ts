@@ -4,7 +4,7 @@
 
 export type AuthenticateByWechatDto = {
     /**
-     * 微信移动端社会化登录返回的一次性临时 code
+     * A one-time temporary code returned by WeChat mobile social login
      */
     code?: string;
 };

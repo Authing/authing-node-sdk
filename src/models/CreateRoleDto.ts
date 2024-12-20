@@ -4,23 +4,23 @@
 
 export type CreateRoleDto = {
     /**
-     * 权限分组（权限空间）内角色的唯一标识符
+     * The unique identifier of the role within the permission group (permission space)
      */
     code: string;
     /**
-     * 权限分组（权限空间）内角色名称
+     * The name of the role in the permission group (permission space)
      */
     name?: string;
     /**
-     * 所属权限分组(权限空间)的 code，不传获取默认权限分组。
+     * The code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
     /**
-     * 角色描述
+     * Role description
      */
     description?: string;
     /**
-     * 角色自动禁止时间，单位毫秒, 如果传null表示永久有效
+     * The role's automatic ban time, in milliseconds, if null is passed, it means it is permanently valid
      */
     disableTime?: string;
 };

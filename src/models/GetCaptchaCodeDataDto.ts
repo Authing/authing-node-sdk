@@ -4,11 +4,11 @@
 
 export type GetCaptchaCodeDataDto = {
     /**
-     * 验证码图片 svg
+     * Verification code image svg
      */
     captchaCodeSvg: string;
     /**
-     * 验证码对应 token，需要在登录接口中与用户输入的验证码一起提交
+     * The verification code corresponds to the token and needs to be submitted together with the verification code entered by the user in the login interface.
      */
     captchaToken: string;
 };

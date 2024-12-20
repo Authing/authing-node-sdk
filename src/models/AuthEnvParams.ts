@@ -4,35 +4,35 @@
 
 export type AuthEnvParams = {
     /**
-     * ip
+     *ip
      */
     ip?: string;
     /**
-     * 城市
+     * City
      */
     city?: string;
     /**
-     * 省份
+     *Province
      */
     province?: string;
     /**
-     * 国家
+     * nation
      */
     country?: string;
     /**
-     * 设备类型：PC/Mobile
+     * Device type: PC/Mobile
      */
     deviceType?: AuthEnvParams.deviceType;
     /**
-     * 操作类型：Windows、Android、iOS、MacOS
+     * Operation type: Windows, Android, iOS, MacOS
      */
     systemType?: AuthEnvParams.systemType;
     /**
-     * 浏览器类型：IE/Chrome/Firefox
+     * Browser type: IE/Chrome/Firefox
      */
     browserType?: AuthEnvParams.browserType;
     /**
-     * 请求时间
+     * Request time
      */
     requestDate?: string;
 };
@@ -40,7 +40,7 @@ export type AuthEnvParams = {
 export namespace AuthEnvParams {
 
     /**
-     * 设备类型：PC/Mobile
+     * Device type: PC/Mobile
      */
     export enum deviceType {
         PC = 'PC',
@@ -48,7 +48,7 @@ export namespace AuthEnvParams {
     }
 
     /**
-     * 操作类型：Windows、Android、iOS、MacOS
+     * Operation type: Windows, Android, iOS, MacOS
      */
     export enum systemType {
         WINDOWS = 'Windows',
@@ -58,7 +58,7 @@ export namespace AuthEnvParams {
     }
 
     /**
-     * 浏览器类型：IE/Chrome/Firefox
+     * Browser type: IE/Chrome/Firefox
      */
     export enum browserType {
         IE = 'IE',

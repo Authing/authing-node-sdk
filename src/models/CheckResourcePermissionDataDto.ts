@@ -6,7 +6,7 @@ import type { CheckResourcePermissionRespDto } from './CheckResourcePermissionRe
 
 export type CheckResourcePermissionDataDto = {
     /**
-     * 检查结果列表
+     * Check result list
      */
     checkResultList: Array<CheckResourcePermissionRespDto>;
 };

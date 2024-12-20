@@ -3,20 +3,20 @@
 /* eslint-disable */
 
 /**
- * 通过主体类型，获取用户、部门或角色的自定义字段列表。
+ * Get the list of custom fields for users, departments or roles through the principal type.
  */
 export type GetCustomFieldsDto = {
     /**
-     * 目标对象类型：
-     * - `USER`: 用户
-     * - `ROLE`: 角色
-     * - `GROUP`: 分组
-     * - `DEPARTMENT`: 部门
-     * ;该接口暂不支持分组(GROUP)
+     * Target object type:
+     * - `USER`: user
+     * - `ROLE`: role
+     * - `GROUP`: group
+     * - `DEPARTMENT`: department
+     * ;This interface does not currently support grouping (GROUP)
      */
     targetType?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

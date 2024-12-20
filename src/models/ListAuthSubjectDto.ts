@@ -4,27 +4,27 @@
 
 export type ListAuthSubjectDto = {
     /**
-     * 主体类型
+     * Subject type
      */
     targetType: ListAuthSubjectDto.targetType;
     /**
-     * 主体 id
+     * Subject id
      */
     targetId: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName?: string;
     /**
-     * 应用类型列表
+     * List of application types
      */
     appTypeList?: Array<string>;
     /**
-     * 操作类型列表
+     * List of operation types
      */
     effect?: Array<string>;
     /**
-     * 开关
+     * switch
      */
     enabled?: boolean;
 };
@@ -32,7 +32,7 @@ export type ListAuthSubjectDto = {
 export namespace ListAuthSubjectDto {
 
     /**
-     * 主体类型
+     * Subject type
      */
     export enum targetType {
         USER = 'USER',

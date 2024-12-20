@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 通过 身份源 ID，获取身份源详情，可以指定 租户 ID 筛选。
+ * Obtain the identity source details through the identity source ID, and you can specify the tenant ID to filter.
  */
 export type GetExtIdpDto = {
     /**
-     * 身份源 ID
+     * Identity source ID
      */
     id?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
     /**
-     * 身份源类型
+     * Identity source type
      */
     type?: any;
 };

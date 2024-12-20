@@ -4,20 +4,20 @@
 
 export type GetUserPasswordCiphertextDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
-     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
-     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * User ID type, the default value is `user_id`, the optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: the user's ID in the external system, corresponding to the `externalId` field of Authing user information
+     * - `identity`: The user's external identity source information, in the format of `<extIdpId>:<userIdInIdp>`, where `<extIdpId>` is the ID of the Authing identity source, `<userIdInIdp>` is the user's external identity source ID.
+     * Example value: `62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`.
+     * - `sync_relation`: The user's external identity source information in the format of `<provier>:<userIdInIdp>`, where `<provier>` is the synchronization identity source type, such as wechatwork, lark; `<userIdInIdp>` is the user's The ID of the external identity source.
+     * Example value: `lark:ou_8bae746eac07cd2564654140d2a9ac61`.
      *
      */
     userIdType?: GetUserPasswordCiphertextDto.userIdType;
@@ -26,16 +26,16 @@ export type GetUserPasswordCiphertextDto = {
 export namespace GetUserPasswordCiphertextDto {
 
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
-     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
-     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * User ID type, the default value is `user_id`, the optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: the user's ID in the external system, corresponding to the `externalId` field of Authing user information
+     * - `identity`: The user's external identity source information, in the format of `<extIdpId>:<userIdInIdp>`, where `<extIdpId>` is the ID of the Authing identity source, `<userIdInIdp>` is the user's external identity source ID.
+     * Example value: `62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`.
+     * - `sync_relation`: The user's external identity source information in the format of `<provier>:<userIdInIdp>`, where `<provier>` is the synchronization identity source type, such as wechatwork, lark; `<userIdInIdp>` is the user's The ID of the external identity source.
+     * Example value: `lark:ou_8bae746eac07cd2564654140d2a9ac61`.
      *
      */
     export enum userIdType {

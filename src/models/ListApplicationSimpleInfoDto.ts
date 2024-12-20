@@ -3,31 +3,31 @@
 /* eslint-disable */
 
 /**
- * 获取应用简单信息列表
+ * Get simple application information list
  */
 export type ListApplicationSimpleInfoDto = {
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: any;
     /**
-     * 是否为集成应用
+     * Whether it is an integrated application
      */
     isIntegrateApp?: any;
     /**
-     * 是否为自建应用
+     * Whether it is a self-built application
      */
     isSelfBuiltApp?: any;
     /**
-     * 是否开启单点登录
+     * Whether to enable single sign-on
      */
     ssoEnabled?: any;
     /**
-     * 模糊搜索字符串
+     * Fuzzy search string
      */
     keywords?: any;
 };

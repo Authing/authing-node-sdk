@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取当前用户池订单详情
+ * Get current user pool order details
  */
 export type GetOrderDetailDto = {
     /**
-     * 订单号
+     *Order number
      */
     orderNo?: any;
 };

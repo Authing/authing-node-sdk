@@ -6,11 +6,11 @@ import type { IpListRespDto } from './IpListRespDto';
 
 export type IpListPagingDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 数据列表
+     * Data list
      */
     list: Array<IpListRespDto>;
 };

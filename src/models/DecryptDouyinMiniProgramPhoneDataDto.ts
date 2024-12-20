@@ -4,15 +4,15 @@
 
 export type DecryptDouyinMiniProgramPhoneDataDto = {
     /**
-     * 用户绑定的手机号（国外手机号会有区号）
+     * The mobile phone number bound by the user (foreign mobile phone numbers will have area codes)
      */
     phoneNumber: string;
     /**
-     * 没有区号的手机号
+     *Mobile phone number without area code
      */
     purePhoneNumber: string;
     /**
-     * 区号
+     *Area code
      */
     countryCode: string;
 };

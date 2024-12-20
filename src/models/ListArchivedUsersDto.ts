@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取已归档的用户列表，支持分页，可以筛选开始时间等。
+ * Obtain the archived user list, support paging, and can filter the start time, etc.
  */
 export type ListArchivedUsersDto = {
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page, the maximum cannot exceed 50, the default is 10
      */
     limit?: any;
     /**
-     * 开始时间，为精确到秒的 UNIX 时间戳，默认不指定
+     * Start time, which is a UNIX timestamp accurate to seconds, not specified by default
      */
     startAt?: any;
 };

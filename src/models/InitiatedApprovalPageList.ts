@@ -6,11 +6,11 @@ import type { InitiatedApproval } from './InitiatedApproval';
 
 export type InitiatedApprovalPageList = {
     /**
-     * 已发起审批列表
+     * Approval list initiated
      */
     list: Array<InitiatedApproval>;
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
 };

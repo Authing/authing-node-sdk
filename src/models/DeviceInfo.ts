@@ -4,35 +4,35 @@
 
 export type DeviceInfo = {
     /**
-     * 设备唯一标识
+     *Unique identification of device
      */
     deviceId: string;
     /**
-     * 设备名称
+     *Device name
      */
     name?: string;
     /**
-     * 系统版本
+     * System version
      */
     version?: string;
     /**
-     * 设备类型
+     *Device type
      */
     type: DeviceInfo.type;
     /**
-     * 设备模组
+     *Equipment module
      */
     mod?: string;
     /**
-     * 设备系统
+     *Equipment system
      */
     os?: string;
     /**
-     * 设备状态
+     *Device status
      */
     status?: DeviceInfo.status;
     /**
-     * 用户代理
+     * User agent
      */
     userAgent?: string;
 };
@@ -40,7 +40,7 @@ export type DeviceInfo = {
 export namespace DeviceInfo {
 
     /**
-     * 设备类型
+     *Device type
      */
     export enum type {
         BROWSER = 'Browser',
@@ -49,7 +49,7 @@ export namespace DeviceInfo {
     }
 
     /**
-     * 设备状态
+     *Device status
      */
     export enum status {
         ACTIVATED = 'activated',

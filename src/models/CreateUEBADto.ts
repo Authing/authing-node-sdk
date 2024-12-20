@@ -4,11 +4,11 @@
 
 export type CreateUEBADto = {
     /**
-     * 数据内容
+     * Data content
      */
     data: any;
     /**
-     * 功能 id，如果不存在则会使用数据库中查到的第一个 type 为 ueba 的功能
+     * Function id, if it does not exist, the first function with type ueba found in the database will be used
      */
     modelId?: string;
 };

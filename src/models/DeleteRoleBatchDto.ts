@@ -6,7 +6,7 @@ import type { RoleCodeAndNamespaceDto } from './RoleCodeAndNamespaceDto';
 
 export type DeleteRoleBatchDto = {
     /**
-     * 角色 Code 和 namespace 列表
+     * Role code and namespace list
      */
     roleList: Array<RoleCodeAndNamespaceDto>;
 };

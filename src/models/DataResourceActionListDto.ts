@@ -4,11 +4,11 @@
 
 export type DataResourceActionListDto = {
     /**
-     * 节点路径
+     * Node path
      */
     nodePath: string;
     /**
-     * 数据资源的节点权限列表
+     * Node permission list of data resources
      */
     nodeActions: Array<string>;
 };

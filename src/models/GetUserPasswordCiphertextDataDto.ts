@@ -4,7 +4,7 @@
 
 export type GetUserPasswordCiphertextDataDto = {
     /**
-     * 用户密码加密的密文
+     * The ciphertext of user password encryption
      */
     ciphertext: string;
 };

@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过权限分组唯一标志符(Code)，获取权限分组详情。
+ * Obtain permission group details through the permission group unique identifier (Code).
  */
 export type GetNamespaceDto = {
     /**
-     * 权限分组唯一标志符
+     * Permission group unique identifier
      */
     code?: any;
 };

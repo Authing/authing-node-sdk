@@ -6,11 +6,11 @@ import type { CreateResourceBatchItemDto } from './CreateResourceBatchItemDto';
 
 export type CreateResourcesBatchDto = {
     /**
-     * 资源列表
+     * Resource list
      */
     list: Array<CreateResourceBatchItemDto>;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
 };

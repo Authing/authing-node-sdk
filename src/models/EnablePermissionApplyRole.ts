@@ -4,19 +4,19 @@
 
 export type EnablePermissionApplyRole = {
     /**
-     * 角色 ID
+     * Role ID
      */
     roleId: string;
     /**
-     * 应用内角色的唯一标识符 Code
+     * The unique identifier of the role within the application Code
      */
     code: string;
     /**
-     * 应用内角色名称
+     * In-app role name
      */
     name: string;
     /**
-     * 角色描述
+     * Role description
      */
     description?: string;
 };

@@ -4,7 +4,7 @@
 
 export type DeleteDataPolicyDto = {
     /**
-     * 数据策略 ID
+     * Data policy ID
      */
     policyId: string;
 };

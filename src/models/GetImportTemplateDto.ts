@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取导入模板
+ * Get import template
  */
 export type GetImportTemplateDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId?: any;
 };

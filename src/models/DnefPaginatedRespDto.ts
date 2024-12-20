@@ -6,15 +6,15 @@ import type { ExtendField } from './ExtendField';
 
 export type DnefPaginatedRespDto = {
     /**
-     * 下一页开始的索引，当最后一页时返回 -1
+     * The index starting from the next page, returns -1 when the last page is
      */
     nextStartIndex: number;
     /**
-     * 是否被截断，true 表示可以查询下一页，false 表示是最后一页数据
+     * Whether it is truncated, true means the next page can be queried, false means the last page of data
      */
     truncated: boolean;
     /**
-     * 响应数据
+     *Response data
      */
     list: Array<ExtendField>;
 };

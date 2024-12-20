@@ -4,11 +4,11 @@
 
 export type ImportTenantHistoryDataDto = {
     /**
-     * 总数
+     *Total
      */
     totalCount: number;
     /**
-     * 记录条数
+     *Number of records
      */
     list: Array<any>;
 };

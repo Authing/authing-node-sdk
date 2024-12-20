@@ -6,7 +6,7 @@ import type { RoleListItem } from './RoleListItem';
 
 export type CreateRolesBatch = {
     /**
-     * 角色列表
+     * Role list
      */
     list: Array<RoleListItem>;
 };

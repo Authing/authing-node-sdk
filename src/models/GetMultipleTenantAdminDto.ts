@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 根据用户池 ID 获取某个用户池内拥有多租户管理权限的用户列表
+ * Get the list of users with multi-tenant management permissions in a user pool based on the user pool ID
  */
 export type GetMultipleTenantAdminDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId?: any;
 };

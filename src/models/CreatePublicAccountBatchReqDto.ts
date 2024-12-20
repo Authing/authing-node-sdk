@@ -7,11 +7,11 @@ import type { CreatePublicAccountReqDto } from './CreatePublicAccountReqDto';
 
 export type CreatePublicAccountBatchReqDto = {
     /**
-     * 公共账号列表
+     * Public Account List
      */
     list: Array<CreatePublicAccountReqDto>;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: CreatePublicAccountOptionsDto;
 };

@@ -4,27 +4,27 @@
 
 export type CreateStringDataResourceDto = {
     /**
-     * 数据资源权限操作列表
+     * Data resource permission operation list
      */
     actions: Array<string>;
     /**
-     * 字符串数据资源节点
+     * String data resource node
      */
     struct: string;
     /**
-     * 数据资源 Code, 权限空间内唯一
+     * Data resource Code, unique in the permission space
      */
     resourceCode: string;
     /**
-     * 数据资源名称, 权限空间内唯一
+     * Data resource name, unique within the permission space
      */
     resourceName: string;
     /**
-     * 数据策略所在的权限空间 Code
+     * The permission space Code where the data strategy is located
      */
     namespaceCode: string;
     /**
-     * 数据资源描述
+     * Data resource description
      */
     description?: string;
 };

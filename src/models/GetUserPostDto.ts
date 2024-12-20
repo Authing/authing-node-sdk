@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 此接口只会返回一个岗位，已废弃，请使用 /api/v3/get-user-posts 接口
+ * This interface will only return one post and is obsolete. Please use the /api/v3/get-user-posts interface.
  */
 export type GetUserPostDto = {
     /**
-     * 用户 id
+     * user id
      */
     userId?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

@@ -4,7 +4,7 @@
 
 export type HasAnyRoleDto = {
     /**
-     * 是否拥有其中某一个角色
+     * Whether you own one of these characters
      */
     hasAnyRole: boolean;
 };

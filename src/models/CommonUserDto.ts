@@ -4,15 +4,15 @@
 
 export type CommonUserDto = {
     /**
-     * ID
+     *ID
      */
     id: string;
     /**
-     * 显示名称
+     * display name
      */
     displayName?: string;
     /**
-     * 头像链接
+     * Avatar link
      */
     photo?: string;
 };

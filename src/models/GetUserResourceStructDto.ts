@@ -4,15 +4,15 @@
 
 export type GetUserResourceStructDto = {
     /**
-     * 数据资源 Code
+     * Data resource code
      */
     resourceCode: string;
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     namespaceCode: string;
 };

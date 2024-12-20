@@ -4,7 +4,7 @@
 
 export type CheckDomainAvailable = {
     /**
-     * 域名
+     * Domain
      */
     domain: string;
 };

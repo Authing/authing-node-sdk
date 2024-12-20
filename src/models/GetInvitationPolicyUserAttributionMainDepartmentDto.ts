@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取设置的用户归属主部门
+ * Get the set user to belong to the main department
  */
 export type GetInvitationPolicyUserAttributionMainDepartmentDto = {
     /**
-     * 策略 ID
+     * Policy ID
      */
     policyId?: any;
     /**
-     * 是否返回主部门详情
+     * Whether to return to the main department details
      */
     withDepartmentDetail?: any;
 };

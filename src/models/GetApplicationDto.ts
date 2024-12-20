@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过应用 ID，获取应用详情。
+ * Get application details through application ID.
  */
 export type GetApplicationDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
 };

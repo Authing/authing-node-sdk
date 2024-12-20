@@ -4,15 +4,15 @@
 
 export type CreateAdminRoleDto = {
     /**
-     * 管理员角色名称
+     * Administrator role name
      */
     name: string;
     /**
-     * 管理员角色的唯一标识符
+     * Unique identifier for the administrator role
      */
     code: string;
     /**
-     * 角色描述
+     * Role description
      */
     description?: string;
 };

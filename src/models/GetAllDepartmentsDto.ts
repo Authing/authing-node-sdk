@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 获取所有部门列表，可以用于获取某个组织下的所有部门列表。
+ * Get the list of all departments, which can be used to get the list of all departments under an organization.
  */
 export type GetAllDepartmentsDto = {
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 部门 ID，不填写默认为 `root` 根部门 ID
+     * Department ID, if not filled in, the default is `root` root department ID
      */
     departmentId?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

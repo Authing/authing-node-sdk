@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取当前用户池订单支付明细
+ * Get current user pool order payment details
  */
 export type GetOrderPayDetailDto = {
     /**
-     * 订单号
+     *Order number
      */
     orderNo?: any;
 };

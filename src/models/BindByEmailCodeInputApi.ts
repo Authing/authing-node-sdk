@@ -4,19 +4,19 @@
 
 export type BindByEmailCodeInputApi = {
     /**
-     * 中间态键
+     * Intermediate key
      */
     key: string;
     /**
-     * 操作编码
+     * Operation code
      */
     action: string;
     /**
-     * 邮箱验证码（四位：1234；六位：123456）
+     * Email verification code (four digits: 1234; six digits: 123456)
      */
     code: string;
     /**
-     * 邮箱
+     * Mail
      */
     email: string;
 };

@@ -4,7 +4,7 @@
 
 export type ChangeEmailStrategyDto = {
     /**
-     * 修改邮箱时是否验证旧邮箱
+     * Whether to verify the old email when modifying the email
      */
     verifyOldEmail: boolean;
 };

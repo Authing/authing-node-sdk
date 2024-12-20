@@ -8,7 +8,7 @@ export type GetAuthorizedResourceActionDto = {
      */
     op: GetAuthorizedResourceActionDto.op;
     /**
-     * Action 列表
+     * Action list
      */
     list: Array<string>;
 };

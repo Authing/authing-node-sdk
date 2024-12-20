@@ -6,7 +6,7 @@ import type { CreateNamespacesBatchItemDto } from './CreateNamespacesBatchItemDt
 
 export type CreateNamespacesBatchDto = {
     /**
-     * 权限分组列表
+     * permission group list
      */
     list: Array<CreateNamespacesBatchItemDto>;
 };

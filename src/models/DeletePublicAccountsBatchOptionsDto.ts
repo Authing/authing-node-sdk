@@ -4,12 +4,12 @@
 
 export type DeletePublicAccountsBatchOptionsDto = {
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * User ID type, the default value is `user_id`, optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: The user's ID in the external system, corresponding to the `externalId` field of Authing user information
      *
      */
     userIdType?: DeletePublicAccountsBatchOptionsDto.userIdType;
@@ -18,12 +18,12 @@ export type DeletePublicAccountsBatchOptionsDto = {
 export namespace DeletePublicAccountsBatchOptionsDto {
 
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * User ID type, the default value is `user_id`, the optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: the user's ID in the external system, corresponding to the `externalId` field of Authing user information
      *
      */
     export enum userIdType {

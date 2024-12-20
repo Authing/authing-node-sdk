@@ -6,27 +6,27 @@ import type { AuthEnvParams } from './AuthEnvParams';
 
 export type CheckPermissionDto = {
     /**
-     * 资源路径列表,**树资源需到具体树节点**
+     * Resource path list, **Tree resources need to go to specific tree nodes**
      */
     resources: Array<string>;
     /**
-     * 数据资源权限操作, read、get、write 等动作
+     * Data resource permission operations, read, get, write and other actions
      */
     action: string;
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     namespaceCode: string;
     /**
-     * 是否开启条件判断，默认 false 不开启
+     * Whether to enable conditional judgment, default false is not enabled
      */
     judgeConditionEnabled?: boolean;
     /**
-     * 条件环境属性，若开启条件判断则使用
+     * Conditional environment attributes, used if conditional judgment is enabled
      */
     authEnvParams?: AuthEnvParams;
 };

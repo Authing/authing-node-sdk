@@ -4,15 +4,15 @@
 
 export type CopyRowRelationDto = {
     /**
-     * 复制后关联的行 id
+     * The associated row id after copying
      */
     relationRowId: string;
     /**
-     * 被复制的行 id
+     * Copied row id
      */
     rowId: string;
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
 };

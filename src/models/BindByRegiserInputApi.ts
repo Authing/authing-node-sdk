@@ -4,11 +4,11 @@
 
 export type BindByRegiserInputApi = {
     /**
-     * 中间态键
+     * Intermediate key
      */
     key: string;
     /**
-     * 操作编码
+     * Operation code
      */
     action: string;
 };

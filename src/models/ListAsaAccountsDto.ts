@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 分页获取某一应用下的 ASA 账号列表
+ * Get the ASA account list under a certain application in pages
  */
 export type ListAsaAccountsDto = {
     /**
-     * 所属应用 ID
+     * The application ID to which it belongs
      */
     appId?: any;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page, the maximum cannot exceed 50, the default is 10
      */
     limit?: any;
 };

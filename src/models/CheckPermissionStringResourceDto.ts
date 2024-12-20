@@ -4,11 +4,11 @@
 
 export type CheckPermissionStringResourceDto = {
     /**
-     * 字符串数据资源路径列表,
+     * String data resource path list,
      */
     resources: Array<string>;
     /**
-     * 数据资源权限操作, read、get、write 等动作
+     * Data resource permission operations, read, get, write and other actions
      */
     action: string;
 };

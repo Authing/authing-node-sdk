@@ -4,11 +4,11 @@
 
 export type DeleteRoleDto = {
     /**
-     * 角色 code 列表
+     * Role code list
      */
     codeList: Array<string>;
     /**
-     * 所属权限分组(权限空间)的 code，不传获取默认权限分组。
+     * The code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
 };

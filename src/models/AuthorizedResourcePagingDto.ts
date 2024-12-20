@@ -6,11 +6,11 @@ import type { AuthorizedResourceDto } from './AuthorizedResourceDto';
 
 export type AuthorizedResourcePagingDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 响应数据
+     *Response data
      */
     list: Array<AuthorizedResourceDto>;
 };

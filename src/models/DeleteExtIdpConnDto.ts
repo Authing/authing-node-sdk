@@ -4,11 +4,11 @@
 
 export type DeleteExtIdpConnDto = {
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     id: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

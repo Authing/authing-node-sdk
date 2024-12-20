@@ -4,15 +4,15 @@
 
 export type FastpassQRCodeRelationAppDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     id: string;
     /**
-     * 应用名称
+     * Application name
      */
     name: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     logo?: string;
 };

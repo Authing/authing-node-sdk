@@ -5,7 +5,7 @@
 import type { ApplicationTabMethodsSortConfigDto } from './ApplicationTabMethodsSortConfigDto';
 import type { ISsoPageCustomizationSettingsDto } from './ISsoPageCustomizationSettingsDto';
 import type { LanguageCoinfigDto } from './LanguageCoinfigDto';
-import type { TabConfigDto } from './TabConfigDto';
+import type {TabConfigDto} from './TabConfigDto';
 
 export type UpdateLoginConfig = {
     tabMethodsSortConfig: ApplicationTabMethodsSortConfigDto;
@@ -15,31 +15,31 @@ export type UpdateLoginConfig = {
     verifyCodeTabConfig: TabConfigDto;
     config: LanguageCoinfigDto;
     /**
-     * 是否允许创建租户
+     * Whether to allow tenant creation
      */
     enableCreateTenant: boolean;
     /**
-     * 允许创建租户的场景
+     * Scenarios that allow tenant creation
      */
     createTenantScenes: Array<string>;
     /**
-     * 是否允许加入租户
+     * Whether to allow joining tenants
      */
     enableJoinTenant: boolean;
     /**
-     * 允许创建加入的场景
+     * Allows creation of added scenes
      */
     joinTenantScenes: Array<string>;
     /**
-     * 是否校验企业域名
+     * Whether to verify the enterprise domain name
      */
     enableVerifyDomain: boolean;
     /**
-     * 是否自动关联租户应用
+     * Whether to automatically associate tenant applications
      */
     enableAutoConnectTenantApp: boolean;
     /**
-     * 校验企业域名的场景
+     * Scenarios for verifying corporate domain names
      */
     verifyDomainScenes: Array<string>;
 };

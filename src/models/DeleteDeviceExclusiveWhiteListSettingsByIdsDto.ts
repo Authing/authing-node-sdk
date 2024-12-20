@@ -4,15 +4,15 @@
 
 export type DeleteDeviceExclusiveWhiteListSettingsByIdsDto = {
     /**
-     * 主体类型：
-     * - `USER`: 用户
-     * - `GROUP`: 用户组
-     * - `ROLE`: 角色
+     * Subject type:
+     * - `USER`: user
+     * - `GROUP`: user group
+     * - `ROLE`: role
      *
      */
     targetType: DeleteDeviceExclusiveWhiteListSettingsByIdsDto.targetType;
     /**
-     * 主体 ID
+     * Subject ID
      */
     targetId: string;
 };
@@ -20,10 +20,10 @@ export type DeleteDeviceExclusiveWhiteListSettingsByIdsDto = {
 export namespace DeleteDeviceExclusiveWhiteListSettingsByIdsDto {
 
     /**
-     * 主体类型：
-     * - `USER`: 用户
-     * - `GROUP`: 用户组
-     * - `ROLE`: 角色
+     * Subject type:
+     * - `USER`: user
+     * - `GROUP`: user group
+     * - `ROLE`: role
      *
      */
     export enum targetType {

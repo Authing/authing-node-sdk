@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 在身份源详情页获取应用的连接情况
+ * Obtain the connection status of the application on the identity source details page
  */
 export type ExtIdpConnAppsDto = {
     /**
-     * 身份源 ID
+     * Identity source ID
      */
     id?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
     /**
-     * 身份源类型
+     * Identity source type
      */
     type?: any;
 };

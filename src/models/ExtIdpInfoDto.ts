@@ -4,43 +4,43 @@
 
 export type ExtIdpInfoDto = {
     /**
-     * 身份源连接唯一标志
+     * Identity source connection unique identifier
      */
     identifier: string;
     /**
-     * 身份源 ID
+     * Identity source ID
      */
     extIdpId: string;
     /**
-     * 身份源类型
+     * Identity source type
      */
     type: ExtIdpInfoDto.type;
     /**
-     * 认证类型
+     *Authentication type
      */
     extIdpType: ExtIdpInfoDto.extIdpType;
     /**
-     * 认证地址
+     * Certification address
      */
     bindUrl: string;
     /**
-     * 身份源显示名称
+     * Identity source display name
      */
     name: string;
     /**
-     * 身份源显示名称（英文）
+     * Identity source display name (English)
      */
     name_en?: string;
     /**
-     * 描述
+     * describe
      */
     desc?: string;
     /**
-     * 描述英文
+     *Description in English
      */
     desc_en?: string;
     /**
-     * 图标
+     * icon
      */
     logo?: string;
 };
@@ -48,7 +48,7 @@ export type ExtIdpInfoDto = {
 export namespace ExtIdpInfoDto {
 
     /**
-     * 身份源类型
+     * Identity source type
      */
     export enum type {
         OIDC = 'oidc',
@@ -95,7 +95,7 @@ export namespace ExtIdpInfoDto {
     }
 
     /**
-     * 认证类型
+     *Authentication type
      */
     export enum extIdpType {
         SOCIAL = 'social',

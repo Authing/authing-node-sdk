@@ -4,23 +4,23 @@
 
 export type GetDeviceExclusiveValidScopeDataDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName?: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     appLogo?: string;
     /**
-     * 添加时间
+     *Add time
      */
     createdAt: string;
     /**
-     * 是否默认应用
+     * Whether to apply by default
      */
     isDefault?: boolean;
 };

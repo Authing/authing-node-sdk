@@ -4,7 +4,7 @@
 
 export type CopyInvitationPolicyDto = {
     /**
-     * 策略 ID
+     * Policy ID
      */
     policyId: string;
 };

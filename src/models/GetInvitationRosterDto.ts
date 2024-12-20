@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 根据名单 Id 获取邀请名单详情
+ * Get invitation list details based on list ID
  */
 export type GetInvitationRosterDto = {
     /**
-     * 名单 ID
+     * List ID
      */
     rosterId?: any;
     /**
-     * 是否返回创建者详情
+     * Whether to return the creator details
      */
     withCreatorDetail?: any;
     /**
-     * 是否返回名单关联的用户数量，可选。
+     * Whether to return the number of users associated with the list, optional.
      */
     withUserCount?: any;
     /**
-     * 是否返回名单关联的策略，可选。
+     * Whether to return the policies associated with the list, optional.
      */
     withAssignedPolicy?: any;
 };

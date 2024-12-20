@@ -6,11 +6,11 @@ import type { GroupDto } from './GroupDto';
 
 export type CreateOrUpdateGroupDataDto = {
     /**
-     * 是否创建
+     * Whether to create
      */
     created: boolean;
     /**
-     * 群组信息
+     * Group information
      */
     data: GroupDto;
 };

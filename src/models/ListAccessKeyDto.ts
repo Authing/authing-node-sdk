@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 根据协作管理员 Id 获取协作管理员下所有的 AK/SK 列表
+ * Get all AK/SK lists under the collaborative administrator based on the collaborative administrator ID
  */
 export type ListAccessKeyDto = {
     /**
-     * 密钥所属用户 ID
+     * User ID to which the key belongs
      */
     userId?: any;
     /**
-     * 密钥所属租户 ID
+     * Tenant ID to which the key belongs
      */
     tenantId?: any;
     /**
-     * 密钥类型
+     *Key type
      */
     type?: any;
     /**
-     * AccessKey 状态，activated：已激活，staging：分级（可轮换），revoked：已撤销
+     * AccessKey status, activated: activated, staging: graded (rotatable), revoked: revoked
      */
     status?: any;
 };

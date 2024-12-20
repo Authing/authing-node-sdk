@@ -4,11 +4,11 @@
 
 export type CheckParamsDataResourceRespDto = {
     /**
-     * 数据资源名称或者 Code 校验是否有效
+     * Data resource name or Code verification is valid
      */
     isValid: boolean;
     /**
-     * 数据资源名称或者 Code 校验失败提示信息,如果校验成功, message 不返回
+     * Data resource name or Code verification failure prompt message. If the verification is successful, the message will not be returned.
      */
     message?: string;
 };

@@ -6,27 +6,27 @@ import type { ResourceAction } from './ResourceAction';
 
 export type CreateResourceBatchItemDto = {
     /**
-     * 资源唯一标志符
+     * Resource unique identifier
      */
     code: string;
     /**
-     * 资源描述
+     * Resource description
      */
     description?: string;
     /**
-     * 资源名称
+     * Resource name
      */
     name?: string;
     /**
-     * 资源类型，如数据、API、按钮、菜单
+     * Resource type, such as data, API, button, menu
      */
     type: CreateResourceBatchItemDto.type;
     /**
-     * 资源定义的操作类型
+     * Operation type defined by the resource
      */
     actions?: Array<ResourceAction>;
     /**
-     * API 资源的 URL 标识
+     * URL identifier of the API resource
      */
     apiIdentifier?: string;
 };
@@ -34,7 +34,7 @@ export type CreateResourceBatchItemDto = {
 export namespace CreateResourceBatchItemDto {
 
     /**
-     * 资源类型，如数据、API、按钮、菜单
+     * Resource type, such as data, API, button, menu
      */
     export enum type {
         DATA = 'DATA',

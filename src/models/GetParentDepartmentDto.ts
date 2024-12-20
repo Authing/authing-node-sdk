@@ -3,27 +3,27 @@
 /* eslint-disable */
 
 /**
- * 通过组织 code、部门 ID，获取父部门信息，可以选择获取自定义数据等。
+ * Obtain parent department information through organization code and department ID, and you can choose to obtain customized data, etc.
  */
 export type GetParentDepartmentDto = {
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 部门 ID
+     *Department ID
      */
     departmentId?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

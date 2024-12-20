@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 删除 passkey
+ * Delete passkey
  */
 export type Credentials = {
     credentialId?: any;

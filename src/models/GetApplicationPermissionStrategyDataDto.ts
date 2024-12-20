@@ -4,7 +4,7 @@
 
 export type GetApplicationPermissionStrategyDataDto = {
     /**
-     * 应用访问授权策略
+     * Apply access authorization policy
      */
     permissionStrategy: GetApplicationPermissionStrategyDataDto.permissionStrategy;
 };
@@ -12,7 +12,7 @@ export type GetApplicationPermissionStrategyDataDto = {
 export namespace GetApplicationPermissionStrategyDataDto {
 
     /**
-     * 应用访问授权策略
+     * Apply access authorization policy
      */
     export enum permissionStrategy {
         ALLOW_ALL = 'ALLOW_ALL',

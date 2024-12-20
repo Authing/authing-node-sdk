@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过部门 ID，获取用户的公共账号列表。
+ * Get the user's public account list through the department ID.
  */
 export type GetPublicAccountsOfDepartmentDto = {
     /**
-     * 部门 ID
+     *Department ID
      */
     departmentId?: any;
 };

@@ -3,27 +3,27 @@
 /* eslint-disable */
 
 /**
- * 获取行关联数据
+ * Get row related data
  */
 export type GetRowRelationDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId?: any;
     /**
-     * 字段 id
+     * field id
      */
     fieldId?: any;
     /**
-     * 行 id
+     * row id
      */
     rowId?: any;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: any;
 };

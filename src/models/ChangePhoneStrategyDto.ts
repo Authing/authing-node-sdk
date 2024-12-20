@@ -4,7 +4,7 @@
 
 export type ChangePhoneStrategyDto = {
     /**
-     * 修改手机号时是否验证旧手机号
+     * Whether to verify the old mobile phone number when changing it
      */
     verifyOldPhone: boolean;
 };

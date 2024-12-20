@@ -4,27 +4,27 @@
 
 export type DataResourcePolicyTreeStructs = {
     /**
-     * 数据资源策略节点 Code, 同层级唯一
+     * Data resource policy node Code, unique at the same level
      */
     code: string;
     /**
-     * 数据资源策略节点 Value
+     * Data resource strategy node Value
      */
     value?: string;
     /**
-     * 数据资源节点名称 ，同层级唯一
+     * Data resource node name, unique at the same level
      */
     name: string;
     /**
-     * 数据资源策略节点 action 动作
+     * Data resource policy node action action
      */
     action: string;
     /**
-     * 数据资源策略节点是否开启动作
+     * Whether the data resource policy node enables action
      */
     enabled: boolean;
     /**
-     * 子节点数据,子节点数据最多五个层级
+     * Sub-node data, sub-node data can have up to five levels
      */
     children?: Array<string>;
 };

@@ -4,31 +4,31 @@
 
 export type GetDeviceExclusiveWhiteListDataDto = {
     /**
-     * 主体名称
+     * Subject name
      */
     name?: string;
     /**
-     * 权限空间 Code
+     * Permission space code
      */
     namePath?: string;
     /**
-     * 主体类型：
-     * - `USER`: 用户
-     * - `GROUP`: 用户组
-     * - `ROLE`: 角色
+     * Subject type:
+     * - `USER`: user
+     * - `GROUP`: user group
+     * - `ROLE`: role
      *
      */
     targetType: GetDeviceExclusiveWhiteListDataDto.targetType;
     /**
-     * 主体 ID
+     * Subject ID
      */
     targetId: string;
     /**
-     * 图片
+     * picture
      */
     photo?: string;
     /**
-     * 添加时间
+     *Add time
      */
     createdAt: string;
 };
@@ -36,10 +36,10 @@ export type GetDeviceExclusiveWhiteListDataDto = {
 export namespace GetDeviceExclusiveWhiteListDataDto {
 
     /**
-     * 主体类型：
-     * - `USER`: 用户
-     * - `GROUP`: 用户组
-     * - `ROLE`: 角色
+     * Subject type:
+     * - `USER`: user
+     * - `GROUP`: user group
+     * - `ROLE`: role
      *
      */
     export enum targetType {

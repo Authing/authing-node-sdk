@@ -4,7 +4,7 @@
 
 export type DeleteTenantDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId: string;
 };

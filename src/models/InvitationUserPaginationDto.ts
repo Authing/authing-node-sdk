@@ -6,11 +6,11 @@ import type { InvitationUserDto } from './InvitationUserDto';
 
 export type InvitationUserPaginationDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount?: number;
     /**
-     * 列表数据
+     * List data
      */
     list: Array<InvitationUserDto>;
 };

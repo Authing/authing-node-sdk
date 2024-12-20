@@ -6,53 +6,53 @@ import type { ExtendsFieldDto } from './ExtendsFieldDto';
 
 export type InviteeContextDto = {
     /**
-     * 是否开启身份验证码
+     * Whether to enable identity verification code
      */
     enabledIdentifierVerify: boolean;
     /**
-     * 发送身份验证码的方式
-     * - `priorityEmail`: 优先邮箱
-     * - `prioritySMS`: 优先短信
+     * How to send authentication code
+     * - `priorityEmail`: priority email
+     * - `prioritySMS`: Priority SMS
      */
     sendVerifyCodeMethod: InviteeContextDto.sendVerifyCodeMethod;
     /**
-     * 是否开启信息补全
+     * Whether to enable information completion
      */
     enabledInfoFill: boolean;
     /**
-     * 信息补全页面提示
+     * Information completion page prompts
      */
     registerInfoFillMsg?: string;
     /**
-     * 注册信息补全字段列表配置
+     * Registration information completion field list configuration
      */
     extendsFields: Array<ExtendsFieldDto>;
     /**
-     * 信息补全字段的 i18n 对象
+     * i18n object of information completion field
      */
     extendsFieldsI18n: any;
     /**
-     * 信息补全字段的其他信息
+     * Other information for information completion fields
      */
     extendsFieldsOptions: Array<any>;
     /**
-     * 受邀人邮箱
+     * Invitee's email address
      */
     email: string;
     /**
-     * 受邀人手机号
+     * Invitee’s mobile phone number
      */
     phone?: string;
     /**
-     * 手机号国际区码
+     *Mobile phone number international area code
      */
     phoneCountryCode?: string;
     /**
-     * 受邀人名称
+     * Name of invitee
      */
     inviteeName?: string;
     /**
-     * 验证码输入错误最大次数
+     *Maximum number of incorrect verification code inputs
      */
     verifyCodeMaxErrCount: number;
 };
@@ -60,9 +60,9 @@ export type InviteeContextDto = {
 export namespace InviteeContextDto {
 
     /**
-     * 发送身份验证码的方式
-     * - `priorityEmail`: 优先邮箱
-     * - `prioritySMS`: 优先短信
+     * How to send authentication code
+     * - `priorityEmail`: priority email
+     * - `prioritySMS`: Priority SMS
      */
     export enum sendVerifyCodeMethod {
         PRIORITY_SMS = 'prioritySMS',

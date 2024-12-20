@@ -3,39 +3,39 @@
 /* eslint-disable */
 
 /**
- * 通过组织 code、部门 ID，获取子部门列表，可以选择获取自定义数据、虚拟组织等。
+ * Obtain the list of sub-departments through organization code and department ID, and you can choose to obtain custom data, virtual organizations, etc.
  */
 export type ListChildrenDepartmentsDto = {
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 需要获取的部门 ID
+     *Department ID to be obtained
      */
     departmentId?: any;
     /**
-     * 部门的状态
+     * Department status
      */
     status?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否要排除虚拟组织
+     * Whether to exclude virtual organizations
      */
     excludeVirtualNode?: any;
     /**
-     * 是否只包含虚拟组织
+     * Whether to include only virtual organizations
      */
     onlyVirtualNode?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

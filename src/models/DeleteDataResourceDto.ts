@@ -4,11 +4,11 @@
 
 export type DeleteDataResourceDto = {
     /**
-     * 数据资源 Code, 权限空间内唯一
+     * Data resource Code, unique in the permission space
      */
     resourceCode: string;
     /**
-     * 数据资源所属的权限空间 Code
+     * The permission space code to which the data resource belongs
      */
     namespaceCode: string;
 };

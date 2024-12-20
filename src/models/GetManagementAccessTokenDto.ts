@@ -4,11 +4,11 @@
 
 export type GetManagementAccessTokenDto = {
     /**
-     * AccessKey ID: 如果是以用户池全局 AK/SK 初始化，为用户池 ID;如果是以协作管理员的 AK/SK 初始化，为协作管理员的 AccessKey ID。
+     * AccessKey ID: If it is initialized with the global AK/SK of the user pool, it is the user pool ID; if it is initialized with the AK/SK of the collaborative administrator, it is the AccessKey ID of the collaborative administrator.
      */
     accessKeyId: string;
     /**
-     * AccessKey Secret: 如果是以用户池全局 AK/SK 初始化，为用户池密钥；如果是以协作管理员的 AK/SK 初始化，为协作管理员的 SK。
+     * AccessKey Secret: If it is initialized with the global AK/SK of the user pool, it is the user pool key; if it is initialized with the AK/SK of the collaborative administrator, it is the SK of the collaborative administrator.
      */
     accessKeySecret: string;
 };

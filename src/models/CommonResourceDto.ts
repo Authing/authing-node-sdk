@@ -6,59 +6,59 @@ import type { ResourceAction } from './ResourceAction';
 
 export type CommonResourceDto = {
     /**
-     * 资源唯一标志符
+     * Resource unique identifier
      */
     code: string;
     /**
-     * 资源描述
+     * Resource description
      */
     description?: string;
     /**
-     * 资源名称
+     * Resource name
      */
     name?: string;
     /**
-     * 资源类型，如数据、API、按钮、菜单
+     * Resource type, such as data, API, button, menu
      */
     type: CommonResourceDto.type;
     /**
-     * 资源定义的操作类型
+     * Operation type defined by the resource
      */
     actions?: Array<ResourceAction>;
     /**
-     * API 资源的 URL 标识
+     * URL identifier of the API resource
      */
     apiIdentifier?: string;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
     /**
-     * 租户应用是否关联自建应用资源
+     * Whether the tenant application is associated with self-built application resources
      */
     linkedToTenant?: boolean;
     /**
-     * 资源id
+     * Resource id
      */
     id: string;
     /**
-     * 权限应用id
+     * Permission application id
      */
     namespaceId: number;
     /**
-     * 权限应用名称
+     * Permission application name
      */
     namespaceName: string;
     /**
-     * UserPool ID
+     *UserPool ID
      */
     userPoolId: string;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * 更新时间
+     * Update time
      */
     updatedAt: string;
 };
@@ -66,7 +66,7 @@ export type CommonResourceDto = {
 export namespace CommonResourceDto {
 
     /**
-     * 资源类型，如数据、API、按钮、菜单
+     * Resource type, such as data, API, button, menu
      */
     export enum type {
         DATA = 'DATA',

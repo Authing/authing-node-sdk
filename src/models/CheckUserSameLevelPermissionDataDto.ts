@@ -6,7 +6,7 @@ import type { CheckUserSameLevelPermissionRespDto } from './CheckUserSameLevelPe
 
 export type CheckUserSameLevelPermissionDataDto = {
     /**
-     * 响应结果列表
+     * Response result list
      */
     checkLevelResultList: Array<CheckUserSameLevelPermissionRespDto>;
 };

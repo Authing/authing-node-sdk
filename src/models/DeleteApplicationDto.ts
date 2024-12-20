@@ -4,7 +4,7 @@
 
 export type DeleteApplicationDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
 };

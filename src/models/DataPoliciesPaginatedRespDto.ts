@@ -6,11 +6,11 @@ import type { ListDataPoliciesRespDto } from './ListDataPoliciesRespDto';
 
 export type DataPoliciesPaginatedRespDto = {
     /**
-     * 记录总数
+     * Total
      */
     totalCount: number;
     /**
-     * 响应数据
+     * Data list
      */
     list: Array<ListDataPoliciesRespDto>;
 };

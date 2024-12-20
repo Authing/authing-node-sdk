@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取数据对象行信息
+ * Get data object row information
  */
 export type GetRowDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId?: any;
     /**
-     * 行 id
+     * row id
      */
     rowId?: any;
     /**
-     * 返回结果中是否使用字段 id 作为 key
+     * Whether to use field id as key in the return result
      */
     showFieldId?: any;
 };

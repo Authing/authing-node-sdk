@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 获取组织机构详情
+ * Get organizational details
  */
 export type GetOrganizationDto = {
     /**
-     * 组织 Code（organizationCode）
+     * Organization Code (organizationCode)
      */
     organizationCode?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 是否获取 部门信息
+     * Whether to obtain department information
      */
     withPost?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

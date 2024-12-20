@@ -4,35 +4,35 @@
 
 export type GetAccessKeyRespDto = {
     /**
-     * 用户所拥有的 accessKeyId
+     * accessKeyId owned by the user
      */
     accessKeyId: string;
     /**
-     * 用户所拥有的 accessKeySecret
+     * accessKeySecret owned by the user
      */
     accessKeySecret: string;
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * accessKeyId 状态
+     * accessKeyId status
      */
     status: string;
     /**
-     * 最后使用时间
+     *Last use time
      */
     lastDate: string;
     /**
-     * accessKeyId 所在用户池
+     * The user pool where accessKeyId is located
      */
     userPoolId: string;
     /**
-     * 密钥是否启用
+     * Whether the key is enabled
      */
     enable: boolean;
 };

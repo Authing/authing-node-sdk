@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 按照用户扫码顺序，共分为未扫码、已扫码、已登录、二维码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+ * According to the order in which the user scans the code, it is divided into five states: unscanned code, scanned code, logged in, expired QR code and unknown error. The front end should give different feedback to the user through different states.
  */
 export type GetAppLoginQrcodeStatusDto = {
     /**
-     * 二维码唯一 ID
+     * QR code unique ID
      */
     qrcodeId?: any;
 };

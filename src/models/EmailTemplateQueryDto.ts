@@ -4,21 +4,21 @@
 
 export type EmailTemplateQueryDto = {
     /**
-     * 邀请策略邮件场景:
-     * - `INVITE`: 邀请邮件
-     * - `WELCOME`: 欢迎邮件
+     * Invitation policy email scenario:
+     * - `INVITE`: invitation email
+     * - `WELCOME`: welcome email
      */
     scene: EmailTemplateQueryDto.scene;
     /**
-     * 策略 ID
+     * Policy ID
      */
     policyId: string;
     /**
-     * 名单 ID，根据名单 ID 获取关联的策略详情，在名单发送邀请时会给策略生成快照，若在名单发送邀请后，需要获取发送时对应的策略配置，应该携带此参数
+     * List ID, obtain the associated policy details based on the list ID. When the list sends an invitation, a snapshot of the policy will be generated. If after the list sends the invitation, you need to obtain the corresponding policy configuration when sending, this parameter should be carried
      */
     rosterId?: string;
     /**
-     * 邮件模版类型，可选，可获取支持的指定类型的邮件模板
+     * Email template type, optional, you can obtain supported email templates of specified types
      */
     templateType?: string;
 };
@@ -26,9 +26,9 @@ export type EmailTemplateQueryDto = {
 export namespace EmailTemplateQueryDto {
 
     /**
-     * 邀请策略邮件场景:
-     * - `INVITE`: 邀请邮件
-     * - `WELCOME`: 欢迎邮件
+     * Invitation policy email scenario:
+     * - `INVITE`: invitation email
+     * - `WELCOME`: welcome email
      */
     export enum scene {
         INVITE = 'INVITE',

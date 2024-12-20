@@ -4,11 +4,11 @@
 
 export type ExtraParams = {
     /**
-     * 角色主体过期时间毫秒值, 为 null 时永久有效
+     * Role subject expiration time in milliseconds, permanently valid when null
      */
     endTime?: number;
     /**
-     * 角色主体加入时间毫秒值, 为 null 时立即加入
+     * The millisecond value of the role subject's joining time. If it is null, it will join immediately.
      */
     enableTime?: number;
 };

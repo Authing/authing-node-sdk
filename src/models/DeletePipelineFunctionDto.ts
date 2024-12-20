@@ -4,7 +4,7 @@
 
 export type DeletePipelineFunctionDto = {
     /**
-     * Pipeline 函数 ID
+     * Pipeline function ID
      */
     funcId: string;
 };

@@ -6,30 +6,30 @@ import type { SendCreateAccountNotificationDto } from './SendCreateAccountNotifi
 
 export type CreatePublicAccountOptionsDto = {
     /**
-     * 该参数一般在迁移旧有用户数据到 Authing 的时候会设置。开启这个开关，password 字段会直接写入 Authing 数据库，Authing 不会再次加密此字段。如果你的密码不是明文存储，你应该保持开启，并编写密码函数计算。
+     * This parameter is generally set when migrating old user data to Authing. When this switch is turned on, the password field will be written directly to the Authing database, and Authing will not encrypt this field again. If your passwords are not stored in clear text, you should keep it enabled and write cryptographic function calculations.
      */
     keepPassword?: boolean;
     /**
-     * 是否自动生成密码
+     * Whether to automatically generate a password
      */
     autoGeneratePassword?: boolean;
     /**
-     * 是否强制要求用户在第一次的时候重置密码
+     * Whether to force users to reset their password the first time
      */
     resetPasswordOnFirstLogin?: boolean;
     /**
-     * 此次调用中使用的父部门 ID 的类型
+     * The type of parent department ID used in this call
      */
     departmentIdType?: CreatePublicAccountOptionsDto.departmentIdType;
     /**
-     * 重置密码发送邮件和手机号选项
+     * Options for resetting password, sending email and mobile phone number
      */
     sendNotification?: SendCreateAccountNotificationDto;
     /**
-     * 密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
-     * - `none`: 不对密码进行加密，使用明文进行传输。
-     * - `rsa`: 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 RSA256 公钥。
-     * - `sm2`: 使用 [国密 SM2 算法](https://baike.baidu.com/item/SM2/15081831) 对密码进行加密，需要使用 Authing 服务的 SM2 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 SM2 公钥。
+     * Password encryption type, supports encryption using RSA256 and national secret SM2 algorithms. Default is `none` to not encrypt.
+     * - `none`: Do not encrypt the password and use clear text for transmission.
+     * - `rsa`: Use the RSA256 algorithm to encrypt the password. You need to use the RSA public key of the Authing service for encryption. Please read the **Introduction** section to learn how to obtain the RSA256 public key of the Authing service.
+     * - `sm2`: Use [National Secret SM2 Algorithm](https://baike.baidu.com/item/SM2/15081831) to encrypt the password. You need to use the SM2 public key of the Authing service for encryption, please read** Learn how to obtain the SM2 public key of the Authing service in the introduction** section.
      *
      */
     passwordEncryptType?: CreatePublicAccountOptionsDto.passwordEncryptType;
@@ -38,7 +38,7 @@ export type CreatePublicAccountOptionsDto = {
 export namespace CreatePublicAccountOptionsDto {
 
     /**
-     * 此次调用中使用的父部门 ID 的类型
+     * The type of parent department ID used in this call
      */
     export enum departmentIdType {
         DEPARTMENT_ID = 'department_id',
@@ -49,10 +49,10 @@ export namespace CreatePublicAccountOptionsDto {
     }
 
     /**
-     * 密码加密类型，支持使用 RSA256 和国密 SM2 算法进行加密。默认为 `none` 不加密。
-     * - `none`: 不对密码进行加密，使用明文进行传输。
-     * - `rsa`: 使用 RSA256 算法对密码进行加密，需要使用 Authing 服务的 RSA 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 RSA256 公钥。
-     * - `sm2`: 使用 [国密 SM2 算法](https://baike.baidu.com/item/SM2/15081831) 对密码进行加密，需要使用 Authing 服务的 SM2 公钥进行加密，请阅读**介绍**部分了解如何获取 Authing 服务的 SM2 公钥。
+     * Password encryption type, supports encryption using RSA256 and national secret SM2 algorithms. Default is `none` to not encrypt.
+     * - `none`: Do not encrypt the password and use clear text for transmission.
+     * - `rsa`: Use the RSA256 algorithm to encrypt the password. You need to use the RSA public key of the Authing service for encryption. Please read the **Introduction** section to learn how to obtain the RSA256 public key of the Authing service.
+     * - `sm2`: Use [National Secret SM2 Algorithm](https://baike.baidu.com/item/SM2/15081831) to encrypt the password. You need to use the SM2 public key of the Authing service for encryption, please read** Learn how to obtain the SM2 public key of the Authing service in the introduction** section.
      *
      */
     export enum passwordEncryptType {

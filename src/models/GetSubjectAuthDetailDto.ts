@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 主体授权详情
+ * Subject authorization details
  */
 export type GetSubjectAuthDetailDto = {
     /**
-     * 主体 id
+     * Subject id
      */
     targetId?: any;
     /**
-     * 主体类型
+     * Subject type
      */
     targetType?: any;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
 };

@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 按照推送码使用顺序，共分为已推送、等待用户 同意/取消 授权、推送码过期以及未知错误五种状态，前端应该通过不同的状态给到用户不同的反馈。
+ * According to the order of push code usage, there are five states: pushed, waiting for user consent/cancel authorization, push code expired, and unknown error. The front end should give users different feedback through different states.
  */
 export type CheckPushcodeStatusDto = {
     /**
-     * 推送码（推送登录唯一 ID）
+     * Push code (unique ID for push login)
      */
     pushCodeId?: any;
 };

@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 利用功能 id ，获取数据对象的详细信息
+ * Use function id to obtain detailed information of the data object
  */
 export type GetModelDto = {
     /**
-     * 功能 id 可以从控制台页面获取
+     * Function id can be obtained from the console page
      */
     id?: any;
 };

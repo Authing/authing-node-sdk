@@ -6,11 +6,11 @@ import type { InviteTenantUserRecord } from './InviteTenantUserRecord';
 
 export type InviteTenantUserRecordListDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 邀请用户历史记录
+     * Invite user history
      */
     list: Array<InviteTenantUserRecord>;
 };

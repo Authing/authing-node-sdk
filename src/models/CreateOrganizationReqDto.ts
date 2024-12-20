@@ -6,35 +6,35 @@ import type { OrganizationNameI18nDto } from './OrganizationNameI18nDto';
 
 export type CreateOrganizationReqDto = {
     /**
-     * 元数据信息
+     * Metadata information
      */
     metadata: any;
     /**
-     * 组织名称
+     *Organization name
      */
     organizationName: string;
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode: string;
     /**
-     * 组织描述信息
+     * Organization description information
      */
     description?: string;
     /**
-     * 根节点自定义 ID
+     *Root node custom ID
      */
     openDepartmentId?: string;
     /**
-     * 多语言设置
+     *Multi-language settings
      */
     i18n?: OrganizationNameI18nDto;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
     /**
-     * 岗位 id 列表
+     * Position id list
      */
     postIdList?: Array<string>;
 };

@@ -6,11 +6,11 @@ import type { ResGroupDto } from './ResGroupDto';
 
 export type GroupPagingDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 响应数据
+     *Response data
      */
     list: Array<ResGroupDto>;
 };

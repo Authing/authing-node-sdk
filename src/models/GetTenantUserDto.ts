@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 根据用户 ID 或租户成员 ID 获取租户成员信息
+ * Get tenant member information based on user ID or tenant member ID
  */
 export type GetTenantUserDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
     /**
-     * 关联的用户池级别的用户 ID
+     * User ID at the associated user pool level
      */
     linkUserId?: any;
     /**
-     * 租户成员 ID
+     * Tenant member ID
      */
     memberId?: any;
 };

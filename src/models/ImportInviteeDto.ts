@@ -4,19 +4,19 @@
 
 export type ImportInviteeDto = {
     /**
-     * 操作是否成功
+     * Whether the operation was successful
      */
     success: boolean;
     /**
-     * 操作结果
+     * Operation result
      */
     msg?: boolean;
     /**
-     * 数据检查结果
+     * Data check results
      */
     failed?: Array<any>;
     /**
-     * 数据导入结果
+     * Data import results
      */
     insertRes?: Array<any>;
 };

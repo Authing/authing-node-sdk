@@ -4,19 +4,19 @@
 
 export type BindByAccountInputApi = {
     /**
-     * 中间态键
+     * Intermediate key
      */
     key: string;
     /**
-     * 操作编码
+     * Operation code
      */
     action: string;
     /**
-     * 账号密码
+     *Account password
      */
     password: string;
     /**
-     * 账号（手机/邮箱/用户名）
+     * Account number (mobile phone/email/user name)
      */
     account: string;
 };

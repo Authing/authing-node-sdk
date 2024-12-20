@@ -1,14 +1,14 @@
-/* istanbul ignore file */
+/*istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
 export type GenePushCodeDataDto = {
     /**
-     * 推送码（推送登录唯一 ID），可以通过此唯一 ID 查询推送码状态。
+     * Push code (push login unique ID), you can query the push code status through this unique ID.
      */
     pushCodeId: string;
     /**
-     * 推送码 `${expireTime}` 秒后过期，如 120 秒后过期。
+     * The push code will expire after `${expireTime}` seconds, for example, it will expire after 120 seconds.
      */
     expireTime: number;
 };

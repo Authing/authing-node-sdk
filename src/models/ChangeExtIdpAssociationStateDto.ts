@@ -4,15 +4,15 @@
 
 export type ChangeExtIdpAssociationStateDto = {
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     id: string;
     /**
-     * 是否关联身份源
+     * Whether to associate the identity source
      */
     association: boolean;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

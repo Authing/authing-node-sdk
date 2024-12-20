@@ -4,11 +4,11 @@
 
 export type DropDownItemDto = {
     /**
-     * 选项 id
+     * option id
      */
     key: string;
     /**
-     * 选项名称
+     * option name
      */
     label: string;
 };

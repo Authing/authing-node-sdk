@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 根据部门id查询部门
+ * Query department based on department id
  */
 export type GetDepartmentByIdDto = {
     /**
-     * 部门 ID
+     *Department ID
      */
     departmentId?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
     /**
-     * 应用类型列表
+     * List of application types
      */
     appTypeList?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

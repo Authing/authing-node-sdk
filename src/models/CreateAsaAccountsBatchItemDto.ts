@@ -4,7 +4,7 @@
 
 export type CreateAsaAccountsBatchItemDto = {
     /**
-     * 账号信息，一般为包含 "account", "password" key 的键值对
+     * Account information, usually a key-value pair containing "account", "password" key
      */
     accountInfo: any;
 };

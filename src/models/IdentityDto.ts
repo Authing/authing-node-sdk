@@ -4,27 +4,27 @@
 
 export type IdentityDto = {
     /**
-     * 身份源 ID
+     * Identity source ID
      */
     identityId: string;
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     extIdpId: string;
     /**
-     * 外部身份源类型：
-     * - `wechat`: 微信
+     * External identity source type:
+     * - `wechat`: WeChat
      * - `qq`: QQ
-     * - `wechatwork`: 企业微信
-     * - `dingtalk`: 钉钉
-     * - `weibo`: 微博
+     * - `wechatwork`: Enterprise WeChat
+     * - `dingtalk`: DingTalk
+     * - `weibo`: Weibo
      * - `github`: GitHub
-     * - `alipay`: 支付宝
-     * - `baidu`: 百度
-     * - `lark`: 飞书
+     * - `alipay`: Alipay
+     * - `baidu`: Baidu
+     * - `lark`: Feishu
      * - `welink`: Welink
-     * - `yidun`: 网易易盾
-     * - `qingcloud`: 青云
+     * - `yidun`: NetEase Yidun
+     * - `qingcloud`: Qingyun
      * - `google`: Google
      * - `gitlab`: GitLab
      * - `gitee`: Gitee
@@ -33,38 +33,38 @@ export type IdentityDto = {
      * - `slack`: Slack
      * - `linkedin`: Linkedin
      * - `instagram`: Instagram
-     * - `oidc`: OIDC 型企业身份源
-     * - `oauth2`: OAuth2 型企业身份源
-     * - `saml`: SAML 型企业身份源
-     * - `ldap`: LDAP 型企业身份源
-     * - `ad`: AD 型企业身份源
-     * - `cas`: CAS 型企业身份源
-     * - `azure-ad`: Azure AD 型企业身份源
+     * - `oidc`: OIDC type enterprise identity source
+     * - `oauth2`: OAuth2-style enterprise identity source
+     * - `saml`: SAML-style enterprise identity source
+     * - `ldap`: LDAP-based enterprise identity source
+     * - `ad`: AD type enterprise identity source
+     * - `cas`: CAS type enterprise identity source
+     * - `azure-ad`: Azure AD-style enterprise identity source
      *
      */
     provider: IdentityDto.provider;
     /**
-     * Identity 类型，如 unionid, openid, primary
+     * Identity type, such as unionid, openid, primary
      */
     type: string;
     /**
-     * 在外部身份源中的 ID
+     * ID in external identity source
      */
     userIdInIdp: string;
     /**
-     * 用户在 idp 中的身份信息
+     * User's identity information in idp
      */
     userInfoInIdp: any;
     /**
-     * 在外部身份源中的 Access Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+     * Access Token in the external identity source (this parameter will only be returned when the user actively obtains it, and will not be returned by the management-side interface).
      */
     accessToken?: string;
     /**
-     * 在外部身份源中的 Refresh Token（此参数只会在用户主动获取时返回，管理侧接口不会返回）。
+     * Refresh Token in the external identity source (this parameter will only be returned when the user actively obtains it, and will not be returned by the management side interface).
      */
     refreshToken?: string;
     /**
-     * 身份来自的身份源连接 ID 列表
+     * List of identity source connection IDs that the identity comes from
      */
     originConnIds: Array<string>;
 };
@@ -72,19 +72,19 @@ export type IdentityDto = {
 export namespace IdentityDto {
 
     /**
-     * 外部身份源类型：
-     * - `wechat`: 微信
+     * External identity source type:
+     * - `wechat`: WeChat
      * - `qq`: QQ
-     * - `wechatwork`: 企业微信
-     * - `dingtalk`: 钉钉
-     * - `weibo`: 微博
+     * - `wechatwork`: Enterprise WeChat
+     * - `dingtalk`: DingTalk
+     * - `weibo`: Weibo
      * - `github`: GitHub
-     * - `alipay`: 支付宝
-     * - `baidu`: 百度
-     * - `lark`: 飞书
+     * - `alipay`: Alipay
+     * - `baidu`: Baidu
+     * - `lark`: Feishu
      * - `welink`: Welink
-     * - `yidun`: 网易易盾
-     * - `qingcloud`: 青云
+     * - `yidun`: NetEase Yidun
+     * - `qingcloud`: Qingyun
      * - `google`: Google
      * - `gitlab`: GitLab
      * - `gitee`: Gitee
@@ -93,13 +93,13 @@ export namespace IdentityDto {
      * - `slack`: Slack
      * - `linkedin`: Linkedin
      * - `instagram`: Instagram
-     * - `oidc`: OIDC 型企业身份源
-     * - `oauth2`: OAuth2 型企业身份源
-     * - `saml`: SAML 型企业身份源
-     * - `ldap`: LDAP 型企业身份源
-     * - `ad`: AD 型企业身份源
-     * - `cas`: CAS 型企业身份源
-     * - `azure-ad`: Azure AD 型企业身份源
+     * - `oidc`: OIDC type enterprise identity source
+     * - `oauth2`: OAuth2-style enterprise identity source
+     * - `saml`: SAML-style enterprise identity source
+     * - `ldap`: LDAP-based enterprise identity source
+     * - `ad`: AD type enterprise identity source
+     * - `cas`: CAS type enterprise identity source
+     * - `azure-ad`: Azure AD-style enterprise identity source
      *
      */
     export enum provider {

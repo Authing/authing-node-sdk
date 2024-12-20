@@ -4,35 +4,35 @@
 
 export type GetSubjectAuthDataDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName: string;
     /**
-     * 请求的主体id
+     * Requested subject id
      */
     reqTargetId: string;
     /**
-     * 请求的主体名称
+     * Requested subject name
      */
     reqTargetName: string;
     /**
-     * 请求的主体类型
+     * Request body type
      */
     reqTargetType: GetSubjectAuthDataDto.reqTargetType;
     /**
-     * 目标主体类型
+     * Target subject type
      */
     targetType: GetSubjectAuthDataDto.targetType;
     /**
-     * 目标主体名称
+     * Target subject name
      */
     targetName: string;
     /**
-     * 授权类型
+     * Authorization type
      */
     authType: GetSubjectAuthDataDto.authType;
 };
@@ -40,7 +40,7 @@ export type GetSubjectAuthDataDto = {
 export namespace GetSubjectAuthDataDto {
 
     /**
-     * 请求的主体类型
+     * Request body type
      */
     export enum reqTargetType {
         USER = 'USER',
@@ -51,7 +51,7 @@ export namespace GetSubjectAuthDataDto {
     }
 
     /**
-     * 目标主体类型
+     * Target subject type
      */
     export enum targetType {
         USER = 'USER',
@@ -62,7 +62,7 @@ export namespace GetSubjectAuthDataDto {
     }
 
     /**
-     * 授权类型
+     * Authorization type
      */
     export enum authType {
         DEFAULT = 'DEFAULT',

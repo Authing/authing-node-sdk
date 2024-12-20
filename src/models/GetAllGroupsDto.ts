@@ -1,17 +1,17 @@
-/* istanbul ignore file */
+/*istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
 /**
- * 获取所有分组
+ * Get all groups
  */
 export type GetAllGroupsDto = {
     /**
-     * 是否获取成员列表
+     * Whether to obtain the member list
      */
     fetchMembers?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

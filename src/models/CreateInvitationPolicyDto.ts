@@ -7,62 +7,62 @@ import type { InvitationLinkConfigDto } from './InvitationLinkConfigDto';
 
 export type CreateInvitationPolicyDto = {
     /**
-     * 邀请策略名称
+     * Invitation policy name
      */
     name: string;
     /**
-     * 邀请方式:
-     * - `email`: 邮箱
+     *Invitation method:
+     * - `email`: email
      */
     inviteMethod?: CreateInvitationPolicyDto.inviteMethod;
     /**
-     * 邀请链接配置
+     * Invitation link configuration
      */
     inviteLinkConfig?: InvitationLinkConfigDto;
     /**
-     * 初始化密码配置
+     * Initialize password configuration
      */
     defaultPasswordConfig?: DefaultPasswordConfigDto;
     /**
-     * 邀请邮件是否展示密码
+     * Whether the invitation email displays the password
      */
     showPasswordInInviteEmail?: boolean;
     /**
-     * 是否开启身份验证码
+     * Whether to enable identity verification code
      */
     enabledIdentifierVerify?: boolean;
     /**
-     * 发送身份验证码的方式:
-     * - `priorityEmail`: 优先邮箱
-     * - `prioritySMS`: 优先短信
+     * Method of sending authentication code:
+     * - `priorityEmail`: priority email
+     * - `prioritySMS`: Priority SMS
      */
     sendVerifyCodeMethod?: CreateInvitationPolicyDto.sendVerifyCodeMethod;
     /**
-     * 是否开启信息补全
+     * Whether to enable information completion
      */
     enabledInfoFill?: boolean;
     /**
-     * 信息补全页面提示
+     * Information completion page prompts
      */
     registerInfoFillMsg?: string;
     /**
-     * 是否开启第三方身份源绑定
+     * Whether to enable third-party identity source binding
      */
     enabledExtIdp?: boolean;
     /**
-     * 是否允许跳过第三方身份源绑定
+     * Whether to allow skipping third-party identity source binding
      */
     allowSkipBindExtIdp?: boolean;
     /**
-     * 身份源绑定提示信息
+     * Identity source binding prompt information
      */
     extIdpBindMsg?: string;
     /**
-     * 支持绑定的身份源 ID 列表
+     * List of identity source IDs that support binding
      */
     extIdpConnIds?: Array<string>;
     /**
-     * 注册信息补全字段列表配置
+     * Registration information completion field list configuration
      */
     extendsFields?: Array<string>;
 };
@@ -70,17 +70,17 @@ export type CreateInvitationPolicyDto = {
 export namespace CreateInvitationPolicyDto {
 
     /**
-     * 邀请方式:
-     * - `email`: 邮箱
+     *Invitation method:
+     * - `email`: email
      */
     export enum inviteMethod {
         EMAIL = 'email',
     }
 
     /**
-     * 发送身份验证码的方式:
-     * - `priorityEmail`: 优先邮箱
-     * - `prioritySMS`: 优先短信
+     * Method of sending authentication code:
+     * - `priorityEmail`: priority email
+     * - `prioritySMS`: Priority SMS
      */
     export enum sendVerifyCodeMethod {
         PRIORITY_SMS = 'prioritySMS',

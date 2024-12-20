@@ -3,35 +3,35 @@
 /* eslint-disable */
 
 /**
- * 获取登录日志
+ * Get login log
  */
 export type GetMyLoginHistoryDto = {
     /**
-     * 应用 ID，可根据应用 ID 筛选。默认不传获取所有应用的登录历史。
+     * Application ID, you can filter based on application ID. By default, it is not possible to obtain the login history of all applications.
      */
     appId?: any;
     /**
-     * 客户端 IP，可根据登录时的客户端 IP 进行筛选。默认不传获取所有登录 IP 的登录历史。
+     * Client IP, you can filter based on the client IP when logging in. By default, the login history of all login IPs is not uploaded.
      */
     clientIp?: any;
     /**
-     * 是否登录成功，可根据是否登录成功进行筛选。默认不传获取的记录中既包含成功也包含失败的的登录历史。
+     *Whether the login is successful or not can be filtered based on whether the login is successful or not. By default, the acquired records include both successful and failed login history.
      */
     success?: any;
     /**
-     * 开始时间，为单位为毫秒的时间戳
+     * Start time, as a timestamp in milliseconds
      */
     start?: any;
     /**
-     * 结束时间，为单位为毫秒的时间戳
+     * End time, as a timestamp in milliseconds
      */
     end?: any;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: any;
 };

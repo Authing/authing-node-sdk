@@ -4,7 +4,7 @@
 
 export type GetApplicationPublicConfigDto = {
     /**
-     * 应用 ID，可选，默认会从请求的域名获取对应的应用
+     * Application ID, optional, the corresponding application will be obtained from the requested domain name by default
      */
     appId?: any;
 };

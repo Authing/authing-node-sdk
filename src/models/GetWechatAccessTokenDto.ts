@@ -4,11 +4,11 @@
 
 export type GetWechatAccessTokenDto = {
     /**
-     * 微信小程序或微信公众号的 AppId
+     * AppId of WeChat mini program or WeChat official account
      */
     appId: string;
     /**
-     * 微信小程序或微信公众号的 AppSecret
+     * AppSecret of WeChat mini program or WeChat official account
      */
     appSecret: string;
 };

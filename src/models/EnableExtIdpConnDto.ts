@@ -4,23 +4,23 @@
 
 export type EnableExtIdpConnDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appIds: string;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 是否开启身份源连接
+     * Whether to enable identity source connection
      */
     enabled: boolean;
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     id: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

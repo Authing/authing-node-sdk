@@ -4,7 +4,7 @@
 
 export type GenerateBindExtIdpLinkDataDto = {
     /**
-     * 用户绑定外部身份源的链接
+     * User binds the link to the external identity source
      */
     url: string;
 };

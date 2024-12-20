@@ -4,23 +4,23 @@
 
 export type Condition = {
     /**
-     * 搜索字段的 key
+     * The key of the search field
      */
     key: string;
     /**
-     * 搜索值
+     * Search value
      */
     value: any;
     /**
-     * 操作类型：
-     * - eq: 等于
-     * - ne: 不等于
-     * - co: 包含
-     * - gt: 大于
-     * - lt: 小于
-     * - lte: 小于等于
-     * - gte: 大于等于
-     * - in: 数组包含
+     * Operation type:
+     * - eq: equal to
+     * - ne: not equal to
+     * - co: includes
+     * - gt: greater than
+     * - lt: less than
+     * - lte: less than or equal to
+     * - gte: greater than or equal to
+     * - in: array contains
      *
      */
     operator: string;

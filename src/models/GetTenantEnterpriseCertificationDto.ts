@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取租户企业认证信息
+ * Obtain tenant enterprise certification information
  */
 export type GetTenantEnterpriseCertificationDto = {
     tenantId?: any;

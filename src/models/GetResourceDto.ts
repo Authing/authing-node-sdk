@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 根据筛选条件，获取资源详情。
+ * Get resource details based on filter conditions.
  */
 export type GetResourceDto = {
     /**
-     * 资源唯一标志符
+     * Resource unique identifier
      */
     code?: any;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
 };

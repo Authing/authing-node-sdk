@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过权限空间唯一标志符(Code)，获取权限空间详情。
+ * Obtain permission space details through the permission space unique identifier (Code).
  */
 export type GetPermissionNamespaceDto = {
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     code?: any;
 };

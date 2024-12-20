@@ -7,15 +7,15 @@ import type { HasRoleRolesDto } from './HasRoleRolesDto';
 
 export type HasAnyRoleReqDto = {
     /**
-     * 角色列表
+     * Role list
      */
     roles: Array<HasRoleRolesDto>;
     /**
-     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
+     * The user's unique identifier can be user ID, username, email, mobile phone number, externalId, or ID in an external identity source. For details, see the description of the userIdType field. Defaults to user id.
      */
     userId: string;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: HasAnyRoleOptionsDto;
 };

@@ -8,70 +8,70 @@ import type { ScopeDto } from './ScopeDto';
 
 export type FilterDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
     /**
-     * 关键字
+     * Keyword
      */
     keywords?: string;
     /**
-     * 多个搜索条件的关系：
-     * - and: 且
-     * - or:  或
+     * Relationship between multiple search conditions:
+     * - and: and
+     * - or: or
      *
      */
     conjunction?: string;
     /**
-     * 搜索条件
+     *Search criteria
      */
     conditions?: Array<Condition>;
     /**
-     * 排序条件
+     * Sorting conditions
      */
     sort?: Array<any>;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: number;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: number;
     /**
-     * 是否不分页返回所有（仅支持树形结构获取子节点的场景）
+     * Whether to return all without paging (only supports the scenario of obtaining child nodes in a tree structure)
      */
     fetchAll?: boolean;
     /**
-     * 是否返回节点的全路径（仅支持树形结构）
+     * Whether to return the full path of the node (only supports tree structure)
      */
     withPath?: boolean;
     /**
-     * 返回结果中是否使用字段 id 作为 key
+     * Whether to use field id as key in the return result
      */
     showFieldId?: boolean;
     /**
-     * 返回结果中是包含关联数据的预览（前三个）
+     * The returned results are previews containing associated data (the first three)
      */
     previewRelation?: boolean;
     /**
-     * 是否返回关联数据的详细用户信息，当前只支持用户。
+     * Whether to return detailed user information of associated data, currently only supports users.
      */
     getRelationFieldDetail?: boolean;
     /**
-     * 限定检索范围为被某个功能关联的部分
+     * Limit the search scope to the part associated with a certain function
      */
     scope?: ScopeDto;
     /**
-     * 过滤指定关联数据
+     * Filter specified related data
      */
     filterRelation?: ScopeDto;
     /**
-     * 获取对应关联数据的详细字段
+     * Get detailed fields corresponding to related data
      */
     expand?: Array<Expand>;
     /**
-     * 是否返回嵌套的关联数据
+     * Whether to return nested related data
      */
     getNestData?: boolean;
 };

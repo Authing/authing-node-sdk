@@ -4,23 +4,23 @@
 
 export type EnablePermissionApplyApplication = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName: string;
     /**
-     * 应用 Logo 链接
+     *App Logo link
      */
     logo: string;
     /**
-     * 应用类型
+     *Application type
      */
     appType: EnablePermissionApplyApplication.appType;
     /**
-     * 集成应用的模版类型
+     * Template types for integrated applications
      */
     template?: string;
 };
@@ -28,7 +28,7 @@ export type EnablePermissionApplyApplication = {
 export namespace EnablePermissionApplyApplication {
 
     /**
-     * 应用类型
+     *Application type
      */
     export enum appType {
         WEB = 'web',

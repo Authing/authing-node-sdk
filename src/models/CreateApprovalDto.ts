@@ -4,11 +4,11 @@
 
 export type CreateApprovalDto = {
     /**
-     * 审批 ID
+     * Approval ID
      */
     approvalId: number;
     /**
-     * 审批编号
+     * Approval number
      */
     number: string;
 };

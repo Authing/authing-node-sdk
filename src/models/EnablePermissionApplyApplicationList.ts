@@ -6,7 +6,7 @@ import type { EnablePermissionApplyApplication } from './EnablePermissionApplyAp
 
 export type EnablePermissionApplyApplicationList = {
     /**
-     * 可申请权限应用列表
+     * List of applications that can apply for permissions
      */
     list: Array<EnablePermissionApplyApplication>;
 };

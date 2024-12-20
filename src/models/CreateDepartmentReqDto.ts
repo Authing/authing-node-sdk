@@ -6,55 +6,55 @@ import type { DepartmentI18nDto } from './DepartmentI18nDto';
 
 export type CreateDepartmentReqDto = {
     /**
-     * 组织 Code（organizationCode）
+     * Organization Code (organizationCode)
      */
     organizationCode: string;
     /**
-     * 部门名称
+     *Department name
      */
     name: string;
     /**
-     * 父部门 id，如果是根部门，传 root
+     * Parent department id, if it is the root department, pass root
      */
     parentDepartmentId: string;
     /**
-     * 元数据信息
+     * Metadata information
      */
     metadata: any;
     /**
-     * 自定义部门 ID，用于存储自定义的 ID
+     * Custom department ID, used to store customized IDs
      */
     openDepartmentId?: string;
     /**
-     * 部门描述
+     * Department description
      */
     description?: string;
     /**
-     * 部门识别码
+     *Department identification code
      */
     code?: string;
     /**
-     * 是否是虚拟部门
+     * Whether it is a virtual department
      */
     isVirtualNode?: boolean;
     /**
-     * 多语言设置
+     *Multi-language settings
      */
     i18n?: DepartmentI18nDto;
     /**
-     * 部门的扩展字段数据
+     * Extended field data of department
      */
     customData?: any;
     /**
-     * 此次调用中使用的父部门 ID 的类型
+     * The type of parent department ID used in this call
      */
     departmentIdType?: CreateDepartmentReqDto.departmentIdType;
     /**
-     * 岗位 id 列表
+     * Position id list
      */
     postIdList?: Array<string>;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };
@@ -62,7 +62,7 @@ export type CreateDepartmentReqDto = {
 export namespace CreateDepartmentReqDto {
 
     /**
-     * 此次调用中使用的父部门 ID 的类型
+     * The type of parent department ID used in this call
      */
     export enum departmentIdType {
         DEPARTMENT_ID = 'department_id',

@@ -3,35 +3,35 @@
 /* eslint-disable */
 
 /**
- * 获取应用列表
+ * Get application list
  */
 export type ListApplicationsDto = {
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page, the maximum cannot exceed 50, the default is 10
      */
     limit?: any;
     /**
-     * 是否为集成应用
+     * Whether it is an integrated application
      */
     isIntegrateApp?: any;
     /**
-     * 是否为自建应用
+     * Whether it is a self-built application
      */
     isSelfBuiltApp?: any;
     /**
-     * 是否开启单点登录
+     * Whether to enable single sign-on
      */
     ssoEnabled?: any;
     /**
-     * 模糊搜索字符串
+     * Fuzzy search string
      */
     keywords?: any;
     /**
-     * 搜索应用，true：搜索所有应用, 默认为 false
+     * Search applications, true: search all applications, default is false
      */
     all?: any;
 };

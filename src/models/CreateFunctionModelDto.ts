@@ -4,41 +4,41 @@
 
 export type CreateFunctionModelDto = {
     /**
-     * 父级菜单
+     * Parent menu
      */
     parentKey: string;
     /**
-     * 功能是否启用:
-     * - true: 启用
-     * - false: 不启用
+     * Whether the function is enabled:
+     * - true: enabled
+     * - false: disable
      *
      */
     enable: boolean | null;
     /**
-     * 功能类型：
-     * - user: 用户
-     * - post: 岗位
-     * - group: 用户组
+     * Function type:
+     * - user: user
+     * - post: position
+     * - group: user group
      * - ueba: ueba
-     * - department: 树状结构数据
-     * - organization: 组织
-     * - device: 设备
-     * - custom: 自定义
+     * - department: tree structure data
+     * - organization: organization
+     * - device: device
+     * - custom: custom
      *
      */
     type: CreateFunctionModelDto.type;
     /**
-     * 功能描述
+     * Function description
      */
     description: string | null;
     /**
-     * 功能名称
+     * Function name
      */
     name: string;
     /**
-     * 数据类型：
-     * - list: 列表类型数据
-     * - tree: 树状结构数据
+     * Data type:
+     * - list: list type data
+     * - tree: tree structure data
      *
      */
     dataType?: CreateFunctionModelDto.dataType;
@@ -47,15 +47,15 @@ export type CreateFunctionModelDto = {
 export namespace CreateFunctionModelDto {
 
     /**
-     * 功能类型：
-     * - user: 用户
-     * - post: 岗位
-     * - group: 用户组
+     * Function type:
+     * - user: user
+     * - post: position
+     * - group: user group
      * - ueba: ueba
-     * - department: 树状结构数据
-     * - organization: 组织
-     * - device: 设备
-     * - custom: 自定义
+     * - department: tree structure data
+     * - organization: organization
+     * - device: device
+     * - custom: custom
      *
      */
     export enum type {
@@ -71,9 +71,9 @@ export namespace CreateFunctionModelDto {
     }
 
     /**
-     * 数据类型：
-     * - list: 列表类型数据
-     * - tree: 树状结构数据
+     * Data type:
+     * - list: list type data
+     * - tree: tree structure data
      *
      */
     export enum dataType {

@@ -6,7 +6,7 @@ import type { FastpassQRCodeRelationAppDto } from './FastpassQRCodeRelationAppDt
 
 export type GetFastpassQRCodeRelationAppsDto = {
     /**
-     * 关联的客户端应用信息
+     * Associated client application information
      */
     relationApps?: Array<FastpassQRCodeRelationAppDto>;
 };

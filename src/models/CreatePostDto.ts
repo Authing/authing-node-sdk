@@ -4,23 +4,23 @@
 
 export type CreatePostDto = {
     /**
-     * 岗位 code
+     *Position code
      */
     code: string;
     /**
-     * 岗位名称
+     *Position name
      */
     name: string;
     /**
-     * 岗位 ID
+     *Position ID
      */
     id?: string;
     /**
-     * 岗位描述
+     *Job description
      */
     description?: string;
     /**
-     * 部门 id 列表
+     * Department id list
      */
     departmentIdList?: string;
 };

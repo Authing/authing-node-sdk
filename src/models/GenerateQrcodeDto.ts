@@ -4,26 +4,26 @@
 
 export type GenerateQrcodeDto = {
     /**
-     * 二维码类型。当前支持三种类型：
-     * - `MOBILE_APP`: 自建移动端 APP 扫码
-     * - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-     * - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
+     * QR code type. Three types are currently supported:
+     * - `MOBILE_APP`: self-built mobile APP scan code
+     * - `WECHAT_MINIPROGRAM`: WeChat applet scan code
+     * - `WECHAT_OFFICIAL_ACCOUNT` Follow the WeChat official account and scan the QR code
      */
     type: GenerateQrcodeDto.type;
     /**
-     * 当 `type` 为 `WECHAT_MINIPROGRAM` 或 `WECHAT_OFFICIAL_ACCOUNT` 时，可以指定身份源连接，否则默认使用应用开启的第一个对应身份源连接生成二维码。
+     * When `type` is `WECHAT_MINIPROGRAM` or `WECHAT_OFFICIAL_ACCOUNT`, you can specify the identity source connection, otherwise the first corresponding identity source connection opened by the application will be used by default to generate the QR code.
      */
     extIdpConnId?: string;
     /**
-     * 当 `type` 为 `MOBILE_APP` 时，可以传递用户的自定义数据，当用户成功扫码授权时，会将此数据存入用户的自定义数据。
+     * When `type` is `MOBILE_APP`, the user's custom data can be passed. When the user successfully scans the QR code for authorization, this data will be stored in the user's custom data.
      */
     customData?: any;
     /**
-     * 当 type 为 `WECHAT_OFFICIAL_ACCOUNT` 或 `WECHAT_MINIPROGRAM` 时，指定自定义的 pipeline 上下文，将会传递的 pipeline 的 context 中
+     * When type is `WECHAT_OFFICIAL_ACCOUNT` or `WECHAT_MINIPROGRAM`, specify a custom pipeline context, which will be passed in the context of the pipeline
      */
     context?: any;
     /**
-     * 当 type 为 `WECHAT_MINIPROGRAM` 时，是否将自定义的 logo 自动合并到生成的图片上，默认为 false。服务器合并二维码的过程会加大接口响应速度，推荐使用默认值，在客户端对图片进行拼接。如果你使用 Authing 的 SDK，可以省去手动拼接的过程。
+     * When type is `WECHAT_MINIPROGRAM`, whether to automatically merge the customized logo into the generated image, the default is false. The process of merging QR codes on the server will increase the interface response speed. It is recommended to use the default value and stitch the images on the client. If you use Authing's SDK, you can save the manual splicing process.
      */
     autoMergeQrCode?: boolean;
 };
@@ -31,10 +31,10 @@ export type GenerateQrcodeDto = {
 export namespace GenerateQrcodeDto {
 
     /**
-     * 二维码类型。当前支持三种类型：
-     * - `MOBILE_APP`: 自建移动端 APP 扫码
-     * - `WECHAT_MINIPROGRAM`: 微信小程序扫码
-     * - `WECHAT_OFFICIAL_ACCOUNT` 关注微信公众号扫码
+     * QR code type. Three types are currently supported:
+     * - `MOBILE_APP`: self-built mobile APP scan code
+     * - `WECHAT_MINIPROGRAM`: WeChat applet scan code
+     * - `WECHAT_OFFICIAL_ACCOUNT` Follow the WeChat official account and scan the QR code
      */
     export enum type {
         MOBILE_APP = 'MOBILE_APP',

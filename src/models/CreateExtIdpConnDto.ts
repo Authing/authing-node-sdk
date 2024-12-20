@@ -4,35 +4,35 @@
 
 export type CreateExtIdpConnDto = {
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     extIdpId: string;
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     type: CreateExtIdpConnDto.type;
     /**
-     * 身份源连接标识
+     * Identity source connection ID
      */
     identifier: string;
     /**
-     * 连接在登录页的显示名称
+     * Display name connected to the login page
      */
     displayName: string;
     /**
-     * 连接的自定义配置信息
+     * Custom configuration information for the connection
      */
     fields: any;
     /**
-     * 是否只支持登录
+     * Whether to only support login
      */
     loginOnly?: boolean;
     /**
-     * 身份源图标
+     * Identity source icon
      */
     logo?: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };
@@ -40,7 +40,7 @@ export type CreateExtIdpConnDto = {
 export namespace CreateExtIdpConnDto {
 
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     export enum type {
         OIDC = 'oidc',

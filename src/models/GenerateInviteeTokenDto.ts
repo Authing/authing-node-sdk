@@ -6,11 +6,11 @@ import type { InviteeContextDto } from './InviteeContextDto';
 
 export type GenerateInviteeTokenDto = {
     /**
-     * 受邀人点击链接后生成的 `token`，根据 `token` 可获取受邀人信息及完成邀请注册流程
+     * The `token` generated after the invitee clicks the link. Based on the `token`, the invitee information can be obtained and the invitation registration process can be completed.
      */
     token?: string;
     /**
-     * 邀请信息
+     *Invitation information
      */
     invitationContext?: InviteeContextDto;
 };

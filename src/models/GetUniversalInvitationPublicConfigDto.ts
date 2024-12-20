@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取通用邀请公共配置。
+ * Get the common invitation public configuration.
  */
 export type GetUniversalInvitationPublicConfigDto = {
     /**
-     * 邀请链接唯一标识
+     * Unique identifier of the invitation link
      */
     identifier?: any;
 };

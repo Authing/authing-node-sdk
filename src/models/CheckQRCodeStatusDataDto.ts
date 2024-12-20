@@ -7,16 +7,16 @@ import type { QRCodeStatusBriefUserInfoDto } from './QRCodeStatusBriefUserInfoDt
 
 export type CheckQRCodeStatusDataDto = {
     /**
-     * 二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
+     * QR code status. According to the order of user scanning, there are six states: PENDING (not scanned), SCANNED (scanned and waiting for user confirmation), AUTHORIZED (user authorized), CANCELLED (cancelled authorization), EXPIRED (QR code expired) and ERROR (unknown error).
      */
     status: CheckQRCodeStatusDataDto.status;
     /**
-     * 当二维码状态为已授权时返回。如果在控制台应用安全 - 通用安全 - 登录安全 - APP 扫码登录 Web 安全中未开启「Web 轮询接口返回完整用户信息」（默认处于关闭状态），会返回此 ticket，用于换取完整的用户信息。
+     * Returned when the QR code status is authorized. If "Web polling interface returns complete user information" is not enabled in console application security - general security - login security - APP scan code login Web security (off by default), this ticket will be returned to exchange for complete user information.
      */
     ticket?: string;
     briefUserInfo?: QRCodeStatusBriefUserInfoDto;
     /**
-     * 当二维码状态为已授权并且在控制台应用安全 - 通用安全 - 登录安全 - APP 扫码登录 Web 安全中开启了「Web 轮询接口返回完整用户信息」（默认处于关闭状态）开关，此数据才会返回。推荐使用 ticket 换取用户信息。
+     * This data will be returned only when the QR code status is authorized and the "Web polling interface returns complete user information" switch is enabled in console application security - general security - login security - APP scan code login Web security (off by default). It is recommended to use ticket to exchange for user information.
      */
     tokenSet?: LoginTokenResponseDataDto;
 };
@@ -24,7 +24,7 @@ export type CheckQRCodeStatusDataDto = {
 export namespace CheckQRCodeStatusDataDto {
 
     /**
-     * 二维码状态。按照用户扫码顺序，共分为 PENDING(未扫码)、SCANNED(已扫码等待用户确认)、AUTHORIZED(用户已授权)、CANCELLED(取消授权)、EXPIRED(二维码过期)以及 ERROR(未知错误)六种状态。
+     * QR code status. According to the order in which the user scans the code, there are six states: PENDING (not scanned), SCANNED (scanned and waiting for user confirmation), AUTHORIZED (user authorized), CANCELLED (authorization canceled), EXPIRED (QR code expired), and ERROR (unknown error).
      */
     export enum status {
         PENDING = 'PENDING',
@@ -34,6 +34,5 @@ export namespace CheckQRCodeStatusDataDto {
         EXPIRED = 'EXPIRED',
         ERROR = 'ERROR',
     }
-
 
 }

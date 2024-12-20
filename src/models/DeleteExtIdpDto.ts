@@ -4,11 +4,11 @@
 
 export type DeleteExtIdpDto = {
     /**
-     * 身份源 ID
+     * Identity provider ID
      */
     id: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

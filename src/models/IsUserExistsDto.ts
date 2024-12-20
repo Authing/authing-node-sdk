@@ -4,7 +4,7 @@
 
 export type IsUserExistsDto = {
     /**
-     * 用户是否存在
+     * Whether the user exists
      */
     exists: boolean;
 };

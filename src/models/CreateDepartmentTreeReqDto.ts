@@ -6,19 +6,19 @@ import type { UserInfoDto } from './UserInfoDto';
 
 export type CreateDepartmentTreeReqDto = {
     /**
-     * 部门名称
+     *Department name
      */
     name: string;
     /**
-     * 子部门
+     * Sub-department
      */
     children?: Array<string>;
     /**
-     * 部门成员
+     * Department members
      */
     members?: UserInfoDto;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

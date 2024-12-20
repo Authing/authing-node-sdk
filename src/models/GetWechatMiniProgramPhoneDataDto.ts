@@ -4,15 +4,15 @@
 
 export type GetWechatMiniProgramPhoneDataDto = {
     /**
-     * 包含区号的手机号
+     *Mobile phone number including area code
      */
     phoneNumber: string;
     /**
-     * 不包含区号的手机号
+     * Mobile phone number without area code
      */
     purePhoneNumber: string;
     /**
-     * 区号
+     *Area code
      */
     countryCode: string;
 };

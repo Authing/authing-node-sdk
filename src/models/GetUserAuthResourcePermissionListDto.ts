@@ -4,7 +4,7 @@
 
 export type GetUserAuthResourcePermissionListDto = {
     /**
-     * 数据资源路径列表,**树资源需到具体树节点**
+     * Data resource path list, **tree resources need to go to specific tree nodes**
      */
     resources: Array<string>;
 };

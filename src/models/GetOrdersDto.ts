@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取当前用户池订单列表
+ * Get the current user pool order list
  */
 export type GetOrdersDto = {
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: any;
 };

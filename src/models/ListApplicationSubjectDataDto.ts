@@ -4,21 +4,21 @@
 
 export type ListApplicationSubjectDataDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     logo: string;
     ext: string;
     template: string;
     /**
-     * 应用类型：集成应用/自建应用
+     * Application type: integrated application/self-built application
      */
     appType: ListApplicationSubjectDataDto.appType;
     /**
-     * 允许/拒绝
+     * Allow/Deny
      */
     effect: ListApplicationSubjectDataDto.effect;
 };
@@ -26,7 +26,7 @@ export type ListApplicationSubjectDataDto = {
 export namespace ListApplicationSubjectDataDto {
 
     /**
-     * 应用类型：集成应用/自建应用
+     * Application type: integrated application/self-built application
      */
     export enum appType {
         INTEGRATED = 'INTEGRATED',
@@ -35,7 +35,7 @@ export namespace ListApplicationSubjectDataDto {
     }
 
     /**
-     * 允许/拒绝
+     * Allow/Deny
      */
     export enum effect {
         ALLOW = 'ALLOW',

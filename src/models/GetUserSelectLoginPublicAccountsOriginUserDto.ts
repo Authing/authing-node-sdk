@@ -4,19 +4,19 @@
 
 export type GetUserSelectLoginPublicAccountsOriginUserDto = {
     /**
-     * 账号 ID
+     *Account ID
      */
     userId: string;
     /**
-     * 账号头像
+     * Account avatar
      */
     avatar?: string;
     /**
-     * 显示名称
+     * display name
      */
     displayName?: string;
     /**
-     * 用户类型：1 个人用户，2 公共账号
+     * User type: 1 individual user, 2 public account
      */
     usertype?: GetUserSelectLoginPublicAccountsOriginUserDto.usertype;
 };
@@ -24,7 +24,7 @@ export type GetUserSelectLoginPublicAccountsOriginUserDto = {
 export namespace GetUserSelectLoginPublicAccountsOriginUserDto {
 
     /**
-     * 用户类型：1 个人用户，2 公共账号
+     * User type: 1 individual user, 2 public account
      */
     export enum usertype {
         _1 = '1',

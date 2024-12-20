@@ -6,7 +6,7 @@ import type { CheckExternalUserPermissionsRespDto } from './CheckExternalUserPer
 
 export type CheckExternalUserPermissionDataDto = {
     /**
-     * 检查结果列表
+     * Check result list
      */
     checkResultList: Array<CheckExternalUserPermissionsRespDto>;
 };

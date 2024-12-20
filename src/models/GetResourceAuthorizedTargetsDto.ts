@@ -4,28 +4,28 @@
 
 export type GetResourceAuthorizedTargetsDto = {
     /**
-     * 资源
+     * resource
      */
     resource: string;
     /**
-     * 权限分组
+     * Permission grouping
      */
     namespace?: string;
     /**
-     * 目标对象类型：
-     * - `USER`: 用户
-     * - `ROLE`: 角色
-     * - `GROUP`: 分组
-     * - `DEPARTMENT`: 部门
+     * Target object type:
+     * - `USER`: user
+     * - `ROLE`: role
+     * - `GROUP`: group
+     * - `DEPARTMENT`: department
      *
      */
     targetType?: GetResourceAuthorizedTargetsDto.targetType;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: number;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: number;
 };
@@ -33,11 +33,11 @@ export type GetResourceAuthorizedTargetsDto = {
 export namespace GetResourceAuthorizedTargetsDto {
 
     /**
-     * 目标对象类型：
-     * - `USER`: 用户
-     * - `ROLE`: 角色
-     * - `GROUP`: 分组
-     * - `DEPARTMENT`: 部门
+     * Target object type:
+     * - `USER`: user
+     * - `ROLE`: role
+     * - `GROUP`: group
+     * - `DEPARTMENT`: department
      *
      */
     export enum targetType {

@@ -4,17 +4,17 @@
 
 export type DepartmentSortingDto = {
     /**
-     * 进行排序的字段，可选值为：
-     * - `updatedAt`: 创建时间
-     * - `createdAt`: 修改时间
-     * - `name`: 邮箱
+     * Field for sorting, optional values are:
+     * - `updatedAt`: creation time
+     * - `createdAt`: modification time
+     * - `name`: email
      *
      */
     field: DepartmentSortingDto.field;
     /**
-     * 排序顺序：
-     * - `desc`: 按照从大到小降序。
-     * - `asc`: 按照从小到大升序。
+     * Sort order:
+     * - `desc`: In descending order from large to small.
+     * - `asc`: In ascending order from small to large.
      *
      */
     order: DepartmentSortingDto.order;
@@ -23,10 +23,10 @@ export type DepartmentSortingDto = {
 export namespace DepartmentSortingDto {
 
     /**
-     * 进行排序的字段，可选值为：
-     * - `updatedAt`: 创建时间
-     * - `createdAt`: 修改时间
-     * - `name`: 邮箱
+     * Field for sorting, optional values are:
+     * - `updatedAt`: creation time
+     * - `createdAt`: modification time
+     * - `name`: email
      *
      */
     export enum field {
@@ -36,9 +36,9 @@ export namespace DepartmentSortingDto {
     }
 
     /**
-     * 排序顺序：
-     * - `desc`: 按照从大到小降序。
-     * - `asc`: 按照从小到大升序。
+     * Sort order:
+     * - `desc`: In descending order from large to small.
+     * - `asc`: In ascending order from small to large.
      *
      */
     export enum order {

@@ -6,7 +6,7 @@ import type { Option } from './Option';
 
 export type Config = {
     /**
-     * 选项列表
+     * Options list
      */
     options: Array<Option>;
 };

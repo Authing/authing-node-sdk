@@ -4,11 +4,11 @@
 
 export type GetPostByIdListDto = {
     /**
-     * 部门 id 列表
+     * Department id list
      */
     idList?: string;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: boolean;
 };

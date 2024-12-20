@@ -8,35 +8,35 @@ import type { RolePermissionApplyApprovalObject } from './RolePermissionApplyApp
 
 export type InitiatedApproval = {
     /**
-     * 审批 ID
+     * Approval ID
      */
     approvalId: number;
     /**
-     * 审批编号
+     * Approval number
      */
     number: string;
     /**
-     * 审批状态
+     * Approval status
      */
     status: InitiatedApproval.status;
     /**
-     * 提交时间
+     * Submission time
      */
     submitTime: string;
     /**
-     * 办结时间
+     * Checkout time
      */
     closedTime?: string;
     /**
-     * 发起审批对象类型，目前支持：应用权限申请（APP_PERMISSION_APPLY）、角色权限申请（ROLE_PERMISSION_APPLY）
+     * Initiate approval object type, currently supports: application permission application (APP_PERMISSION_APPLY), role permission application (ROLE_PERMISSION_APPLY)
      */
     objectType: InitiatedApproval.objectType;
     /**
-     * 审批对象（数组）
+     * Approval object (array)
      */
     approvalObjectList: (RolePermissionApplyApprovalObject | ApplicationPermissionApplyApprovalObject);
     /**
-     * 额外参数，目前仅支持：角色权限申请（ROLE_PERMISSION_APPLY）
+     * Additional parameters, currently only supported: role permission application (ROLE_PERMISSION_APPLY)
      */
     extraParams?: ExtraParams;
 };
@@ -44,7 +44,7 @@ export type InitiatedApproval = {
 export namespace InitiatedApproval {
 
     /**
-     * 审批状态
+     * Approval status
      */
     export enum status {
         PENDING = 'PENDING',
@@ -53,7 +53,7 @@ export namespace InitiatedApproval {
     }
 
     /**
-     * 发起审批对象类型，目前支持：应用权限申请（APP_PERMISSION_APPLY）、角色权限申请（ROLE_PERMISSION_APPLY）
+     * Initiate approval object type, currently supports: application permission application (APP_PERMISSION_APPLY), role permission application (ROLE_PERMISSION_APPLY)
      */
     export enum objectType {
         APP_PERMISSION_APPLY = 'APP_PERMISSION_APPLY',

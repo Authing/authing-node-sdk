@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 此端点用于查询当前登录用户可切换登录的公共账号列表，如果没有可切换登录的公共账号，则返回空数组。
+ * This endpoint is used to query the list of public accounts that the currently logged in user can switch to log in to. If there is no public account that can switch to log in, an empty array will be returned.
  */
 export type GetUserSelectLoginPublicAccountsDto = {
     /**
-     * 是否包含当前个人用户基本信息
+     * Whether it contains basic information of the current personal user
      */
     withOriginUser?: any;
 };

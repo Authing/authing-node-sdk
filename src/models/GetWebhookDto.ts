@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 根据指定的 webhookId 获取 webhook 详情
+ * Get webhook details based on the specified webhookId
  */
 export type GetWebhookDto = {
     /**

@@ -6,11 +6,11 @@ import type { WebhookDto } from './WebhookDto';
 
 export type GetWebhooksData = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 返回列表
+     * Return to list
      */
     list: Array<WebhookDto>;
 };

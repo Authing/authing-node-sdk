@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取岗位
+ * Get a job
  */
 export type GetPostDto = {
     /**
-     * 岗位 code
+     *Position code
      */
     code?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

@@ -4,11 +4,11 @@
 
 export type FunctionModelFieldIdDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
     /**
-     * 功能字段 id
+     * Function field id
      */
     id: string;
 };

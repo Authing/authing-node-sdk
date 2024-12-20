@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取公共账号的岗位
+ * Get positions with public accounts
  */
 export type GetPostOfPublicAccountDto = {
     /**
-     * 用户 id
+     * user id
      */
     userId?: any;
 };

@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 此接口用于查询导入租户通知用户列表。
+ * This interface is used to query the imported tenant notification user list.
  */
 export type ImportTenantNotifyUserDto = {
     /**
-     * 导入记录 id
+     * Import record id
      */
     importId?: any;
     /**
-     * 页码
+     *Page number
      */
     page?: any;
     /**
-     * 每页获取的数据量
+     *Amount of data obtained per page
      */
     limit?: any;
 };

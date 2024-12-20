@@ -4,11 +4,11 @@
 
 export type AuthenticateByYidunDto = {
     /**
-     * 网易易盾 token
+     * NetEase Yidun token
      */
     token?: string;
     /**
-     * 网易易盾运营商授权码
+     * NetEase Yidun operator authorization code
      */
     accessToken?: string;
 };

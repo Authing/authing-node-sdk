@@ -4,23 +4,23 @@
 
 export type ChangeExtIdpConnStateDto = {
     /**
-     * 身份源连接 ID
+     * Identity source connection ID
      */
     id: string;
     /**
-     * 是否开启身份源连接
+     * Whether to enable identity source connection
      */
     enabled: boolean;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
     /**
-     * 应用 ID 列表
+     * List of application IDs
      */
     appIds?: Array<string>;
 };

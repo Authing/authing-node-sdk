@@ -3,29 +3,29 @@
 /* eslint-disable */
 
 /**
- * 通过公共账号用户 ID，获取公共账号详情，可以选择获取自定义数据、选择指定用户 ID 类型等。
+ * Obtain public account details through the public account user ID. You can choose to obtain custom data, select a specified user ID type, etc.
  */
 export type GetPublicAccountDto = {
     /**
-     * 公共账号用户 ID
+     * Public account user ID
      */
     userId?: any;
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
+     * User ID type, the default value is `user_id`, the optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: the user's ID in the external system, corresponding to the `externalId` field of Authing user information
      *
      */
     userIdType?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 是否获取部门 ID 列表
+     * Whether to obtain the department ID list
      */
     withDepartmentIds?: any;
 };

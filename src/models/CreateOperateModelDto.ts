@@ -4,32 +4,32 @@
 
 export type CreateOperateModelDto = {
     /**
-     * 是否展示:
-     * - true: 展示
-     * - true: 不展示
+     * Whether to display:
+     * - true: display
+     * - true: do not display
      *
      */
     show: boolean;
     /**
-     * 图标
+     * icon
      */
     icon: string;
     /**
-     * 操作配置
+     * Operation configuration
      */
     config: any;
     /**
-     * 操作名称
+     * Operation name
      */
     operateName: string;
     /**
-     * 操作类型:
-     * - openPage: 打开一个网页
+     * Operation type:
+     * - openPage: open a web page
      *
      */
     operateKey: string;
     /**
-     * modelId
+     *modelId
      */
     modelId: string;
 };

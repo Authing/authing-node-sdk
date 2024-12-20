@@ -6,19 +6,19 @@ import type { LangUnit } from './LangUnit';
 
 export type LangObject = {
     /**
-     * 多语言的中文内容
+     *Multi-language Chinese content
      */
     'zh-CN': LangUnit;
     /**
-     * 多语言的英文内容
+     * Multilingual English content
      */
     'en-US': LangUnit;
     /**
-     * 多语言的繁体中文内容
+     * Multilingual Traditional Chinese content
      */
     'zh-TW': LangUnit;
     /**
-     * 多语言的日语内容
+     * Multilingual Japanese content
      */
     'ja-JP': LangUnit;
 };

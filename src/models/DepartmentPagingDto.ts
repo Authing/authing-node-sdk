@@ -6,11 +6,11 @@ import type { DepartmentDto } from './DepartmentDto';
 
 export type DepartmentPagingDto = {
     /**
-     * 总数
+     * Total count
      */
     totalCount: boolean;
     /**
-     * 响应数据
+     * Data
      */
     list: Array<DepartmentDto>;
 };

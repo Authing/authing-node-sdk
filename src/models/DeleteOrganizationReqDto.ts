@@ -4,11 +4,11 @@
 
 export type DeleteOrganizationReqDto = {
     /**
-     * 组织 code
+     * Organization code
      */
     organizationCode: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

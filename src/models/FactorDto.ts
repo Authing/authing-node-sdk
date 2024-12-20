@@ -4,15 +4,15 @@
 
 export type FactorDto = {
     /**
-     * MFA 认证要素ID
+     * MFA authentication element ID
      */
     factorId: string;
     /**
-     * MFA 认证要素类型
+     * MFA Certification Element Type
      */
     factorType: FactorDto.factorType;
     /**
-     * MFA 认证要素信息
+     *MFA certification essentials information
      */
     profile: any;
 };
@@ -20,7 +20,7 @@ export type FactorDto = {
 export namespace FactorDto {
 
     /**
-     * MFA 认证要素类型
+     * MFA Certification Element Type
      */
     export enum factorType {
         OTP = 'OTP',

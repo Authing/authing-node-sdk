@@ -4,7 +4,7 @@
 
 export type IPRuleDto = {
     /**
-     * 最大同时在线 IP 数
+     * Maximum number of simultaneous online IPs
      */
     maxOnlineIPs: number;
 };

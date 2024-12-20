@@ -4,7 +4,7 @@
 
 export type LinkIdentityDataDto = {
     /**
-     * 是否操作成功
+     * Whether the operation was successful
      */
     success: boolean;
 };

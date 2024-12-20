@@ -6,27 +6,27 @@ import type { FastpassUserInfoDto } from './FastpassUserInfoDto';
 
 export type GeneFastpassQRCodeInfoDto = {
     /**
-     * 二维码使用场景。
+     * QR code usage scenarios.
      */
     scene: string;
     /**
-     * 二维码唯一 ID，可以通过此唯一 ID 查询二维码状态。
+     * The unique ID of the QR code. You can query the status of the QR code through this unique ID.
      */
     qrcodeId: string;
     /**
-     * 服务接口 Host 地址
+     * Service interface Host address
      */
     apiHost: string;
     /**
-     * 用户信息
+     * User information
      */
     user: FastpassUserInfoDto;
     /**
-     * 当前用户生成二维码时登录的应用 ID
+     * The application ID that the current user logged in when generating the QR code
      */
     appId: string;
     /**
-     * 用户池信息
+     * User pool information
      */
     userpool: FastpassUserInfoDto;
 };

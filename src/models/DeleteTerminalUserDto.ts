@@ -4,11 +4,11 @@
 
 export type DeleteTerminalUserDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 数据行 id，创建设备时返回的 `id`
+     * Data row id, `id` returned when creating the device
      */
     id: string;
 };

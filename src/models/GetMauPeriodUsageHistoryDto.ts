@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取当前用户池 MAU 使用记录
+ * Get the current user pool MAU usage record
  */
 export type GetMauPeriodUsageHistoryDto = {
     /**
-     * 起始时间（年月日）
+     * Starting time (year, month, day)
      */
     startTime?: any;
     /**
-     * 截止时间（年月日）
+     * Deadline (year, month, day)
      */
     endTime?: any;
 };

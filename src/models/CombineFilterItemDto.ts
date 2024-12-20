@@ -4,15 +4,15 @@
 
 export type CombineFilterItemDto = {
     /**
-     * 筛选条件的 key
+     * Filter key
      */
     type: string;
     /**
-     * 条件操作符
+     * Conditional operator
      */
     operator: CombineFilterItemDto.operator;
     /**
-     * 条件值
+     * Condition value
      */
     value: (string | number);
 };
@@ -20,7 +20,7 @@ export type CombineFilterItemDto = {
 export namespace CombineFilterItemDto {
 
     /**
-     * 条件操作符
+     * Conditional operator
      */
     export enum operator {
         EQUAL = 'EQUAL',

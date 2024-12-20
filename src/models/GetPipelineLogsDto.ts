@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取 Pipeline
+ * Get Pipeline
  */
 export type GetPipelineLogsDto = {
     /**
-     * Pipeline 函数 ID
+     * Pipeline function ID
      */
     funcId?: any;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: any;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page, the maximum cannot exceed 50, the default is 10
      */
     limit?: any;
 };

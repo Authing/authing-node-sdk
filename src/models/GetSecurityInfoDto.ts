@@ -4,27 +4,27 @@
 
 export type GetSecurityInfoDto = {
     /**
-     * 密码强度等级
+     * Password strength level
      */
     passwordSecurityLevel: number;
     /**
-     * 是否绑定了 MFA
+     * Whether MFA is bound
      */
     mfaEnrolled: boolean;
     /**
-     * 是否设置了密码
+     * Whether a password has been set
      */
     passwordSet: boolean;
     /**
-     * 是否绑定了邮箱
+     * Whether the email address is bound
      */
     emailBinded: boolean;
     /**
-     * 是否绑定了手机号
+     * Whether a mobile phone number is bound?
      */
     phoneBinded: boolean;
     /**
-     * 账号等级评分
+     *Account level rating
      */
     securityScore: number;
 };

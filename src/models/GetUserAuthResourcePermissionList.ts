@@ -4,15 +4,15 @@
 
 export type GetUserAuthResourcePermissionList = {
     /**
-     * 当前应用 Id
+     * Current application ID
      */
     namespaceCode: string;
     /**
-     * 数据资源权限操作列表
+     * Data resource permission operation list
      */
     actions: Array<string>;
     /**
-     * 数据资源路径
+     * Data resource path
      */
     resource: string;
 };

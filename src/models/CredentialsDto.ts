@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取绑定的 Passkey 列表
+ * Get the bound Passkey list
  */
 export type CredentialsDto = {
     /**
-     * 页码数
+     *Number of pages
      */
     page?: any;
     /**
-     * 每页数目
+     *Number per page
      */
     limit?: any;
 };

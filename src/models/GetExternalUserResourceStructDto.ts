@@ -4,15 +4,15 @@
 
 export type GetExternalUserResourceStructDto = {
     /**
-     * 资源 Code
+     * Resource Code
      */
     resourceCode: string;
     /**
-     * 外部用户 ID
+     * External user ID
      */
     externalId: string;
     /**
-     * 权限空间 Code
+     * Permission space code
      */
     namespaceCode: string;
 };

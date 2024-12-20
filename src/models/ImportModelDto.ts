@@ -4,11 +4,11 @@
 
 export type ImportModelDto = {
     /**
-     * 导入的 excel 文件地址
+     * Imported excel file address
      */
     file: string;
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
 };

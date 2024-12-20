@@ -4,19 +4,19 @@
 
 export type DataSubjectRespDto = {
     /**
-     * 主体 ID ，包含用户 ID、用户组 ID、角色 ID、组织机构 ID
+     * Subject ID, including user ID, user group ID, role ID, organization ID
      */
     targetIdentifier: string;
     /**
-     * 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型
+     * Subject type, including four types: USER, GROUP, ROLE, and ORG
      */
     targetType: DataSubjectRespDto.targetType;
     /**
-     * 主体名称，包含用户名称、用户组名称、角色名称、组织机构名称
+     * Subject name, including user name, user group name, role name, organization name
      */
     targetName: string;
     /**
-     * 主体对象被授权时间
+     * The time when the subject object is authorized
      */
     authorizationTime: string;
 };
@@ -24,7 +24,7 @@ export type DataSubjectRespDto = {
 export namespace DataSubjectRespDto {
 
     /**
-     * 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型
+     * Subject type, including four types: USER, GROUP, ROLE, and ORG
      */
     export enum targetType {
         USER = 'USER',

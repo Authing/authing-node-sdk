@@ -4,23 +4,23 @@
 
 export type CurrentUsageDto = {
     /**
-     * 权益总量
+     * Total equity
      */
     amount: string;
     /**
-     * 权益当前使用量
+     *Current usage of rights
      */
     current: string;
     /**
-     * 是否是体验期权益
+     * Whether it is a trial period benefit
      */
     experience: boolean;
     /**
-     * 权益编码
+     * Equity code
      */
     modelCode: string;
     /**
-     * 权益名称
+     * name of interest
      */
     modelName: string;
 };

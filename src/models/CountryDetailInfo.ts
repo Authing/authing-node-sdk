@@ -6,23 +6,23 @@ import type { LangObject } from './LangObject';
 
 export type CountryDetailInfo = {
     /**
-     * [ISO 3166 国际标准](https://www.iban.com/country-codes)中国家的 Alpha-2 简称
+     *[ISO 3166 International Standard](https://www.iban.com/country-codes) Chinese abbreviation of Alpha-2
      */
     alpha2: string;
     /**
-     * [ISO 3166 国际标准](https://www.iban.com/country-codes)中国家的 Alpha-3 简称
+     *[ISO 3166 International Standard](https://www.iban.com/country-codes) Chinese abbreviation of Alpha-3
      */
     alpha3: string;
     /**
-     * 国家手机区号
+     * National mobile phone area code
      */
     phoneCountryCode: string;
     /**
-     * 国旗图标
+     * Flag icon
      */
     flag: string;
     /**
-     * 名称，多语言结构，目前只支持中文和英文
+     * Name, multi-language structure, currently only supports Chinese and English
      */
     name: LangObject;
 };

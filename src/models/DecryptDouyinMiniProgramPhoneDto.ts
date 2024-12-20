@@ -4,19 +4,19 @@
 
 export type DecryptDouyinMiniProgramPhoneDto = {
     /**
-     * 抖音小程序的外部身份源连接标志符
+     * External identity source connection identifier of Douyin applet
      */
     extIdpConnidentifier: string;
     /**
-     * 获取抖音开放数据返回的加密数据（encryptedData）
+     * Get the encrypted data (encryptedData) returned by Douyin open data
      */
     encryptedData: string;
     /**
-     * 对称解密算法初始向量，由抖音返回
+     * Initial vector of symmetric decryption algorithm, returned by Douyin
      */
     iv: string;
     /**
-     * `tt.login` 接口返回的用户 `code`
+     * User `code` returned by `tt.login` interface
      */
     code: string;
 };

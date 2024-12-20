@@ -4,11 +4,11 @@
 
 export type BatchUnbindPolicy = {
     /**
-     * 名单 ID 列表
+     * List of roster IDs
      */
     rosterIds: Array<string>;
     /**
-     * 策略 ID
+     * Policy ID
      */
     policyId: string;
 };

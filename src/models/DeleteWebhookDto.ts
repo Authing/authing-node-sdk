@@ -4,7 +4,7 @@
 
 export type DeleteWebhookDto = {
     /**
-     * webhookId 数组
+     * webhookId list
      */
     webhookIds: Array<string>;
 };

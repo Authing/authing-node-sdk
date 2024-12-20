@@ -4,19 +4,19 @@
 
 export type CheckExternalUserPermissionsRespDto = {
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     namespaceCode: string;
     /**
-     * 数据资源权限操作
+     * Data resource permission operations
      */
     action: string;
     /**
-     * 资源路径
+     * Resource path
      */
     resource: string;
     /**
-     * 用户在某个权限空间下是否具有该数据资源的某个操作
+     * Whether the user has a certain operation of the data resource under a certain permission space
      */
     enabled: boolean;
 };

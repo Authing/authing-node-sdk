@@ -6,19 +6,19 @@ import type { PolicyCondition } from './PolicyCondition';
 
 export type AuthorizedResourceDto = {
     /**
-     * 资源描述符
+     * Resource descriptor
      */
     resourceCode: string;
     /**
-     * 资源描述信息
+     * Resource description information
      */
     description?: string;
     /**
-     * 策略 Condition
+     * Strategy Condition
      */
     condition?: Array<PolicyCondition>;
     /**
-     * 资源类型
+     * Resource type
      */
     resourceType: AuthorizedResourceDto.resourceType;
     /**
@@ -26,11 +26,11 @@ export type AuthorizedResourceDto = {
      */
     apiIdentifier: string;
     /**
-     * 授权的操作列表
+     * Authorized operation list
      */
     actions: Array<string>;
     /**
-     * 允许还是拒绝
+     * Allow or deny
      */
     effect: AuthorizedResourceDto.effect;
 };
@@ -38,7 +38,7 @@ export type AuthorizedResourceDto = {
 export namespace AuthorizedResourceDto {
 
     /**
-     * 资源类型
+     * Resource type
      */
     export enum resourceType {
         DATA = 'DATA',
@@ -49,7 +49,7 @@ export namespace AuthorizedResourceDto {
     }
 
     /**
-     * 允许还是拒绝
+     * Allow or deny
      */
     export enum effect {
         ALLOW = 'ALLOW',

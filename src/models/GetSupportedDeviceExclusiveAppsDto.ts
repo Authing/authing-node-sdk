@@ -3,7 +3,7 @@
 /* eslint-disable */
 
 /**
- * 获取支持设备互斥生效范围的应用列表
+ * Get the list of applications that support device mutual exclusion range
  */
 export type GetSupportedDeviceExclusiveAppsDto = {
     keyword?: any;

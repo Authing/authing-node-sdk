@@ -6,39 +6,39 @@ import type { ListWebhooksDto } from './ListWebhooksDto';
 
 export type GetAdminAuditLogsDto = {
     /**
-     * 请求 ID
+     * Request ID
      */
     requestId?: string;
     /**
-     * 客户端 IP
+     * Client IP
      */
     clientIp?: string;
     /**
-     * 操作类型，例如 create、update、delete、login 等
+     * Operation type, such as create, update, delete, login, etc.
      */
     operationType?: string;
     /**
-     * 资源类型，例如 DATA、API、BUTTON 等
+     * Resource type, such as DATA, API, BUTTON, etc.
      */
     resourceType?: string;
     /**
-     * 管理员用户 ID
+     * Administrator user ID
      */
     userId?: string;
     /**
-     * 请求是否成功
+     * Whether the request is successful
      */
     success?: boolean;
     /**
-     * 开始时间戳
+     * Start timestamp
      */
     start?: number;
     /**
-     * 结束时间戳
+     * End timestamp
      */
     end?: number;
     /**
-     * 分页
+     * Pagination
      */
     pagination?: ListWebhooksDto;
 };

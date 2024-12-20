@@ -4,7 +4,7 @@
 
 export type CancelSyncRiskOperationDto = {
     /**
-     * 同步任务风险操作 ID
+     * Synchronize task risk operation ID
      */
     syncRiskOperationIds: Array<number>;
 };

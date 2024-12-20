@@ -4,19 +4,19 @@
 
 export type GetDepartmentByIdReqDto = {
     /**
-     * 部门 ID
+     *Department ID
      */
     departmentId: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
     /**
-     * 应用类型列表
+     * List of application types
      */
     appTypeList?: Array<string>;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: boolean;
 };

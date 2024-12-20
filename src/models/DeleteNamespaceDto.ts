@@ -4,7 +4,7 @@
 
 export type DeleteNamespaceDto = {
     /**
-     * 权限分组唯一标志符
+     * Permission group unique identifier
      */
     code: string;
 };

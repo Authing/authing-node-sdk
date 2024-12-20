@@ -4,19 +4,19 @@
 
 export type IsActionAllowedDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 资源对应的操作
+     * Operations corresponding to resources
      */
     action: string;
     /**
-     * 资源标识符
+     * Resource identifier
      */
     resource: string;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
 };

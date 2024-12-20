@@ -7,15 +7,15 @@ import type { SignInByWebAuthnOptionsDto } from './SignInByWebAuthnOptionsDto';
 
 export type FinalizeWebAuthnLoginDto = {
     /**
-     * 从 获取 WebAuthn 认证请求初始化参数接口 获得的 ticket
+     * Ticket obtained from Get WebAuthn authentication request initialization parameter interface
      */
     ticket: string;
     /**
-     * 认证器凭证信息
+     * Authenticator credential information
      */
     credential: AuthenticationCredentialDto;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: SignInByWebAuthnOptionsDto;
 };

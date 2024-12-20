@@ -7,43 +7,43 @@ import type { GetInvitationPolicyDto } from './GetInvitationPolicyDto';
 
 export type InvitationRosterDto = {
     /**
-     * 名单 ID
+     * List ID
      */
     rosterId: string;
     /**
-     * 名单名称
+     * List name
      */
     name: string;
     /**
-     * 关联的策略 ID
+     * Associated policy ID
      */
     policyId?: string;
     /**
-     * 名单状态
+     * List status
      */
     status: InvitationRosterDto.status;
     /**
-     * 创建者 ID
+     *Creator ID
      */
     creatorId: string;
     /**
-     * 创建者详情
+     *Creator details
      */
     creatorDetail?: CommonUserDto;
     /**
-     * 创建时间
+     * Creation time
      */
     createdAt: string;
     /**
-     * 更新时间
+     * Update time
      */
     updatedAt: string;
     /**
-     * 关联用户数量
+     *Number of associated users
      */
     userCount: number;
     /**
-     * 关联策略
+     * Association strategy
      */
     assignedPolicy: GetInvitationPolicyDto;
 };
@@ -51,7 +51,7 @@ export type InvitationRosterDto = {
 export namespace InvitationRosterDto {
 
     /**
-     * 名单状态
+     * List status
      */
     export enum status {
         EDITING = 'editing',

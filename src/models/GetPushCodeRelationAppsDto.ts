@@ -4,11 +4,11 @@
 
 export type GetPushCodeRelationAppsDto = {
     /**
-     * 发起推送登录的应用 ID
+     * Application ID that initiates push login
      */
     appId: string;
     /**
-     * 推送码（推送登录唯一 ID）
+     * Push code (push login unique ID)
      */
     pushCodeId: string;
 };

@@ -3,27 +3,27 @@
 /* eslint-disable */
 
 /**
- * 根据租户 ID 获取租户详情
+ * Get tenant details based on tenant ID
  */
 export type GetTenantDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
     /**
-     * 是否增加返回租户成员统计
+     * Whether to add returned tenant member statistics
      */
     withMembersCount?: any;
     /**
-     * 增加返回租户关联应用简单信息
+     * Added the ability to return simple information about tenant associated applications
      */
     withAppDetail?: any;
     /**
-     * 增加返回租户下创建者简单信息
+     * Added the ability to return simple information about the creator under the tenant
      */
     withCreatorDetail?: any;
     /**
-     * 增加返回租户来源应用简单信息
+     * Added simple information returned to tenant source application
      */
     withSourceAppDetail?: any;
 };

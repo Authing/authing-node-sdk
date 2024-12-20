@@ -4,11 +4,11 @@
 
 export type GetAllRowByScrollidDto = {
     /**
-     * 分页查询 scrollId
+     * Paging query scrollId
      */
     scrollId: string;
     /**
-     * 响应数据
+     *Response data
      */
     list: Array<string>;
 };

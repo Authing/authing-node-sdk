@@ -4,15 +4,15 @@
 
 export type CreatePermissionNamespacesBatchItemDto = {
     /**
-     * 权限空间 Code
+     * Permission space code
      */
     code: string;
     /**
-     * 权限空间名称
+     * Permission space name
      */
     name: string;
     /**
-     * 权限空间描述
+     * Permission space description
      */
     description?: string;
 };

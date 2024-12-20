@@ -4,15 +4,15 @@
 
 export type DeleteResourcesBatchDto = {
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: string;
     /**
-     * 资源 Code 列表
+     * Resource Code list
      */
     codeList?: Array<string>;
     /**
-     * 资源 Id 列表
+     * Resource ID list
      */
     ids?: Array<string>;
 };

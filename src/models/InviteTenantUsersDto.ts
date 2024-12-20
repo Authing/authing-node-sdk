@@ -7,11 +7,11 @@ import type { InviteTenantUserRecord } from './InviteTenantUserRecord';
 
 export type InviteTenantUsersDto = {
     /**
-     * 错误的邮箱提示
+     * Wrong email prompt
      */
     errMsgs: Array<errorEmailMsg>;
     /**
-     * 邀请用户信息返回值
+     * Invite user information return value
      */
     list: Array<InviteTenantUserRecord>;
 };

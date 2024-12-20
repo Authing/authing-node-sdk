@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取 Pipeline 函数详情
+ * Get Pipeline function details
  */
 export type GetPipelineFunctionDto = {
     /**
-     * Pipeline 函数 ID
+     * Pipeline function ID
      */
     funcId?: any;
 };

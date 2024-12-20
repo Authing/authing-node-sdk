@@ -3,43 +3,43 @@
 /* eslint-disable */
 
 /**
- * LDAP server 日志查询
+ * LDAP server log query
  */
 export type GetLdapServerLogDto = {
     /**
-     * 类型：1 访问日志，2 错误日志
+     * Type: 1 access log, 2 error log
      */
     type?: any;
     /**
-     * 当前页,从 1 开始
+     * Current page, starting from 1
      */
     page?: any;
     /**
-     * 每页条数
+     *Number of items per page
      */
     limit?: any;
     /**
-     * 连接标识
+     * Connection ID
      */
     connection?: any;
     /**
-     * 操作码
+     * opcode
      */
     operationNumber?: any;
     /**
-     * 错误码
+     * Error code
      */
     errorCode?: any;
     /**
-     * 消息内容
+     * Message content
      */
     message?: any;
     /**
-     * 开始时间-时间戳
+     * Start time - timestamp
      */
     startTime?: any;
     /**
-     * 结束时间-时间戳
+     * End time - timestamp
      */
     endTime?: any;
 };

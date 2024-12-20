@@ -4,39 +4,39 @@
 
 export type CreateTenantEnterpriseCertificationBodyDto = {
     /**
-     * 企业名称
+     *Company name
      */
     businessName: string;
     /**
-     * 营业执照
+     *Business license
      */
     businessLicense: string;
     /**
-     * 工商登记名称
+     * Industrial and commercial registration name
      */
     businessRegistrationName: string;
     /**
-     * 统一社会信用代码
+     * Unified social credit code
      */
     unifiedSocialCredit: string;
     /**
-     * 法定代表人姓名
+     * Name of legal representative
      */
     legalRepresentativeName: string;
     /**
-     * 身份证号
+     * ID number
      */
     nationalIdentificationNumber: string;
     /**
-     * 个人银行卡号
+     *Personal bank card number
      */
     personalBankCardNumber: string;
     /**
-     * 银行预留手机号
+     * Mobile phone number reserved by the bank
      */
     bankReservedPhone: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId: string;
 };

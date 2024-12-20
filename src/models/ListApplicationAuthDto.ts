@@ -4,31 +4,31 @@
 
 export type ListApplicationAuthDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 当前页数，从 1 开始
+     * Current page number, starting from 1
      */
     page?: number;
     /**
-     * 每页数目，最大不能超过 50，默认为 10
+     * The number of pages per page cannot exceed 50, and the default is 10
      */
     limit?: number;
     /**
-     * 主体名称
+     * Subject name
      */
     targetName?: string;
     /**
-     * 主体类型列表, USER/ORG/ROLE/GROUP
+     * List of principal types, USER/ORG/ROLE/GROUP
      */
     targetTypeList?: Array<string>;
     /**
-     * 操作，ALLOW/DENY
+     * Operation, ALLOW/DENY
      */
     effect?: ListApplicationAuthDto.effect;
     /**
-     * 授权是否生效开关,
+     * Whether the authorization is valid switch,
      */
     enabled?: boolean;
 };
@@ -36,7 +36,7 @@ export type ListApplicationAuthDto = {
 export namespace ListApplicationAuthDto {
 
     /**
-     * 操作，ALLOW/DENY
+     * Operation, ALLOW/DENY
      */
     export enum effect {
         ALLOW = 'ALLOW',

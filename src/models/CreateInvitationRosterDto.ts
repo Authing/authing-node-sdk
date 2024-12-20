@@ -4,7 +4,7 @@
 
 export type CreateInvitationRosterDto = {
     /**
-     * 名单名称
+     * Roster name
      */
     name: string;
 };

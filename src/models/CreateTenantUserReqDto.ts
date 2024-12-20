@@ -6,99 +6,99 @@ import type { CreateTenantUserOptionsDto } from './CreateTenantUserOptionsDto';
 
 export type CreateTenantUserReqDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId: string;
     /**
-     * 性别:
-     * - `M`: 男性，`male`
-     * - `F`: 女性，`female`
-     * - `U`: 未知，`unknown`
+     * gender:
+     * - `M`: male, `male`
+     * - `F`: female, `female`
+     * - `U`: unknown, `unknown`
      *
      */
     gender: CreateTenantUserReqDto.gender;
     /**
-     * 邮箱，不区分大小写
+     * Email, not case sensitive
      */
     email?: string;
     /**
-     * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
+     *Mobile phone number without area code. If it is a foreign mobile phone number, please specify the area code in the phoneCountryCode parameter.
      */
     phone?: string;
     /**
-     * 手机区号，中国大陆手机号可不填。Authing 短信服务暂不内置支持国际手机号，你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes。
+     * Mobile phone area code, mainland China mobile phone number is optional. Authing SMS service does not have built-in support for international mobile phone numbers. You need to configure the corresponding international SMS service in the Authing console. A complete list of mobile phone area codes can be found at https://en.wikipedia.org/wiki/List_of_country_calling_codes.
      */
     phoneCountryCode?: string;
     /**
-     * 用户名，用户池内唯一
+     * Username, unique in the user pool
      */
     username?: string;
     /**
-     * 用户真实名称，不具备唯一性
+     * User’s real name, not unique
      */
     name?: string;
     /**
-     * 昵称
+     * Nick name
      */
     nickname?: string;
     /**
-     * 头像链接
+     * Avatar link
      */
     photo?: string;
     /**
-     * 出生日期
+     *Date of birth
      */
     birthdate?: string;
     /**
-     * 所在国家
+     *Country
      */
     country?: string;
     /**
-     * 所在省份
+     *Province
      */
     province?: string;
     /**
-     * 所在城市
+     *City where you are located
      */
     city?: string;
     /**
-     * 所处地址
+     * Address
      */
     address?: string;
     /**
-     * 所处街道地址
+     * Street address
      */
     streetAddress?: string;
     /**
-     * 邮政编码号
+     * Postal code number
      */
     postalCode?: string;
     /**
-     * 名
+     * name
      */
     givenName?: string;
     /**
-     * 姓
+     * surname
      */
     familyName?: string;
     /**
-     * 中间名
+     *Middle name
      */
     middleName?: string;
     /**
-     * Preferred Username
+     *Preferred Username
      */
     preferredUsername?: string;
     /**
-     * 用户密码，默认为明文。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
+     * User password, default is clear text. We use the HTTPS protocol for secure transmission of passwords, which can ensure security to a certain extent. If you need a higher level of security, we also support RSA256 and SM2 to encrypt passwords. See the `passwordEncryptType` parameter for details.
      */
     password?: string;
     /**
-     * 加密用户密码的盐
+     * Salt to encrypt user password
      */
     salt?: string;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: CreateTenantUserOptionsDto;
 };
@@ -106,10 +106,10 @@ export type CreateTenantUserReqDto = {
 export namespace CreateTenantUserReqDto {
 
     /**
-     * 性别:
-     * - `M`: 男性，`male`
-     * - `F`: 女性，`female`
-     * - `U`: 未知，`unknown`
+     * gender:
+     * - `M`: male, `male`
+     * - `F`: female, `female`
+     * - `U`: unknown, `unknown`
      *
      */
     export enum gender {

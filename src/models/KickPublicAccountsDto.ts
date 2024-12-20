@@ -6,15 +6,15 @@ import type { KickPublicAccountsOptionsDto } from './KickPublicAccountsOptionsDt
 
 export type KickPublicAccountsDto = {
     /**
-     * APP ID 列表
+     * APP ID list
      */
     appIds: Array<string>;
     /**
-     * 公共账号 ID
+     * Public account ID
      */
     userId: string;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: KickPublicAccountsOptionsDto;
 };

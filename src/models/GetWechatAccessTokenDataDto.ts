@@ -4,11 +4,11 @@
 
 export type GetWechatAccessTokenDataDto = {
     /**
-     * Authing 服务器缓存的微信 Access Token
+     * Authing server cached WeChat Access Token
      */
     accessToken: string;
     /**
-     * Access Token 到期时间，为单位为秒的时间戳
+     * Access Token expiration time, as a timestamp in seconds
      */
     expiresAt: string;
 };

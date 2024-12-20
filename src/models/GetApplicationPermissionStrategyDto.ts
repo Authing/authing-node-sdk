@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取应用默认访问授权策略
+ * Get the application default access authorization policy
  */
 export type GetApplicationPermissionStrategyDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: any;
 };

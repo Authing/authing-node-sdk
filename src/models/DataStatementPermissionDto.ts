@@ -4,11 +4,11 @@
 
 export type DataStatementPermissionDto = {
     /**
-     * 数据资源权限操作：ALLOW（允许）/DENY（拒绝）
+     * Data resource permission operations: ALLOW (allow)/DENY (deny)
      */
     effect: DataStatementPermissionDto.effect;
     /**
-     * 资源权限列表，字符串数据资源和数组数据资源，没有 path 路径
+     * Resource permission list, string data resources and array data resources, no path path
      */
     permissions: Array<string>;
 };
@@ -16,7 +16,7 @@ export type DataStatementPermissionDto = {
 export namespace DataStatementPermissionDto {
 
     /**
-     * 数据资源权限操作：ALLOW（允许）/DENY（拒绝）
+     * Data resource permission operations: ALLOW (allow)/DENY (deny)
      */
     export enum effect {
         DENY = 'DENY',

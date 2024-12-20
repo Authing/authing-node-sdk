@@ -4,11 +4,11 @@
 
 export type GetUserPermissionListDto = {
     /**
-     * 用户 ID 列表
+     * List of user IDs
      */
     userIds: Array<string>;
     /**
-     * 权限空间 Code 列表
+     * Permission space code list
      */
     namespaceCodes?: Array<string>;
 };

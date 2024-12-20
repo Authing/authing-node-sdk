@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取协作管理员 AK/SK 详细信息,根据协作管理员 ID 和 accessKeyId 获取对应 AK/SK 的详细信息。
+ * Obtain the detailed information of the collaborative administrator AK/SK, and obtain the detailed information of the corresponding AK/SK based on the collaborative administrator ID and accessKeyId.
  */
 export type GetAccessKeyDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId?: any;
     /**

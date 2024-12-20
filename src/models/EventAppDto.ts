@@ -4,15 +4,15 @@
 
 export type EventAppDto = {
     /**
-     * 唯一标识
+     * unique identifier
      */
     identifier: string;
     /**
-     * 应用名称
+     * Application name
      */
     name: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     logo: string;
 };

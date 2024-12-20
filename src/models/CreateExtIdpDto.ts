@@ -4,15 +4,15 @@
 
 export type CreateExtIdpDto = {
     /**
-     * 身份源名称
+     * Identity source name
      */
     name: string;
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     type: CreateExtIdpDto.type;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };
@@ -20,7 +20,7 @@ export type CreateExtIdpDto = {
 export namespace CreateExtIdpDto {
 
     /**
-     * 身份源连接类型
+     * Identity source connection type
      */
     export enum type {
         OIDC = 'oidc',

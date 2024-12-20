@@ -4,7 +4,7 @@
 
 export type DeleteWhitelistOfAppDto = {
     /**
-     * 白名单类型
+     * Whitelist type
      */
     type: DeleteWhitelistOfAppDto.type;
     /**
@@ -12,7 +12,7 @@ export type DeleteWhitelistOfAppDto = {
      */
     appId: string;
     /**
-     * 类型参数
+     *Type parameters
      */
     list?: Array<string>;
 };
@@ -20,7 +20,7 @@ export type DeleteWhitelistOfAppDto = {
 export namespace DeleteWhitelistOfAppDto {
 
     /**
-     * 白名单类型
+     * Whitelist type
      */
     export enum type {
         USERNAME = 'USERNAME',

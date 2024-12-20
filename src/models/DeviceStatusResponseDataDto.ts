@@ -4,15 +4,15 @@
 
 export type DeviceStatusResponseDataDto = {
     /**
-     * 设备状态:
-     * - `activated`: 使用中
-     * - `suspended`: 挂起
-     * - `deactivated`: 停用
+     *Device status:
+     * - `activated`: in use
+     * - `suspended`: suspended
+     * - `deactivated`: deactivated
      *
      */
     status: DeviceStatusResponseDataDto.status;
     /**
-     * 设备挂起时的剩余秒数
+     * The number of seconds remaining when the device is suspended
      */
     diffTime?: number;
 };
@@ -20,10 +20,10 @@ export type DeviceStatusResponseDataDto = {
 export namespace DeviceStatusResponseDataDto {
 
     /**
-     * 设备状态:
-     * - `activated`: 使用中
-     * - `suspended`: 挂起
-     * - `deactivated`: 停用
+     *Device status:
+     * - `activated`: in use
+     * - `suspended`: suspended
+     * - `deactivated`: deactivated
      *
      */
     export enum status {

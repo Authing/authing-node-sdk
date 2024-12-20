@@ -4,7 +4,7 @@
 
 export type DeviceRuleDto = {
     /**
-     * 最大同时在线设备数
+     * Maximum number of simultaneous online devices
      */
     maxOnlineDevices: number;
 };

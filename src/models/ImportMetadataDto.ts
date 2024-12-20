@@ -4,7 +4,7 @@
 
 export type ImportMetadataDto = {
     /**
-     * 导入的 json 文件地址
+     * Imported json file address
      */
     file: string;
 };

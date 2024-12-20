@@ -6,11 +6,11 @@ import type { DeleteCustomFieldDto } from './DeleteCustomFieldDto';
 
 export type DeleteCustomFieldsReqDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId: string;
     /**
-     * 自定义字段列表
+     * Custom field list
      */
     list: Array<DeleteCustomFieldDto>;
 };

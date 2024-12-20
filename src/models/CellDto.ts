@@ -4,11 +4,11 @@
 
 export type CellDto = {
     /**
-     * 字段 id
+     * field id
      */
     fieldId: string;
     /**
-     * 数据内容
+     * Data content
      */
     value: any;
 };

@@ -6,39 +6,39 @@ import type { ListWebhooksDto } from './ListWebhooksDto';
 
 export type GetUserActionLogsDto = {
     /**
-     * 请求 ID
+     * Request ID
      */
     requestId?: string;
     /**
-     * 客户端 IP
+     * Client IP
      */
     clientIp?: string;
     /**
-     * 事件类型，用户的一系列操作，比如 login、logout、register、verifyMfa 等
+     * Event type, a series of user operations, such as login, logout, register, verifyMfa, etc.
      */
     eventType?: string;
     /**
-     * 用户 ID
+     *User ID
      */
     userId?: string;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId?: string;
     /**
-     * 开始时间戳
+     * Start timestamp
      */
     start?: number;
     /**
-     * 结束时间戳
+     * End timestamp
      */
     end?: number;
     /**
-     * 请求是否成功
+     * Whether the request is successful
      */
     success?: boolean;
     /**
-     * 分页
+     * Pagination
      */
     pagination?: ListWebhooksDto;
 };

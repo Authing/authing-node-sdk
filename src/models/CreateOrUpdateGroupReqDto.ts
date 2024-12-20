@@ -4,19 +4,19 @@
 
 export type CreateOrUpdateGroupReqDto = {
     /**
-     * 分组类型
+     * Grouping type
      */
     type: string;
     /**
-     * 分组描述
+     *Group description
      */
     description: string;
     /**
-     * 分组名称
+     * Group name
      */
     name: string;
     /**
-     * 分组 code
+     * group code
      */
     code: string;
 };

@@ -4,19 +4,19 @@
 
 export type FunctionModelOperateIdDto = {
     /**
-     * 执行时自定义参数
+     * Custom parameters during execution
      */
     customConfig: any;
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
     /**
-     * 自定义操作 id
+     * Custom operation id
      */
     id: string;
     /**
-     * 字段 id
+     * field id
      */
     fieldId?: string;
 };

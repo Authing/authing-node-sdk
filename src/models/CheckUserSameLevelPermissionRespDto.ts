@@ -4,15 +4,15 @@
 
 export type CheckUserSameLevelPermissionRespDto = {
     /**
-     * 数据资源权限操作
+     * Data resource permission operations
      */
     action: string;
     /**
-     * 树资源节点code
+     *Tree resource node code
      */
     resourceNodeCode: string;
     /**
-     * 是否拥有 action 权限
+     * Whether you have action permission
      */
     enabled: boolean;
 };

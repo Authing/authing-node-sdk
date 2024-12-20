@@ -6,11 +6,11 @@ import type { EnablePermissionApplyRole } from './EnablePermissionApplyRole';
 
 export type EnablePermissionApplyRolePageList = {
     /**
-     * 可申请权限角色列表
+     * List of roles that can apply for permissions
      */
     list: Array<EnablePermissionApplyRole>;
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
 };

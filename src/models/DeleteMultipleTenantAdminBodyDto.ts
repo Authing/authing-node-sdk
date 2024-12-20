@@ -4,7 +4,7 @@
 
 export type DeleteMultipleTenantAdminBodyDto = {
     /**
-     * 用户 ID
+     * User ID
      */
     userId: string;
 };

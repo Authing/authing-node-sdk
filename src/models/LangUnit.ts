@@ -4,11 +4,11 @@
 
 export type LangUnit = {
     /**
-     * 是否已开启。若开启，且控制台选择该语言，则展示该内容。（默认关闭）
+     * Whether it is turned on. If enabled and the language is selected in the console, the content will be displayed. (off by default)
      */
     enabled: boolean;
     /**
-     * 多语言内容
+     *Multi-language content
      */
     value: string;
 };

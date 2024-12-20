@@ -4,19 +4,19 @@
 
 export type EmailTemplateCategoryDto = {
     /**
-     * 类别名称
+     * Category name
      */
     title: string;
     /**
-     * 类别英文名称
+     *Category English name
      */
     titleEn: string;
     /**
-     * 描述
+     * describe
      */
     desc: string;
     /**
-     * 英文描述
+     *English description
      */
     descEn: string;
 };

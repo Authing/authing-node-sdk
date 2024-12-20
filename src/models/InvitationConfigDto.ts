@@ -4,19 +4,19 @@
 
 export type InvitationConfigDto = {
     /**
-     * 有效期(天)，-1 永久有效
+     * Validity period (days), -1 is permanently valid
      */
     expiredTimeOfDay: number;
     /**
-     * 是否加入邀请人相同部门
+     * Whether to join the same department as the inviter
      */
     joinSameDepartment: boolean;
     /**
-     * 确认邀请后，加入的部门列表
+     * After confirming the invitation, list of departments to join
      */
     departmentIds?: Array<string>;
     /**
-     * 是否需要管理员确认
+     * Whether administrator confirmation is required
      */
     enabledAdminConsent?: boolean;
 };

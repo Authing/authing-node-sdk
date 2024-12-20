@@ -4,115 +4,115 @@
 
 export type InviteeProfileDto = {
     /**
-     * 用户名
+     * username
      */
     username?: string;
     /**
-     * 昵称
+     * Nick name
      */
     nickname?: string;
     /**
-     * 公司
+     * company
      */
     company?: string;
     /**
-     * 头像
+     * avatar
      */
     photo?: string;
     /**
-     * 设备
+     * equipment
      */
     device?: string;
     /**
-     * 浏览器
+     * Browser
      */
     browser?: string;
     /**
-     * 名称
+     * name
      */
     name?: string;
     /**
-     * 名
+     * name
      */
     givenName?: string;
     /**
-     * 姓
+     * surname
      */
     familyName?: string;
     /**
-     * 中间名
+     *Middle name
      */
     middleName?: string;
     /**
-     * 资料
+     * material
      */
     profile?: string;
     /**
-     * 希望称呼的用户名
+     * The user name you wish to be called
      */
     preferredUsername?: string;
     /**
-     * 网站
+     * Website
      */
     website?: string;
     /**
-     * 性别 F : 女性; M : 男性
+     * Gender F: Female; M: Male
      */
     gender?: InviteeProfileDto.gender;
     /**
-     * 生日
+     * Birthday
      */
     birthdate?: string;
     /**
-     * 地区
+     * area
      */
     zoneinfo?: string;
     /**
-     * 语言地区
+     * Language area
      */
     locale?: string;
     /**
-     * 地址
+     * address
      */
     address?: string;
     /**
-     * 格式
+     * Format
      */
     formatted?: string;
     /**
-     * 街道地址
+     * Street address
      */
     streetAddress?: string;
     /**
-     * 位置
+     * Location
      */
     locality?: string;
     /**
-     * 地区
+     * area
      */
     region?: string;
     /**
-     * 邮政编码
+     * postal code
      */
     postalCode?: string;
     /**
-     * 国家
+     * nation
      */
     country?: string;
     /**
-     * 邮箱
+     * Mail
      */
     email?: string;
     /**
-     * 手机号
+     * Phone number
      */
     phone?: string;
     /**
-     * 手机号国际区码
+     *Mobile phone number international area code
      */
     phoneCountryCode?: string;
     /**
-     * 用户自定义字段
+     * User-defined fields
      */
     customData?: any;
 };
@@ -120,7 +120,7 @@ export type InviteeProfileDto = {
 export namespace InviteeProfileDto {
 
     /**
-     * 性别 F : 女性; M : 男性
+     * Gender F: Female; M: Male
      */
     export enum gender {
         M = 'M',

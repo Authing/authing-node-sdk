@@ -4,7 +4,7 @@
 
 export type LdapSetEnabledFlagDto = {
     /**
-     * 开关是否开启
+     * Whether the switch is on
      */
     enabled: boolean;
 };

@@ -4,11 +4,11 @@
 
 export type ImportExportTemplateRespDto = {
     /**
-     * 文件路径地址
+     * File path address
      */
     key: string;
     /**
-     * 文件地址
+     * File address
      */
     url: string;
 };

@@ -4,21 +4,21 @@
 
 export type InvitationPolicyUserAttributionListDto = {
     /**
-     * 关联对象的唯一标志符：
-     * - 如果是角色，为角色的 code，如 `admin`
-     * - 如果是分组，为分组的 code，如 `developer`
-     * - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
-     * - 如果是岗位，为岗位的 code，如 `leader`
-     * - 如果是租户，为租户的 ID，如 `6343b98b7cfxxx9366e9b7c`
+     * The unique identifier of the associated object:
+     * - If it is a role, it is the code of the role, such as `admin`
+     * - If it is a group, it is the code of the group, such as `developer`
+     * - If it is a department, it is the ID of the department, such as `6343bafc019xxxx889206c4c`
+     * - If it is a position, it is the code of the position, such as `leader`
+     * - If it is a tenant, it is the ID of the tenant, such as `6343b98b7cfxxx9366e9b7c`
      *
      */
     targetIdentifiers: Array<string>;
     /**
-     * 角色所在权限空间 code，若 targetType 是 role，此参数必传
+     * The code of the permission space where the role is located. If the targetType is role, this parameter must be passed
      */
     namespace?: string;
     /**
-     * 关联对象类型
+     * Associated object type
      */
     targetType: InvitationPolicyUserAttributionListDto.targetType;
 };
@@ -26,7 +26,7 @@ export type InvitationPolicyUserAttributionListDto = {
 export namespace InvitationPolicyUserAttributionListDto {
 
     /**
-     * 关联对象类型
+     * Associated object type
      */
     export enum targetType {
         DEPARTMENT = 'department',

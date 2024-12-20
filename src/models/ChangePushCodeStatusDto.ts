@@ -4,13 +4,13 @@
 
 export type ChangePushCodeStatusDto = {
     /**
-     * 推送码（推送登录唯一 ID）
+     * Push code (push login unique ID)
      */
     pushCodeId: string;
     /**
-     * 修改推送码状态的动作:
-     * - `CONFIRM`: 修改推送码状态为已授权；
-     * - `CANCEL`: 修改推送码状态为已取消；
+     * Action to modify push code status:
+     * - `CONFIRM`: Change push code status to authorized;
+     * - `CANCEL`: Modify push code status to canceled;
      *
      */
     action: ChangePushCodeStatusDto.action;
@@ -19,9 +19,9 @@ export type ChangePushCodeStatusDto = {
 export namespace ChangePushCodeStatusDto {
 
     /**
-     * 修改推送码状态的动作:
-     * - `CONFIRM`: 修改推送码状态为已授权；
-     * - `CANCEL`: 修改推送码状态为已取消；
+     * Action to modify push code status:
+     * - `CONFIRM`: Change push code status to authorized;
+     * - `CANCEL`: Modify push code status to canceled;
      *
      */
     export enum action {

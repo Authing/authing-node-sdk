@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取邀请策略详情
+ * Get invitation policy details
  */
 export type GetInvitationPolicyDto = {
     /**
-     * 策略 ID
+     * Policy ID
      */
     policyId?: any;
     /**
-     * 名单 ID，根据名单 ID 获取关联的策略详情，在名单发送邀请时会给策略生成快照，若在名单发送邀请后，需要获取发送时对应的策略配置，应该携带此参数
+     * List ID, obtain the associated policy details based on the list ID. When the list sends an invitation, a snapshot of the policy will be generated. If after the list sends the invitation, you need to obtain the corresponding policy configuration when sending, this parameter should be carried
      */
     rosterId?: any;
     /**
-     * 是否返回创建者详情
+     * Whether to return the creator details
      */
     withCreatorDetail?: any;
 };

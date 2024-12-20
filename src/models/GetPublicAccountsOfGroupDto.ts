@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过分组 ID，获取用户的公共账号列表。
+ * Get the user's public account list through the group ID.
  */
 export type GetPublicAccountsOfGroupDto = {
     /**
-     * 分组 ID
+     *Group ID
      */
     groupId?: any;
 };

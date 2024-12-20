@@ -4,7 +4,7 @@
 
 export type IsSuccessDto = {
     /**
-     * 操作是否成功
+     * Whether the operation was successful
      */
     success: boolean;
 };

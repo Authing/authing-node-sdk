@@ -4,25 +4,25 @@
 
 export type InvitationLinkConfigDto = {
     /**
-     * 链接失效规则
-     * - `period`: 有效期内始终有效
-     * - `afterFirstClick`: 第一次点击后失效
+     * Link invalidation rules
+     * - `period`: always valid within the validity period
+     * - `afterFirstClick`: Invalid after the first click
      */
     inviteLinkDisuseRule: InvitationLinkConfigDto.inviteLinkDisuseRule;
     /**
-     * 链接过期时间单位
+     * Link expiration time unit
      */
     linkExpiredTimeUnit: InvitationLinkConfigDto.linkExpiredTimeUnit;
     /**
-     * 链接过期时间秒数
+     * Link expiration time in seconds
      */
     linkExpiredTimeOfSecond: number;
     /**
-     * 邀请页面信息填写的失效时间单位
+     * The expiration time unit for filling in the information on the invitation page
      */
     pageExpiredTimeUnit: InvitationLinkConfigDto.pageExpiredTimeUnit;
     /**
-     * 邀请页面信息填写的失效时间秒数，最大 2592000 秒(30 天)
+     * The expiration time in seconds for filling in the information on the invitation page, up to 2592000 seconds (30 days)
      */
     pageExpiredTimeOfSecond: number;
 };
@@ -30,9 +30,9 @@ export type InvitationLinkConfigDto = {
 export namespace InvitationLinkConfigDto {
 
     /**
-     * 链接失效规则
-     * - `period`: 有效期内始终有效
-     * - `afterFirstClick`: 第一次点击后失效
+     * Link invalidation rules
+     * - `period`: always valid within the validity period
+     * - `afterFirstClick`: Invalid after the first click
      */
     export enum inviteLinkDisuseRule {
         PERIOD = 'period',
@@ -40,7 +40,7 @@ export namespace InvitationLinkConfigDto {
     }
 
     /**
-     * 链接过期时间单位
+     * Link expiration time unit
      */
     export enum linkExpiredTimeUnit {
         FOREVER = 'forever',
@@ -50,7 +50,7 @@ export namespace InvitationLinkConfigDto {
     }
 
     /**
-     * 邀请页面信息填写的失效时间单位
+     * The expiration time unit for filling in the information on the invitation page
      */
     export enum pageExpiredTimeUnit {
         MINUTE = 'minute',

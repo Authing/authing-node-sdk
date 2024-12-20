@@ -4,7 +4,7 @@
 
 export type CreateUserOtpDto = {
     /**
-     * OTP 密钥
+     * OTP secret
      */
     secret: string;
     /**

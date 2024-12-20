@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * LDAP server 根据 DN 查询下一级
+ * LDAP server queries the next level based on DN
  */
 export type GetLdapSubEntriesDto = {
     /**
-     * 当前页,从 1 开始
+     * Current page, starting from 1
      */
     page?: any;
     /**
-     * 每页条数
+     *Number of items per page
      */
     limit?: any;
     /**
-     * 当前 DN
+     * Current DN
      */
     dn?: any;
 };

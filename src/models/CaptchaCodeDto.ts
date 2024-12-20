@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 当用户池开启**登录失败次数限制**并且**登录安全策略**设置为**验证码**时，如果当前请求触发登录失败次数上限，要求用户输入图形验证码。此接口用于在前端生成图形验证码，会返回一个 `content-type` 为 `image/svg+xml` 的响应。
+ * When the user pool turns on the **login failure limit** and the **login security policy** is set to **verification code**, if the current request triggers the upper limit on the number of login failures, the user is required to enter a graphical verification code. This interface is used to generate graphical verification codes on the front end and will return a response with `content-type` as `image/svg+xml`.
  */
 export type CaptchaCodeDto = {
     /**
-     * 随机字符串或者时间戳，防止浏览器缓存
+     * Random string or timestamp to prevent browser caching
      */
     r?: any;
 };

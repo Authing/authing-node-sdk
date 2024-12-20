@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过数据策略名称查询用户池内是否有效。
+ * Query whether the user pool is valid through the data policy name.
  */
 export type CheckDataPolicyExistsDto = {
     /**
-     * 数据策略名称，用户池唯一
+     * Data policy name, unique to user pool
      */
     policyName?: any;
 };

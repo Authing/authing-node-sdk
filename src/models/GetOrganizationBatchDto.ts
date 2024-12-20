@@ -3,23 +3,23 @@
 /* eslint-disable */
 
 /**
- * 批量获取组织机构详情
+ * Obtain organizational details in batches
  */
 export type GetOrganizationBatchDto = {
     /**
-     * 组织 Code（organizationCode）列表
+     * Organization Code (organizationCode) list
      */
     organizationCodeList?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 是否获取 部门信息
+     * Whether to obtain department information
      */
     withPost?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

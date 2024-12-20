@@ -6,19 +6,19 @@ import type { EnrollFactorEnrollmentDataDto } from './EnrollFactorEnrollmentData
 
 export type EnrollFactorDto = {
     /**
-     * 绑定 MFA 认证要素时，对应认证要素要求的验证信息。
+     * When binding MFA authentication elements, the verification information required by the corresponding authentication elements.
      */
     enrollmentData: EnrollFactorEnrollmentDataDto;
     /**
-     * 「发起绑定 MFA 认证要素请求」接口返回的 enrollmentToken，此 token 有效时间为一分钟。
+     * The enrollmentToken returned by the "Initiate a request to bind MFA authentication elements" interface. This token is valid for one minute.
      */
     enrollmentToken: string;
     /**
-     * MFA 认证要素类型：
+     * MFA Certification Element Type:
      * - `OTP`: OTP
-     * - `SMS`: 短信
-     * - `EMAIL`: 邮件
-     * - `FACE`: 人脸
+     * - `SMS`: text message
+     * - `EMAIL`: email
+     * - `FACE`: human face
      *
      */
     factorType: EnrollFactorDto.factorType;
@@ -27,11 +27,11 @@ export type EnrollFactorDto = {
 export namespace EnrollFactorDto {
 
     /**
-     * MFA 认证要素类型：
+     * MFA Certification Element Type:
      * - `OTP`: OTP
-     * - `SMS`: 短信
-     * - `EMAIL`: 邮件
-     * - `FACE`: 人脸
+     * - `SMS`: text message
+     * - `EMAIL`: email
+     * - `FACE`: human face
      *
      */
     export enum factorType {

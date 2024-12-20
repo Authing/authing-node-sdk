@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 通过用户 ID，获取用户的公共账号列表。
+ * Get the user's public account list through the user ID.
  */
 export type GetPublicAccountsOfUserDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     userId?: any;
 };

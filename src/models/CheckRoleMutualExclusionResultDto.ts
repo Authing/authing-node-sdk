@@ -4,7 +4,7 @@
 
 export type CheckRoleMutualExclusionResultDto = {
     /**
-     * 角色列表中是否存在互斥关系
+     * Whether there is a mutually exclusive relationship in the role list
      */
     existMutuallyExclusive: boolean;
 };

@@ -6,31 +6,31 @@ import type { UserDto } from './UserDto';
 
 export type GroupDto = {
     /**
-     * 分组 ID
+     *Group ID
      */
     id: string;
     /**
-     * 分组 code
+     * group code
      */
     code: string;
     /**
-     * 分组名称
+     * Group name
      */
     name: string;
     /**
-     * 分组描述
+     *Group description
      */
     description: string;
     /**
-     * 分组类型
+     * Grouping type
      */
     type: string;
     /**
-     * 分组元数据信息
+     * Group metadata information
      */
     metadataSource: Array<string>;
     /**
-     * 成员列表
+     * Member list
      */
     members: Array<UserDto>;
 };

@@ -4,15 +4,15 @@
 
 export type FastpassUserInfoDto = {
     /**
-     * 用户 ID
+     *User ID
      */
     id: string;
     /**
-     * 用户名称
+     * User name
      */
     displayName: string;
     /**
-     * 用户头像地址
+     * User avatar address
      */
     photo: string;
 };

@@ -4,27 +4,27 @@
 
 export type IpListCreateDto = {
     /**
-     * 添加时间
+     *Add time
      */
     expireAt: string;
     /**
-     * 限制类型，FORBID_LOGIN-禁止登录，FORBID_REGISTER-禁止注册，SKIP_MFA-跳过 MFA
+     * Restriction type, FORBID_LOGIN - prohibit login, FORBID_REGISTER - prohibit registration, SKIP_MFA - skip MFA
      */
     limitList: Array<string>;
     /**
-     * 删除类型，MANUAL-手动，SCHEDULE-策略删除
+     * Deletion type, MANUAL-manual, SCHEDULE-strategic deletion
      */
     removeType: string;
     /**
-     * 添加类型，MANUAL-手动，SCHEDULE-策略添加
+     * Add type, MANUAL-manual, SCHEDULE-strategy addition
      */
     addType: string;
     /**
-     * ip类型，WHITE-白名单，BLACK-黑名单
+     * ip type, WHITE-whitelist, BLACK-blacklist
      */
     ipType: string;
     /**
-     * ip, 多个IP以逗号分割
+     * ip, multiple IPs separated by commas
      */
     ips: string;
 };

@@ -4,23 +4,23 @@
 
 export type CreateMultipleTenantAdminDto = {
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantIds: Array<string>;
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 是否授权
+     * Whether to authorize
      */
     apiAuthorized?: boolean;
     /**
-     * SMS 通知
+     * SMS notification
      */
     sendPhoneNotification?: boolean;
     /**
-     * Email 通知
+     * Email notification
      */
     sendEmailNotification?: boolean;
 };

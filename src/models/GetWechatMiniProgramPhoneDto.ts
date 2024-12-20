@@ -4,11 +4,11 @@
 
 export type GetWechatMiniProgramPhoneDto = {
     /**
-     * 微信小程序的外部身份源连接标志符
+     * External identity source connection identifier of WeChat applet
      */
     extIdpConnidentifier: string;
     /**
-     * `open-type=getphonecode` 接口返回的 `code`
+     * `code` returned by `open-type=getphonecode` interface
      */
     code: string;
 };

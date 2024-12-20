@@ -4,11 +4,11 @@
 
 export type CancelSyncRiskOperationsDataDto = {
     /**
-     * 成功取消的风险操作任务
+     * Successfully canceled risk operation tasks
      */
     successList: Array<number>;
     /**
-     * 取消失败的风险操作任务
+     * Cancel failed risk operation tasks
      */
     faildList: Array<number>;
 };

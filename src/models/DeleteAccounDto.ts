@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type DeleteAccounDto = {
+export type DeleteAccountDto = {
     /**
-     * 注销账户的 token
+     * Cancel the token of the account
      */
     deleteAccountToken: string;
 };

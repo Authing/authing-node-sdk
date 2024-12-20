@@ -4,15 +4,15 @@
 
 export type CheckRoleParamsDto = {
     /**
-     * 权限分组（权限空间）内角色的唯一标识符
+     * The unique identifier of the role within the permission group (permission space)
      */
     code: string;
     /**
-     * 所属权限分组(权限空间)的 Code，不传使用默认权限分组。
+     * The Code to which the permission group (permission space) belongs will not be passed and the default permission group will be used.
      */
     namespace: string;
     /**
-     * 权限分组（权限空间）内角色名称
+     * The name of the role in the permission group (permission space)
      */
     name?: string;
 };

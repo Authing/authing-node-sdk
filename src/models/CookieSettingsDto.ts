@@ -4,11 +4,11 @@
 
 export type CookieSettingsDto = {
     /**
-     * Cookie 有效时间：用户登录状态的有效时间（默认为 1209600 秒/ 14 天），过期后用户需要重新登录。对于应用面板及已加入应用面板的应用，将使用此 cookie  过期时间。
+     * Cookie validity time: The validity time of the user's login status (default is 1209600 seconds / 14 days). After expiration, the user needs to log in again. For app panels and apps that have been added to the app panel, this cookie expiration time will be used.
      */
     cookieExpiresIn: number;
     /**
-     * Cookie 过期时间基于浏览器会话：当前浏览器关闭后立即过期，下次打开需重新登录。
+     * Cookie expiration time is based on the browser session: it expires immediately after the current browser is closed, and you need to log in again next time you open it.
      */
     cookieExpiresOnBrowserSession: boolean;
 };

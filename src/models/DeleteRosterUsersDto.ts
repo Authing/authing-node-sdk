@@ -4,11 +4,11 @@
 
 export type DeleteRosterUsersDto = {
     /**
-     * 受邀人 ID 列表
+     * List of invitee IDs
      */
     inviteeIds: Array<string>;
     /**
-     * 名单 ID
+     * List ID
      */
     rosterId: string;
 };

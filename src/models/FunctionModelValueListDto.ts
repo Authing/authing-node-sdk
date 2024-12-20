@@ -1,14 +1,14 @@
-/* istanbul ignore file */
+/*istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
 
 export type FunctionModelValueListDto = {
     /**
-     * 总行数
+     *Total number of rows
      */
     totalCount: number;
     /**
-     * 响应数据
+     *Response data
      */
     list: Array<any>;
 };

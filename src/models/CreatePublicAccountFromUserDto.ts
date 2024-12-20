@@ -4,7 +4,7 @@
 
 export type CreatePublicAccountFromUserDto = {
     /**
-     * 公共账号 rowId
+     * Public account rowId
      */
     userId: string;
 };

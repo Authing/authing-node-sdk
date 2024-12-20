@@ -4,7 +4,7 @@
 
 export type DeletePermissionNamespacesBatchDto = {
     /**
-     * 权限分组 code 列表
+     * Permission group code list
      */
     codes: Array<string>;
 };

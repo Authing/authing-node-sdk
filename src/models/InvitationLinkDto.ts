@@ -4,19 +4,19 @@
 
 export type InvitationLinkDto = {
     /**
-     * 邀请链接签名
+     * Invitation link signature
      */
     signature: string;
     /**
-     * 邀请链接唯一标识
+     * Unique identifier of the invitation link
      */
     identifier: string;
     /**
-     * 是否返回受邀人信息
+     * Whether to return invitee information
      */
     withInviteeInfo?: boolean;
     /**
-     * 是否返回邀请公共信息
+     * Whether to return invitation public information
      */
     withInvitationSettings?: boolean;
 };

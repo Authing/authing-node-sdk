@@ -4,23 +4,23 @@
 
 export type BindByPhoneCodeInputApi = {
     /**
-     * 中间态键
+     * Intermediate key
      */
     key: string;
     /**
-     * 操作编码
+     * Operation code
      */
     action: string;
     /**
-     * 手机验证码（四位：1234；六位：123456）
+     * Mobile phone verification code (four digits: 1234; six digits: 123456)
      */
     code: string;
     /**
-     * 手机号
+     * Phone number
      */
     phone: string;
     /**
-     * 国家码（标准格式：加号“+”加国家码数字；当前校验兼容历史用户输入习惯。例，中国国家码标准格式为「+86」，历史用户输入记录中存在「86、086、0086」等格式）
+     * Country code (standard format: plus sign "+" plus country code digits; the current verification is compatible with historical user input habits. For example, the standard format of China's country code is "+86", and there are "86, 086, 0086" and other formats)
      */
     phoneCountryCode?: string;
 };

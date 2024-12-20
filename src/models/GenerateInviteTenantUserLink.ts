@@ -4,19 +4,19 @@
 
 export type GenerateInviteTenantUserLink = {
     /**
-     * 链接有效期
+     * Link validity period
      */
     validityTerm: string;
     /**
-     * 要邀请的用户邮箱
+     * Email address of the user to be invited
      */
     emails: Array<string>;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: string;
 };

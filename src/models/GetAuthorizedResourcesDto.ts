@@ -3,46 +3,46 @@
 /* eslint-disable */
 
 /**
- * 根据筛选条件，获取某个主体被授权的资源列表。
+ * According to the filter conditions, obtain the list of resources authorized by a subject.
  */
 export type GetAuthorizedResourcesDto = {
     /**
-     * 目标对象类型：
-     * - `USER`: 用户
-     * - `ROLE`: 角色
-     * - `GROUP`: 分组
-     * - `DEPARTMENT`: 部门
+     * Target object type:
+     * - `USER`: user
+     * - `ROLE`: role
+     * - `GROUP`: group
+     * - `DEPARTMENT`: department
      *
      */
     targetType?: any;
     /**
-     * 目标对象的唯一标志符：
-     * - 如果是用户，为用户的 ID，如 `6343b98b7cfxxx9366e9b7c`
-     * - 如果是角色，为角色的 code，如 `admin`
-     * - 如果是分组，为分组的 code，如 `developer`
-     * - 如果是部门，为部门的 ID，如 `6343bafc019xxxx889206c4c`
+     * Unique identifier of the target object:
+     * - If it is a user, it is the user's ID, such as `6343b98b7cfxxx9366e9b7c`
+     * - If it is a role, it is the code of the role, such as `admin`
+     * - If it is a group, it is the code of the group, such as `developer`
+     * - If it is a department, it is the ID of the department, such as `6343bafc019xxxx889206c4c`
      *
      */
     targetIdentifier?: any;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
     /**
-     * 限定资源类型，如数据、API、按钮、菜单
+     * Limit resource types, such as data, API, buttons, menus
      */
     resourceType?: any;
     /**
-     * 限定查询的资源列表，如果指定，只会返回所指定的资源列表。
+     * Limit the resource list of the query. If specified, only the specified resource list will be returned.
      *
-     * resourceList 参数支持前缀匹配，例如：
-     * - 授权了一个资源为 `books:123`，可以通过 `books:*` 来匹配；
-     * - 授权了一个资源为 `books:fictions_123`，可以通过 `books:fictions_` 来匹配；
+     * The resourceList parameter supports prefix matching, for example:
+     * - Authorizes a resource as `books:123`, which can be matched by `books:*`;
+     * - Authorizes a resource as `books:fictions_123`, which can be matched by `books:fictions_`;
      *
      */
     resourceList?: any;
     /**
-     * 是否获取被拒绝的资源
+     * Whether to obtain rejected resources
      */
     withDenied?: any;
 };

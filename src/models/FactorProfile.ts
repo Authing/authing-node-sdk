@@ -4,15 +4,15 @@
 
 export type FactorProfile = {
     /**
-     * 当发起绑定手机短信认证要素时，此参数必传。需要传递用户希望绑定的手机号。Authing 服务器会向此手机号发送短信验证码，要求用户在绑定 MFA 阶段提供验证码。一个手机号在一分钟内只能请求一次。
+     * This parameter must be passed when initiating binding of mobile phone SMS authentication elements. You need to pass the mobile phone number that the user wants to bind. The Authing server will send a SMS verification code to this mobile phone number, requiring the user to provide the verification code during the MFA binding stage. A mobile phone number can only be requested once per minute.
      */
     phoneNumber?: string;
     /**
-     * 当发起绑定手机短信认证要素且需要绑定国际手机号时可以设置，默认为 +86，中国大陆手机区号。Authing 短信服务暂不内置支持国际手机号，你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes。
+     * Can be set when initiating binding of mobile phone SMS authentication elements and need to bind an international mobile phone number. The default is +86, the mobile phone area code of mainland China. Authing SMS service does not have built-in support for international mobile phone numbers. You need to configure the corresponding international SMS service in the Authing console. A complete list of mobile phone area codes can be found at https://en.wikipedia.org/wiki/List_of_country_calling_codes.
      */
     phoneCountryCode?: string;
     /**
-     * 当发起绑定邮箱验证码认证要素时，此参数必传。需要传递用户希望绑定的邮箱。Authing 服务器会向此邮箱发送邮箱验证码，要求用户在绑定 MFA 阶段提供验证码。一个邮箱在一分钟内只能请求一次。
+     * This parameter must be passed when initiating the binding of email verification code authentication elements. You need to pass the email address that the user wants to bind. The Authing server will send an email verification code to this email address and require the user to provide the verification code during the MFA binding stage. An email address can only be requested once per minute.
      */
     email?: string;
 };

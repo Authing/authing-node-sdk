@@ -4,11 +4,11 @@
 
 export type DefineEventDto = {
     /**
-     * 事件描述
+     * Event description
      */
     eventDescription: string;
     /**
-     * 事件类型
+     *Event type
      */
     eventType: string;
 };

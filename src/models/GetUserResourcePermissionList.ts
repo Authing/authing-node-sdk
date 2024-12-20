@@ -4,15 +4,15 @@
 
 export type GetUserResourcePermissionList = {
     /**
-     * 权限空间 code
+     * Permission space code
      */
     namespaceCode: string;
     /**
-     * 数据资源权限操作列表
+     * Data resource permission operation list
      */
     actions: Array<string>;
     /**
-     * 资源路径
+     * Resource path
      */
     resource: string;
 };

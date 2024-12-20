@@ -4,47 +4,47 @@
 
 export type CreateTenantDto = {
     /**
-     * 租户名
+     * Tenant name
      */
     name: string;
     /**
-     * 租户关联的应用 ID
+     * The application ID associated with the tenant
      */
     appIds: Array<string>;
     /**
-     * 租户 logo
+     * Tenant logo
      */
     logo?: Array<string>;
     /**
-     * 租户描述
+     * Tenant description
      */
     description?: string;
     /**
-     * 用户被租户拒绝登录时显示的提示文案
+     * The prompt text displayed when the user is refused login by the tenant
      */
     rejectHint?: string;
     /**
-     * 租户来源的应用 ID，该值不存在时代表租户来源为 Authing 控制台
+     * The application ID of the tenant source. If this value does not exist, it means the tenant source is the Authing console.
      */
     sourceAppId?: string;
     /**
-     * 企业邮箱域名
+     *Business email domain name
      */
     enterpriseDomains?: Array<string>;
     /**
-     * 租户过期时间
+     * Tenant expiration time
      */
     expireTime?: string;
     /**
-     * 租户 MAU 上限
+     * Tenant MAU cap
      */
     mauAmount?: number;
     /**
-     * 租户成员上限
+     *Maximum number of tenant members
      */
     memberAmount?: number;
     /**
-     * 租户管理员上限
+     *Tenant administrator limit
      */
     adminAmount?: number;
 };

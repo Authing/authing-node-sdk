@@ -4,23 +4,23 @@
 
 export type CreateGroupReqDto = {
     /**
-     * 分组类型
+     * Grouping type
      */
     type: string;
     /**
-     * 分组描述
+     *Group description
      */
     description: string;
     /**
-     * 分组名称
+     * Group name
      */
     name: string;
     /**
-     * 分组 code
+     * group code
      */
     code: string;
     /**
-     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     * Custom data, the key in the object passed in must first define the relevant custom fields in the user pool
      */
     customData?: any;
 };

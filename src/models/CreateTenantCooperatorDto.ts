@@ -4,23 +4,23 @@
 
 export type CreateTenantCooperatorDto = {
     /**
-     * 策略
+     * Strategy
      */
     policies: Array<string>;
     /**
-     * 用户 ID
+     *User ID
      */
     userId: string;
     /**
-     * 是否授权 API
+     * Whether to authorize API
      */
     apiAuthorized?: boolean;
     /**
-     * SMS 通知
+     * SMS notification
      */
     sendPhoneNotification?: boolean;
     /**
-     * Email 通知
+     * Email notification
      */
     sendEmailNotification?: boolean;
 };

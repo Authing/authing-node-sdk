@@ -4,11 +4,11 @@
 
 export type errorEmailMsg = {
     /**
-     * 邮箱地址
+     * Email address
      */
     email: string;
     /**
-     * 错误信息描述
+     * Error message description
      */
     message: string;
 };

@@ -4,11 +4,11 @@
 
 export type DeleteAccountByEmailPassCodeDto = {
     /**
-     * 此账号绑定的邮箱，不区分大小写。
+     * The email address bound to this account is not case-sensitive.
      */
     email?: string;
     /**
-     * 邮箱验证码，一个短信验证码只能使用一次，默认有效时间为 5 分钟。你需要通过**发送邮件**接口获取。
+     * Email verification code, a SMS verification code can only be used once, and the default validity time is 5 minutes. You need to obtain it through the **Send Email** interface.
      */
     passCode: string;
 };

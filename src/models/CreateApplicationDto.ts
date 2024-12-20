@@ -12,91 +12,91 @@ import type { SamlIdpConfig } from './SamlIdpConfig';
 
 export type CreateApplicationDto = {
     /**
-     * 应用名称
+     * Application name
      */
     appName: string;
     /**
-     * 集成应用模版类型，**集成应用必填**。集成应用只需要填 `template` 和 `templateData` 两个字段，其他的字段将被忽略。
+     * Integrated application template type, **Integrated application required**. Integrated applications only need to fill in the two fields `template` and `templateData`, and other fields will be ignored.
      */
     template?: string;
     /**
-     * 集成应用配置信息，**集成应用必填**。
+     * Integrated application configuration information, **Integrated application required**.
      */
     templateData?: any;
     /**
-     * 应用唯一标志，**自建应用必填**。
+     * The unique identifier of the application, **required for self-built applications**.
      */
     appIdentifier?: string;
     /**
-     * 应用 Logo 链接
+     *App Logo link
      */
     appLogo?: string;
     /**
-     * 应用描述信息
+     * Application description information
      */
     appDescription?: string;
     /**
-     * 应用类型
+     *Application type
      */
     appType?: CreateApplicationDto.appType;
     /**
-     * 默认应用协议类型
+     *Default application protocol type
      */
     defaultProtocol?: CreateApplicationDto.defaultProtocol;
     /**
-     * 应用登录回调地址
+     * Application login callback address
      */
     redirectUris?: Array<string>;
     /**
-     * 应用退出登录回调地址
+     * Application logout callback address
      */
     logoutRedirectUris?: Array<string>;
     /**
-     * 发起登录地址：在 Authing 应用详情点击「体验登录」或在应用面板点击该应用图标时，会跳转到此 URL，默认为 Authing 登录页。
+     * Initiate login address: When you click "Experience Login" in the Authing application details or click the application icon in the application panel, you will be redirected to this URL, which defaults to the Authing login page.
      */
     initLoginUri?: string;
     /**
-     * 是否开启 SSO 单点登录
+     * Whether to enable SSO single sign-on
      */
     ssoEnabled?: boolean;
     /**
-     * OIDC 协议配置
+     * OIDC protocol configuration
      */
     oidcConfig?: OIDCConfig;
     /**
-     * 是否开启 SAML 身份提供商
+     * Whether to enable SAML identity provider
      */
     samlProviderEnabled?: boolean;
     /**
-     * SAML 协议配置
+     * SAML protocol configuration
      */
     samlConfig?: SamlIdpConfig;
     /**
-     * 是否开启 OAuth 身份提供商
+     * Whether to enable the OAuth identity provider
      */
     oauthProviderEnabled?: boolean;
     /**
-     * OAuth2.0 协议配置。【重要提示】不再推荐使用 OAuth2.0，建议切换到 OIDC。
+     * OAuth2.0 protocol configuration. [Important note] OAuth2.0 is no longer recommended and it is recommended to switch to OIDC.
      */
     oauthConfig?: OauthIdpConfig;
     /**
-     * 是否开启 CAS 身份提供商
+     * Whether to enable CAS identity provider
      */
     casProviderEnabled?: boolean;
     /**
-     * CAS 协议配置
+     * CAS protocol configuration
      */
     casConfig?: CasIdPConfig;
     /**
-     * 登录配置
+     * Login configuration
      */
     loginConfig?: ApplicationLoginConfigInputDto;
     /**
-     * 注册配置
+     *Registration configuration
      */
     registerConfig?: ApplicationRegisterConfigInputDto;
     /**
-     * 品牌化配置
+     * Branding configuration
      */
     brandingConfig?: ApplicationBrandingConfigInputDto;
 };
@@ -104,7 +104,7 @@ export type CreateApplicationDto = {
 export namespace CreateApplicationDto {
 
     /**
-     * 应用类型
+     *Application type
      */
     export enum appType {
         WEB = 'web',
@@ -118,7 +118,7 @@ export namespace CreateApplicationDto {
     }
 
     /**
-     * 默认应用协议类型
+     *Default application protocol type
      */
     export enum defaultProtocol {
         OIDC = 'oidc',

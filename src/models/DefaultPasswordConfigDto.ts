@@ -4,13 +4,13 @@
 
 export type DefaultPasswordConfigDto = {
     /**
-     * 秘密初始化方式
-     * - `random`: 系统随机
-     * - `custom`: 指定固定值
+     *Secret initialization method
+     * - `random`: system random
+     * - `custom`: specify a fixed value
      */
     type: DefaultPasswordConfigDto.type;
     /**
-     * 初始密码固定值
+     * Fixed value of initial password
      */
     custom?: string;
 };
@@ -18,9 +18,9 @@ export type DefaultPasswordConfigDto = {
 export namespace DefaultPasswordConfigDto {
 
     /**
-     * 秘密初始化方式
-     * - `random`: 系统随机
-     * - `custom`: 指定固定值
+     *Secret initialization method
+     * - `random`: system random
+     * - `custom`: specify a fixed value
      */
     export enum type {
         RANDOM = 'random',

@@ -4,7 +4,7 @@
 
 export type CheckSessionStatusDataDto = {
     /**
-     * 是否具有登录态
+     * Whether it has login status
      */
     active: boolean;
 };

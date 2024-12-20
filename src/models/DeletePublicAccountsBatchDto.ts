@@ -6,11 +6,11 @@ import type { DeletePublicAccountsBatchOptionsDto } from './DeletePublicAccounts
 
 export type DeletePublicAccountsBatchDto = {
     /**
-     * 公共账号用户 ID 列表
+     * List of public account user IDs
      */
     userIds: Array<string>;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: DeletePublicAccountsBatchOptionsDto;
 };

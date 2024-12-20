@@ -6,7 +6,7 @@ import type { RoleCodeDto } from './RoleCodeDto';
 
 export type CheckRoleMutualExclusionReqDto = {
     /**
-     * 角色信息列表
+     * Role information list
      */
     roles: Array<RoleCodeDto>;
 };

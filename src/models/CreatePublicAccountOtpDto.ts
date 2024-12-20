@@ -4,7 +4,7 @@
 
 export type CreatePublicAccountOtpDto = {
     /**
-     * OTP 密钥
+     * OTP secret
      */
     secret: string;
     /**

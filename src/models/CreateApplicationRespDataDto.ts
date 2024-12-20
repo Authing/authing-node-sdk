@@ -12,111 +12,111 @@ import type { SamlIdpConfig } from './SamlIdpConfig';
 
 export type CreateApplicationRespDataDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用唯一标志
+     * Apply unique identifier
      */
     appIdentifier: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName: string;
     /**
-     * 应用 Logo 链接
+     *App Logo link
      */
     appLogo: string;
     /**
-     * 应用描述信息
+     * Application description information
      */
     appDescription?: string;
     /**
-     * 应用类型
+     *Application type
      */
     appType: CreateApplicationRespDataDto.appType;
     /**
-     * 用户池 ID
+     * User pool ID
      */
     userPoolId: string;
     /**
-     * 是否为集成应用
+     * Whether it is an integrated application
      */
     isIntegrateApp: boolean;
     /**
-     * 默认应用协议类型
+     *Default application protocol type
      */
     defaultProtocol: CreateApplicationRespDataDto.defaultProtocol;
     /**
-     * 应用登录回调地址
+     * Application login callback address
      */
     redirectUris: Array<string>;
     /**
-     * 应用退出登录回调地址
+     * Application logout callback address
      */
     logoutRedirectUris: Array<string>;
     /**
-     * 发起登录地址：在 Authing 应用详情点击「体验登录」或在应用面板点击该应用图标时，会跳转到此 URL，默认为 Authing 登录页。
+     * Initiate login address: When you click "Experience Login" in the Authing application details or click the application icon in the application panel, you will be redirected to this URL, which defaults to the Authing login page.
      */
     initLoginUri: string;
     /**
-     * 是否开启 SSO 单点登录
+     * Whether to enable SSO single sign-on
      */
     ssoEnabled: boolean;
     /**
-     * 开启 SSO 单点登录的时间
+     * Time to enable SSO single sign-on
      */
     ssoEnabledAt?: string;
     /**
-     * 登录配置
+     * Login configuration
      */
     loginConfig: ApplicationLoginConfigDto;
     /**
-     * 注册配置
+     *Registration configuration
      */
     registerConfig: ApplicationRegisterConfig;
     /**
-     * 品牌化配置
+     * Branding configuration
      */
     brandingConfig: ApplicationBrandingConfig;
     /**
-     * OIDC 协议配置
+     * OIDC protocol configuration
      */
     oidcConfig: OIDCConfig;
     /**
-     * 是否开启 SAML 身份提供商
+     * Whether to enable SAML identity provider
      */
     samlProviderEnabled: boolean;
     /**
-     * SAML 协议配置
+     * SAML protocol configuration
      */
     samlConfig?: SamlIdpConfig;
     /**
-     * 是否开启 OAuth 身份提供商
+     * Whether to enable the OAuth identity provider
      */
     oauthProviderEnabled: boolean;
     /**
-     * OAuth2.0 协议配置
+     * OAuth2.0 protocol configuration
      */
     oauthConfig?: OauthIdpConfig;
     /**
-     * 是否开启 CAS 身份提供商
+     * Whether to enable CAS identity provider
      */
     casProviderEnabled: boolean;
     /**
-     * CAS 协议配置
+     * CAS protocol configuration
      */
     casConfig?: CasIdPConfig;
     /**
-     * 是否自定义本应用的登录框，默认走全局的登录框配置。
+     * Whether to customize the login box of this application, the default is to use the global login box configuration.
      */
     customBrandingEnabled: boolean;
     /**
-     * 是否自定义本应用的安全规则，默认走全局的安全配置。
+     * Whether to customize the security rules of this application, the global security configuration will be adopted by default.
      */
     customSecurityEnabled: boolean;
     /**
-     * 集成应用的模版类型
+     * Template types for integrated applications
      */
     template?: string;
 };
@@ -124,7 +124,7 @@ export type CreateApplicationRespDataDto = {
 export namespace CreateApplicationRespDataDto {
 
     /**
-     * 应用类型
+     *Application type
      */
     export enum appType {
         WEB = 'web',
@@ -138,7 +138,7 @@ export namespace CreateApplicationRespDataDto {
     }
 
     /**
-     * 默认应用协议类型
+     *Default application protocol type
      */
     export enum defaultProtocol {
         OIDC = 'oidc',

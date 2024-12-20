@@ -3,35 +3,35 @@
 /* eslint-disable */
 
 /**
- * 通过组织 code 以及 部门 ID 或 部门 code，获取部门信息，可以获取自定义数据。
+ * Obtain department information through organization code and department ID or department code, and you can obtain custom data.
  */
 export type GetDepartmentDto = {
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
+     * Department ID, the root department passes `root`. One of departmentId and departmentCode must be passed.
      */
     departmentId?: any;
     /**
-     * 部门 code。departmentId 和 departmentCode 必传其一。
+     *Department code. One of departmentId and departmentCode must be passed.
      */
     departmentCode?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
     /**
-     * 是否拍平扩展字段
+     * Whether to flatten the extended field
      */
     flatCustomData?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

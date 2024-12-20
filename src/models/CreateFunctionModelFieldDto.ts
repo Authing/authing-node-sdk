@@ -7,128 +7,128 @@ import type { DropDownItemDto } from './DropDownItemDto';
 
 export type CreateFunctionModelFieldDto = {
     /**
-     * 用户中心是否显示，仅在 user 模块下有意义:
-     * - true: 用户中心展示
-     * - false: 用户中心不展示
+     * Whether the user center is displayed is only meaningful under the user module:
+     * - true: User center display
+     * - false: User center does not display
      *
      */
     userVisible: boolean;
     /**
-     * 关联数据可选范围
+     * Optional range of associated data
      */
     relationOptionalRange: Condition;
     /**
-     * 关联数据要展示的属性
+     * Attributes to be displayed in associated data
      */
     relationShowKey: string;
     /**
-     * 关联关系是否为 1-N:
-     * - true: 是 1-N 的关系
-     * - false: 不是 1-N 的关系
+     * Whether the association is 1-N:
+     * - true: It is a 1-N relationship
+     * - false: Not a 1-N relationship
      *
      */
     relationMultiple: boolean;
     /**
-     * 关联类型
+     * Association type
      */
     relationType: string;
     /**
-     * 是否可用于登录，仅在 user 模块下有意义:
-     * - true: 用于登录
-     * - false: 不用于登录
+     * Whether it can be used for login, only meaningful under the user module:
+     * - true: used for login
+     * - false: not used for login
      *
      */
     forLogin: boolean;
     /**
-     * 是否支持模糊搜索:
-     * - true: 支持模糊搜索
-     * - false: 不支持模糊搜索
+     * Whether to support fuzzy search:
+     * - true: support fuzzy search
+     * - false: fuzzy search is not supported
      *
      */
     fuzzySearch: boolean;
     /**
-     * 下拉菜单选项
+     * Drop down menu options
      */
     dropDown: DropDownItemDto;
     /**
-     * 前端格式化显示规则:
+     * Front-end formatting display rules:
      */
     format: number;
     /**
-     * 字符串的校验匹配规则
+     * Verification matching rules for strings
      */
     regexp: string;
     /**
-     * 如果类型是数字表示数字下限，如果类型是日期表示开始日期
+     * If the type is a number, it represents the lower limit of the number. If the type is a date, it represents the starting date.
      */
     min: number;
     /**
-     * 如果类型是数字表示数字上限，如果类型是日期表示结束日期
+     * If the type is a number, it means the upper limit of the number. If the type is a date, it means the end date.
      */
     max: number;
     /**
-     * 字符串长度限制
+     * String length limit
      */
     maxLength: number;
     /**
-     * 是否唯一:
-     * - true: 唯一
-     * - false: 不唯一
+     * Is it unique:
+     * - true: unique
+     * - false: not unique
      *
      */
     unique: boolean;
     /**
-     * 是否必填:
-     * - true: 必填
-     * - false: 不必填
+     * Is it required:
+     * - true: required
+     * - false: no need to fill in
      *
      */
     require: boolean;
     /**
-     * 默认值
+     * default value
      */
     default: any;
     /**
-     * 帮助说明
+     * Help instructions
      */
     help: string;
     /**
-     * 是否可编辑:
-     * - true: 可编辑
-     * - false: 不可编辑
+     * Whether editable:
+     * - true: editable
+     * - false: not editable
      *
      */
     editable: boolean;
     /**
-     * 是否展示:
-     * - true: 展示
-     * - false: 不展示
+     * Whether to display:
+     * - true: display
+     * - false: do not display
      *
      */
     show: boolean;
     /**
-     * 字段类型:
-     * - 1: 单行文本
-     * - 2: 多行文本
-     * - 3: 数字
-     * - 4: 布尔类型
-     * - 5: 日期
-     * - 6: 枚举
-     * - 7: 关联类型
-     * - 8: 反向关联数据展示
+     *Field type:
+     * - 1: single line of text
+     * - 2: multi-line text
+     * - 3: Number
+     * - 4: Boolean type
+     * - 5: date
+     * - 6: enumeration
+     * - 7: Association type
+     * - 8: Reverse correlation data display
      *
      */
     type: CreateFunctionModelFieldDto.type;
     /**
-     * 字段属性名
+     * Field attribute name
      */
     key: string;
     /**
-     * 字段名称
+     *Field name
      */
     name: string;
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
 };
@@ -136,15 +136,15 @@ export type CreateFunctionModelFieldDto = {
 export namespace CreateFunctionModelFieldDto {
 
     /**
-     * 字段类型:
-     * - 1: 单行文本
-     * - 2: 多行文本
-     * - 3: 数字
-     * - 4: 布尔类型
-     * - 5: 日期
-     * - 6: 枚举
-     * - 7: 关联类型
-     * - 8: 反向关联数据展示
+     *Field type:
+     * - 1: single line of text
+     * - 2: multi-line text
+     * - 3: Number
+     * - 4: Boolean type
+     * - 5: Date
+     * - 6: enumeration
+     * - 7: Association type
+     * - 8: Reverse correlation data display
      *
      */
     export enum type {

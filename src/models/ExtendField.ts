@@ -6,23 +6,23 @@ import type { Config } from './Config';
 
 export type ExtendField = {
     /**
-     * 字段唯一标识，长度为 1-64 位，只允许包含英文字母、数字、下划线 _、金钱符 $
+     * Unique identification of the field, length 1-64 characters, only allowed to contain English letters, numbers, underscore _, dollar sign $
      */
     key: string;
     /**
-     * 字段值类型
+     *Field value type
      */
     valueType: ExtendField.valueType;
     /**
-     * 描述
+     * describe
      */
     description?: string;
     /**
-     * 展示名称
+     * Display name
      */
     label: string;
     /**
-     * 字段配置，当 valueType=SELECT 时，此参数必传，否则可不传
+     * Field configuration, when valueType=SELECT, this parameter must be passed, otherwise it does not need to be passed
      */
     config?: Config;
 };
@@ -30,7 +30,7 @@ export type ExtendField = {
 export namespace ExtendField {
 
     /**
-     * 字段值类型
+     *Field value type
      */
     export enum valueType {
         STRING = 'STRING',

@@ -6,11 +6,11 @@ import type { EventAppDto } from './EventAppDto';
 
 export type EventAppPagingDto = {
     /**
-     * 记录总数
+     *Total number of records
      */
     totalCount: number;
     /**
-     * 数据列表
+     * Data list
      */
     list: Array<EventAppDto>;
 };

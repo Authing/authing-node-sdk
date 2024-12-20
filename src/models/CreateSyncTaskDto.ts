@@ -9,60 +9,60 @@ import type { SyncTaskTimedScheduler } from './SyncTaskTimedScheduler';
 
 export type CreateSyncTaskDto = {
     /**
-     * 字段映射配置
+     * Field mapping configuration
      */
     fieldMapping: Array<SyncTaskFieldMapping>;
     /**
-     * 同步任务触发类型：
-     * - `manually`: 手动触发执行
-     * - `timed`: 定时触发
-     * - `automatic`: 根据事件自动触发
+     * Synchronization task trigger type:
+     * - `manually`: trigger execution manually
+     * - `timed`: timed trigger
+     * - `automatic`: automatically triggered based on events
      *
      */
     syncTaskTrigger: CreateSyncTaskDto.syncTaskTrigger;
     /**
-     * 同步任务数据流向：
-     * - `upstream`: 作为上游，将数据同步到 Authing
-     * - `downstream`: 作为下游，将 Authing 数据同步到此系统
+     * Synchronization task data flow direction:
+     * - `upstream`: As an upstream, synchronize data to Authing
+     * - `downstream`: As a downstream, synchronize Authing data to this system
      *
      */
     syncTaskFlow: CreateSyncTaskDto.syncTaskFlow;
     /**
-     * 同步任务配置信息
+     * Synchronize task configuration information
      */
     clientConfig: SyncTaskClientConfig;
     /**
-     * 同步任务类型:
-     * - `lark`: 飞书
-     * - `lark-international`: 飞书国际版
-     * - `wechatwork`: 企业微信
-     * - `dingtalk`: 钉钉
+     * Synchronization task type:
+     * - `lark`: Feishu
+     * - `lark-international`: Feishu international version
+     * - `wechatwork`: Enterprise WeChat
+     * - `dingtalk`: DingTalk
      * - `active-directory`: Windows AD
      * - `ldap`: LDAP
-     * - `italent`: 北森
-     * - `maycur`: 每刻报销
+     * - `italent`: Beisen
+     * - `maycur`: reimburse every tick
      * - `moka`: Moka
-     * - `fxiaoke`: 纷享销客
-     * - `xiaoshouyi`: 销售易
-     * - `kayang`: 嘉扬 HR
-     * - `scim`: 自定义同步源
+     * - `fxiaoke`: enjoy sales
+     * - `xiaoshouyi`: easy sales
+     * - `kayang`: Kayang HR
+     * - `scim`: Custom synchronization source
      *
      */
     syncTaskType: CreateSyncTaskDto.syncTaskType;
     /**
-     * 同步任务名称
+     * Synchronization task name
      */
     syncTaskName: string;
     /**
-     * 此同步任务绑定的组织机构。针对上游同步，需执行一次同步任务之后才会绑定组织机构；针对下游同步，创建同步任务的时候就需要设置。
+     * The organization that this synchronization task is bound to. For upstream synchronization, you need to execute a synchronization task before the organization will be bound; for downstream synchronization, you need to set it when creating a synchronization task.
      */
     organizationCode?: string;
     /**
-     * 同步范围，**只针对下游同步任务有效**。为空表示同步整个组织机构。
+     * Synchronization scope, **only valid for downstream synchronization tasks**. Leave empty to synchronize the entire organization.
      */
     provisioningScope?: SyncTaskProvisioningScope;
     /**
-     * 定时同步时间设置
+     * Scheduled synchronization time setting
      */
     timedScheduler?: SyncTaskTimedScheduler;
 };
@@ -70,20 +70,20 @@ export type CreateSyncTaskDto = {
 export namespace CreateSyncTaskDto {
 
     /**
-     * 同步任务类型:
-     * - `lark`: 飞书
-     * - `lark-international`: 飞书国际版
-     * - `wechatwork`: 企业微信
-     * - `dingtalk`: 钉钉
+     * Synchronization task type:
+     * - `lark`: Feishu
+     * - `lark-international`: Feishu international version
+     * - `wechatwork`: Enterprise WeChat
+     * - `dingtalk`: DingTalk
      * - `active-directory`: Windows AD
      * - `ldap`: LDAP
-     * - `italent`: 北森
-     * - `maycur`: 每刻报销
+     * - `italent`: Beisen
+     * - `maycur`: reimburse every tick
      * - `moka`: Moka
-     * - `fxiaoke`: 纷享销客
-     * - `xiaoshouyi`: 销售易
-     * - `kayang`: 嘉扬 HR
-     * - `scim`: 自定义同步源
+     * - `fxiaoke`: enjoy sales
+     * - `xiaoshouyi`: easy sales
+     * - `kayang`: Kayang HR
+     * - `scim`: Custom synchronization source
      *
      */
     export enum syncTaskType {
@@ -104,9 +104,9 @@ export namespace CreateSyncTaskDto {
     }
 
     /**
-     * 同步任务数据流向：
-     * - `upstream`: 作为上游，将数据同步到 Authing
-     * - `downstream`: 作为下游，将 Authing 数据同步到此系统
+     * Synchronization task data flow direction:
+     * - `upstream`: As an upstream, synchronize data to Authing
+     * - `downstream`: As a downstream, synchronize Authing data to this system
      *
      */
     export enum syncTaskFlow {
@@ -115,10 +115,10 @@ export namespace CreateSyncTaskDto {
     }
 
     /**
-     * 同步任务触发类型：
-     * - `manually`: 手动触发执行
-     * - `timed`: 定时触发
-     * - `automatic`: 根据事件自动触发
+     * Synchronization task trigger type:
+     * - `manually`: trigger execution manually
+     * - `timed`: timed trigger
+     * - `automatic`: automatically triggered based on events
      *
      */
     export enum syncTaskTrigger {

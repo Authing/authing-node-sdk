@@ -4,11 +4,11 @@
 
 export type DeleteAsaAccountDto = {
     /**
-     * ASA 账号 ID
+     * ASA account ID
      */
     accountId: string;
     /**
-     * 所属应用 ID
+     * The application ID to which it belongs
      */
     appId: string;
 };

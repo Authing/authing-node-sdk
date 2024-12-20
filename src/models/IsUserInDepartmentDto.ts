@@ -3,31 +3,31 @@
 /* eslint-disable */
 
 /**
- * 通过组织 code、部门 ID，判断用户是否在某个部门下，可以选择包含子部门。
+ * Use the organization code and department ID to determine whether the user is under a certain department, and you can choose to include sub-departments.
  */
 export type IsUserInDepartmentDto = {
     /**
-     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
+     * The user's unique identifier can be user ID, username, email, mobile phone number, externalId, or ID in an external identity source. For details, see the description of the userIdType field. Defaults to user id.
      */
     userId?: any;
     /**
-     * 组织 code
+     *Organization code
      */
     organizationCode?: any;
     /**
-     * 部门 ID，根部门传 `root`。departmentId 和 departmentCode 必传其一。
+     * Department ID, the root department passes `root`. One of departmentId and departmentCode must be passed.
      */
     departmentId?: any;
     /**
-     * 此次调用中使用的部门 ID 的类型
+     * The type of department ID used in this call
      */
     departmentIdType?: any;
     /**
-     * 是否包含子部门
+     * Whether to include sub-departments
      */
     includeChildrenDepartments?: any;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantId?: any;
 };

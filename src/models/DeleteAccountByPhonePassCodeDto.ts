@@ -4,15 +4,15 @@
 
 export type DeleteAccountByPhonePassCodeDto = {
     /**
-     * 此账号绑定的手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
+     * The phone number associated with this account, without the area code. If it is a foreign phone number, specify the area code in the phoneCountryCode parameter.
      */
     phoneNumber: string;
-    /**
-     * 短信验证码，一个短信验证码只能使用一次，有效时间为一分钟。你需要通过**发送短信**接口获取。
-     */
+  /**
+   * SMS verification code. A SMS verification code can only be used once and is valid for one minute. You need to obtain it through the **Send SMS** interface.
+   */
     passCode: string;
     /**
-     * 手机区号
+     * Phone Country Code
      */
     phoneCountryCode?: string;
 };

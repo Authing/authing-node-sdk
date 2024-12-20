@@ -4,15 +4,15 @@
 
 export type BindByAccountIdInputApi = {
     /**
-     * 中间态键
+     * Intermediate key
      */
     key: string;
     /**
-     * 操作编码
+     * Operation code
      */
     action: string;
     /**
-     * 账号 ID
+     *Account ID
      */
     accountId: string;
 };

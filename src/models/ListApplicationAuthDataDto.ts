@@ -4,31 +4,31 @@
 
 export type ListApplicationAuthDataDto = {
     /**
-     * 授权 id
+     *Authorization id
      */
     id: string;
     /**
-     * 主体 id
+     * Subject id
      */
     targetId: string;
     /**
-     * 主体名称
+     * Subject name
      */
     targetName: string;
     /**
-     * 主体类型，USER/ORG/GROUP/ROLE
+     * Principal type, USER/ORG/GROUP/ROLE
      */
     targetType: ListApplicationAuthDataDto.targetType;
     /**
-     * 主体类型，ALLOW/DENY
+     * Subject type, ALLOW/DENY
      */
     effect: ListApplicationAuthDataDto.effect;
     /**
-     * 授权开关
+     * Authorization switch
      */
     enabled: boolean;
     /**
-     * 授权类型, ALL:所有人 SUBJECT:主体
+     * Authorization type, ALL: everyone SUBJECT: subject
      */
     permissionType: ListApplicationAuthDataDto.permissionType;
 };
@@ -36,7 +36,7 @@ export type ListApplicationAuthDataDto = {
 export namespace ListApplicationAuthDataDto {
 
     /**
-     * 主体类型，USER/ORG/GROUP/ROLE
+     * Principal type, USER/ORG/GROUP/ROLE
      */
     export enum targetType {
         USER = 'USER',
@@ -47,7 +47,7 @@ export namespace ListApplicationAuthDataDto {
     }
 
     /**
-     * 主体类型，ALLOW/DENY
+     * Subject type, ALLOW/DENY
      */
     export enum effect {
         ALLOW = 'ALLOW',
@@ -55,7 +55,7 @@ export namespace ListApplicationAuthDataDto {
     }
 
     /**
-     * 授权类型, ALL:所有人 SUBJECT:主体
+     * Authorization type, ALL: everyone SUBJECT: subject
      */
     export enum permissionType {
         ALL = 'ALL',

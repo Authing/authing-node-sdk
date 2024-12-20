@@ -4,75 +4,75 @@
 
 export type CreateTerminalDto = {
     /**
-     * 自定义数据, 自定义数据的属性对应在元数据里自定义的字段
+     * Custom data, the attributes of custom data correspond to the custom fields in metadata
      */
     customData: any;
     /**
-     * 设备类型
+     *Device type
      */
     type: CreateTerminalDto.type;
     /**
-     * 设备唯一标识
+     *Unique identification of device
      */
     deviceUniqueId: string;
     /**
-     * 设备名称
+     *Device name
      */
     name?: string;
     /**
-     * 系统版本
+     * System version
      */
     version?: string;
     /**
-     * 硬件存储秘钥
+     * Hardware storage key
      */
     hks?: string;
     /**
-     * 磁盘加密
+     * Disk encryption
      */
     fde?: string;
     /**
-     * 硬件越狱
+     * Hardware jailbreak
      */
     hor?: boolean;
     /**
-     * 设备序列号
+     * Device serial number
      */
     sn?: string;
     /**
-     * 制造商
+     *Manufacturer
      */
     producer?: string;
     /**
-     * 设备模组
+     *Equipment module
      */
     mod?: string;
     /**
-     * 设备系统
+     *Equipment system
      */
     os?: string;
     /**
-     * 国际识别码
+     * International identification code
      */
     imei?: string;
     /**
-     * 设备识别码
+     *Device identification code
      */
     meid?: string;
     /**
-     * 设备描述
+     *Device description
      */
     description?: string;
     /**
-     * 设备语言
+     *Device language
      */
     language?: string;
     /**
-     * 是否开启 Cookies
+     * Whether to enable Cookies
      */
     cookie?: boolean;
     /**
-     * 用户代理
+     * User agent
      */
     userAgent?: string;
 };
@@ -80,7 +80,7 @@ export type CreateTerminalDto = {
 export namespace CreateTerminalDto {
 
     /**
-     * 设备类型
+     *Device type
      */
     export enum type {
         BROWSER = 'Browser',

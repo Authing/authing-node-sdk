@@ -3,33 +3,33 @@
 /* eslint-disable */
 
 /**
- * 通过用户 ID，获取用户被授权的所有资源，可以选择指定用户 ID 类型等，用户被授权的资源是用户自身被授予、通过分组继承、通过角色继承、通过组织机构继承的集合。
+ * Obtain all the resources authorized by the user through the user ID. You can choose to specify the user ID type, etc. The resources authorized by the user are a collection of resources granted to the user himself, inherited through groups, inherited through roles, and inherited through organizations.
  */
 export type GetUserAuthorizedResourcesDto = {
     /**
-     * 用户的唯一标志，可以是用户 ID、用户名、邮箱、手机号、externalId、在外部身份源的 ID，详情见 userIdType 字段的说明。默认为用户 id 。
+     * The user's unique identifier can be user ID, username, email, mobile phone number, externalId, or ID in an external identity source. For details, see the description of the userIdType field. Defaults to user id.
      */
     userId?: any;
     /**
-     * 用户 ID 类型，默认值为 `user_id`，可选值为：
-     * - `user_id`: Authing 用户 ID，如 `6319a1504f3xxxxf214dd5b7`
-     * - `phone`: 用户手机号
-     * - `email`: 用户邮箱
-     * - `username`: 用户名
-     * - `external_id`: 用户在外部系统的 ID，对应 Authing 用户信息的 `externalId` 字段
-     * - `identity`: 用户的外部身份源信息，格式为 `<extIdpId>:<userIdInIdp>`，其中 `<extIdpId>` 为 Authing 身份源的 ID，`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`。
-     * - `sync_relation`: 用户的外部身份源信息，格式为 `<provier>:<userIdInIdp>`，其中 `<provier>` 为同步身份源类型，如 wechatwork, lark；`<userIdInIdp>` 为用户在外部身份源的 ID。
-     * 示例值：`lark:ou_8bae746eac07cd2564654140d2a9ac61`。
+     * User ID type, the default value is `user_id`, the optional values are:
+     * - `user_id`: Authing user ID, such as `6319a1504f3xxxxf214dd5b7`
+     * - `phone`: user’s mobile phone number
+     * - `email`: user email
+     * - `username`: username
+     * - `external_id`: the user's ID in the external system, corresponding to the `externalId` field of Authing user information
+     * - `identity`: The user's external identity source information, in the format of `<extIdpId>:<userIdInIdp>`, where `<extIdpId>` is the ID of the Authing identity source, `<userIdInIdp>` is the user's external identity source ID.
+     * Example value: `62f20932716fbcc10d966ee5:ou_8bae746eac07cd2564654140d2a9ac61`.
+     * - `sync_relation`: The user's external identity source information in the format of `<provier>:<userIdInIdp>`, where `<provier>` is the synchronization identity source type, such as wechatwork, lark; `<userIdInIdp>` is the user's The ID of the external identity source.
+     * Example value: `lark:ou_8bae746eac07cd2564654140d2a9ac61`.
      *
      */
     userIdType?: any;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
     /**
-     * 资源类型，如 数据、API、菜单、按钮
+     * Resource type, such as data, API, menu, button
      */
     resourceType?: any;
 };

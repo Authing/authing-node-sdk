@@ -3,19 +3,19 @@
 /* eslint-disable */
 
 /**
- * 获取邀请策略用户归属详情
+ * Get invitation policy user attribution details
  */
 export type GetInvitationPolicyUserAttributionDto = {
     /**
-     * 归属关联记录 ID
+     * Attribution associated record ID
      */
     id?: any;
     /**
-     * 是否返回关联对象详情
+     * Whether to return associated object details
      */
     withTargetDetail?: any;
     /**
-     * 当关联对象是部门时，是否返回部门其他详细信息，包括 namePath, codePath, idPath
+     * When the associated object is a department, whether to return other detailed information of the department, including namePath, codePath, idPath
      */
     withDepartmentExtInfo?: any;
 };

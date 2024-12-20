@@ -4,7 +4,7 @@
 
 export type DeletePermissionNamespaceDto = {
     /**
-     * 权限空间 Code
+     * Permission space Code
      */
     code: string;
 };

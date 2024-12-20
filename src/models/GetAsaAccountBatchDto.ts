@@ -4,11 +4,11 @@
 
 export type GetAsaAccountBatchDto = {
     /**
-     * ASA 账号 ID 列表
+     * ASA account ID list
      */
     accountIds: Array<string>;
     /**
-     * 所属应用 ID
+     * The application ID to which it belongs
      */
     appId: string;
 };

@@ -4,15 +4,15 @@
 
 export type CreateAccessKeyDto = {
     /**
-     * 密钥类型
+     *Key type
      */
     type: string;
     /**
-     * 密钥所属用户 ID
+     * User ID to which the key belongs
      */
     userId?: string;
     /**
-     * 密钥所属租户 ID
+     * Tenant ID to which the key belongs
      */
     tenantId?: string;
 };

@@ -7,167 +7,167 @@ import type { CreateUserOtpDto } from './CreateUserOtpDto';
 
 export type CreateUserInfoDto = {
     /**
-     * 账户当前状态
+     * Current status of account
      */
     status?: CreateUserInfoDto.status;
     /**
-     * 邮箱，不区分大小写
+     * Email, not case sensitive
      */
     email?: string;
     /**
-     * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
+     *Mobile phone number without area code. If it is a foreign mobile phone number, please specify the area code in the phoneCountryCode parameter.
      */
     phone?: string;
     /**
-     * 手机区号，中国大陆手机号可不填。Authing 短信服务暂不内置支持国际手机号，你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes。
+     * Mobile phone area code, mainland China mobile phone number is optional. The Authing SMS service currently does not have built-in support for international mobile phone numbers. You need to configure the corresponding international SMS service in the Authing console. A complete list of mobile phone area codes can be found at https://en.wikipedia.org/wiki/List_of_country_calling_codes.
      */
     phoneCountryCode?: string;
     /**
-     * 用户名，用户池内唯一
+     * Username, unique in the user pool
      */
     username?: string;
     /**
-     * 第三方外部 ID
+     * Third-party external ID
      */
     externalId?: string;
     /**
-     * 用户真实名称，不具备唯一性
+     * User’s real name, not unique
      */
     name?: string;
     /**
-     * 昵称
+     * Nick name
      */
     nickname?: string;
     /**
-     * 头像链接
+     * Avatar link
      */
     photo?: string;
     /**
-     * 性别
+     * gender
      */
     gender?: CreateUserInfoDto.gender;
     /**
-     * 邮箱是否验证
+     * Is the email verified?
      */
     emailVerified?: boolean;
     /**
-     * 手机号是否验证
+     * Is the mobile phone number verified?
      */
     phoneVerified?: boolean;
     /**
-     * 出生日期
+     *Date of birth
      */
     birthdate?: string;
     /**
-     * 所在国家
+     *Country
      */
     country?: string;
     /**
-     * 所在省份
+     *Province
      */
     province?: string;
     /**
-     * 所在城市
+     *City where you are located
      */
     city?: string;
     /**
-     * 所处地址
+     * Address
      */
     address?: string;
     /**
-     * 所处街道地址
+     * Street address
      */
     streetAddress?: string;
     /**
-     * 邮政编码号
+     * Postal code number
      */
     postalCode?: string;
     /**
-     * 所在公司
+     * Company where you work
      */
     company?: string;
     /**
-     * 最近一次登录时使用的浏览器 UA
+     * Browser UA used for the most recent login
      */
     browser?: string;
     /**
-     * 最近一次登录时使用的设备
+     *The device from which you last logged in
      */
     device?: string;
     /**
-     * 名
+     * name
      */
     givenName?: string;
     /**
-     * 姓
+     * surname
      */
     familyName?: string;
     /**
-     * 中间名
+     *Middle name
      */
     middleName?: string;
     /**
-     * Preferred Username
+     *Preferred Username
      */
     profile?: string;
     /**
-     * Preferred Username
+     *Preferred Username
      */
     preferredUsername?: string;
     /**
-     * 用户个人网页
+     * User personal web page
      */
     website?: string;
     /**
-     * 用户时区信息
+     * User time zone information
      */
     zoneinfo?: string;
     /**
-     * Locale
+     *Locale
      */
     locale?: string;
     /**
-     * 标准的完整地址
+     * Standard full address
      */
     formatted?: string;
     /**
-     * 用户所在区域
+     * User's area
      */
     region?: string;
     /**
-     * 用户密码，默认为明文。我们使用 HTTPS 协议对密码进行安全传输，可以在一定程度上保证安全性。如果你还需要更高级别的安全性，我们还支持 RSA256 和国密 SM2 两种方式对密码进行加密。详情见 `passwordEncryptType` 参数。
+     * User password, default is clear text. We use the HTTPS protocol for secure transmission of passwords, which can ensure security to a certain extent. If you need a higher level of security, we also support RSA256 and SM2 to encrypt passwords. See the `passwordEncryptType` parameter for details.
      */
     password?: string;
     /**
-     * 加密用户密码的盐
+     * Salt to encrypt user password
      */
     salt?: string;
     /**
-     * 租户 ID
+     * Tenant ID
      */
     tenantIds?: Array<string>;
     /**
-     * 用户的 OTP 验证器
+     * User's OTP authenticator
      */
     otp?: CreateUserOtpDto;
     /**
-     * 用户所属部门 ID 列表
+     * List of department IDs to which the user belongs
      */
     departmentIds?: Array<string>;
     /**
-     * 自定义数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     * Custom data, the key in the object passed in must first define the relevant custom fields in the user pool
      */
     customData?: any;
     /**
-     * 数据对象数据，传入的对象中的 key 必须先在用户池定义相关自定义字段
+     * Data object data, the key in the object passed in must first define relevant custom fields in the user pool
      */
     metadataSource?: any;
     /**
-     * 第三方身份源（建议调用绑定接口进行绑定）
+     * Third-party identity source (it is recommended to call the binding interface for binding)
      */
     identities?: Array<CreateIdentityDto>;
     /**
-     * 用户身份证号码
+     * User ID number
      */
     identityNumber?: string;
 };
@@ -175,7 +175,7 @@ export type CreateUserInfoDto = {
 export namespace CreateUserInfoDto {
 
     /**
-     * 账户当前状态
+     * Current status of account
      */
     export enum status {
         SUSPENDED = 'Suspended',
@@ -186,7 +186,7 @@ export namespace CreateUserInfoDto {
     }
 
     /**
-     * 性别
+     * gender
      */
     export enum gender {
         M = 'M',

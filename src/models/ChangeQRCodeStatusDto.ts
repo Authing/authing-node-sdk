@@ -4,14 +4,14 @@
 
 export type ChangeQRCodeStatusDto = {
     /**
-     * 二维码唯一 ID
+     * QR code unique ID
      */
     qrcodeId: string;
     /**
-     * 修改二维码状态的动作:
-     * - `SCAN`: 修改二维码状态为已扫码状态，当移动 APP 扫了码之后，应当立即执行此操作；
-     * - `CONFIRM`: 修改二维码状态为已授权，执行此操作前必须先执行 `SCAN 操作；
-     * - `CANCEL`: 修改二维码状态为已取消，执行此操作前必须先执行 `SCAN 操作；
+     * Action to modify QR code status:
+     * - `SCAN`: Change the QR code status to scanned status. This operation should be performed immediately after the mobile APP scans the code;
+     * - `CONFIRM`: Modify the QR code status to authorized. The `SCAN operation must be performed before performing this operation;
+     * - `CANCEL`: Modify the QR code status to canceled. The `SCAN operation must be performed before performing this operation;
      *
      */
     action: ChangeQRCodeStatusDto.action;
@@ -20,10 +20,10 @@ export type ChangeQRCodeStatusDto = {
 export namespace ChangeQRCodeStatusDto {
 
     /**
-     * 修改二维码状态的动作:
-     * - `SCAN`: 修改二维码状态为已扫码状态，当移动 APP 扫了码之后，应当立即执行此操作；
-     * - `CONFIRM`: 修改二维码状态为已授权，执行此操作前必须先执行 `SCAN 操作；
-     * - `CANCEL`: 修改二维码状态为已取消，执行此操作前必须先执行 `SCAN 操作；
+     * Action to modify QR code status:
+     * - `SCAN`: Change the QR code status to scanned status. This operation should be performed immediately after the mobile APP scans the code;
+     * - `CONFIRM`: Modify the QR code status to authorized. The `SCAN operation must be performed before performing this operation;
+     * - `CANCEL`: Modify the QR code status to canceled. The `SCAN operation must be performed before performing this operation;
      *
      */
     export enum action {

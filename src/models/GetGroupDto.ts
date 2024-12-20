@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 通过分组 code，获取分组详情。
+ * Get group details through group code.
  */
 export type GetGroupDto = {
     /**
-     * 分组 code
+     * group code
      */
     code?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

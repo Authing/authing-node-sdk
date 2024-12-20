@@ -6,18 +6,18 @@ import type { Condition } from './Condition';
 
 export type GetAllRowDto = {
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
     /**
-     * 多个搜索条件的关系：
-     * - and: 且
-     * - or:  或
+     * Relationship between multiple search conditions:
+     * - and: and
+     * - or: or
      *
      */
     conjunction?: string;
     /**
-     * 搜索条件
+     *Search criteria
      */
     conditions?: Array<Condition>;
 };

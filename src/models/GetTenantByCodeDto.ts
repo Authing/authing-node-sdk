@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 根据租户 Code 获取租户详情
+ * Get tenant details based on tenant Code
  */
 export type GetTenantByCodeDto = {
     /**
-     * 租户 Code
+     * Tenant Code
      */
     code?: any;
 };

@@ -4,15 +4,15 @@
 
 export type BindPhoneDto = {
     /**
-     * 短信验证码，注意一个短信验证码指南使用一次，且有过期时间。
+     * SMS verification code, please note that each SMS verification code is used once and has an expiration date.
      */
     passCode: string;
     /**
-     * 手机号，不带区号。如果是国外手机号，请在 phoneCountryCode 参数中指定区号。
+     *Mobile phone number without area code. If it is a foreign mobile phone number, please specify the area code in the phoneCountryCode parameter.
      */
     phoneNumber: string;
     /**
-     * 手机区号，中国大陆手机号可不填。Authing 短信服务暂不内置支持国际手机号，你需要在 Authing 控制台配置对应的国际短信服务。完整的手机区号列表可参阅 https://en.wikipedia.org/wiki/List_of_country_calling_codes。
+     * Mobile phone area code, mainland China mobile phone number is optional. Authing SMS service does not have built-in support for international mobile phone numbers. You need to configure the corresponding international SMS service in the Authing console. A complete list of mobile phone area codes can be found at https://en.wikipedia.org/wiki/List_of_country_calling_codes.
      */
     phoneCountryCode?: string;
 };

@@ -4,59 +4,59 @@
 
 export type EmailTemplateDto = {
     /**
-     * 是否启用自定义模版
+     * Whether to enable custom templates
      */
     customizeEnabled: boolean;
     /**
-     * 模版类型:
-     * - `WELCOME_EMAIL`: 欢迎邮件
-     * - `FIRST_CREATED_USER`: 首次创建用户通知
-     * - `REGISTER_VERIFY_CODE`: 注册验证码
-     * - `LOGIN_VERIFY_CODE`: 登录验证码
-     * - `MFA_VERIFY_CODE`: MFA 验证码
-     * - `INFORMATION_COMPLETION_VERIFY_CODE`: 注册信息补全验证码
-     * - `FIRST_EMAIL_LOGIN_VERIFY`: 首次邮箱登录验证
-     * - `CONSOLE_CONDUCTED_VERIFY`: 在控制台发起邮件验证
-     * - `USER_PASSWORD_UPDATE_REMIND`: 用户到期提醒
-     * - `ADMIN_RESET_USER_PASSWORD_NOTIFICATION`: 管理员重置用户密码成功通知
-     * - `USER_PASSWORD_RESET_NOTIFICATION`: 用户密码重置成功通知
-     * - `RESET_PASSWORD_VERIFY_CODE`: 重置密码验证码
-     * - `SELF_UNLOCKING_VERIFY_CODE`: 自助解锁验证码
-     * - `EMAIL_BIND_VERIFY_CODE`: 绑定邮箱验证码
-     * - `EMAIL_UNBIND_VERIFY_CODE`: 解绑邮箱验证码
+     * Template type:
+     * - `WELCOME_EMAIL`: welcome email
+     * - `FIRST_CREATED_USER`: First time created user notification
+     * - `REGISTER_VERIFY_CODE`: registration verification code
+     * - `LOGIN_VERIFY_CODE`: Login verification code
+     * - `MFA_VERIFY_CODE`: MFA verification code
+     * - `INFORMATION_COMPLETION_VERIFY_CODE`: Registration information completion verification code
+     * - `FIRST_EMAIL_LOGIN_VERIFY`: first email login verification
+     * - `CONSOLE_CONDUCTED_VERIFY`: Initiate email verification in the console
+     * - `USER_PASSWORD_UPDATE_REMIND`: User expiration reminder
+     * - `ADMIN_RESET_USER_PASSWORD_NOTIFICATION`: Notification of administrator successfully resetting user password
+     * - `USER_PASSWORD_RESET_NOTIFICATION`: Notification of successful user password reset
+     * - `RESET_PASSWORD_VERIFY_CODE`: reset password verification code
+     * - `SELF_UNLOCKING_VERIFY_CODE`: Self-service unlocking verification code
+     * - `EMAIL_BIND_VERIFY_CODE`: bind email verification code
+     * - `EMAIL_UNBIND_VERIFY_CODE`: Unbind email verification code
      *
      */
     type: EmailTemplateDto.type;
     /**
-     * 邮件模版名称
+     * Email template name
      */
     name: string;
     /**
-     * 邮件主题
+     * Email subject
      */
     subject: string;
     /**
-     * 邮件发件人名称
+     * Email sender name
      */
     sender: string;
     /**
-     * 邮件内容模版
+     * Email content template
      */
     content: string;
     /**
-     * 验证码/邮件有效时间，只有验证类邮件才有有效时间。
+     * Verification code/email validity time, only verification emails have validity time.
      */
     expiresIn?: number;
     /**
-     * 完成邮件验证之后跳转到的地址，只针对 `FIRST_EMAIL_LOGIN_VERIFY` 和 `CONSOLE_CONDUCTED_VERIFY` 类型的模版有效。
+     * The address to which you will jump after completing email verification is only valid for templates of type `FIRST_EMAIL_LOGIN_VERIFY` and `CONSOLE_CONDUCTED_VERIFY`.
      */
     redirectTo?: string;
     /**
-     * 模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
-     * - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
-     * - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
+     * Template rendering engine. Authing email template currently supports two rendering engines:
+     * - `handlebar`: For detailed usage, please see: [handlebars official documentation](https://handlebarsjs.com/)
+     * - `ejs`: For detailed usage, please see: [ejs official documentation](https://ejs.co/)
      *
-     * 默认将使用 `handlerbar` 作为模版渲染引擎。
+     * By default, `handlerbar` will be used as the template rendering engine.
      *
      */
     tplEngine?: EmailTemplateDto.tplEngine;
@@ -65,22 +65,22 @@ export type EmailTemplateDto = {
 export namespace EmailTemplateDto {
 
     /**
-     * 模版类型:
-     * - `WELCOME_EMAIL`: 欢迎邮件
-     * - `FIRST_CREATED_USER`: 首次创建用户通知
-     * - `REGISTER_VERIFY_CODE`: 注册验证码
-     * - `LOGIN_VERIFY_CODE`: 登录验证码
-     * - `MFA_VERIFY_CODE`: MFA 验证码
-     * - `INFORMATION_COMPLETION_VERIFY_CODE`: 注册信息补全验证码
-     * - `FIRST_EMAIL_LOGIN_VERIFY`: 首次邮箱登录验证
-     * - `CONSOLE_CONDUCTED_VERIFY`: 在控制台发起邮件验证
-     * - `USER_PASSWORD_UPDATE_REMIND`: 用户到期提醒
-     * - `ADMIN_RESET_USER_PASSWORD_NOTIFICATION`: 管理员重置用户密码成功通知
-     * - `USER_PASSWORD_RESET_NOTIFICATION`: 用户密码重置成功通知
-     * - `RESET_PASSWORD_VERIFY_CODE`: 重置密码验证码
-     * - `SELF_UNLOCKING_VERIFY_CODE`: 自助解锁验证码
-     * - `EMAIL_BIND_VERIFY_CODE`: 绑定邮箱验证码
-     * - `EMAIL_UNBIND_VERIFY_CODE`: 解绑邮箱验证码
+     * Template type:
+     * - `WELCOME_EMAIL`: welcome email
+     * - `FIRST_CREATED_USER`: First time created user notification
+     * - `REGISTER_VERIFY_CODE`: registration verification code
+     * - `LOGIN_VERIFY_CODE`: Login verification code
+     * - `MFA_VERIFY_CODE`: MFA verification code
+     * - `INFORMATION_COMPLETION_VERIFY_CODE`: registration information completion verification code
+     * - `FIRST_EMAIL_LOGIN_VERIFY`: first email login verification
+     * - `CONSOLE_CONDUCTED_VERIFY`: Initiate email verification in the console
+     * - `USER_PASSWORD_UPDATE_REMIND`: User expiration reminder
+     * - `ADMIN_RESET_USER_PASSWORD_NOTIFICATION`: Notification of administrator successfully resetting user password
+     * - `USER_PASSWORD_RESET_NOTIFICATION`: Notification of successful user password reset
+     * - `RESET_PASSWORD_VERIFY_CODE`: reset password verification code
+     * - `SELF_UNLOCKING_VERIFY_CODE`: Self-service unlocking verification code
+     * - `EMAIL_BIND_VERIFY_CODE`: bind email verification code
+     * - `EMAIL_UNBIND_VERIFY_CODE`: Unbind email verification code
      *
      */
     export enum type {
@@ -102,11 +102,11 @@ export namespace EmailTemplateDto {
     }
 
     /**
-     * 模版渲染引擎。Authing 邮件模版目前支持两种渲染引擎：
-     * - `handlebar`: 详细使用方法请见：[handlebars 官方文档](https://handlebarsjs.com/)
-     * - `ejs`: 详细使用方法请见：[ejs 官方文档](https://ejs.co/)
+     * Template rendering engine. Authing email template currently supports two rendering engines:
+     * - `handlebar`: For detailed usage, please see: [handlebars official documentation](https://handlebarsjs.com/)
+     * - `ejs`: For detailed usage, please see: [ejs official documentation](https://ejs.co/)
      *
-     * 默认将使用 `handlerbar` 作为模版渲染引擎。
+     * By default, `handlerbar` will be used as the template rendering engine.
      *
      */
     export enum tplEngine {

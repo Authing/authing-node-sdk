@@ -7,35 +7,35 @@ import type { ExtendField } from './ExtendField';
 
 export type GetDataResourceRespDto = {
     /**
-     * 数据资源名称, 权限空间内唯一
+     * Data resource name, unique within the permission space
      */
     resourceName: string;
     /**
-     * 数据资源 Code, 权限空间内唯一
+     * Data resource Code, unique in the permission space
      */
     resourceCode: string;
     /**
-     * 数据资源类型，目前支持树结构（TREE）、字符串（STRING）、数组（ARRAY）
+     * Data resource type, currently supports tree structure (TREE), string (STRING), and array (ARRAY)
      */
     type: GetDataResourceRespDto.type;
     /**
-     * 数据资源描述
+     * Data resource description
      */
     description?: string;
     /**
-     * 数据资源结构，支持字符串（STRING）、树结构（TREE）和数组结构（ARRAY）。
+     * Data resource structure, supporting string (STRING), tree structure (TREE) and array structure (ARRAY).
      */
     struct: (DataResourceTreeStructs | string | Array<string>);
     /**
-     * 扩展字段列表，目前只支持树类型资源
+     * Extended field list, currently only supports tree type resources
      */
     extendFieldList?: Array<ExtendField>;
     /**
-     * 数据策略所在的权限空间 Code
+     * The permission space Code where the data strategy is located
      */
     namespaceCode: string;
     /**
-     * 数据资源权限操作列表
+     * Data resource permission operation list
      */
     actions: Array<string>;
 };
@@ -43,7 +43,7 @@ export type GetDataResourceRespDto = {
 export namespace GetDataResourceRespDto {
 
     /**
-     * 数据资源类型，目前支持树结构（TREE）、字符串（STRING）、数组（ARRAY）
+     * Data resource type, currently supports tree structure (TREE), string (STRING), and array (ARRAY)
      */
     export enum type {
         TREE = 'TREE',

@@ -4,19 +4,19 @@
 
 export type DecryptWechatMiniProgramDataDto = {
     /**
-     * `wx.login` 接口返回的用户 `code`
+     * User `code` returned by `wx.login` interface
      */
     code: string;
     /**
-     * 对称解密算法初始向量，由微信返回
+     * Initial vector of symmetric decryption algorithm, returned by WeChat
      */
     iv: string;
     /**
-     * 获取微信开放数据返回的加密数据（encryptedData）
+     * Get the encrypted data (encryptedData) returned by WeChat open data
      */
     encryptedData: string;
     /**
-     * 微信小程序的外部身份源连接标志符
+     * External identity source connection identifier of WeChat applet
      */
     extIdpConnidentifier: string;
 };

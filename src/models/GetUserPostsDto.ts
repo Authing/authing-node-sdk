@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 获取用户关联的所有岗位
+ * Get all positions associated with the user
  */
 export type GetUserPostsDto = {
     /**
-     * 用户 id
+     * user id
      */
     userId?: any;
     /**
-     * 是否获取自定义数据
+     * Whether to obtain custom data
      */
     withCustomData?: any;
 };

@@ -4,11 +4,11 @@
 
 export type CustomFieldSelectOption = {
     /**
-     * 枚举值 value
+     * Enumeration value
      */
     value: string;
     /**
-     * 枚举值 label
+     * Enumeration label
      */
     label: string;
 };

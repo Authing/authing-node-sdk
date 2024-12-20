@@ -4,19 +4,19 @@
 
 export type DeviceExclusiveValidScopeAppDataDto = {
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
     /**
-     * 应用名称
+     * Application name
      */
     appName?: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     appLogo?: string;
     /**
-     * 应用 logo
+     * Application logo
      */
     isDefault?: string;
 };

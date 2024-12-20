@@ -4,27 +4,27 @@
 
 export type GetAllRowVyScrollidDto = {
     /**
-     * 每次获取数据的数量 默认 500，最多 5000
+     * The number of data obtained each time is 500 by default, and the maximum is 5000.
      */
     size: number;
     /**
-     * 功能 id
+     * function id
      */
     modelId: string;
     /**
-     * 分页查询滚动 id
+     * Paging query scroll id
      */
     scrollId?: string;
     /**
-     * 查询的数据 id
+     * Query data id
      */
     id?: string;
     /**
-     * 根据特定字段查询数据
+     * Query data based on specific fields
      */
     query?: any;
     /**
-     * 是否返回关联字段详情 默认 false
+     * Whether to return related field details, default false
      */
     getRelationDetails?: boolean;
 };

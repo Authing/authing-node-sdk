@@ -4,7 +4,7 @@
 
 export type DeleteInvitationRosterBatchDto = {
     /**
-     * 名单 ID 列表
+     * Roster ID list
      */
     ids: Array<string>;
 };

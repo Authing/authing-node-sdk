@@ -4,7 +4,7 @@
 
 export type DeleteInvitationPolicyByIdsDto = {
     /**
-     * 策略 ID 数组
+     * Policy ID list
      */
     policyIds: Array<string>;
 };

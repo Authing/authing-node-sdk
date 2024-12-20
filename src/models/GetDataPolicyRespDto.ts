@@ -4,23 +4,23 @@
 
 export type GetDataPolicyRespDto = {
     /**
-     * 数据策略 ID
+     * Data policy ID
      */
     policyId: string;
     /**
-     * 数据策略名称，用户池唯一
+     * Data policy name, unique to user pool
      */
     policyName: string;
     /**
-     * 数据策略描述
+     * Data strategy description
      */
     description?: string;
     /**
-     * 数据策略创建时间
+     * Data policy creation time
      */
     createdAt: string;
     /**
-     * 数据策略更新时间
+     * Data policy update time
      */
     updatedAt: string;
 };

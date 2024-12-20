@@ -6,19 +6,19 @@ import type { AuthenticatorAssertionResponseDto } from './AuthenticatorAssertion
 
 export type AuthenticationCredentialDto = {
     /**
-     * Base64URL 编码的凭证 ID
+     * Base64URL encoded credential ID
      */
     id: string;
     /**
-     * 原始凭证 ID
+     *Original voucher ID
      */
     rawId: string;
     /**
-     * 固定值，'public-key'
+     * Fixed value, 'public-key'
      */
     response: AuthenticatorAssertionResponseDto;
     /**
-     * 固定值，'public-key'
+     * Fixed value, 'public-key'
      */
     type: string;
 };

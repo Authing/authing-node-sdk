@@ -4,15 +4,15 @@
 
 export type DeleteAuthorizeDataPolicyDto = {
     /**
-     * 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型
+     * Subject type, including four types: USER, GROUP, ROLE, and ORG
      */
     targetType: DeleteAuthorizeDataPolicyDto.targetType;
     /**
-     * 主体 ID ，包含用户 ID、用户组 ID、角色 ID、组织机构 ID
+     * Subject ID, including user ID, user group ID, role ID, organization ID
      */
     targetIdentifier: string;
     /**
-     * 数据策略 ID
+     * Data policy ID
      */
     policyId: string;
 };
@@ -20,7 +20,7 @@ export type DeleteAuthorizeDataPolicyDto = {
 export namespace DeleteAuthorizeDataPolicyDto {
 
     /**
-     * 主体类型,包括 USER、GROUP、ROLE、ORG 四种类型
+     * Subject type, including four types: USER, GROUP, ROLE, and ORG
      */
     export enum targetType {
         USER = 'USER',

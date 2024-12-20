@@ -4,23 +4,23 @@
 
 export type LinkIdentity = {
     /**
-     * 必传，用户在该外部身份源的唯一标识，需要从外部身份源的认证返回值中获取。
+     * Required. The user's unique identifier in this external identity source needs to be obtained from the authentication return value of the external identity source.
      */
     userIdInIdp: string;
     /**
-     * 必传，进行绑定操作的 Authing 用户 ID。
+     * Required, the Authing user ID for binding operations.
      */
     userId: string;
     /**
-     * 必传，身份源 ID，用于指定该身份属于哪个身份源。
+     * Required, identity source ID, used to specify which identity source the identity belongs to.
      */
     extIdpId: string;
     /**
-     * 非必传，表示该条身份的具体类型，可从用户身份信息的 type 字段中获取。如果不传，默认为 generic
+     * Not required, indicating the specific type of the identity, which can be obtained from the type field of the user's identity information. If not passed, the default is generic
      */
     type?: string;
     /**
-     * 已废弃，可任意传入，未来将移除该字段。
+     * Deprecated, can be passed in arbitrarily, this field will be removed in the future.
      */
     isSocial?: boolean;
 };

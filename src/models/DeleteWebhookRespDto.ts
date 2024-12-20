@@ -4,19 +4,19 @@
 
 export type DeleteWebhookRespDto = {
     /**
-     * 业务状态码，可以通过此状态码判断操作是否成功，200 表示成功。
+     * Business status code, you can use this status code to determine whether the operation is successful, 200 means success.
      */
     statusCode: number;
     /**
-     * 描述信息
+     *Description information
      */
     message: string;
     /**
-     * 细分错误码，可通过此错误码得到具体的错误类型。详情可以查看开发准备中的 apiCode 细分说明
+     * Subdivide the error code, and you can get the specific error type through this error code. For details, please view the apiCode segmentation description in Development Preparation
      */
     apiCode?: number;
     /**
-     * 请求 ID。当请求失败时会返回。
+     * Request ID. Returned when the request fails.
      */
     requestId?: string;
 };

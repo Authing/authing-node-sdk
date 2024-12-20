@@ -4,7 +4,7 @@
 
 export type GenerateInvitationLinkDto = {
     /**
-     * 邀请链接地址
+     * Invitation link address
      */
     link: string;
 };

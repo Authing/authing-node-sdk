@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取角色列表
+ * Get character list
  */
 export type GetRoleListDto = {
     /**
-     * 所属权限分组的 code
+     * The code of the permission group it belongs to
      */
     namespace?: any;
 };

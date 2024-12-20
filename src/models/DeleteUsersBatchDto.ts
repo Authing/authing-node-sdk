@@ -6,11 +6,11 @@ import type { DeleteUsersBatchOptionsDto } from './DeleteUsersBatchOptionsDto';
 
 export type DeleteUsersBatchDto = {
     /**
-     * 用户 ID 列表
+     * User ID list
      */
     userIds: Array<string>;
     /**
-     * 可选参数
+     * Optional parameters
      */
     options?: DeleteUsersBatchOptionsDto;
 };

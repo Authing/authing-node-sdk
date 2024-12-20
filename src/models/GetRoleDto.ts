@@ -3,15 +3,15 @@
 /* eslint-disable */
 
 /**
- * 通过权限分组内角色 code，获取角色详情。
+ * Obtain role details through the role code in the permission group.
  */
 export type GetRoleDto = {
     /**
-     * 权限分组(权限空间)内角色的唯一标识符
+     * The unique identifier of the role within the permission group (permission space)
      */
     code?: any;
     /**
-     * 所属权限分组(权限空间)的 Code，不传获取默认权限分组。
+     * The Code of the permission group (permission space) to which it belongs is not passed to obtain the default permission group.
      */
     namespace?: any;
 };

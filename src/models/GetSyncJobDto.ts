@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取同步作业详情
+ * Get synchronization job details
  */
 export type GetSyncJobDto = {
     /**
-     * 同步作业 ID
+     * Sync job ID
      */
     syncJobId?: any;
 };

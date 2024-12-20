@@ -6,11 +6,11 @@ import type { DeleteApplicationPermissionRecordItem } from './DeleteApplicationP
 
 export type DeleteApplicationPermissionRecord = {
     /**
-     * 授权主体列表，最多 10 条
+     * Authorization subject list, up to 10 items
      */
     list: Array<DeleteApplicationPermissionRecordItem>;
     /**
-     * 应用 ID
+     * Application ID
      */
     appId: string;
 };

@@ -4,15 +4,15 @@
 
 export type LdapConfigInfoDto = {
     /**
-     * ID
+     *ID
      */
     id?: string;
     /**
-     * LDAP 服务是否开启1 是、2 否
+     * Whether the LDAP service is enabled 1 Yes, 2 No
      */
     enabled: number;
     /**
-     * 用户池 ID
+     * User pool ID
      */
     userPoolId: string;
     /**
@@ -20,23 +20,23 @@ export type LdapConfigInfoDto = {
      */
     linkUrl: string;
     /**
-     * LDAPS host
+     *LDAPS host
      */
     ldapsLinkUrl: string;
     /**
-     * 是否是私有化的 LDAP Server 1 是、2 否
+     * Whether it is a private LDAP Server 1 Yes, 2 No
      */
     enablePrivatization: number;
     /**
-     * 根据 domain 生成的 bindDN
+     * bindDN generated based on domain
      */
     bindDn: string;
     /**
-     * LDAP 域名，用于生成 baseDN
+     * LDAP domain name, used to generate baseDN
      */
     ldapDomain: string;
     /**
-     * 私有化时是否开启 SSL 1 是、2 否
+     * Whether to enable SSL during privatization 1 Yes, 2 No
      */
     enableSsl?: number;
     /**
@@ -44,19 +44,19 @@ export type LdapConfigInfoDto = {
      */
     baseDn: string;
     /**
-     * 加密存储的 bindDn 密码(16位)
+     * Encrypted stored bindDn password (16 bits)
      */
     bindPwd: string;
     /**
-     * 组织机构可见范围，值为组织节点 ID，用逗号分隔
+     * The visible range of the organization, the value is the organization node ID, separated by commas
      */
     visibleOrgNodes: any;
     /**
-     * 用户基础字段可见范围
+     * Visible range of user basic fields
      */
     visibleFields: any;
     /**
-     * 用户拓展字段映射到的 LDAP 字段，存储为 JSON 字符串
+     * The LDAP field to which the user extended field is mapped, stored as a JSON string
      */
     udfMapping: any;
 };

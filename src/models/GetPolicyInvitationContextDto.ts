@@ -3,11 +3,11 @@
 /* eslint-disable */
 
 /**
- * 获取邀请注册上下文数据
+ * Get invitation registration context data
  */
 export type GetPolicyInvitationContextDto = {
     /**
-     * 受邀人注册凭证
+     *Registration certificate of invitee
      */
     token?: any;
 };

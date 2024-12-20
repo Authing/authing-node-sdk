@@ -4,7 +4,7 @@
 
 export type DeleteGroupsReqDto = {
     /**
-     * 分组 code 列表
+     * Group code list
      */
     codeList: Array<string>;
 };
