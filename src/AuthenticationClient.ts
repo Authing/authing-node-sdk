@@ -1220,7 +1220,7 @@ export class AuthenticationClient {
     } else {
       const keys = await this.httpClient.request({
         method: "GET",
-        url: "/oidc/.well-known/jwks.json",
+        url: `/${this.options.appId}/oidc/.well-known/jwks.json`,
       });
       return await parseJWKS(keys);
     }
